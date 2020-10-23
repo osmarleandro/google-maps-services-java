@@ -151,9 +151,9 @@ public class PlacesApiTest {
   public void testPlaceDetailsLookupGoogleSydney() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
       PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
+          PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).API_CONFIG
               .fields(
-                  PlaceDetailsRequest.FieldMask.PLACE_ID,
+                  PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY), PlaceDetailsRequest.FieldMask.PLACE_ID,
                   PlaceDetailsRequest.FieldMask.NAME,
                   PlaceDetailsRequest.FieldMask.TYPES)
               .await();
@@ -1046,7 +1046,7 @@ public class PlacesApiTest {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
 
-    PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
+    PlacesApi.placeDetails(server.context, "testPlaceId").API_CONFIG.fields(PlacesApi.placeDetails(server.context, "testPlaceId"), FieldMask.BUSINESS_STATUS).await();
 
     server.assertParamValue("business_status", "fields");
   }

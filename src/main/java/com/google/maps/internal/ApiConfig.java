@@ -16,6 +16,8 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PlaceDetailsRequest;
+import com.google.maps.PlaceDetailsRequest.FieldMask;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +49,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Specifies the field masks of the details to be returned by PlaceDetails.
+   *
+   * @param placeDetailsRequest TODO
+ * @param fields The Field Masks of the fields to return.
+ * @return Returns this {@code PlaceDetailsRequest} for call chaining.
+   */
+  public PlaceDetailsRequest fields(PlaceDetailsRequest placeDetailsRequest, FieldMask... fields) {
+    return placeDetailsRequest.param("fields", StringJoin.join(',', fields));
   }
 }

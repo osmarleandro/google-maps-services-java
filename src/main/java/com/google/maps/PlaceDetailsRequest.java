@@ -19,7 +19,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.PlaceDetails;
 
@@ -30,7 +29,7 @@ import com.google.maps.model.PlaceDetails;
 public class PlaceDetailsRequest
     extends PendingResultBase<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/details/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -69,16 +68,6 @@ public class PlaceDetailsRequest
    */
   public PlaceDetailsRequest region(String region) {
     return param("region", region);
-  }
-
-  /**
-   * Specifies the field masks of the details to be returned by PlaceDetails.
-   *
-   * @param fields The Field Masks of the fields to return.
-   * @return Returns this {@code PlaceDetailsRequest} for call chaining.
-   */
-  public PlaceDetailsRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
   }
 
   @Override
