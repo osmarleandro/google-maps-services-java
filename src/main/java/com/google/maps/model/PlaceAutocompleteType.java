@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.PlaceAutocompleteRequest;
 import com.google.maps.internal.StringJoin;
 
 /**
@@ -42,5 +43,16 @@ public enum PlaceAutocompleteType implements StringJoin.UrlValue {
   @Override
   public String toString() {
     return placeType;
+  }
+
+/**
+   * Restricts the results to places matching the specified type.
+   *
+   * @param placeAutocompleteRequest TODO
+ * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   * @deprecated Please use {@code types} instead.
+   */
+  public PlaceAutocompleteRequest type(PlaceAutocompleteRequest placeAutocompleteRequest) {
+    return placeAutocompleteRequest.types(this);
   }
 }
