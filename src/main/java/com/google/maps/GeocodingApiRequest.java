@@ -35,7 +35,7 @@ public class GeocodingApiRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
     // Must not have both address and latlng.
     if (params().containsKey("latlng")
         && params().containsKey("address")
