@@ -103,7 +103,7 @@ public class TextSearchRequest
    * @param priceLevel The maximum price leve to restrict results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest maxPrice(PriceLevel priceLevel) {
+  public TextSearchRequest maxPrice_RENAMED(PriceLevel priceLevel) {
     return param("maxprice", priceLevel);
   }
 
