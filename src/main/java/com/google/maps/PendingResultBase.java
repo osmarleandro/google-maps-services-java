@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * The distance (in meters) within which to return place results. Note that setting a radius
+   * biases results to the indicated area, but may not fully restrict results to the specified area.
+   *
+   * @param radius The radius over which to bias results.
+   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+public PlaceAutocompleteRequest radius(int radius) {
+    return param("radius", String.valueOf(radius));
+  }
 }
