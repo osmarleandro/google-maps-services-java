@@ -37,7 +37,7 @@ public class RateLimitExecutorServiceTest {
       LoggerFactory.getLogger(RateLimitExecutorServiceTest.class.getName());
 
   @Test
-  public void testRateLimitDoesNotExceedSuppliedQps() throws Exception {
+  public void testRateLimitDoesNotExceedSuppliedQps_RENAMED() throws Exception {
     int qps = 10;
     RateLimitExecutorService service = new RateLimitExecutorService();
     service.setQueriesPerSecond(qps);
