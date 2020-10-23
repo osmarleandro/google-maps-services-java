@@ -144,16 +144,16 @@ public class StaticMapsRequest
     public String toUrlValue() {
       return this.name();
     }
-  }
 
-  /**
-   * <code>maptype</code> defines the type of map to construct.
-   *
-   * @param maptype The map type of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest maptype(StaticMapType maptype) {
-    return param("maptype", maptype);
+	/**
+	   * <code>maptype</code> defines the type of map to construct.
+	   *
+	   * @param staticMapsRequest TODO
+	 * @return Returns this {@code StaticMapsRequest} for call chaining.
+	   */
+	  public StaticMapsRequest maptype(StaticMapsRequest staticMapsRequest) {
+	    return staticMapsRequest.param("maptype", this);
+	  }
   }
 
   /**
