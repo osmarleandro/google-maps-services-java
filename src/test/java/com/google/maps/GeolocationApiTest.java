@@ -173,7 +173,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testAlternateWifiSetterGeolocation() throws Exception {
+  public void testAlternateWifiSetterGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       WifiAccessPoint[] wifiAccessPoints = new WifiAccessPoint[2];
       wifiAccessPoints[0] =
