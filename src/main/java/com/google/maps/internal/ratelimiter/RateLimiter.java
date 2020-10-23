@@ -199,7 +199,7 @@ public abstract class RateLimiter {
   }
 
   RateLimiter(SleepingStopwatch stopwatch) {
-    this.stopwatch = checkNotNull(stopwatch);
+    this.stopwatch = checkNotNull_RENAMED(stopwatch);
   }
 
   /**

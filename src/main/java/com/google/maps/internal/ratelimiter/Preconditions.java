@@ -65,7 +65,7 @@ public final class Preconditions {
    * @return the non-null reference that was validated
    * @throws NullPointerException if {@code reference} is null
    */
-  public static <T> T checkNotNull(T reference) {
+  public static <T> T checkNotNull_RENAMED(T reference) {
     if (reference == null) {
       throw new NullPointerException();
     }
