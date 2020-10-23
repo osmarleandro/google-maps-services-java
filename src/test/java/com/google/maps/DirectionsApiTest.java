@@ -205,7 +205,7 @@ public class DirectionsApiTest {
    * http://maps.googleapis.com/maps/api/directions/json?origin=Brooklyn&destination=Queens&departure_time=1343641500&mode=transit}
    */
   @Test
-  public void testBrooklynToQueensByTransit() throws Exception {
+  public void testBrooklynToQueensByTransit_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
