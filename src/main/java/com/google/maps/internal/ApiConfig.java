@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.NearbySearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Restricts to only those places that are open for business at the time the query is sent.
+   *
+   * @param nearbySearchRequest TODO
+ * @param openNow Whether to restrict to places that are open.
+ * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  public NearbySearchRequest openNow(NearbySearchRequest nearbySearchRequest, boolean openNow) {
+    return nearbySearchRequest.param("opennow", String.valueOf(openNow));
   }
 }

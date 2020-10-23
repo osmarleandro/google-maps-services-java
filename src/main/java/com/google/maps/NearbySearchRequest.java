@@ -36,7 +36,7 @@ public class NearbySearchRequest
     extends PendingResultBase<
         PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -124,16 +124,6 @@ public class NearbySearchRequest
    */
   public NearbySearchRequest name(String name) {
     return param("name", name);
-  }
-
-  /**
-   * Restricts to only those places that are open for business at the time the query is sent.
-   *
-   * @param openNow Whether to restrict to places that are open.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest openNow(boolean openNow) {
-    return param("opennow", String.valueOf(openNow));
   }
 
   /**
