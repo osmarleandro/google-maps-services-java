@@ -28,7 +28,7 @@ import com.google.maps.model.LocationType;
 public class GeocodingApiRequest
     extends PendingResultBase<GeocodingResult[], GeocodingApiRequest, GeocodingApi.Response> {
 
-  private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
+  public static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
 
   public GeocodingApiRequest(GeoApiContext context) {
     super(context, API_CONFIG, GeocodingApi.Response.class);
@@ -98,21 +98,6 @@ public class GeocodingApiRequest
    */
   public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
     return param("bounds", join('|', southWestBound, northEastBound));
-  }
-
-  /**
-   * Sets the region code, specified as a ccTLD ("top-level domain") two-character value. This
-   * parameter will only influence, not fully restrict, results from the geocoder.
-   *
-   * <p>For more information see <a
-   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#RegionCodes">Region
-   * Biasing</a>.
-   *
-   * @param region The region code to influence results.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest region(String region) {
-    return param("region", region);
   }
 
   /**

@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApiRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,21 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the region code, specified as a ccTLD ("top-level domain") two-character value. This
+   * parameter will only influence, not fully restrict, results from the geocoder.
+   *
+   * <p>For more information see <a
+   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#RegionCodes">Region
+   * Biasing</a>.
+   *
+   * @param geocodingApiRequest TODO
+ * @param region The region code to influence results.
+ * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+  public GeocodingApiRequest region(GeocodingApiRequest geocodingApiRequest, String region) {
+    return geocodingApiRequest.param("region", region);
   }
 }

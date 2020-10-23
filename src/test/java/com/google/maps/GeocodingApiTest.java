@@ -408,7 +408,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context).address("Toledo").region("es").await();
+          GeocodingApi.newRequest(sc.context).address("Toledo").API_CONFIG.region(GeocodingApi.newRequest(sc.context).address("Toledo"), "es").await();
 
       assertNotNull(Arrays.toString(results));
 
