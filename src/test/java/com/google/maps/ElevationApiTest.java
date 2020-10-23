@@ -158,7 +158,7 @@ public class ElevationApiTest {
   }
 
   @Test
-  public void testGetPath() throws Exception {
+  public void testGetPath_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             ""
