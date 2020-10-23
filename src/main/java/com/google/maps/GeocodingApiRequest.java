@@ -26,12 +26,12 @@ import com.google.maps.model.LocationType;
 
 /** A request for the Geocoding API. */
 public class GeocodingApiRequest
-    extends PendingResultBase<GeocodingResult[], GeocodingApiRequest, GeocodingApi.Response> {
+    extends PendingResultBase<GeocodingResult[], GeocodingApiRequest, GeocodingApi_RENAMED.Response> {
 
   private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
 
   public GeocodingApiRequest(GeoApiContext context) {
-    super(context, API_CONFIG, GeocodingApi.Response.class);
+    super(context, API_CONFIG, GeocodingApi_RENAMED.Response.class);
   }
 
   @Override
