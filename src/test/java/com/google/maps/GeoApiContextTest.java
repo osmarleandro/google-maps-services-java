@@ -222,7 +222,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testRetryEventuallyReturnsTheRightException() throws Exception {
+  public void testRetryEventuallyReturnsTheRightException_RENAMED() throws Exception {
     MockResponse errorResponse = new MockResponse();
     errorResponse.setStatus("HTTP/1.1 500 Internal server error");
     errorResponse.setBody("Uh-oh. Server Error.");
