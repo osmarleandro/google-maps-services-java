@@ -45,7 +45,7 @@ public class ApiException extends Exception {
     } else if ("MAX_ROUTE_LENGTH_EXCEEDED".equals(status)) {
       return new MaxRouteLengthExceededException(errorMessage);
     } else if ("MAX_WAYPOINTS_EXCEEDED".equals(status)) {
-      return new MaxWaypointsExceededException(errorMessage);
+      return new MaxWaypointsExceededException_RENAMED(errorMessage);
     } else if ("NOT_FOUND".equals(status)) {
       return new NotFoundException(errorMessage);
     } else if ("OVER_QUERY_LIMIT".equals(status)) {

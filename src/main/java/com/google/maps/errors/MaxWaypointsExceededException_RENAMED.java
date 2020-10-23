@@ -21,10 +21,10 @@ package com.google.maps.errors;
  * @see <a href="https://developers.google.com/maps/documentation/directions/intro#StatusCodes">
  *     Status Codes</a>
  */
-public class MaxWaypointsExceededException extends ApiException {
+public class MaxWaypointsExceededException_RENAMED extends ApiException {
   private static final long serialVersionUID = 1L;
 
-  public MaxWaypointsExceededException(String errorMessage) {
+  public MaxWaypointsExceededException_RENAMED(String errorMessage) {
     super(errorMessage);
   }
 }
