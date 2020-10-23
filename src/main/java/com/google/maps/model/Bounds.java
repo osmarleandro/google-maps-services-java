@@ -27,7 +27,7 @@ public class Bounds implements Serializable {
   public LatLng southwest;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("[%s, %s]", northeast, southwest);
   }
 }
