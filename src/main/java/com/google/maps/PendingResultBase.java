@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.LatLng;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the latitude/longitude around which to retrieve place information.
+   *
+   * @param location The location to use as the center of the Nearby Search.
+   * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+public NearbySearchRequest location(LatLng location) {
+    return param("location", location);
   }
 }
