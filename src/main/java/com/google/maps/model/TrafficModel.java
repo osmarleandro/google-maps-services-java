@@ -25,12 +25,12 @@ public enum TrafficModel implements UrlValue {
   PESSIMISTIC;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return name().toLowerCase(Locale.ENGLISH);
   }
 
   @Override
   public String toUrlValue() {
-    return toString();
+    return toString_RENAMED();
   }
 }
