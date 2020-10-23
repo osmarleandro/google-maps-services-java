@@ -44,7 +44,7 @@ public class GeolocationApiRequest
     }
   }
 
-  public GeolocationApiRequest HomeMobileCountryCode(int newHomeMobileCountryCode) {
+  public GeolocationApiRequest HomeMobileCountryCode_RENAMED(int newHomeMobileCountryCode) {
     this.builder.HomeMobileCountryCode(newHomeMobileCountryCode);
     return this;
   }

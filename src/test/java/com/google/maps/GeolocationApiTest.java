@@ -57,7 +57,7 @@ public class GeolocationApiTest {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
+              .HomeMobileCountryCode_RENAMED(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
               .Carrier("T-Mobile")
@@ -213,7 +213,7 @@ public class GeolocationApiTest {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
+              .HomeMobileCountryCode_RENAMED(310)
               .HomeMobileNetworkCode(410)
               .RadioType("gsm")
               .Carrier("Vodafone")
@@ -331,7 +331,7 @@ public class GeolocationApiTest {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
+              .HomeMobileCountryCode_RENAMED(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
               .Carrier("Vodafone")
@@ -432,7 +432,7 @@ public class GeolocationApiTest {
                 + "  \"message\": \"Parse Error\"\n"
                 + " }\n"
                 + "}")) {
-      GeolocationApi.newRequest(sc.context).HomeMobileCountryCode(-310).CreatePayload().await();
+      GeolocationApi.newRequest(sc.context).HomeMobileCountryCode_RENAMED(-310).CreatePayload().await();
     }
   }
 }
