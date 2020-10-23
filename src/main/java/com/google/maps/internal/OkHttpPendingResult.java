@@ -238,7 +238,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
-    if (shouldRetry(response)) {
+    if (shouldRetry_RENAMED(response)) {
       // since we are retrying the request we must close the response
       response.close();
 
@@ -327,7 +327,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     return this.await();
   }
 
-  private boolean shouldRetry(Response response) {
+  private boolean shouldRetry_RENAMED(Response response) {
     return RETRY_ERROR_CODES.contains(response.code())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
