@@ -65,7 +65,7 @@ public class LatLng implements UrlValue, Serializable {
   }
 
   @Override
-  public int hashCode() {
+  public int hashCode_RENAMED() {
     return Objects.hash(lat, lng);
   }
 }
