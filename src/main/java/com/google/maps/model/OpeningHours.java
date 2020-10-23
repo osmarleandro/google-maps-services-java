@@ -110,7 +110,7 @@ public class OpeningHours implements Serializable {
   public Boolean permanentlyClosed;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[OpeningHours:");
     if (permanentlyClosed != null && permanentlyClosed) {
       sb.append(" permanentlyClosed");
