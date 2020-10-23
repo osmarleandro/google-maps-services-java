@@ -20,7 +20,6 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.AutocompletePrediction;
-import com.google.maps.model.LatLng;
 
 /**
  * A <a
@@ -68,16 +67,6 @@ public class QueryAutocompleteRequest
    */
   public QueryAutocompleteRequest offset(int offset) {
     return param("offset", String.valueOf(offset));
-  }
-
-  /**
-   * The point around which you wish to retrieve place information.
-   *
-   * @param location The location point around which to search.
-   * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
-   */
-  public QueryAutocompleteRequest location(LatLng location) {
-    return param("location", location);
   }
 
   /**
