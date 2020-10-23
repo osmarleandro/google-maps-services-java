@@ -52,7 +52,7 @@ public class GeoApiContextTest {
   private GeoApiContext.Builder builder;
 
   @Before
-  public void Setup() {
+  public void Setup_RENAMED() {
     server = new MockWebServer();
     builder = new GeoApiContext.Builder().apiKey("AIza...").queryRateLimit(500);
   }
