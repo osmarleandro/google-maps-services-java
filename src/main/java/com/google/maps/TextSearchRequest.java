@@ -146,7 +146,7 @@ public class TextSearchRequest
    * @param ranking The rank by method.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest rankby(RankBy ranking) {
+  public TextSearchRequest rankby_RENAMED(RankBy ranking) {
     return param("rankby", ranking);
   }
 
