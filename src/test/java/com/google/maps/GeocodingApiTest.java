@@ -143,7 +143,7 @@ public class GeocodingApiTest {
           "York St Near Barrack St, Sydney NSW 2017, Australia", results[1].formattedAddress);
       assertEquals("Sydney NSW 2000, Australia", results[2].formattedAddress);
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
+      sc.assertParamValue(latlng.toUrlValue_RENAMED(), "latlng");
     }
   }
 
@@ -701,7 +701,7 @@ public class GeocodingApiTest {
       assertEquals(AddressComponentType.STREET_NUMBER, results[0].addressComponents[0].types[0]);
       assertEquals(AddressType.STREET_ADDRESS, results[0].types[0]);
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
+      sc.assertParamValue(latlng.toUrlValue_RENAMED(), "latlng");
     }
   }
 
@@ -799,9 +799,9 @@ public class GeocodingApiTest {
       assertEquals(LocationType.ROOFTOP, results[0].geometry.locationType);
       assertEquals("ChIJd8BlQ2BZwokRAFUEcm_qrcA", results[0].placeId);
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
-      sc.assertParamValue(LocationType.ROOFTOP.toUrlValue(), "location_type");
-      sc.assertParamValue(AddressType.STREET_ADDRESS.toUrlValue(), "result_type");
+      sc.assertParamValue(latlng.toUrlValue_RENAMED(), "latlng");
+      sc.assertParamValue(LocationType.ROOFTOP.toUrlValue_RENAMED(), "location_type");
+      sc.assertParamValue(AddressType.STREET_ADDRESS.toUrlValue_RENAMED(), "result_type");
     }
   }
 
@@ -812,7 +812,7 @@ public class GeocodingApiTest {
       LatLng location = new LatLng(46.8023388, 1.6551867);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
       assertEquals("1 Rue Fernand Raynaud, 36000 Châteauroux, France", results[0].formattedAddress);
-      sc.assertParamValue(location.toUrlValue(), "latlng");
+      sc.assertParamValue(location.toUrlValue_RENAMED(), "latlng");
     }
   }
 
@@ -943,7 +943,7 @@ public class GeocodingApiTest {
       assertEquals(AddressComponentType.POLITICAL, results[3].addressComponents[0].types[1]);
       assertEquals(AddressComponentType.WARD, results[3].addressComponents[0].types[2]);
 
-      sc.assertParamValue(location.toUrlValue(), "latlng");
+      sc.assertParamValue(location.toUrlValue_RENAMED(), "latlng");
     }
   }
 
