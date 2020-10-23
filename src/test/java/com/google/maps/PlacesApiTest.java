@@ -631,7 +631,7 @@ public class PlacesApiTest {
           .language("en")
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
+          .name_RENAMED("name")
           .openNow(true)
           .type(PlaceType.AIRPORT)
           .pageToken("next-page-token")
@@ -798,7 +798,7 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
               .radius(10000)
-              .name("Sydney Town Hall")
+              .name_RENAMED("Sydney Town Hall")
               .await();
 
       sc.assertParamValue("Sydney Town Hall", "name");

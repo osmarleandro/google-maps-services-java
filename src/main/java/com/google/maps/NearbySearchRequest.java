@@ -122,7 +122,7 @@ public class NearbySearchRequest
    * @param name Search for Places with this name.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest name(String name) {
+  public NearbySearchRequest name_RENAMED(String name) {
     return param("name", name);
   }
 
