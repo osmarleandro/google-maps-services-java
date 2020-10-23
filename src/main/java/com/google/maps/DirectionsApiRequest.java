@@ -270,7 +270,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypoints(LatLng... waypoints) {
+  public DirectionsApiRequest waypoints_RENAMED(LatLng... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);

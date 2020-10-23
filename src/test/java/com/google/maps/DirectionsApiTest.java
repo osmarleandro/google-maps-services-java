@@ -280,7 +280,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
-          .waypoints(new LatLng(42.379322, -71.063384), new LatLng(42.444303, -71.229087))
+          .waypoints_RENAMED(new LatLng(42.379322, -71.063384), new LatLng(42.444303, -71.229087))
           .await();
 
       sc.assertParamValue("Boston,MA", "origin");
@@ -520,7 +520,7 @@ public class DirectionsApiTest {
               .destination(destination)
               .departureTime(Instant.now())
               .optimizeWaypoints(true)
-              .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
+              .waypoints_RENAMED(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .await();
 
       sc.assertParamValue(origin.toUrlValue(), "origin");
@@ -553,7 +553,7 @@ public class DirectionsApiTest {
               .origin(origin)
               .destination(destination)
               .departureTime(Instant.now())
-              .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
+              .waypoints_RENAMED(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .optimizeWaypoints(true)
               .await();
 
