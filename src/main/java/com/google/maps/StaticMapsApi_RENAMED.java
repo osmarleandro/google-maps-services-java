@@ -17,9 +17,9 @@ package com.google.maps;
 
 import com.google.maps.model.Size;
 
-public class StaticMapsApi {
+public class StaticMapsApi_RENAMED {
 
-  private StaticMapsApi() {}
+  private StaticMapsApi_RENAMED() {}
 
   /**
    * Create a new {@code StaticMapRequest}.
