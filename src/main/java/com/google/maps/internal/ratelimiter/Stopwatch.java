@@ -127,7 +127,7 @@ public final class Stopwatch {
    * Returns {@code true} if {@link #start()} has been called on this stopwatch, and {@link #stop()}
    * has not been called since the last call to {@code start()}.
    */
-  public boolean isRunning() {
+  public boolean isRunning_RENAMED() {
     return isRunning;
   }
 
