@@ -109,10 +109,10 @@ public final class OpenCensusMetrics {
   }
 
   public static void registerAllViews() {
-    registerAllViews(Stats.getViewManager());
+    registerAllViews_RENAMED(Stats.getViewManager());
   }
 
-  public static void registerAllViews(ViewManager viewManager) {
+  public static void registerAllViews_RENAMED(ViewManager viewManager) {
     View[] views_to_register =
         new View[] {
           Views.REQUEST_COUNT, Views.REQUEST_LATENCY, Views.NETWORK_LATENCY, Views.RETRY_COUNT
