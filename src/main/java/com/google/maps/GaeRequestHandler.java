@@ -85,7 +85,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   @Override
-  public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
+  public <T, R extends ApiResponse<T>> PendingResult<T> handlePost_RENAMED(
       String hostName,
       String url,
       String payload,
