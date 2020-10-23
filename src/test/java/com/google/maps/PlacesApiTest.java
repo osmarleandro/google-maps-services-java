@@ -24,7 +24,6 @@ import static org.junit.Assert.assertTrue;
 import com.google.maps.FindPlaceFromTextRequest.InputType;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasCircular;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasIP;
-import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
@@ -80,7 +79,7 @@ public class PlacesApiTest {
   private final String placesApiPlaceAutocomplete;
   private final String placesApiPlaceAutocompleteWithType;
   private final String placesApiKitaWard;
-  private final String findPlaceFromTextMuseumOfContemporaryArt;
+  public final String findPlaceFromTextMuseumOfContemporaryArt;
 
   public PlacesApiTest() {
     autocompletePredictionStructuredFormatting =
@@ -954,31 +953,6 @@ public class PlacesApiTest {
       assertEquals(2268, photo.height);
       assertEquals(4032, photo.width);
       assertEquals(4.4, candidate.rating, 0.01);
-    }
-  }
-
-  @Test
-  public void testFindPlaceFromTextPoint() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
-
-      String input = "Museum of Contemporary Art Australia";
-
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
-          .await();
-
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("point:1.00000000,2.00000000", "locationbias");
     }
   }
 
