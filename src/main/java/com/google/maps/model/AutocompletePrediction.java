@@ -54,7 +54,7 @@ public class AutocompletePrediction implements Serializable {
 
   /**
    * The distance in meters of the place from the {@link
-   * com.google.maps.PlaceAutocompleteRequest#origin(LatLng)}. Optional.
+   * #MISSING()}. Optional.
    */
   public Integer distanceMeters;
 
