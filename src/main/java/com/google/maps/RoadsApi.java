@@ -65,7 +65,7 @@ public class RoadsApi {
    * @param path The collected GPS points as a path.
    * @return Returns the snapped points as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedPoint[]> snapToRoads(GeoApiContext context, LatLng... path) {
+  public static PendingResult<SnappedPoint[]> snapToRoads_RENAMED(GeoApiContext context, LatLng... path) {
     return context.get(SNAP_TO_ROADS_API_CONFIG, RoadsResponse.class, "path", join('|', path));
   }
 
@@ -123,7 +123,7 @@ public class RoadsApi {
    *
    * @param context The {@link GeoApiContext} to make requests through.
    * @param placeIds The Place ID of the road segment. Place IDs are returned by the {@link
-   *     #snapToRoads(GeoApiContext, com.google.maps.model.LatLng...)} method. You can pass up to
+   *     #snapToRoads_RENAMED(GeoApiContext, com.google.maps.model.LatLng...)} method. You can pass up to
    *     100 placeIds with each request.
    * @return Returns the speed limits as a {@link PendingResult}.
    */
