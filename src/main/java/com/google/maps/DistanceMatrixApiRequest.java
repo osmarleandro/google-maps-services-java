@@ -17,7 +17,6 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
-import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
@@ -110,16 +109,6 @@ public class DistanceMatrixApiRequest
     }
     throw new IllegalArgumentException(
         "Distance Matrix API travel modes must be Driving, Transit, Walking or Bicycling");
-  }
-
-  /**
-   * Introduces restrictions to the route. Only one restriction can be specified.
-   *
-   * @param restriction A {@link RouteRestriction} object.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest avoid(RouteRestriction restriction) {
-    return param("avoid", restriction);
   }
 
   /**
