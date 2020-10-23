@@ -34,10 +34,10 @@ import org.junit.experimental.categories.Category;
 public class ElevationApiTest {
 
   private static final double SYDNEY_ELEVATION = 19.11174774169922;
-  private static final double SYDNEY_POINT_ELEVATION = 19.10829925537109;
+  public static final double SYDNEY_POINT_ELEVATION = 19.10829925537109;
   private static final double MELBOURNE_ELEVATION = 25.49982643127441;
-  private static final double EPSILON = .00001;
-  private static final LatLng SYDNEY = new LatLng(-33.867487, 151.206990);
+  public static final double EPSILON = .00001;
+  public static final LatLng SYDNEY = new LatLng(-33.867487, 151.206990);
   private static final LatLng MELBOURNE = new LatLng(-37.814107, 144.963280);
   private static final EncodedPolyline SYD_MELB_ROUTE =
       new EncodedPolyline(
@@ -89,34 +89,6 @@ public class ElevationApiTest {
       ElevationApi.getByPoints(
               sc.context, new EncodedPolyline(Collections.singletonList(new LatLng(0, 0))))
           .await();
-    }
-  }
-
-  @Test
-  public void testGetPoint() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
-            ""
-                + "{\n"
-                + "   \"results\" : [\n"
-                + "      {\n"
-                + "         \"elevation\" : 19.10829925537109,\n"
-                + "         \"location\" : {\n"
-                + "            \"lat\" : -33.867487,\n"
-                + "            \"lng\" : 151.20699\n"
-                + "         },\n"
-                + "         \"resolution\" : 4.771975994110107\n"
-                + "      }\n"
-                + "   ],\n"
-                + "   \"status\" : \"OK\"\n"
-                + "}\n")) {
-      ElevationResult result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
-
-      assertNotNull(result);
-      assertNotNull(result.toString());
-      assertEquals(SYDNEY_POINT_ELEVATION, result.elevation, EPSILON);
-
-      sc.assertParamValue(SYDNEY.toUrlValue(), "locations");
     }
   }
 

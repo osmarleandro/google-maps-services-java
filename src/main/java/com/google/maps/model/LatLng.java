@@ -15,10 +15,19 @@
 
 package com.google.maps.model;
 
+import com.google.maps.ElevationApi;
+import com.google.maps.ElevationApiTest;
+import com.google.maps.LocalTestServerContext;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +76,33 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testGetPoint(ElevationApiTest elevationApiTest) throws Exception {
+    try (LocalTestServerContext sc =
+        new LocalTestServerContext(
+            ""
+                + "{\n"
+                + "   \"results\" : [\n"
+                + "      {\n"
+                + "         \"elevation\" : 19.10829925537109,\n"
+                + "         \"location\" : {\n"
+                + "            \"lat\" : -33.867487,\n"
+                + "            \"lng\" : 151.20699\n"
+                + "         },\n"
+                + "         \"resolution\" : 4.771975994110107\n"
+                + "      }\n"
+                + "   ],\n"
+                + "   \"status\" : \"OK\"\n"
+                + "}\n")) {
+      ElevationResult result = ElevationApi.getByPoint(sc.context, ElevationApiTest.SYDNEY).await();
+
+      assertNotNull(result);
+      assertNotNull(result.toString());
+      assertEquals(ElevationApiTest.SYDNEY_POINT_ELEVATION, result.elevation, ElevationApiTest.EPSILON);
+
+      sc.assertParamValue(ElevationApiTest.SYDNEY.toUrlValue(), "locations");
+    }
   }
 }
