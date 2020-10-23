@@ -317,7 +317,7 @@ public class DirectionsApiRequest
    * @param transitModes The preferred transit modes.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest transitMode(TransitMode... transitModes) {
+  public DirectionsApiRequest transitMode_RENAMED(TransitMode... transitModes) {
     return param("transit_mode", join('|', transitModes));
   }
 

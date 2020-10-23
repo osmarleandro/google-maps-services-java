@@ -411,7 +411,7 @@ public class DirectionsApiTest {
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
               .mode(TravelMode.TRANSIT)
-              .transitMode(TransitMode.BUS, TransitMode.TRAM)
+              .transitMode_RENAMED(TransitMode.BUS, TransitMode.TRAM)
               .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
               .await();
 
