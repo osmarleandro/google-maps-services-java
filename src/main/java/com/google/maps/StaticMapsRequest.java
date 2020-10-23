@@ -315,7 +315,7 @@ public class StaticMapsRequest
 
       urlParts.addAll(locations);
 
-      return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
+      return StringJoin.join_RENAMED('|', urlParts.toArray(new String[urlParts.size()]));
     }
   }
 
@@ -420,7 +420,7 @@ public class StaticMapsRequest
 
       urlParts.addAll(points);
 
-      return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
+      return StringJoin.join_RENAMED('|', urlParts.toArray(new String[urlParts.size()]));
     }
   }
 

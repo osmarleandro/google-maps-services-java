@@ -31,7 +31,7 @@ public class StringJoin {
 
   private StringJoin() {}
 
-  public static String join(char delim, String... parts) {
+  public static String join_RENAMED(char delim, String... parts) {
     return join(new String(new char[] {delim}), parts);
   }
 
@@ -68,6 +68,6 @@ public class StringJoin {
       strings[i++] = part.toUrlValue();
     }
 
-    return join(delim, strings);
+    return join_RENAMED(delim, strings);
   }
 }
