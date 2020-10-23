@@ -76,7 +76,7 @@ public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
 
   /** This method is not implemented. */
   @Override
-  public void write(JsonWriter writer, ZonedDateTime value) throws IOException {
+  public void write_RENAMED(JsonWriter writer, ZonedDateTime value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method");
   }
 }
