@@ -53,7 +53,7 @@ public class QueryAutocompleteRequest
    * @param input The input text to autocomplete.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest input(String input) {
+  public QueryAutocompleteRequest input_RENAMED(String input) {
     return param("input", input);
   }
 
