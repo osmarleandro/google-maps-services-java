@@ -42,11 +42,11 @@ import org.slf4j.LoggerFactory;
  *
  * @see com.google.maps.GeoApiContext.RequestHandler
  */
-public class GaeRequestHandler implements GeoApiContext.RequestHandler {
-  private static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
+public class GaeRequestHandler_RENAMED implements GeoApiContext.RequestHandler {
+  private static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler_RENAMED.class.getName());
   private final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
 
-  /* package */ GaeRequestHandler() {}
+  /* package */ GaeRequestHandler_RENAMED() {}
 
   @Override
   public <T, R extends ApiResponse<T>> PendingResult<T> handle(
@@ -163,7 +163,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
 
     @Override
     public RequestHandler build() {
-      return new GaeRequestHandler();
+      return new GaeRequestHandler_RENAMED();
     }
   }
 }

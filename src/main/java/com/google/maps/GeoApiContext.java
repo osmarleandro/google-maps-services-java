@@ -101,7 +101,7 @@ public class GeoApiContext {
    * URL Fetch API.
    *
    * @see OkHttpRequestHandler
-   * @see GaeRequestHandler
+   * @see GaeRequestHandler_RENAMED
    */
   public interface RequestHandler {
 
@@ -381,7 +381,7 @@ public class GeoApiContext {
      * @param builder The {@code RequestHandler.Builder} to use for {@link #build()}
      * @return Returns this builder for call chaining.
      * @see OkHttpRequestHandler
-     * @see GaeRequestHandler
+     * @see GaeRequestHandler_RENAMED
      */
     public Builder requestHandlerBuilder(RequestHandler.Builder builder) {
       this.builder = builder;
