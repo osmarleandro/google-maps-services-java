@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Set the departure time for a transit or driving directions request as the current time. If
+   * traffic model is supplied, then departure time must be specified. Duration in traffic will only
+   * be returned if the departure time is specified.
+   *
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest departureTimeNow() {
+    return param("departure_time", "now");
+  }
 }
