@@ -135,7 +135,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public T await() throws ApiException, IOException, InterruptedException {
+  public T await_RENAMED() throws ApiException, IOException, InterruptedException {
     // Handle sleeping for retried requests
     if (retryCounter > 0) {
       // 0.5 * (1.5 ^ i) represents an increased sleep time of 1.5x per iteration,
@@ -190,7 +190,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   @Override
   public T awaitIgnoreError() {
     try {
-      return await();
+      return await_RENAMED();
     } catch (Exception e) {
       return null;
     }
@@ -324,7 +324,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     LOG.info("Retrying request. Retry #" + retryCounter);
     metrics.startNetwork();
     this.call = client.newCall(request);
-    return this.await();
+    return this.await_RENAMED();
   }
 
   private boolean shouldRetry(Response response) {

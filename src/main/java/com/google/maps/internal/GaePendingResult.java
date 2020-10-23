@@ -133,7 +133,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   @Override
   public T awaitIgnoreError() {
     try {
-      return await();
+      return await_RENAMED();
     } catch (Exception e) {
       return null;
     }
@@ -247,7 +247,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     LOG.info("Retrying request. Retry #{}", retryCounter);
     metrics.startNetwork();
     this.call = client.fetchAsync(request);
-    return this.await();
+    return this.await_RENAMED();
   }
 
   private boolean shouldRetry(HTTPResponse response) {
