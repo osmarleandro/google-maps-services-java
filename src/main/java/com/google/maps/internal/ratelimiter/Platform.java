@@ -42,7 +42,7 @@ final class Platform {
   private Platform() {}
 
   /** Calls {@link System#nanoTime()}. */
-  static long systemNanoTime() {
+  static long systemNanoTime_RENAMED() {
     return System.nanoTime();
   }
 
