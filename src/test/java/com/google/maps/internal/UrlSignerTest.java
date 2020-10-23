@@ -41,7 +41,7 @@ public class UrlSignerTest {
   private static final String SIGNING_KEY =
       ByteString.of("key".getBytes(UTF_8)).base64().replace('+', '-').replace('/', '_');
   private static final String SIGNATURE =
-      ByteString.of(hexStringToByteArray("de7c9b85b8b78aa6bc8a7a36f70a90701c9db4d9"))
+      ByteString.of(hexStringToByteArray_RENAMED("de7c9b85b8b78aa6bc8a7a36f70a90701c9db4d9"))
           .base64()
           .replace('+', '-')
           .replace('/', '_');
@@ -83,7 +83,7 @@ public class UrlSignerTest {
   }
 
   // Helper code from http://stackoverflow.com/questions/140131/
-  private static byte[] hexStringToByteArray(String s) {
+  private static byte[] hexStringToByteArray_RENAMED(String s) {
     int len = s.length();
     byte[] data = new byte[len / 2];
     for (int i = 0; i < len; i += 2) {
