@@ -94,7 +94,7 @@ public class GeocodingApiTest {
   }
 
   @Test
-  public void testAsync() throws Exception {
+  public void testAsync_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
       final List<GeocodingResult[]> resps = new ArrayList<>();
 
