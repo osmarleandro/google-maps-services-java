@@ -19,6 +19,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.ComponentFilter;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +172,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * A grouping of places to which you would like to restrict your results. Currently, you can use
+   * components to filter by country.
+   *
+   * @param filters The component filter to restrict results with.
+   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+public PlaceAutocompleteRequest components(ComponentFilter... filters) {
+    return param("components", join('|', filters));
   }
 }
