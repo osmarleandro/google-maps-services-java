@@ -47,7 +47,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testGetSydneyStaticMap() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Google Sydney");
@@ -67,7 +67,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testGetSydneyLatLngStaticMap() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center(SYDNEY);
@@ -82,7 +82,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testRequest() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Sydney");
@@ -107,7 +107,7 @@ public class StaticMapsApiTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testValidateRequest_noCenter() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.zoom(16);
       req.await();
@@ -116,7 +116,7 @@ public class StaticMapsApiTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testValidateRequest_noZoom() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Google Sydney");
       req.await();
@@ -125,7 +125,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testValidateRequest_noCenterAndNoZoomWithMarkers() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
 
       Markers markers = new Markers();
@@ -142,7 +142,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testValidateRequest_noCenterAndNoZoomWithPath() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       Path path = new Path();
       path.color("green");
@@ -158,7 +158,7 @@ public class StaticMapsApiTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testValidateRequest_noSize() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, null);
       req.center("Google Sydney");
       req.zoom(16);
@@ -168,7 +168,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testMarkerAndPath() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       Markers markers = new Markers();
       markers.size(MarkersSize.small);
@@ -201,7 +201,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testMarkerAndPathAsEncodedPolyline() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       Markers markers = new Markers();
       markers.size(MarkersSize.small);
@@ -229,7 +229,7 @@ public class StaticMapsApiTest {
 
   @Test
   public void testBrooklynBridgeNYMarkers() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Brooklyn Bridge, New York, NY");
       req.zoom(13);

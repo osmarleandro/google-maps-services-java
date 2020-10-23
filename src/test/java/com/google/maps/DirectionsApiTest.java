@@ -56,7 +56,7 @@ public class DirectionsApiTest {
 
   @Test
   public void testGetDirections() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(getDirectionsResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(getDirectionsResponse)) {
       DirectionsResult result =
           DirectionsApi.getDirections(sc.context, "Sydney, AU", "Melbourne, AU").await();
 
@@ -84,7 +84,7 @@ public class DirectionsApiTest {
 
   @Test
   public void testBuilder() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(builderResponse)) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.BICYCLING)
@@ -118,8 +118,8 @@ public class DirectionsApiTest {
 
   @Test
   public void testResponseTimesArePopulatedCorrectly() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(responseTimesArePopulatedCorrectly)) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(responseTimesArePopulatedCorrectly)) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.TRANSIT)
@@ -147,8 +147,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testTorontoToMontreal() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context).origin("Toronto").destination("Montreal").await();
 
       sc.assertParamValue("Toronto", "origin");
@@ -164,8 +164,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testTorontoToMontrealByBicycleAvoidingHighways() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("Toronto")
           .destination("Montreal")
@@ -182,8 +182,8 @@ public class DirectionsApiTest {
 
   @Test
   public void testSanFranciscoToSeattleByBicycleAvoidingIndoor() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("San Francisco")
           .destination("Seattle")
@@ -206,8 +206,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testBrooklynToQueensByTransit() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("Brooklyn")
           .destination("Queens")
@@ -228,8 +228,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testBostonToConcordViaCharlestownAndLexington() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
@@ -250,8 +250,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testBostonToConcordViaCharlestownAndLexingtonNonStopover() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
@@ -275,8 +275,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testBostonToConcordViaCharlestownAndLexingtonLatLng() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
@@ -298,8 +298,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testBostonToConcordViaCharlestownAndLexingtonLatLngNonStopoever() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
@@ -322,8 +322,8 @@ public class DirectionsApiTest {
    */
   @Test
   public void testToledoToMadridInSpain() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
           .origin("Toledo")
           .destination("Madrid")
@@ -339,8 +339,8 @@ public class DirectionsApiTest {
   /** Test the language parameter. */
   @Test
   public void testLanguageParameter() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("Toledo")
@@ -361,8 +361,8 @@ public class DirectionsApiTest {
   /** Tests the {@code traffic_model} and {@code duration_in_traffic} parameters. */
   @Test
   public void testTrafficModel() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("48 Pirrama Road, Pyrmont NSW 2009")
@@ -384,8 +384,8 @@ public class DirectionsApiTest {
   /** Test transit without arrival or departure times specified. */
   @Test
   public void testTransitWithoutSpecifyingTime() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
@@ -404,8 +404,8 @@ public class DirectionsApiTest {
   /** Test the extended transit parameters: mode and routing preference. */
   @Test
   public void testTransitParams() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
@@ -429,8 +429,8 @@ public class DirectionsApiTest {
 
   @Test
   public void testTravelModeWalking() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.WALKING)
@@ -452,8 +452,8 @@ public class DirectionsApiTest {
 
   @Test(expected = NotFoundException.class)
   public void testNotFound() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "{\n"
                 + "   \"geocoded_waypoints\" : [\n"
                 + "      {\n"
@@ -473,8 +473,8 @@ public class DirectionsApiTest {
   /** Test GeocodedWaypoints results. */
   @Test
   public void testGeocodedWaypoints() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "{"
                 + "   \"geocoded_waypoints\" : [\n"
                 + "      {\n"
@@ -509,8 +509,8 @@ public class DirectionsApiTest {
   /** Tests that calling {@code optimizeWaypoints(true)} works in either order. */
   @Test
   public void testOptimizeWaypointsBeforeWaypoints() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
@@ -543,8 +543,8 @@ public class DirectionsApiTest {
   /** Tests that calling {@code optimizeWaypoints(true)} works in either order. */
   @Test
   public void testOptimizeWaypointsAfterWaypoints() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("{\"routes\": [{}],\"status\": \"OK\"}")) {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);

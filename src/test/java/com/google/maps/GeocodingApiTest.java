@@ -59,7 +59,7 @@ public class GeocodingApiTest {
 
   @Test
   public void testGeocodeLibraryType() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geocodeLibraryType)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geocodeLibraryType)) {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("80 FR").await();
 
       assertEquals(1, results.length);
@@ -73,7 +73,7 @@ public class GeocodingApiTest {
 
   @Test
   public void testSimpleGeocode() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(simpleGeocodeResponse)) {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("Sydney").await();
       checkSydneyResult(results);
       assertNotNull(Arrays.toString(results));
@@ -84,7 +84,7 @@ public class GeocodingApiTest {
 
   @Test
   public void testPlaceGeocode() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(placeGeocodeResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(placeGeocodeResponse)) {
       String placeID = "ChIJP3Sa8ziYEmsRUKgyFmh9AQM";
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
       checkSydneyResult(results);
@@ -95,7 +95,7 @@ public class GeocodingApiTest {
 
   @Test
   public void testAsync() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(simpleGeocodeResponse)) {
       final List<GeocodingResult[]> resps = new ArrayList<>();
 
       PendingResult.Callback<GeocodingResult[]> callback =
@@ -133,7 +133,7 @@ public class GeocodingApiTest {
 
   @Test
   public void testReverseGeocode() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(reverseGeocodeResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(reverseGeocodeResponse)) {
       LatLng latlng = new LatLng(-33.8674869, 151.2069902);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
 
@@ -154,8 +154,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testGeocodeTheGoogleplex() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -255,8 +255,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testGeocodeWithBounds() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -345,8 +345,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testGeocodeWithRegionBiasing() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -429,8 +429,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testGeocodeWithComponentFilter() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -514,8 +514,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testGeocodeWithMultipleComponentFilters() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -602,8 +602,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testGeocodeWithJustComponents() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -689,7 +689,7 @@ public class GeocodingApiTest {
    */
   @Test
   public void testSimpleReverseGeocode() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(simpleReverseGeocodeResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(simpleReverseGeocodeResponse)) {
       LatLng latlng = new LatLng(40.714224, -73.961452);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
 
@@ -713,8 +713,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testReverseGeocodeRestrictedByType() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -808,7 +808,7 @@ public class GeocodingApiTest {
   /** Testing UTF8 result parsing. */
   @Test
   public void testUtfResult() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(utfResultGeocodeResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(utfResultGeocodeResponse)) {
       LatLng location = new LatLng(46.8023388, 1.6551867);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
       assertEquals("1 Rue Fernand Raynaud, 36000 Châteauroux, France", results[0].formattedAddress);
@@ -825,8 +825,8 @@ public class GeocodingApiTest {
    */
   @Test
   public void testCustomParameterPassThrough() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -927,8 +927,8 @@ public class GeocodingApiTest {
   /** Testing Kita Ward reverse geocode. */
   @Test
   public void testReverseGeocodeWithKitaWard() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(reverseGeocodeWithKitaWardResponse)) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(reverseGeocodeWithKitaWardResponse)) {
       LatLng location = new LatLng(35.03937, 135.729243);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
 
@@ -950,8 +950,8 @@ public class GeocodingApiTest {
   /** Testing supported Address Types for Geocoding. */
   @Test
   public void testSupportedAddressTypesFood() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -1041,8 +1041,8 @@ public class GeocodingApiTest {
   /** Testing supported Address Types for Geocoding - Synagogue. */
   @Test
   public void testSupportedAddressTypesSynagogue() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"results\" : [\n"

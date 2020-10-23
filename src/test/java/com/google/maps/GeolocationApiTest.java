@@ -53,7 +53,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testDocSampleGeolocation() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationDocSample)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
@@ -104,7 +104,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testMinimumWifiGeolocation() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumWifi)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationMinimumWifi)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
@@ -134,7 +134,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testBasicGeolocation() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationBasic)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
@@ -174,7 +174,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testAlternateWifiSetterGeolocation() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationBasic)) {
       WifiAccessPoint[] wifiAccessPoints = new WifiAccessPoint[2];
       wifiAccessPoints[0] =
           new WifiAccessPoint.WifiAccessPointBuilder()
@@ -209,7 +209,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testMaximumWifiGeolocation() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationMaximumWifi)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
@@ -265,7 +265,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testMinimumCellTowerGeolocation() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationMinimumCellTower)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
@@ -296,8 +296,8 @@ public class GeolocationApiTest {
 
   @Test
   public void testAlternatePayloadBuilderGeolocation() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(geolocationAlternatePayloadBuilder)) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(geolocationAlternatePayloadBuilder)) {
       GeolocationPayload payload =
           new GeolocationPayload.GeolocationPayloadBuilder()
               .ConsiderIp(false)
@@ -327,7 +327,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testMaximumCellTowerGeolocation() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationMaximumCellTower)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
@@ -372,7 +372,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testNoPayloadGeolocation0() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationBasic)) {
       GeolocationPayload payload =
           new GeolocationPayload.GeolocationPayloadBuilder().createGeolocationPayload();
 
@@ -385,7 +385,7 @@ public class GeolocationApiTest {
 
   @Test
   public void testNoPayloadGeolocation1() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(geolocationBasic)) {
       GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
 
       assertNotNull(result);
@@ -396,8 +396,8 @@ public class GeolocationApiTest {
 
   @Test(expected = NotFoundException.class)
   public void testNotFoundGeolocation() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             ""
                 + "{\n"
                 + " \"error\": {\n"
@@ -416,8 +416,8 @@ public class GeolocationApiTest {
 
   @Test(expected = InvalidRequestException.class)
   public void testInvalidArgumentGeolocation() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             ""
                 + "{\n"
                 + " \"error\": {\n"

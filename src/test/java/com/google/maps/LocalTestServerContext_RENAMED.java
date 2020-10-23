@@ -34,14 +34,14 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.JSONObject;
 
 /** Local test mock server for unit tests. */
-public class LocalTestServerContext implements AutoCloseable {
+public class LocalTestServerContext_RENAMED implements AutoCloseable {
 
   private final MockWebServer server;
   public final GeoApiContext context;
   private RecordedRequest request = null;
   private List<NameValuePair> params = null;
 
-  LocalTestServerContext(BufferedImage image) throws IOException {
+  LocalTestServerContext_RENAMED(BufferedImage image) throws IOException {
     this.server = new MockWebServer();
     Buffer buffer = new Buffer();
     ImageIO.write(image, "png", buffer.outputStream());
@@ -58,7 +58,7 @@ public class LocalTestServerContext implements AutoCloseable {
             .build();
   }
 
-  LocalTestServerContext(String responseBody) throws IOException {
+  LocalTestServerContext_RENAMED(String responseBody) throws IOException {
     this.server = new MockWebServer();
     MockResponse response = new MockResponse();
     response.setHeader("Content-Type", "application/json");

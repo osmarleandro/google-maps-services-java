@@ -45,7 +45,7 @@ public class DistanceMatrixApiTest {
 
   @Test
   public void testLatLngOriginDestinations() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED("{\"status\" : \"OK\"}")) {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(new LatLng(-31.9522, 115.8589), new LatLng(-37.8136, 144.9631))
           .destinations(new LatLng(-25.344677, 131.036692), new LatLng(-13.092297, 132.394057))
@@ -58,8 +58,8 @@ public class DistanceMatrixApiTest {
 
   @Test
   public void testGetDistanceMatrixWithBasicStringParams() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(getDistanceMatrixWithBasicStringParams)) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(getDistanceMatrixWithBasicStringParams)) {
       String[] origins =
           new String[] {
             "Perth, Australia", "Sydney, Australia", "Melbourne, Australia",
@@ -110,7 +110,7 @@ public class DistanceMatrixApiTest {
 
   @Test
   public void testNewRequestWithAllPossibleParams() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED("{\"status\" : \"OK\"}")) {
       String[] origins =
           new String[] {
             "Perth, Australia", "Sydney, Australia", "Melbourne, Australia",
@@ -156,7 +156,7 @@ public class DistanceMatrixApiTest {
    */
   @Test
   public void testLanguageParameter() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED("{\"status\" : \"OK\"}")) {
       String[] origins = new String[] {"Vancouver BC", "Seattle"};
       String[] destinations = new String[] {"San Francisco", "Victoria BC"};
       DistanceMatrixApi.newRequest(sc.context)
@@ -176,7 +176,7 @@ public class DistanceMatrixApiTest {
   /** Test transit without arrival or departure times specified. */
   @Test
   public void testTransitWithoutSpecifyingTime() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED("{\"status\" : \"OK\"}")) {
       String[] origins =
           new String[] {"Fisherman's Wharf, San Francisco", "Union Square, San Francisco"};
       String[] destinations =
@@ -196,7 +196,7 @@ public class DistanceMatrixApiTest {
   /** Test duration in traffic with traffic model set. */
   @Test
   public void testDurationInTrafficWithTrafficModel() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED("{\"status\" : \"OK\"}")) {
       final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
       DistanceMatrixApi.newRequest(sc.context)
           .origins("Fisherman's Wharf, San Francisco")

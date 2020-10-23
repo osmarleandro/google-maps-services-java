@@ -32,8 +32,8 @@ public class TimeZoneApiTest {
 
   @Test
   public void testGetTimeZone() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "\n"
                 + "{\n"
                 + "   \"dstOffset\" : 0,\n"
@@ -61,15 +61,15 @@ public class TimeZoneApiTest {
 
   @Test(expected = ZeroResultsException.class)
   public void testNoResult() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
       TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
       assertNull(resp);
 
       sc.assertParamValue("0.00000000,0.00000000", "location");
 
-      try (LocalTestServerContext sc2 =
-          new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
+      try (LocalTestServerContext_RENAMED sc2 =
+          new LocalTestServerContext_RENAMED("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
         TimeZoneApi.getTimeZone(sc2.context, new LatLng(0, 0)).await();
       }
     }

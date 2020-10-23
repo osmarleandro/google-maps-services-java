@@ -50,7 +50,7 @@ public class RoadsApiIntegrationTest {
 
   @Test
   public void testSnapToRoad() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(snapToRoadResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(snapToRoadResponse)) {
       LatLng[] path =
           new LatLng[] {
             new LatLng(-33.865382, 151.192861),
@@ -75,7 +75,7 @@ public class RoadsApiIntegrationTest {
 
   @Test
   public void testSpeedLimitsWithLatLngs() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(speedLimitsResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(speedLimitsResponse)) {
       LatLng[] path =
           new LatLng[] {
             new LatLng(-33.865382, 151.192861),
@@ -102,7 +102,7 @@ public class RoadsApiIntegrationTest {
 
   @Test
   public void testSpeedLimitsWithUsaLatLngs() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(speedLimitsUSAResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(speedLimitsUSAResponse)) {
       LatLng[] path =
           new LatLng[] {
             new LatLng(33.777489, -84.397805),
@@ -129,7 +129,7 @@ public class RoadsApiIntegrationTest {
 
   @Test
   public void testSpeedLimitsWithPlaceIds() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(speedLimitsWithPlaceIdsResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(speedLimitsWithPlaceIdsResponse)) {
       String[] placeIds =
           new String[] {
             "ChIJrfDjZYoE9YgRLpb3bOhcPno",
@@ -151,7 +151,7 @@ public class RoadsApiIntegrationTest {
 
   @Test
   public void testSnappedSpeedLimitRequest() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(snappedSpeedLimitResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(snappedSpeedLimitResponse)) {
       LatLng[] path =
           new LatLng[] {
             new LatLng(-33.865382, 151.192861),
@@ -174,7 +174,7 @@ public class RoadsApiIntegrationTest {
 
   @Test
   public void testNearestRoads() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(nearestRoadsResponse)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(nearestRoadsResponse)) {
       LatLng[] path =
           new LatLng[] {
             new LatLng(-33.865382, 151.192861),

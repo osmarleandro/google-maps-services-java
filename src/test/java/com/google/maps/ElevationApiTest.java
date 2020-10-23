@@ -65,8 +65,8 @@ public class ElevationApiTest {
 
   @Test(expected = InvalidRequestException.class)
   public void testGetByPointThrowsInvalidRequestExceptionFromResponse() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
 
       // This should throw the InvalidRequestException
@@ -76,8 +76,8 @@ public class ElevationApiTest {
 
   @Test(expected = RequestDeniedException.class)
   public void testGetByPointsThrowsRequestDeniedExceptionFromResponse() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             ""
                 + "{\n"
                 + "   \"routes\" : [],\n"
@@ -94,8 +94,8 @@ public class ElevationApiTest {
 
   @Test
   public void testGetPoint() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             ""
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -122,8 +122,8 @@ public class ElevationApiTest {
 
   @Test
   public void testGetPoints() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             ""
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -159,8 +159,8 @@ public class ElevationApiTest {
 
   @Test
   public void testGetPath() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
+    try (LocalTestServerContext_RENAMED sc =
+        new LocalTestServerContext_RENAMED(
             ""
                 + "{\n"
                 + "   \"results\" : [\n"
@@ -261,7 +261,7 @@ public class ElevationApiTest {
 
   @Test
   public void testDirectionsAlongPath() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
+    try (LocalTestServerContext_RENAMED sc = new LocalTestServerContext_RENAMED(directionsAlongPath)) {
       ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
 
