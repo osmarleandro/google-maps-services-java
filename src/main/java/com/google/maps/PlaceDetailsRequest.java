@@ -67,7 +67,7 @@ public class PlaceDetailsRequest
    * @param region The region code.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest region(String region) {
+  public PlaceDetailsRequest region_RENAMED(String region) {
     return param("region", region);
   }
 
