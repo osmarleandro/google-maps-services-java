@@ -42,7 +42,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   // It's important we set Ok's second arg to threadFactory(.., true) to ensure the threads are
   // killed when the app exits. For synchronous requests this is ideal but it means any async
   // requests still pending after termination will be killed.
-  private final ExecutorService delegate =
+  public final ExecutorService delegate =
       new ThreadPoolExecutor(
           Runtime.getRuntime().availableProcessors(),
           Integer.MAX_VALUE,
@@ -176,8 +176,8 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   @Override
   public <T> T invokeAny(Collection<? extends Callable<T>> callables)
       throws InterruptedException, ExecutionException {
-    return delegate.invokeAny(callables);
-  }
+		return rateLimiter.invokeAny(this, callables);
+	}
 
   @Override
   public <T> T invokeAny(Collection<? extends Callable<T>> callables, long l, TimeUnit timeUnit)
