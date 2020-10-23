@@ -472,7 +472,7 @@ public class DirectionsApiTest {
 
   /** Test GeocodedWaypoints results. */
   @Test
-  public void testGeocodedWaypoints() throws Exception {
+  public void testGeocodedWaypoints_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "{"
