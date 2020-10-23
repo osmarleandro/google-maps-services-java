@@ -688,7 +688,7 @@ public class GeocodingApiTest {
    * geocode (40.714224,-73.961452)</a>.
    */
   @Test
-  public void testSimpleReverseGeocode() throws Exception {
+  public void testSimpleReverseGeocode_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleReverseGeocodeResponse)) {
       LatLng latlng = new LatLng(40.714224, -73.961452);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
