@@ -169,4 +169,10 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+public boolean shouldRetry(ApiException exception) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }
