@@ -84,7 +84,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest AddWifiAccessPoint(WifiAccessPoint newWifiAccessPoint) {
+  public GeolocationApiRequest AddWifiAccessPoint_RENAMED(WifiAccessPoint newWifiAccessPoint) {
     this.builder.AddWifiAccessPoint(newWifiAccessPoint);
     return this;
   }
