@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.TextSearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Specifies the text string on which to search, for example: {@code "restaurant"}.
+   *
+   * @param textSearchRequest TODO
+ * @param query The query string to search for.
+ * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+  public TextSearchRequest query(TextSearchRequest textSearchRequest, String query) {
+    return textSearchRequest.param("query", query);
   }
 }
