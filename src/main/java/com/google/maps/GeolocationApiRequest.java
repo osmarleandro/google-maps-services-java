@@ -89,7 +89,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest Payload(GeolocationPayload payload) {
+  public GeolocationApiRequest Payload_RENAMED(GeolocationPayload payload) {
     this.payload = payload;
     return this;
   }
