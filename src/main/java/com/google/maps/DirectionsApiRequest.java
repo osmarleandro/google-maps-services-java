@@ -31,7 +31,7 @@ import java.time.Instant;
 public class DirectionsApiRequest
     extends PendingResultBase<DirectionsResult, DirectionsApiRequest, DirectionsApi.Response> {
 
-  public DirectionsApiRequest(GeoApiContext context) {
+  public DirectionsApiRequest(GeoApiContext_RENAMED context) {
     super(context, DirectionsApi.API_CONFIG, DirectionsApi.Response.class);
   }
 

@@ -34,7 +34,7 @@ public class FindPlaceFromTextRequest
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
           .supportsClientId(false);
 
-  public FindPlaceFromTextRequest(GeoApiContext context) {
+  public FindPlaceFromTextRequest(GeoApiContext_RENAMED context) {
     super(context, API_CONFIG, Response.class);
   }
 

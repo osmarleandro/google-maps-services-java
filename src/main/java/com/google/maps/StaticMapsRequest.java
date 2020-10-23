@@ -30,7 +30,7 @@ public class StaticMapsRequest
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 
-  public StaticMapsRequest(GeoApiContext context) {
+  public StaticMapsRequest(GeoApiContext_RENAMED context) {
     super(context, API_CONFIG, ImageResult.Response.class);
   }
 

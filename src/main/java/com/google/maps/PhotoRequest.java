@@ -26,7 +26,7 @@ public class PhotoRequest
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
 
-  public PhotoRequest(GeoApiContext context) {
+  public PhotoRequest(GeoApiContext_RENAMED context) {
     super(context, API_CONFIG, ImageResult.Response.class);
   }
 

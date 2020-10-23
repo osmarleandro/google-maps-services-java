@@ -45,7 +45,7 @@ public class DirectionsApi {
    * @param context Context that the DirectionsApiRequest will be executed against
    * @return A newly constructed DirectionsApiRequest between the given points.
    */
-  public static DirectionsApiRequest newRequest(GeoApiContext context) {
+  public static DirectionsApiRequest newRequest(GeoApiContext_RENAMED context) {
     return new DirectionsApiRequest(context);
   }
 
@@ -59,7 +59,7 @@ public class DirectionsApi {
    * @return A newly constructed DirectionsApiRequest between the given points.
    */
   public static DirectionsApiRequest getDirections(
-      GeoApiContext context, String origin, String destination) {
+      GeoApiContext_RENAMED context, String origin, String destination) {
     return new DirectionsApiRequest(context).origin(origin).destination(destination);
   }
 

@@ -29,7 +29,7 @@ public class GeolocationApiRequest
   private GeolocationPayload payload = null;
   private GeolocationPayloadBuilder builder = null;
 
-  GeolocationApiRequest(GeoApiContext context) {
+  GeolocationApiRequest(GeoApiContext_RENAMED context) {
     super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
     builder = new GeolocationPayload.GeolocationPayloadBuilder();
   }

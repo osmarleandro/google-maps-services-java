@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
-import com.google.maps.GeoApiContext.RequestHandler;
+import com.google.maps.GeoApiContext_RENAMED.RequestHandler;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
@@ -40,9 +40,9 @@ import okhttp3.Route;
 /**
  * A strategy for handling URL requests using OkHttp.
  *
- * @see com.google.maps.GeoApiContext.RequestHandler
+ * @see com.google.maps.GeoApiContext_RENAMED.RequestHandler
  */
-public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
+public class OkHttpRequestHandler implements GeoApiContext_RENAMED.RequestHandler {
   private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
   private final OkHttpClient client;
   private final ExecutorService executorService;
@@ -120,7 +120,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   /** Builder strategy for constructing an {@code OkHTTPRequestHandler}. */
-  public static class Builder implements GeoApiContext.RequestHandler.Builder {
+  public static class Builder implements GeoApiContext_RENAMED.RequestHandler.Builder {
     private final OkHttpClient.Builder builder;
     private final RateLimitExecutorService rateLimitExecutorService;
     private final Dispatcher dispatcher;

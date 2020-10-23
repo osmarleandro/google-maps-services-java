@@ -38,7 +38,7 @@ public class PlacesApi {
    * @param location The latitude/longitude around which to retrieve place information.
    * @return Returns a NearbySearchRequest that can be configured and executed.
    */
-  public static NearbySearchRequest nearbySearchQuery(GeoApiContext context, LatLng location) {
+  public static NearbySearchRequest nearbySearchQuery(GeoApiContext_RENAMED context, LatLng location) {
     NearbySearchRequest request = new NearbySearchRequest(context);
     request.location(location);
     return request;
@@ -54,7 +54,7 @@ public class PlacesApi {
    * @return Returns a NearbySearchRequest that can be executed.
    */
   public static NearbySearchRequest nearbySearchNextPage(
-      GeoApiContext context, String nextPageToken) {
+      GeoApiContext_RENAMED context, String nextPageToken) {
     NearbySearchRequest request = new NearbySearchRequest(context);
     request.pageToken(nextPageToken);
     return request;
@@ -68,7 +68,7 @@ public class PlacesApi {
    * @param query The text string on which to search, for example: "restaurant".
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(GeoApiContext context, String query) {
+  public static TextSearchRequest textSearchQuery(GeoApiContext_RENAMED context, String query) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
     return request;
@@ -84,7 +84,7 @@ public class PlacesApi {
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
   public static TextSearchRequest textSearchQuery(
-      GeoApiContext context, String query, LatLng location) {
+      GeoApiContext_RENAMED context, String query, LatLng location) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
     request.location(location);
@@ -98,7 +98,7 @@ public class PlacesApi {
    * @param type Restricts the results to places matching the specified PlaceType.
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(GeoApiContext context, PlaceType type) {
+  public static TextSearchRequest textSearchQuery(GeoApiContext_RENAMED context, PlaceType type) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.type(type);
     return request;
@@ -113,7 +113,7 @@ public class PlacesApi {
    * @param nextPageToken The nextPageToken returned as part of a PlacesSearchResponse.
    * @return Returns a TextSearchRequest that can be executed.
    */
-  public static TextSearchRequest textSearchNextPage(GeoApiContext context, String nextPageToken) {
+  public static TextSearchRequest textSearchNextPage(GeoApiContext_RENAMED context, String nextPageToken) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.pageToken(nextPageToken);
     return request;
@@ -133,7 +133,7 @@ public class PlacesApi {
    * @return Returns a PlaceDetailsRequest that you can configure and execute.
    */
   public static PlaceDetailsRequest placeDetails(
-      GeoApiContext context, String placeId, PlaceAutocompleteRequest.SessionToken sessionToken) {
+      GeoApiContext_RENAMED context, String placeId, PlaceAutocompleteRequest.SessionToken sessionToken) {
     PlaceDetailsRequest request = new PlaceDetailsRequest(context);
     request.placeId(placeId);
     request.sessionToken(sessionToken);
@@ -152,7 +152,7 @@ public class PlacesApi {
    * @param placeId The PlaceID to request details on.
    * @return Returns a PlaceDetailsRequest that you can configure and execute.
    */
-  public static PlaceDetailsRequest placeDetails(GeoApiContext context, String placeId) {
+  public static PlaceDetailsRequest placeDetails(GeoApiContext_RENAMED context, String placeId) {
     PlaceDetailsRequest request = new PlaceDetailsRequest(context);
     request.placeId(placeId);
     return request;
@@ -172,7 +172,7 @@ public class PlacesApi {
    * @param photoReference The reference to the photo to retrieve.
    * @return Returns a PhotoRequest that you can execute.
    */
-  public static PhotoRequest photo(GeoApiContext context, String photoReference) {
+  public static PhotoRequest photo(GeoApiContext_RENAMED context, String photoReference) {
     PhotoRequest request = new PhotoRequest(context);
     request.photoReference(photoReference);
     return request;
@@ -190,7 +190,7 @@ public class PlacesApi {
    * @return Returns a PlaceAutocompleteRequest that you can configure and execute.
    */
   public static PlaceAutocompleteRequest placeAutocomplete(
-      GeoApiContext context, String input, PlaceAutocompleteRequest.SessionToken sessionToken) {
+      GeoApiContext_RENAMED context, String input, PlaceAutocompleteRequest.SessionToken sessionToken) {
     PlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
     request.input(input);
     request.sessionToken(sessionToken);
@@ -204,7 +204,7 @@ public class PlacesApi {
    * @param input input is the text string on which to search.
    * @return Returns a QueryAutocompleteRequest that you can configure and execute.
    */
-  public static QueryAutocompleteRequest queryAutocomplete(GeoApiContext context, String input) {
+  public static QueryAutocompleteRequest queryAutocomplete(GeoApiContext_RENAMED context, String input) {
     QueryAutocompleteRequest request = new QueryAutocompleteRequest(context);
     request.input(input);
     return request;
@@ -219,7 +219,7 @@ public class PlacesApi {
    * @return Returns a FindPlaceFromTextRequest that you can configure and execute.
    */
   public static FindPlaceFromTextRequest findPlaceFromText(
-      GeoApiContext context, String input, FindPlaceFromTextRequest.InputType inputType) {
+      GeoApiContext_RENAMED context, String input, FindPlaceFromTextRequest.InputType inputType) {
     FindPlaceFromTextRequest request = new FindPlaceFromTextRequest(context);
     request.input(input).inputType(inputType);
     return request;

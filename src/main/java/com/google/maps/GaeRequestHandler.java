@@ -24,7 +24,7 @@ import com.google.appengine.api.urlfetch.HTTPRequest;
 import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.gson.FieldNamingPolicy;
-import com.google.maps.GeoApiContext.RequestHandler;
+import com.google.maps.GeoApiContext_RENAMED.RequestHandler;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.GaePendingResult;
@@ -40,9 +40,9 @@ import org.slf4j.LoggerFactory;
 /**
  * A strategy for handling URL requests using Google App Engine's URL Fetch API.
  *
- * @see com.google.maps.GeoApiContext.RequestHandler
+ * @see com.google.maps.GeoApiContext_RENAMED.RequestHandler
  */
-public class GaeRequestHandler implements GeoApiContext.RequestHandler {
+public class GaeRequestHandler implements GeoApiContext_RENAMED.RequestHandler {
   private static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
   private final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
 
@@ -129,7 +129,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   /** Builder strategy for constructing {@code GaeRequestHandler}. */
-  public static class Builder implements GeoApiContext.RequestHandler.Builder {
+  public static class Builder implements GeoApiContext_RENAMED.RequestHandler.Builder {
 
     @Override
     public Builder connectTimeout(long timeout, TimeUnit unit) {

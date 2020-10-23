@@ -29,13 +29,13 @@ import org.junit.experimental.categories.Category;
 public class OpenCensusTest {
 
   private MockWebServer server;
-  private GeoApiContext context;
+  private GeoApiContext_RENAMED context;
 
   @Before
   public void Setup() {
     server = new MockWebServer();
     context =
-        new GeoApiContext.Builder()
+        new GeoApiContext_RENAMED.Builder()
             .apiKey("AIza...")
             .requestMetricsReporter(new OpenCensusRequestMetricsReporter())
             .baseUrlOverride("http://127.0.0.1:" + server.getPort())

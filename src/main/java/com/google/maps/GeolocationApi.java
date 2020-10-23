@@ -45,11 +45,11 @@ public class GeolocationApi {
   private GeolocationApi() {}
 
   public static PendingResult<GeolocationResult> geolocate(
-      GeoApiContext context, GeolocationPayload payload) {
+      GeoApiContext_RENAMED context, GeolocationPayload payload) {
     return new GeolocationApiRequest(context).Payload(payload).CreatePayload();
   }
 
-  public static GeolocationApiRequest newRequest(GeoApiContext context) {
+  public static GeolocationApiRequest newRequest(GeoApiContext_RENAMED context) {
     return new GeolocationApiRequest(context);
   }
 

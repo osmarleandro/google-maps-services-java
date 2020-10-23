@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * The entry point for making requests against the Google Geo APIs.
  *
- * <p>Construct this object by using the enclosed {@link GeoApiContext.Builder}.
+ * <p>Construct this object by using the enclosed {@link GeoApiContext_RENAMED.Builder}.
  *
  * <h3>GeoApiContexts should be shared</h3>
  *
@@ -51,7 +51,7 @@ import java.util.concurrent.TimeUnit;
  * <p>When you are finished with a GeoApiContext object, you must call {@link #shutdown()} on it to
  * release its resources.
  */
-public class GeoApiContext {
+public class GeoApiContext_RENAMED {
 
   private static final String VERSION = "@VERSION@"; // Populated by the build script
   private static final String USER_AGENT = "GoogleGeoApiClientJava/" + VERSION;
@@ -70,7 +70,7 @@ public class GeoApiContext {
   private final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
-  GeoApiContext(
+  GeoApiContext_RENAMED(
       RequestHandler requestHandler,
       String apiKey,
       String baseUrlOverride,
@@ -608,8 +608,8 @@ public class GeoApiContext {
      *
      * @return Returns the built {@code GeoApiContext}.
      */
-    public GeoApiContext build() {
-      return new GeoApiContext(
+    public GeoApiContext_RENAMED build() {
+      return new GeoApiContext_RENAMED(
           builder.build(),
           apiKey,
           baseUrlOverride,

@@ -42,7 +42,7 @@ public class PlaceAutocompleteRequest
       new ApiConfig("/maps/api/place/autocomplete/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-  protected PlaceAutocompleteRequest(GeoApiContext context) {
+  protected PlaceAutocompleteRequest(GeoApiContext_RENAMED context) {
     super(context, API_CONFIG, Response.class);
   }
 

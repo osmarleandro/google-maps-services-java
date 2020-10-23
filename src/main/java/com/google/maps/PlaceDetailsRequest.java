@@ -34,7 +34,7 @@ public class PlaceDetailsRequest
       new ApiConfig("/maps/api/place/details/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-  public PlaceDetailsRequest(GeoApiContext context) {
+  public PlaceDetailsRequest(GeoApiContext_RENAMED context) {
     super(context, API_CONFIG, Response.class);
   }
 

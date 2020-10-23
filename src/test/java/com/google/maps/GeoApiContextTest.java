@@ -49,12 +49,12 @@ import org.junit.experimental.categories.Category;
 public class GeoApiContextTest {
 
   private MockWebServer server;
-  private GeoApiContext.Builder builder;
+  private GeoApiContext_RENAMED.Builder builder;
 
   @Before
   public void Setup() {
     server = new MockWebServer();
-    builder = new GeoApiContext.Builder().apiKey("AIza...").queryRateLimit(500);
+    builder = new GeoApiContext_RENAMED.Builder().apiKey("AIza...").queryRateLimit(500);
   }
 
   @After
@@ -305,7 +305,7 @@ public class GeoApiContextTest {
   @Test
   public void testSingleExperienceId() {
     final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
+    final GeoApiContext_RENAMED context = builder.experienceId(experienceId).build();
     assertEquals(experienceId, context.getExperienceId());
   }
 
@@ -313,20 +313,20 @@ public class GeoApiContextTest {
   public void testMultipleExperienceId() {
     final String experienceId1 = "experienceId1";
     final String experienceId2 = "experienceId2";
-    final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
+    final GeoApiContext_RENAMED context = builder.experienceId(experienceId1, experienceId2).build();
     assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
   }
 
   @Test
   public void testNoExperienceId() {
-    final GeoApiContext context = builder.build();
+    final GeoApiContext_RENAMED context = builder.build();
     assertNull(context.getExperienceId());
   }
 
   @Test
   public void testClearingExperienceId() {
     final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
+    final GeoApiContext_RENAMED context = builder.experienceId(experienceId).build();
     assertEquals(experienceId, context.getExperienceId());
 
     context.clearExperienceId();
@@ -353,8 +353,8 @@ public class GeoApiContextTest {
     final String experienceId = UUID.randomUUID().toString();
 
     // instantiate context with experience id
-    final GeoApiContext context =
-        new GeoApiContext.Builder().apiKey("AIza-Maps-API-Key").experienceId(experienceId).build();
+    final GeoApiContext_RENAMED context =
+        new GeoApiContext_RENAMED.Builder().apiKey("AIza-Maps-API-Key").experienceId(experienceId).build();
 
     // clear the current experience id
     context.clearExperienceId();
@@ -387,7 +387,7 @@ public class GeoApiContextTest {
     setMockBaseUrl();
 
     // Build & execute the request using our context
-    final GeoApiContext context = builder.experienceId(experienceId).build();
+    final GeoApiContext_RENAMED context = builder.experienceId(experienceId).build();
     context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
 
     // Read the header
@@ -397,7 +397,7 @@ public class GeoApiContextTest {
 
   @Test
   public void testShutdown() throws InterruptedException {
-    GeoApiContext context = builder.build();
+    GeoApiContext_RENAMED context = builder.build();
     final Thread delayThread = findLastThreadByName("RateLimitExecutorDelayThread");
     assertNotNull(
         "Delay thread should be created in constructor of RateLimitExecutorService", delayThread);

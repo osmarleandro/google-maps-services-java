@@ -41,12 +41,12 @@ public class ElevationApi {
   /**
    * Gets a list of elevations for a list of points.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @param points The points to retrieve elevations for.
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPoints(
-      GeoApiContext context, LatLng... points) {
+      GeoApiContext_RENAMED context, LatLng... points) {
     return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
   }
 
@@ -54,13 +54,13 @@ public class ElevationApi {
    * See <a href="https://developers.google.com/maps/documentation/elevation/intro#Paths">
    * documentation</a>.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @param samples The number of samples to retrieve heights along {@code path}.
    * @param path The path to sample.
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPath(
-      GeoApiContext context, int samples, LatLng... path) {
+      GeoApiContext_RENAMED context, int samples, LatLng... path) {
     return context.get(
         API_CONFIG,
         MultiResponse.class,
@@ -74,13 +74,13 @@ public class ElevationApi {
    * See <a href="https://developers.google.com/maps/documentation/elevation/intro#Paths">
    * documentation</a>.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @param samples The number of samples to retrieve heights along {@code encodedPolyline}.
    * @param encodedPolyline The path to sample as an encoded polyline.
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPath(
-      GeoApiContext context, int samples, EncodedPolyline encodedPolyline) {
+      GeoApiContext_RENAMED context, int samples, EncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG,
         MultiResponse.class,
@@ -102,11 +102,11 @@ public class ElevationApi {
   /**
    * Retrieves the elevation of a single location.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @param location The location to retrieve the elevation for.
    * @return The elevation as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
+  public static PendingResult<ElevationResult> getByPoint(GeoApiContext_RENAMED context, LatLng location) {
     return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
   }
 
@@ -137,12 +137,12 @@ public class ElevationApi {
   /**
    * Retrieves the elevations of an encoded polyline path.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @param encodedPolyline The encoded polyline to retrieve elevations for.
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPoints(
-      GeoApiContext context, EncodedPolyline encodedPolyline) {
+      GeoApiContext_RENAMED context, EncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());
   }

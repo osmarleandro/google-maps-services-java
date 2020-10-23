@@ -37,7 +37,7 @@ import org.json.JSONObject;
 public class LocalTestServerContext implements AutoCloseable {
 
   private final MockWebServer server;
-  public final GeoApiContext context;
+  public final GeoApiContext_RENAMED context;
   private RecordedRequest request = null;
   private List<NameValuePair> params = null;
 
@@ -52,7 +52,7 @@ public class LocalTestServerContext implements AutoCloseable {
     server.start();
 
     this.context =
-        new GeoApiContext.Builder()
+        new GeoApiContext_RENAMED.Builder()
             .apiKey("AIzaFakeKey")
             .baseUrlOverride("http://127.0.0.1:" + server.getPort())
             .build();
@@ -67,7 +67,7 @@ public class LocalTestServerContext implements AutoCloseable {
     server.start();
 
     this.context =
-        new GeoApiContext.Builder()
+        new GeoApiContext_RENAMED.Builder()
             .apiKey("AIzaFakeKey")
             .baseUrlOverride("http://127.0.0.1:" + server.getPort())
             .build();

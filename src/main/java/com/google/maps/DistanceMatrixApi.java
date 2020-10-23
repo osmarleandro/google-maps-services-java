@@ -44,12 +44,12 @@ public class DistanceMatrixApi {
 
   private DistanceMatrixApi() {}
 
-  public static DistanceMatrixApiRequest newRequest(GeoApiContext context) {
+  public static DistanceMatrixApiRequest newRequest(GeoApiContext_RENAMED context) {
     return new DistanceMatrixApiRequest(context);
   }
 
   public static DistanceMatrixApiRequest getDistanceMatrix(
-      GeoApiContext context, String[] origins, String[] destinations) {
+      GeoApiContext_RENAMED context, String[] origins, String[] destinations) {
     return newRequest(context).origins(origins).destinations(destinations);
   }
 

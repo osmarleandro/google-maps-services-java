@@ -35,21 +35,21 @@ public class GeocodingApi {
   /**
    * Creates a new Geocoding API request.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest newRequest(GeoApiContext context) {
+  public static GeocodingApiRequest newRequest(GeoApiContext_RENAMED context) {
     return new GeocodingApiRequest(context);
   }
 
   /**
    * Requests the latitude and longitude of an {@code address}.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @param address The address to geocode.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest geocode(GeoApiContext context, String address) {
+  public static GeocodingApiRequest geocode(GeoApiContext_RENAMED context, String address) {
     GeocodingApiRequest request = new GeocodingApiRequest(context);
     request.address(address);
     return request;
@@ -58,11 +58,11 @@ public class GeocodingApi {
   /**
    * Requests the street address of a {@code location}.
    *
-   * @param context The {@link GeoApiContext} to make requests through.
+   * @param context The {@link GeoApiContext_RENAMED} to make requests through.
    * @param location The location to reverse geocode.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest reverseGeocode(GeoApiContext context, LatLng location) {
+  public static GeocodingApiRequest reverseGeocode(GeoApiContext_RENAMED context, LatLng location) {
     GeocodingApiRequest request = new GeocodingApiRequest(context);
     request.latlng(location);
     return request;

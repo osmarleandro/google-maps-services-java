@@ -30,7 +30,7 @@ public class GeocodingApiRequest
 
   private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
 
-  public GeocodingApiRequest(GeoApiContext context) {
+  public GeocodingApiRequest(GeoApiContext_RENAMED context) {
     super(context, API_CONFIG, GeocodingApi.Response.class);
   }
 

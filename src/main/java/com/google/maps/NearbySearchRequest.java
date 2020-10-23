@@ -45,7 +45,7 @@ public class NearbySearchRequest
    *
    * @param context The {@code GeoApiContext} to make requests through.
    */
-  public NearbySearchRequest(GeoApiContext context) {
+  public NearbySearchRequest(GeoApiContext_RENAMED context) {
     super(context, API_CONFIG, Response.class);
   }
 
