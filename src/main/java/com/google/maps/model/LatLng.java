@@ -15,7 +15,11 @@
 
 package com.google.maps.model;
 
+import com.google.maps.GeocodingApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
@@ -67,5 +71,21 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/**
+   * Sets the bounding box of the viewport within which to bias geocode results more prominently.
+   * This parameter will only influence, not fully restrict, results from the geocoder.
+   *
+   * <p>For more information see <a
+   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#Viewports">
+   * Viewport Biasing</a>.
+   *
+   * @param geocodingApiRequest TODO
+ * @param northEastBound The North East bound of the bounding box.
+ * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+  public GeocodingApiRequest bounds(GeocodingApiRequest geocodingApiRequest, LatLng northEastBound) {
+    return geocodingApiRequest.param("bounds", join('|', this, northEastBound));
   }
 }

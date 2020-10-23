@@ -323,9 +323,9 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .address("Winnetka")
-              .bounds(new LatLng(34.172684, -118.604794), new LatLng(34.236144, -118.500938))
+          new LatLng(34.172684, -118.604794)
+              .bounds(GeocodingApi.newRequest(sc.context)
+			      .address("Winnetka"), new LatLng(34.236144, -118.500938))
               .await();
 
       assertNotNull(Arrays.toString(results));
