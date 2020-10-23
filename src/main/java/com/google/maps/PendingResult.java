@@ -15,7 +15,10 @@
 
 package com.google.maps;
 
+import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.maps.errors.ApiException;
+import com.google.maps.internal.GaePendingResult;
+
 import java.io.IOException;
 
 /**
@@ -57,7 +60,10 @@ public interface PendingResult<T> {
   /** Attempts to cancel the request. */
   void cancel();
 
-  /**
+  @SuppressWarnings("unchecked")
+T parseResponse(GaePendingResult<T, R> request, HTTPResponse response) throws IOException, ApiException, InterruptedException;
+
+/**
    * The callback interface the API client code needs to implement to handle API results.
    *
    * @param <T> The type of the result object.

@@ -15,9 +15,11 @@
 
 package com.google.maps;
 
+import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.GaePendingResult;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -169,4 +171,10 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+public T parseResponse(GaePendingResult<T, R> request, HTTPResponse response) throws IOException, ApiException, InterruptedException {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
