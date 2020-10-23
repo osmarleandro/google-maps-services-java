@@ -24,7 +24,7 @@ import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.UrlSigner;
-import com.google.maps.metrics.NoOpRequestMetricsReporter;
+import com.google.maps.metrics.NoOpRequestMetricsReporter_RENAMED;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
 import java.io.UnsupportedEncodingException;
@@ -362,7 +362,7 @@ public class GeoApiContext {
     private ExceptionsAllowedToRetry exceptionsAllowedToRetry = new ExceptionsAllowedToRetry();
     private Integer maxRetries;
     private UrlSigner urlSigner;
-    private RequestMetricsReporter requestMetricsReporter = new NoOpRequestMetricsReporter();
+    private RequestMetricsReporter requestMetricsReporter = new NoOpRequestMetricsReporter_RENAMED();
     private String[] experienceIdHeaderValue;
 
     /** Builder pattern for the enclosing {@code GeoApiContext}. */
