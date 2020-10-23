@@ -55,7 +55,7 @@ public class GeolocationApiTest {
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
+          GeolocationApi.newRequest_RENAMED(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
@@ -106,7 +106,7 @@ public class GeolocationApiTest {
   public void testMinimumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
+          GeolocationApi.newRequest_RENAMED(sc.context)
               .ConsiderIp(false)
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
@@ -136,7 +136,7 @@ public class GeolocationApiTest {
   public void testBasicGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
+          GeolocationApi.newRequest_RENAMED(sc.context)
               .ConsiderIp(false)
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
@@ -186,7 +186,7 @@ public class GeolocationApiTest {
               .createWifiAccessPoint();
 
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
+          GeolocationApi.newRequest_RENAMED(sc.context)
               .ConsiderIp(false)
               .WifiAccessPoints(wifiAccessPoints)
               .CreatePayload()
@@ -211,7 +211,7 @@ public class GeolocationApiTest {
   public void testMaximumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
+          GeolocationApi.newRequest_RENAMED(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(410)
@@ -267,7 +267,7 @@ public class GeolocationApiTest {
   public void testMinimumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
+          GeolocationApi.newRequest_RENAMED(sc.context)
               .ConsiderIp(false)
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
@@ -329,7 +329,7 @@ public class GeolocationApiTest {
   public void testMaximumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
+          GeolocationApi.newRequest_RENAMED(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
@@ -386,7 +386,7 @@ public class GeolocationApiTest {
   @Test
   public void testNoPayloadGeolocation1() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
+      GeolocationResult result = GeolocationApi.newRequest_RENAMED(sc.context).CreatePayload().await();
 
       assertNotNull(result);
       assertNotNull(result.toString());
@@ -410,7 +410,7 @@ public class GeolocationApiTest {
                 + "  \"code\": 404\n"
                 + " }\n"
                 + "}")) {
-      GeolocationApi.newRequest(sc.context).ConsiderIp(false).CreatePayload().await();
+      GeolocationApi.newRequest_RENAMED(sc.context).ConsiderIp(false).CreatePayload().await();
     }
   }
 
@@ -432,7 +432,7 @@ public class GeolocationApiTest {
                 + "  \"message\": \"Parse Error\"\n"
                 + " }\n"
                 + "}")) {
-      GeolocationApi.newRequest(sc.context).HomeMobileCountryCode(-310).CreatePayload().await();
+      GeolocationApi.newRequest_RENAMED(sc.context).HomeMobileCountryCode(-310).CreatePayload().await();
     }
   }
 }
