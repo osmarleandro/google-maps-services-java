@@ -53,7 +53,7 @@ public class UrlSignerTest {
   }
 
   @Test
-  public void testMustSupportParallelSignatures() throws Exception {
+  public void testMustSupportParallelSignatures_RENAMED() throws Exception {
     int attempts = 100;
     ExecutorService executor = Executors.newFixedThreadPool(attempts);
 
