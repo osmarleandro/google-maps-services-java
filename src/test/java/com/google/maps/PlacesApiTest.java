@@ -651,20 +651,6 @@ public class PlacesApiTest {
     }
   }
 
-  @Test
-  @SuppressWarnings("deprecation") // Testing a deprecated method
-  public void testNearbySearchRequestWithMultipleType() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .type(PlaceType.AIRPORT, PlaceType.BANK)
-          .await();
-
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString(), "type");
-    }
-  }
-
   @Test(expected = IllegalArgumentException.class)
   public void testNearbySearchRadiusAndRankbyDistance() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
