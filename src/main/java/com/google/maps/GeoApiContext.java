@@ -132,7 +132,10 @@ public class GeoApiContext {
 
     void shutdown();
 
-    /** Builder pattern for {@code GeoApiContext.RequestHandler}. */
+    @Override
+	void shutdown();
+
+	/** Builder pattern for {@code GeoApiContext.RequestHandler}. */
     interface Builder {
 
       Builder connectTimeout(long timeout, TimeUnit unit);

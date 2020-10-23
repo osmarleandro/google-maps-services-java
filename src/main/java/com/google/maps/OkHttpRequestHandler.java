@@ -44,8 +44,8 @@ import okhttp3.Route;
  */
 public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
   private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-  private final OkHttpClient client;
-  private final ExecutorService executorService;
+  final OkHttpClient client;
+  final ExecutorService executorService;
 
   /* package */ OkHttpRequestHandler(OkHttpClient client, ExecutorService executorService) {
     this.client = client;
