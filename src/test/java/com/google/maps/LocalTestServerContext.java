@@ -36,9 +36,9 @@ import org.json.JSONObject;
 /** Local test mock server for unit tests. */
 public class LocalTestServerContext implements AutoCloseable {
 
-  private final MockWebServer server;
+  public final MockWebServer server;
   public final GeoApiContext context;
-  private RecordedRequest request = null;
+  public RecordedRequest request = null;
   private List<NameValuePair> params = null;
 
   LocalTestServerContext(BufferedImage image) throws IOException {
@@ -82,23 +82,19 @@ public class LocalTestServerContext implements AutoCloseable {
     return URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
   }
 
-  private void takeRequest() throws InterruptedException {
-    if (this.request == null) this.request = server.takeRequest();
-  }
-
   public JSONObject requestBody() throws InterruptedException {
-    this.takeRequest();
+    this.context.takeRequest(this);
 
     return new JSONObject(request.getBody().readUtf8());
   }
 
   private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
-    this.takeRequest();
+    this.context.takeRequest(this);
     return parseQueryParamsFromRequestLine(request.getRequestLine());
   }
 
   public String path() throws InterruptedException {
-    this.takeRequest();
+    this.context.takeRequest(this);
     return request.getPath().split("\\?", -1)[0];
   }
 
