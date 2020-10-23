@@ -47,4 +47,8 @@ public class Vehicle implements Serializable {
   public String toString() {
     return String.format("%s (%s)", name, type);
   }
+
+public String toString(TransitLine transitLine) {
+    return String.format("%s \"%s\"", transitLine.shortName, transitLine.name);
+  }
 }
