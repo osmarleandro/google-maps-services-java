@@ -81,17 +81,17 @@ public class PlaceAutocompleteRequest
     public String toUrlValue() {
       return uuid.toString();
     }
-  }
 
-  /**
-   * Sets the SessionToken for this request. Using session token makes sure the autocomplete is
-   * priced per session, instead of per keystroke.
-   *
-   * @param sessionToken Session Token is the session identifier.
-   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
-   */
-  public PlaceAutocompleteRequest sessionToken(SessionToken sessionToken) {
-    return param("sessiontoken", sessionToken);
+	/**
+	   * Sets the SessionToken for this request. Using session token makes sure the autocomplete is
+	   * priced per session, instead of per keystroke.
+	   *
+	   * @param placeAutocompleteRequest TODO
+	 * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+	   */
+	  public PlaceAutocompleteRequest sessionToken(PlaceAutocompleteRequest placeAutocompleteRequest) {
+	    return placeAutocompleteRequest.param("sessiontoken", this);
+	  }
   }
 
   /**
