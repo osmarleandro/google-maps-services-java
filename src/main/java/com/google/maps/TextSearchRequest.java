@@ -114,7 +114,7 @@ public class TextSearchRequest
    * @param name The name to search for.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest name(String name) {
+  public TextSearchRequest name_RENAMED(String name) {
     return param("name", name);
   }
 
