@@ -55,7 +55,7 @@ public class TimeZoneApiTest {
 
       assertTrue(tz.inDaylightTime(new Date(1388494800000L)));
 
-      sc.assertParamValue(sydney.toUrlValue(), "location");
+      sc.assertParamValue(sydney.toUrlValue_RENAMED(), "location");
     }
   }
 

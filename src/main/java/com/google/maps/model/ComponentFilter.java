@@ -45,7 +45,7 @@ public class ComponentFilter implements StringJoin.UrlValue {
 
   @Override
   public String toString() {
-    return toUrlValue();
+    return toUrlValue_RENAMED();
   }
 
   @Override
