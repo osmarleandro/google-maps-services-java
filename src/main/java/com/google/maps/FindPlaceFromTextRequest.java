@@ -106,7 +106,12 @@ public class FindPlaceFromTextRequest
     }
   }
 
-  public static class Response implements ApiResponse<FindPlaceFromText> {
+  @Override
+public final FindPlaceFromText awaitIgnoreError() {
+    return makeRequest().awaitIgnoreError();
+  }
+
+public static class Response implements ApiResponse<FindPlaceFromText> {
 
     public String status;
     public PlacesSearchResult candidates[];

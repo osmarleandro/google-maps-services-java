@@ -151,4 +151,9 @@ public class GeocodingApiRequest
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
   }
+
+@Override
+public final GeocodingResult[] awaitIgnoreError() {
+    return makeRequest().awaitIgnoreError();
+  }
 }

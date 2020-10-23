@@ -105,4 +105,9 @@ public class GeolocationApiRequest
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
   }
+
+@Override
+public final GeolocationResult awaitIgnoreError() {
+    return makeRequest().awaitIgnoreError();
+  }
 }

@@ -202,4 +202,9 @@ public class DistanceMatrixApiRequest
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
   }
+
+@Override
+public final DistanceMatrix awaitIgnoreError() {
+    return makeRequest().awaitIgnoreError();
+  }
 }

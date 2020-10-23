@@ -197,7 +197,12 @@ public class NearbySearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  @Override
+public final PlacesSearchResponse awaitIgnoreError() {
+    return makeRequest().awaitIgnoreError();
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

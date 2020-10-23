@@ -88,7 +88,12 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  @Override
+public final PlaceDetails awaitIgnoreError() {
+    return makeRequest().awaitIgnoreError();
+  }
+
+public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;

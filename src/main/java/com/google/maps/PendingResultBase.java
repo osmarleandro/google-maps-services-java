@@ -59,11 +59,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   }
 
   @Override
-  public final T awaitIgnoreError() {
-    return makeRequest().awaitIgnoreError();
-  }
-
-  @Override
   public final void cancel() {
     if (delegate == null) {
       return;
@@ -71,7 +66,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     delegate.cancel();
   }
 
-  private PendingResult<T> makeRequest() {
+  protected PendingResult<T> makeRequest() {
     if (delegate != null) {
       throw new IllegalStateException(
           "'await', 'awaitIgnoreError' or 'setCallback' was already called.");
