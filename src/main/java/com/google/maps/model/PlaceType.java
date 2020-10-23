@@ -136,7 +136,7 @@ public enum PlaceType implements StringJoin.UrlValue {
   private final String placeType;
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     return placeType;
   }
 

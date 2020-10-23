@@ -139,10 +139,10 @@ public class DistanceMatrixApiTest {
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.DRIVING.toUrlValue_RENAMED(), "mode");
       sc.assertParamValue("en-AU", "language");
-      sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue(), "avoid");
-      sc.assertParamValue(Unit.IMPERIAL.toUrlValue(), "units");
+      sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue_RENAMED(), "avoid");
+      sc.assertParamValue(Unit.IMPERIAL.toUrlValue_RENAMED(), "units");
     }
   }
 
@@ -168,7 +168,7 @@ public class DistanceMatrixApiTest {
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue_RENAMED(), "mode");
       sc.assertParamValue("fr-FR", "language");
     }
   }
@@ -189,7 +189,7 @@ public class DistanceMatrixApiTest {
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue_RENAMED(), "mode");
     }
   }
 
@@ -208,8 +208,8 @@ public class DistanceMatrixApiTest {
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
       sc.assertParamValue("San Francisco International Airport, San Francisco, CA", "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+      sc.assertParamValue(TravelMode.DRIVING.toUrlValue_RENAMED(), "mode");
+      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue_RENAMED(), "traffic_model");
     }
   }
 }
