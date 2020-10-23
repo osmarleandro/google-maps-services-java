@@ -24,7 +24,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
-import com.google.maps.model.SnappedSpeedLimitResponse;
+import com.google.maps.model.SnappedSpeedLimitResponse_RENAMED;
 import com.google.maps.model.SpeedLimit;
 
 /**
@@ -145,7 +145,7 @@ public class RoadsApi {
    * @param path The collected GPS points as a path.
    * @return Returns the snapped points and speed limits as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedSpeedLimitResponse> snappedSpeedLimits(
+  public static PendingResult<SnappedSpeedLimitResponse_RENAMED> snappedSpeedLimits(
       GeoApiContext context, LatLng... path) {
     return context.get(SPEEDS_API_CONFIG, CombinedResponse.class, "path", join('|', path));
   }
@@ -203,7 +203,7 @@ public class RoadsApi {
     }
   }
 
-  public static class CombinedResponse implements ApiResponse<SnappedSpeedLimitResponse> {
+  public static class CombinedResponse implements ApiResponse<SnappedSpeedLimitResponse_RENAMED> {
     private SnappedPoint[] snappedPoints;
     private SpeedLimit[] speedLimits;
     private ApiError error;
@@ -214,8 +214,8 @@ public class RoadsApi {
     }
 
     @Override
-    public SnappedSpeedLimitResponse getResult() {
-      SnappedSpeedLimitResponse response = new SnappedSpeedLimitResponse();
+    public SnappedSpeedLimitResponse_RENAMED getResult() {
+      SnappedSpeedLimitResponse_RENAMED response = new SnappedSpeedLimitResponse_RENAMED();
       response.snappedPoints = snappedPoints;
       response.speedLimits = speedLimits;
       return response;
