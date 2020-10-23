@@ -24,7 +24,7 @@ public class GeocodingResult implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** The separate address components in this result. */
-  public AddressComponent[] addressComponents;
+  public AddressComponent_RENAMED[] addressComponents;
 
   /**
    * The human-readable address of this location.
