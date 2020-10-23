@@ -443,7 +443,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest path(EncodedPolyline path) {
-    return paramAddToList("path", "enc:" + path.getEncodedPath());
+    return paramAddToList_RENAMED("path", "enc:" + path.getEncodedPath());
   }
 
   /**
