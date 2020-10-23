@@ -308,7 +308,7 @@ public class EnumsTest {
   private static <T extends UrlValue> void assertCannotGetUrlValue(T unknown) {
     assertNotNull(unknown);
     try {
-      unknown.toUrlValue();
+      unknown.toUrlValue_RENAMED();
       fail("Expected to throw UnsupportedOperationException");
     } catch (UnsupportedOperationException expected) {
       // Expected.

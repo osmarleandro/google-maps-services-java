@@ -34,7 +34,7 @@ public enum RankBy implements StringJoin.UrlValue {
   }
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     return ranking;
   }
 }

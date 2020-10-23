@@ -43,7 +43,7 @@ public class Size implements StringJoin.UrlValue, Serializable {
 
   @Override
   public String toString() {
-    return toUrlValue();
+    return toUrlValue_RENAMED();
   }
 
   @Override

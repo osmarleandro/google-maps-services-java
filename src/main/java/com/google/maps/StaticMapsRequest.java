@@ -282,7 +282,7 @@ public class StaticMapsRequest
      * @param location The location of the added marker.
      */
     public void addLocation(LatLng location) {
-      locations.add(location.toUrlValue());
+      locations.add(location.toUrlValue_RENAMED());
     }
 
     @Override
@@ -294,7 +294,7 @@ public class StaticMapsRequest
       }
 
       if (anchorPoint != null) {
-        urlParts.add("anchor:" + anchorPoint.toUrlValue());
+        urlParts.add("anchor:" + anchorPoint.toUrlValue_RENAMED());
       }
 
       if (scale != null) {
@@ -302,7 +302,7 @@ public class StaticMapsRequest
       }
 
       if (size != null && size != MarkersSize.normal) {
-        urlParts.add("size:" + size.toUrlValue());
+        urlParts.add("size:" + size.toUrlValue_RENAMED());
       }
 
       if (color != null) {
@@ -395,7 +395,7 @@ public class StaticMapsRequest
      * @param point The point to add.
      */
     public void addPoint(LatLng point) {
-      points.add(point.toUrlValue());
+      points.add(point.toUrlValue_RENAMED());
     }
 
     @Override
