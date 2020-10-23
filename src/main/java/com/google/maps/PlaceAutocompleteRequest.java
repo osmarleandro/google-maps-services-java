@@ -179,7 +179,7 @@ public class PlaceAutocompleteRequest
    * @param filters The component filter to restrict results with.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest components(ComponentFilter... filters) {
+  public PlaceAutocompleteRequest components_RENAMED(ComponentFilter... filters) {
     return param("components", join('|', filters));
   }
 
