@@ -33,12 +33,12 @@ import java.util.Map;
  * class, and R is the type of the request.
  */
 abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R extends ApiResponse<T>>
-    implements PendingResult<T> {
+    implements PendingResult_RENAMED<T> {
 
   private final GeoApiContext context;
   private final ApiConfig config;
   private HashMap<String, List<String>> params = new HashMap<>();
-  private PendingResult<T> delegate;
+  private PendingResult_RENAMED<T> delegate;
   private Class<? extends R> responseClass;
 
   protected PendingResultBase(GeoApiContext context, ApiConfig config, Class<? extends R> clazz) {
@@ -54,7 +54,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   @Override
   public final T await() throws ApiException, InterruptedException, IOException {
-    PendingResult<T> request = makeRequest();
+    PendingResult_RENAMED<T> request = makeRequest();
     return request.await();
   }
 
@@ -71,7 +71,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     delegate.cancel();
   }
 
-  private PendingResult<T> makeRequest() {
+  private PendingResult_RENAMED<T> makeRequest() {
     if (delegate != null) {
       throw new IllegalStateException(
           "'await', 'awaitIgnoreError' or 'setCallback' was already called.");

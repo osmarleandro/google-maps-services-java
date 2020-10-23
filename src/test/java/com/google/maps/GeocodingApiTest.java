@@ -98,8 +98,8 @@ public class GeocodingApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
       final List<GeocodingResult[]> resps = new ArrayList<>();
 
-      PendingResult.Callback<GeocodingResult[]> callback =
-          new PendingResult.Callback<GeocodingResult[]>() {
+      PendingResult_RENAMED.Callback<GeocodingResult[]> callback =
+          new PendingResult_RENAMED.Callback<GeocodingResult[]>() {
             @Override
             public void onResult(GeocodingResult[] result) {
               resps.add(result);

@@ -44,7 +44,7 @@ public class GeolocationApi {
 
   private GeolocationApi() {}
 
-  public static PendingResult<GeolocationResult> geolocate(
+  public static PendingResult_RENAMED<GeolocationResult> geolocate(
       GeoApiContext context, GeolocationPayload payload) {
     return new GeolocationApiRequest(context).Payload(payload).CreatePayload();
   }

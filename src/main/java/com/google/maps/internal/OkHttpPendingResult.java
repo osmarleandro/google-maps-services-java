@@ -21,7 +21,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
-import com.google.maps.PendingResult;
+import com.google.maps.PendingResult_RENAMED;
 import com.google.maps.errors.ApiException;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  * request.
  */
 public class OkHttpPendingResult<T, R extends ApiResponse<T>>
-    implements PendingResult<T>, Callback {
+    implements PendingResult_RENAMED<T>, Callback {
   private final Request request;
   private final OkHttpClient client;
   private final Class<R> responseClass;

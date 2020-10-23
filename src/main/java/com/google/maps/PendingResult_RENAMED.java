@@ -23,12 +23,12 @@ import java.io.IOException;
  *
  * @param <T> the type of the result object.
  */
-public interface PendingResult<T> {
+public interface PendingResult_RENAMED<T> {
 
   /**
    * Performs the request asynchronously, calling {@link
-   * com.google.maps.PendingResult.Callback#onResult onResult} or {@link
-   * com.google.maps.PendingResult.Callback#onFailure onFailure} after the request has been
+   * com.google.maps.PendingResult_RENAMED.Callback#onResult onResult} or {@link
+   * com.google.maps.PendingResult_RENAMED.Callback#onFailure onFailure} after the request has been
    * completed.
    *
    * @param callback The callback to call on completion.

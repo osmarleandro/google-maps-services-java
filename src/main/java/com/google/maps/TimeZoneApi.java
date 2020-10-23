@@ -40,9 +40,9 @@ public class TimeZoneApi {
    *
    * @param context The {@link GeoApiContext} to make requests through.
    * @param location The location for which to retrieve a time zone.
-   * @return Returns the time zone as a {@link PendingResult}.
+   * @return Returns the time zone as a {@link PendingResult_RENAMED}.
    */
-  public static PendingResult<TimeZone> getTimeZone(GeoApiContext context, LatLng location) {
+  public static PendingResult_RENAMED<TimeZone> getTimeZone(GeoApiContext context, LatLng location) {
     return context.get(
         API_CONFIG,
         Response.class,

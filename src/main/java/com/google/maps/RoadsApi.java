@@ -63,9 +63,9 @@ public class RoadsApi {
    *
    * @param context The {@link GeoApiContext} to make requests through.
    * @param path The collected GPS points as a path.
-   * @return Returns the snapped points as a {@link PendingResult}.
+   * @return Returns the snapped points as a {@link PendingResult_RENAMED}.
    */
-  public static PendingResult<SnappedPoint[]> snapToRoads(GeoApiContext context, LatLng... path) {
+  public static PendingResult_RENAMED<SnappedPoint[]> snapToRoads(GeoApiContext context, LatLng... path) {
     return context.get(SNAP_TO_ROADS_API_CONFIG, RoadsResponse.class, "path", join('|', path));
   }
 
@@ -81,9 +81,9 @@ public class RoadsApi {
    *     in a path that smoothly follows the geometry of the road, even around corners and through
    *     tunnels.
    * @param path The path to be snapped.
-   * @return Returns the snapped points as a {@link PendingResult}.
+   * @return Returns the snapped points as a {@link PendingResult_RENAMED}.
    */
-  public static PendingResult<SnappedPoint[]> snapToRoads(
+  public static PendingResult_RENAMED<SnappedPoint[]> snapToRoads(
       GeoApiContext context, boolean interpolate, LatLng... path) {
     return context.get(
         SNAP_TO_ROADS_API_CONFIG,
@@ -106,9 +106,9 @@ public class RoadsApi {
    *
    * @param context The {@link GeoApiContext} to make requests through.
    * @param path The collected GPS points as a path.
-   * @return Returns the speed limits as a {@link PendingResult}.
+   * @return Returns the speed limits as a {@link PendingResult_RENAMED}.
    */
-  public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, LatLng... path) {
+  public static PendingResult_RENAMED<SpeedLimit[]> speedLimits(GeoApiContext context, LatLng... path) {
     return context.get(SPEEDS_API_CONFIG, SpeedsResponse.class, "path", join('|', path));
   }
 
@@ -125,9 +125,9 @@ public class RoadsApi {
    * @param placeIds The Place ID of the road segment. Place IDs are returned by the {@link
    *     #snapToRoads(GeoApiContext, com.google.maps.model.LatLng...)} method. You can pass up to
    *     100 placeIds with each request.
-   * @return Returns the speed limits as a {@link PendingResult}.
+   * @return Returns the speed limits as a {@link PendingResult_RENAMED}.
    */
-  public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, String... placeIds) {
+  public static PendingResult_RENAMED<SpeedLimit[]> speedLimits(GeoApiContext context, String... placeIds) {
     String[] placeParams = new String[2 * placeIds.length];
     int i = 0;
     for (String placeId : placeIds) {
@@ -143,9 +143,9 @@ public class RoadsApi {
    *
    * @param context The {@link GeoApiContext} to make requests through.
    * @param path The collected GPS points as a path.
-   * @return Returns the snapped points and speed limits as a {@link PendingResult}.
+   * @return Returns the snapped points and speed limits as a {@link PendingResult_RENAMED}.
    */
-  public static PendingResult<SnappedSpeedLimitResponse> snappedSpeedLimits(
+  public static PendingResult_RENAMED<SnappedSpeedLimitResponse> snappedSpeedLimits(
       GeoApiContext context, LatLng... path) {
     return context.get(SPEEDS_API_CONFIG, CombinedResponse.class, "path", join('|', path));
   }
@@ -156,9 +156,9 @@ public class RoadsApi {
    *
    * @param context The {@link GeoApiContext} to make requests through.
    * @param points The sequence of points to be aligned to nearest roads
-   * @return Returns the snapped points as a {@link PendingResult}.
+   * @return Returns the snapped points as a {@link PendingResult_RENAMED}.
    */
-  public static PendingResult<SnappedPoint[]> nearestRoads(
+  public static PendingResult_RENAMED<SnappedPoint[]> nearestRoads(
       GeoApiContext context, LatLng... points) {
     return context.get(NEAREST_ROADS_API_CONFIG, RoadsResponse.class, "points", join('|', points));
   }

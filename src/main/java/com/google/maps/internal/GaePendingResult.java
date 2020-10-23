@@ -25,7 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
-import com.google.maps.PendingResult;
+import com.google.maps.PendingResult_RENAMED;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.UnknownErrorException;
 import com.google.maps.metrics.RequestMetrics;
@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  * <p>{@code T} is the type of the result of this pending result, and {@code R} is the type of the
  * request.
  */
-public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingResult<T> {
+public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingResult_RENAMED<T> {
   private final HTTPRequest request;
   private final URLFetchService client;
   private final Class<R> responseClass;
