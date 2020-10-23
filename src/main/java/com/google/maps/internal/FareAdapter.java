@@ -36,7 +36,7 @@ public class FareAdapter extends TypeAdapter<Fare> {
    * }</pre>
    */
   @Override
-  public Fare read(JsonReader reader) throws IOException {
+  public Fare read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
