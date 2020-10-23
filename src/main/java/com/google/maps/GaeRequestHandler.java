@@ -43,8 +43,8 @@ import org.slf4j.LoggerFactory;
  * @see com.google.maps.GeoApiContext.RequestHandler
  */
 public class GaeRequestHandler implements GeoApiContext.RequestHandler {
-  private static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
-  private final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
+  public static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
+  public final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
 
   /* package */ GaeRequestHandler() {}
 
@@ -60,29 +60,9 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       RequestMetrics metrics) {
-    FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
-    HTTPRequest req;
-    try {
-      req = new HTTPRequest(new URL(hostName + url), HTTPMethod.POST, fetchOptions);
-      if (experienceIdHeaderValue != null) {
-        req.setHeader(
-            new HTTPHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue));
-      }
-    } catch (MalformedURLException e) {
-      LOG.error("Request: {}{}", hostName, url, e);
-      throw (new RuntimeException(e));
-    }
-
-    return new GaePendingResult<>(
-        req,
-        client,
-        clazz,
-        fieldNamingPolicy,
-        errorTimeout,
-        maxRetries,
-        exceptionsAllowedToRetry,
-        metrics);
-  }
+		return exceptionsAllowedToRetry.handle(hostName, url, userAgent, experienceIdHeaderValue, clazz,
+				fieldNamingPolicy, errorTimeout, maxRetries, this, metrics);
+	}
 
   @Override
   public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
