@@ -18,7 +18,6 @@ package com.google.maps.internal;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
 import com.google.maps.model.LatLng;
 import java.io.IOException;
 
@@ -67,11 +66,5 @@ public class LatLngAdapter extends TypeAdapter<LatLng> {
     } else {
       return null;
     }
-  }
-
-  /** Not supported. */
-  @Override
-  public void write(JsonWriter out, LatLng value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method.");
   }
 }

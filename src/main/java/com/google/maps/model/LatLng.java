@@ -15,7 +15,10 @@
 
 package com.google.maps.model;
 
+import com.google.gson.stream.JsonWriter;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
@@ -67,5 +70,11 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/** Not supported. 
+ * @param out TODO*/
+  public void write(JsonWriter out) throws IOException {
+    throw new UnsupportedOperationException("Unimplemented method.");
   }
 }
