@@ -40,7 +40,7 @@ public enum TravelMode implements UrlValue {
   UNKNOWN;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return name().toLowerCase(Locale.ENGLISH);
   }
 
