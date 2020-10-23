@@ -169,4 +169,9 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+public GeolocationApiRequest HomeMobileCountryCode(int newHomeMobileCountryCode) {
+    this.builder.HomeMobileCountryCode(newHomeMobileCountryCode);
+    return this;
+  }
 }
