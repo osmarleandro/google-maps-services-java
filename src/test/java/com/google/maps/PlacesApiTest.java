@@ -378,7 +378,7 @@ public class PlacesApiTest {
   public void testQueryAutocompleteRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
+      PlacesApi.queryAutocomplete_RENAMED(sc.context, QUERY_AUTOCOMPLETE_INPUT)
           .offset(10)
           .location(location)
           .radius(5000)
@@ -397,7 +397,7 @@ public class PlacesApiTest {
   public void testQueryAutocompletePizzaNearPar() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(queryAutocompleteResponseBody)) {
       AutocompletePrediction[] predictions =
-          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
+          PlacesApi.queryAutocomplete_RENAMED(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
 
       assertNotNull(predictions);
       assertEquals(predictions.length, 5);
@@ -425,7 +425,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(queryAutocompleteWithPlaceIdResponseBody)) {
       AutocompletePrediction[] predictions =
-          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
+          PlacesApi.queryAutocomplete_RENAMED(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
 
       assertNotNull(predictions);
       assertEquals(predictions.length, 1);
