@@ -79,7 +79,7 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param administrativeArea The administrative area to filter on.
    * @return Returns a {@link ComponentFilter}.
    */
-  public static ComponentFilter administrativeArea(String administrativeArea) {
+  public static ComponentFilter administrativeArea_RENAMED(String administrativeArea) {
     return new ComponentFilter("administrative_area", administrativeArea);
   }
 
