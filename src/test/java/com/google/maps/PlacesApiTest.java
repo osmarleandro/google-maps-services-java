@@ -394,7 +394,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testQueryAutocompletePizzaNearPar() throws Exception {
+  public void testQueryAutocompletePizzaNearPar_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(queryAutocompleteResponseBody)) {
       AutocompletePrediction[] predictions =
           PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
