@@ -108,7 +108,7 @@ public final class OpenCensusMetrics {
             fields);
   }
 
-  public static void registerAllViews() {
+  public static void registerAllViews_RENAMED() {
     registerAllViews(Stats.getViewManager());
   }
 
