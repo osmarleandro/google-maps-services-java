@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PlaceAutocompleteRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the text string on which to search. The Places service will return candidate matches based
+   * on this string and order results based on their perceived relevance.
+   *
+   * @param placeAutocompleteRequest TODO
+ * @param input The input text to autocomplete.
+ * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+  public PlaceAutocompleteRequest input(PlaceAutocompleteRequest placeAutocompleteRequest, String input) {
+    return placeAutocompleteRequest.param("input", input);
   }
 }
