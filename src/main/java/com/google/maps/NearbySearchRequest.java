@@ -17,6 +17,10 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -197,7 +201,11 @@ public class NearbySearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

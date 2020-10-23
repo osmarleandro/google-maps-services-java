@@ -17,6 +17,10 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
@@ -150,5 +154,9 @@ public class GeocodingApiRequest
    */
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
+  }
+
+protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
   }
 }

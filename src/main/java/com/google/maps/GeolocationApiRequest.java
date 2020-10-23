@@ -15,6 +15,10 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gson.Gson;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
@@ -104,5 +108,9 @@ public class GeolocationApiRequest
     Gson gson = new Gson();
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
+  }
+
+protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
   }
 }

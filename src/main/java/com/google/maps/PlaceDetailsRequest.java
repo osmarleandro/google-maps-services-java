@@ -15,6 +15,10 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -88,7 +92,11 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
+  }
+
+public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;

@@ -21,10 +21,8 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Base implementation for {@code PendingResult}.
@@ -37,7 +35,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   private final GeoApiContext context;
   private final ApiConfig config;
-  private HashMap<String, List<String>> params = new HashMap<>();
+  protected HashMap<String, List<String>> params = new HashMap<>();
   private PendingResult<T> delegate;
   private Class<? extends R> responseClass;
 
@@ -127,10 +125,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
       return this.paramAddToList(key, val.toUrlValue());
     }
     return getInstance();
-  }
-
-  protected Map<String, List<String>> params() {
-    return Collections.unmodifiableMap(params);
   }
 
   /**

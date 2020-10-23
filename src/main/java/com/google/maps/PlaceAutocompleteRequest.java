@@ -27,6 +27,9 @@ import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceAutocompleteType;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -202,7 +205,11 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

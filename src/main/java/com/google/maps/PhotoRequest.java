@@ -15,6 +15,10 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.google.maps.internal.ApiConfig;
 
 /**
@@ -71,5 +75,9 @@ public class PhotoRequest
    */
   public PhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
+  }
+
+protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
   }
 }

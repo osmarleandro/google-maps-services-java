@@ -26,6 +26,9 @@ import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /** Request for the Directions API. */
 public class DirectionsApiRequest
@@ -353,7 +356,11 @@ public class DirectionsApiRequest
     return "place_id:" + placeId;
   }
 
-  public static class Waypoint {
+  protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
+  }
+
+public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;
     /** Whether this waypoint is a stopover waypoint. */

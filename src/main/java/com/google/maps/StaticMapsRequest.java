@@ -22,7 +22,9 @@ import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class StaticMapsRequest
@@ -466,5 +468,9 @@ public class StaticMapsRequest
    */
   public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
+  }
+
+protected Map<String, List<String>> params() {
+    return Collections.unmodifiableMap(params);
   }
 }
