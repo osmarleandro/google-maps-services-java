@@ -23,7 +23,6 @@ import static org.junit.Assert.assertTrue;
 
 import com.google.maps.FindPlaceFromTextRequest.InputType;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasCircular;
-import com.google.maps.FindPlaceFromTextRequest.LocationBiasIP;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
@@ -34,7 +33,6 @@ import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.AutocompletePrediction.MatchedSubstring;
 import com.google.maps.model.AutocompleteStructuredFormatting;
 import com.google.maps.model.ComponentFilter;
-import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.OpeningHours.Period;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
@@ -80,7 +78,7 @@ public class PlacesApiTest {
   private final String placesApiPlaceAutocomplete;
   private final String placesApiPlaceAutocompleteWithType;
   private final String placesApiKitaWard;
-  private final String findPlaceFromTextMuseumOfContemporaryArt;
+  public final String findPlaceFromTextMuseumOfContemporaryArt;
 
   public PlacesApiTest() {
     autocompletePredictionStructuredFormatting =
@@ -909,51 +907,6 @@ public class PlacesApiTest {
       assertEquals(
           "Kita Ward, Kyoto, Kyoto Prefecture, Japan", response.results[0].formattedAddress);
       assertTrue(Arrays.asList(response.results[0].types).contains("ward"));
-    }
-  }
-
-  @Test
-  public void testFindPlaceFromText() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
-
-      String input = "Museum of Contemporary Art Australia";
-
-      FindPlaceFromText response =
-          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-              .fields(
-                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
-                  FindPlaceFromTextRequest.FieldMask.PHOTOS,
-                  FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-                  FindPlaceFromTextRequest.FieldMask.NAME,
-                  FindPlaceFromTextRequest.FieldMask.RATING,
-                  FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-                  FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-              .locationBias(new LocationBiasIP())
-              .await();
-
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue(
-          "business_status,photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("ipbias", "locationbias");
-
-      assertNotNull(response);
-      PlacesSearchResult candidate = response.candidates[0];
-      assertNotNull(candidate);
-      assertEquals("140 George St, The Rocks NSW 2000, Australia", candidate.formattedAddress);
-      LatLng location = candidate.geometry.location;
-      assertEquals(-33.8599358, location.lat, 0.00001);
-      assertEquals(151.2090295, location.lng, 0.00001);
-      assertEquals("Museum of Contemporary Art Australia", candidate.name);
-      assertEquals(true, candidate.openingHours.openNow);
-      Photo photo = candidate.photos[0];
-      assertEquals(
-          "CmRaAAAAXBZe3QrziBst5oTCPUzL4LSgSuWYMctBNRu8bOP4TfwD0aU80YemnnbhjWdFfMX-kkh5h9NhFJky6fW5Ivk_G9fc11GekI0HOCDASZH3qRJmUBsdw0MWoCDZmwQAg-dVEhBb0aLoJXzoZ8cXWEceB9omGhRrX24jI3VnSEQUmInfYoAwSX4OPw",
-          photo.photoReference);
-      assertEquals(2268, photo.height);
-      assertEquals(4032, photo.width);
-      assertEquals(4.4, candidate.rating, 0.01);
     }
   }
 
