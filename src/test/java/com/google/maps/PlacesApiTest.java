@@ -46,7 +46,7 @@ import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
-import com.google.maps.model.RankBy;
+import com.google.maps.model.RankBy_RENAMED;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -464,7 +464,7 @@ public class PlacesApiTest {
           .maxPrice(PriceLevel.VERY_EXPENSIVE)
           .name("name")
           .openNow(true)
-          .rankby(RankBy.DISTANCE)
+          .rankby(RankBy_RENAMED.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
 
@@ -476,7 +476,7 @@ public class PlacesApiTest {
       sc.assertParamValue(String.valueOf(4), "maxprice");
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
+      sc.assertParamValue(RankBy_RENAMED.DISTANCE.toString(), "rankby");
       sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
     }
   }
@@ -492,7 +492,7 @@ public class PlacesApiTest {
           .maxPrice(PriceLevel.VERY_EXPENSIVE)
           .name("name")
           .openNow(true)
-          .rankby(RankBy.DISTANCE)
+          .rankby(RankBy_RENAMED.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
 
@@ -504,7 +504,7 @@ public class PlacesApiTest {
       sc.assertParamValue(String.valueOf(4), "maxprice");
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
+      sc.assertParamValue(RankBy_RENAMED.DISTANCE.toString(), "rankby");
       sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
     }
   }
@@ -626,7 +626,7 @@ public class PlacesApiTest {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
           .radius(5000)
-          .rankby(RankBy.PROMINENCE)
+          .rankby(RankBy_RENAMED.PROMINENCE)
           .keyword("keyword")
           .language("en")
           .minPrice(PriceLevel.INEXPENSIVE)
@@ -639,7 +639,7 @@ public class PlacesApiTest {
 
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(RankBy.PROMINENCE.toString(), "rankby");
+      sc.assertParamValue(RankBy_RENAMED.PROMINENCE.toString(), "rankby");
       sc.assertParamValue("keyword", "keyword");
       sc.assertParamValue("en", "language");
       sc.assertParamValue(PriceLevel.INEXPENSIVE.toString(), "minprice");
@@ -671,7 +671,7 @@ public class PlacesApiTest {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
           .radius(5000)
-          .rankby(RankBy.DISTANCE)
+          .rankby(RankBy_RENAMED.DISTANCE)
           .await();
     }
   }
@@ -680,7 +680,7 @@ public class PlacesApiTest {
   public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
+      PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy_RENAMED.DISTANCE).await();
     }
   }
 

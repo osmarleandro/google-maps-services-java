@@ -24,7 +24,7 @@ import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
-import com.google.maps.model.RankBy;
+import com.google.maps.model.RankBy_RENAMED;
 
 /**
  * A <a href="https://developers.google.com/places/web-service/search#TextSearchRequests">Text
@@ -146,7 +146,7 @@ public class TextSearchRequest
    * @param ranking The rank by method.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest rankby(RankBy ranking) {
+  public TextSearchRequest rankby(RankBy_RENAMED ranking) {
     return param("rankby", ranking);
   }
 
