@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
-import com.google.maps.model.DistanceMatrix;
+import com.google.maps.model.DistanceMatrix_RENAMED;
 import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
@@ -74,7 +74,7 @@ public class DistanceMatrixApiTest {
             "Bungle Bungles, Australia",
             "The Pinnacles, Australia"
           };
-      DistanceMatrix matrix =
+      DistanceMatrix_RENAMED matrix =
           DistanceMatrixApi.getDistanceMatrix(sc.context, origins, destinations).await();
 
       assertNotNull(matrix.toString());

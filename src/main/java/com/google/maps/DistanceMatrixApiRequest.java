@@ -19,7 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
-import com.google.maps.model.DistanceMatrix;
+import com.google.maps.model.DistanceMatrix_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
@@ -30,7 +30,7 @@ import java.time.Instant;
 
 /** A request to the Distance Matrix API. */
 public class DistanceMatrixApiRequest
-    extends PendingResultBase<DistanceMatrix, DistanceMatrixApiRequest, Response> {
+    extends PendingResultBase<DistanceMatrix_RENAMED, DistanceMatrixApiRequest, Response> {
 
   public DistanceMatrixApiRequest(GeoApiContext context) {
     super(context, DistanceMatrixApi.API_CONFIG, Response.class);

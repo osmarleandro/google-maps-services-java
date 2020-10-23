@@ -24,7 +24,7 @@ import java.io.Serializable;
  *     href="https://developers.google.com/maps/documentation/distancematrix/#DistanceMatrixResponses">
  *     Distance Matrix Results</a>
  */
-public class DistanceMatrix implements Serializable {
+public class DistanceMatrix_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,7 @@ public class DistanceMatrix implements Serializable {
    */
   public final DistanceMatrixRow[] rows;
 
-  public DistanceMatrix(
+  public DistanceMatrix_RENAMED(
       String[] originAddresses, String[] destinationAddresses, DistanceMatrixRow[] rows) {
     this.originAddresses = originAddresses;
     this.destinationAddresses = destinationAddresses;
