@@ -27,7 +27,7 @@ public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
   private GeolocationPayload payload = null;
-  private GeolocationPayloadBuilder builder = null;
+  public GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
     super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
@@ -51,11 +51,6 @@ public class GeolocationApiRequest
 
   public GeolocationApiRequest HomeMobileNetworkCode(int newHomeMobileNetworkCode) {
     this.builder.HomeMobileNetworkCode(newHomeMobileNetworkCode);
-    return this;
-  }
-
-  public GeolocationApiRequest RadioType(String newRadioType) {
-    this.builder.RadioType(newRadioType);
     return this;
   }
 
