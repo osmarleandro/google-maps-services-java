@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Sets the maxHeight for this request.
+   *
+   * @param maxHeight The maximum desired height, in pixels, of the image returned by the Place
+   *     Photos service.
+   * @return Returns the configured PhotoRequest.
+   */
+public PhotoRequest maxHeight(int maxHeight) {
+    return param("maxheight", String.valueOf(maxHeight));
+  }
 }
