@@ -29,7 +29,7 @@ public class SnappedSpeedLimitResponse implements Serializable {
   public SnappedPoint[] snappedPoints;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[SnappedSpeedLimitResponse:");
     if (speedLimits != null && speedLimits.length > 0) {
       sb.append(" ").append(speedLimits.length).append(" speedLimits");
