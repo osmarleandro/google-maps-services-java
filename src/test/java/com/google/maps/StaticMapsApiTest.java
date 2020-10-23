@@ -151,7 +151,7 @@ public class StaticMapsApiTest {
       path.geodesic(true);
       path.addPoint("Melbourne");
       path.addPoint(SYDNEY);
-      req.path(path);
+      req.path_RENAMED(path);
       req.await();
     }
   }
@@ -186,7 +186,7 @@ public class StaticMapsApiTest {
       path.geodesic(true);
       path.addPoint("Melbourne");
       path.addPoint(SYDNEY);
-      req.path(path);
+      req.path_RENAMED(path);
 
       req.await();
 

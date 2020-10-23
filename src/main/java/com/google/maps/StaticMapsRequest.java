@@ -431,7 +431,7 @@ public class StaticMapsRequest
    * @param path A path to render atop the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest path(Path path) {
+  public StaticMapsRequest path_RENAMED(Path path) {
     return paramAddToList("path", path);
   }
 
