@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  * reuse it for all your Google Geo API queries. This is because each GeoApiContext manages its own
  * thread pool, back-end client, and other resources.
  *
- * <p>When you are finished with a GeoApiContext object, you must call {@link #shutdown()} on it to
+ * <p>When you are finished with a GeoApiContext object, you must call {@link #shutdown_RENAMED()} on it to
  * release its resources.
  */
 public class GeoApiContext {
@@ -183,7 +183,7 @@ public class GeoApiContext {
    * Shut down this GeoApiContext instance, reclaiming resources. After shutdown() has been called,
    * no further queries may be done against this instance.
    */
-  public void shutdown() {
+  public void shutdown_RENAMED() {
     requestHandler.shutdown();
   }
 
