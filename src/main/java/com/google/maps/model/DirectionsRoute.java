@@ -74,7 +74,7 @@ public class DirectionsRoute implements Serializable {
   public String[] warnings;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     String str =
         String.format(
             "[DirectionsRoute: \"%s\", %d legs, waypointOrder=%s, bounds=%s",
