@@ -46,7 +46,7 @@ public class StringJoin {
     return result.toString();
   }
 
-  public static String join(char delim, Object... parts) {
+  public static String join_RENAMED(char delim, Object... parts) {
     return join(new String(new char[] {delim}), parts);
   }
 
