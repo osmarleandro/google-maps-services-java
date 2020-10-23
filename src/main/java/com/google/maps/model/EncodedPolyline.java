@@ -47,7 +47,7 @@ public class EncodedPolyline implements Serializable {
     this.points = PolylineEncoding.encode(points);
   }
 
-  public String getEncodedPath() {
+  public String getEncodedPath_RENAMED() {
     return points;
   }
 
