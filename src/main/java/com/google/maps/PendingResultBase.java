@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.DirectionsApiRequest.Waypoint;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,23 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the list of waypoints as Plade ID Strings, prefixing them as required by the API.
+   *
+   * <p>See {@link #prefixPlaceId(String)}.
+   *
+   * <p>See {@link #waypoints(Waypoint...)}.
+   *
+   * @param waypoints The waypoints to add to this directions request.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest waypointsFromPlaceIds(String... waypoints) {
+    Waypoint[] objWaypoints = new Waypoint[waypoints.length];
+    for (int i = 0; i < waypoints.length; i++) {
+      objWaypoints[i] = new Waypoint(prefixPlaceId(waypoints[i]));
+    }
+    return waypoints(objWaypoints);
   }
 }
