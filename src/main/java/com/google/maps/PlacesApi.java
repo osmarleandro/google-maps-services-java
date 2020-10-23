@@ -53,7 +53,7 @@ public class PlacesApi {
    * @param nextPageToken The nextPageToken returned as part of a PlacesSearchResponse.
    * @return Returns a NearbySearchRequest that can be executed.
    */
-  public static NearbySearchRequest nearbySearchNextPage(
+  public static NearbySearchRequest nearbySearchNextPage_RENAMED(
       GeoApiContext context, String nextPageToken) {
     NearbySearchRequest request = new NearbySearchRequest(context);
     request.pageToken(nextPageToken);
