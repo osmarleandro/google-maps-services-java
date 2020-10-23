@@ -949,7 +949,7 @@ public class GeocodingApiTest {
 
   /** Testing supported Address Types for Geocoding. */
   @Test
-  public void testSupportedAddressTypesFood() throws Exception {
+  public void testSupportedAddressTypesFood_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
