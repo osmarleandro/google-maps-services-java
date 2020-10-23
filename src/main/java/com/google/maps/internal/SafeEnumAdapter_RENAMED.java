@@ -31,15 +31,15 @@ import org.slf4j.LoggerFactory;
  *
  * @param <E> the enum type to map values to.
  */
-public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> {
+public class SafeEnumAdapter_RENAMED<E extends Enum<E>> extends TypeAdapter<E> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(SafeEnumAdapter.class.getName());
+  private static final Logger LOG = LoggerFactory.getLogger(SafeEnumAdapter_RENAMED.class.getName());
 
   private final Class<E> clazz;
   private final E unknownValue;
 
   /** @param unknownValue the value to return if the value cannot be found. */
-  public SafeEnumAdapter(E unknownValue) {
+  public SafeEnumAdapter_RENAMED(E unknownValue) {
     if (unknownValue == null) throw new IllegalArgumentException();
 
     this.unknownValue = unknownValue;

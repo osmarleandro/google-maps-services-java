@@ -271,15 +271,15 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())
             .registerTypeAdapter(
                 AddressComponentType.class,
-                new SafeEnumAdapter<AddressComponentType>(AddressComponentType.UNKNOWN))
+                new SafeEnumAdapter_RENAMED<AddressComponentType>(AddressComponentType.UNKNOWN))
             .registerTypeAdapter(
-                AddressType.class, new SafeEnumAdapter<AddressType>(AddressType.UNKNOWN))
+                AddressType.class, new SafeEnumAdapter_RENAMED<AddressType>(AddressType.UNKNOWN))
             .registerTypeAdapter(
-                TravelMode.class, new SafeEnumAdapter<TravelMode>(TravelMode.UNKNOWN))
+                TravelMode.class, new SafeEnumAdapter_RENAMED<TravelMode>(TravelMode.UNKNOWN))
             .registerTypeAdapter(
-                LocationType.class, new SafeEnumAdapter<LocationType>(LocationType.UNKNOWN))
+                LocationType.class, new SafeEnumAdapter_RENAMED<LocationType>(LocationType.UNKNOWN))
             .registerTypeAdapter(
-                RatingType.class, new SafeEnumAdapter<RatingType>(RatingType.UNKNOWN))
+                RatingType.class, new SafeEnumAdapter_RENAMED<RatingType>(RatingType.UNKNOWN))
             .registerTypeAdapter(DayOfWeek.class, new DayOfWeekAdapter())
             .registerTypeAdapter(PriceLevel.class, new PriceLevelAdapter())
             .registerTypeAdapter(Instant.class, new InstantAdapter())
