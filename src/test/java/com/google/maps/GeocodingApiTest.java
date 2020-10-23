@@ -712,7 +712,7 @@ public class GeocodingApiTest {
    * street_address</a>.
    */
   @Test
-  public void testReverseGeocodeRestrictedByType() throws Exception {
+  public void testReverseGeocodeRestrictedByType_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
