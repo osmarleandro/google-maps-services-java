@@ -30,8 +30,8 @@ import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
-import com.google.maps.model.AutocompletePrediction;
-import com.google.maps.model.AutocompletePrediction.MatchedSubstring;
+import com.google.maps.model.AutocompletePrediction_RENAMED;
+import com.google.maps.model.AutocompletePrediction_RENAMED.MatchedSubstring;
 import com.google.maps.model.AutocompleteStructuredFormatting;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.FindPlaceFromText;
@@ -126,13 +126,13 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(autocompletePredictionStructuredFormatting)) {
       SessionToken session = new SessionToken();
-      final AutocompletePrediction[] predictions =
+      final AutocompletePrediction_RENAMED[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "1", session).await();
 
       assertNotNull(predictions);
       assertNotNull(Arrays.toString(predictions));
       assertEquals(1, predictions.length);
-      final AutocompletePrediction prediction = predictions[0];
+      final AutocompletePrediction_RENAMED prediction = predictions[0];
       assertNotNull(prediction);
       assertEquals("1033 Princes Highway, Heathmere, Victoria, Australia", prediction.description);
       final AutocompleteStructuredFormatting structuredFormatting = prediction.structuredFormatting;
@@ -396,25 +396,25 @@ public class PlacesApiTest {
   @Test
   public void testQueryAutocompletePizzaNearPar() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(queryAutocompleteResponseBody)) {
-      AutocompletePrediction[] predictions =
+      AutocompletePrediction_RENAMED[] predictions =
           PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
 
       assertNotNull(predictions);
       assertEquals(predictions.length, 5);
       assertNotNull(Arrays.toString(predictions));
 
-      AutocompletePrediction prediction = predictions[0];
+      AutocompletePrediction_RENAMED prediction = predictions[0];
       assertNotNull(prediction);
       assertNotNull(prediction.description);
       assertEquals("pizza near Paris, France", prediction.description);
 
       assertEquals(3, prediction.matchedSubstrings.length);
-      AutocompletePrediction.MatchedSubstring matchedSubstring = prediction.matchedSubstrings[0];
+      AutocompletePrediction_RENAMED.MatchedSubstring matchedSubstring = prediction.matchedSubstrings[0];
       assertEquals(5, matchedSubstring.length);
       assertEquals(0, matchedSubstring.offset);
 
       assertEquals(4, prediction.terms.length);
-      AutocompletePrediction.Term term = prediction.terms[0];
+      AutocompletePrediction_RENAMED.Term term = prediction.terms[0];
       assertEquals(0, term.offset);
       assertEquals("pizza", term.value);
     }
@@ -424,14 +424,14 @@ public class PlacesApiTest {
   public void testQueryAutocompleteWithPlaceId() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(queryAutocompleteWithPlaceIdResponseBody)) {
-      AutocompletePrediction[] predictions =
+      AutocompletePrediction_RENAMED[] predictions =
           PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
 
       assertNotNull(predictions);
       assertEquals(predictions.length, 1);
       assertNotNull(Arrays.toString(predictions));
 
-      AutocompletePrediction prediction = predictions[0];
+      AutocompletePrediction_RENAMED prediction = predictions[0];
       assertNotNull(prediction);
       assertNotNull(prediction.description);
       assertEquals(
@@ -439,12 +439,12 @@ public class PlacesApiTest {
           prediction.description);
 
       assertEquals(2, prediction.matchedSubstrings.length);
-      AutocompletePrediction.MatchedSubstring matchedSubstring = prediction.matchedSubstrings[0];
+      AutocompletePrediction_RENAMED.MatchedSubstring matchedSubstring = prediction.matchedSubstrings[0];
       assertEquals(5, matchedSubstring.length);
       assertEquals(6, matchedSubstring.offset);
 
       assertEquals(5, prediction.terms.length);
-      AutocompletePrediction.Term term = prediction.terms[0];
+      AutocompletePrediction_RENAMED.Term term = prediction.terms[0];
       assertEquals(0, term.offset);
       assertEquals("Bondi Pizza", term.value);
 
@@ -840,7 +840,7 @@ public class PlacesApiTest {
   public void testPlaceAutocomplete() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
-      AutocompletePrediction[] predictions =
+      AutocompletePrediction_RENAMED[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
 
       sc.assertParamValue("Sydney Town Ha", "input");
@@ -856,7 +856,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiPlaceAutocompleteWithType)) {
       SessionToken session = new SessionToken();
-      AutocompletePrediction[] predictions =
+      AutocompletePrediction_RENAMED[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "po", session)
               .components(ComponentFilter.country("nz"))
               .types(PlaceAutocompleteType.REGIONS)
@@ -869,7 +869,7 @@ public class PlacesApiTest {
 
       assertNotNull(Arrays.toString(predictions));
       assertEquals(5, predictions.length);
-      for (AutocompletePrediction prediction : predictions) {
+      for (AutocompletePrediction_RENAMED prediction : predictions) {
         for (int j = 0; j < prediction.types.length; j++) {
           assertFalse(prediction.types[j].equals("route"));
           assertFalse(prediction.types[j].equals("zoo"));

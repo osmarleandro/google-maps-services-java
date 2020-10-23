@@ -26,7 +26,7 @@ import java.util.Objects;
  * href="https://developers.google.com/places/web-service/query#query_autocomplete_responses">Query
  * Autocomplete Responses</a> for more detail.
  */
-public class AutocompletePrediction implements Serializable {
+public class AutocompletePrediction_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

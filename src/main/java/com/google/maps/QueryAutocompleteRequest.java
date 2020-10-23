@@ -19,7 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.model.AutocompletePrediction;
+import com.google.maps.model.AutocompletePrediction_RENAMED;
 import com.google.maps.model.LatLng;
 
 /**
@@ -29,7 +29,7 @@ import com.google.maps.model.LatLng;
  */
 public class QueryAutocompleteRequest
     extends PendingResultBase<
-        AutocompletePrediction[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> {
+        AutocompletePrediction_RENAMED[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/queryautocomplete/json")
@@ -91,9 +91,9 @@ public class QueryAutocompleteRequest
     return param("radius", String.valueOf(radius));
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  public static class Response implements ApiResponse<AutocompletePrediction_RENAMED[]> {
     public String status;
-    public AutocompletePrediction predictions[];
+    public AutocompletePrediction_RENAMED predictions[];
     public String errorMessage;
 
     @Override
@@ -102,7 +102,7 @@ public class QueryAutocompleteRequest
     }
 
     @Override
-    public AutocompletePrediction[] getResult() {
+    public AutocompletePrediction_RENAMED[] getResult() {
       return predictions;
     }
 

@@ -22,7 +22,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
-import com.google.maps.model.AutocompletePrediction;
+import com.google.maps.model.AutocompletePrediction_RENAMED;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceAutocompleteType;
@@ -36,7 +36,7 @@ import java.util.UUID;
  */
 public class PlaceAutocompleteRequest
     extends PendingResultBase<
-        AutocompletePrediction[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> {
+        AutocompletePrediction_RENAMED[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/autocomplete/json")
@@ -120,7 +120,7 @@ public class PlaceAutocompleteRequest
 
   /**
    * The origin point from which to calculate straight-line distance to the destination (returned as
-   * {@link AutocompletePrediction#distanceMeters}). If this value is omitted, straight-line
+   * {@link AutocompletePrediction_RENAMED#distanceMeters}). If this value is omitted, straight-line
    * distance will not be returned.
    *
    * @param origin The {@link LatLng} origin point from which to calculate distance.
@@ -202,9 +202,9 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  public static class Response implements ApiResponse<AutocompletePrediction_RENAMED[]> {
     public String status;
-    public AutocompletePrediction predictions[];
+    public AutocompletePrediction_RENAMED predictions[];
     public String errorMessage;
 
     @Override
@@ -213,7 +213,7 @@ public class PlaceAutocompleteRequest
     }
 
     @Override
-    public AutocompletePrediction[] getResult() {
+    public AutocompletePrediction_RENAMED[] getResult() {
       return predictions;
     }
 

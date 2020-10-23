@@ -18,7 +18,7 @@ package com.google.maps.model;
 import java.io.Serializable;
 import java.util.Arrays;
 
-/** The structured formatting info for a {@link com.google.maps.model.AutocompletePrediction}. */
+/** The structured formatting info for a {@link com.google.maps.model.AutocompletePrediction_RENAMED}. */
 public class AutocompleteStructuredFormatting implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class AutocompleteStructuredFormatting implements Serializable {
   public String mainText;
 
   /** Where the query matched the returned main text. */
-  public AutocompletePrediction.MatchedSubstring mainTextMatchedSubstrings[];
+  public AutocompletePrediction_RENAMED.MatchedSubstring mainTextMatchedSubstrings[];
 
   /** The secondary text of a prediction, usually the location of the place. */
   public String secondaryText;
