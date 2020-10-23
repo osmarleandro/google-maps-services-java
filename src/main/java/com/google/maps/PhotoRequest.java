@@ -58,7 +58,7 @@ public class PhotoRequest
    *     Photos service.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest maxHeight(int maxHeight) {
+  public PhotoRequest maxHeight_RENAMED(int maxHeight) {
     return param("maxheight", String.valueOf(maxHeight));
   }
 
