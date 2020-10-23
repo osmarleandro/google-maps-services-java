@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PlaceAutocompleteRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * The distance (in meters) within which to return place results. Note that setting a radius
+   * biases results to the indicated area, but may not fully restrict results to the specified area.
+   *
+   * @param placeAutocompleteRequest TODO
+ * @param radius The radius over which to bias results.
+ * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+  public PlaceAutocompleteRequest radius(PlaceAutocompleteRequest placeAutocompleteRequest, int radius) {
+    return placeAutocompleteRequest.param("radius", String.valueOf(radius));
   }
 }
