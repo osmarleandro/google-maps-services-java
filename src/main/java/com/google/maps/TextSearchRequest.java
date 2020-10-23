@@ -75,19 +75,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Specifies the distance (in meters) within which to bias place results.
-   *
-   * @param radius The radius of the search bias.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest radius(int radius) {
-    if (radius > 50000) {
-      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
-    }
-    return param("radius", String.valueOf(radius));
-  }
-
-  /**
    * Restricts to places that are at least this price level.
    *
    * @param priceLevel The minimum price level to restrict results with.

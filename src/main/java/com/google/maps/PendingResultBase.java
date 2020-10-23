@@ -169,4 +169,17 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Specifies the distance (in meters) within which to bias place results.
+   *
+   * @param radius The radius of the search bias.
+   * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+public TextSearchRequest radius(int radius) {
+    if (radius > 50000) {
+      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
+    }
+    return param("radius", String.valueOf(radius));
+  }
 }
