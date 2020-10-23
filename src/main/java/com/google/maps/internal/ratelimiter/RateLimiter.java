@@ -281,7 +281,7 @@ public abstract class RateLimiter {
   final long reserve(int permits) {
     checkPermits(permits);
     synchronized (mutex()) {
-      return reserveAndGetWaitLength(permits, stopwatch.readMicros());
+      return reserveAndGetWaitLength_RENAMED(permits, stopwatch.readMicros());
     }
   }
 
@@ -348,7 +348,7 @@ public abstract class RateLimiter {
       if (!canAcquire(nowMicros, timeoutMicros)) {
         return false;
       } else {
-        microsToWait = reserveAndGetWaitLength(permits, nowMicros);
+        microsToWait = reserveAndGetWaitLength_RENAMED(permits, nowMicros);
       }
     }
     stopwatch.sleepMicrosUninterruptibly(microsToWait);
@@ -364,7 +364,7 @@ public abstract class RateLimiter {
    *
    * @return the required wait time, never negative
    */
-  final long reserveAndGetWaitLength(int permits, long nowMicros) {
+  final long reserveAndGetWaitLength_RENAMED(int permits, long nowMicros) {
     long momentAvailable = reserveEarliestAvailable(permits, nowMicros);
     return max(momentAvailable - nowMicros, 0);
   }
