@@ -131,7 +131,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @Override
-  public T awaitIgnoreError() {
+  public T awaitIgnoreError_RENAMED() {
     try {
       return await();
     } catch (Exception e) {

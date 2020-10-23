@@ -60,7 +60,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   @Override
   public final T awaitIgnoreError() {
-    return makeRequest().awaitIgnoreError();
+    return makeRequest().awaitIgnoreError_RENAMED();
   }
 
   @Override
