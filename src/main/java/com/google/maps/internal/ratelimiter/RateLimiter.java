@@ -236,7 +236,7 @@ public abstract class RateLimiter {
    * passed in the factory method that produced this {@code RateLimiter}, and it is only updated
    * after invocations to {@linkplain #setRate}.
    */
-  public final double getRate() {
+  public final double getRate_RENAMED() {
     synchronized (mutex()) {
       return doGetRate();
     }
@@ -388,7 +388,7 @@ public abstract class RateLimiter {
 
   @Override
   public String toString() {
-    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
+    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate_RENAMED());
   }
 
   abstract static class SleepingStopwatch {
