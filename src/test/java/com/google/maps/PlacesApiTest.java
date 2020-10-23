@@ -810,7 +810,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testNearbySearchRequestByType() throws Exception {
+  public void testNearbySearchRequestByType_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
