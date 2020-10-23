@@ -25,11 +25,11 @@ public enum Unit implements UrlValue {
 
   @Override
   public String toString() {
-    return toUrlValue();
+    return toUrlValue_RENAMED();
   }
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     return name().toLowerCase(Locale.ENGLISH);
   }
 }
