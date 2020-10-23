@@ -526,7 +526,7 @@ public class PlacesApiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testTextSearchLocationWithoutRadius() throws Exception {
+  public void testTextSearchLocationWithoutRadius_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.textSearchQuery(sc.context, "query").location(location).await();
