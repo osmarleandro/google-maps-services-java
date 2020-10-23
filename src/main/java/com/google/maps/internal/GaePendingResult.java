@@ -28,7 +28,7 @@ import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.UnknownErrorException;
-import com.google.maps.metrics.RequestMetrics;
+import com.google.maps.metrics.RequestMetrics_RENAMED;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.Distance;
@@ -67,7 +67,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
-  private final RequestMetrics metrics;
+  private final RequestMetrics_RENAMED metrics;
 
   private long errorTimeOut;
   private int retryCounter = 0;
@@ -93,7 +93,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       long errorTimeOut,
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
-      RequestMetrics metrics) {
+      RequestMetrics_RENAMED metrics) {
     this.request = request;
     this.client = client;
     this.responseClass = responseClass;

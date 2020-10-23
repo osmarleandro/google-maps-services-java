@@ -23,7 +23,7 @@ import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
-import com.google.maps.metrics.RequestMetrics;
+import com.google.maps.metrics.RequestMetrics_RENAMED;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.Distance;
@@ -66,7 +66,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
-  private final RequestMetrics metrics;
+  private final RequestMetrics_RENAMED metrics;
 
   private Call call;
   private Callback<T> callback;
@@ -95,7 +95,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       long errorTimeOut,
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
-      RequestMetrics metrics) {
+      RequestMetrics_RENAMED metrics) {
     this.request = request;
     this.client = client;
     this.responseClass = responseClass;

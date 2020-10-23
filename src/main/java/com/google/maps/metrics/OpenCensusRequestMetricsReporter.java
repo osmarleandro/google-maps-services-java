@@ -13,7 +13,7 @@ public final class OpenCensusRequestMetricsReporter implements RequestMetricsRep
   public OpenCensusRequestMetricsReporter() {}
 
   @Override
-  public RequestMetrics newRequest(String requestName) {
+  public RequestMetrics_RENAMED newRequest(String requestName) {
     return new OpenCensusRequestMetrics(requestName, tagger, statsRecorder);
   }
 }

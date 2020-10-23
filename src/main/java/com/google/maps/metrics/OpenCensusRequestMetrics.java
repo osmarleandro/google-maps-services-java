@@ -6,7 +6,7 @@ import io.opencensus.tags.TagValue;
 import io.opencensus.tags.Tagger;
 
 /** An OpenCensus logger that generates success and latency metrics. */
-final class OpenCensusRequestMetrics implements RequestMetrics {
+final class OpenCensusRequestMetrics implements RequestMetrics_RENAMED {
   private final String requestName;
   private final Tagger tagger;
   private final StatsRecorder statsRecorder;

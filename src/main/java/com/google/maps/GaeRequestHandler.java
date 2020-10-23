@@ -29,7 +29,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.GaePendingResult;
 import com.google.maps.internal.HttpHeaders;
-import com.google.maps.metrics.RequestMetrics;
+import com.google.maps.metrics.RequestMetrics_RENAMED;
 import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
@@ -59,7 +59,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       long errorTimeout,
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
-      RequestMetrics metrics) {
+      RequestMetrics_RENAMED metrics) {
     FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
     HTTPRequest req;
     try {
@@ -96,7 +96,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       long errorTimeout,
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
-      RequestMetrics metrics) {
+      RequestMetrics_RENAMED metrics) {
     FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
     HTTPRequest req = null;
     try {

@@ -5,7 +5,7 @@ public final class NoOpRequestMetricsReporter implements RequestMetricsReporter 
 
   public NoOpRequestMetricsReporter() {}
 
-  public RequestMetrics newRequest(String requestName) {
+  public RequestMetrics_RENAMED newRequest(String requestName) {
     return new NoOpRequestMetrics(requestName);
   }
 }

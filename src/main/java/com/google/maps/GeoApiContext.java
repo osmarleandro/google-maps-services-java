@@ -25,7 +25,7 @@ import com.google.maps.internal.HttpHeaders;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
-import com.google.maps.metrics.RequestMetrics;
+import com.google.maps.metrics.RequestMetrics_RENAMED;
 import com.google.maps.metrics.RequestMetricsReporter;
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
@@ -115,7 +115,7 @@ public class GeoApiContext {
         long errorTimeout,
         Integer maxRetries,
         ExceptionsAllowedToRetry exceptionsAllowedToRetry,
-        RequestMetrics metrics);
+        RequestMetrics_RENAMED metrics);
 
     <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
         String hostName,
@@ -128,7 +128,7 @@ public class GeoApiContext {
         long errorTimeout,
         Integer maxRetries,
         ExceptionsAllowedToRetry exceptionsAllowedToRetry,
-        RequestMetrics metrics);
+        RequestMetrics_RENAMED metrics);
 
     void shutdown();
 
@@ -301,7 +301,7 @@ public class GeoApiContext {
       String path,
       boolean canUseClientId,
       String encodedPath,
-      RequestMetrics metrics) {
+      RequestMetrics_RENAMED metrics) {
     checkContext(canUseClientId);
     if (!encodedPath.startsWith("&")) {
       throw new IllegalArgumentException("encodedPath must start with &");
