@@ -622,5 +622,9 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	public void setMockBaseUrl(GeoApiContextTest geoApiContextTest) {
+	    baseUrlOverride("http://127.0.0.1:" + geoApiContextTest.server.getPort());
+	  }
   }
 }
