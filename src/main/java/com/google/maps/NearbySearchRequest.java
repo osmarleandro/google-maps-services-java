@@ -154,7 +154,7 @@ public class NearbySearchRequest
    * @param type The {@link PlaceType} to restrict results to.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest type(PlaceType type) {
+  public NearbySearchRequest type_RENAMED(PlaceType type) {
     return param("type", type);
   }
 

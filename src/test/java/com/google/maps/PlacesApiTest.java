@@ -633,7 +633,7 @@ public class PlacesApiTest {
           .maxPrice(PriceLevel.EXPENSIVE)
           .name("name")
           .openNow(true)
-          .type(PlaceType.AIRPORT)
+          .type_RENAMED(PlaceType.AIRPORT)
           .pageToken("next-page-token")
           .await();
 
@@ -814,7 +814,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type_RENAMED(PlaceType.BAR).await();
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
       sc.assertParamValue("10000", "radius");
@@ -829,7 +829,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type_RENAMED(PlaceType.BAR).await();
 
       assertEquals(20, response.results.length);
       assertEquals(563, response.results[0].userRatingsTotal);
