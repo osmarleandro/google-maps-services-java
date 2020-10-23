@@ -107,16 +107,6 @@ public class NearbySearchRequest
   }
 
   /**
-   * Restricts to places that are at most this price level.
-   *
-   * @param priceLevel The price level to set as maximum.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
-    return param("maxprice", priceLevel);
-  }
-
-  /**
    * Specifies one or more terms to be matched against the names of places, separated by spaces.
    *
    * @param name Search for Places with this name.

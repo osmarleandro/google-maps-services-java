@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.PriceLevel;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Restricts to places that are at most this price level.
+   *
+   * @param priceLevel The price level to set as maximum.
+   * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
+    return param("maxprice", priceLevel);
   }
 }
