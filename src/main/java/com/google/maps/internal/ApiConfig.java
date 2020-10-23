@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PhotoRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the maxWidth for this request.
+   *
+   * @param photoRequest TODO
+ * @param maxWidth The maximum desired width, in pixels, of the image returned by the Place Photos
+   *     service.
+ * @return Returns the configured PhotoRequest.
+   */
+  public PhotoRequest maxWidth(PhotoRequest photoRequest, int maxWidth) {
+    return photoRequest.param("maxwidth", String.valueOf(maxWidth));
   }
 }
