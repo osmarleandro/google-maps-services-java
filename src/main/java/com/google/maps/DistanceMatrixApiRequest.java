@@ -19,6 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
+import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
@@ -201,5 +202,12 @@ public class DistanceMatrixApiRequest
    */
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
+  }
+
+protected DistanceMatrixApiRequest param(String key, UrlValue val) {
+    if (val != null) {
+      return this.param(key, val.toUrlValue());
+    }
+    return getInstance();
   }
 }

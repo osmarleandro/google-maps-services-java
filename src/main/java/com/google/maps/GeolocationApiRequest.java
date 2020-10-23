@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.Gson;
+import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationPayload.GeolocationPayloadBuilder;
@@ -104,5 +105,12 @@ public class GeolocationApiRequest
     Gson gson = new Gson();
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
+  }
+
+protected GeolocationApiRequest param(String key, UrlValue val) {
+    if (val != null) {
+      return this.param(key, val.toUrlValue());
+    }
+    return getInstance();
   }
 }
