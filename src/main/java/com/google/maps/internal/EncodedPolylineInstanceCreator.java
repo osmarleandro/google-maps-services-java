@@ -16,10 +16,10 @@
 package com.google.maps.internal;
 
 import com.google.gson.InstanceCreator;
-import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.EncodedPolyline_RENAMED;
 import java.lang.reflect.Type;
 
-public class EncodedPolylineInstanceCreator implements InstanceCreator<EncodedPolyline> {
+public class EncodedPolylineInstanceCreator implements InstanceCreator<EncodedPolyline_RENAMED> {
   private String points;
 
   public EncodedPolylineInstanceCreator(String points) {
@@ -27,7 +27,7 @@ public class EncodedPolylineInstanceCreator implements InstanceCreator<EncodedPo
   }
 
   @Override
-  public EncodedPolyline createInstance(Type type) {
-    return new EncodedPolyline(points);
+  public EncodedPolyline_RENAMED createInstance(Type type) {
+    return new EncodedPolyline_RENAMED(points);
   }
 }

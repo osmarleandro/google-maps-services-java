@@ -25,25 +25,25 @@ import java.util.List;
  * <p>See <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">
  * Encoded Polyline Algorithm</a> for more detail on the protocol.
  */
-public class EncodedPolyline implements Serializable {
+public class EncodedPolyline_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   private final String points;
 
-  public EncodedPolyline() {
+  public EncodedPolyline_RENAMED() {
     this.points = null;
   }
 
   /**
    * @param encodedPoints A string representation of a path, encoded with the Polyline Algorithm.
    */
-  public EncodedPolyline(String encodedPoints) {
+  public EncodedPolyline_RENAMED(String encodedPoints) {
     this.points = encodedPoints;
   }
 
   /** @param points A path as a collection of {@code LatLng} points. */
-  public EncodedPolyline(List<LatLng> points) {
+  public EncodedPolyline_RENAMED(List<LatLng> points) {
     this.points = PolylineEncoding.encode(points);
   }
 

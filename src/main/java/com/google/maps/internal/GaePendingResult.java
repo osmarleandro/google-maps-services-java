@@ -33,7 +33,7 @@ import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.Distance;
 import com.google.maps.model.Duration;
-import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.EncodedPolyline_RENAMED;
 import com.google.maps.model.Fare;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
@@ -202,7 +202,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
             .registerTypeAdapter(Instant.class, new InstantAdapter())
             .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
             .registerTypeAdapter(GeolocationApi.Response.class, new GeolocationResponseAdapter())
-            .registerTypeAdapter(EncodedPolyline.class, new EncodedPolylineInstanceCreator(""))
+            .registerTypeAdapter(EncodedPolyline_RENAMED.class, new EncodedPolylineInstanceCreator(""))
             .setFieldNamingPolicy(fieldNamingPolicy)
             .create();
 
