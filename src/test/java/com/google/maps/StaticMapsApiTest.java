@@ -15,9 +15,6 @@
 
 package com.google.maps;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import com.google.maps.StaticMapsRequest.ImageFormat;
 import com.google.maps.StaticMapsRequest.Markers;
 import com.google.maps.StaticMapsRequest.Markers.CustomIconAnchor;
@@ -28,42 +25,21 @@ import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
+
 import org.junit.Test;
 
 public class StaticMapsApiTest {
 
-  private final int WIDTH = 640;
-  private final int HEIGHT = 480;
+  public final int WIDTH = 640;
+  public final int HEIGHT = 480;
   private final LatLng MELBOURNE = new LatLng(-37.8136, 144.9630);
   private final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
   /** This encoded path matches the exact [MELBOURNE, SYDNEY] points. */
   private final String MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE = "~mxeFwaxsZ_naWk~be@";
 
-  private final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
-
-  @Test
-  public void testGetSydneyStaticMap() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Google Sydney");
-      req.zoom(16);
-      ByteArrayInputStream bais = new ByteArrayInputStream(req.await().imageData);
-      BufferedImage img = ImageIO.read(bais);
-
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Google Sydney", "center");
-      sc.assertParamValue("16", "zoom");
-
-      assertNotNull(img);
-      assertEquals(WIDTH, img.getWidth());
-      assertEquals(HEIGHT, img.getHeight());
-    }
-  }
+  public final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
   @Test
   public void testGetSydneyLatLngStaticMap() throws Exception {
