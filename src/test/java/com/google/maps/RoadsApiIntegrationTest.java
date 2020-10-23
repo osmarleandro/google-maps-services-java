@@ -136,7 +136,7 @@ public class RoadsApiIntegrationTest {
             "ChIJyU-E2mEE9YgRftyNXxcfQYw",
             "ChIJc0BrC2EE9YgR71DvaFzNgrA"
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await();
+      SpeedLimit[] speeds = RoadsApi.speedLimits_RENAMED(sc.context, placeIds).await();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());

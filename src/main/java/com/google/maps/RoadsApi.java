@@ -127,7 +127,7 @@ public class RoadsApi {
    *     100 placeIds with each request.
    * @return Returns the speed limits as a {@link PendingResult}.
    */
-  public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, String... placeIds) {
+  public static PendingResult<SpeedLimit[]> speedLimits_RENAMED(GeoApiContext context, String... placeIds) {
     String[] placeParams = new String[2 * placeIds.length];
     int i = 0;
     for (String placeId : placeIds) {
