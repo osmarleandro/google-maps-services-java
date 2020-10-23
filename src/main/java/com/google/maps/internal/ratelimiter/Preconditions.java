@@ -51,7 +51,7 @@ public final class Preconditions {
    *     are converted to strings using {@link String#valueOf(Object)}.
    * @throws IllegalArgumentException if {@code expression} is false
    */
-  public static void checkArgument(
+  public static void checkArgument_RENAMED(
       boolean expression, String errorMessageTemplate, Object... errorMessageArgs) {
     if (!expression) {
       throw new IllegalArgumentException(format(errorMessageTemplate, errorMessageArgs));

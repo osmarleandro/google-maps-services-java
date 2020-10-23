@@ -28,7 +28,7 @@
 
 package com.google.maps.internal.ratelimiter;
 
-import static com.google.maps.internal.ratelimiter.Preconditions.checkArgument;
+import static com.google.maps.internal.ratelimiter.Preconditions.checkArgument_RENAMED;
 import static com.google.maps.internal.ratelimiter.Preconditions.checkNotNull;
 import static java.lang.Math.max;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
@@ -160,7 +160,7 @@ public abstract class RateLimiter {
    *     warmupPeriod} is negative
    */
   public static RateLimiter create(double permitsPerSecond, long warmupPeriod, TimeUnit unit) {
-    checkArgument(warmupPeriod >= 0, "warmupPeriod must not be negative: %s", warmupPeriod);
+    checkArgument_RENAMED(warmupPeriod >= 0, "warmupPeriod must not be negative: %s", warmupPeriod);
     return create(
         permitsPerSecond, warmupPeriod, unit, 3.0, SleepingStopwatch.createFromSystemTimer());
   }
@@ -221,7 +221,7 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
    */
   public final void setRate(double permitsPerSecond) {
-    checkArgument(
+    checkArgument_RENAMED(
         permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
     synchronized (mutex()) {
       doSetRate(permitsPerSecond, stopwatch.readMicros());
@@ -422,7 +422,7 @@ public abstract class RateLimiter {
   }
 
   private static void checkPermits(int permits) {
-    checkArgument(permits > 0, "Requested permits (%s) must be positive", permits);
+    checkArgument_RENAMED(permits > 0, "Requested permits (%s) must be positive", permits);
   }
 
   /** Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly. */
