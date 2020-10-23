@@ -395,7 +395,7 @@ public class GeolocationApiTest {
   }
 
   @Test(expected = NotFoundException.class)
-  public void testNotFoundGeolocation() throws Exception {
+  public void testNotFoundGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             ""
