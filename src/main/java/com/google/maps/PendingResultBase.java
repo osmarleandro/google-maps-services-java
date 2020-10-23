@@ -155,7 +155,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @param channel String to pass with the request for analytics.
    * @return Returns the request for call chaining.
    */
-  public A channel(String channel) {
+  public A channel_RENAMED(String channel) {
     return param("channel", channel);
   }
 
