@@ -61,7 +61,7 @@ public class RateLimitExecutorServiceTest {
 
     // Sleep until finished, or 20s expires (to prevent waiting forever)
     long sleepTime = 0;
-    while (sleepTime < 20000 && countTotalRequests(executedTimestamps) < 100) {
+    while (sleepTime < 20000 && countTotalRequests_RENAMED(executedTimestamps) < 100) {
       long sleepFor = TimeUnit.SECONDS.toMillis(1);
       sleepTime += sleepFor;
       Thread.sleep(sleepFor);
@@ -79,12 +79,12 @@ public class RateLimitExecutorServiceTest {
           actualQps <= qps);
     }
     // Check that we executed every request
-    assertEquals(100, countTotalRequests(executedTimestamps));
+    assertEquals(100, countTotalRequests_RENAMED(executedTimestamps));
 
     service.shutdown();
   }
 
-  private static int countTotalRequests(AbstractMap<?, Integer> hashMap) {
+  private static int countTotalRequests_RENAMED(AbstractMap<?, Integer> hashMap) {
     int counter = 0;
     for (Integer value : hashMap.values()) {
       counter += value;
