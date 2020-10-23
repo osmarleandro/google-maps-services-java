@@ -279,7 +279,7 @@ public abstract class RateLimiter {
    * @return time in microseconds to wait until the resource can be acquired, never negative
    */
   final long reserve(int permits) {
-    checkPermits(permits);
+    checkPermits_RENAMED(permits);
     synchronized (mutex()) {
       return reserveAndGetWaitLength(permits, stopwatch.readMicros());
     }
@@ -341,7 +341,7 @@ public abstract class RateLimiter {
    */
   public boolean tryAcquire(int permits, long timeout, TimeUnit unit) {
     long timeoutMicros = max(unit.toMicros(timeout), 0);
-    checkPermits(permits);
+    checkPermits_RENAMED(permits);
     long microsToWait;
     synchronized (mutex()) {
       long nowMicros = stopwatch.readMicros();
@@ -421,7 +421,7 @@ public abstract class RateLimiter {
     }
   }
 
-  private static void checkPermits(int permits) {
+  private static void checkPermits_RENAMED(int permits) {
     checkArgument(permits > 0, "Requested permits (%s) must be positive", permits);
   }
 
