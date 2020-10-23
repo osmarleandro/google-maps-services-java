@@ -15,6 +15,7 @@
 
 package com.google.maps.internal;
 
+import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import java.util.HashSet;
 
@@ -36,5 +37,17 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
 
     sb.append(']');
     return sb.toString();
+  }
+
+public void checkContext(GeoApiContext geoApiContext, boolean canUseClientId) {
+    if (geoApiContext.urlSigner == null && geoApiContext.apiKey == null) {
+      throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
+    } else if (!canUseClientId && geoApiContext.apiKey == null) {
+      throw new IllegalStateException(
+          "API does not support client ID & secret - you must provide a key");
+    }
+    if (geoApiContext.urlSigner == null && !geoApiContext.apiKey.startsWith("AIza")) {
+      throw new IllegalStateException("Invalid API key.");
+    }
   }
 }

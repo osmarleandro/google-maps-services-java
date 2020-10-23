@@ -58,14 +58,14 @@ public class GeoApiContext {
   private static final int DEFAULT_BACKOFF_TIMEOUT_MILLIS = 60 * 1000; // 60s
 
   private final RequestHandler requestHandler;
-  private final String apiKey;
+  public final String apiKey;
   private final String baseUrlOverride;
   private final String channel;
   private final String clientId;
   private final long errorTimeout;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
-  private final UrlSigner urlSigner;
+  public final UrlSigner urlSigner;
   private String experienceIdHeaderValue;
   private final RequestMetricsReporter requestMetricsReporter;
 
@@ -261,7 +261,7 @@ public class GeoApiContext {
   <T, R extends ApiResponse<T>> PendingResult<T> post(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
 
-    checkContext(config.supportsClientId);
+    exceptionsAllowedToRetry.checkContext(this, config.supportsClientId);
 
     StringBuilder url = new StringBuilder(config.path);
     if (config.supportsClientId && clientId != null) {
@@ -302,7 +302,7 @@ public class GeoApiContext {
       boolean canUseClientId,
       String encodedPath,
       RequestMetrics metrics) {
-    checkContext(canUseClientId);
+    exceptionsAllowedToRetry.checkContext(this, canUseClientId);
     if (!encodedPath.startsWith("&")) {
       throw new IllegalArgumentException("encodedPath must start with &");
     }
@@ -335,18 +335,6 @@ public class GeoApiContext {
         maxRetries,
         exceptionsAllowedToRetry,
         metrics);
-  }
-
-  private void checkContext(boolean canUseClientId) {
-    if (urlSigner == null && apiKey == null) {
-      throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
-    } else if (!canUseClientId && apiKey == null) {
-      throw new IllegalStateException(
-          "API does not support client ID & secret - you must provide a key");
-    }
-    if (urlSigner == null && !apiKey.startsWith("AIza")) {
-      throw new IllegalStateException("Invalid API key.");
-    }
   }
 
   /** The Builder for {@code GeoApiContext}. */
