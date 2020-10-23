@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApi.Response;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
@@ -27,6 +28,12 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+import com.google.maps.model.GeocodingResult;
+
+import okhttp3.mockwebserver.MockResponse;
+
+import static org.junit.Assert.assertEquals;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -36,6 +43,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -622,5 +631,28 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@Test
+	  public void testErrorResponseRetries(GeoApiContextTest geoApiContextTest) throws Exception {
+	    // Set up mock responses
+	    MockResponse errorResponse = geoApiContextTest.createMockBadResponse();
+	    MockResponse goodResponse = geoApiContextTest.createMockGoodResponse();
+	
+	    geoApiContextTest.server.enqueue(errorResponse);
+	    geoApiContextTest.server.enqueue(goodResponse);
+	    geoApiContextTest.server.start();
+	
+	    // Build the context under test
+	    geoApiContextTest.setMockBaseUrl();
+	
+	    // Execute
+	    GeocodingResult[] result =
+	        build().get(new ApiConfig("/"), Response.class, "k", "v").await();
+	    assertEquals(1, result.length);
+	    assertEquals(
+	        "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA", result[0].formattedAddress);
+	
+	    geoApiContextTest.server.shutdown();
+	  }
   }
 }
