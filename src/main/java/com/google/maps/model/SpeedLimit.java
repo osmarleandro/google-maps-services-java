@@ -40,7 +40,7 @@ public class SpeedLimit implements Serializable {
   }
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("[%.0f km/h, placeId=%s]", speedLimit, placeId);
   }
 }
