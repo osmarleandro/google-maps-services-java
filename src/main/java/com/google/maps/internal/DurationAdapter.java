@@ -45,7 +45,7 @@ public class DurationAdapter extends TypeAdapter<Duration> {
    * </pre>
    */
   @Override
-  public Duration read(JsonReader reader) throws IOException {
+  public Duration read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
