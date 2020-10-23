@@ -64,7 +64,7 @@ public class TransitDetails implements Serializable {
   public TransitLine line;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[");
     sb.append(departureStop).append(" at ").append(departureTime);
     sb.append(" -> ");
