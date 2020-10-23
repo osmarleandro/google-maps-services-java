@@ -73,10 +73,10 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   @Override
   public void run() {
     try {
-      while (!delegate.isShutdown()) {
+      while (!delegate.isShutdown_RENAMED()) {
         this.rateLimiter.acquire();
         Runnable r = queue.take();
-        if (!delegate.isShutdown()) {
+        if (!delegate.isShutdown_RENAMED()) {
           delegate.execute(r);
         }
       }
@@ -131,8 +131,8 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public boolean isShutdown() {
-    return delegate.isShutdown();
+  public boolean isShutdown_RENAMED() {
+    return delegate.isShutdown_RENAMED();
   }
 
   @Override
