@@ -41,7 +41,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(MediumTests.class)
+@Category(MediumTests_RENAMED.class)
 public class DirectionsApiTest {
 
   private final String getDirectionsResponse;

@@ -35,7 +35,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(MediumTests.class)
+@Category(MediumTests_RENAMED.class)
 public class GeocodingApiTest {
 
   private static final double EPSILON = 0.005;

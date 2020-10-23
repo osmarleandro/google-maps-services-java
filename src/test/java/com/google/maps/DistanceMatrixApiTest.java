@@ -33,7 +33,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(MediumTests.class)
+@Category(MediumTests_RENAMED.class)
 public class DistanceMatrixApiTest {
 
   private final String getDistanceMatrixWithBasicStringParams;

@@ -30,7 +30,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(MediumTests.class)
+@Category(MediumTests_RENAMED.class)
 public class ElevationApiTest {
 
   private static final double SYDNEY_ELEVATION = 19.11174774169922;

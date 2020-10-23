@@ -27,7 +27,7 @@ import java.util.TimeZone;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(MediumTests.class)
+@Category(MediumTests_RENAMED.class)
 public class TimeZoneApiTest {
 
   @Test

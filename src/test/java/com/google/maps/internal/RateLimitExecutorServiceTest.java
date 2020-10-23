@@ -20,7 +20,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import com.google.maps.MediumTests;
+import com.google.maps.MediumTests_RENAMED;
 import java.util.AbstractMap;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,7 +30,7 @@ import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Category(MediumTests.class)
+@Category(MediumTests_RENAMED.class)
 public class RateLimitExecutorServiceTest {
 
   private static final Logger LOG =
