@@ -202,7 +202,20 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  /**
+   * The language in which to return results. Note that we often update supported languages so this
+   * list may not be exhaustive.
+   *
+   * @param language The language code, e.g. "en-AU" or "es".
+   * @see <a href="https://developers.google.com/maps/faq#languagesupport">List of supported domain
+   *     languages</a>
+   * @return Returns the request for call chaining.
+   */
+public final PlaceAutocompleteRequest language(String language) {
+    return param("language", language);
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;
