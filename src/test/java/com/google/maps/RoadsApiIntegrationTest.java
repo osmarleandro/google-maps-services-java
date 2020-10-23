@@ -86,7 +86,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
+      SpeedLimit[] speeds = RoadsApi.speedLimits_RENAMED(sc.context, path).await();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
@@ -113,7 +113,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(33.773250, -84.388840),
             new LatLng(33.771991, -84.388840)
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
+      SpeedLimit[] speeds = RoadsApi.speedLimits_RENAMED(sc.context, path).await();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());

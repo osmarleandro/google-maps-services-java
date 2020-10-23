@@ -108,7 +108,7 @@ public class RoadsApi {
    * @param path The collected GPS points as a path.
    * @return Returns the speed limits as a {@link PendingResult}.
    */
-  public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, LatLng... path) {
+  public static PendingResult<SpeedLimit[]> speedLimits_RENAMED(GeoApiContext context, LatLng... path) {
     return context.get(SPEEDS_API_CONFIG, SpeedsResponse.class, "path", join('|', path));
   }
 
