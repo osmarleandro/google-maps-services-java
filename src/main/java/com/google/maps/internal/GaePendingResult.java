@@ -261,4 +261,10 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
+
+@Override
+public PendingResult<T> makeRequest() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
