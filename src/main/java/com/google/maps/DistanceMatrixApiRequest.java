@@ -22,7 +22,7 @@ import com.google.maps.DistanceMatrixApi.Response;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
-import com.google.maps.model.TransitMode;
+import com.google.maps.model.TransitMode_RENAMED;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
@@ -188,7 +188,7 @@ public class DistanceMatrixApiRequest
    * @param transitModes The preferred transit modes.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
+  public DistanceMatrixApiRequest transitModes(TransitMode_RENAMED... transitModes) {
     return param("transit_mode", join('|', transitModes));
   }
 

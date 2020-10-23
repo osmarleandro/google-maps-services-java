@@ -21,7 +21,7 @@ import static java.util.Objects.requireNonNull;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
-import com.google.maps.model.TransitMode;
+import com.google.maps.model.TransitMode_RENAMED;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
@@ -317,7 +317,7 @@ public class DirectionsApiRequest
    * @param transitModes The preferred transit modes.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest transitMode(TransitMode... transitModes) {
+  public DirectionsApiRequest transitMode(TransitMode_RENAMED... transitModes) {
     return param("transit_mode", join('|', transitModes));
   }
 

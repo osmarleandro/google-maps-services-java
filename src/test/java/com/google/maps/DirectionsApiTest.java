@@ -28,7 +28,7 @@ import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.GeocodedWaypointStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
-import com.google.maps.model.TransitMode;
+import com.google.maps.model.TransitMode_RENAMED;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
@@ -411,7 +411,7 @@ public class DirectionsApiTest {
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
               .mode(TravelMode.TRANSIT)
-              .transitMode(TransitMode.BUS, TransitMode.TRAM)
+              .transitMode(TransitMode_RENAMED.BUS, TransitMode_RENAMED.TRAM)
               .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
               .await();
 
@@ -419,7 +419,7 @@ public class DirectionsApiTest {
       sc.assertParamValue("Union Square, San Francisco", "destination");
       sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
       sc.assertParamValue(
-          TransitMode.BUS.toUrlValue() + "|" + TransitMode.TRAM.toUrlValue(), "transit_mode");
+          TransitMode_RENAMED.BUS.toUrlValue() + "|" + TransitMode_RENAMED.TRAM.toUrlValue(), "transit_mode");
       sc.assertParamValue(
           TransitRoutingPreference.LESS_WALKING.toUrlValue(), "transit_routing_preference");
 
