@@ -63,10 +63,10 @@ public class GeoApiContext {
   private final String channel;
   private final String clientId;
   private final long errorTimeout;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  public final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
-  private String experienceIdHeaderValue;
+  public String experienceIdHeaderValue;
   private final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
@@ -164,11 +164,6 @@ public class GeoApiContext {
       return;
     }
     experienceIdHeaderValue = StringJoin.join(",", experienceId);
-  }
-
-  /** @return Returns the experience ID if set, otherwise, null */
-  public String getExperienceId() {
-    return experienceIdHeaderValue;
   }
 
   /**

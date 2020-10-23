@@ -306,7 +306,7 @@ public class GeoApiContextTest {
   public void testSingleExperienceId() {
     final String experienceId = "experienceId";
     final GeoApiContext context = builder.experienceId(experienceId).build();
-    assertEquals(experienceId, context.getExperienceId());
+    assertEquals(experienceId, context.exceptionsAllowedToRetry.getExperienceId(context));
   }
 
   @Test
@@ -314,23 +314,23 @@ public class GeoApiContextTest {
     final String experienceId1 = "experienceId1";
     final String experienceId2 = "experienceId2";
     final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
-    assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
+    assertEquals(experienceId1 + "," + experienceId2, context.exceptionsAllowedToRetry.getExperienceId(context));
   }
 
   @Test
   public void testNoExperienceId() {
     final GeoApiContext context = builder.build();
-    assertNull(context.getExperienceId());
+    assertNull(context.exceptionsAllowedToRetry.getExperienceId(context));
   }
 
   @Test
   public void testClearingExperienceId() {
     final String experienceId = "experienceId";
     final GeoApiContext context = builder.experienceId(experienceId).build();
-    assertEquals(experienceId, context.getExperienceId());
+    assertEquals(experienceId, context.exceptionsAllowedToRetry.getExperienceId(context));
 
     context.clearExperienceId();
-    assertNull(context.getExperienceId());
+    assertNull(context.exceptionsAllowedToRetry.getExperienceId(context));
   }
 
   @Test
@@ -367,7 +367,7 @@ public class GeoApiContextTest {
     // X-GOOG-MAPS-EXPERIENCE-ID: experienceId,otherExperienceId
 
     // get current experience id
-    final String ids = context.getExperienceId();
+    final String ids = context.exceptionsAllowedToRetry.getExperienceId(context);
     // [END maps_experience_id]
 
     assertEquals(experienceId + "," + otherExperienceId, ids);

@@ -15,6 +15,7 @@
 
 package com.google.maps.internal;
 
+import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import java.util.HashSet;
 
@@ -36,5 +37,11 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
 
     sb.append(']');
     return sb.toString();
+  }
+
+/** @param geoApiContext TODO
+ * @return Returns the experience ID if set, otherwise, null */
+  public String getExperienceId(GeoApiContext geoApiContext) {
+    return geoApiContext.experienceIdHeaderValue;
   }
 }
