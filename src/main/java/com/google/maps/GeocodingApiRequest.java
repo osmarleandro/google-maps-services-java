@@ -137,7 +137,7 @@ public class GeocodingApiRequest
    * @param resultTypes The result types to restrict to.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest resultType(AddressType... resultTypes) {
+  public GeocodingApiRequest resultType_RENAMED(AddressType... resultTypes) {
     return param("result_type", join('|', resultTypes));
   }
 
