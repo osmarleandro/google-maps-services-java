@@ -353,7 +353,24 @@ public class DirectionsApiRequest
     return "place_id:" + placeId;
   }
 
-  public static class Waypoint {
+  private PendingResult<DirectionsResult> makeRequest() {
+    if (delegate != null) {
+      throw new IllegalStateException(
+          "'await', 'awaitIgnoreError' or 'setCallback' was already called.");
+    }
+    validateRequest();
+    switch (config.requestVerb) {
+      case "GET":
+        return delegate = context.get(config, responseClass, params);
+      case "POST":
+        return delegate = context.post(config, responseClass, params);
+      default:
+        throw new IllegalStateException(
+            String.format("Unexpected request method '%s'", config.requestVerb));
+    }
+  }
+
+public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;
     /** Whether this waypoint is a stopover waypoint. */

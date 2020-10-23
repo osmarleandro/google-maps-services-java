@@ -467,4 +467,21 @@ public class StaticMapsRequest
   public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
   }
+
+private PendingResult<ImageResult> makeRequest() {
+    if (delegate != null) {
+      throw new IllegalStateException(
+          "'await', 'awaitIgnoreError' or 'setCallback' was already called.");
+    }
+    validateRequest();
+    switch (config.requestVerb) {
+      case "GET":
+        return delegate = context.get(config, responseClass, params);
+      case "POST":
+        return delegate = context.post(config, responseClass, params);
+      default:
+        throw new IllegalStateException(
+            String.format("Unexpected request method '%s'", config.requestVerb));
+    }
+  }
 }

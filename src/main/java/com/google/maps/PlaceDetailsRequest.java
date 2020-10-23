@@ -88,7 +88,24 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  private PendingResult<PlaceDetails> makeRequest() {
+    if (delegate != null) {
+      throw new IllegalStateException(
+          "'await', 'awaitIgnoreError' or 'setCallback' was already called.");
+    }
+    validateRequest();
+    switch (config.requestVerb) {
+      case "GET":
+        return delegate = context.get(config, responseClass, params);
+      case "POST":
+        return delegate = context.post(config, responseClass, params);
+      default:
+        throw new IllegalStateException(
+            String.format("Unexpected request method '%s'", config.requestVerb));
+    }
+  }
+
+public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;
