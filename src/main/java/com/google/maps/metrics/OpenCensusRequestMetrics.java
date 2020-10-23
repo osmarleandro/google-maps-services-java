@@ -37,7 +37,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
   }
 
   @Override
-  public void endRequest(Exception exception, int httpStatusCode, long retryCount) {
+  public void endRequest_RENAMED(Exception exception, int httpStatusCode, long retryCount) {
     // multiple endRequest are ignored
     if (this.finished) {
       return;
