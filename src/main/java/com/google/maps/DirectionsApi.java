@@ -21,7 +21,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
-import com.google.maps.model.GeocodedWaypoint;
+import com.google.maps.model.GeocodedWaypoint_RENAMED;
 
 /**
  * The Google Directions API is a service that calculates directions between locations using an HTTP
@@ -66,7 +66,7 @@ public class DirectionsApi {
   public static class Response implements ApiResponse<DirectionsResult> {
     public String status;
     public String errorMessage;
-    public GeocodedWaypoint[] geocodedWaypoints;
+    public GeocodedWaypoint_RENAMED[] geocodedWaypoints;
     public DirectionsRoute[] routes;
 
     @Override

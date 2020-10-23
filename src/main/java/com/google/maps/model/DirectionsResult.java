@@ -32,7 +32,7 @@ public class DirectionsResult implements Serializable {
    * href="https://developers.google.com/maps/documentation/directions/intro#GeocodedWaypoints">
    * Geocoded Waypoints</a> for more detail.
    */
-  public GeocodedWaypoint geocodedWaypoints[];
+  public GeocodedWaypoint_RENAMED geocodedWaypoints[];
 
   /**
    * Routes from the origin to the destination. See <a

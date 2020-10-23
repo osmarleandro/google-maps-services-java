@@ -24,7 +24,7 @@ import java.util.Arrays;
  * href="https://developers.google.com/maps/documentation/directions/intro#GeocodedWaypoints">
  * Geocoded Waypoints</a> for more detail.
  */
-public class GeocodedWaypoint implements Serializable {
+public class GeocodedWaypoint_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
