@@ -80,7 +80,7 @@ public class CellTower implements Serializable {
   public Integer timingAdvance = null;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format(
         "[CellTower: cellId=%s, locationAreaCode=%s, mobileCountryCode=%s, "
             + "mobileNetworkCode=%s, age=%s, signalStrength=%s, timingAdvance=%s]",
