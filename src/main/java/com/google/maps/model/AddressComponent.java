@@ -15,7 +15,7 @@
 
 package com.google.maps.model;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 
 import java.io.Serializable;
 
@@ -51,7 +51,7 @@ public class AddressComponent implements Serializable {
     if (shortName != null) {
       sb.append(" (\"").append(shortName).append("\")");
     }
-    sb.append(" (").append(join(", ", (Object[]) types)).append(")");
+    sb.append(" (").append(join_RENAMED(", ", (Object[]) types)).append(")");
     sb.append("]");
     return sb.toString();
   }

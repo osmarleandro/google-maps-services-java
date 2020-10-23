@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;

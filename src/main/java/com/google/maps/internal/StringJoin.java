@@ -47,10 +47,10 @@ public class StringJoin {
   }
 
   public static String join(char delim, Object... parts) {
-    return join(new String(new char[] {delim}), parts);
+    return join_RENAMED(new String(new char[] {delim}), parts);
   }
 
-  public static String join(CharSequence delim, Object... parts) {
+  public static String join_RENAMED(CharSequence delim, Object... parts) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < parts.length; i++) {
       if (i != 0) {

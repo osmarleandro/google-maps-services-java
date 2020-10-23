@@ -15,7 +15,7 @@
 
 package com.google.maps.model;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -102,7 +102,7 @@ public class GeolocationPayload implements Serializable {
     if (wifiAccessPoints != null && wifiAccessPoints.length > 0) {
       elements.add("wifiAccessPoints=" + Arrays.toString(wifiAccessPoints));
     }
-    sb.append(join(", ", elements));
+    sb.append(join_RENAMED(", ", elements));
     sb.append("]");
     return sb.toString();
   }
