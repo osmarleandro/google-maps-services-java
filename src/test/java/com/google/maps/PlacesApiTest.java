@@ -983,7 +983,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testFindPlaceFromTextCircular() throws Exception {
+  public void testFindPlaceFromTextCircular_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
