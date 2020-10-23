@@ -267,22 +267,9 @@ public abstract class RateLimiter {
    * @since 16.0 (present in 13.0 with {@code void} return type})
    */
   public double acquire(int permits) {
-    long microsToWait = reserve(permits);
+    long microsToWait = stopwatch.reserve(this, permits);
     stopwatch.sleepMicrosUninterruptibly(microsToWait);
     return 1.0 * microsToWait / SECONDS.toMicros(1L);
-  }
-
-  /**
-   * Reserves the given number of permits from this {@code RateLimiter} for future use, returning
-   * the number of microseconds until the reservation can be consumed.
-   *
-   * @return time in microseconds to wait until the resource can be acquired, never negative
-   */
-  final long reserve(int permits) {
-    checkPermits(permits);
-    synchronized (mutex()) {
-      return reserveAndGetWaitLength(permits, stopwatch.readMicros());
-    }
   }
 
   /**
@@ -402,7 +389,22 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    /**
+	   * Reserves the given number of permits from this {@code RateLimiter} for future use, returning
+	   * the number of microseconds until the reservation can be consumed.
+	   *
+	   * @param rateLimiter TODO
+	 * @param permits TODO
+	 * @return time in microseconds to wait until the resource can be acquired, never negative
+	   */
+	  final long reserve(RateLimiter rateLimiter, int permits) {
+	    RateLimiter.checkPermits(permits);
+	    synchronized (rateLimiter.mutex()) {
+	      return rateLimiter.reserveAndGetWaitLength(permits, readMicros());
+	    }
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
