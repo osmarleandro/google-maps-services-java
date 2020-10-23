@@ -68,7 +68,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     if (delegate == null) {
       return;
     }
-    delegate.cancel();
+    delegate.cancel_RENAMED();
   }
 
   private PendingResult<T> makeRequest() {

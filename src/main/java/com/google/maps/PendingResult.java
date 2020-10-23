@@ -55,7 +55,7 @@ public interface PendingResult<T> {
   T awaitIgnoreError();
 
   /** Attempts to cancel the request. */
-  void cancel();
+  void cancel_RENAMED();
 
   /**
    * The callback interface the API client code needs to implement to handle API results.
