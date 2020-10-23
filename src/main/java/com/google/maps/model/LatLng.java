@@ -15,10 +15,19 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +76,22 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testPlaceDetailsInFrench(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTest.placesApiDetailsInFrench)) {
+      PlaceDetails details =
+          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
+
+      sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
+      sc.assertParamValue("fr", "language");
+
+      assertNotNull(details.toString());
+      assertEquals("ChIJ442GNENu5kcRGYUrvgqHw88", details.placeId);
+      assertEquals(
+          "35 Rue du Chevalier de la Barre, 75018 Paris, France", details.formattedAddress);
+      assertEquals("Sacré-Cœur", details.name);
+    }
   }
 }

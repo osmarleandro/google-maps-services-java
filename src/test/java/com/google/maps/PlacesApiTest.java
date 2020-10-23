@@ -73,7 +73,7 @@ public class PlacesApiTest {
   private final String placesApiTextSearch;
   private final String placesApiPhoto;
   private final String placesApiPizzaInNewYork;
-  private final String placesApiDetailsInFrench;
+  public final String placesApiDetailsInFrench;
   private final String placesApiNearbySearchRequestByKeyword;
   private final String placesApiNearbySearchRequestByName;
   private final String placesApiNearbySearchRequestByType;
@@ -756,23 +756,6 @@ public class PlacesApiTest {
       assertEquals(
           "CvQB6AAAAPQLwX6KjvGbOw81Y7aYVhXRlHR8M60aCRXFDM9eyflac4BjE5MaNxTj_1T429x3H2kzBd-ztTFXCSu1CPh3kY44Gu0gmL-xfnArnPE9-BgfqXTpgzGPZNeCltB7m341y4LnU-NE2omFPoDWIrOPIyHnyi05Qol9eP2wKW7XPUhMlHvyl9MeVgZ8COBZKvCdENHbhBD1MN1lWlada6A9GPFj06cCp1aqRGW6v98-IHcIcM9RcfMcS4dLAFm6TsgLq4tpeU6E1kSzhrvDiLMBXdJYFlI0qJmytd2wS3vD0t3zKgU6Im_mY-IJL7AwAqhugBIQ8k0X_n6TnacL9BExELBaixoUo8nPOwWm0Nx02haufF2dY0VL-tg",
           response.nextPageToken);
-    }
-  }
-
-  @Test
-  public void testPlaceDetailsInFrench() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
-      PlaceDetails details =
-          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
-
-      sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
-      sc.assertParamValue("fr", "language");
-
-      assertNotNull(details.toString());
-      assertEquals("ChIJ442GNENu5kcRGYUrvgqHw88", details.placeId);
-      assertEquals(
-          "35 Rue du Chevalier de la Barre, 75018 Paris, France", details.formattedAddress);
-      assertEquals("Sacré-Cœur", details.name);
     }
   }
 
