@@ -921,7 +921,7 @@ public class PlacesApiTest {
 
       FindPlaceFromText response =
           PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-              .fields(
+              .fields_RENAMED(
                   FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
                   FindPlaceFromTextRequest.FieldMask.PHOTOS,
                   FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
@@ -965,7 +965,7 @@ public class PlacesApiTest {
       String input = "Museum of Contemporary Art Australia";
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
+          .fields_RENAMED(
               FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
               FindPlaceFromTextRequest.FieldMask.NAME,
@@ -990,7 +990,7 @@ public class PlacesApiTest {
       String input = "Museum of Contemporary Art Australia";
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
+          .fields_RENAMED(
               FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
               FindPlaceFromTextRequest.FieldMask.NAME,
@@ -1015,7 +1015,7 @@ public class PlacesApiTest {
       String input = "Museum of Contemporary Art Australia";
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
+          .fields_RENAMED(
               FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
               FindPlaceFromTextRequest.FieldMask.NAME,
