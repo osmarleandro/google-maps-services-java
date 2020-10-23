@@ -295,22 +295,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * If set to true, specifies that the Directions service may provide more than one route
-   * alternative in the response. Note that providing route alternatives may increase the response
-   * time from the server.
-   *
-   * @param alternateRoutes whether to return alternate routes.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest alternatives(boolean alternateRoutes) {
-    if (alternateRoutes) {
-      return param("alternatives", "true");
-    } else {
-      return param("alternatives", "false");
-    }
-  }
-
-  /**
    * Specifies one or more preferred modes of transit. This parameter may only be specified for
    * requests where the mode is transit.
    *

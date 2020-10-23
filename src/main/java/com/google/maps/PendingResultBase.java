@@ -169,4 +169,20 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * If set to true, specifies that the Directions service may provide more than one route
+   * alternative in the response. Note that providing route alternatives may increase the response
+   * time from the server.
+   *
+   * @param alternateRoutes whether to return alternate routes.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest alternatives(boolean alternateRoutes) {
+    if (alternateRoutes) {
+      return param("alternatives", "true");
+    } else {
+      return param("alternatives", "false");
+    }
+  }
 }
