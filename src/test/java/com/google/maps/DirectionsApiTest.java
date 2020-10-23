@@ -383,7 +383,7 @@ public class DirectionsApiTest {
 
   /** Test transit without arrival or departure times specified. */
   @Test
-  public void testTransitWithoutSpecifyingTime() throws Exception {
+  public void testTransitWithoutSpecifyingTime_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
