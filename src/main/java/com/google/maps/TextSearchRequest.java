@@ -98,16 +98,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Restricts to places that are at most this price level.
-   *
-   * @param priceLevel The maximum price leve to restrict results with.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest maxPrice(PriceLevel priceLevel) {
-    return param("maxprice", priceLevel);
-  }
-
-  /**
    * Specifies one or more terms to be matched against the names of places, separated with space
    * characters.
    *
