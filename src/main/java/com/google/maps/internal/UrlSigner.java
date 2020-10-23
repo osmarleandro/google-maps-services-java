@@ -50,11 +50,11 @@ public class UrlSigner {
 
   /** Generate url safe HmacSHA1 of a path. */
   public String getSignature(String path) {
-    byte[] digest = getMac().doFinal(path.getBytes(UTF_8));
+    byte[] digest = getMac_RENAMED().doFinal(path.getBytes(UTF_8));
     return ByteString.of(digest).base64().replace('+', '-').replace('/', '_');
   }
 
-  private Mac getMac() {
+  private Mac getMac_RENAMED() {
     // Mac is not thread-safe. Requires a new clone for each signature.
     try {
       return (Mac) mac.clone();
