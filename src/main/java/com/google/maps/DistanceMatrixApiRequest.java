@@ -27,6 +27,7 @@ import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
+import java.util.ArrayList;
 
 /** A request to the Distance Matrix API. */
 public class DistanceMatrixApiRequest
@@ -201,5 +202,14 @@ public class DistanceMatrixApiRequest
    */
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
+  }
+
+protected DistanceMatrixApiRequest paramAddToList(String key, String val) {
+    // Multiple parameter values required to support Static Maps API paths and markers.
+    if (params.get(key) == null) {
+      params.put(key, new ArrayList<String>());
+    }
+    params.get(key).add(val);
+    return getInstance();
   }
 }

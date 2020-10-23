@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.maps.internal.ApiConfig;
 
 /**
@@ -71,5 +73,14 @@ public class PhotoRequest
    */
   public PhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
+  }
+
+protected PhotoRequest paramAddToList(String key, String val) {
+    // Multiple parameter values required to support Static Maps API paths and markers.
+    if (params.get(key) == null) {
+      params.put(key, new ArrayList<String>());
+    }
+    params.get(key).add(val);
+    return getInstance();
   }
 }

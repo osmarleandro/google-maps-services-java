@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
@@ -104,5 +106,14 @@ public class GeolocationApiRequest
     Gson gson = new Gson();
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
+  }
+
+protected GeolocationApiRequest paramAddToList(String key, String val) {
+    // Multiple parameter values required to support Static Maps API paths and markers.
+    if (params.get(key) == null) {
+      params.put(key, new ArrayList<String>());
+    }
+    params.get(key).add(val);
+    return getInstance();
   }
 }

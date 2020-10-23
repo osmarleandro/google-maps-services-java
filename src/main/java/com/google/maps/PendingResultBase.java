@@ -37,7 +37,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   private final GeoApiContext context;
   private final ApiConfig config;
-  private HashMap<String, List<String>> params = new HashMap<>();
+  protected HashMap<String, List<String>> params = new HashMap<>();
   private PendingResult<T> delegate;
   private Class<? extends R> responseClass;
 
@@ -90,7 +90,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   protected abstract void validateRequest();
 
-  private A getInstance() {
+  protected A getInstance() {
     @SuppressWarnings("unchecked")
     A result = (A) this;
     return result;
@@ -110,15 +110,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     if (val != null) {
       return this.param(key, val.toUrlValue());
     }
-    return getInstance();
-  }
-
-  protected A paramAddToList(String key, String val) {
-    // Multiple parameter values required to support Static Maps API paths and markers.
-    if (params.get(key) == null) {
-      params.put(key, new ArrayList<String>());
-    }
-    params.get(key).add(val);
     return getInstance();
   }
 
