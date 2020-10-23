@@ -33,7 +33,6 @@ import static com.google.maps.internal.ratelimiter.Preconditions.checkNotNull;
 import static java.lang.Math.max;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothBursty;
 import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothWarmingUp;
@@ -180,7 +179,7 @@ public abstract class RateLimiter {
    * The underlying timer; used both to measure elapsed time and sleep as necessary. A separate
    * object to facilitate testing.
    */
-  private final SleepingStopwatch stopwatch;
+  protected final SleepingStopwatch stopwatch;
 
   // Can't be initialized in the constructor because mocks don't call the constructor.
   private volatile Object mutexDoNotUseDirectly;
@@ -258,27 +257,12 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Acquires the given number of permits from this {@code RateLimiter}, blocking until the request
-   * can be granted. Tells the amount of time slept, if any.
-   *
-   * @param permits the number of permits to acquire
-   * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited
-   * @throws IllegalArgumentException if the requested number of permits is negative or zero
-   * @since 16.0 (present in 13.0 with {@code void} return type})
-   */
-  public double acquire(int permits) {
-    long microsToWait = reserve(permits);
-    stopwatch.sleepMicrosUninterruptibly(microsToWait);
-    return 1.0 * microsToWait / SECONDS.toMicros(1L);
-  }
-
-  /**
    * Reserves the given number of permits from this {@code RateLimiter} for future use, returning
    * the number of microseconds until the reservation can be consumed.
    *
    * @return time in microseconds to wait until the resource can be acquired, never negative
    */
-  final long reserve(int permits) {
+  protected final long reserve(int permits) {
     checkPermits(permits);
     synchronized (mutex()) {
       return reserveAndGetWaitLength(permits, stopwatch.readMicros());
