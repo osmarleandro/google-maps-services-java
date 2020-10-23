@@ -42,7 +42,7 @@ public class EnumsTest {
   }
 
   @Test
-  public void testCanonicalLiteralsForAddressType() {
+  public void testCanonicalLiteralsForAddressType_RENAMED() {
     Map<AddressType, String> addressTypeToLiteralMap = new HashMap<AddressType, String>();
     // Short alias just to avoid line wrapping in the below code
     Map<AddressType, String> m = addressTypeToLiteralMap;
