@@ -18,7 +18,6 @@ package com.google.maps.internal;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
 import com.google.maps.model.Distance;
 import java.io.IOException;
 
@@ -63,11 +62,5 @@ public class DistanceAdapter extends TypeAdapter<Distance> {
     reader.endObject();
 
     return distance;
-  }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, Distance value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
   }
 }
