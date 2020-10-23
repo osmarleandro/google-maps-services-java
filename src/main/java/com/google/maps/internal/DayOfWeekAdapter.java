@@ -19,7 +19,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
+import com.google.maps.model.OpeningHours_RENAMED.Period.OpenClose.DayOfWeek;
 import java.io.IOException;
 
 /**
