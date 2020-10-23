@@ -196,7 +196,7 @@ public class PlaceAutocompleteRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
     if (!params().containsKey("input")) {
       throw new IllegalArgumentException("Request must contain 'input'.");
     }
