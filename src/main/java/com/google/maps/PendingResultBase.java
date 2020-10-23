@@ -122,7 +122,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return getInstance();
   }
 
-  protected A paramAddToList(String key, UrlValue val) {
+  protected A paramAddToList_RENAMED(String key, UrlValue val) {
     if (val != null) {
       return this.paramAddToList(key, val.toUrlValue());
     }
