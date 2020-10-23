@@ -269,7 +269,7 @@ public class ElevationApiTest {
       LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
       LatLng lastElevationPoint = elevation[elevation.length - 1].location;
 
-      LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
+      LatLngAssert.assertEquals_RENAMED(lastDirectionsPoint, lastElevationPoint, EPSILON);
 
       sc.assertParamValue("100", "samples");
       sc.assertParamValue("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");

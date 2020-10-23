@@ -15,7 +15,7 @@
 
 package com.google.maps.internal;
 
-import static com.google.maps.model.LatLngAssert.assertEquals;
+import static com.google.maps.model.LatLngAssert.assertEquals_RENAMED;
 import static org.junit.Assert.assertEquals;
 
 import com.google.maps.SmallTests;
@@ -61,7 +61,7 @@ public class PolylineEncodingTest {
     LatLng sydney = points.get(0);
     LatLng melbourne = points.get(points.size() - 1);
 
-    assertEquals(SYDNEY, sydney, EPSILON);
-    assertEquals(MELBOURNE, melbourne, EPSILON);
+    assertEquals_RENAMED(SYDNEY, sydney, EPSILON);
+    assertEquals_RENAMED(MELBOURNE, melbourne, EPSILON);
   }
 }
