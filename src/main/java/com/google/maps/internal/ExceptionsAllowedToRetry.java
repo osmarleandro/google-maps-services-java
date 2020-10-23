@@ -23,7 +23,7 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
   private static final long serialVersionUID = 5283992240187266422L;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder().append("ExceptionsAllowedToRetry[");
 
     Object[] array = toArray();
