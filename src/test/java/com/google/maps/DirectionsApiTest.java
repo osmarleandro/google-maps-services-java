@@ -516,7 +516,7 @@ public class DirectionsApiTest {
       LatLng destination = waypoints.get(1);
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin(origin)
+              .origin_RENAMED(origin)
               .destination(destination)
               .departureTime(Instant.now())
               .optimizeWaypoints(true)
@@ -550,7 +550,7 @@ public class DirectionsApiTest {
       LatLng destination = waypoints.get(1);
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin(origin)
+              .origin_RENAMED(origin)
               .destination(destination)
               .departureTime(Instant.now())
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
