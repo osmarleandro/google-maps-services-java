@@ -25,12 +25,12 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
 
 /** A request for the Geocoding API. */
-public class GeocodingApiRequest
-    extends PendingResultBase<GeocodingResult[], GeocodingApiRequest, GeocodingApi.Response> {
+public class GeocodingApiRequest_RENAMED
+    extends PendingResultBase<GeocodingResult[], GeocodingApiRequest_RENAMED, GeocodingApi.Response> {
 
   private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
 
-  public GeocodingApiRequest(GeoApiContext context) {
+  public GeocodingApiRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, GeocodingApi.Response.class);
   }
 
@@ -60,7 +60,7 @@ public class GeocodingApiRequest
    * @param address The address to geocode.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest address(String address) {
+  public GeocodingApiRequest_RENAMED address(String address) {
     return param("address", address);
   }
 
@@ -70,7 +70,7 @@ public class GeocodingApiRequest
    * @param placeId The Place ID to geocode.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest place(String placeId) {
+  public GeocodingApiRequest_RENAMED place(String placeId) {
     return param("place_id", placeId);
   }
 
@@ -80,7 +80,7 @@ public class GeocodingApiRequest
    * @param latlng The location to reverse geocode.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest latlng(LatLng latlng) {
+  public GeocodingApiRequest_RENAMED latlng(LatLng latlng) {
     return param("latlng", latlng);
   }
 
@@ -96,7 +96,7 @@ public class GeocodingApiRequest
    * @param northEastBound The North East bound of the bounding box.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
+  public GeocodingApiRequest_RENAMED bounds(LatLng southWestBound, LatLng northEastBound) {
     return param("bounds", join('|', southWestBound, northEastBound));
   }
 
@@ -111,7 +111,7 @@ public class GeocodingApiRequest
    * @param region The region code to influence results.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest region(String region) {
+  public GeocodingApiRequest_RENAMED region(String region) {
     return param("region", region);
   }
 
@@ -126,7 +126,7 @@ public class GeocodingApiRequest
    * @param filters Component filters to apply to the request.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest components(ComponentFilter... filters) {
+  public GeocodingApiRequest_RENAMED components(ComponentFilter... filters) {
     return param("components", join('|', filters));
   }
 
@@ -137,7 +137,7 @@ public class GeocodingApiRequest
    * @param resultTypes The result types to restrict to.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest resultType(AddressType... resultTypes) {
+  public GeocodingApiRequest_RENAMED resultType(AddressType... resultTypes) {
     return param("result_type", join('|', resultTypes));
   }
 
@@ -148,7 +148,7 @@ public class GeocodingApiRequest
    * @param locationTypes The location types to restrict to.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest locationType(LocationType... locationTypes) {
+  public GeocodingApiRequest_RENAMED locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
   }
 }

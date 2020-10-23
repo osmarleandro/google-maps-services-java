@@ -38,8 +38,8 @@ public class GeocodingApi {
    * @param context The {@link GeoApiContext} to make requests through.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest newRequest(GeoApiContext context) {
-    return new GeocodingApiRequest(context);
+  public static GeocodingApiRequest_RENAMED newRequest(GeoApiContext context) {
+    return new GeocodingApiRequest_RENAMED(context);
   }
 
   /**
@@ -49,8 +49,8 @@ public class GeocodingApi {
    * @param address The address to geocode.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest geocode(GeoApiContext context, String address) {
-    GeocodingApiRequest request = new GeocodingApiRequest(context);
+  public static GeocodingApiRequest_RENAMED geocode(GeoApiContext context, String address) {
+    GeocodingApiRequest_RENAMED request = new GeocodingApiRequest_RENAMED(context);
     request.address(address);
     return request;
   }
@@ -62,8 +62,8 @@ public class GeocodingApi {
    * @param location The location to reverse geocode.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest reverseGeocode(GeoApiContext context, LatLng location) {
-    GeocodingApiRequest request = new GeocodingApiRequest(context);
+  public static GeocodingApiRequest_RENAMED reverseGeocode(GeoApiContext context, LatLng location) {
+    GeocodingApiRequest_RENAMED request = new GeocodingApiRequest_RENAMED(context);
     request.latlng(location);
     return request;
   }
