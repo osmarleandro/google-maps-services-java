@@ -26,7 +26,7 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/geolocation/intro#responses">Geolocation
  * responses</a> for more detail.
  */
-public class GeolocationResult implements Serializable {
+public class GeolocationResult_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
   /** The user’s estimated latitude and longitude. */

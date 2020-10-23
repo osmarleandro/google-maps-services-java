@@ -23,7 +23,7 @@ import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
-import com.google.maps.model.GeolocationResult;
+import com.google.maps.model.GeolocationResult_RENAMED;
 import com.google.maps.model.WifiAccessPoint;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -54,7 +54,7 @@ public class GeolocationApiTest {
   @Test
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
-      GeolocationResult result =
+      GeolocationResult_RENAMED result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
@@ -105,7 +105,7 @@ public class GeolocationApiTest {
   @Test
   public void testMinimumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumWifi)) {
-      GeolocationResult result =
+      GeolocationResult_RENAMED result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .AddWifiAccessPoint(
@@ -135,7 +135,7 @@ public class GeolocationApiTest {
   @Test
   public void testBasicGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      GeolocationResult result =
+      GeolocationResult_RENAMED result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .AddWifiAccessPoint(
@@ -185,7 +185,7 @@ public class GeolocationApiTest {
               .MacAddress("94:b4:0f:ff:6b:10")
               .createWifiAccessPoint();
 
-      GeolocationResult result =
+      GeolocationResult_RENAMED result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .WifiAccessPoints(wifiAccessPoints)
@@ -210,7 +210,7 @@ public class GeolocationApiTest {
   @Test
   public void testMaximumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
-      GeolocationResult result =
+      GeolocationResult_RENAMED result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
@@ -266,7 +266,7 @@ public class GeolocationApiTest {
   @Test
   public void testMinimumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
-      GeolocationResult result =
+      GeolocationResult_RENAMED result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .AddCellTower(
@@ -310,7 +310,7 @@ public class GeolocationApiTest {
                       .createCellTower())
               .createGeolocationPayload();
 
-      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+      GeolocationResult_RENAMED result = GeolocationApi.geolocate(sc.context, payload).await();
       assertNotNull(result.toString());
       JSONObject body = sc.requestBody();
       assertEquals(false, body.get("considerIp"));
@@ -328,7 +328,7 @@ public class GeolocationApiTest {
   @Test
   public void testMaximumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
-      GeolocationResult result =
+      GeolocationResult_RENAMED result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
@@ -376,7 +376,7 @@ public class GeolocationApiTest {
       GeolocationPayload payload =
           new GeolocationPayload.GeolocationPayloadBuilder().createGeolocationPayload();
 
-      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+      GeolocationResult_RENAMED result = GeolocationApi.geolocate(sc.context, payload).await();
       assertNotNull(result);
       assertNotNull(result.toString());
       assertNotNull(result.location);
@@ -386,7 +386,7 @@ public class GeolocationApiTest {
   @Test
   public void testNoPayloadGeolocation1() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
+      GeolocationResult_RENAMED result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
 
       assertNotNull(result);
       assertNotNull(result.toString());

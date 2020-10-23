@@ -19,12 +19,12 @@ import com.google.gson.Gson;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationPayload.GeolocationPayloadBuilder;
-import com.google.maps.model.GeolocationResult;
+import com.google.maps.model.GeolocationResult_RENAMED;
 import com.google.maps.model.WifiAccessPoint;
 
 /** A request for the Geolocation API. */
 public class GeolocationApiRequest
-    extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
+    extends PendingResultBase<GeolocationResult_RENAMED, GeolocationApiRequest, GeolocationApi.Response> {
 
   private GeolocationPayload payload = null;
   private GeolocationPayloadBuilder builder = null;

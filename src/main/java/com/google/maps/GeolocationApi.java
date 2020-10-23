@@ -20,7 +20,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.GeolocationPayload;
-import com.google.maps.model.GeolocationResult;
+import com.google.maps.model.GeolocationResult_RENAMED;
 import com.google.maps.model.LatLng;
 
 /*
@@ -44,7 +44,7 @@ public class GeolocationApi {
 
   private GeolocationApi() {}
 
-  public static PendingResult<GeolocationResult> geolocate(
+  public static PendingResult<GeolocationResult_RENAMED> geolocate(
       GeoApiContext context, GeolocationPayload payload) {
     return new GeolocationApiRequest(context).Payload(payload).CreatePayload();
   }
@@ -53,7 +53,7 @@ public class GeolocationApi {
     return new GeolocationApiRequest(context);
   }
 
-  public static class Response implements ApiResponse<GeolocationResult> {
+  public static class Response implements ApiResponse<GeolocationResult_RENAMED> {
     public int code = 200;
     public String message = "OK";
     public double accuracy = -1.0;
@@ -68,8 +68,8 @@ public class GeolocationApi {
     }
 
     @Override
-    public GeolocationResult getResult() {
-      GeolocationResult result = new GeolocationResult();
+    public GeolocationResult_RENAMED getResult() {
+      GeolocationResult_RENAMED result = new GeolocationResult_RENAMED();
       result.accuracy = accuracy;
       result.location = location;
       return result;
