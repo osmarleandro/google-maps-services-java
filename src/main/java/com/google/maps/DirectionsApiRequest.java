@@ -254,7 +254,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypointsFromPlaceIds(String... waypoints) {
+  public DirectionsApiRequest waypointsFromPlaceIds_RENAMED(String... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(prefixPlaceId(waypoints[i]));
