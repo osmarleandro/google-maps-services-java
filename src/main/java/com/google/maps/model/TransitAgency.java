@@ -38,7 +38,7 @@ public class TransitAgency implements Serializable {
   public String phone;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[TransitAgency: ");
     sb.append(name);
     if (url != null) {
