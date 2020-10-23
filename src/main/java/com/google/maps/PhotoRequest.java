@@ -24,7 +24,7 @@ import com.google.maps.internal.ApiConfig;
 public class PhotoRequest
     extends PendingResultBase<ImageResult, PhotoRequest, ImageResult.Response> {
 
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
+  public static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
 
   public PhotoRequest(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);
@@ -49,17 +49,6 @@ public class PhotoRequest
    */
   public PhotoRequest photoReference(String photoReference) {
     return param("photoreference", photoReference);
-  }
-
-  /**
-   * Sets the maxHeight for this request.
-   *
-   * @param maxHeight The maximum desired height, in pixels, of the image returned by the Place
-   *     Photos service.
-   * @return Returns the configured PhotoRequest.
-   */
-  public PhotoRequest maxHeight(int maxHeight) {
-    return param("maxheight", String.valueOf(maxHeight));
   }
 
   /**

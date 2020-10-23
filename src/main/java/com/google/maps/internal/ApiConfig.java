@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PhotoRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the maxHeight for this request.
+   *
+   * @param photoRequest TODO
+ * @param maxHeight The maximum desired height, in pixels, of the image returned by the Place
+   *     Photos service.
+ * @return Returns the configured PhotoRequest.
+   */
+  public PhotoRequest maxHeight(PhotoRequest photoRequest, int maxHeight) {
+    return photoRequest.param("maxheight", String.valueOf(maxHeight));
   }
 }
