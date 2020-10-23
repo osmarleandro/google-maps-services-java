@@ -41,19 +41,19 @@ public class RoadsApi {
       new ApiConfig("/v1/snapToRoads")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
-          .fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
+          .fieldNamingPolicy_RENAMED(FieldNamingPolicy.IDENTITY);
 
   static final ApiConfig SPEEDS_API_CONFIG =
       new ApiConfig("/v1/speedLimits")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
-          .fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
+          .fieldNamingPolicy_RENAMED(FieldNamingPolicy.IDENTITY);
 
   static final ApiConfig NEAREST_ROADS_API_CONFIG =
       new ApiConfig("/v1/nearestRoads")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
-          .fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
+          .fieldNamingPolicy_RENAMED(FieldNamingPolicy.IDENTITY);
 
   private RoadsApi() {}
 

@@ -33,7 +33,7 @@ public class QueryAutocompleteRequest
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/queryautocomplete/json")
-          .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+          .fieldNamingPolicy_RENAMED(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
   protected QueryAutocompleteRequest(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);

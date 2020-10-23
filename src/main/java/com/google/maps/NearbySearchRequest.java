@@ -38,7 +38,7 @@ public class NearbySearchRequest
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
-          .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+          .fieldNamingPolicy_RENAMED(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
   /**
    * Constructs a new {@code NearbySearchRequest}.

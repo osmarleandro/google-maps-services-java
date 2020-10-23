@@ -29,7 +29,7 @@ public class ApiConfig {
     this.path = path;
   }
 
-  public ApiConfig fieldNamingPolicy(FieldNamingPolicy fieldNamingPolicy) {
+  public ApiConfig fieldNamingPolicy_RENAMED(FieldNamingPolicy fieldNamingPolicy) {
     this.fieldNamingPolicy = fieldNamingPolicy;
     return this;
   }

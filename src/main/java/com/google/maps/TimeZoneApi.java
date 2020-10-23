@@ -31,7 +31,7 @@ import java.util.TimeZone;
  */
 public class TimeZoneApi {
   private static final ApiConfig API_CONFIG =
-      new ApiConfig("/maps/api/timezone/json").fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
+      new ApiConfig("/maps/api/timezone/json").fieldNamingPolicy_RENAMED(FieldNamingPolicy.IDENTITY);
 
   private TimeZoneApi() {}
 

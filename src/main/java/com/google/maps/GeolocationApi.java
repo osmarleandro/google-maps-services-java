@@ -39,7 +39,7 @@ public class GeolocationApi {
       new ApiConfig("/geolocation/v1/geolocate")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
-          .fieldNamingPolicy(FieldNamingPolicy.IDENTITY)
+          .fieldNamingPolicy_RENAMED(FieldNamingPolicy.IDENTITY)
           .requestVerb("POST");
 
   private GeolocationApi() {}
