@@ -51,7 +51,7 @@ public class ApiException extends Exception {
     } else if ("OVER_QUERY_LIMIT".equals(status)) {
       if ("You have exceeded your daily request quota for this API."
           .equalsIgnoreCase(errorMessage)) {
-        return new OverDailyLimitException(errorMessage);
+        return new OverDailyLimitException_RENAMED(errorMessage);
       }
       return new OverQueryLimitException(errorMessage);
     } else if ("REQUEST_DENIED".equals(status)) {
@@ -77,7 +77,7 @@ public class ApiException extends Exception {
     if ("keyInvalid".equals(status)) {
       return new AccessNotConfiguredException(errorMessage);
     } else if ("dailyLimitExceeded".equals(status)) {
-      return new OverDailyLimitException(errorMessage);
+      return new OverDailyLimitException_RENAMED(errorMessage);
     } else if ("userRateLimitExceeded".equals(status)) {
       return new OverQueryLimitException(errorMessage);
     } else if ("notFound".equals(status)) {
