@@ -43,7 +43,7 @@ public class TimeZoneApiTest {
                 + "   \"timeZoneName\" : \"Australian Eastern Standard Time\"\n"
                 + "}\n")) {
       LatLng sydney = new LatLng(-33.8688, 151.2093);
-      TimeZone tz = TimeZoneApi.getTimeZone(sc.context, sydney).await();
+      TimeZone tz = TimeZoneApi_RENAMED.getTimeZone(sc.context, sydney).await();
 
       assertNotNull(tz);
       assertEquals(TimeZone.getTimeZone("Australia/Sydney"), tz);
@@ -63,14 +63,14 @@ public class TimeZoneApiTest {
   public void testNoResult() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
-      TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
+      TimeZone resp = TimeZoneApi_RENAMED.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
       assertNull(resp);
 
       sc.assertParamValue("0.00000000,0.00000000", "location");
 
       try (LocalTestServerContext sc2 =
           new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
-        TimeZoneApi.getTimeZone(sc2.context, new LatLng(0, 0)).await();
+        TimeZoneApi_RENAMED.getTimeZone(sc2.context, new LatLng(0, 0)).await();
       }
     }
   }
