@@ -16,6 +16,8 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.NearbySearchRequest;
+import com.google.maps.model.LatLng;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +49,21 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Specifies the distance (in meters) within which to return place results. The maximum allowed
+   * radius is 50,000 meters. Note that radius must not be included if {@code rankby=DISTANCE} is
+   * specified.
+   *
+   * @param nearbySearchRequest TODO
+ * @param distance The distance in meters around the {@link #location(LatLng)} to search.
+ * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  public NearbySearchRequest radius(NearbySearchRequest nearbySearchRequest, int distance) {
+    if (distance > 50000) {
+      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
+    }
+    return nearbySearchRequest.param("radius", String.valueOf(distance));
   }
 }

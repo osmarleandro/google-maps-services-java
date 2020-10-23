@@ -36,7 +36,7 @@ public class NearbySearchRequest
     extends PendingResultBase<
         PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -57,21 +57,6 @@ public class NearbySearchRequest
    */
   public NearbySearchRequest location(LatLng location) {
     return param("location", location);
-  }
-
-  /**
-   * Specifies the distance (in meters) within which to return place results. The maximum allowed
-   * radius is 50,000 meters. Note that radius must not be included if {@code rankby=DISTANCE} is
-   * specified.
-   *
-   * @param distance The distance in meters around the {@link #location(LatLng)} to search.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest radius(int distance) {
-    if (distance > 50000) {
-      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
-    }
-    return param("radius", String.valueOf(distance));
   }
 
   /**
