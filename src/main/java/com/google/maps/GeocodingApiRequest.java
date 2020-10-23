@@ -75,16 +75,6 @@ public class GeocodingApiRequest
   }
 
   /**
-   * Creates a reverse geocode for {@code latlng}.
-   *
-   * @param latlng The location to reverse geocode.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest latlng(LatLng latlng) {
-    return param("latlng", latlng);
-  }
-
-  /**
    * Sets the bounding box of the viewport within which to bias geocode results more prominently.
    * This parameter will only influence, not fully restrict, results from the geocoder.
    *
