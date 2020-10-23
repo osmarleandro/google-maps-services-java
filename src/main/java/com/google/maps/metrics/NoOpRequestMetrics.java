@@ -5,7 +5,7 @@ final class NoOpRequestMetrics implements RequestMetrics {
 
   NoOpRequestMetrics(String requestName) {}
 
-  public void startNetwork() {}
+  public void startNetwork_RENAMED() {}
 
   public void endNetwork() {}
 

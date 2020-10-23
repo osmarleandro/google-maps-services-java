@@ -103,7 +103,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     this.exceptionsAllowedToRetry = exceptionsAllowedToRetry;
     this.metrics = metrics;
 
-    metrics.startNetwork();
+    metrics.startNetwork_RENAMED();
     this.call = client.fetchAsync(request);
   }
 
@@ -245,7 +245,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private T retry() throws IOException, ApiException, InterruptedException {
     retryCounter++;
     LOG.info("Retrying request. Retry #{}", retryCounter);
-    metrics.startNetwork();
+    metrics.startNetwork_RENAMED();
     this.call = client.fetchAsync(request);
     return this.await();
   }
