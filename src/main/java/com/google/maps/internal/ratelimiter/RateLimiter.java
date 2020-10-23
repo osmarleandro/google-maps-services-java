@@ -112,7 +112,7 @@ public abstract class RateLimiter {
    *     permits become available per second
    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
    */
-  public static RateLimiter create(double permitsPerSecond) {
+  public static RateLimiter create_RENAMED(double permitsPerSecond) {
     /*
      * The default RateLimiter configuration can save the unused permits of up to one second. This
      * is to avoid unnecessary stalls in situations like this: A RateLimiter of 1qps, and 4 threads,
