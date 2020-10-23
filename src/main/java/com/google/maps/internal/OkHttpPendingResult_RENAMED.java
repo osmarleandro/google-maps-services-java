@@ -59,7 +59,7 @@ import org.slf4j.LoggerFactory;
  * <p>{@code T} is the type of the result of this pending result, and {@code R} is the type of the
  * request.
  */
-public class OkHttpPendingResult<T, R extends ApiResponse<T>>
+public class OkHttpPendingResult_RENAMED<T, R extends ApiResponse<T>>
     implements PendingResult<T>, Callback {
   private final Request request;
   private final OkHttpClient client;
@@ -75,7 +75,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private long cumulativeSleepTime = 0;
   private ExceptionsAllowedToRetry exceptionsAllowedToRetry;
 
-  private static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult.class.getName());
+  private static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult_RENAMED.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
@@ -87,7 +87,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
    * @param maxRetries Number of times allowed to re-send erroring requests.
    * @param exceptionsAllowedToRetry The exceptions to retry.
    */
-  public OkHttpPendingResult(
+  public OkHttpPendingResult_RENAMED(
       Request request,
       OkHttpClient client,
       Class<R> responseClass,
@@ -117,17 +117,17 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
   /** Preserve a request/response pair through an asynchronous callback. */
   private class QueuedResponse {
-    private final OkHttpPendingResult<T, R> request;
+    private final OkHttpPendingResult_RENAMED<T, R> request;
     private final Response response;
     private final IOException e;
 
-    public QueuedResponse(OkHttpPendingResult<T, R> request, Response response) {
+    public QueuedResponse(OkHttpPendingResult_RENAMED<T, R> request, Response response) {
       this.request = request;
       this.response = response;
       this.e = null;
     }
 
-    public QueuedResponse(OkHttpPendingResult<T, R> request, IOException e) {
+    public QueuedResponse(OkHttpPendingResult_RENAMED<T, R> request, IOException e) {
       this.request = request;
       this.response = null;
       this.e = e;
@@ -159,7 +159,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     }
 
     final BlockingQueue<QueuedResponse> waiter = new ArrayBlockingQueue<>(1);
-    final OkHttpPendingResult<T, R> parent = this;
+    final OkHttpPendingResult_RENAMED<T, R> parent = this;
 
     // This callback will be called on another thread, handled by the RateLimitExecutorService.
     // Calling call.execute() directly would bypass the rate limiting.
@@ -223,7 +223,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponse(OkHttpPendingResult<T, R> request, Response response)
+  private T parseResponse(OkHttpPendingResult_RENAMED<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     try {
       T result = parseResponseInternal(request, response);
@@ -236,7 +236,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
+  private T parseResponseInternal(OkHttpPendingResult_RENAMED<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     if (shouldRetry(response)) {
       // since we are retrying the request we must close the response

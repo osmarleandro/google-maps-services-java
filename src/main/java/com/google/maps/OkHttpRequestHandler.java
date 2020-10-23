@@ -20,7 +20,7 @@ import com.google.maps.GeoApiContext.RequestHandler;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
-import com.google.maps.internal.OkHttpPendingResult;
+import com.google.maps.internal.OkHttpPendingResult_RENAMED;
 import com.google.maps.internal.RateLimitExecutorService;
 import com.google.maps.metrics.RequestMetrics;
 import java.io.IOException;
@@ -70,7 +70,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
     }
     Request req = builder.url(hostName + url).build();
 
-    return new OkHttpPendingResult<>(
+    return new OkHttpPendingResult_RENAMED<>(
         req,
         client,
         clazz,
@@ -102,7 +102,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
     }
     Request req = builder.url(hostName + url).build();
 
-    return new OkHttpPendingResult<>(
+    return new OkHttpPendingResult_RENAMED<>(
         req,
         client,
         clazz,
