@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Sets the SessionToken for this request. Using session token makes sure the autocomplete is
+   * priced per session, instead of per keystroke.
+   *
+   * @param sessionToken Session Token is the session identifier.
+   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+public PlaceAutocompleteRequest sessionToken(SessionToken sessionToken) {
+    return param("sessiontoken", sessionToken);
   }
 }
