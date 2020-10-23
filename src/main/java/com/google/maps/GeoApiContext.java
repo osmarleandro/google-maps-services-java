@@ -167,7 +167,7 @@ public class GeoApiContext {
   }
 
   /** @return Returns the experience ID if set, otherwise, null */
-  public String getExperienceId() {
+  public String getExperienceId_RENAMED() {
     return experienceIdHeaderValue;
   }
 
