@@ -542,7 +542,7 @@ public class DirectionsApiTest {
 
   /** Tests that calling {@code optimizeWaypoints(true)} works in either order. */
   @Test
-  public void testOptimizeWaypointsAfterWaypoints() throws Exception {
+  public void testOptimizeWaypointsAfterWaypoints_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       List<LatLng> waypoints = getOptimizationWaypoints();
