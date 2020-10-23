@@ -43,8 +43,8 @@ import org.slf4j.LoggerFactory;
  * @see com.google.maps.GeoApiContext.RequestHandler
  */
 public class GaeRequestHandler implements GeoApiContext.RequestHandler {
-  private static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
-  private final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
+  static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
+  final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
 
   /* package */ GaeRequestHandler() {}
 

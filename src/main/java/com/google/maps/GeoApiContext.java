@@ -132,7 +132,11 @@ public class GeoApiContext {
 
     void shutdown();
 
-    /** Builder pattern for {@code GeoApiContext.RequestHandler}. */
+    @Override
+	<T, R extends ApiResponse<T>> PendingResult<T> handlePost(String hostName, String url, String payload, String userAgent, String experienceIdHeaderValue,
+			Class<R> clazz, FieldNamingPolicy fieldNamingPolicy, long errorTimeout, Integer maxRetries, ExceptionsAllowedToRetry exceptionsAllowedToRetry, RequestMetrics metrics);
+
+	/** Builder pattern for {@code GeoApiContext.RequestHandler}. */
     interface Builder {
 
       Builder connectTimeout(long timeout, TimeUnit unit);
