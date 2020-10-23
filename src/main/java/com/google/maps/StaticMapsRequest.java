@@ -122,18 +122,6 @@ public class StaticMapsRequest
     }
   }
 
-  /**
-   * <code>format</code> defines the format of the resulting image. By default, the Google Static
-   * Maps API creates PNG images. There are several possible formats including GIF, JPEG and PNG
-   * types.
-   *
-   * @param format The format of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest format(ImageFormat format) {
-    return param("format", format);
-  }
-
   public enum StaticMapType implements UrlValue {
     roadmap,
     satellite,

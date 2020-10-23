@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.StaticMapsRequest.ImageFormat;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,17 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * <code>format</code> defines the format of the resulting image. By default, the Google Static
+   * Maps API creates PNG images. There are several possible formats including GIF, JPEG and PNG
+   * types.
+   *
+   * @param format The format of the static map.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest format(ImageFormat format) {
+    return param("format", format);
   }
 }
