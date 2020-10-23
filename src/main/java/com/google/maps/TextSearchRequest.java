@@ -80,7 +80,7 @@ public class TextSearchRequest
    * @param radius The radius of the search bias.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest radius(int radius) {
+  public TextSearchRequest radius_RENAMED(int radius) {
     if (radius > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
