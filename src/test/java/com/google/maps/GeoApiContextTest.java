@@ -107,7 +107,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testErrorResponseRetries() throws Exception {
+  public void testErrorResponseRetries_RENAMED() throws Exception {
     // Set up mock responses
     MockResponse errorResponse = createMockBadResponse();
     MockResponse goodResponse = createMockGoodResponse();
