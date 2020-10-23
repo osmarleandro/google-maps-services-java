@@ -23,7 +23,6 @@ import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
-import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
@@ -190,16 +189,5 @@ public class DistanceMatrixApiRequest
    */
   public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
     return param("transit_mode", join('|', transitModes));
-  }
-
-  /**
-   * Specifies preferences for transit requests. Using this parameter, you can bias the options
-   * returned, rather than accepting the default best route chosen by the API.
-   *
-   * @param pref The transit routing preference for this distance matrix.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
-    return param("transit_routing_preference", pref);
   }
 }
