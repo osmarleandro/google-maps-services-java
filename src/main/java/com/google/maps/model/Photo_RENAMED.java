@@ -23,7 +23,7 @@ import java.io.Serializable;
  * <p>Please see <a href="https://developers.google.com/places/web-service/photos">Place Photos</a>
  * for more details.
  */
-public class Photo implements Serializable {
+public class Photo_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
   /** Used to identify the photo when you perform a Photo request. */

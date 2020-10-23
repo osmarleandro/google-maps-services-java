@@ -66,7 +66,7 @@ public class PlaceDetails implements Serializable {
   public OpeningHours openingHours;
 
   /** A list of photos associated with this place, each containing a reference to an image. */
-  public Photo[] photos;
+  public Photo_RENAMED[] photos;
 
   /** A textual identifier that uniquely identifies this place. */
   public String placeId;

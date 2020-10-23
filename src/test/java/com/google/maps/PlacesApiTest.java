@@ -38,7 +38,7 @@ import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.OpeningHours.Period;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
-import com.google.maps.model.Photo;
+import com.google.maps.model.Photo_RENAMED;
 import com.google.maps.model.PlaceAutocompleteType;
 import com.google.maps.model.PlaceDetails;
 import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
@@ -279,7 +279,7 @@ public class PlacesApiTest {
 
       // Photos
       assertNotNull(placeDetails.photos);
-      Photo photo = placeDetails.photos[0];
+      Photo_RENAMED photo = placeDetails.photos[0];
       assertNotNull(photo);
       assertNotNull(photo.photoReference);
       assertNotNull(photo.htmlAttributions);
@@ -362,7 +362,7 @@ public class PlacesApiTest {
       assertNotNull(placeDetails.priceLevel);
       assertEquals(PriceLevel.VERY_EXPENSIVE, placeDetails.priceLevel);
       assertNotNull(placeDetails.photos);
-      Photo photo = placeDetails.photos[0];
+      Photo_RENAMED photo = placeDetails.photos[0];
       assertEquals(1944, photo.height);
       assertEquals(2592, photo.width);
       assertEquals(
@@ -561,7 +561,7 @@ public class PlacesApiTest {
       assertNotNull(result.photos);
 
       assertEquals(1, result.photos.length);
-      Photo photo = result.photos[0];
+      Photo_RENAMED photo = result.photos[0];
       assertNotNull(photo);
       assertEquals(2322, photo.height);
       assertEquals(4128, photo.width);
@@ -947,7 +947,7 @@ public class PlacesApiTest {
       assertEquals(151.2090295, location.lng, 0.00001);
       assertEquals("Museum of Contemporary Art Australia", candidate.name);
       assertEquals(true, candidate.openingHours.openNow);
-      Photo photo = candidate.photos[0];
+      Photo_RENAMED photo = candidate.photos[0];
       assertEquals(
           "CmRaAAAAXBZe3QrziBst5oTCPUzL4LSgSuWYMctBNRu8bOP4TfwD0aU80YemnnbhjWdFfMX-kkh5h9NhFJky6fW5Ivk_G9fc11GekI0HOCDASZH3qRJmUBsdw0MWoCDZmwQAg-dVEhBb0aLoJXzoZ8cXWEceB9omGhRrX24jI3VnSEQUmInfYoAwSX4OPw",
           photo.photoReference);

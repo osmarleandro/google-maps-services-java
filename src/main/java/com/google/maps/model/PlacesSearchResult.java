@@ -66,7 +66,7 @@ public class PlacesSearchResult implements Serializable {
   public OpeningHours openingHours;
 
   /** Photo objects associated with this place, each containing a reference to an image. */
-  public Photo photos[];
+  public Photo_RENAMED photos[];
 
   /** A feature name of a nearby location. */
   public String vicinity;
