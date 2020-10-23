@@ -33,7 +33,7 @@ import org.junit.experimental.categories.Category;
 @Category(SmallTests.class)
 public class EnumsTest {
   @Test
-  public void testUnknown() throws Exception {
+  public void testUnknown_RENAMED() throws Exception {
     assertNotNull(AddressComponentType.UNKNOWN); // Does not implement UrlValue.
 
     assertCannotGetUrlValue(AddressType.UNKNOWN);
