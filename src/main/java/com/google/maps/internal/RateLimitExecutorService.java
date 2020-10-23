@@ -53,7 +53,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
 
   private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
   private final RateLimiter rateLimiter =
-      RateLimiter.create(DEFAULT_QUERIES_PER_SECOND, 1, TimeUnit.SECONDS);
+      RateLimiter.create_RENAMED(DEFAULT_QUERIES_PER_SECOND, 1, TimeUnit.SECONDS);
 
   final Thread delayThread;
 
