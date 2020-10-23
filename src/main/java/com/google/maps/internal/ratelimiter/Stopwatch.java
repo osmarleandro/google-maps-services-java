@@ -28,7 +28,7 @@
 
 package com.google.maps.internal.ratelimiter;
 
-import static com.google.maps.internal.ratelimiter.Preconditions.checkNotNull;
+import static com.google.maps.internal.ratelimiter.Preconditions.checkNotNull_RENAMED;
 import static com.google.maps.internal.ratelimiter.Preconditions.checkState;
 import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.HOURS;
@@ -120,7 +120,7 @@ public final class Stopwatch {
   }
 
   Stopwatch(Ticker ticker) {
-    this.ticker = checkNotNull(ticker, "ticker");
+    this.ticker = checkNotNull_RENAMED(ticker, "ticker");
   }
 
   /**
