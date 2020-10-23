@@ -55,12 +55,13 @@ public class GeolocationApiTest {
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
-              .RadioType("gsm")
-              .Carrier("T-Mobile")
+          GeolocationApi.newRequest(sc.context).ConsiderIp(false).HomeMobileCountryCode(310).HomeMobileNetworkCode(260)
+				.RadioType("gsm").builder
+              .Carrier(GeolocationApi.newRequest(sc.context)
+			      .ConsiderIp(false)
+			      .HomeMobileCountryCode(310)
+			      .HomeMobileNetworkCode(260)
+			      .RadioType("gsm"), "T-Mobile")
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
@@ -211,12 +212,13 @@ public class GeolocationApiTest {
   public void testMaximumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(410)
-              .RadioType("gsm")
-              .Carrier("Vodafone")
+          GeolocationApi.newRequest(sc.context).ConsiderIp(false).HomeMobileCountryCode(310).HomeMobileNetworkCode(410)
+				.RadioType("gsm").builder
+              .Carrier(GeolocationApi.newRequest(sc.context)
+			      .ConsiderIp(false)
+			      .HomeMobileCountryCode(310)
+			      .HomeMobileNetworkCode(410)
+			      .RadioType("gsm"), "Vodafone")
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:88:31")
@@ -329,12 +331,13 @@ public class GeolocationApiTest {
   public void testMaximumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
-              .RadioType("gsm")
-              .Carrier("Vodafone")
+          GeolocationApi.newRequest(sc.context).ConsiderIp(false).HomeMobileCountryCode(310).HomeMobileNetworkCode(260)
+				.RadioType("gsm").builder
+              .Carrier(GeolocationApi.newRequest(sc.context)
+			      .ConsiderIp(false)
+			      .HomeMobileCountryCode(310)
+			      .HomeMobileNetworkCode(260)
+			      .RadioType("gsm"), "Vodafone")
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
