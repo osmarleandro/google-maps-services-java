@@ -230,18 +230,6 @@ public abstract class RateLimiter {
 
   abstract void doSetRate(double permitsPerSecond, long nowMicros);
 
-  /**
-   * Returns the stable rate (as {@code permits per seconds}) with which this {@code RateLimiter} is
-   * configured with. The initial value of this is the same as the {@code permitsPerSecond} argument
-   * passed in the factory method that produced this {@code RateLimiter}, and it is only updated
-   * after invocations to {@linkplain #setRate}.
-   */
-  public final double getRate() {
-    synchronized (mutex()) {
-      return doGetRate();
-    }
-  }
-
   abstract double doGetRate();
 
   /**
@@ -388,7 +376,7 @@ public abstract class RateLimiter {
 
   @Override
   public String toString() {
-    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
+    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", stopwatch.getRate(this));
   }
 
   abstract static class SleepingStopwatch {
@@ -402,7 +390,20 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    /**
+	   * Returns the stable rate (as {@code permits per seconds}) with which this {@code RateLimiter} is
+	   * configured with. The initial value of this is the same as the {@code permitsPerSecond} argument
+	   * passed in the factory method that produced this {@code RateLimiter}, and it is only updated
+	   * after invocations to {@linkplain #setRate}.
+	 * @param rateLimiter TODO
+	   */
+	  public final double getRate(RateLimiter rateLimiter) {
+	    synchronized (rateLimiter.mutex()) {
+	      return rateLimiter.doGetRate();
+	    }
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
