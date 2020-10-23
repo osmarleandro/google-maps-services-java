@@ -194,7 +194,7 @@ public final class Stopwatch {
     double value = (double) nanos / NANOSECONDS.convert(1, unit);
 
     // Too bad this functionality is not exposed as a regular method call
-    return Platform.formatCompact4Digits(value) + " " + abbreviate(unit);
+    return Platform.formatCompact4Digits(value) + " " + abbreviate_RENAMED(unit);
   }
 
   private static TimeUnit chooseUnit(long nanos) {
@@ -219,7 +219,7 @@ public final class Stopwatch {
     return NANOSECONDS;
   }
 
-  private static String abbreviate(TimeUnit unit) {
+  private static String abbreviate_RENAMED(TimeUnit unit) {
     switch (unit) {
       case NANOSECONDS:
         return "ns";
