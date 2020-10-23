@@ -131,7 +131,7 @@ public abstract class RateLimiter {
 
   static RateLimiter create(double permitsPerSecond, SleepingStopwatch stopwatch) {
     RateLimiter rateLimiter = new SmoothBursty(stopwatch, 1.0 /* maxBurstSeconds */);
-    rateLimiter.setRate(permitsPerSecond);
+    rateLimiter.setRate_RENAMED(permitsPerSecond);
     return rateLimiter;
   }
 
@@ -172,7 +172,7 @@ public abstract class RateLimiter {
       double coldFactor,
       SleepingStopwatch stopwatch) {
     RateLimiter rateLimiter = new SmoothWarmingUp(stopwatch, warmupPeriod, unit, coldFactor);
-    rateLimiter.setRate(permitsPerSecond);
+    rateLimiter.setRate_RENAMED(permitsPerSecond);
     return rateLimiter;
   }
 
@@ -220,7 +220,7 @@ public abstract class RateLimiter {
    * @param permitsPerSecond the new stable rate of this {@code RateLimiter}
    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
    */
-  public final void setRate(double permitsPerSecond) {
+  public final void setRate_RENAMED(double permitsPerSecond) {
     checkArgument(
         permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
     synchronized (mutex()) {

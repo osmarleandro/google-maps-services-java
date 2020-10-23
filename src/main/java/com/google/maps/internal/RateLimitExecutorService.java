@@ -66,7 +66,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   public void setQueriesPerSecond(int maxQps) {
-    this.rateLimiter.setRate(maxQps);
+    this.rateLimiter.setRate_RENAMED(maxQps);
   }
 
   /** Main loop. */
