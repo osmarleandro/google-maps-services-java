@@ -169,4 +169,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Specifies a term to be matched against all content that Google has indexed for this place. This
+   * includes but is not limited to name, type, and address, as well as customer reviews and other
+   * third-party content.
+   *
+   * @param keyword The keyword to search for.
+   * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+public NearbySearchRequest keyword(String keyword) {
+    return param("keyword", keyword);
+  }
 }
