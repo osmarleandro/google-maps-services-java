@@ -9,7 +9,7 @@ public enum TransitRoutingPreference implements UrlValue {
   FEWER_TRANSFERS;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return name().toLowerCase(Locale.ENGLISH);
   }
 
