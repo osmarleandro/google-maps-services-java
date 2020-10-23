@@ -86,7 +86,7 @@ public class ElevationApiTest {
                 + "}")) {
 
       // This should throw the RequestDeniedException
-      ElevationApi.getByPoints(
+      ElevationApi.getByPoints_RENAMED(
               sc.context, new EncodedPolyline(Collections.singletonList(new LatLng(0, 0))))
           .await();
     }
