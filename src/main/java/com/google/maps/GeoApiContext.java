@@ -37,6 +37,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.json.JSONObject;
+
 /**
  * The entry point for making requests against the Google Geo APIs.
  *
@@ -349,7 +351,13 @@ public class GeoApiContext {
     }
   }
 
-  /** The Builder for {@code GeoApiContext}. */
+  public JSONObject requestBody(LocalTestServerContext localTestServerContext) throws InterruptedException {
+    localTestServerContext.takeRequest();
+
+    return new JSONObject(localTestServerContext.request.getBody().readUtf8());
+  }
+
+/** The Builder for {@code GeoApiContext}. */
   public static class Builder {
 
     private RequestHandler.Builder builder;
