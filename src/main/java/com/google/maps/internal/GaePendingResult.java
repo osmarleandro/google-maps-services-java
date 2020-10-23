@@ -72,7 +72,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private long errorTimeOut;
   private int retryCounter = 0;
   private long cumulativeSleepTime = 0;
-  private Future<HTTPResponse> call;
+  public Future<HTTPResponse> call;
 
   private static final Logger LOG = LoggerFactory.getLogger(GaePendingResult.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
