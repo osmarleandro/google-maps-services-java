@@ -342,7 +342,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsLookupReturnsUserRatingsTotal() throws Exception {
+  public void testPlaceDetailsLookupReturnsUserRatingsTotal_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
       PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
