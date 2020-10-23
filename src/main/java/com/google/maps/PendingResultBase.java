@@ -15,9 +15,11 @@
 
 package com.google.maps;
 
+import com.google.maps.FindPlaceFromTextRequest.FieldMask;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -168,5 +170,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * The fields specifying the types of place data to return.
+   *
+   * @param fields The fields to return.
+   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
+   */
+public FindPlaceFromTextRequest fields(FieldMask... fields) {
+    return param("fields", StringJoin.join(',', fields));
   }
 }
