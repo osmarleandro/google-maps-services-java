@@ -68,7 +68,7 @@ public class PlacesApi {
    * @param query The text string on which to search, for example: "restaurant".
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(GeoApiContext context, String query) {
+  public static TextSearchRequest textSearchQuery_RENAMED(GeoApiContext context, String query) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
     return request;

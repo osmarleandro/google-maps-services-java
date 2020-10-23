@@ -456,7 +456,7 @@ public class PlacesApiTest {
   public void testTextSearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "Google Sydney")
+      PlacesApi.textSearchQuery_RENAMED(sc.context, "Google Sydney")
           .location(location)
           .region("AU")
           .radius(3000)
@@ -529,14 +529,14 @@ public class PlacesApiTest {
   public void testTextSearchLocationWithoutRadius() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "query").location(location).await();
+      PlacesApi.textSearchQuery_RENAMED(sc.context, "query").location(location).await();
     }
   }
 
   @Test
   public void testTextSearchResponse() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(textSearchResponseBody)) {
-      PlacesSearchResponse results = PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
+      PlacesSearchResponse results = PlacesApi.textSearchQuery_RENAMED(sc.context, "Google Sydney").await();
 
       assertNotNull(results);
       assertNotNull(results.results);
@@ -589,7 +589,7 @@ public class PlacesApiTest {
   public void testTextSearchNYC() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(textSearchPizzaInNYCbody)) {
       PlacesSearchResponse results =
-          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
+          PlacesApi.textSearchQuery_RENAMED(sc.context, "Pizza in New York").await();
       assertNotNull(results.toString());
       assertNotNull(results.nextPageToken);
       assertEquals(
@@ -713,7 +713,7 @@ public class PlacesApiTest {
   public void testTextSearch() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTextSearch)) {
       PlacesSearchResponse response =
-          PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
+          PlacesApi.textSearchQuery_RENAMED(sc.context, "Google Sydney").await();
 
       sc.assertParamValue("Google Sydney", "query");
 
@@ -747,7 +747,7 @@ public class PlacesApiTest {
   public void testPizzaInNewYorkPagination() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPizzaInNewYork)) {
       PlacesSearchResponse response =
-          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
+          PlacesApi.textSearchQuery_RENAMED(sc.context, "Pizza in New York").await();
 
       sc.assertParamValue("Pizza in New York", "query");
 
@@ -902,7 +902,7 @@ public class PlacesApiTest {
   public void testKitaWard() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiKitaWard)) {
       String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
-      PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
+      PlacesSearchResponse response = PlacesApi.textSearchQuery_RENAMED(sc.context, query).await();
 
       sc.assertParamValue(query, "query");
 
