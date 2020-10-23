@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Sets the SessionToken for this request. Use this for Place Details requests that are called
+   * following an autocomplete request in the same user session. Optional.
+   *
+   * @param sessionToken Session Token is the session identifier.
+   * @return Returns this {@code PlaceDetailsRequest} for call chaining.
+   */
+public PlaceDetailsRequest sessionToken(PlaceAutocompleteRequest.SessionToken sessionToken) {
+    return param("sessiontoken", sessionToken);
+  }
 }
