@@ -62,7 +62,7 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
    * </pre>
    */
   @Override
-  public GeolocationApi.Response read(JsonReader reader) throws IOException {
+  public GeolocationApi.Response read_RENAMED(JsonReader reader) throws IOException {
 
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
@@ -78,7 +78,7 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
       // "accuracy" keys or an error object containing an "error" key
       if (name.equals("location")) {
         // we already have a parser for the LatLng object so lets use that
-        response.location = latLngAdapter.read(reader);
+        response.location = latLngAdapter.read_RENAMED(reader);
       } else if (name.equals("accuracy")) {
         response.accuracy = reader.nextDouble();
       } else if (name.equals("error")) {
