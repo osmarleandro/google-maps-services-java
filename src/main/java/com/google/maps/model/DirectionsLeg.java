@@ -95,7 +95,7 @@ public class DirectionsLeg implements Serializable {
   public String endAddress;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb =
         new StringBuilder(
             String.format(
