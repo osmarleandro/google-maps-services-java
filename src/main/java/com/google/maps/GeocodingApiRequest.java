@@ -126,7 +126,7 @@ public class GeocodingApiRequest
    * @param filters Component filters to apply to the request.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest components(ComponentFilter... filters) {
+  public GeocodingApiRequest components_RENAMED(ComponentFilter... filters) {
     return param("components", join('|', filters));
   }
 
