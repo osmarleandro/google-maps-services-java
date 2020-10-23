@@ -329,7 +329,7 @@ public class GeoApiContextTest {
     final GeoApiContext context = builder.experienceId(experienceId).build();
     assertEquals(experienceId, context.getExperienceId());
 
-    context.clearExperienceId();
+    context.clearExperienceId_RENAMED();
     assertNull(context.getExperienceId());
   }
 
@@ -357,7 +357,7 @@ public class GeoApiContextTest {
         new GeoApiContext.Builder().apiKey("AIza-Maps-API-Key").experienceId(experienceId).build();
 
     // clear the current experience id
-    context.clearExperienceId();
+    context.clearExperienceId_RENAMED();
 
     // set a new experience id
     final String otherExperienceId = UUID.randomUUID().toString();

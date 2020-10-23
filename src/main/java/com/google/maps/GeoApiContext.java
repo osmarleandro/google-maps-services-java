@@ -154,7 +154,7 @@ public class GeoApiContext {
   /**
    * Sets the value for the HTTP header field name {@link HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} to
    * be used on subsequent API calls. Calling this method with {@code null} is equivalent to calling
-   * {@link #clearExperienceId()}.
+   * {@link #clearExperienceId_RENAMED()}.
    *
    * @param experienceId The experience ID if set, otherwise null
    */
@@ -175,7 +175,7 @@ public class GeoApiContext {
    * Clears the experience ID if set the HTTP header field {@link
    * HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} will be omitted from subsequent calls.
    */
-  public void clearExperienceId() {
+  public void clearExperienceId_RENAMED() {
     experienceIdHeaderValue = null;
   }
 
