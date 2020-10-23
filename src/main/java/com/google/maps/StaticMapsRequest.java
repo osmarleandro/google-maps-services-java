@@ -98,7 +98,7 @@ public class StaticMapsRequest
    * @param scale The scale of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest scale(int scale) {
+  public StaticMapsRequest scale_RENAMED(int scale) {
     return param("scale", scale);
   }
 
