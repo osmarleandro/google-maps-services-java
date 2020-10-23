@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.StaticMapsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,18 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * <code>scale</code> affects the number of pixels that are returned. Setting <code>scale</code>
+   * to 2 returns twice as many pixels as <code>scale</code> set to 1 while retaining the same
+   * coverage area and level of detail (i.e. the contents of the map doesn't change).
+   *
+   * @param staticMapsRequest TODO
+ * @param scale The scale of the static map.
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest scale(StaticMapsRequest staticMapsRequest, int scale) {
+    return staticMapsRequest.param("scale", scale);
   }
 }

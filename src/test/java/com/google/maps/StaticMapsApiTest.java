@@ -87,7 +87,7 @@ public class StaticMapsApiTest {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Sydney");
       req.zoom(16);
-      req.scale(2);
+      req.API_CONFIG.scale(req, 2);
       req.format(ImageFormat.png32);
       req.maptype(StaticMapType.hybrid);
       req.region("AU");
