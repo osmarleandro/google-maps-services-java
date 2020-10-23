@@ -75,7 +75,7 @@ public class GeocodingApiTest {
   public void testSimpleGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("Sydney").await();
-      checkSydneyResult(results);
+      checkSydneyResult_RENAMED(results);
       assertNotNull(Arrays.toString(results));
 
       sc.assertParamValue("Sydney", "address");
@@ -87,7 +87,7 @@ public class GeocodingApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeGeocodeResponse)) {
       String placeID = "ChIJP3Sa8ziYEmsRUKgyFmh9AQM";
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
-      checkSydneyResult(results);
+      checkSydneyResult_RENAMED(results);
 
       sc.assertParamValue(placeID, "place_id");
     }
@@ -116,13 +116,13 @@ public class GeocodingApiTest {
 
       assertFalse(resps.isEmpty());
       assertNotNull(resps.get(0));
-      checkSydneyResult(resps.get(0));
+      checkSydneyResult_RENAMED(resps.get(0));
 
       sc.assertParamValue("Sydney", "address");
     }
   }
 
-  private void checkSydneyResult(GeocodingResult[] results) {
+  private void checkSydneyResult_RENAMED(GeocodingResult[] results) {
     assertNotNull(results);
     assertNotNull(results[0].geometry);
     assertNotNull(results[0].geometry.location);
