@@ -789,7 +789,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .latlng(latlng)
-              .locationType(LocationType.ROOFTOP)
+              .locationType_RENAMED(LocationType.ROOFTOP)
               .resultType(AddressType.STREET_ADDRESS)
               .await();
 

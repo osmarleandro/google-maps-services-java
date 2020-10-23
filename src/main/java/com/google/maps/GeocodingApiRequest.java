@@ -148,7 +148,7 @@ public class GeocodingApiRequest
    * @param locationTypes The location types to restrict to.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest locationType(LocationType... locationTypes) {
+  public GeocodingApiRequest locationType_RENAMED(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
   }
 }
