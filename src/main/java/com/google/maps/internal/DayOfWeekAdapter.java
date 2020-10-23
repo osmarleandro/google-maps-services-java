@@ -32,7 +32,7 @@ import java.io.IOException;
 public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> {
 
   @Override
-  public DayOfWeek read(JsonReader reader) throws IOException {
+  public DayOfWeek read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
