@@ -27,12 +27,19 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.RecordedRequest;
+
+import static org.mockito.Mockito.mock;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -622,5 +629,27 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@SuppressWarnings("unchecked")
+	public RecordedRequest makeMockRequest(GeoApiContextTest geoApiContextTest, String... experienceId) throws Exception {
+	    // Set up a mock request
+	    ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
+	    String path = "/";
+	    Map<String, List<String>> params = new HashMap<>();
+	    params.put("key", Collections.singletonList("value"));
+	
+	    // Set up the fake web server
+	    geoApiContextTest.server.enqueue(new MockResponse());
+	    geoApiContextTest.server.start();
+	    geoApiContextTest.setMockBaseUrl();
+	
+	    // Build & execute the request using our context
+	    final GeoApiContext context = experienceId(experienceId).build();
+	    context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+	
+	    // Read the header
+	    geoApiContextTest.server.shutdown();
+	    return geoApiContextTest.server.takeRequest();
+	  }
   }
 }

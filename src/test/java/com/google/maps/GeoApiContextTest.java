@@ -48,7 +48,7 @@ import org.junit.experimental.categories.Category;
 @Category(MediumTests.class)
 public class GeoApiContextTest {
 
-  private MockWebServer server;
+  public MockWebServer server;
   private GeoApiContext.Builder builder;
 
   @Before
@@ -67,7 +67,7 @@ public class GeoApiContextTest {
     }
   }
 
-  private void setMockBaseUrl() {
+  public void setMockBaseUrl() {
     builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
   }
 
@@ -336,13 +336,13 @@ public class GeoApiContextTest {
   @Test
   public void testExperienceIdIsInHeader() throws Exception {
     final String experienceId = "exp1";
-    final RecordedRequest request = makeMockRequest(experienceId);
+    final RecordedRequest request = builder.makeMockRequest(this, experienceId);
     assertEquals(experienceId, request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID));
   }
 
   @Test
   public void testExperienceIdNotInHeader() throws Exception {
-    final RecordedRequest request = makeMockRequest();
+    final RecordedRequest request = builder.makeMockRequest(this);
     final String value = request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID);
     assertNull(value);
   }
@@ -371,28 +371,6 @@ public class GeoApiContextTest {
     // [END maps_experience_id]
 
     assertEquals(experienceId + "," + otherExperienceId, ids);
-  }
-
-  @SuppressWarnings("unchecked")
-  private RecordedRequest makeMockRequest(String... experienceId) throws Exception {
-    // Set up a mock request
-    ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
-    String path = "/";
-    Map<String, List<String>> params = new HashMap<>();
-    params.put("key", Collections.singletonList("value"));
-
-    // Set up the fake web server
-    server.enqueue(new MockResponse());
-    server.start();
-    setMockBaseUrl();
-
-    // Build & execute the request using our context
-    final GeoApiContext context = builder.experienceId(experienceId).build();
-    context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
-
-    // Read the header
-    server.shutdown();
-    return server.takeRequest();
   }
 
   @Test
