@@ -56,7 +56,7 @@ public class RateLimitExecutorServiceTest {
               }
             }
           };
-      service.execute(emptyTask);
+      service.execute_RENAMED(emptyTask);
     }
 
     // Sleep until finished, or 20s expires (to prevent waiting forever)

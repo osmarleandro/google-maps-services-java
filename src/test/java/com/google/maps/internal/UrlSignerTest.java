@@ -61,7 +61,7 @@ public class UrlSignerTest {
     final List<Boolean> fails = Collections.synchronizedList(new ArrayList<Boolean>());
 
     for (int i = 0; i < attempts; i++) {
-      executor.execute(
+      executor.execute_RENAMED(
           new Runnable() {
             @Override
             public void run() {

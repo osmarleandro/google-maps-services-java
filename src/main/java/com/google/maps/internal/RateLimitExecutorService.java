@@ -77,7 +77,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
         this.rateLimiter.acquire();
         Runnable r = queue.take();
         if (!delegate.isShutdown()) {
-          delegate.execute(r);
+          delegate.execute_RENAMED(r);
         }
       }
     } catch (InterruptedException ie) {
@@ -97,7 +97,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public void execute(Runnable runnable) {
+  public void execute_RENAMED(Runnable runnable) {
     queue.add(runnable);
   }
 
@@ -105,7 +105,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   public void shutdown() {
     delegate.shutdown();
     // we need this to break out of queue.take()
-    execute(
+    execute_RENAMED(
         new Runnable() {
           @Override
           public void run() {
@@ -120,7 +120,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   public List<Runnable> shutdownNow() {
     List<Runnable> tasks = delegate.shutdownNow();
     // we need this to break out of queue.take()
-    execute(
+    execute_RENAMED(
         new Runnable() {
           @Override
           public void run() {
