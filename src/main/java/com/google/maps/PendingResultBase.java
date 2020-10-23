@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Specifies the Place ID to get Place Details for. Required.
+   *
+   * @param placeId The Place ID to retrieve details for.
+   * @return Returns this {@code PlaceDetailsRequest} for call chaining.
+   */
+public PlaceDetailsRequest placeId(String placeId) {
+    return param("placeid", placeId);
+  }
 }
