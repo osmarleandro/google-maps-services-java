@@ -61,7 +61,7 @@ public class GeolocationApiTest {
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
               .Carrier("T-Mobile")
-              .AddCellTower(
+              .AddCellTower_RENAMED(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
                       .LocationAreaCode(40495)
@@ -269,7 +269,7 @@ public class GeolocationApiTest {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
-              .AddCellTower(
+              .AddCellTower_RENAMED(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
                       .LocationAreaCode(40495)
@@ -335,7 +335,7 @@ public class GeolocationApiTest {
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
               .Carrier("Vodafone")
-              .AddCellTower(
+              .AddCellTower_RENAMED(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
                       .LocationAreaCode(40495)
