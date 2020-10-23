@@ -49,7 +49,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
           60,
           TimeUnit.SECONDS,
           new SynchronousQueue<Runnable>(),
-          threadFactory("Rate Limited Dispatcher", true));
+          threadFactory_RENAMED("Rate Limited Dispatcher", true));
 
   private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
   private final RateLimiter rateLimiter =
@@ -85,7 +85,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
     }
   }
 
-  private static ThreadFactory threadFactory(final String name, final boolean daemon) {
+  private static ThreadFactory threadFactory_RENAMED(final String name, final boolean daemon) {
     return new ThreadFactory() {
       @Override
       public Thread newThread(Runnable runnable) {
