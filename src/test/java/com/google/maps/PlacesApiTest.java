@@ -509,22 +509,6 @@ public class PlacesApiTest {
     }
   }
 
-  @Test
-  public void testTextSearchRequestWithType() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(-33.866611, 151.195832);
-      PlacesSearchResponse results =
-          PlacesApi.textSearchQuery(sc.context, PlaceType.ZOO)
-              .location(location)
-              .radius(500)
-              .await();
-
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(String.valueOf(500), "radius");
-      sc.assertParamValue(PlaceType.ZOO.toString(), "type");
-    }
-  }
-
   @Test(expected = IllegalArgumentException.class)
   public void testTextSearchLocationWithoutRadius() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
