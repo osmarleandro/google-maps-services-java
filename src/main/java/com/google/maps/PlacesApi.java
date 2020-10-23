@@ -174,7 +174,7 @@ public class PlacesApi {
    */
   public static PhotoRequest photo(GeoApiContext context, String photoReference) {
     PhotoRequest request = new PhotoRequest(context);
-    request.photoReference(photoReference);
+    request.API_CONFIG.photoReference(request, photoReference);
     return request;
   }
 

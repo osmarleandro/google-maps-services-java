@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PhotoRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the photoReference for this request.
+   *
+   * @param photoRequest TODO
+ * @param photoReference A string identifier that uniquely identifies a photo. Photo references
+   *     are returned from either a Place Search or Place Details request.
+ * @return Returns the configured PhotoRequest.
+   */
+  public PhotoRequest photoReference(PhotoRequest photoRequest, String photoReference) {
+    return photoRequest.param("photoreference", photoReference);
   }
 }
