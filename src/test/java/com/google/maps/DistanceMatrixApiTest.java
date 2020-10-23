@@ -49,7 +49,7 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(new LatLng(-31.9522, 115.8589), new LatLng(-37.8136, 144.9631))
           .destinations(new LatLng(-25.344677, 131.036692), new LatLng(-13.092297, 132.394057))
-          .awaitIgnoreError();
+          .awaitIgnoreError_RENAMED();
 
       sc.assertParamValue("-31.95220000,115.85890000|-37.81360000,144.96310000", "origins");
       sc.assertParamValue("-25.34467700,131.03669200|-13.09229700,132.39405700", "destinations");
