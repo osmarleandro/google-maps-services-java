@@ -260,7 +260,7 @@ public class ElevationApiTest {
   }
 
   @Test
-  public void testDirectionsAlongPath() throws Exception {
+  public void testDirectionsAlongPath_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
       ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
