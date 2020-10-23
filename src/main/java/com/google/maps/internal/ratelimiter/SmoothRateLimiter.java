@@ -28,6 +28,7 @@
 
 package com.google.maps.internal.ratelimiter;
 
+import static com.google.maps.internal.ratelimiter.Preconditions.checkArgument;
 import static java.lang.Math.min;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -396,6 +397,32 @@ abstract class SmoothRateLimiter extends RateLimiter {
       double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros();
       storedPermits = min(maxPermits, storedPermits + newPermits);
       nextFreeTicketMicros = nowMicros;
+    }
+  }
+
+/**
+   * Updates the stable rate of this {@code RateLimiter}, that is, the {@code permitsPerSecond}
+   * argument provided in the factory method that constructed the {@code RateLimiter}. Currently
+   * throttled threads will <b>not</b> be awakened as a result of this invocation, thus they do not
+   * observe the new rate; only subsequent requests will.
+   *
+   * <p>Note though that, since each request repays (by waiting, if necessary) the cost of the
+   * <i>previous</i> request, this means that the very next request after an invocation to {@code
+   * setRate} will not be affected by the new rate; it will pay the cost of the previous request,
+   * which is in terms of the previous rate.
+   *
+   * <p>The behavior of the {@code RateLimiter} is not modified in any other way, e.g. if the {@code
+   * RateLimiter} was configured with a warmup period of 20 seconds, it still has a warmup period of
+   * 20 seconds after this method invocation.
+   *
+   * @param permitsPerSecond the new stable rate of this {@code RateLimiter}
+   * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
+   */
+public final void setRate(double permitsPerSecond) {
+    checkArgument(
+        permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
+    synchronized (mutex()) {
+      doSetRate(permitsPerSecond, stopwatch.readMicros());
     }
   }
 }
