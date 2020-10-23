@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.errors.InvalidRequestException;
-import com.google.maps.errors.NotFoundException;
+import com.google.maps.errors.NotFoundException_RENAMED;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
@@ -394,7 +394,7 @@ public class GeolocationApiTest {
     }
   }
 
-  @Test(expected = NotFoundException.class)
+  @Test(expected = NotFoundException_RENAMED.class)
   public void testNotFoundGeolocation() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(

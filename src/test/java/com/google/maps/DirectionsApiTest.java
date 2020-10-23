@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
-import com.google.maps.errors.NotFoundException;
+import com.google.maps.errors.NotFoundException_RENAMED;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.GeocodedWaypointStatus;
@@ -450,7 +450,7 @@ public class DirectionsApiTest {
     }
   }
 
-  @Test(expected = NotFoundException.class)
+  @Test(expected = NotFoundException_RENAMED.class)
   public void testNotFound() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(

@@ -47,7 +47,7 @@ public class ApiException extends Exception {
     } else if ("MAX_WAYPOINTS_EXCEEDED".equals(status)) {
       return new MaxWaypointsExceededException(errorMessage);
     } else if ("NOT_FOUND".equals(status)) {
-      return new NotFoundException(errorMessage);
+      return new NotFoundException_RENAMED(errorMessage);
     } else if ("OVER_QUERY_LIMIT".equals(status)) {
       if ("You have exceeded your daily request quota for this API."
           .equalsIgnoreCase(errorMessage)) {
@@ -81,7 +81,7 @@ public class ApiException extends Exception {
     } else if ("userRateLimitExceeded".equals(status)) {
       return new OverQueryLimitException(errorMessage);
     } else if ("notFound".equals(status)) {
-      return new NotFoundException(errorMessage);
+      return new NotFoundException_RENAMED(errorMessage);
     } else if ("parseError".equals(status)) {
       return new InvalidRequestException(errorMessage);
     } else if ("invalid".equals(status)) {
