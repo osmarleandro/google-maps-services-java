@@ -92,7 +92,7 @@ public class DirectionsApiTest {
                   DirectionsApi.RouteRestriction.HIGHWAYS,
                   DirectionsApi.RouteRestriction.TOLLS,
                   DirectionsApi.RouteRestriction.FERRIES)
-              .units(Unit.METRIC)
+              .units_RENAMED(Unit.METRIC)
               .region("au")
               .origin("Sydney")
               .destination("Melbourne")

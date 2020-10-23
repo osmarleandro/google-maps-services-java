@@ -150,7 +150,7 @@ public class DirectionsApiRequest
    * @param units The preferred units for displaying distances.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest units(Unit units) {
+  public DirectionsApiRequest units_RENAMED(Unit units) {
     return param("units", units);
   }
 
