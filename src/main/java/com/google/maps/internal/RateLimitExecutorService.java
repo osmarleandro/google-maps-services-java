@@ -117,8 +117,8 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   // Everything below here is straight delegation.
 
   @Override
-  public List<Runnable> shutdownNow() {
-    List<Runnable> tasks = delegate.shutdownNow();
+  public List<Runnable> shutdownNow_RENAMED() {
+    List<Runnable> tasks = delegate.shutdownNow_RENAMED();
     // we need this to break out of queue.take()
     execute(
         new Runnable() {
