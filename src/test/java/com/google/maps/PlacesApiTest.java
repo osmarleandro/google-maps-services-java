@@ -70,7 +70,7 @@ public class PlacesApiTest {
   private final String queryAutocompleteWithPlaceIdResponseBody;
   private final String textSearchResponseBody;
   private final String textSearchPizzaInNYCbody;
-  private final String placesApiTextSearch;
+  public final String placesApiTextSearch;
   private final String placesApiPhoto;
   private final String placesApiPizzaInNewYork;
   private final String placesApiDetailsInFrench;
@@ -706,23 +706,6 @@ public class PlacesApiTest {
       sc.assertParamValue(PlaceAutocompleteType.ESTABLISHMENT.toString(), "types");
       sc.assertParamValue(ComponentFilter.country("AU").toString(), "components");
       sc.assertParamValue(session.toUrlValue(), "sessiontoken");
-    }
-  }
-
-  @Test
-  public void testTextSearch() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTextSearch)) {
-      PlacesSearchResponse response =
-          PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
-
-      sc.assertParamValue("Google Sydney", "query");
-
-      assertNotNull(response.toString());
-      assertEquals(1, response.results.length);
-      PlacesSearchResult result = response.results[0];
-      assertEquals("5, 48 Pirrama Rd, Pyrmont NSW 2009, Australia", result.formattedAddress);
-      assertEquals("ChIJN1t_tDeuEmsRUsoyG83frY4", result.placeId);
-      assertEquals("OPERATIONAL", result.businessStatus);
     }
   }
 
