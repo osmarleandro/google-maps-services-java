@@ -492,9 +492,9 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .address("santa cruz")
-              .components(ComponentFilter.country("ES"))
+          GeocodingApi.newRequest(sc.context).address("santa cruz").API_CONFIG
+              .components(GeocodingApi.newRequest(sc.context)
+			      .address("santa cruz"), ComponentFilter.country("ES"))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -578,9 +578,9 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .address("Torun")
-              .components(administrativeArea("TX"), country("US"))
+          GeocodingApi.newRequest(sc.context).address("Torun").API_CONFIG
+              .components(GeocodingApi.newRequest(sc.context)
+			      .address("Torun"), administrativeArea("TX"), country("US"))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -665,9 +665,9 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
+          GeocodingApi.newRequest(sc.context).API_CONFIG
               .components(
-                  ComponentFilter.route("Annegatan"),
+                  GeocodingApi.newRequest(sc.context), ComponentFilter.route("Annegatan"),
                   ComponentFilter.administrativeArea("Helsinki"),
                   ComponentFilter.country("Finland"))
               .await();

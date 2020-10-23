@@ -15,7 +15,11 @@
 
 package com.google.maps.internal;
 
+import static com.google.maps.internal.StringJoin.join;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApiRequest;
+import com.google.maps.model.ComponentFilter;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +51,21 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the component filters. Each component filter consists of a component:value pair and will
+   * fully restrict the results from the geocoder.
+   *
+   * <p>For more information see <a
+   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#ComponentFiltering">
+   * Component Filtering</a>.
+   *
+   * @param geocodingApiRequest TODO
+ * @param filters Component filters to apply to the request.
+ * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+  public GeocodingApiRequest components(GeocodingApiRequest geocodingApiRequest, ComponentFilter... filters) {
+    return geocodingApiRequest.param("components", join('|', filters));
   }
 }
