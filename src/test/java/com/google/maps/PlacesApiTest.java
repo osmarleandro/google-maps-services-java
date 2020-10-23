@@ -886,7 +886,7 @@ public class PlacesApiTest {
           .types(PlaceAutocompleteType.ESTABLISHMENT)
           .location(new LatLng(37.76999, -122.44696))
           .radius(500)
-          .strictBounds(true)
+          .strictBounds_RENAMED(true)
           .await();
 
       sc.assertParamValue("Amoeba", "input");

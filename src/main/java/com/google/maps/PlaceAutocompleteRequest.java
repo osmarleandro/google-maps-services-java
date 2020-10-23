@@ -191,7 +191,7 @@ public class PlaceAutocompleteRequest
    * @param strictBounds Whether to strictly bound results.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest strictBounds(boolean strictBounds) {
+  public PlaceAutocompleteRequest strictBounds_RENAMED(boolean strictBounds) {
     return param("strictbounds", Boolean.toString(strictBounds));
   }
 
