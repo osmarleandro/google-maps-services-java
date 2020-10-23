@@ -43,7 +43,7 @@ public class DistanceAdapter extends TypeAdapter<Distance> {
    * </pre>
    */
   @Override
-  public Distance read(JsonReader reader) throws IOException {
+  public Distance read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
