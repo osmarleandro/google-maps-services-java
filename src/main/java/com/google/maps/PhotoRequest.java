@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.StringJoin.UrlValue;
 
 /**
  * A <a href="https://developers.google.com/places/web-service/photos#place_photo_requests">Place
@@ -71,5 +72,12 @@ public class PhotoRequest
    */
   public PhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
+  }
+
+protected PhotoRequest paramAddToList(String key, UrlValue val) {
+    if (val != null) {
+      return this.paramAddToList(key, val.toUrlValue());
+    }
+    return getInstance();
   }
 }

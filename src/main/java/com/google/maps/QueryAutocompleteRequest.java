@@ -19,6 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.LatLng;
 
@@ -91,7 +92,14 @@ public class QueryAutocompleteRequest
     return param("radius", String.valueOf(radius));
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  protected QueryAutocompleteRequest paramAddToList(String key, UrlValue val) {
+    if (val != null) {
+      return this.paramAddToList(key, val.toUrlValue());
+    }
+    return getInstance();
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

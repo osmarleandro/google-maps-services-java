@@ -106,7 +106,14 @@ public class FindPlaceFromTextRequest
     }
   }
 
-  public static class Response implements ApiResponse<FindPlaceFromText> {
+  protected FindPlaceFromTextRequest paramAddToList(String key, UrlValue val) {
+    if (val != null) {
+      return this.paramAddToList(key, val.toUrlValue());
+    }
+    return getInstance();
+  }
+
+public static class Response implements ApiResponse<FindPlaceFromText> {
 
     public String status;
     public PlacesSearchResult candidates[];

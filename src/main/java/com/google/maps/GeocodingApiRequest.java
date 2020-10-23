@@ -18,6 +18,7 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
@@ -150,5 +151,12 @@ public class GeocodingApiRequest
    */
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
+  }
+
+protected GeocodingApiRequest paramAddToList(String key, UrlValue val) {
+    if (val != null) {
+      return this.paramAddToList(key, val.toUrlValue());
+    }
+    return getInstance();
   }
 }

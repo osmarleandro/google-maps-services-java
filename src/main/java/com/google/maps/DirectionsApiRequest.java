@@ -18,6 +18,7 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 import static java.util.Objects.requireNonNull;
 
+import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
@@ -353,7 +354,14 @@ public class DirectionsApiRequest
     return "place_id:" + placeId;
   }
 
-  public static class Waypoint {
+  protected DirectionsApiRequest paramAddToList(String key, UrlValue val) {
+    if (val != null) {
+      return this.paramAddToList(key, val.toUrlValue());
+    }
+    return getInstance();
+  }
+
+public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;
     /** Whether this waypoint is a stopover waypoint. */

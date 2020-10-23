@@ -88,7 +88,14 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  protected PlaceDetailsRequest paramAddToList(String key, UrlValue val) {
+    if (val != null) {
+      return this.paramAddToList(key, val.toUrlValue());
+    }
+    return getInstance();
+  }
+
+public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;

@@ -202,7 +202,14 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  protected PlaceAutocompleteRequest paramAddToList(String key, UrlValue val) {
+    if (val != null) {
+      return this.paramAddToList(key, val.toUrlValue());
+    }
+    return getInstance();
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;
