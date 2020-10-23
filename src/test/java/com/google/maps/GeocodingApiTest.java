@@ -86,7 +86,7 @@ public class GeocodingApiTest {
   public void testPlaceGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeGeocodeResponse)) {
       String placeID = "ChIJP3Sa8ziYEmsRUKgyFmh9AQM";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place_RENAMED(placeID).await();
       checkSydneyResult(results);
 
       sc.assertParamValue(placeID, "place_id");

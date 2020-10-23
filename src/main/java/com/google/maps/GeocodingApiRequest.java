@@ -70,7 +70,7 @@ public class GeocodingApiRequest
    * @param placeId The Place ID to geocode.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest place(String placeId) {
+  public GeocodingApiRequest place_RENAMED(String placeId) {
     return param("place_id", placeId);
   }
 
