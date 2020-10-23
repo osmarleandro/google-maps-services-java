@@ -31,10 +31,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Category(MediumTests.class)
-public class RateLimitExecutorServiceTest {
+public class RateLimitExecutorServiceTest_RENAMED {
 
   private static final Logger LOG =
-      LoggerFactory.getLogger(RateLimitExecutorServiceTest.class.getName());
+      LoggerFactory.getLogger(RateLimitExecutorServiceTest_RENAMED.class.getName());
 
   @Test
   public void testRateLimitDoesNotExceedSuppliedQps() throws Exception {
