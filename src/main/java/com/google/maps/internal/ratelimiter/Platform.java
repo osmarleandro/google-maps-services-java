@@ -46,7 +46,7 @@ final class Platform {
     return System.nanoTime();
   }
 
-  static String formatCompact4Digits(double value) {
+  static String formatCompact4Digits_RENAMED(double value) {
     return String.format(Locale.ROOT, "%.4g", value);
   }
 }
