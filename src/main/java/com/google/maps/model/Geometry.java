@@ -16,6 +16,7 @@
 package com.google.maps.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /** The geometry of a Geocoding result. */
 public class Geometry implements Serializable {
@@ -48,5 +49,22 @@ public class Geometry implements Serializable {
   public String toString() {
     return String.format(
         "[Geometry: %s (%s) bounds=%s, viewport=%s]", location, locationType, bounds, viewport);
+  }
+
+public String toString(GeocodingResult geocodingResult) {
+    StringBuilder sb = new StringBuilder("[GeocodingResult");
+    if (geocodingResult.partialMatch) {
+      sb.append(" PARTIAL MATCH");
+    }
+    sb.append(" placeId=").append(geocodingResult.placeId);
+    sb.append(" ").append(this);
+    sb.append(", formattedAddress=").append(geocodingResult.formattedAddress);
+    sb.append(", types=").append(Arrays.toString(geocodingResult.types));
+    sb.append(", addressComponents=").append(Arrays.toString(geocodingResult.addressComponents));
+    if (geocodingResult.postcodeLocalities != null && geocodingResult.postcodeLocalities.length > 0) {
+      sb.append(", postcodeLocalities=").append(Arrays.toString(geocodingResult.postcodeLocalities));
+    }
+    sb.append("]");
+    return sb.toString();
   }
 }
