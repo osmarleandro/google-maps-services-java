@@ -53,7 +53,7 @@ public class DirectionsStep implements Serializable {
   @Deprecated public String maneuver;
 
   /** The typical time required to perform the step, until the next step. */
-  public Duration duration;
+  public Duration_RENAMED duration;
 
   /** The location of the starting point of this step. */
   public LatLng startLocation;

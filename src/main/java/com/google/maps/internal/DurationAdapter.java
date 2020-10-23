@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.google.maps.model.Distance;
-import com.google.maps.model.Duration;
+import com.google.maps.model.Duration_RENAMED;
 import java.io.IOException;
 
 /**
@@ -30,7 +30,7 @@ import java.io.IOException;
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">GSON
  * Type Adapter</a> for more detail.
  */
-public class DurationAdapter extends TypeAdapter<Duration> {
+public class DurationAdapter extends TypeAdapter<Duration_RENAMED> {
 
   /**
    * Read a distance object from a Directions API result and convert it to a {@link Distance}.
@@ -45,13 +45,13 @@ public class DurationAdapter extends TypeAdapter<Duration> {
    * </pre>
    */
   @Override
-  public Duration read(JsonReader reader) throws IOException {
+  public Duration_RENAMED read(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
     }
 
-    Duration duration = new Duration();
+    Duration_RENAMED duration = new Duration_RENAMED();
 
     reader.beginObject();
     while (reader.hasNext()) {
@@ -69,7 +69,7 @@ public class DurationAdapter extends TypeAdapter<Duration> {
 
   /** This method is not implemented. */
   @Override
-  public void write(JsonWriter writer, Duration value) throws IOException {
+  public void write(JsonWriter writer, Duration_RENAMED value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method");
   }
 }

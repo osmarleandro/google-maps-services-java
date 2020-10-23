@@ -27,7 +27,7 @@ import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.Distance;
-import com.google.maps.model.Duration;
+import com.google.maps.model.Duration_RENAMED;
 import com.google.maps.model.Fare;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
@@ -266,7 +266,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         new GsonBuilder()
             .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeAdapter())
             .registerTypeAdapter(Distance.class, new DistanceAdapter())
-            .registerTypeAdapter(Duration.class, new DurationAdapter())
+            .registerTypeAdapter(Duration_RENAMED.class, new DurationAdapter())
             .registerTypeAdapter(Fare.class, new FareAdapter())
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())
             .registerTypeAdapter(

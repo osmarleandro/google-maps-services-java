@@ -18,7 +18,7 @@ package com.google.maps.model;
 import java.io.Serializable;
 
 /** The duration component for Directions API results. */
-public class Duration implements Serializable {
+public class Duration_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
