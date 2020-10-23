@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * <code>visible</code> instructs the Google Static Maps API service to construct a map such that
+   * the existing locations remain visible.
+   *
+   * @param visibleLocation The location to be made visible in the requested Static Map.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest visible(String visibleLocation) {
+    return param("visible", visibleLocation);
+  }
 }
