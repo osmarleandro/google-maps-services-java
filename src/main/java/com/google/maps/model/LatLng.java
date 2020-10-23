@@ -15,10 +15,15 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +72,23 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testPhotoRequest(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext("")) {
+      final String photoReference = "Photo Reference";
+      final int width = 200;
+      final int height = 100;
+
+      PlacesApi.photo(sc.context, photoReference)
+          .maxWidth(width)
+          .maxHeight(height)
+          .awaitIgnoreError();
+
+      sc.assertParamValue(photoReference, "photoreference");
+      sc.assertParamValue(String.valueOf(width), "maxwidth");
+      sc.assertParamValue(String.valueOf(height), "maxheight");
+    }
   }
 }

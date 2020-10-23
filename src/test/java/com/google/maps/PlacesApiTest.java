@@ -603,24 +603,6 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPhotoRequest() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("")) {
-      final String photoReference = "Photo Reference";
-      final int width = 200;
-      final int height = 100;
-
-      PlacesApi.photo(sc.context, photoReference)
-          .maxWidth(width)
-          .maxHeight(height)
-          .awaitIgnoreError();
-
-      sc.assertParamValue(photoReference, "photoreference");
-      sc.assertParamValue(String.valueOf(width), "maxwidth");
-      sc.assertParamValue(String.valueOf(height), "maxheight");
-    }
-  }
-
-  @Test
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
