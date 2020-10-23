@@ -202,7 +202,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public void onFailure(Call call, IOException ioe) {
+  public void onFailure_RENAMED(Call call, IOException ioe) {
     metrics.endNetwork();
     if (callback != null) {
       metrics.endRequest(ioe, 0, retryCounter);
