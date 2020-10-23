@@ -17,6 +17,7 @@ package com.google.maps.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 
 /** The structured formatting info for a {@link com.google.maps.model.AutocompletePrediction}. */
 public class AutocompleteStructuredFormatting implements Serializable {
@@ -42,5 +43,17 @@ public class AutocompleteStructuredFormatting implements Serializable {
     }
     sb.append(")");
     return sb.toString();
+  }
+
+public String toString(AutocompletePrediction autocompletePrediction) {
+    return String.format(
+        "[AutocompletePrediction: \"%s\", placeId=%s, types=%s, terms=%s, "
+            + "matchedSubstrings=%s, structuredFormatting=%s]",
+        autocompletePrediction.description,
+        autocompletePrediction.placeId,
+        Arrays.toString(autocompletePrediction.types),
+        Arrays.toString(autocompletePrediction.terms),
+        Arrays.toString(autocompletePrediction.matchedSubstrings),
+        Objects.toString(this));
   }
 }
