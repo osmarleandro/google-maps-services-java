@@ -23,7 +23,7 @@ import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
-import com.google.maps.model.TransitRoutingPreference;
+import com.google.maps.model.TransitRoutingPreference_RENAMED;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
@@ -199,7 +199,7 @@ public class DistanceMatrixApiRequest
    * @param pref The transit routing preference for this distance matrix.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
+  public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference_RENAMED pref) {
     return param("transit_routing_preference", pref);
   }
 }
