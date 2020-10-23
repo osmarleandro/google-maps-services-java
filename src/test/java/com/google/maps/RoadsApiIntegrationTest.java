@@ -49,7 +49,7 @@ public class RoadsApiIntegrationTest {
   }
 
   @Test
-  public void testSnapToRoad() throws Exception {
+  public void testSnapToRoad_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(snapToRoadResponse)) {
       LatLng[] path =
           new LatLng[] {
