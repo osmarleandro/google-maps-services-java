@@ -242,8 +242,6 @@ public abstract class RateLimiter {
     }
   }
 
-  abstract double doGetRate();
-
   /**
    * Acquires a single permit from this {@code RateLimiter}, blocking until the request can be
    * granted. Tells the amount of time slept, if any.

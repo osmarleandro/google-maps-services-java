@@ -398,4 +398,6 @@ abstract class SmoothRateLimiter extends RateLimiter {
       nextFreeTicketMicros = nowMicros;
     }
   }
+
+abstract double doGetRate();
 }
