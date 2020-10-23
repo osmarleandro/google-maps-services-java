@@ -93,7 +93,7 @@ public class RateLimitExecutorServiceTest {
   }
 
   @Test
-  public void testDelayThreadIsStoppedAfterShutdownIsCalled() throws InterruptedException {
+  public void testDelayThreadIsStoppedAfterShutdownIsCalled_RENAMED() throws InterruptedException {
     RateLimitExecutorService service = new RateLimitExecutorService();
     final Thread delayThread = service.delayThread;
     assertNotNull(
