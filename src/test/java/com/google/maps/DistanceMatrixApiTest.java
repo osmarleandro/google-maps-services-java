@@ -175,7 +175,7 @@ public class DistanceMatrixApiTest {
 
   /** Test transit without arrival or departure times specified. */
   @Test
-  public void testTransitWithoutSpecifyingTime() throws Exception {
+  public void testTransitWithoutSpecifyingTime_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       String[] origins =
           new String[] {"Fisherman's Wharf, San Francisco", "Union Square, San Francisco"};
