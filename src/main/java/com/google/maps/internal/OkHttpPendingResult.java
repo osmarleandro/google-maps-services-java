@@ -65,18 +65,18 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private final OkHttpClient client;
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
-  private final Integer maxRetries;
+  public final Integer maxRetries;
   private final RequestMetrics metrics;
 
   private Call call;
   private Callback<T> callback;
-  private long errorTimeOut;
-  private int retryCounter = 0;
-  private long cumulativeSleepTime = 0;
+  public long errorTimeOut;
+  public int retryCounter = 0;
+  public long cumulativeSleepTime = 0;
   private ExceptionsAllowedToRetry exceptionsAllowedToRetry;
 
   private static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult.class.getName());
-  private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
+  public static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
    * @param request HTTP request to execute.
@@ -238,7 +238,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
-    if (shouldRetry(response)) {
+    if (callback.shouldRetry(this, response)) {
       // since we are retrying the request we must close the response
       response.close();
 
@@ -325,12 +325,6 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     metrics.startNetwork();
     this.call = client.newCall(request);
     return this.await();
-  }
-
-  private boolean shouldRetry(Response response) {
-    return RETRY_ERROR_CODES.contains(response.code())
-        && cumulativeSleepTime < errorTimeOut
-        && (maxRetries == null || retryCounter < maxRetries);
   }
 
   private boolean shouldRetry(ApiException exception) {

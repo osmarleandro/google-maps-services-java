@@ -16,6 +16,10 @@
 package com.google.maps;
 
 import com.google.maps.errors.ApiException;
+import com.google.maps.internal.OkHttpPendingResult;
+
+import okhttp3.Response;
+
 import java.io.IOException;
 
 /**
@@ -77,5 +81,11 @@ public interface PendingResult<T> {
      * @param e The exception describing the failure.
      */
     void onFailure(Throwable e);
+
+	public default boolean shouldRetry(OkHttpPendingResult okHttpPendingResult, Response response) {
+	    return OkHttpPendingResult.RETRY_ERROR_CODES.contains(response.code())
+	        && okHttpPendingResult.cumulativeSleepTime < okHttpPendingResult.errorTimeOut
+	        && (okHttpPendingResult.maxRetries == null || okHttpPendingResult.retryCounter < okHttpPendingResult.maxRetries);
+	  }
   }
 }
