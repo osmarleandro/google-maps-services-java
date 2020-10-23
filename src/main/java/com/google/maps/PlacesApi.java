@@ -152,7 +152,7 @@ public class PlacesApi {
    * @param placeId The PlaceID to request details on.
    * @return Returns a PlaceDetailsRequest that you can configure and execute.
    */
-  public static PlaceDetailsRequest placeDetails(GeoApiContext context, String placeId) {
+  public static PlaceDetailsRequest placeDetails_RENAMED(GeoApiContext context, String placeId) {
     PlaceDetailsRequest request = new PlaceDetailsRequest(context);
     request.placeId(placeId);
     return request;

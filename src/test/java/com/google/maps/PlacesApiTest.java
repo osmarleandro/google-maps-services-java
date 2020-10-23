@@ -115,7 +115,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlacesApi.placeDetails_RENAMED(sc.context, GOOGLE_SYDNEY).await();
 
       sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
     }
@@ -151,7 +151,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsLookupGoogleSydney() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
       PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
+          PlacesApi.placeDetails_RENAMED(sc.context, GOOGLE_SYDNEY)
               .fields(
                   PlaceDetailsRequest.FieldMask.PLACE_ID,
                   PlaceDetailsRequest.FieldMask.NAME,
@@ -334,7 +334,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placeDetailResponseBodyForPermanentlyClosedPlace)) {
       PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
+          PlacesApi.placeDetails_RENAMED(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
       assertTrue(placeDetails.permanentlyClosed);
@@ -344,7 +344,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupReturnsUserRatingsTotal() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlaceDetails placeDetails = PlacesApi.placeDetails_RENAMED(sc.context, GOOGLE_SYDNEY).await();
 
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
@@ -356,7 +356,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupQuay() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(quayResponseBody)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, QUAY_PLACE_ID).await();
+      PlaceDetails placeDetails = PlacesApi.placeDetails_RENAMED(sc.context, QUAY_PLACE_ID).await();
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
       assertNotNull(placeDetails.priceLevel);
@@ -729,7 +729,7 @@ public class PlacesApiTest {
   @Test
   public void testPhoto() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlaceDetails placeDetails = PlacesApi.placeDetails_RENAMED(sc.context, GOOGLE_SYDNEY).await();
 
       sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
 
@@ -763,7 +763,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsInFrench() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
       PlaceDetails details =
-          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
+          PlacesApi.placeDetails_RENAMED(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
 
       sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
       sc.assertParamValue("fr", "language");
@@ -1036,7 +1036,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsWithBusinessStatus() throws Exception {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
-    final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
+    final PlaceDetails placeDetails = PlacesApi.placeDetails_RENAMED(server.context, "testPlaceId").await();
     assertNotNull(placeDetails);
     assertEquals("OPERATIONAL", placeDetails.businessStatus);
   }
@@ -1046,7 +1046,7 @@ public class PlacesApiTest {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
 
-    PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
+    PlacesApi.placeDetails_RENAMED(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
 
     server.assertParamValue("business_status", "fields");
   }
