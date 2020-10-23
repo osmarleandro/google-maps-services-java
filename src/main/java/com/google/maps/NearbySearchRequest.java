@@ -167,7 +167,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   @Deprecated
-  public NearbySearchRequest type(PlaceType... types) {
+  public NearbySearchRequest type_RENAMED(PlaceType... types) {
     return param("type", join('|', types));
   }
 

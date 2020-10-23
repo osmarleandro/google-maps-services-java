@@ -657,7 +657,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .type(PlaceType.AIRPORT, PlaceType.BANK)
+          .type_RENAMED(PlaceType.AIRPORT, PlaceType.BANK)
           .await();
 
       sc.assertParamValue(location.toUrlValue(), "location");
