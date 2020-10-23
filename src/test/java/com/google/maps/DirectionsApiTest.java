@@ -519,7 +519,7 @@ public class DirectionsApiTest {
               .origin(origin)
               .destination(destination)
               .departureTime(Instant.now())
-              .optimizeWaypoints(true)
+              .optimizeWaypoints_RENAMED(true)
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .await();
 
@@ -554,7 +554,7 @@ public class DirectionsApiTest {
               .destination(destination)
               .departureTime(Instant.now())
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
-              .optimizeWaypoints(true)
+              .optimizeWaypoints_RENAMED(true)
               .await();
 
       sc.assertParamValue(origin.toUrlValue(), "origin");

@@ -285,7 +285,7 @@ public class DirectionsApiRequest
    * @param optimize Whether to optimize waypoints.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest optimizeWaypoints(boolean optimize) {
+  public DirectionsApiRequest optimizeWaypoints_RENAMED(boolean optimize) {
     optimizeWaypoints = optimize;
     if (waypoints != null) {
       return waypoints(waypoints);
