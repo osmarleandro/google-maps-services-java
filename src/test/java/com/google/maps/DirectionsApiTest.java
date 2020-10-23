@@ -58,7 +58,7 @@ public class DirectionsApiTest {
   public void testGetDirections() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(getDirectionsResponse)) {
       DirectionsResult result =
-          DirectionsApi.getDirections(sc.context, "Sydney, AU", "Melbourne, AU").await();
+          DirectionsApi.getDirections_RENAMED(sc.context, "Sydney, AU", "Melbourne, AU").await();
 
       assertNotNull(result);
       assertNotNull(result.toString(), "result.toString() succeeded");
@@ -466,7 +466,7 @@ public class DirectionsApiTest {
                 + "   \"routes\" : [],\n"
                 + "   \"status\" : \"NOT_FOUND\"\n"
                 + "}")) {
-      DirectionsApi.getDirections(sc.context, "fksjdhgf", "faldfdaf").await();
+      DirectionsApi.getDirections_RENAMED(sc.context, "fksjdhgf", "faldfdaf").await();
     }
   }
 

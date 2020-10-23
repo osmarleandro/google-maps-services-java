@@ -58,7 +58,7 @@ public class DirectionsApi {
    * @param destination Destination address as text
    * @return A newly constructed DirectionsApiRequest between the given points.
    */
-  public static DirectionsApiRequest getDirections(
+  public static DirectionsApiRequest getDirections_RENAMED(
       GeoApiContext context, String origin, String destination) {
     return new DirectionsApiRequest(context).origin(origin).destination(destination);
   }
