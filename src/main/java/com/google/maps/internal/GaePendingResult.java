@@ -108,7 +108,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @Override
-  public void setCallback(Callback<T> callback) {
+  public void setCallback_RENAMED(Callback<T> callback) {
     throw new RuntimeException("setCallback not implemented for Google App Engine");
   }
 
