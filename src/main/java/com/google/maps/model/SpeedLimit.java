@@ -30,12 +30,12 @@ public class SpeedLimit implements Serializable {
   /**
    * The speed limit for that road segment, specified in kilometers per hour.
    *
-   * <p>To obtain the speed in miles per hour, use {@link #speedLimitMph()}.
+   * <p>To obtain the speed in miles per hour, use {@link #speedLimitMph_RENAMED()}.
    */
   public double speedLimit;
 
   /** @return Returns the speed limit in miles per hour (MPH). */
-  public long speedLimitMph() {
+  public long speedLimitMph_RENAMED() {
     return Math.round(speedLimit * 0.621371);
   }
 
