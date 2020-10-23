@@ -233,7 +233,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
-          .waypoints("Charlestown,MA", "Lexington,MA")
+          .waypoints_RENAMED("Charlestown,MA", "Lexington,MA")
           .await();
 
       sc.assertParamValue("Boston,MA", "origin");
