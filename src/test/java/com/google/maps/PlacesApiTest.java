@@ -1033,7 +1033,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsWithBusinessStatus() throws Exception {
+  public void testPlaceDetailsWithBusinessStatus_RENAMED() throws Exception {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
     final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
