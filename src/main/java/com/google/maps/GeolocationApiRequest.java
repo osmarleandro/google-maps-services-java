@@ -27,7 +27,7 @@ public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
   private GeolocationPayload payload = null;
-  private GeolocationPayloadBuilder builder = null;
+  public GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
     super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
@@ -76,11 +76,6 @@ public class GeolocationApiRequest
 
   public GeolocationApiRequest AddCellTower(CellTower newCellTower) {
     this.builder.AddCellTower(newCellTower);
-    return this;
-  }
-
-  public GeolocationApiRequest WifiAccessPoints(WifiAccessPoint[] newWifiAccessPoints) {
-    this.builder.WifiAccessPoints(newWifiAccessPoints);
     return this;
   }
 
