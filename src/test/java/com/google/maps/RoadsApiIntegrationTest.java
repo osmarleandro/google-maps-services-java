@@ -173,7 +173,7 @@ public class RoadsApiIntegrationTest {
   }
 
   @Test
-  public void testNearestRoads() throws Exception {
+  public void testNearestRoads_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(nearestRoadsResponse)) {
       LatLng[] path =
           new LatLng[] {
