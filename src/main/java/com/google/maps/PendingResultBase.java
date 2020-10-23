@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Creates a forward geocode for {@code address}.
+   *
+   * @param address The address to geocode.
+   * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+public GeocodingApiRequest address(String address) {
+    return param("address", address);
+  }
 }
