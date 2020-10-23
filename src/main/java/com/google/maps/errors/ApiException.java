@@ -57,7 +57,7 @@ public class ApiException extends Exception {
     } else if ("REQUEST_DENIED".equals(status)) {
       return new RequestDeniedException(errorMessage);
     } else if ("UNKNOWN_ERROR".equals(status)) {
-      return new UnknownErrorException(errorMessage);
+      return new UnknownErrorException_RENAMED(errorMessage);
     } else if ("ZERO_RESULTS".equals(status)) {
       return new ZeroResultsException(errorMessage);
     }
@@ -90,7 +90,7 @@ public class ApiException extends Exception {
 
     // We've hit an unknown error. This is not a state we should hit,
     // but we don't want to crash a user's application if we introduce a new error.
-    return new UnknownErrorException(
+    return new UnknownErrorException_RENAMED(
         "An unexpected error occurred. Status: " + status + ", Message: " + errorMessage);
   }
 }

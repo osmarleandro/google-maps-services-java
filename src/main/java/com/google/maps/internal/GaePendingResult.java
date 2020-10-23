@@ -27,7 +27,7 @@ import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
-import com.google.maps.errors.UnknownErrorException;
+import com.google.maps.errors.UnknownErrorException_RENAMED;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
@@ -125,7 +125,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
         // According to
         // https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/urlfetch/URLFetchService
         // all exceptions should be subclass of IOException so this should not happen.
-        throw new UnknownErrorException("Unexpected exception from " + e.getMessage());
+        throw new UnknownErrorException_RENAMED("Unexpected exception from " + e.getMessage());
       }
     }
   }
