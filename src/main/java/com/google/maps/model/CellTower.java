@@ -17,6 +17,8 @@ package com.google.maps.model;
 
 import java.io.Serializable;
 
+import com.google.maps.GeolocationApiRequest;
+
 /**
  * A cell tower object.
  *
@@ -93,7 +95,12 @@ public class CellTower implements Serializable {
         timingAdvance);
   }
 
-  public static class CellTowerBuilder {
+  public GeolocationApiRequest AddCellTower(GeolocationApiRequest geolocationApiRequest) {
+    geolocationApiRequest.builder.AddCellTower(this);
+    return geolocationApiRequest;
+  }
+
+public static class CellTowerBuilder {
     private Integer _cellId = null;
     private Integer _locationAreaCode = null;
     private Integer _mobileCountryCode = null;

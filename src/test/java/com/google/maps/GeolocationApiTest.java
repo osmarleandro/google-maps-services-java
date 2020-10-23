@@ -55,21 +55,21 @@ public class GeolocationApiTest {
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
-              .RadioType("gsm")
-              .Carrier("T-Mobile")
+          new CellTower.CellTowerBuilder()
+		      .CellId(39627456)
+		      .LocationAreaCode(40495)
+		      .MobileCountryCode(310)
+		      .MobileNetworkCode(260)
+		      .Age(0)
+		      .SignalStrength(-95)
+		      .createCellTower()
               .AddCellTower(
-                  new CellTower.CellTowerBuilder()
-                      .CellId(39627456)
-                      .LocationAreaCode(40495)
-                      .MobileCountryCode(310)
-                      .MobileNetworkCode(260)
-                      .Age(0)
-                      .SignalStrength(-95)
-                      .createCellTower())
+                  GeolocationApi.newRequest(sc.context)
+				      .ConsiderIp(false)
+				      .HomeMobileCountryCode(310)
+				      .HomeMobileNetworkCode(260)
+				      .RadioType("gsm")
+				      .Carrier("T-Mobile"))
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("01:23:45:67:89:AB")
@@ -267,15 +267,15 @@ public class GeolocationApiTest {
   public void testMinimumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          new CellTower.CellTowerBuilder()
+		      .CellId(39627456)
+		      .LocationAreaCode(40495)
+		      .MobileCountryCode(310)
+		      .MobileNetworkCode(260)
+		      .createCellTower()
               .AddCellTower(
-                  new CellTower.CellTowerBuilder()
-                      .CellId(39627456)
-                      .LocationAreaCode(40495)
-                      .MobileCountryCode(310)
-                      .MobileNetworkCode(260)
-                      .createCellTower())
+                  GeolocationApi.newRequest(sc.context)
+				      .ConsiderIp(false))
               .CreatePayload()
               .await();
 
@@ -329,22 +329,22 @@ public class GeolocationApiTest {
   public void testMaximumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
-              .RadioType("gsm")
-              .Carrier("Vodafone")
+          new CellTower.CellTowerBuilder()
+		      .CellId(39627456)
+		      .LocationAreaCode(40495)
+		      .MobileCountryCode(310)
+		      .MobileNetworkCode(260)
+		      .Age(0)
+		      .SignalStrength(-103)
+		      .TimingAdvance(15)
+		      .createCellTower()
               .AddCellTower(
-                  new CellTower.CellTowerBuilder()
-                      .CellId(39627456)
-                      .LocationAreaCode(40495)
-                      .MobileCountryCode(310)
-                      .MobileNetworkCode(260)
-                      .Age(0)
-                      .SignalStrength(-103)
-                      .TimingAdvance(15)
-                      .createCellTower())
+                  GeolocationApi.newRequest(sc.context)
+				      .ConsiderIp(false)
+				      .HomeMobileCountryCode(310)
+				      .HomeMobileNetworkCode(260)
+				      .RadioType("gsm")
+				      .Carrier("Vodafone"))
               .CreatePayload()
               .await();
 
