@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.NearbySearchRequest;
 import com.google.maps.internal.StringJoin;
 
 /** Used by Places API to restrict search results to those within a given price range. */
@@ -48,5 +49,15 @@ public enum PriceLevel implements StringJoin.UrlValue {
       throw new UnsupportedOperationException("Shouldn't use PriceLevel.UNKNOWN in a request.");
     }
     return priceLevel;
+  }
+
+/**
+   * Restricts to places that are at most this price level.
+   *
+   * @param nearbySearchRequest TODO
+ * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  public NearbySearchRequest maxPrice(NearbySearchRequest nearbySearchRequest) {
+    return nearbySearchRequest.param("maxprice", this);
   }
 }
