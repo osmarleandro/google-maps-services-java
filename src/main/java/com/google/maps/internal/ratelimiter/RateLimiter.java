@@ -161,11 +161,11 @@ public abstract class RateLimiter {
    */
   public static RateLimiter create(double permitsPerSecond, long warmupPeriod, TimeUnit unit) {
     checkArgument(warmupPeriod >= 0, "warmupPeriod must not be negative: %s", warmupPeriod);
-    return create(
+    return create_RENAMED(
         permitsPerSecond, warmupPeriod, unit, 3.0, SleepingStopwatch.createFromSystemTimer());
   }
 
-  static RateLimiter create(
+  static RateLimiter create_RENAMED(
       double permitsPerSecond,
       long warmupPeriod,
       TimeUnit unit,
