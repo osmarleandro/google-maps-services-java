@@ -360,7 +360,7 @@ public class DirectionsApiTest {
 
   /** Tests the {@code traffic_model} and {@code duration_in_traffic} parameters. */
   @Test
-  public void testTrafficModel() throws Exception {
+  public void testTrafficModel_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
