@@ -807,7 +807,7 @@ public class GeocodingApiTest {
 
   /** Testing UTF8 result parsing. */
   @Test
-  public void testUtfResult() throws Exception {
+  public void testUtfResult_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(utfResultGeocodeResponse)) {
       LatLng location = new LatLng(46.8023388, 1.6551867);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
