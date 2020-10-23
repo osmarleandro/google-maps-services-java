@@ -159,7 +159,7 @@ public class PlaceAutocompleteRequest
    * @deprecated Please use {@code types} instead.
    */
   public PlaceAutocompleteRequest type(PlaceAutocompleteType type) {
-    return this.types(type);
+    return this.types_RENAMED(type);
   }
 
   /**
@@ -168,7 +168,7 @@ public class PlaceAutocompleteRequest
    * @param types The type to restrict results to.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest types(PlaceAutocompleteType types) {
+  public PlaceAutocompleteRequest types_RENAMED(PlaceAutocompleteType types) {
     return param("types", types);
   }
 
