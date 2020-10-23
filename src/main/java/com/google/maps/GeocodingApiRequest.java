@@ -37,18 +37,18 @@ public class GeocodingApiRequest
   @Override
   protected void validateRequest() {
     // Must not have both address and latlng.
-    if (params().containsKey("latlng")
-        && params().containsKey("address")
-        && params().containsKey("place_id")) {
+    if (config.params(this).containsKey("latlng")
+        && config.params(this).containsKey("address")
+        && config.params(this).containsKey("place_id")) {
       throw new IllegalArgumentException(
           "Request must contain only one of 'address', 'latlng' or 'place_id'.");
     }
 
     // Must contain at least one of place_id, address, latlng, and components;
-    if (!params().containsKey("latlng")
-        && !params().containsKey("address")
-        && !params().containsKey("components")
-        && !params().containsKey("place_id")) {
+    if (!config.params(this).containsKey("latlng")
+        && !config.params(this).containsKey("address")
+        && !config.params(this).containsKey("components")
+        && !config.params(this).containsKey("place_id")) {
       throw new IllegalArgumentException(
           "Request must contain at least one of 'address', 'latlng', 'place_id' and 'components'.");
     }

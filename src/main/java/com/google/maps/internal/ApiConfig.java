@@ -15,7 +15,12 @@
 
 package com.google.maps.internal;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PendingResultBase;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +52,9 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public Map<String, List<String>> params(PendingResultBase pendingResultBase) {
+    return Collections.unmodifiableMap(pendingResultBase.params);
   }
 }

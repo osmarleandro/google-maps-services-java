@@ -36,13 +36,13 @@ public class StaticMapsRequest
 
   @Override
   protected void validateRequest() {
-    if (!((params().containsKey("center") && params().containsKey("zoom"))
-        || params().containsKey("markers")
-        || params().containsKey("path"))) {
+    if (!((config.params(this).containsKey("center") && config.params(this).containsKey("zoom"))
+        || config.params(this).containsKey("markers")
+        || config.params(this).containsKey("path"))) {
       throw new IllegalArgumentException(
           "Request must contain 'center' and 'zoom' if 'markers' or 'path' aren't present.");
     }
-    if (!params().containsKey("size")) {
+    if (!config.params(this).containsKey("size")) {
       throw new IllegalArgumentException("Request must contain 'size'.");
     }
   }

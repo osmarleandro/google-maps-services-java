@@ -32,10 +32,10 @@ public class PhotoRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("photoreference")) {
+    if (!config.params(this).containsKey("photoreference")) {
       throw new IllegalArgumentException("Request must contain 'photoReference'.");
     }
-    if (!params().containsKey("maxheight") && !params().containsKey("maxwidth")) {
+    if (!config.params(this).containsKey("maxheight") && !config.params(this).containsKey("maxwidth")) {
       throw new IllegalArgumentException("Request must contain 'maxHeight' or 'maxWidth'.");
     }
   }

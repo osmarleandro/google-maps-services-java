@@ -41,7 +41,7 @@ public class QueryAutocompleteRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("input")) {
+    if (!config.params(this).containsKey("input")) {
       throw new IllegalArgumentException("Request must contain 'input'.");
     }
   }
