@@ -24,7 +24,7 @@ import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.LatLngAssert;
+import com.google.maps.model.LatLngAssert_RENAMED;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
@@ -269,7 +269,7 @@ public class ElevationApiTest {
       LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
       LatLng lastElevationPoint = elevation[elevation.length - 1].location;
 
-      LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
+      LatLngAssert_RENAMED.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
 
       sc.assertParamValue("100", "samples");
       sc.assertParamValue("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");

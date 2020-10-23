@@ -15,7 +15,7 @@
 
 package com.google.maps.internal;
 
-import static com.google.maps.model.LatLngAssert.assertEquals;
+import static com.google.maps.model.LatLngAssert_RENAMED.assertEquals;
 import static org.junit.Assert.assertEquals;
 
 import com.google.maps.SmallTests;
