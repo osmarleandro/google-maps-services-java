@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.StaticMapsRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
@@ -67,5 +68,16 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/**
+   * <code>center</code> (required if markers not present) defines the center of the map,
+   * equidistant from all edges of the map.
+   *
+   * @param staticMapsRequest TODO
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest center(StaticMapsRequest staticMapsRequest) {
+    return staticMapsRequest.param("center", this);
   }
 }

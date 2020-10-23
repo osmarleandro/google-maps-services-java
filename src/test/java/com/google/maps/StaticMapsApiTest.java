@@ -70,7 +70,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center(SYDNEY);
+      SYDNEY.center(req);
       req.zoom(16);
       req.await();
 
