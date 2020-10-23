@@ -27,15 +27,15 @@ import com.google.maps.model.LatLng;
  * href="https://developers.google.com/places/web-service/query#query_autocomplete_requests">Query
  * Autocomplete</a> request.
  */
-public class QueryAutocompleteRequest
+public class QueryAutocompleteRequest_RENAMED
     extends PendingResultBase<
-        AutocompletePrediction[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> {
+        AutocompletePrediction[], QueryAutocompleteRequest_RENAMED, QueryAutocompleteRequest_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/queryautocomplete/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-  protected QueryAutocompleteRequest(GeoApiContext context) {
+  protected QueryAutocompleteRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);
   }
 
@@ -53,7 +53,7 @@ public class QueryAutocompleteRequest
    * @param input The input text to autocomplete.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest input(String input) {
+  public QueryAutocompleteRequest_RENAMED input(String input) {
     return param("input", input);
   }
 
@@ -66,7 +66,7 @@ public class QueryAutocompleteRequest
    * @param offset The character offset to search from.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest offset(int offset) {
+  public QueryAutocompleteRequest_RENAMED offset(int offset) {
     return param("offset", String.valueOf(offset));
   }
 
@@ -76,7 +76,7 @@ public class QueryAutocompleteRequest
    * @param location The location point around which to search.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest location(LatLng location) {
+  public QueryAutocompleteRequest_RENAMED location(LatLng location) {
     return param("location", location);
   }
 
@@ -87,7 +87,7 @@ public class QueryAutocompleteRequest
    * @param radius The radius around which to bias results.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest radius(int radius) {
+  public QueryAutocompleteRequest_RENAMED radius(int radius) {
     return param("radius", String.valueOf(radius));
   }
 
