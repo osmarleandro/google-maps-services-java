@@ -9,5 +9,5 @@ final class NoOpRequestMetrics implements RequestMetrics {
 
   public void endNetwork() {}
 
-  public void endRequest(Exception exception, int httpStatusCode, long retryCount) {}
+  public void endRequest_RENAMED(Exception exception, int httpStatusCode, long retryCount) {}
 }

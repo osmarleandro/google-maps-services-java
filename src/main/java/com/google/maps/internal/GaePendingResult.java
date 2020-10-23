@@ -149,10 +149,10 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       throws IOException, ApiException, InterruptedException {
     try {
       T result = parseResponseInternal(request, response);
-      metrics.endRequest(null, response.getResponseCode(), retryCounter);
+      metrics.endRequest_RENAMED(null, response.getResponseCode(), retryCounter);
       return result;
     } catch (Exception e) {
-      metrics.endRequest(e, response.getResponseCode(), retryCounter);
+      metrics.endRequest_RENAMED(e, response.getResponseCode(), retryCounter);
       throw e;
     }
   }
