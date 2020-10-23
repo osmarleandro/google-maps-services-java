@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.PlaceAutocompleteType;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Restricts the results to places matching the specified type.
+   *
+   * @param types The type to restrict results to.
+   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+public PlaceAutocompleteRequest types(PlaceAutocompleteType types) {
+    return param("types", types);
   }
 }
