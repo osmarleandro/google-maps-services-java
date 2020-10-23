@@ -126,7 +126,7 @@ public class PlaceAutocompleteRequest
    * @param origin The {@link LatLng} origin point from which to calculate distance.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest origin(LatLng origin) {
+  public PlaceAutocompleteRequest origin_RENAMED(LatLng origin) {
     return param("origin", origin);
   }
 
