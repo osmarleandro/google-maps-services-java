@@ -184,7 +184,7 @@ public class GeoApiContext {
    * no further queries may be done against this instance.
    */
   public void shutdown() {
-    requestHandler.shutdown();
+    requestHandler.shutdown_RENAMED();
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(

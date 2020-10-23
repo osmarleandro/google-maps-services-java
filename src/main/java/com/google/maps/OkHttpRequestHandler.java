@@ -114,7 +114,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   @Override
-  public void shutdown() {
+  public void shutdown_RENAMED() {
     executorService.shutdown();
     client.connectionPool().evictAll();
   }
