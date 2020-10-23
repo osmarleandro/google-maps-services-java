@@ -483,7 +483,7 @@ public enum AddressType implements UrlValue {
   }
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     if (this == UNKNOWN) {
       throw new UnsupportedOperationException("Shouldn't use AddressType.UNKNOWN in a request.");
     }

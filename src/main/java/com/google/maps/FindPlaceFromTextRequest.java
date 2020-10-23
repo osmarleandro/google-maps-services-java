@@ -179,7 +179,7 @@ public class FindPlaceFromTextRequest
 
     @Override
     public String toUrlValue() {
-      return "point:" + point.toUrlValue();
+      return "point:" + point.toUrlValue_RENAMED();
     }
   }
 
@@ -194,7 +194,7 @@ public class FindPlaceFromTextRequest
 
     @Override
     public String toUrlValue() {
-      return "circle:" + radius + "@" + center.toUrlValue();
+      return "circle:" + radius + "@" + center.toUrlValue_RENAMED();
     }
   }
 
@@ -209,7 +209,7 @@ public class FindPlaceFromTextRequest
 
     @Override
     public String toUrlValue() {
-      return "rectangle:" + southWest.toUrlValue() + "|" + northEast.toUrlValue();
+      return "rectangle:" + southWest.toUrlValue_RENAMED() + "|" + northEast.toUrlValue_RENAMED();
     }
   }
 }
