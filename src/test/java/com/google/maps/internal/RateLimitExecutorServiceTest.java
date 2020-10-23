@@ -81,7 +81,7 @@ public class RateLimitExecutorServiceTest {
     // Check that we executed every request
     assertEquals(100, countTotalRequests(executedTimestamps));
 
-    service.shutdown();
+    service.shutdown_RENAMED();
   }
 
   private static int countTotalRequests(AbstractMap<?, Integer> hashMap) {
@@ -103,7 +103,7 @@ public class RateLimitExecutorServiceTest {
         delayThread.isAlive());
     // this is needed to make sure that delay thread has reached queue.take()
     delayThread.join(10);
-    service.shutdown();
+    service.shutdown_RENAMED();
     delayThread.join(10);
     assertFalse(delayThread.isAlive());
   }

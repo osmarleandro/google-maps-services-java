@@ -76,7 +76,7 @@ public class UrlSignerTest {
           });
     }
 
-    executor.shutdown();
+    executor.shutdown_RENAMED();
     executor.awaitTermination(20, TimeUnit.SECONDS);
 
     assertTrue(fails.isEmpty());

@@ -102,8 +102,8 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public void shutdown() {
-    delegate.shutdown();
+  public void shutdown_RENAMED() {
+    delegate.shutdown_RENAMED();
     // we need this to break out of queue.take()
     execute(
         new Runnable() {
