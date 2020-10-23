@@ -407,12 +407,12 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .origin("Fisherman's Wharf, San Francisco")
-              .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
-              .transitMode(TransitMode.BUS, TransitMode.TRAM)
-              .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
+          TransitRoutingPreference.LESS_WALKING
+              .transitRoutingPreference(DirectionsApi.newRequest(sc.context)
+			      .origin("Fisherman's Wharf, San Francisco")
+			      .destination("Union Square, San Francisco")
+			      .mode(TravelMode.TRANSIT)
+			      .transitMode(TransitMode.BUS, TransitMode.TRAM))
               .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
