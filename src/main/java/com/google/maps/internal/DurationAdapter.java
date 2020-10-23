@@ -18,7 +18,6 @@ package com.google.maps.internal;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
 import com.google.maps.model.Distance;
 import com.google.maps.model.Duration;
 import java.io.IOException;
@@ -65,11 +64,5 @@ public class DurationAdapter extends TypeAdapter<Duration> {
     reader.endObject();
 
     return duration;
-  }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, Duration value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
   }
 }

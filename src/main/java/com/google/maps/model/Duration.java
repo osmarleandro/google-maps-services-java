@@ -15,7 +15,10 @@
 
 package com.google.maps.model;
 
+import java.io.IOException;
 import java.io.Serializable;
+
+import com.google.gson.stream.JsonWriter;
 
 /** The duration component for Directions API results. */
 public class Duration implements Serializable {
@@ -34,5 +37,11 @@ public class Duration implements Serializable {
   @Override
   public String toString() {
     return humanReadable;
+  }
+
+/** This method is not implemented. 
+ * @param writer TODO*/
+  public void write(JsonWriter writer) throws IOException {
+    throw new UnsupportedOperationException("Unimplemented method");
   }
 }
