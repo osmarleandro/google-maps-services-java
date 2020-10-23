@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.TextSearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,23 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public void validateRequest(TextSearchRequest textSearchRequest) {
+
+    // All other parameters are ignored if pagetoken is specified.
+    if (textSearchRequest.params().containsKey("pagetoken")) {
+      return;
+    }
+
+    if (!textSearchRequest.params().containsKey("query") && !textSearchRequest.params().containsKey("type")) {
+      throw new IllegalArgumentException(
+          "Request must contain 'query' or a 'pageToken'. If a 'type' is specified 'query' becomes optional.");
+    }
+
+    if (textSearchRequest.params().containsKey("location") && !textSearchRequest.params().containsKey("radius")) {
+      throw new IllegalArgumentException(
+          "Request must contain 'radius' parameter when it contains a 'location' parameter.");
+    }
   }
 }
