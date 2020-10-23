@@ -1042,7 +1042,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsRequestHasFieldMask() throws Exception {
+  public void testPlaceDetailsRequestHasFieldMask_RENAMED() throws Exception {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
 
