@@ -201,7 +201,7 @@ public class EnumsTest {
   }
 
   @Test
-  public void testCanonicalLiteralsForAddressComponentType() {
+  public void testCanonicalLiteralsForAddressComponentType_RENAMED() {
     Map<AddressComponentType, String> addressComponentTypeToLiteralMap =
         new HashMap<AddressComponentType, String>();
     // Short alias just to avoid line wrapping in the below code
