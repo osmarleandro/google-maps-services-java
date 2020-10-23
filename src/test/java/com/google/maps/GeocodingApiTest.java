@@ -601,7 +601,7 @@ public class GeocodingApiTest {
    * Finland </a>.
    */
   @Test
-  public void testGeocodeWithJustComponents() throws Exception {
+  public void testGeocodeWithJustComponents_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
