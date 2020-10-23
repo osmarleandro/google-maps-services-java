@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.DirectionsApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.util.Locale;
 
@@ -32,5 +33,16 @@ public enum TrafficModel implements UrlValue {
   @Override
   public String toUrlValue() {
     return toString();
+  }
+
+/**
+   * Specifies the traffic model to use when requesting future driving directions. Once set, you
+   * must specify a departure time.
+   *
+   * @param directionsApiRequest TODO
+ * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+  public DirectionsApiRequest trafficModel(DirectionsApiRequest directionsApiRequest) {
+    return directionsApiRequest.param("traffic_model", this);
   }
 }

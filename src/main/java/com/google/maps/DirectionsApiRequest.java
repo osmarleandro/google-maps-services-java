@@ -20,7 +20,6 @@ import static java.util.Objects.requireNonNull;
 
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
@@ -330,17 +329,6 @@ public class DirectionsApiRequest
    */
   public DirectionsApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
-  }
-
-  /**
-   * Specifies the traffic model to use when requesting future driving directions. Once set, you
-   * must specify a departure time.
-   *
-   * @param trafficModel The traffic model for estimating driving time.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
   }
 
   /**
