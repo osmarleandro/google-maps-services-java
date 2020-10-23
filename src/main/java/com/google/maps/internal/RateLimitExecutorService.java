@@ -35,14 +35,14 @@ import org.slf4j.LoggerFactory;
 /** Rate Limit Policy for Google Maps Web Services APIs. */
 public class RateLimitExecutorService implements ExecutorService, Runnable {
 
-  private static final Logger LOG =
+  public static final Logger LOG =
       LoggerFactory.getLogger(RateLimitExecutorService.class.getName());
   private static final int DEFAULT_QUERIES_PER_SECOND = 50;
 
   // It's important we set Ok's second arg to threadFactory(.., true) to ensure the threads are
   // killed when the app exits. For synchronous requests this is ideal but it means any async
   // requests still pending after termination will be killed.
-  private final ExecutorService delegate =
+  public final ExecutorService delegate =
       new ThreadPoolExecutor(
           Runtime.getRuntime().availableProcessors(),
           Integer.MAX_VALUE,
@@ -51,8 +51,8 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
           new SynchronousQueue<Runnable>(),
           threadFactory("Rate Limited Dispatcher", true));
 
-  private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
-  private final RateLimiter rateLimiter =
+  public final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
+  public final RateLimiter rateLimiter =
       RateLimiter.create(DEFAULT_QUERIES_PER_SECOND, 1, TimeUnit.SECONDS);
 
   final Thread delayThread;
@@ -72,18 +72,8 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   /** Main loop. */
   @Override
   public void run() {
-    try {
-      while (!delegate.isShutdown()) {
-        this.rateLimiter.acquire();
-        Runnable r = queue.take();
-        if (!delegate.isShutdown()) {
-          delegate.execute(r);
-        }
-      }
-    } catch (InterruptedException ie) {
-      LOG.info("Interrupted", ie);
-    }
-  }
+	rateLimiter.run(this);
+}
 
   private static ThreadFactory threadFactory(final String name, final boolean daemon) {
     return new ThreadFactory() {
