@@ -21,7 +21,7 @@ import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
-import com.google.maps.internal.HttpHeaders;
+import com.google.maps.internal.HttpHeaders_RENAMED;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
@@ -152,7 +152,7 @@ public class GeoApiContext {
   }
 
   /**
-   * Sets the value for the HTTP header field name {@link HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} to
+   * Sets the value for the HTTP header field name {@link HttpHeaders_RENAMED#X_GOOG_MAPS_EXPERIENCE_ID} to
    * be used on subsequent API calls. Calling this method with {@code null} is equivalent to calling
    * {@link #clearExperienceId()}.
    *
@@ -173,7 +173,7 @@ public class GeoApiContext {
 
   /**
    * Clears the experience ID if set the HTTP header field {@link
-   * HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} will be omitted from subsequent calls.
+   * HttpHeaders_RENAMED#X_GOOG_MAPS_EXPERIENCE_ID} will be omitted from subsequent calls.
    */
   public void clearExperienceId() {
     experienceIdHeaderValue = null;
@@ -587,7 +587,7 @@ public class GeoApiContext {
     }
 
     /**
-     * Sets the value for the HTTP header field name {@link HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID}
+     * Sets the value for the HTTP header field name {@link HttpHeaders_RENAMED#X_GOOG_MAPS_EXPERIENCE_ID}
      * HTTP header value for the field name on subsequent API calls.
      *
      * @param experienceId The experience ID

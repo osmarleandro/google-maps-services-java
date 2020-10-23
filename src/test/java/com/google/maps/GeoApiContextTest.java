@@ -27,7 +27,7 @@ import static org.mockito.Mockito.mock;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.HttpHeaders;
+import com.google.maps.internal.HttpHeaders_RENAMED;
 import com.google.maps.model.GeocodingResult;
 import java.io.IOException;
 import java.util.Collections;
@@ -337,13 +337,13 @@ public class GeoApiContextTest {
   public void testExperienceIdIsInHeader() throws Exception {
     final String experienceId = "exp1";
     final RecordedRequest request = makeMockRequest(experienceId);
-    assertEquals(experienceId, request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID));
+    assertEquals(experienceId, request.getHeader(HttpHeaders_RENAMED.X_GOOG_MAPS_EXPERIENCE_ID));
   }
 
   @Test
   public void testExperienceIdNotInHeader() throws Exception {
     final RecordedRequest request = makeMockRequest();
-    final String value = request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID);
+    final String value = request.getHeader(HttpHeaders_RENAMED.X_GOOG_MAPS_EXPERIENCE_ID);
     assertNull(value);
   }
 
