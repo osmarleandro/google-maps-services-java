@@ -66,7 +66,7 @@ public class QueryAutocompleteRequest
    * @param offset The character offset to search from.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest offset(int offset) {
+  public QueryAutocompleteRequest offset_RENAMED(int offset) {
     return param("offset", String.valueOf(offset));
   }
 
