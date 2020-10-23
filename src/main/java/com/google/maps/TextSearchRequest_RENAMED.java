@@ -30,14 +30,14 @@ import com.google.maps.model.RankBy;
  * A <a href="https://developers.google.com/places/web-service/search#TextSearchRequests">Text
  * Search</a> request.
  */
-public class TextSearchRequest
-    extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
+public class TextSearchRequest_RENAMED
+    extends PendingResultBase<PlacesSearchResponse, TextSearchRequest_RENAMED, TextSearchRequest_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/textsearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-  public TextSearchRequest(GeoApiContext context) {
+  public TextSearchRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);
   }
 
@@ -47,7 +47,7 @@ public class TextSearchRequest
    * @param query The query string to search for.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest query(String query) {
+  public TextSearchRequest_RENAMED query(String query) {
     return param("query", query);
   }
 
@@ -57,7 +57,7 @@ public class TextSearchRequest
    * @param location The location of the center of the search.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest location(LatLng location) {
+  public TextSearchRequest_RENAMED location(LatLng location) {
     return param("location", location);
   }
 
@@ -70,7 +70,7 @@ public class TextSearchRequest
    * @param region The ccTLD two-letter code of the region.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest region(String region) {
+  public TextSearchRequest_RENAMED region(String region) {
     return param("region", region);
   }
 
@@ -80,7 +80,7 @@ public class TextSearchRequest
    * @param radius The radius of the search bias.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest radius(int radius) {
+  public TextSearchRequest_RENAMED radius(int radius) {
     if (radius > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
@@ -93,7 +93,7 @@ public class TextSearchRequest
    * @param priceLevel The minimum price level to restrict results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest minPrice(PriceLevel priceLevel) {
+  public TextSearchRequest_RENAMED minPrice(PriceLevel priceLevel) {
     return param("minprice", priceLevel);
   }
 
@@ -103,7 +103,7 @@ public class TextSearchRequest
    * @param priceLevel The maximum price leve to restrict results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest maxPrice(PriceLevel priceLevel) {
+  public TextSearchRequest_RENAMED maxPrice(PriceLevel priceLevel) {
     return param("maxprice", priceLevel);
   }
 
@@ -114,7 +114,7 @@ public class TextSearchRequest
    * @param name The name to search for.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest name(String name) {
+  public TextSearchRequest_RENAMED name(String name) {
     return param("name", name);
   }
 
@@ -124,7 +124,7 @@ public class TextSearchRequest
    * @param openNow Whether to restrict this search to open places.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest openNow(boolean openNow) {
+  public TextSearchRequest_RENAMED openNow(boolean openNow) {
     return param("opennow", String.valueOf(openNow));
   }
 
@@ -136,7 +136,7 @@ public class TextSearchRequest
    * @param nextPageToken A {@code pageToken} from a prior result.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest pageToken(String nextPageToken) {
+  public TextSearchRequest_RENAMED pageToken(String nextPageToken) {
     return param("pagetoken", nextPageToken);
   }
 
@@ -146,7 +146,7 @@ public class TextSearchRequest
    * @param ranking The rank by method.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest rankby(RankBy ranking) {
+  public TextSearchRequest_RENAMED rankby(RankBy ranking) {
     return param("rankby", ranking);
   }
 
@@ -156,7 +156,7 @@ public class TextSearchRequest
    * @param type The type of place to restrict the results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest type(PlaceType type) {
+  public TextSearchRequest_RENAMED type(PlaceType type) {
     return param("type", type);
   }
 
