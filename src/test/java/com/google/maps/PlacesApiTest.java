@@ -676,14 +676,6 @@ public class PlacesApiTest {
     }
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("")) {
-      LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
-    }
-  }
-
   @Test
   public void testPlaceAutocompleteRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
