@@ -58,6 +58,15 @@ public interface PendingResult<T> {
   void cancel();
 
   /**
+   * Custom parameter. For advanced usage only.
+   *
+   * @param parameter The name of the custom parameter.
+   * @param value The value of the custom parameter.
+   * @return Returns the request for call chaining.
+   */
+A custom(String parameter, String value);
+
+/**
    * The callback interface the API client code needs to implement to handle API results.
    *
    * @param <T> The type of the result object.

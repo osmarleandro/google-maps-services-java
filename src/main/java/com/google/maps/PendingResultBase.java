@@ -166,7 +166,8 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @param value The value of the custom parameter.
    * @return Returns the request for call chaining.
    */
-  public A custom(String parameter, String value) {
+  @Override
+public A custom(String parameter, String value) {
     return param(parameter, value);
   }
 }
