@@ -29,13 +29,19 @@ import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -349,7 +355,16 @@ public class GeoApiContext {
     }
   }
 
-  /** The Builder for {@code GeoApiContext}. */
+  public List<NameValuePair> parseQueryParamsFromRequestLine(String requestLine)
+      throws URISyntaxException {
+    // Extract the URL part from the HTTP request line
+    String[] chunks = requestLine.split("\\s", -1);
+    String url = chunks[1];
+
+    return URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
+  }
+
+/** The Builder for {@code GeoApiContext}. */
   public static class Builder {
 
     private RequestHandler.Builder builder;
