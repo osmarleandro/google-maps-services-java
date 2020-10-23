@@ -65,17 +65,17 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private final URLFetchService client;
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
-  private final Integer maxRetries;
+  final Integer maxRetries;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final RequestMetrics metrics;
 
-  private long errorTimeOut;
-  private int retryCounter = 0;
-  private long cumulativeSleepTime = 0;
+  long errorTimeOut;
+  int retryCounter = 0;
+  long cumulativeSleepTime = 0;
   private Future<HTTPResponse> call;
 
   private static final Logger LOG = LoggerFactory.getLogger(GaePendingResult.class.getName());
-  private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
+  static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
    * @param request HTTP request to execute.
@@ -160,7 +160,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(GaePendingResult<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
-    if (shouldRetry(response)) {
+    if (exceptionsAllowedToRetry.shouldRetry(this, response)) {
       // Retry is a blocking method, but that's OK. If we're here, we're either in an await()
       // call, which is blocking anyway, or we're handling a callback in a separate thread.
       return request.retry();
@@ -248,12 +248,6 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     metrics.startNetwork();
     this.call = client.fetchAsync(request);
     return this.await();
-  }
-
-  private boolean shouldRetry(HTTPResponse response) {
-    return RETRY_ERROR_CODES.contains(response.getResponseCode())
-        && cumulativeSleepTime < errorTimeOut
-        && (maxRetries == null || retryCounter < maxRetries);
   }
 
   private boolean shouldRetry(ApiException exception) {

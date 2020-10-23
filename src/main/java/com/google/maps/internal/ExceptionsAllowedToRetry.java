@@ -15,6 +15,7 @@
 
 package com.google.maps.internal;
 
+import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.maps.errors.ApiException;
 import java.util.HashSet;
 
@@ -36,5 +37,11 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
 
     sb.append(']');
     return sb.toString();
+  }
+
+boolean shouldRetry(GaePendingResult gaePendingResult, HTTPResponse response) {
+    return GaePendingResult.RETRY_ERROR_CODES.contains(response.getResponseCode())
+        && gaePendingResult.cumulativeSleepTime < gaePendingResult.errorTimeOut
+        && (gaePendingResult.maxRetries == null || gaePendingResult.retryCounter < gaePendingResult.maxRetries);
   }
 }
