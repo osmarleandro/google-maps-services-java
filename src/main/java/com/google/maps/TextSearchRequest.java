@@ -24,7 +24,6 @@ import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
-import com.google.maps.model.RankBy;
 
 /**
  * A <a href="https://developers.google.com/places/web-service/search#TextSearchRequests">Text
@@ -138,16 +137,6 @@ public class TextSearchRequest
    */
   public TextSearchRequest pageToken(String nextPageToken) {
     return param("pagetoken", nextPageToken);
-  }
-
-  /**
-   * Specifies the order in which results are listed.
-   *
-   * @param ranking The rank by method.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest rankby(RankBy ranking) {
-    return param("rankby", ranking);
   }
 
   /**

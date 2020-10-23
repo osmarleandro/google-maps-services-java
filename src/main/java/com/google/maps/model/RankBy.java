@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.TextSearchRequest;
 import com.google.maps.internal.StringJoin;
 
 /** Used by the Places API to specify the order in which results are listed. */
@@ -36,5 +37,15 @@ public enum RankBy implements StringJoin.UrlValue {
   @Override
   public String toUrlValue() {
     return ranking;
+  }
+
+/**
+   * Specifies the order in which results are listed.
+   *
+   * @param textSearchRequest TODO
+ * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+  public TextSearchRequest rankby(TextSearchRequest textSearchRequest) {
+    return textSearchRequest.param("rankby", this);
   }
 }
