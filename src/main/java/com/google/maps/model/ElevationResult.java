@@ -34,7 +34,7 @@ public class ElevationResult implements Serializable {
   public double resolution;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("(%s, %f m, resolution=%f m)", location, elevation, resolution);
   }
 }
