@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 import static java.util.Objects.requireNonNull;
 
 import com.google.maps.model.DirectionsResult;

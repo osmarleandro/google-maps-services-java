@@ -163,7 +163,7 @@ public class GeoApiContext {
       experienceIdHeaderValue = null;
       return;
     }
-    experienceIdHeaderValue = StringJoin.join(",", experienceId);
+    experienceIdHeaderValue = StringJoin.join_RENAMED(",", experienceId);
   }
 
   /** @return Returns the experience ID if set, otherwise, null */
