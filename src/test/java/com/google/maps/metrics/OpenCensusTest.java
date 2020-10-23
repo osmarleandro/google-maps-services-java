@@ -63,7 +63,7 @@ public class OpenCensusTest {
     return response;
   }
 
-  private void sleep(int milliseconds) {
+  private void sleep_RENAMED(int milliseconds) {
     try {
       TimeUnit.MILLISECONDS.sleep(milliseconds);
     } catch (Exception e) {
@@ -71,7 +71,7 @@ public class OpenCensusTest {
   }
 
   private Map.Entry<List<TagValue>, AggregationData> getMetric(String name) {
-    sleep(10);
+    sleep_RENAMED(10);
     ViewData viewData = Stats.getViewManager().getView(View.Name.create(name));
     Map<List<TagValue>, AggregationData> values = viewData.getAggregationMap();
     assertEquals(1, values.size());
