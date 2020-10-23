@@ -60,7 +60,7 @@ public class PlacesApiTest {
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
   private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
   private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
-  private static final LatLng SYDNEY = new LatLng(-33.8650, 151.2094);
+  public static final LatLng SYDNEY = new LatLng(-33.8650, 151.2094);
 
   private final String autocompletePredictionStructuredFormatting;
   private final String placeDetailResponseBody;
@@ -75,7 +75,7 @@ public class PlacesApiTest {
   private final String placesApiPizzaInNewYork;
   private final String placesApiDetailsInFrench;
   private final String placesApiNearbySearchRequestByKeyword;
-  private final String placesApiNearbySearchRequestByName;
+  public final String placesApiNearbySearchRequestByName;
   private final String placesApiNearbySearchRequestByType;
   private final String placesApiPlaceAutocomplete;
   private final String placesApiPlaceAutocompleteWithType;
@@ -788,24 +788,6 @@ public class PlacesApiTest {
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
 
       assertEquals(20, response.results.length);
-    }
-  }
-
-  @Test
-  public void testNearbySearchRequestByName() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(placesApiNearbySearchRequestByName)) {
-      PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
-              .radius(10000)
-              .name("Sydney Town Hall")
-              .await();
-
-      sc.assertParamValue("Sydney Town Hall", "name");
-      sc.assertParamValue(SYDNEY.toUrlValue(), "location");
-      sc.assertParamValue("10000", "radius");
-
-      assertEquals("Sydney Town Hall", response.results[0].name);
     }
   }
 
