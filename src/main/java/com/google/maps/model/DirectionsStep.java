@@ -86,7 +86,7 @@ public class DirectionsStep implements Serializable {
   public TransitDetails transitDetails;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[DirectionsStep: ");
     sb.append("\"").append(htmlInstructions).append("\"");
     sb.append(String.format(" (%s -> %s", startLocation, endLocation)).append(")");
