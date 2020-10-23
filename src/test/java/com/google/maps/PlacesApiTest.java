@@ -40,8 +40,8 @@ import com.google.maps.model.OpeningHours.Period;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 import com.google.maps.model.Photo;
 import com.google.maps.model.PlaceAutocompleteType;
-import com.google.maps.model.PlaceDetails;
-import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
+import com.google.maps.model.PlaceDetails_RENAMED;
+import com.google.maps.model.PlaceDetails_RENAMED.Review.AspectRating.RatingType;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
@@ -150,7 +150,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupGoogleSydney() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
-      PlaceDetails placeDetails =
+      PlaceDetails_RENAMED placeDetails =
           PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
               .fields(
                   PlaceDetailsRequest.FieldMask.PLACE_ID,
@@ -287,7 +287,7 @@ public class PlacesApiTest {
 
       // Reviews
       assertNotNull(placeDetails.reviews);
-      PlaceDetails.Review review = placeDetails.reviews[0];
+      PlaceDetails_RENAMED.Review review = placeDetails.reviews[0];
       assertNotNull(review);
       assertNotNull(review.authorName);
       assertEquals("Danielle Lonnon", review.authorName);
@@ -304,7 +304,7 @@ public class PlacesApiTest {
       assertNotNull(review.text);
       assertTrue(review.text.startsWith("As someone who works in the theatre,"));
       assertNotNull(review.aspects);
-      PlaceDetails.Review.AspectRating aspect = review.aspects[0];
+      PlaceDetails_RENAMED.Review.AspectRating aspect = review.aspects[0];
       assertNotNull(aspect);
       assertEquals(3, aspect.rating);
       assertNotNull(aspect.type);
@@ -333,7 +333,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsLookupPermanentlyClosedPlace() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placeDetailResponseBodyForPermanentlyClosedPlace)) {
-      PlaceDetails placeDetails =
+      PlaceDetails_RENAMED placeDetails =
           PlacesApi.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
@@ -344,7 +344,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupReturnsUserRatingsTotal() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlaceDetails_RENAMED placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
@@ -356,7 +356,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupQuay() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(quayResponseBody)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, QUAY_PLACE_ID).await();
+      PlaceDetails_RENAMED placeDetails = PlacesApi.placeDetails(sc.context, QUAY_PLACE_ID).await();
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
       assertNotNull(placeDetails.priceLevel);
@@ -729,7 +729,7 @@ public class PlacesApiTest {
   @Test
   public void testPhoto() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlaceDetails_RENAMED placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
       sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
 
@@ -762,7 +762,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsInFrench() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
-      PlaceDetails details =
+      PlaceDetails_RENAMED details =
           PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
 
       sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
@@ -1036,7 +1036,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsWithBusinessStatus() throws Exception {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
-    final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
+    final PlaceDetails_RENAMED placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
     assertNotNull(placeDetails);
     assertEquals("OPERATIONAL", placeDetails.businessStatus);
   }

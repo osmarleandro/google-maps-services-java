@@ -21,14 +21,14 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
-import com.google.maps.model.PlaceDetails;
+import com.google.maps.model.PlaceDetails_RENAMED;
 
 /**
  * A <a href="https://developers.google.com/places/web-service/details#PlaceDetailsRequests">Place
  * Details</a> request.
  */
 public class PlaceDetailsRequest
-    extends PendingResultBase<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
+    extends PendingResultBase<PlaceDetails_RENAMED, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/details/json")
@@ -88,9 +88,9 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  public static class Response implements ApiResponse<PlaceDetails_RENAMED> {
     public String status;
-    public PlaceDetails result;
+    public PlaceDetails_RENAMED result;
     public String[] htmlAttributions;
     public String errorMessage;
 
@@ -100,7 +100,7 @@ public class PlaceDetailsRequest
     }
 
     @Override
-    public PlaceDetails getResult() {
+    public PlaceDetails_RENAMED getResult() {
       if (result != null) {
         result.htmlAttributions = htmlAttributions;
       }
