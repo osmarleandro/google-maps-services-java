@@ -27,7 +27,7 @@ public class EncodedPolylineInstanceCreator implements InstanceCreator<EncodedPo
   }
 
   @Override
-  public EncodedPolyline createInstance(Type type) {
+  public EncodedPolyline createInstance_RENAMED(Type type) {
     return new EncodedPolyline(points);
   }
 }
