@@ -59,7 +59,7 @@ public class GeoApiContextTest {
 
   @After
   @SuppressWarnings("CatchAndPrintStackTrace")
-  public void Teardown() {
+  public void Teardown_RENAMED() {
     try {
       server.shutdown();
     } catch (IOException e) {
