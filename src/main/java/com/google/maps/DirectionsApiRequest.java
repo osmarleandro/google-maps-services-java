@@ -130,7 +130,7 @@ public class DirectionsApiRequest
    * @param mode The travel mode to request directions for.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest mode(TravelMode mode) {
+  public DirectionsApiRequest mode_RENAMED(TravelMode mode) {
     return param("mode", mode);
   }
 

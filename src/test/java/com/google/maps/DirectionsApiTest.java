@@ -87,7 +87,7 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.BICYCLING)
+              .mode_RENAMED(TravelMode.BICYCLING)
               .avoid(
                   DirectionsApi.RouteRestriction.HIGHWAYS,
                   DirectionsApi.RouteRestriction.TOLLS,
@@ -122,7 +122,7 @@ public class DirectionsApiTest {
         new LocalTestServerContext(responseTimesArePopulatedCorrectly)) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.TRANSIT)
+              .mode_RENAMED(TravelMode.TRANSIT)
               .origin("483 George St, Sydney NSW 2000, Australia")
               .destination("182 Church St, Parramatta NSW 2150, Australia")
               .await();
@@ -170,7 +170,7 @@ public class DirectionsApiTest {
           .origin("Toronto")
           .destination("Montreal")
           .avoid(DirectionsApi.RouteRestriction.HIGHWAYS)
-          .mode(TravelMode.BICYCLING)
+          .mode_RENAMED(TravelMode.BICYCLING)
           .await();
 
       sc.assertParamValue("Toronto", "origin");
@@ -188,7 +188,7 @@ public class DirectionsApiTest {
           .origin("San Francisco")
           .destination("Seattle")
           .avoid(RouteRestriction.INDOOR)
-          .mode(TravelMode.BICYCLING)
+          .mode_RENAMED(TravelMode.BICYCLING)
           .await();
 
       sc.assertParamValue("San Francisco", "origin");
@@ -211,7 +211,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("Brooklyn")
           .destination("Queens")
-          .mode(TravelMode.TRANSIT)
+          .mode_RENAMED(TravelMode.TRANSIT)
           .await();
 
       sc.assertParamValue("Brooklyn", "origin");
@@ -367,7 +367,7 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .origin("48 Pirrama Road, Pyrmont NSW 2009")
               .destination("182 Church St, Parramatta NSW 2150")
-              .mode(TravelMode.DRIVING)
+              .mode_RENAMED(TravelMode.DRIVING)
               .departureTime(Instant.now().plus(Duration.ofMinutes(2)))
               .trafficModel(TrafficModel.PESSIMISTIC)
               .await();
@@ -390,7 +390,7 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
+              .mode_RENAMED(TravelMode.TRANSIT)
               .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
@@ -410,7 +410,7 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
+              .mode_RENAMED(TravelMode.TRANSIT)
               .transitMode(TransitMode.BUS, TransitMode.TRAM)
               .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
               .await();
@@ -433,7 +433,7 @@ public class DirectionsApiTest {
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.WALKING)
+              .mode_RENAMED(TravelMode.WALKING)
               .origin("483 George St, Sydney NSW 2000, Australia")
               .destination("182 Church St, Parramatta NSW 2150, Australia")
               .await();
@@ -492,7 +492,7 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .origin("48 Pirrama Rd, Pyrmont NSW")
               .destination("Airport Dr, Sydney NSW")
-              .mode(TravelMode.DRIVING)
+              .mode_RENAMED(TravelMode.DRIVING)
               .await();
 
       assertNotNull(result.toString());
