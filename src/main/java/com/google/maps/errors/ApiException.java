@@ -15,6 +15,8 @@
 
 package com.google.maps.errors;
 
+import com.google.maps.internal.OkHttpPendingResult;
+
 /**
  * ApiException and its descendants represent an error returned by the remote API. API errors are
  * determined by the {@code status} field returned in any of the Geo API responses.
@@ -92,5 +94,11 @@ public class ApiException extends Exception {
     // but we don't want to crash a user's application if we introduce a new error.
     return new UnknownErrorException(
         "An unexpected error occurred. Status: " + status + ", Message: " + errorMessage);
+  }
+
+public boolean shouldRetry(OkHttpPendingResult okHttpPendingResult) {
+    return okHttpPendingResult.exceptionsAllowedToRetry.contains(getClass())
+        && okHttpPendingResult.cumulativeSleepTime < okHttpPendingResult.errorTimeOut
+        && (okHttpPendingResult.maxRetries == null || okHttpPendingResult.retryCounter < okHttpPendingResult.maxRetries);
   }
 }
