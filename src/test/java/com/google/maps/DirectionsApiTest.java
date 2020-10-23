@@ -338,7 +338,7 @@ public class DirectionsApiTest {
 
   /** Test the language parameter. */
   @Test
-  public void testLanguageParameter() throws Exception {
+  public void testLanguageParameter_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
