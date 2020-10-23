@@ -30,7 +30,7 @@ import java.io.IOException;
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">GSON
  * Type Adapter</a> for more detail.
  */
-public class DurationAdapter extends TypeAdapter<Duration> {
+public class DurationAdapter_RENAMED extends TypeAdapter<Duration> {
 
   /**
    * Read a distance object from a Directions API result and convert it to a {@link Distance}.

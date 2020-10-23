@@ -188,7 +188,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
         new GsonBuilder()
             .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeAdapter())
             .registerTypeAdapter(Distance.class, new DistanceAdapter())
-            .registerTypeAdapter(Duration.class, new DurationAdapter())
+            .registerTypeAdapter(Duration.class, new DurationAdapter_RENAMED())
             .registerTypeAdapter(Fare.class, new FareAdapter())
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())
             .registerTypeAdapter(
