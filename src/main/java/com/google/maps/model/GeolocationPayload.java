@@ -80,7 +80,7 @@ public class GeolocationPayload implements Serializable {
   public WifiAccessPoint[] wifiAccessPoints;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[GeolocationPayload");
     List<String> elements = new ArrayList<>();
     if (homeMobileCountryCode != null) {
