@@ -49,7 +49,7 @@ import org.junit.experimental.categories.Category;
 public class GeoApiContextTest {
 
   private MockWebServer server;
-  private GeoApiContext.Builder builder;
+  public GeoApiContext.Builder builder;
 
   @Before
   public void Setup() {
@@ -320,16 +320,6 @@ public class GeoApiContextTest {
   @Test
   public void testNoExperienceId() {
     final GeoApiContext context = builder.build();
-    assertNull(context.getExperienceId());
-  }
-
-  @Test
-  public void testClearingExperienceId() {
-    final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
-    assertEquals(experienceId, context.getExperienceId());
-
-    context.clearExperienceId();
     assertNull(context.getExperienceId());
   }
 
