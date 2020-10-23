@@ -172,7 +172,7 @@ public class NearbySearchRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
 
     // If pagetoken is included, all other parameters are ignored.
     if (params().containsKey("pagetoken")) {
