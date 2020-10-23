@@ -55,10 +55,10 @@ public class GeolocationApiTest {
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
+          GeolocationApi.newRequest(sc.context).ConsiderIp(false).HomeMobileCountryCode(310).builder
+              .HomeMobileNetworkCode(GeolocationApi.newRequest(sc.context)
+			      .ConsiderIp(false)
+			      .HomeMobileCountryCode(310), 260)
               .RadioType("gsm")
               .Carrier("T-Mobile")
               .AddCellTower(
@@ -211,10 +211,10 @@ public class GeolocationApiTest {
   public void testMaximumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(410)
+          GeolocationApi.newRequest(sc.context).ConsiderIp(false).HomeMobileCountryCode(310).builder
+              .HomeMobileNetworkCode(GeolocationApi.newRequest(sc.context)
+			      .ConsiderIp(false)
+			      .HomeMobileCountryCode(310), 410)
               .RadioType("gsm")
               .Carrier("Vodafone")
               .AddWifiAccessPoint(
@@ -329,10 +329,10 @@ public class GeolocationApiTest {
   public void testMaximumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
+          GeolocationApi.newRequest(sc.context).ConsiderIp(false).HomeMobileCountryCode(310).builder
+              .HomeMobileNetworkCode(GeolocationApi.newRequest(sc.context)
+			      .ConsiderIp(false)
+			      .HomeMobileCountryCode(310), 260)
               .RadioType("gsm")
               .Carrier("Vodafone")
               .AddCellTower(
