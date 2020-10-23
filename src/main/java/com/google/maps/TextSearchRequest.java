@@ -136,7 +136,7 @@ public class TextSearchRequest
    * @param nextPageToken A {@code pageToken} from a prior result.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest pageToken(String nextPageToken) {
+  public TextSearchRequest pageToken_RENAMED(String nextPageToken) {
     return param("pagetoken", nextPageToken);
   }
 
