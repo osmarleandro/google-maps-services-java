@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * <code>center</code> (required if markers not present) defines the center of the map,
+   * equidistant from all edges of the map.
+   *
+   * @param location The location of the center of the map.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest center(String location) {
+    return param("center", location);
+  }
 }
