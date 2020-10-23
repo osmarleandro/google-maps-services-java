@@ -60,7 +60,7 @@ public class GeolocationApiTest {
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
-              .Carrier("T-Mobile")
+              .Carrier_RENAMED("T-Mobile")
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
@@ -216,7 +216,7 @@ public class GeolocationApiTest {
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(410)
               .RadioType("gsm")
-              .Carrier("Vodafone")
+              .Carrier_RENAMED("Vodafone")
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:88:31")
@@ -334,7 +334,7 @@ public class GeolocationApiTest {
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
-              .Carrier("Vodafone")
+              .Carrier_RENAMED("Vodafone")
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)

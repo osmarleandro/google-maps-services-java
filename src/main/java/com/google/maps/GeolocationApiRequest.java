@@ -59,7 +59,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest Carrier(String newCarrier) {
+  public GeolocationApiRequest Carrier_RENAMED(String newCarrier) {
     this.builder.Carrier(newCarrier);
     return this;
   }
