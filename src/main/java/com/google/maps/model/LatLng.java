@@ -15,10 +15,18 @@
 
 package com.google.maps.model;
 
+import com.google.maps.FindPlaceFromTextRequest;
+import com.google.maps.FindPlaceFromTextRequest.InputType;
+import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +75,30 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testFindPlaceFromTextRectangular(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc =
+        new LocalTestServerContext(placesApiTest.findPlaceFromTextMuseumOfContemporaryArt)) {
+
+      String input = "Museum of Contemporary Art Australia";
+
+      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+          .fields(
+              FindPlaceFromTextRequest.FieldMask.PHOTOS,
+              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+              FindPlaceFromTextRequest.FieldMask.NAME,
+              FindPlaceFromTextRequest.FieldMask.RATING,
+              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+          .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
+          .await();
+
+      sc.assertParamValue(input, "input");
+      sc.assertParamValue("textquery", "inputtype");
+      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
+      sc.assertParamValue("rectangle:1.00000000,2.00000000|3.00000000,4.00000000", "locationbias");
+    }
   }
 }
