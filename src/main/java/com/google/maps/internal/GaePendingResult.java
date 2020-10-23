@@ -65,17 +65,17 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private final URLFetchService client;
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
-  private final Integer maxRetries;
+  public final Integer maxRetries;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final RequestMetrics metrics;
 
-  private long errorTimeOut;
-  private int retryCounter = 0;
-  private long cumulativeSleepTime = 0;
+  public long errorTimeOut;
+  public int retryCounter = 0;
+  public long cumulativeSleepTime = 0;
   private Future<HTTPResponse> call;
 
   private static final Logger LOG = LoggerFactory.getLogger(GaePendingResult.class.getName());
-  private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
+  public static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
    * @param request HTTP request to execute.
@@ -250,7 +250,8 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     return this.await();
   }
 
-  private boolean shouldRetry(HTTPResponse response) {
+  @Override
+private boolean shouldRetry(HTTPResponse response) {
     return RETRY_ERROR_CODES.contains(response.getResponseCode())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);

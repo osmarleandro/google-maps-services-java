@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.maps.errors.ApiException;
 import java.io.IOException;
 
@@ -57,7 +58,9 @@ public interface PendingResult<T> {
   /** Attempts to cancel the request. */
   void cancel();
 
-  /**
+  boolean shouldRetry(HTTPResponse response);
+
+/**
    * The callback interface the API client code needs to implement to handle API results.
    *
    * @param <T> The type of the result object.

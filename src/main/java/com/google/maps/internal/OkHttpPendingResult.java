@@ -15,6 +15,7 @@
 
 package com.google.maps.internal;
 
+import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -338,4 +339,10 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
+
+@Override
+public boolean shouldRetry(HTTPResponse response) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }
