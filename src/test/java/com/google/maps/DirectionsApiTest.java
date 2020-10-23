@@ -368,7 +368,7 @@ public class DirectionsApiTest {
               .origin("48 Pirrama Road, Pyrmont NSW 2009")
               .destination("182 Church St, Parramatta NSW 2150")
               .mode(TravelMode.DRIVING)
-              .departureTime(Instant.now().plus(Duration.ofMinutes(2)))
+              .departureTime_RENAMED(Instant.now().plus(Duration.ofMinutes(2)))
               .trafficModel(TrafficModel.PESSIMISTIC)
               .await();
 
@@ -518,7 +518,7 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)
-              .departureTime(Instant.now())
+              .departureTime_RENAMED(Instant.now())
               .optimizeWaypoints(true)
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .await();
@@ -552,7 +552,7 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)
-              .departureTime(Instant.now())
+              .departureTime_RENAMED(Instant.now())
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .optimizeWaypoints(true)
               .await();

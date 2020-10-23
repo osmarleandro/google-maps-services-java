@@ -181,7 +181,7 @@ public class DirectionsApiRequest
    * @param time The departure time to calculate directions for.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest departureTime(Instant time) {
+  public DirectionsApiRequest departureTime_RENAMED(Instant time) {
     return param("departure_time", Long.toString(time.toEpochMilli() / 1000L));
   }
 
