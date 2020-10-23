@@ -453,7 +453,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testTextSearchRequest() throws Exception {
+  public void testTextSearchRequest_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.textSearchQuery(sc.context, "Google Sydney")
