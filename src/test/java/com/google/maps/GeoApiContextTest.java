@@ -348,7 +348,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testExperienceIdSample() {
+  public void testExperienceIdSample_RENAMED() {
     // [START maps_experience_id]
     final String experienceId = UUID.randomUUID().toString();
 
