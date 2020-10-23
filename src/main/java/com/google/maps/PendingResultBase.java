@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Specifies the text string on which to search, for example: {@code "restaurant"}.
+   *
+   * @param query The query string to search for.
+   * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+public TextSearchRequest query(String query) {
+    return param("query", query);
+  }
 }
