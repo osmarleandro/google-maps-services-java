@@ -32,7 +32,7 @@ import org.junit.experimental.categories.Category;
 
 /** Test case for {@link UrlSigner}. */
 @Category(SmallTests.class)
-public class UrlSignerTest {
+public class UrlSignerTest_RENAMED {
 
   // From http://en.wikipedia.org/wiki/Hash-based_message_authentication_code
   // HMAC_SHA1("key", "The quick brown fox jumps over the lazy dog")
