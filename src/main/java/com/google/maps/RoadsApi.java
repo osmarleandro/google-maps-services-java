@@ -23,7 +23,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.SnappedPoint;
+import com.google.maps.model.SnappedPoint_RENAMED;
 import com.google.maps.model.SnappedSpeedLimitResponse;
 import com.google.maps.model.SpeedLimit;
 
@@ -65,7 +65,7 @@ public class RoadsApi {
    * @param path The collected GPS points as a path.
    * @return Returns the snapped points as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedPoint[]> snapToRoads(GeoApiContext context, LatLng... path) {
+  public static PendingResult<SnappedPoint_RENAMED[]> snapToRoads(GeoApiContext context, LatLng... path) {
     return context.get(SNAP_TO_ROADS_API_CONFIG, RoadsResponse.class, "path", join('|', path));
   }
 
@@ -83,7 +83,7 @@ public class RoadsApi {
    * @param path The path to be snapped.
    * @return Returns the snapped points as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedPoint[]> snapToRoads(
+  public static PendingResult<SnappedPoint_RENAMED[]> snapToRoads(
       GeoApiContext context, boolean interpolate, LatLng... path) {
     return context.get(
         SNAP_TO_ROADS_API_CONFIG,
@@ -158,13 +158,13 @@ public class RoadsApi {
    * @param points The sequence of points to be aligned to nearest roads
    * @return Returns the snapped points as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedPoint[]> nearestRoads(
+  public static PendingResult<SnappedPoint_RENAMED[]> nearestRoads(
       GeoApiContext context, LatLng... points) {
     return context.get(NEAREST_ROADS_API_CONFIG, RoadsResponse.class, "points", join('|', points));
   }
 
-  public static class RoadsResponse implements ApiResponse<SnappedPoint[]> {
-    private SnappedPoint[] snappedPoints;
+  public static class RoadsResponse implements ApiResponse<SnappedPoint_RENAMED[]> {
+    private SnappedPoint_RENAMED[] snappedPoints;
     private ApiError error;
 
     @Override
@@ -173,7 +173,7 @@ public class RoadsApi {
     }
 
     @Override
-    public SnappedPoint[] getResult() {
+    public SnappedPoint_RENAMED[] getResult() {
       return snappedPoints;
     }
 
@@ -204,7 +204,7 @@ public class RoadsApi {
   }
 
   public static class CombinedResponse implements ApiResponse<SnappedSpeedLimitResponse> {
-    private SnappedPoint[] snappedPoints;
+    private SnappedPoint_RENAMED[] snappedPoints;
     private SpeedLimit[] speedLimits;
     private ApiError error;
 
