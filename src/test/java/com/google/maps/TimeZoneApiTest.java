@@ -20,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import com.google.maps.errors.ZeroResultsException;
+import com.google.maps.errors.ZeroResultsException_RENAMED;
 import com.google.maps.model.LatLng;
 import java.util.Date;
 import java.util.TimeZone;
@@ -59,7 +59,7 @@ public class TimeZoneApiTest {
     }
   }
 
-  @Test(expected = ZeroResultsException.class)
+  @Test(expected = ZeroResultsException_RENAMED.class)
   public void testNoResult() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {

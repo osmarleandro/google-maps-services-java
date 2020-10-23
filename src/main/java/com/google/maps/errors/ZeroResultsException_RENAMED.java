@@ -22,11 +22,11 @@ package com.google.maps.errors;
  * For time zone data, it means that no time zone information could be found for the specified
  * position or time. Confirm that the request is for a location on land, and not over water.
  */
-public class ZeroResultsException extends ApiException {
+public class ZeroResultsException_RENAMED extends ApiException {
 
   private static final long serialVersionUID = -9096790004183184907L;
 
-  public ZeroResultsException(String errorMessage) {
+  public ZeroResultsException_RENAMED(String errorMessage) {
     super(errorMessage);
   }
 }

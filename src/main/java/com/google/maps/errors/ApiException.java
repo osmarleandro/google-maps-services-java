@@ -59,7 +59,7 @@ public class ApiException extends Exception {
     } else if ("UNKNOWN_ERROR".equals(status)) {
       return new UnknownErrorException(errorMessage);
     } else if ("ZERO_RESULTS".equals(status)) {
-      return new ZeroResultsException(errorMessage);
+      return new ZeroResultsException_RENAMED(errorMessage);
     }
 
     // New-style Geo API error formats
