@@ -148,7 +148,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsLookupGoogleSydney() throws Exception {
+  public void testPlaceDetailsLookupGoogleSydney_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
       PlaceDetails placeDetails =
           PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
