@@ -316,19 +316,6 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Acquires a permit from this {@link RateLimiter} if it can be acquired immediately without
-   * delay.
-   *
-   * <p>This method is equivalent to {@code tryAcquire(1)}.
-   *
-   * @return {@code true} if the permit was acquired, {@code false} otherwise
-   * @since 14.0
-   */
-  public boolean tryAcquire() {
-    return tryAcquire(1, 0, MICROSECONDS);
-  }
-
-  /**
    * Acquires the given number of permits from this {@code RateLimiter} if it can be obtained
    * without exceeding the specified {@code timeout}, or returns {@code false} immediately (without
    * waiting) if the permits would not have been granted before the timeout expired.
@@ -402,7 +389,21 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    /**
+	   * Acquires a permit from this {@link RateLimiter} if it can be acquired immediately without
+	   * delay.
+	   *
+	   * <p>This method is equivalent to {@code tryAcquire(1)}.
+	   *
+	   * @return {@code true} if the permit was acquired, {@code false} otherwise
+	   * @param rateLimiter TODO
+	 * @since 14.0
+	   */
+	  public boolean tryAcquire(RateLimiter rateLimiter) {
+	    return rateLimiter.tryAcquire(1, 0, MICROSECONDS);
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
