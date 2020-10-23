@@ -67,12 +67,12 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
-  private final RequestMetrics metrics;
+  public final RequestMetrics metrics;
 
   private long errorTimeOut;
   private int retryCounter = 0;
   private long cumulativeSleepTime = 0;
-  private Future<HTTPResponse> call;
+  public Future<HTTPResponse> call;
 
   private static final Logger LOG = LoggerFactory.getLogger(GaePendingResult.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
@@ -145,7 +145,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponse(GaePendingResult<T, R> request, HTTPResponse response)
+public T parseResponse(GaePendingResult<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
     try {
       T result = parseResponseInternal(request, response);
