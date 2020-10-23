@@ -23,7 +23,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.internal.StringJoin;
-import com.google.maps.internal.UrlSigner;
+import com.google.maps.internal.UrlSigner_RENAMED;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
@@ -65,7 +65,7 @@ public class GeoApiContext {
   private final long errorTimeout;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
-  private final UrlSigner urlSigner;
+  private final UrlSigner_RENAMED urlSigner;
   private String experienceIdHeaderValue;
   private final RequestMetricsReporter requestMetricsReporter;
 
@@ -79,7 +79,7 @@ public class GeoApiContext {
       long errorTimeout,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       Integer maxRetries,
-      UrlSigner urlSigner,
+      UrlSigner_RENAMED urlSigner,
       RequestMetricsReporter requestMetricsReporter,
       String... experienceIdHeaderValue) {
     this.requestHandler = requestHandler;
@@ -361,7 +361,7 @@ public class GeoApiContext {
     private long errorTimeout = DEFAULT_BACKOFF_TIMEOUT_MILLIS;
     private ExceptionsAllowedToRetry exceptionsAllowedToRetry = new ExceptionsAllowedToRetry();
     private Integer maxRetries;
-    private UrlSigner urlSigner;
+    private UrlSigner_RENAMED urlSigner;
     private RequestMetricsReporter requestMetricsReporter = new NoOpRequestMetricsReporter();
     private String[] experienceIdHeaderValue;
 
@@ -436,7 +436,7 @@ public class GeoApiContext {
     public Builder enterpriseCredentials(String clientId, String cryptographicSecret) {
       this.clientId = clientId;
       try {
-        this.urlSigner = new UrlSigner(cryptographicSecret);
+        this.urlSigner = new UrlSigner_RENAMED(cryptographicSecret);
       } catch (NoSuchAlgorithmException | InvalidKeyException e) {
         throw new IllegalStateException(e);
       }

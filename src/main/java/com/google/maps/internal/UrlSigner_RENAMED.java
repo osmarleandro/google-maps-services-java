@@ -30,11 +30,11 @@ import okio.ByteString;
  * href="https://developers.google.com/maps/documentation/directions/get-api-key#client-id">Using a
  * client ID</a> for more detail on this protocol.
  */
-public class UrlSigner {
+public class UrlSigner_RENAMED {
   private static final String ALGORITHM_HMAC_SHA1 = "HmacSHA1";
   private final Mac mac;
 
-  public UrlSigner(final String keyString) throws NoSuchAlgorithmException, InvalidKeyException {
+  public UrlSigner_RENAMED(final String keyString) throws NoSuchAlgorithmException, InvalidKeyException {
     // Convert from URL-safe base64 to regular base64.
     String base64 = keyString.replace('-', '+').replace('_', '/');
 

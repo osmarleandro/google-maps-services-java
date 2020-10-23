@@ -30,7 +30,7 @@ import okio.ByteString;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-/** Test case for {@link UrlSigner}. */
+/** Test case for {@link UrlSigner_RENAMED}. */
 @Category(SmallTests.class)
 public class UrlSignerTest {
 
@@ -48,7 +48,7 @@ public class UrlSignerTest {
 
   @Test
   public void testUrlSigner() throws Exception {
-    UrlSigner urlSigner = new UrlSigner(SIGNING_KEY);
+    UrlSigner_RENAMED urlSigner = new UrlSigner_RENAMED(SIGNING_KEY);
     assertEquals(SIGNATURE, urlSigner.getSignature(MESSAGE));
   }
 
@@ -57,7 +57,7 @@ public class UrlSignerTest {
     int attempts = 100;
     ExecutorService executor = Executors.newFixedThreadPool(attempts);
 
-    final UrlSigner urlSigner = new UrlSigner(SIGNING_KEY);
+    final UrlSigner_RENAMED urlSigner = new UrlSigner_RENAMED(SIGNING_KEY);
     final List<Boolean> fails = Collections.synchronizedList(new ArrayList<Boolean>());
 
     for (int i = 0; i < attempts; i++) {
