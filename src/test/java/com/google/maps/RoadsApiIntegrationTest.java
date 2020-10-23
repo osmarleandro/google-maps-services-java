@@ -150,7 +150,7 @@ public class RoadsApiIntegrationTest {
   }
 
   @Test
-  public void testSnappedSpeedLimitRequest() throws Exception {
+  public void testSnappedSpeedLimitRequest_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(snappedSpeedLimitResponse)) {
       LatLng[] path =
           new LatLng[] {
