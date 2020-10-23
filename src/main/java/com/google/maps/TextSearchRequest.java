@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -179,7 +181,13 @@ public class TextSearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  protected TextSearchRequest param(String key, String val) {
+    // Enforce singleton parameter semantics for most API surfaces
+    params.put(key, new ArrayList<String>());
+    return paramAddToList(key, val);
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

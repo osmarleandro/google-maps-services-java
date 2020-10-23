@@ -37,7 +37,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   private final GeoApiContext context;
   private final ApiConfig config;
-  private HashMap<String, List<String>> params = new HashMap<>();
+  protected HashMap<String, List<String>> params = new HashMap<>();
   private PendingResult<T> delegate;
   private Class<? extends R> responseClass;
 
@@ -94,12 +94,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     @SuppressWarnings("unchecked")
     A result = (A) this;
     return result;
-  }
-
-  protected A param(String key, String val) {
-    // Enforce singleton parameter semantics for most API surfaces
-    params.put(key, new ArrayList<String>());
-    return paramAddToList(key, val);
   }
 
   protected A param(String key, int val) {

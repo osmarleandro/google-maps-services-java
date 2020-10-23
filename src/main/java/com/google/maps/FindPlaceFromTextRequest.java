@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -106,7 +108,13 @@ public class FindPlaceFromTextRequest
     }
   }
 
-  public static class Response implements ApiResponse<FindPlaceFromText> {
+  protected FindPlaceFromTextRequest param(String key, String val) {
+    // Enforce singleton parameter semantics for most API surfaces
+    params.put(key, new ArrayList<String>());
+    return paramAddToList(key, val);
+  }
+
+public static class Response implements ApiResponse<FindPlaceFromText> {
 
     public String status;
     public PlacesSearchResult candidates[];

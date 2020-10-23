@@ -467,4 +467,10 @@ public class StaticMapsRequest
   public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
   }
+
+protected StaticMapsRequest param(String key, String val) {
+    // Enforce singleton parameter semantics for most API surfaces
+    params.put(key, new ArrayList<String>());
+    return paramAddToList(key, val);
+  }
 }
