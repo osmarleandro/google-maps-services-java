@@ -39,7 +39,7 @@ public class Photo implements Serializable {
   public String[] htmlAttributions;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     String str = String.format("[Photo %s (%d x %d)", photoReference, width, height);
     if (htmlAttributions != null && htmlAttributions.length > 0) {
       str = str + " " + htmlAttributions.length + " attributions";
