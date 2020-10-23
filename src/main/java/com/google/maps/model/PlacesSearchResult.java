@@ -81,7 +81,7 @@ public class PlacesSearchResult implements Serializable {
   public String businessStatus;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[PlacesSearchResult: ");
     sb.append("\"").append(name).append("\"");
     sb.append(", \"").append(formattedAddress).append("\"");
