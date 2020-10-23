@@ -428,7 +428,7 @@ public class DirectionsApiTest {
   }
 
   @Test
-  public void testTravelModeWalking() throws Exception {
+  public void testTravelModeWalking_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
