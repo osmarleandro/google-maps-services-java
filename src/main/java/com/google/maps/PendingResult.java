@@ -16,6 +16,10 @@
 package com.google.maps;
 
 import com.google.maps.errors.ApiException;
+import com.google.maps.internal.OkHttpPendingResult;
+
+import okhttp3.Call;
+
 import java.io.IOException;
 
 /**
@@ -77,5 +81,13 @@ public interface PendingResult<T> {
      * @param e The exception describing the failure.
      */
     void onFailure(Throwable e);
+
+	default void onFailure(OkHttpPendingResult okHttpPendingResult, Call call, IOException ioe) {
+	    okHttpPendingResult.metrics.endNetwork();
+	    if (okHttpPendingResult.callback != null) {
+	      okHttpPendingResult.metrics.endRequest(ioe, 0, okHttpPendingResult.retryCounter);
+	      okHttpPendingResult.callback.onFailure(ioe);
+	    }
+	  }
   }
 }
