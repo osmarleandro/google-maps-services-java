@@ -787,9 +787,9 @@ public class GeocodingApiTest {
                 + "}\n")) {
       LatLng latlng = new LatLng(40.714224, -73.961452);
       GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .latlng(latlng)
-              .locationType(LocationType.ROOFTOP)
+          GeocodingApi.newRequest(sc.context).latlng(latlng).API_CONFIG
+              .locationType(GeocodingApi.newRequest(sc.context)
+			      .latlng(latlng), LocationType.ROOFTOP)
               .resultType(AddressType.STREET_ADDRESS)
               .await();
 
