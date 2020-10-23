@@ -77,7 +77,7 @@ public class GeocodingResult implements Serializable {
   public PlusCode plusCode;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[GeocodingResult");
     if (partialMatch) {
       sb.append(" PARTIAL MATCH");
