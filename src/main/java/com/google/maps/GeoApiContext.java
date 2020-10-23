@@ -261,7 +261,7 @@ public class GeoApiContext {
   <T, R extends ApiResponse<T>> PendingResult<T> post(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
 
-    checkContext(config.supportsClientId);
+    checkContext_RENAMED(config.supportsClientId);
 
     StringBuilder url = new StringBuilder(config.path);
     if (config.supportsClientId && clientId != null) {
@@ -302,7 +302,7 @@ public class GeoApiContext {
       boolean canUseClientId,
       String encodedPath,
       RequestMetrics metrics) {
-    checkContext(canUseClientId);
+    checkContext_RENAMED(canUseClientId);
     if (!encodedPath.startsWith("&")) {
       throw new IllegalArgumentException("encodedPath must start with &");
     }
@@ -337,7 +337,7 @@ public class GeoApiContext {
         metrics);
   }
 
-  private void checkContext(boolean canUseClientId) {
+  private void checkContext_RENAMED(boolean canUseClientId) {
     if (urlSigner == null && apiKey == null) {
       throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
     } else if (!canUseClientId && apiKey == null) {
