@@ -46,7 +46,7 @@ public class DistanceMatrixApiTest {
   @Test
   public void testLatLngOriginDestinations() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      DistanceMatrixApi.newRequest(sc.context)
+      DistanceMatrixApi.newRequest_RENAMED(sc.context)
           .origins(new LatLng(-31.9522, 115.8589), new LatLng(-37.8136, 144.9631))
           .destinations(new LatLng(-25.344677, 131.036692), new LatLng(-13.092297, 132.394057))
           .awaitIgnoreError();
@@ -126,7 +126,7 @@ public class DistanceMatrixApiTest {
             "The Pinnacles, Australia"
           };
 
-      DistanceMatrixApi.newRequest(sc.context)
+      DistanceMatrixApi.newRequest_RENAMED(sc.context)
           .origins(origins)
           .destinations(destinations)
           .mode(TravelMode.DRIVING)
@@ -159,7 +159,7 @@ public class DistanceMatrixApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       String[] origins = new String[] {"Vancouver BC", "Seattle"};
       String[] destinations = new String[] {"San Francisco", "Victoria BC"};
-      DistanceMatrixApi.newRequest(sc.context)
+      DistanceMatrixApi.newRequest_RENAMED(sc.context)
           .origins(origins)
           .destinations(destinations)
           .mode(TravelMode.BICYCLING)
@@ -181,7 +181,7 @@ public class DistanceMatrixApiTest {
           new String[] {"Fisherman's Wharf, San Francisco", "Union Square, San Francisco"};
       String[] destinations =
           new String[] {"Mikkeller Bar, San Francisco", "Moscone Center, San Francisco"};
-      DistanceMatrixApi.newRequest(sc.context)
+      DistanceMatrixApi.newRequest_RENAMED(sc.context)
           .origins(origins)
           .destinations(destinations)
           .mode(TravelMode.TRANSIT)
@@ -198,7 +198,7 @@ public class DistanceMatrixApiTest {
   public void testDurationInTrafficWithTrafficModel() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
-      DistanceMatrixApi.newRequest(sc.context)
+      DistanceMatrixApi.newRequest_RENAMED(sc.context)
           .origins("Fisherman's Wharf, San Francisco")
           .destinations("San Francisco International Airport, San Francisco, CA")
           .mode(TravelMode.DRIVING)
