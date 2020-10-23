@@ -534,7 +534,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testTextSearchResponse() throws Exception {
+  public void testTextSearchResponse_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(textSearchResponseBody)) {
       PlacesSearchResponse results = PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
 
