@@ -132,9 +132,9 @@ public class PlacesApi {
    * @param sessionToken The Session Token for this request.
    * @return Returns a PlaceDetailsRequest that you can configure and execute.
    */
-  public static PlaceDetailsRequest placeDetails(
+  public static PlaceDetailsRequest_RENAMED placeDetails(
       GeoApiContext context, String placeId, PlaceAutocompleteRequest.SessionToken sessionToken) {
-    PlaceDetailsRequest request = new PlaceDetailsRequest(context);
+    PlaceDetailsRequest_RENAMED request = new PlaceDetailsRequest_RENAMED(context);
     request.placeId(placeId);
     request.sessionToken(sessionToken);
     return request;
@@ -152,8 +152,8 @@ public class PlacesApi {
    * @param placeId The PlaceID to request details on.
    * @return Returns a PlaceDetailsRequest that you can configure and execute.
    */
-  public static PlaceDetailsRequest placeDetails(GeoApiContext context, String placeId) {
-    PlaceDetailsRequest request = new PlaceDetailsRequest(context);
+  public static PlaceDetailsRequest_RENAMED placeDetails(GeoApiContext context, String placeId) {
+    PlaceDetailsRequest_RENAMED request = new PlaceDetailsRequest_RENAMED(context);
     request.placeId(placeId);
     return request;
   }

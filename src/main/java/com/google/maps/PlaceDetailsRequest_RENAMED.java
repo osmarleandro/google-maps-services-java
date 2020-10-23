@@ -27,14 +27,14 @@ import com.google.maps.model.PlaceDetails;
  * A <a href="https://developers.google.com/places/web-service/details#PlaceDetailsRequests">Place
  * Details</a> request.
  */
-public class PlaceDetailsRequest
-    extends PendingResultBase<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
+public class PlaceDetailsRequest_RENAMED
+    extends PendingResultBase<PlaceDetails, PlaceDetailsRequest_RENAMED, PlaceDetailsRequest_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/details/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-  public PlaceDetailsRequest(GeoApiContext context) {
+  public PlaceDetailsRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);
   }
 
@@ -44,7 +44,7 @@ public class PlaceDetailsRequest
    * @param placeId The Place ID to retrieve details for.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest placeId(String placeId) {
+  public PlaceDetailsRequest_RENAMED placeId(String placeId) {
     return param("placeid", placeId);
   }
 
@@ -55,7 +55,7 @@ public class PlaceDetailsRequest
    * @param sessionToken Session Token is the session identifier.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest sessionToken(PlaceAutocompleteRequest.SessionToken sessionToken) {
+  public PlaceDetailsRequest_RENAMED sessionToken(PlaceAutocompleteRequest.SessionToken sessionToken) {
     return param("sessiontoken", sessionToken);
   }
 
@@ -67,7 +67,7 @@ public class PlaceDetailsRequest
    * @param region The region code.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest region(String region) {
+  public PlaceDetailsRequest_RENAMED region(String region) {
     return param("region", region);
   }
 
@@ -77,7 +77,7 @@ public class PlaceDetailsRequest
    * @param fields The Field Masks of the fields to return.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest fields(FieldMask... fields) {
+  public PlaceDetailsRequest_RENAMED fields(FieldMask... fields) {
     return param("fields", StringJoin.join(',', fields));
   }
 

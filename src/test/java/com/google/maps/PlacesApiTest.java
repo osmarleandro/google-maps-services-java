@@ -27,7 +27,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasIP;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
-import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.PlaceDetailsRequest_RENAMED.FieldMask;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -153,9 +153,9 @@ public class PlacesApiTest {
       PlaceDetails placeDetails =
           PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
               .fields(
-                  PlaceDetailsRequest.FieldMask.PLACE_ID,
-                  PlaceDetailsRequest.FieldMask.NAME,
-                  PlaceDetailsRequest.FieldMask.TYPES)
+                  PlaceDetailsRequest_RENAMED.FieldMask.PLACE_ID,
+                  PlaceDetailsRequest_RENAMED.FieldMask.NAME,
+                  PlaceDetailsRequest_RENAMED.FieldMask.TYPES)
               .await();
 
       sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
