@@ -345,7 +345,7 @@ public abstract class RateLimiter {
     long microsToWait;
     synchronized (mutex()) {
       long nowMicros = stopwatch.readMicros();
-      if (!canAcquire(nowMicros, timeoutMicros)) {
+      if (!canAcquire_RENAMED(nowMicros, timeoutMicros)) {
         return false;
       } else {
         microsToWait = reserveAndGetWaitLength(permits, nowMicros);
@@ -355,7 +355,7 @@ public abstract class RateLimiter {
     return true;
   }
 
-  private boolean canAcquire(long nowMicros, long timeoutMicros) {
+  private boolean canAcquire_RENAMED(long nowMicros, long timeoutMicros) {
     return queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
   }
 
