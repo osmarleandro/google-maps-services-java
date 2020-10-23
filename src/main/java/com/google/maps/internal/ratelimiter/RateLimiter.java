@@ -238,11 +238,11 @@ public abstract class RateLimiter {
    */
   public final double getRate() {
     synchronized (mutex()) {
-      return doGetRate();
+      return doGetRate_RENAMED();
     }
   }
 
-  abstract double doGetRate();
+  abstract double doGetRate_RENAMED();
 
   /**
    * Acquires a single permit from this {@code RateLimiter}, blocking until the request can be
