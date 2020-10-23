@@ -39,7 +39,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.OpeningHours.Period;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 import com.google.maps.model.Photo;
-import com.google.maps.model.PlaceAutocompleteType;
+import com.google.maps.model.PlaceAutocompleteType_RENAMED;
 import com.google.maps.model.PlaceDetails;
 import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
 import com.google.maps.model.PlaceType;
@@ -694,7 +694,7 @@ public class PlacesApiTest {
           .origin(location)
           .location(location)
           .radius(5000)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
+          .types(PlaceAutocompleteType_RENAMED.ESTABLISHMENT)
           .components(ComponentFilter.country("AU"))
           .await();
 
@@ -703,7 +703,7 @@ public class PlacesApiTest {
       sc.assertParamValue(location.toUrlValue(), "origin");
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(PlaceAutocompleteType.ESTABLISHMENT.toString(), "types");
+      sc.assertParamValue(PlaceAutocompleteType_RENAMED.ESTABLISHMENT.toString(), "types");
       sc.assertParamValue(ComponentFilter.country("AU").toString(), "components");
       sc.assertParamValue(session.toUrlValue(), "sessiontoken");
     }
@@ -859,7 +859,7 @@ public class PlacesApiTest {
       AutocompletePrediction[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "po", session)
               .components(ComponentFilter.country("nz"))
-              .types(PlaceAutocompleteType.REGIONS)
+              .types(PlaceAutocompleteType_RENAMED.REGIONS)
               .await();
 
       sc.assertParamValue("po", "input");
@@ -883,7 +883,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
       PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
+          .types(PlaceAutocompleteType_RENAMED.ESTABLISHMENT)
           .location(new LatLng(37.76999, -122.44696))
           .radius(500)
           .strictBounds(true)

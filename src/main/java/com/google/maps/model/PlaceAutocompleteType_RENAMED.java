@@ -21,14 +21,14 @@ import com.google.maps.internal.StringJoin;
  * Used by the Places API to restrict the autocomplete results to places matching the specified
  * type.
  */
-public enum PlaceAutocompleteType implements StringJoin.UrlValue {
+public enum PlaceAutocompleteType_RENAMED implements StringJoin.UrlValue {
   GEOCODE("geocode"),
   ADDRESS("address"),
   ESTABLISHMENT("establishment"),
   REGIONS("(regions)"),
   CITIES("(cities)");
 
-  PlaceAutocompleteType(final String placeType) {
+  PlaceAutocompleteType_RENAMED(final String placeType) {
     this.placeType = placeType;
   }
 
