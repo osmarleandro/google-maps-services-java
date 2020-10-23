@@ -388,8 +388,8 @@ public abstract class RateLimiter {
 
   @Override
   public String toString() {
-    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
-  }
+	return stopwatch.toString(this);
+}
 
   abstract static class SleepingStopwatch {
     /** Constructor for use by subclasses. */
@@ -402,7 +402,11 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    public String toString(RateLimiter rateLimiter) {
+	    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", rateLimiter.getRate());
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
