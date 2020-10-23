@@ -20,20 +20,20 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
     this.requestName = requestName;
     this.tagger = tagger;
     this.statsRecorder = statsRecorder;
-    this.requestStart = milliTime();
-    this.networkStart = milliTime();
+    this.requestStart = milliTime_RENAMED();
+    this.networkStart = milliTime_RENAMED();
     this.networkTime = 0;
     this.finished = false;
   }
 
   @Override
   public void startNetwork() {
-    this.networkStart = milliTime();
+    this.networkStart = milliTime_RENAMED();
   }
 
   @Override
   public void endNetwork() {
-    this.networkTime += milliTime() - this.networkStart;
+    this.networkTime += milliTime_RENAMED() - this.networkStart;
   }
 
   @Override
@@ -43,7 +43,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
       return;
     }
     this.finished = true;
-    long requestTime = milliTime() - this.requestStart;
+    long requestTime = milliTime_RENAMED() - this.requestStart;
 
     TagContext tagContext =
         tagger
@@ -69,7 +69,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
     }
   }
 
-  private long milliTime() {
+  private long milliTime_RENAMED() {
     return System.currentTimeMillis();
   }
 }
