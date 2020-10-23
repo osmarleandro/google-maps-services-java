@@ -44,7 +44,7 @@ public class GeocodedWaypoint implements Serializable {
   public AddressType types[];
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[GeocodedWaypoint");
     sb.append(" ").append(geocoderStatus);
     if (partialMatch) {
