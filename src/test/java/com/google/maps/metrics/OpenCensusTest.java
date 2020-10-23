@@ -32,7 +32,7 @@ public class OpenCensusTest {
   private GeoApiContext context;
 
   @Before
-  public void Setup() {
+  public void Setup_RENAMED() {
     server = new MockWebServer();
     context =
         new GeoApiContext.Builder()
