@@ -621,7 +621,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testNearbySearchRequest() throws Exception {
+  public void testNearbySearchRequest_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
