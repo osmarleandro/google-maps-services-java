@@ -89,8 +89,8 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Stopwatch {
   private final Ticker ticker;
-  private boolean isRunning;
-  private long elapsedNanos;
+  boolean isRunning;
+  long elapsedNanos;
   private long startTick;
 
   /**
@@ -156,17 +156,6 @@ public final class Stopwatch {
     checkState(isRunning, "This stopwatch is already stopped.");
     isRunning = false;
     elapsedNanos += tick - startTick;
-    return this;
-  }
-
-  /**
-   * Sets the elapsed time for this stopwatch to zero, and places it in a stopped state.
-   *
-   * @return this {@code Stopwatch} instance
-   */
-  public Stopwatch reset() {
-    elapsedNanos = 0;
-    isRunning = false;
     return this;
   }
 

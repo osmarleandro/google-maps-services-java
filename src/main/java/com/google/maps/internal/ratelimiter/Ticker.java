@@ -44,7 +44,19 @@ public abstract class Ticker {
   /** Returns the number of nanoseconds elapsed since this ticker's fixed point of reference. */
   public abstract long read();
 
-  /** A ticker that reads the current time using {@link System#nanoTime}. */
+  /**
+   * Sets the elapsed time for this stopwatch to zero, and places it in a stopped state.
+   *
+   * @param stopwatch TODO
+ * @return this {@code Stopwatch} instance
+   */
+  public Stopwatch reset(Stopwatch stopwatch) {
+    stopwatch.elapsedNanos = 0;
+    stopwatch.isRunning = false;
+    return stopwatch;
+  }
+
+/** A ticker that reads the current time using {@link System#nanoTime}. */
   public static Ticker systemTicker() {
     return SYSTEM_TICKER;
   }
