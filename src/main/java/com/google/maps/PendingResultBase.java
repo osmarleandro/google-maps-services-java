@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.TrafficModel;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the traffic model to use when requesting future driving directions. Once set, you
+   * must specify a departure time.
+   *
+   * @param trafficModel The traffic model for estimating driving time.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
+    return param("traffic_model", trafficModel);
   }
 }
