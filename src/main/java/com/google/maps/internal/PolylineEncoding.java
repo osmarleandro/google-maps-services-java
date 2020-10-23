@@ -65,7 +65,7 @@ public class PolylineEncoding {
   }
 
   /** Encodes a sequence of LatLngs into an encoded path string. */
-  public static String encode(final List<LatLng> path) {
+  public static String encode_RENAMED(final List<LatLng> path) {
     long lastLat = 0;
     long lastLng = 0;
 
@@ -98,6 +98,6 @@ public class PolylineEncoding {
 
   /** Encodes an array of LatLngs into an encoded path string. */
   public static String encode(LatLng[] path) {
-    return encode(Arrays.asList(path));
+    return encode_RENAMED(Arrays.asList(path));
   }
 }
