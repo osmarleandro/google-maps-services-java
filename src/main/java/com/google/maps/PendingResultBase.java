@@ -15,10 +15,14 @@
 
 package com.google.maps;
 
+import com.google.maps.DirectionsApiRequest.Waypoint;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +172,34 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies a list of waypoints. Waypoints alter a route by routing it through the specified
+   * location(s). A waypoint is specified as either a latitude/longitude coordinate or as an address
+   * which will be geocoded. Waypoints are only supported for driving, walking and bicycling
+   * directions.
+   *
+   * <p>For more information on waypoints, see <a
+   * href="https://developers.google.com/maps/documentation/directions/intro#Waypoints">Using
+   * Waypoints in Routes</a>.
+   *
+   * @param waypoints The waypoints to add to this directions request.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest waypoints(Waypoint... waypoints) {
+    if (waypoints == null || waypoints.length == 0) {
+      this.waypoints = new Waypoint[0];
+      param("waypoints", "");
+      return this;
+    } else {
+      this.waypoints = waypoints;
+      String[] waypointStrs = new String[waypoints.length];
+      for (int i = 0; i < waypoints.length; i++) {
+        waypointStrs[i] = waypoints[i].toString();
+      }
+      param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+      return this;
+    }
   }
 }

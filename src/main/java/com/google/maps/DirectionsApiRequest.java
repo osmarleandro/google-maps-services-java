@@ -197,35 +197,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * Specifies a list of waypoints. Waypoints alter a route by routing it through the specified
-   * location(s). A waypoint is specified as either a latitude/longitude coordinate or as an address
-   * which will be geocoded. Waypoints are only supported for driving, walking and bicycling
-   * directions.
-   *
-   * <p>For more information on waypoints, see <a
-   * href="https://developers.google.com/maps/documentation/directions/intro#Waypoints">Using
-   * Waypoints in Routes</a>.
-   *
-   * @param waypoints The waypoints to add to this directions request.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest waypoints(Waypoint... waypoints) {
-    if (waypoints == null || waypoints.length == 0) {
-      this.waypoints = new Waypoint[0];
-      param("waypoints", "");
-      return this;
-    } else {
-      this.waypoints = waypoints;
-      String[] waypointStrs = new String[waypoints.length];
-      for (int i = 0; i < waypoints.length; i++) {
-        waypointStrs[i] = waypoints[i].toString();
-      }
-      param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
-      return this;
-    }
-  }
-
-  /**
    * Specifies the list of waypoints as String addresses. If any of the Strings are Place IDs, you
    * must prefix them with {@code place_id:}.
    *
