@@ -20,6 +20,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -168,5 +169,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the desired time of arrival for transit requests. You can specify either
+   * departure_time or arrival_time, but not both.
+   *
+   * @param arrivalTime The preferred arrival time.
+   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+public DistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
+    return param("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
   }
 }
