@@ -27,14 +27,14 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/geolocation/intro#wifi_access_point_object">
  * WiFi Access Point Objects</a> for more detail.
  */
-public class WifiAccessPoint implements Serializable {
+public class WifiAccessPoint_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  public WifiAccessPoint() {}
+  public WifiAccessPoint_RENAMED() {}
 
   // constructor only used by the builder class below
-  private WifiAccessPoint(
+  private WifiAccessPoint_RENAMED(
       String _macAddress,
       Integer _signalStrength,
       Integer _age,
@@ -90,8 +90,8 @@ public class WifiAccessPoint implements Serializable {
     private Integer _signalToNoiseRatio = null;
 
     // create the actual wifi access point
-    public WifiAccessPoint createWifiAccessPoint() {
-      return new WifiAccessPoint(_macAddress, _signalStrength, _age, _channel, _signalToNoiseRatio);
+    public WifiAccessPoint_RENAMED createWifiAccessPoint() {
+      return new WifiAccessPoint_RENAMED(_macAddress, _signalStrength, _age, _channel, _signalToNoiseRatio);
     }
 
     public WifiAccessPointBuilder MacAddress(String newMacAddress) {

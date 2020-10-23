@@ -47,7 +47,7 @@ public class GeolocationPayload implements Serializable {
       String _carrier,
       Boolean _considerIp,
       CellTower[] _cellTowers,
-      WifiAccessPoint[] _wifiAccessPoints) {
+      WifiAccessPoint_RENAMED[] _wifiAccessPoints) {
     homeMobileCountryCode = _homeMobileCountryCode;
     homeMobileNetworkCode = _homeMobileNetworkCode;
     radioType = _radioType;
@@ -76,8 +76,8 @@ public class GeolocationPayload implements Serializable {
   public Boolean considerIp = null;
   /** An array of cell tower objects. See {@link com.google.maps.model.CellTower}. */
   public CellTower[] cellTowers;
-  /** An array of WiFi access point objects. See {@link com.google.maps.model.WifiAccessPoint}. */
-  public WifiAccessPoint[] wifiAccessPoints;
+  /** An array of WiFi access point objects. See {@link com.google.maps.model.WifiAccessPoint_RENAMED}. */
+  public WifiAccessPoint_RENAMED[] wifiAccessPoints;
 
   @Override
   public String toString() {
@@ -115,14 +115,14 @@ public class GeolocationPayload implements Serializable {
     private Boolean _considerIp = null;
     private CellTower[] _cellTowers = null;
     private List<CellTower> _addedCellTowers = new ArrayList<>();
-    private WifiAccessPoint[] _wifiAccessPoints = null;
-    private List<WifiAccessPoint> _addedWifiAccessPoints = new ArrayList<>();
+    private WifiAccessPoint_RENAMED[] _wifiAccessPoints = null;
+    private List<WifiAccessPoint_RENAMED> _addedWifiAccessPoints = new ArrayList<>();
 
     public GeolocationPayload createGeolocationPayload() {
       // if wifi access points have been added individually...
       if (!_addedWifiAccessPoints.isEmpty()) {
         // ...use them as our list of access points by converting the list to an array
-        _wifiAccessPoints = _addedWifiAccessPoints.toArray(new WifiAccessPoint[0]);
+        _wifiAccessPoints = _addedWifiAccessPoints.toArray(new WifiAccessPoint_RENAMED[0]);
       } // otherwise we will simply use the array set outright
 
       // same logic as above for cell towers
@@ -175,12 +175,12 @@ public class GeolocationPayload implements Serializable {
       return this;
     }
 
-    public GeolocationPayloadBuilder WifiAccessPoints(WifiAccessPoint[] newWifiAccessPoints) {
+    public GeolocationPayloadBuilder WifiAccessPoints(WifiAccessPoint_RENAMED[] newWifiAccessPoints) {
       this._wifiAccessPoints = newWifiAccessPoints;
       return this;
     }
 
-    public GeolocationPayloadBuilder AddWifiAccessPoint(WifiAccessPoint newWifiAccessPoint) {
+    public GeolocationPayloadBuilder AddWifiAccessPoint(WifiAccessPoint_RENAMED newWifiAccessPoint) {
       this._addedWifiAccessPoints.add(newWifiAccessPoint);
       return this;
     }

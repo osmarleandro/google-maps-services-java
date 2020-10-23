@@ -24,7 +24,7 @@ import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
-import com.google.maps.model.WifiAccessPoint;
+import com.google.maps.model.WifiAccessPoint_RENAMED;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -71,7 +71,7 @@ public class GeolocationApiTest {
                       .SignalStrength(-95)
                       .createCellTower())
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("01:23:45:67:89:AB")
                       .SignalStrength(-65)
                       .SignalToNoiseRatio(8)
@@ -79,7 +79,7 @@ public class GeolocationApiTest {
                       .Age(0)
                       .createWifiAccessPoint())
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("01:23:45:67:89:AC")
                       .SignalStrength(4)
                       .SignalToNoiseRatio(4)
@@ -109,11 +109,11 @@ public class GeolocationApiTest {
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:6b:11")
                       .createWifiAccessPoint())
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:6b:10")
                       .createWifiAccessPoint())
               .CreatePayload()
@@ -139,13 +139,13 @@ public class GeolocationApiTest {
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("92:68:c3:f8:76:47")
                       .SignalStrength(-42)
                       .SignalToNoiseRatio(68)
                       .createWifiAccessPoint())
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:6b:11")
                       .SignalStrength(-55)
                       .SignalToNoiseRatio(55)
@@ -175,13 +175,13 @@ public class GeolocationApiTest {
   @Test
   public void testAlternateWifiSetterGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      WifiAccessPoint[] wifiAccessPoints = new WifiAccessPoint[2];
+      WifiAccessPoint_RENAMED[] wifiAccessPoints = new WifiAccessPoint_RENAMED[2];
       wifiAccessPoints[0] =
-          new WifiAccessPoint.WifiAccessPointBuilder()
+          new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
               .MacAddress("94:b4:0f:ff:6b:11")
               .createWifiAccessPoint();
       wifiAccessPoints[1] =
-          new WifiAccessPoint.WifiAccessPointBuilder()
+          new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
               .MacAddress("94:b4:0f:ff:6b:10")
               .createWifiAccessPoint();
 
@@ -218,7 +218,7 @@ public class GeolocationApiTest {
               .RadioType("gsm")
               .Carrier("Vodafone")
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:88:31")
                       .SignalStrength(-61)
                       .SignalToNoiseRatio(49)
@@ -226,7 +226,7 @@ public class GeolocationApiTest {
                       .Age(0)
                       .createWifiAccessPoint())
               .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
+                  new WifiAccessPoint_RENAMED.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:88:30")
                       .SignalStrength(-64)
                       .SignalToNoiseRatio(46)

@@ -20,7 +20,7 @@ import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationPayload.GeolocationPayloadBuilder;
 import com.google.maps.model.GeolocationResult;
-import com.google.maps.model.WifiAccessPoint;
+import com.google.maps.model.WifiAccessPoint_RENAMED;
 
 /** A request for the Geolocation API. */
 public class GeolocationApiRequest
@@ -79,12 +79,12 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest WifiAccessPoints(WifiAccessPoint[] newWifiAccessPoints) {
+  public GeolocationApiRequest WifiAccessPoints(WifiAccessPoint_RENAMED[] newWifiAccessPoints) {
     this.builder.WifiAccessPoints(newWifiAccessPoints);
     return this;
   }
 
-  public GeolocationApiRequest AddWifiAccessPoint(WifiAccessPoint newWifiAccessPoint) {
+  public GeolocationApiRequest AddWifiAccessPoint(WifiAccessPoint_RENAMED newWifiAccessPoint) {
     this.builder.AddWifiAccessPoint(newWifiAccessPoint);
     return this;
   }
