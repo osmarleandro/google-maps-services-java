@@ -30,9 +30,9 @@ public class DistanceMatrixElement implements Serializable {
   /**
    * The status of the request for this origin/destination pair.
    *
-   * <p>Will be one of {@link com.google.maps.model.DistanceMatrixElementStatus}.
+   * <p>Will be one of {@link com.google.maps.model.DistanceMatrixElementStatus_RENAMED}.
    */
-  public DistanceMatrixElementStatus status;
+  public DistanceMatrixElementStatus_RENAMED status;
 
   /** The total duration of this leg. */
   public Duration duration;

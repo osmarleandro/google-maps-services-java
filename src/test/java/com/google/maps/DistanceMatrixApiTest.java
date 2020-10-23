@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.model.DistanceMatrix;
-import com.google.maps.model.DistanceMatrixElementStatus;
+import com.google.maps.model.DistanceMatrixElementStatus_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
@@ -84,7 +84,7 @@ public class DistanceMatrixApiTest {
       // routable.
       assertEquals(8, matrix.rows.length);
       assertEquals(5, matrix.rows[0].elements.length);
-      assertEquals(DistanceMatrixElementStatus.OK, matrix.rows[0].elements[0].status);
+      assertEquals(DistanceMatrixElementStatus_RENAMED.OK, matrix.rows[0].elements[0].status);
 
       assertEquals("Perth WA, Australia", matrix.originAddresses[0]);
       assertEquals("Sydney NSW, Australia", matrix.originAddresses[1]);
