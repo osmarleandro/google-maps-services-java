@@ -68,7 +68,7 @@ import java.util.concurrent.TimeUnit;
  * already in the desired state.
  *
  * <p>When testing code that uses this class, use {@link #createUnstarted(Ticker)} or {@link
- * #createStarted(Ticker)} to supply a fake or mock ticker. This allows you to simulate any valid
+ * #createStarted_RENAMED(Ticker)} to supply a fake or mock ticker. This allows you to simulate any valid
  * behavior of the stopwatch.
  *
  * <p><b>Note:</b> This class is not thread-safe.
@@ -111,7 +111,7 @@ public final class Stopwatch {
   }
 
   /** Creates (and starts) a new stopwatch, using the specified time source. */
-  public static Stopwatch createStarted(Ticker ticker) {
+  public static Stopwatch createStarted_RENAMED(Ticker ticker) {
     return new Stopwatch(ticker).start();
   }
 
