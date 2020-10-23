@@ -354,7 +354,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsLookupQuay() throws Exception {
+  public void testPlaceDetailsLookupQuay_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(quayResponseBody)) {
       PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, QUAY_PLACE_ID).await();
       assertNotNull(placeDetails);
