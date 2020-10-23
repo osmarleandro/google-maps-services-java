@@ -81,7 +81,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
       case "GET":
         return delegate = context.get(config, responseClass, params);
       case "POST":
-        return delegate = context.post(config, responseClass, params);
+        return delegate = context.post_RENAMED(config, responseClass, params);
       default:
         throw new IllegalStateException(
             String.format("Unexpected request method '%s'", config.requestVerb));

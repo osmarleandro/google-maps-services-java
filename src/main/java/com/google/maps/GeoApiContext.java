@@ -258,7 +258,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  <T, R extends ApiResponse<T>> PendingResult<T> post(
+  <T, R extends ApiResponse<T>> PendingResult<T> post_RENAMED(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
 
     checkContext(config.supportsClientId);
