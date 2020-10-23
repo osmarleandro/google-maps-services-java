@@ -18,7 +18,7 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 
 import com.google.gson.FieldNamingPolicy;
-import com.google.maps.errors.ApiError;
+import com.google.maps.errors.ApiError_RENAMED;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -165,7 +165,7 @@ public class RoadsApi {
 
   public static class RoadsResponse implements ApiResponse<SnappedPoint[]> {
     private SnappedPoint[] snappedPoints;
-    private ApiError error;
+    private ApiError_RENAMED error;
 
     @Override
     public boolean successful() {
@@ -185,7 +185,7 @@ public class RoadsApi {
 
   public static class SpeedsResponse implements ApiResponse<SpeedLimit[]> {
     private SpeedLimit[] speedLimits;
-    private ApiError error;
+    private ApiError_RENAMED error;
 
     @Override
     public boolean successful() {
@@ -206,7 +206,7 @@ public class RoadsApi {
   public static class CombinedResponse implements ApiResponse<SnappedSpeedLimitResponse> {
     private SnappedPoint[] snappedPoints;
     private SpeedLimit[] speedLimits;
-    private ApiError error;
+    private ApiError_RENAMED error;
 
     @Override
     public boolean successful() {
