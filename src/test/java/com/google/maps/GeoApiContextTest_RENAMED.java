@@ -46,7 +46,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class GeoApiContextTest {
+public class GeoApiContextTest_RENAMED {
 
   private MockWebServer server;
   private GeoApiContext.Builder builder;
