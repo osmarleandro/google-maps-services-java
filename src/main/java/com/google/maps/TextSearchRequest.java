@@ -161,7 +161,7 @@ public class TextSearchRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
 
     // All other parameters are ignored if pagetoken is specified.
     if (params().containsKey("pagetoken")) {
