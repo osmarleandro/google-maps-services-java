@@ -76,7 +76,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
       throw new IllegalStateException(
           "'await', 'awaitIgnoreError' or 'setCallback' was already called.");
     }
-    validateRequest();
+    validateRequest_RENAMED();
     switch (config.requestVerb) {
       case "GET":
         return delegate = context.get(config, responseClass, params);
@@ -88,7 +88,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     }
   }
 
-  protected abstract void validateRequest();
+  protected abstract void validateRequest_RENAMED();
 
   private A getInstance() {
     @SuppressWarnings("unchecked")
