@@ -36,7 +36,7 @@ import java.io.Serializable;
  * for that route in the {@code steps} array, such as: "Head north-west", "Turn left onto Arelious
  * Walker", and "Turn left onto Innes Ave".
  */
-public class DirectionsStep implements Serializable {
+public class DirectionsStep_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -65,7 +65,7 @@ public class DirectionsStep implements Serializable {
    * Detailed directions for walking or driving steps in transit directions. Substeps are only
    * available when travelMode is set to "transit".
    */
-  public DirectionsStep[] steps;
+  public DirectionsStep_RENAMED[] steps;
 
   /** The path of this step. */
   public EncodedPolyline polyline;
