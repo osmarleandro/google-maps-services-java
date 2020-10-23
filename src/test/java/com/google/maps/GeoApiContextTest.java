@@ -49,7 +49,7 @@ import org.junit.experimental.categories.Category;
 public class GeoApiContextTest {
 
   private MockWebServer server;
-  private GeoApiContext.Builder builder;
+  public GeoApiContext.Builder builder;
 
   @Before
   public void Setup() {
@@ -307,14 +307,6 @@ public class GeoApiContextTest {
     final String experienceId = "experienceId";
     final GeoApiContext context = builder.experienceId(experienceId).build();
     assertEquals(experienceId, context.getExperienceId());
-  }
-
-  @Test
-  public void testMultipleExperienceId() {
-    final String experienceId1 = "experienceId1";
-    final String experienceId2 = "experienceId2";
-    final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
-    assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
   }
 
   @Test

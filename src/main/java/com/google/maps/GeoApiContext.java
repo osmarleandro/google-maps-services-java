@@ -27,6 +27,9 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import static org.junit.Assert.assertEquals;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -36,6 +39,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -622,5 +627,13 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@Test
+	  public void testMultipleExperienceId() {
+	    final String experienceId1 = "experienceId1";
+	    final String experienceId2 = "experienceId2";
+	    final GeoApiContext context = experienceId(experienceId1, experienceId2).build();
+	    assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
+	  }
   }
 }
