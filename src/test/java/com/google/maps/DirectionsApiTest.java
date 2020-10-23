@@ -403,7 +403,7 @@ public class DirectionsApiTest {
 
   /** Test the extended transit parameters: mode and routing preference. */
   @Test
-  public void testTransitParams() throws Exception {
+  public void testTransitParams_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
