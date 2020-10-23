@@ -31,7 +31,7 @@ import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
-import com.google.maps.model.Unit;
+import com.google.maps.model.Unit_RENAMED;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -92,7 +92,7 @@ public class DirectionsApiTest {
                   DirectionsApi.RouteRestriction.HIGHWAYS,
                   DirectionsApi.RouteRestriction.TOLLS,
                   DirectionsApi.RouteRestriction.FERRIES)
-              .units(Unit.METRIC)
+              .units(Unit_RENAMED.METRIC)
               .region("au")
               .origin("Sydney")
               .destination("Melbourne")
@@ -109,7 +109,7 @@ public class DirectionsApiTest {
               + "|"
               + DirectionsApi.RouteRestriction.FERRIES.toUrlValue(),
           "avoid");
-      sc.assertParamValue(Unit.METRIC.toUrlValue(), "units");
+      sc.assertParamValue(Unit_RENAMED.METRIC.toUrlValue(), "units");
       sc.assertParamValue("au", "region");
       sc.assertParamValue("Sydney", "origin");
       sc.assertParamValue("Melbourne", "destination");

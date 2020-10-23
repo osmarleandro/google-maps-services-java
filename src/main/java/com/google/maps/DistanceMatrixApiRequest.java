@@ -25,7 +25,7 @@ import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
-import com.google.maps.model.Unit;
+import com.google.maps.model.Unit_RENAMED;
 import java.time.Instant;
 
 /** A request to the Distance Matrix API. */
@@ -126,13 +126,13 @@ public class DistanceMatrixApiRequest
    * Specifies the unit system to use when expressing distance as text. Distance Matrix results
    * contain text within distance fields to indicate the distance of the calculated route.
    *
-   * @param unit One of {@link Unit#METRIC} or {@link Unit#IMPERIAL}.
+   * @param unit One of {@link Unit_RENAMED#METRIC} or {@link Unit_RENAMED#IMPERIAL}.
    * @see <a
    *     href="https://developers.google.com/maps/documentation/distance-matrix/intro#unit_systems">
    *     Unit systems in the Distance Matrix API</a>
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest units(Unit unit) {
+  public DistanceMatrixApiRequest units(Unit_RENAMED unit) {
     return param("units", unit);
   }
 

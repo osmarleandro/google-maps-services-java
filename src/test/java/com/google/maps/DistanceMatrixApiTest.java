@@ -25,7 +25,7 @@ import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
-import com.google.maps.model.Unit;
+import com.google.maps.model.Unit_RENAMED;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
@@ -132,7 +132,7 @@ public class DistanceMatrixApiTest {
           .mode(TravelMode.DRIVING)
           .language("en-AU")
           .avoid(RouteRestriction.TOLLS)
-          .units(Unit.IMPERIAL)
+          .units(Unit_RENAMED.IMPERIAL)
           .departureTime(
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
           .await();
@@ -142,7 +142,7 @@ public class DistanceMatrixApiTest {
       sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
       sc.assertParamValue("en-AU", "language");
       sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue(), "avoid");
-      sc.assertParamValue(Unit.IMPERIAL.toUrlValue(), "units");
+      sc.assertParamValue(Unit_RENAMED.IMPERIAL.toUrlValue(), "units");
     }
   }
 
