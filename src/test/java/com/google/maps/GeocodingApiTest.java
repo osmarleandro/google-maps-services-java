@@ -132,7 +132,7 @@ public class GeocodingApiTest {
   }
 
   @Test
-  public void testReverseGeocode() throws Exception {
+  public void testReverseGeocode_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(reverseGeocodeResponse)) {
       LatLng latlng = new LatLng(-33.8674869, 151.2069902);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
