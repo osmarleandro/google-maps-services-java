@@ -35,7 +35,7 @@ public class StopDetails implements Serializable {
   public LatLng location;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("%s (%s)", name, location);
   }
 }
