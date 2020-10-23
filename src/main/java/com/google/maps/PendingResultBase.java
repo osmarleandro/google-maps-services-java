@@ -169,4 +169,20 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Allow the Directions service to optimize the provided route by rearranging the waypoints in a
+   * more efficient order.
+   *
+   * @param optimize Whether to optimize waypoints.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest optimizeWaypoints(boolean optimize) {
+    optimizeWaypoints = optimize;
+    if (waypoints != null) {
+      return waypoints(waypoints);
+    } else {
+      return this;
+    }
+  }
 }
