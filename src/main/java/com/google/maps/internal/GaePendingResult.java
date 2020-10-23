@@ -117,7 +117,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     try {
       HTTPResponse result = call.get();
       metrics.endNetwork();
-      return parseResponse(this, result);
+      return parseResponse_RENAMED(this, result);
     } catch (ExecutionException e) {
       if (e.getCause() instanceof IOException) {
         throw (IOException) e.getCause();
@@ -145,7 +145,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponse(GaePendingResult<T, R> request, HTTPResponse response)
+  private T parseResponse_RENAMED(GaePendingResult<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
     try {
       T result = parseResponseInternal(request, response);
