@@ -15,8 +15,6 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
-
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -156,19 +154,6 @@ public class NearbySearchRequest
    */
   public NearbySearchRequest type(PlaceType type) {
     return param("type", type);
-  }
-
-  /**
-   * Restricts the results to places matching the specified type. Provides support for multiple
-   * types.
-   *
-   * @deprecated Multiple search types are ignored by the Places API.
-   * @param types The {@link PlaceType}s to restrict results to.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  @Deprecated
-  public NearbySearchRequest type(PlaceType... types) {
-    return param("type", join('|', types));
   }
 
   @Override

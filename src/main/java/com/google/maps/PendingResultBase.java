@@ -19,6 +19,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.PlaceType;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +172,18 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Restricts the results to places matching the specified type. Provides support for multiple
+   * types.
+   *
+   * @deprecated Multiple search types are ignored by the Places API.
+   * @param types The {@link PlaceType}s to restrict results to.
+   * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+@Deprecated
+public NearbySearchRequest type(PlaceType... types) {
+    return param("type", join('|', types));
   }
 }
