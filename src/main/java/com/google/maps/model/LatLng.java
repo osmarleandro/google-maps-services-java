@@ -15,10 +15,18 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.StaticMapsApi;
+import com.google.maps.StaticMapsApiTest;
+import com.google.maps.StaticMapsRequest;
+import com.google.maps.StaticMapsRequest.ImageFormat;
+import com.google.maps.StaticMapsRequest.StaticMapType;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +75,30 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testRequest(StaticMapsApiTest staticMapsApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(staticMapsApiTest.IMAGE)) {
+
+      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(staticMapsApiTest.WIDTH, staticMapsApiTest.HEIGHT));
+      req.center("Sydney");
+      req.zoom(16);
+      req.scale(2);
+      req.format(ImageFormat.png32);
+      req.maptype(StaticMapType.hybrid);
+      req.region("AU");
+      req.visible("Melbourne");
+      req.await();
+
+      sc.assertParamValue("640x480", "size");
+      sc.assertParamValue("Sydney", "center");
+      sc.assertParamValue("16", "zoom");
+      sc.assertParamValue("2", "scale");
+      sc.assertParamValue("png32", "format");
+      sc.assertParamValue("hybrid", "maptype");
+      sc.assertParamValue("AU", "region");
+      sc.assertParamValue("Melbourne", "visible");
+    }
   }
 }

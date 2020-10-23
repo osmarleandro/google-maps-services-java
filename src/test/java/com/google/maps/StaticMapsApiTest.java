@@ -18,7 +18,6 @@ package com.google.maps;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.google.maps.StaticMapsRequest.ImageFormat;
 import com.google.maps.StaticMapsRequest.Markers;
 import com.google.maps.StaticMapsRequest.Markers.CustomIconAnchor;
 import com.google.maps.StaticMapsRequest.Markers.MarkersSize;
@@ -36,14 +35,14 @@ import org.junit.Test;
 
 public class StaticMapsApiTest {
 
-  private final int WIDTH = 640;
-  private final int HEIGHT = 480;
+  public final int WIDTH = 640;
+  public final int HEIGHT = 480;
   private final LatLng MELBOURNE = new LatLng(-37.8136, 144.9630);
   private final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
   /** This encoded path matches the exact [MELBOURNE, SYDNEY] points. */
   private final String MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE = "~mxeFwaxsZ_naWk~be@";
 
-  private final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+  public final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
   @Test
   public void testGetSydneyStaticMap() throws Exception {
@@ -77,31 +76,6 @@ public class StaticMapsApiTest {
       sc.assertParamValue("640x480", "size");
       sc.assertParamValue("-33.86880000,151.20930000", "center");
       sc.assertParamValue("16", "zoom");
-    }
-  }
-
-  @Test
-  public void testRequest() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Sydney");
-      req.zoom(16);
-      req.scale(2);
-      req.format(ImageFormat.png32);
-      req.maptype(StaticMapType.hybrid);
-      req.region("AU");
-      req.visible("Melbourne");
-      req.await();
-
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Sydney", "center");
-      sc.assertParamValue("16", "zoom");
-      sc.assertParamValue("2", "scale");
-      sc.assertParamValue("png32", "format");
-      sc.assertParamValue("hybrid", "maptype");
-      sc.assertParamValue("AU", "region");
-      sc.assertParamValue("Melbourne", "visible");
     }
   }
 
