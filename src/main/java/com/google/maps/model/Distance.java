@@ -38,4 +38,18 @@ public class Distance implements Serializable {
   public String toString() {
     return humanReadable;
   }
+
+public String toString(DistanceMatrixElement distanceMatrixElement) {
+    String str =
+        String.format(
+            "[DistanceMatrixElement %s distance=%s, duration=%s", distanceMatrixElement.status, this, distanceMatrixElement.duration);
+    if (distanceMatrixElement.durationInTraffic != null) {
+      str = str + ", durationInTraffic=" + distanceMatrixElement.durationInTraffic;
+    }
+    if (distanceMatrixElement.fare != null) {
+      str = str + ", fare=" + distanceMatrixElement.fare;
+    }
+    str = str + "]";
+    return str;
+  }
 }

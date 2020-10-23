@@ -59,16 +59,6 @@ public class DistanceMatrixElement implements Serializable {
 
   @Override
   public String toString() {
-    String str =
-        String.format(
-            "[DistanceMatrixElement %s distance=%s, duration=%s", status, distance, duration);
-    if (durationInTraffic != null) {
-      str = str + ", durationInTraffic=" + durationInTraffic;
-    }
-    if (fare != null) {
-      str = str + ", fare=" + fare;
-    }
-    str = str + "]";
-    return str;
-  }
+	return distance.toString(this);
+}
 }
