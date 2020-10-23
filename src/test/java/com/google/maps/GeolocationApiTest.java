@@ -133,7 +133,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testBasicGeolocation() throws Exception {
+  public void testBasicGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
