@@ -286,22 +286,6 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Acquires a permit from this {@code RateLimiter} if it can be obtained without exceeding the
-   * specified {@code timeout}, or returns {@code false} immediately (without waiting) if the permit
-   * would not have been granted before the timeout expired.
-   *
-   * <p>This method is equivalent to {@code tryAcquire(1, timeout, unit)}.
-   *
-   * @param timeout the maximum time to wait for the permit. Negative values are treated as zero.
-   * @param unit the time unit of the timeout argument
-   * @return {@code true} if the permit was acquired, {@code false} otherwise
-   * @throws IllegalArgumentException if the requested number of permits is negative or zero
-   */
-  public boolean tryAcquire(long timeout, TimeUnit unit) {
-    return tryAcquire(1, timeout, unit);
-  }
-
-  /**
    * Acquires permits from this {@link RateLimiter} if it can be acquired immediately without delay.
    *
    * <p>This method is equivalent to {@code tryAcquire(permits, 0, anyUnit)}.
@@ -402,7 +386,24 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    /**
+	   * Acquires a permit from this {@code RateLimiter} if it can be obtained without exceeding the
+	   * specified {@code timeout}, or returns {@code false} immediately (without waiting) if the permit
+	   * would not have been granted before the timeout expired.
+	   *
+	   * <p>This method is equivalent to {@code tryAcquire(1, timeout, unit)}.
+	   *
+	   * @param rateLimiter TODO
+	 * @param timeout the maximum time to wait for the permit. Negative values are treated as zero.
+	 * @param unit the time unit of the timeout argument
+	 * @return {@code true} if the permit was acquired, {@code false} otherwise
+	   * @throws IllegalArgumentException if the requested number of permits is negative or zero
+	   */
+	  public boolean tryAcquire(RateLimiter rateLimiter, long timeout, TimeUnit unit) {
+	    return rateLimiter.tryAcquire(1, timeout, unit);
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
