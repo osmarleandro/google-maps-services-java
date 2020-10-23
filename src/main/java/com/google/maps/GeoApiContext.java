@@ -100,7 +100,7 @@ public class GeoApiContext {
    * There are supplied implementations of this interface for both OkHttp and Google App Engine's
    * URL Fetch API.
    *
-   * @see OkHttpRequestHandler
+   * @see OkHttpRequestHandler_RENAMED
    * @see GaeRequestHandler
    */
   public interface RequestHandler {
@@ -367,7 +367,7 @@ public class GeoApiContext {
 
     /** Builder pattern for the enclosing {@code GeoApiContext}. */
     public Builder() {
-      requestHandlerBuilder(new OkHttpRequestHandler.Builder());
+      requestHandlerBuilder(new OkHttpRequestHandler_RENAMED.Builder());
     }
 
     public Builder(RequestHandler.Builder builder) {
@@ -380,7 +380,7 @@ public class GeoApiContext {
      *
      * @param builder The {@code RequestHandler.Builder} to use for {@link #build()}
      * @return Returns this builder for call chaining.
-     * @see OkHttpRequestHandler
+     * @see OkHttpRequestHandler_RENAMED
      * @see GaeRequestHandler
      */
     public Builder requestHandlerBuilder(RequestHandler.Builder builder) {

@@ -42,12 +42,12 @@ import okhttp3.Route;
  *
  * @see com.google.maps.GeoApiContext.RequestHandler
  */
-public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
+public class OkHttpRequestHandler_RENAMED implements GeoApiContext.RequestHandler {
   private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
   private final OkHttpClient client;
   private final ExecutorService executorService;
 
-  /* package */ OkHttpRequestHandler(OkHttpClient client, ExecutorService executorService) {
+  /* package */ OkHttpRequestHandler_RENAMED(OkHttpClient client, ExecutorService executorService) {
     this.client = client;
     this.executorService = executorService;
   }
@@ -199,7 +199,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
     @Override
     public RequestHandler build() {
       OkHttpClient client = builder.build();
-      return new OkHttpRequestHandler(client, rateLimitExecutorService);
+      return new OkHttpRequestHandler_RENAMED(client, rateLimitExecutorService);
     }
   }
 }
