@@ -122,7 +122,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testAutocompletePredictionStructuredFormatting() throws Exception {
+  public void testAutocompletePredictionStructuredFormatting_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(autocompletePredictionStructuredFormatting)) {
       SessionToken session = new SessionToken();
