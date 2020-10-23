@@ -153,7 +153,7 @@ public class GeocodingApiTest {
    * Address Geocode for "1600 Amphitheatre Parkway, Mountain View, CA"</a>.
    */
   @Test
-  public void testGeocodeTheGoogleplex() throws Exception {
+  public void testGeocodeTheGoogleplex_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
