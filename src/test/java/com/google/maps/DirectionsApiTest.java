@@ -451,7 +451,7 @@ public class DirectionsApiTest {
   }
 
   @Test(expected = NotFoundException.class)
-  public void testNotFound() throws Exception {
+  public void testNotFound_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "{\n"
