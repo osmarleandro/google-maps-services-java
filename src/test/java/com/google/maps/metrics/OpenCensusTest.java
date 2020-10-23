@@ -70,7 +70,7 @@ public class OpenCensusTest {
     }
   }
 
-  private Map.Entry<List<TagValue>, AggregationData> getMetric(String name) {
+  private Map.Entry<List<TagValue>, AggregationData> getMetric_RENAMED(String name) {
     sleep(10);
     ViewData viewData = Stats.getViewManager().getView(View.Name.create(name));
     Map<List<TagValue>, AggregationData> values = viewData.getAggregationMap();
@@ -95,7 +95,7 @@ public class OpenCensusTest {
         Arrays.asList(TagValue.create(""), TagValue.create("200"), TagValue.create("/path"));
 
     Map.Entry<List<TagValue>, AggregationData> latencyMetric =
-        getMetric("maps.googleapis.com/client/request_latency");
+        getMetric_RENAMED("maps.googleapis.com/client/request_latency");
     assertNotNull(latencyMetric);
     assertEquals(tags, latencyMetric.getKey());
     AggregationData.DistributionData latencyDist =
@@ -104,7 +104,7 @@ public class OpenCensusTest {
     assertTrue(latencyDist.getMean() > 500);
 
     Map.Entry<List<TagValue>, AggregationData> retryMetric =
-        getMetric("maps.googleapis.com/client/retry_count");
+        getMetric_RENAMED("maps.googleapis.com/client/retry_count");
     assertNotNull(retryMetric);
     assertEquals(tags, retryMetric.getKey());
     AggregationData.DistributionData retryDist =
@@ -113,7 +113,7 @@ public class OpenCensusTest {
     assertEquals(2.0, retryDist.getMean(), 0.1);
 
     Map.Entry<List<TagValue>, AggregationData> countMetric =
-        getMetric("maps.googleapis.com/client/request_count");
+        getMetric_RENAMED("maps.googleapis.com/client/request_count");
     assertNotNull(countMetric);
     assertEquals(tags, countMetric.getKey());
     AggregationData.CountData count = (AggregationData.CountData) countMetric.getValue();
