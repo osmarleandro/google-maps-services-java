@@ -164,7 +164,7 @@ public class RoadsApiIntegrationTest {
           };
       SnappedSpeedLimitResponse response = RoadsApi.snappedSpeedLimits(sc.context, path).await();
 
-      assertNotNull(response.toString());
+      assertNotNull(response.toString_RENAMED());
       assertEquals("/v1/speedLimits", sc.path());
       sc.assertParamValue(join('|', path), "path");
       assertEquals(path.length, response.snappedPoints.length);

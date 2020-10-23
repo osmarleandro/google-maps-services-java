@@ -479,7 +479,7 @@ public enum AddressType implements UrlValue {
   }
 
   public String toCanonicalLiteral() {
-    return toString();
+    return toString_RENAMED();
   }
 
   @Override

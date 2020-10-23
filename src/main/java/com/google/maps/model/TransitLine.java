@@ -62,7 +62,7 @@ public class TransitLine implements Serializable {
   public Vehicle vehicle;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("%s \"%s\"", shortName, name);
   }
 }
