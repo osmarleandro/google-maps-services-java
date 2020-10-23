@@ -61,15 +61,4 @@ public class PhotoRequest
   public PhotoRequest maxHeight(int maxHeight) {
     return param("maxheight", String.valueOf(maxHeight));
   }
-
-  /**
-   * Sets the maxWidth for this request.
-   *
-   * @param maxWidth The maximum desired width, in pixels, of the image returned by the Place Photos
-   *     service.
-   * @return Returns the configured PhotoRequest.
-   */
-  public PhotoRequest maxWidth(int maxWidth) {
-    return param("maxwidth", String.valueOf(maxWidth));
-  }
 }

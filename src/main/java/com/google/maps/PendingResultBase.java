@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Sets the maxWidth for this request.
+   *
+   * @param maxWidth The maximum desired width, in pixels, of the image returned by the Place Photos
+   *     service.
+   * @return Returns the configured PhotoRequest.
+   */
+public PhotoRequest maxWidth(int maxWidth) {
+    return param("maxwidth", String.valueOf(maxWidth));
+  }
 }
