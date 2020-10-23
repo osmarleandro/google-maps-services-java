@@ -60,21 +60,6 @@ public class NearbySearchRequest
   }
 
   /**
-   * Specifies the distance (in meters) within which to return place results. The maximum allowed
-   * radius is 50,000 meters. Note that radius must not be included if {@code rankby=DISTANCE} is
-   * specified.
-   *
-   * @param distance The distance in meters around the {@link #location(LatLng)} to search.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest radius(int distance) {
-    if (distance > 50000) {
-      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
-    }
-    return param("radius", String.valueOf(distance));
-  }
-
-  /**
    * Specifies the order in which results are listed.
    *
    * @param ranking The rank by method.

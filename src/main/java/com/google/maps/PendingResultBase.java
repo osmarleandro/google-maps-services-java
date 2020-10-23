@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.LatLng;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,20 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the distance (in meters) within which to return place results. The maximum allowed
+   * radius is 50,000 meters. Note that radius must not be included if {@code rankby=DISTANCE} is
+   * specified.
+   *
+   * @param distance The distance in meters around the {@link #location(LatLng)} to search.
+   * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+public NearbySearchRequest radius(int distance) {
+    if (distance > 50000) {
+      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
+    }
+    return param("radius", String.valueOf(distance));
   }
 }
