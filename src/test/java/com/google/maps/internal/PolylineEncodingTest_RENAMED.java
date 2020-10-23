@@ -26,7 +26,7 @@ import org.junit.experimental.categories.Category;
 
 /** Test case for {@link PolylineEncoding}. */
 @Category(SmallTests.class)
-public class PolylineEncodingTest {
+public class PolylineEncodingTest_RENAMED {
 
   private static final double EPSILON = .00001;
   private static final LatLng SYDNEY = new LatLng(-33.86746, 151.207090);
