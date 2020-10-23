@@ -90,7 +90,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   protected abstract void validateRequest();
 
-  private A getInstance() {
+  A getInstance() {
     @SuppressWarnings("unchecked")
     A result = (A) this;
     return result;
@@ -122,7 +122,8 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return getInstance();
   }
 
-  protected A paramAddToList(String key, UrlValue val) {
+  @Override
+protected A paramAddToList(String key, UrlValue val) {
     if (val != null) {
       return this.paramAddToList(key, val.toUrlValue());
     }

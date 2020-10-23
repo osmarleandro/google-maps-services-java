@@ -28,6 +28,7 @@ import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.UnknownErrorException;
+import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
@@ -261,4 +262,10 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
+
+@Override
+public A paramAddToList(String key, UrlValue val) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
