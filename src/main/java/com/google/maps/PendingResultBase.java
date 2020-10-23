@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * The Place ID value from which you wish to calculate directions.
+   *
+   * @param destinationPlaceId The ending location Place ID for the Directions request.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest destinationPlaceId(String destinationPlaceId) {
+    return param("destination", prefixPlaceId(destinationPlaceId));
+  }
 }
