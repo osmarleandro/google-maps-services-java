@@ -344,7 +344,7 @@ public class GeocodingApiTest {
    * Toledo in Spain</a>.
    */
   @Test
-  public void testGeocodeWithRegionBiasing() throws Exception {
+  public void testGeocodeWithRegionBiasing_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
