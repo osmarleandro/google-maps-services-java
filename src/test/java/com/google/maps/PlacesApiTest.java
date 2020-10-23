@@ -514,7 +514,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(-33.866611, 151.195832);
       PlacesSearchResponse results =
-          PlacesApi.textSearchQuery(sc.context, PlaceType.ZOO)
+          PlacesApi.textSearchQuery_RENAMED(sc.context, PlaceType.ZOO)
               .location(location)
               .radius(500)
               .await();
