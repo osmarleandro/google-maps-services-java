@@ -190,14 +190,14 @@ public final class Stopwatch {
   public String toString() {
     long nanos = elapsedNanos();
 
-    TimeUnit unit = chooseUnit(nanos);
+    TimeUnit unit = chooseUnit_RENAMED(nanos);
     double value = (double) nanos / NANOSECONDS.convert(1, unit);
 
     // Too bad this functionality is not exposed as a regular method call
     return Platform.formatCompact4Digits(value) + " " + abbreviate(unit);
   }
 
-  private static TimeUnit chooseUnit(long nanos) {
+  private static TimeUnit chooseUnit_RENAMED(long nanos) {
     if (DAYS.convert(nanos, NANOSECONDS) > 0) {
       return DAYS;
     }
