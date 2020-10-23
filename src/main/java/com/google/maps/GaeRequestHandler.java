@@ -49,7 +49,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
   /* package */ GaeRequestHandler() {}
 
   @Override
-  public <T, R extends ApiResponse<T>> PendingResult<T> handle(
+  public <T, R extends ApiResponse<T>> PendingResult<T> handle_RENAMED(
       String hostName,
       String url,
       String userAgent,
