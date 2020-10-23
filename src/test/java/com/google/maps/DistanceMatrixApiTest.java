@@ -44,7 +44,7 @@ public class DistanceMatrixApiTest {
   }
 
   @Test
-  public void testLatLngOriginDestinations() throws Exception {
+  public void testLatLngOriginDestinations_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(new LatLng(-31.9522, 115.8589), new LatLng(-37.8136, 144.9631))
