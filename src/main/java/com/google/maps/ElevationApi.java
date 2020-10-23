@@ -45,7 +45,7 @@ public class ElevationApi {
    * @param points The points to retrieve elevations for.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPoints(
+  public static PendingResult<ElevationResult[]> getByPoints_RENAMED(
       GeoApiContext context, LatLng... points) {
     return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
   }
