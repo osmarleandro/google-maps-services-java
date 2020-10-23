@@ -624,10 +624,10 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
+      PlacesApi.nearbySearchQuery(sc.context, location).radius(5000).rankby(RankBy.PROMINENCE).API_CONFIG
+          .keyword(PlacesApi.nearbySearchQuery(sc.context, location)
+		      .radius(5000)
+		      .rankby(RankBy.PROMINENCE), "keyword")
           .language("en")
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.EXPENSIVE)
@@ -781,7 +781,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByKeyword)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).API_CONFIG.keyword(PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000), "pub").await();
 
       sc.assertParamValue("10000", "radius");
       sc.assertParamValue("pub", "keyword");

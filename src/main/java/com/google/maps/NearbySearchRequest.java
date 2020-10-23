@@ -36,7 +36,7 @@ public class NearbySearchRequest
     extends PendingResultBase<
         PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -82,18 +82,6 @@ public class NearbySearchRequest
    */
   public NearbySearchRequest rankby(RankBy ranking) {
     return param("rankby", ranking);
-  }
-
-  /**
-   * Specifies a term to be matched against all content that Google has indexed for this place. This
-   * includes but is not limited to name, type, and address, as well as customer reviews and other
-   * third-party content.
-   *
-   * @param keyword The keyword to search for.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest keyword(String keyword) {
-    return param("keyword", keyword);
   }
 
   /**
