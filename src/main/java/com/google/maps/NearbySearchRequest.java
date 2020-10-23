@@ -112,7 +112,7 @@ public class NearbySearchRequest
    * @param priceLevel The price level to set as maximum.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
+  public NearbySearchRequest maxPrice_RENAMED(PriceLevel priceLevel) {
     return param("maxprice", priceLevel);
   }
 
