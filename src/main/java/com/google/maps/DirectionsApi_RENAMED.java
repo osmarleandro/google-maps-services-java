@@ -33,10 +33,10 @@ import com.google.maps.model.GeocodedWaypoint;
  * <p>See <a href="https://developers.google.com/maps/documentation/directions/intro">the Directions
  * API Developer's Guide</a> for more information.
  */
-public class DirectionsApi {
+public class DirectionsApi_RENAMED {
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/directions/json");
 
-  private DirectionsApi() {}
+  private DirectionsApi_RENAMED() {}
 
   /**
    * Creates a new DirectionsApiRequest using the given context, with all attributes at their

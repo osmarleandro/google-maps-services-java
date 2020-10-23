@@ -29,7 +29,7 @@ import com.google.maps.model.DistanceMatrixRow;
  *
  * <p>This service does not return detailed route information. Route information can be obtained by
  * passing the desired single origin and destination to the Directions API, using {@link
- * com.google.maps.DirectionsApi}.
+ * com.google.maps.DirectionsApi_RENAMED}.
  *
  * <p><strong>Note:</strong> You can display Distance Matrix API results on a Google Map, or without
  * a map. If you want to display Distance Matrix API results on a map, then these results must be

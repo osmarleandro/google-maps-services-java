@@ -21,7 +21,7 @@ import java.util.Objects;
 public class StringJoin {
 
   /**
-   * Marker Interface to enable the URL Value enums in {@link com.google.maps.DirectionsApi} to be
+   * Marker Interface to enable the URL Value enums in {@link com.google.maps.DirectionsApi_RENAMED} to be
    * string joinable.
    */
   public interface UrlValue {

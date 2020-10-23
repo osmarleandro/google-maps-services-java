@@ -29,10 +29,10 @@ import java.time.Instant;
 
 /** Request for the Directions API. */
 public class DirectionsApiRequest
-    extends PendingResultBase<DirectionsResult, DirectionsApiRequest, DirectionsApi.Response> {
+    extends PendingResultBase<DirectionsResult, DirectionsApiRequest, DirectionsApi_RENAMED.Response> {
 
   public DirectionsApiRequest(GeoApiContext context) {
-    super(context, DirectionsApi.API_CONFIG, DirectionsApi.Response.class);
+    super(context, DirectionsApi_RENAMED.API_CONFIG, DirectionsApi_RENAMED.Response.class);
   }
 
   protected boolean optimizeWaypoints;
@@ -137,10 +137,10 @@ public class DirectionsApiRequest
   /**
    * Indicates that the calculated route(s) should avoid the indicated features.
    *
-   * @param restrictions one or more of {@link DirectionsApi.RouteRestriction} objects.
+   * @param restrictions one or more of {@link DirectionsApi_RENAMED.RouteRestriction} objects.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
+  public DirectionsApiRequest avoid(DirectionsApi_RENAMED.RouteRestriction... restrictions) {
     return param("avoid", join('|', restrictions));
   }
 
