@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.errors.InvalidRequestException;
-import com.google.maps.errors.RequestDeniedException;
+import com.google.maps.errors.RequestDeniedException_RENAMED;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
@@ -74,7 +74,7 @@ public class ElevationApiTest {
     }
   }
 
-  @Test(expected = RequestDeniedException.class)
+  @Test(expected = RequestDeniedException_RENAMED.class)
   public void testGetByPointsThrowsRequestDeniedExceptionFromResponse() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(

@@ -55,7 +55,7 @@ public class ApiException extends Exception {
       }
       return new OverQueryLimitException(errorMessage);
     } else if ("REQUEST_DENIED".equals(status)) {
-      return new RequestDeniedException(errorMessage);
+      return new RequestDeniedException_RENAMED(errorMessage);
     } else if ("UNKNOWN_ERROR".equals(status)) {
       return new UnknownErrorException(errorMessage);
     } else if ("ZERO_RESULTS".equals(status)) {
@@ -70,7 +70,7 @@ public class ApiException extends Exception {
     } else if ("RESOURCE_EXHAUSTED".equals(status)) {
       return new OverQueryLimitException(errorMessage);
     } else if ("PERMISSION_DENIED".equals(status)) {
-      return new RequestDeniedException(errorMessage);
+      return new RequestDeniedException_RENAMED(errorMessage);
     }
 
     // Geolocation Errors
