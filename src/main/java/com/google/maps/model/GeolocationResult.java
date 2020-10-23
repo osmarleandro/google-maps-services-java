@@ -39,6 +39,6 @@ public class GeolocationResult implements Serializable {
 
   @Override
   public String toString() {
-    return String.format("%s, accuracy=%s m", location, accuracy);
-  }
+	return location.toString(this);
+}
 }
