@@ -66,10 +66,10 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
-  private final RequestMetrics metrics;
+  public final RequestMetrics metrics;
 
   private Call call;
-  private Callback<T> callback;
+  public Callback<T> callback;
   private long errorTimeOut;
   private int retryCounter = 0;
   private long cumulativeSleepTime = 0;
@@ -212,18 +212,11 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
   @Override
   public void onResponse(Call call, Response response) throws IOException {
-    metrics.endNetwork();
-    if (callback != null) {
-      try {
-        callback.onResult(parseResponse(this, response));
-      } catch (Exception e) {
-        callback.onFailure(e);
-      }
-    }
-  }
+	this.callback.onResponse(this, call, response);
+}
 
   @SuppressWarnings("unchecked")
-  private T parseResponse(OkHttpPendingResult<T, R> request, Response response)
+public T parseResponse(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     try {
       T result = parseResponseInternal(request, response);
