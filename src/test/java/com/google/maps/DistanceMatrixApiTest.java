@@ -195,7 +195,7 @@ public class DistanceMatrixApiTest {
 
   /** Test duration in traffic with traffic model set. */
   @Test
-  public void testDurationInTrafficWithTrafficModel() throws Exception {
+  public void testDurationInTrafficWithTrafficModel_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
       DistanceMatrixApi.newRequest(sc.context)
