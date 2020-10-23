@@ -15,10 +15,17 @@
 
 package com.google.maps.model;
 
+import com.google.maps.ElevationApi;
+import com.google.maps.ElevationApiTest;
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +74,23 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test(expected = RequestDeniedException.class)
+  public void testGetByPointsThrowsRequestDeniedExceptionFromResponse(ElevationApiTest elevationApiTest) throws Exception {
+    try (LocalTestServerContext sc =
+        new LocalTestServerContext(
+            ""
+                + "{\n"
+                + "   \"routes\" : [],\n"
+                + "   \"status\" : \"REQUEST_DENIED\",\n"
+                + "   \"errorMessage\" : \"Can't do the thing\"\n"
+                + "}")) {
+
+      // This should throw the RequestDeniedException
+      ElevationApi.getByPoints(
+              sc.context, new EncodedPolyline(Collections.singletonList(new LatLng(0, 0))))
+          .await();
+    }
   }
 }

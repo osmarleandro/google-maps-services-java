@@ -20,12 +20,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.errors.InvalidRequestException;
-import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LatLngAssert;
-import java.util.Collections;
+
 import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -71,24 +70,6 @@ public class ElevationApiTest {
 
       // This should throw the InvalidRequestException
       ElevationApi.getByPoint(sc.context, new LatLng(0, 0)).await();
-    }
-  }
-
-  @Test(expected = RequestDeniedException.class)
-  public void testGetByPointsThrowsRequestDeniedExceptionFromResponse() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
-            ""
-                + "{\n"
-                + "   \"routes\" : [],\n"
-                + "   \"status\" : \"REQUEST_DENIED\",\n"
-                + "   \"errorMessage\" : \"Can't do the thing\"\n"
-                + "}")) {
-
-      // This should throw the RequestDeniedException
-      ElevationApi.getByPoints(
-              sc.context, new EncodedPolyline(Collections.singletonList(new LatLng(0, 0))))
-          .await();
     }
   }
 
