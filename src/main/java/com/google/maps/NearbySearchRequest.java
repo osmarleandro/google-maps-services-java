@@ -36,7 +36,7 @@ public class NearbySearchRequest
     extends PendingResultBase<
         PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -114,16 +114,6 @@ public class NearbySearchRequest
    */
   public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
     return param("maxprice", priceLevel);
-  }
-
-  /**
-   * Specifies one or more terms to be matched against the names of places, separated by spaces.
-   *
-   * @param name Search for Places with this name.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest name(String name) {
-    return param("name", name);
   }
 
   /**

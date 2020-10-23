@@ -624,14 +624,15 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
+      PlacesApi.nearbySearchQuery(sc.context, location).radius(5000).rankby(RankBy.PROMINENCE).keyword("keyword")
+			.language("en").minPrice(PriceLevel.INEXPENSIVE).maxPrice(PriceLevel.EXPENSIVE).API_CONFIG
+          .name(PlacesApi.nearbySearchQuery(sc.context, location)
+		      .radius(5000)
+		      .rankby(RankBy.PROMINENCE)
+		      .keyword("keyword")
+		      .language("en")
+		      .minPrice(PriceLevel.INEXPENSIVE)
+		      .maxPrice(PriceLevel.EXPENSIVE), "name")
           .openNow(true)
           .type(PlaceType.AIRPORT)
           .pageToken("next-page-token")
@@ -796,9 +797,9 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByName)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
-              .radius(10000)
-              .name("Sydney Town Hall")
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).API_CONFIG
+              .name(PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
+			      .radius(10000), "Sydney Town Hall")
               .await();
 
       sc.assertParamValue("Sydney Town Hall", "name");

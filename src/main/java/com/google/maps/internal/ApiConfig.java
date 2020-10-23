@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.NearbySearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Specifies one or more terms to be matched against the names of places, separated by spaces.
+   *
+   * @param nearbySearchRequest TODO
+ * @param name Search for Places with this name.
+ * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  public NearbySearchRequest name(NearbySearchRequest nearbySearchRequest, String name) {
+    return nearbySearchRequest.param("name", name);
   }
 }
