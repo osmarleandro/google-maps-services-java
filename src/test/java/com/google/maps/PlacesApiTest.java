@@ -421,7 +421,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testQueryAutocompleteWithPlaceId() throws Exception {
+  public void testQueryAutocompleteWithPlaceId_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(queryAutocompleteWithPlaceIdResponseBody)) {
       AutocompletePrediction[] predictions =
