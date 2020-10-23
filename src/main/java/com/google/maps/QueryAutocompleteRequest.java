@@ -47,17 +47,6 @@ public class QueryAutocompleteRequest
   }
 
   /**
-   * The text string on which to search. The Places service will return candidate matches based on
-   * this string and order results based on their perceived relevance.
-   *
-   * @param input The input text to autocomplete.
-   * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
-   */
-  public QueryAutocompleteRequest input(String input) {
-    return param("input", input);
-  }
-
-  /**
    * The character position in the input term at which the service uses text for predictions. For
    * example, if the input is 'Googl' and the completion point is 3, the service will match on
    * 'Goo'. The offset should generally be set to the position of the text caret. If no offset is
