@@ -370,14 +370,6 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Returns the earliest time that permits are available (with one caveat).
-   *
-   * @return the time that permits are available, or, if permits are available immediately, an
-   *     arbitrary past or present time
-   */
-  abstract long queryEarliestAvailable(long nowMicros);
-
-  /**
    * Reserves the requested number of permits and returns the time that those permits can be used
    * (with one caveat).
    *

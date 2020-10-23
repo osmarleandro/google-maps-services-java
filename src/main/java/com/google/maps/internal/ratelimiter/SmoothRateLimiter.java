@@ -398,4 +398,12 @@ abstract class SmoothRateLimiter extends RateLimiter {
       nextFreeTicketMicros = nowMicros;
     }
   }
+
+/**
+   * Returns the earliest time that permits are available (with one caveat).
+   *
+   * @return the time that permits are available, or, if permits are available immediately, an
+   *     arbitrary past or present time
+   */
+abstract long queryEarliestAvailable(long nowMicros);
 }
