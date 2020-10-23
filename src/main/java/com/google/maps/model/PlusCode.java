@@ -29,7 +29,7 @@ public class PlusCode implements Serializable {
   public String compoundCode;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[PlusCode: ");
     sb.append(globalCode);
     if (compoundCode != null) {
