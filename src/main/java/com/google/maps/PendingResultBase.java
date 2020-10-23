@@ -55,7 +55,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   @Override
   public final T await() throws ApiException, InterruptedException, IOException {
     PendingResult<T> request = makeRequest();
-    return request.await();
+    return request.await_RENAMED();
   }
 
   @Override

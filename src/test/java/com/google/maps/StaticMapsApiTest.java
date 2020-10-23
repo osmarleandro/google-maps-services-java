@@ -52,7 +52,7 @@ public class StaticMapsApiTest {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Google Sydney");
       req.zoom(16);
-      ByteArrayInputStream bais = new ByteArrayInputStream(req.await().imageData);
+      ByteArrayInputStream bais = new ByteArrayInputStream(req.await_RENAMED().imageData);
       BufferedImage img = ImageIO.read(bais);
 
       sc.assertParamValue("640x480", "size");
@@ -72,7 +72,7 @@ public class StaticMapsApiTest {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center(SYDNEY);
       req.zoom(16);
-      req.await();
+      req.await_RENAMED();
 
       sc.assertParamValue("640x480", "size");
       sc.assertParamValue("-33.86880000,151.20930000", "center");
@@ -92,7 +92,7 @@ public class StaticMapsApiTest {
       req.maptype(StaticMapType.hybrid);
       req.region("AU");
       req.visible("Melbourne");
-      req.await();
+      req.await_RENAMED();
 
       sc.assertParamValue("640x480", "size");
       sc.assertParamValue("Sydney", "center");
@@ -110,7 +110,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.zoom(16);
-      req.await();
+      req.await_RENAMED();
     }
   }
 
@@ -119,7 +119,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Google Sydney");
-      req.await();
+      req.await_RENAMED();
     }
   }
 
@@ -136,7 +136,7 @@ public class StaticMapsApiTest {
       markers.addLocation("Melbourne");
       markers.addLocation(SYDNEY);
       req.markers(markers);
-      req.await();
+      req.await_RENAMED();
     }
   }
 
@@ -152,7 +152,7 @@ public class StaticMapsApiTest {
       path.addPoint("Melbourne");
       path.addPoint(SYDNEY);
       req.path(path);
-      req.await();
+      req.await_RENAMED();
     }
   }
 
@@ -162,7 +162,7 @@ public class StaticMapsApiTest {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, null);
       req.center("Google Sydney");
       req.zoom(16);
-      req.await();
+      req.await_RENAMED();
     }
   }
 
@@ -188,7 +188,7 @@ public class StaticMapsApiTest {
       path.addPoint(SYDNEY);
       req.path(path);
 
-      req.await();
+      req.await_RENAMED();
 
       sc.assertParamValue(
           "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
@@ -218,7 +218,7 @@ public class StaticMapsApiTest {
       EncodedPolyline path = new EncodedPolyline(points);
       req.path(path);
 
-      req.await();
+      req.await_RENAMED();
 
       sc.assertParamValue(
           "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
@@ -256,7 +256,7 @@ public class StaticMapsApiTest {
         req.markers(markers);
       }
 
-      req.await();
+      req.await_RENAMED();
 
       sc.assertParamValue("640x480", "size");
       sc.assertParamValue("Brooklyn Bridge, New York, NY", "center");

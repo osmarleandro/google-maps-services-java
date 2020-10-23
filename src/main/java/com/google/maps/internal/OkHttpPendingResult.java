@@ -190,7 +190,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   @Override
   public T awaitIgnoreError() {
     try {
-      return await();
+      return await_RENAMED();
     } catch (Exception e) {
       return null;
     }
@@ -324,7 +324,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     LOG.info("Retrying request. Retry #" + retryCounter);
     metrics.startNetwork();
     this.call = client.newCall(request);
-    return this.await();
+    return this.await_RENAMED();
   }
 
   private boolean shouldRetry(Response response) {

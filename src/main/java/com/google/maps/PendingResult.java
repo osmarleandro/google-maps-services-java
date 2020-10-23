@@ -44,7 +44,7 @@ public interface PendingResult<T> {
    *     and the thread is interrupted.
    * @throws IOException Thrown when an I/O exception of some sort has occurred.
    */
-  T await() throws ApiException, InterruptedException, IOException;
+  T await_RENAMED() throws ApiException, InterruptedException, IOException;
 
   /**
    * Performs the request synchronously, ignoring exceptions while performing the request and errors
