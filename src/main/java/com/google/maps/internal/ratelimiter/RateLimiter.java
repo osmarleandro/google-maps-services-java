@@ -298,7 +298,7 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if the requested number of permits is negative or zero
    */
   public boolean tryAcquire(long timeout, TimeUnit unit) {
-    return tryAcquire(1, timeout, unit);
+    return tryAcquire_RENAMED(1, timeout, unit);
   }
 
   /**
@@ -312,7 +312,7 @@ public abstract class RateLimiter {
    * @since 14.0
    */
   public boolean tryAcquire(int permits) {
-    return tryAcquire(permits, 0, MICROSECONDS);
+    return tryAcquire_RENAMED(permits, 0, MICROSECONDS);
   }
 
   /**
@@ -325,7 +325,7 @@ public abstract class RateLimiter {
    * @since 14.0
    */
   public boolean tryAcquire() {
-    return tryAcquire(1, 0, MICROSECONDS);
+    return tryAcquire_RENAMED(1, 0, MICROSECONDS);
   }
 
   /**
@@ -339,7 +339,7 @@ public abstract class RateLimiter {
    * @return {@code true} if the permits were acquired, {@code false} otherwise
    * @throws IllegalArgumentException if the requested number of permits is negative or zero
    */
-  public boolean tryAcquire(int permits, long timeout, TimeUnit unit) {
+  public boolean tryAcquire_RENAMED(int permits, long timeout, TimeUnit unit) {
     long timeoutMicros = max(unit.toMicros(timeout), 0);
     checkPermits(permits);
     long microsToWait;
