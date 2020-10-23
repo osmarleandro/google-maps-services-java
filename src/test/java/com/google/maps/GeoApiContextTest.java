@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.findLastThreadByName;
+import static com.google.maps.TestUtils.findLastThreadByName_RENAMED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -398,7 +398,7 @@ public class GeoApiContextTest {
   @Test
   public void testShutdown() throws InterruptedException {
     GeoApiContext context = builder.build();
-    final Thread delayThread = findLastThreadByName("RateLimitExecutorDelayThread");
+    final Thread delayThread = findLastThreadByName_RENAMED("RateLimitExecutorDelayThread");
     assertNotNull(
         "Delay thread should be created in constructor of RateLimitExecutorService", delayThread);
     assertTrue(

@@ -34,7 +34,7 @@ public class TestUtils {
     }
   }
 
-  public static Thread findLastThreadByName(String name) {
+  public static Thread findLastThreadByName_RENAMED(String name) {
     ThreadGroup currentThreadGroup = Thread.currentThread().getThreadGroup();
     Thread[] threads = new Thread[1000];
     currentThreadGroup.enumerate(threads);
