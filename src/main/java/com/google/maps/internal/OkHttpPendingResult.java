@@ -66,16 +66,16 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
-  private final RequestMetrics metrics;
+  public final RequestMetrics metrics;
 
-  private Call call;
+  public Call call;
   private Callback<T> callback;
   private long errorTimeOut;
-  private int retryCounter = 0;
-  private long cumulativeSleepTime = 0;
+  public int retryCounter = 0;
+  public long cumulativeSleepTime = 0;
   private ExceptionsAllowedToRetry exceptionsAllowedToRetry;
 
-  private static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult.class.getName());
+  public static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
@@ -116,10 +116,10 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   /** Preserve a request/response pair through an asynchronous callback. */
-  private class QueuedResponse {
-    private final OkHttpPendingResult<T, R> request;
-    private final Response response;
-    private final IOException e;
+  public class QueuedResponse {
+    public final OkHttpPendingResult<T, R> request;
+    public final Response response;
+    public final IOException e;
 
     public QueuedResponse(OkHttpPendingResult<T, R> request, Response response) {
       this.request = request;
@@ -223,7 +223,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponse(OkHttpPendingResult<T, R> request, Response response)
+public T parseResponse(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     try {
       T result = parseResponseInternal(request, response);
