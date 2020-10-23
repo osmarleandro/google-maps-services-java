@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.StaticMapsRequest.Markers;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,18 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * <code>markers</code> parameter defines a set of one or more markers (map pins) at a set of
+   * locations. Each marker defined within a single markers declaration must exhibit the same visual
+   * style; if you wish to display markers with different styles, you will need to supply multiple
+   * markers parameters with separate style information.
+   *
+   * @param markers A group of markers with the same style.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest markers(Markers markers) {
+    return paramAddToList("markers", markers);
   }
 }
