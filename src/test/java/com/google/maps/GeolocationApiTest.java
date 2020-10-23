@@ -55,8 +55,8 @@ public class GeolocationApiTest {
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          GeolocationApi.newRequest(sc.context).builder
+              .ConsiderIp(GeolocationApi.newRequest(sc.context), false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
@@ -106,8 +106,8 @@ public class GeolocationApiTest {
   public void testMinimumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          GeolocationApi.newRequest(sc.context).builder
+              .ConsiderIp(GeolocationApi.newRequest(sc.context), false)
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:6b:11")
@@ -136,8 +136,8 @@ public class GeolocationApiTest {
   public void testBasicGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          GeolocationApi.newRequest(sc.context).builder
+              .ConsiderIp(GeolocationApi.newRequest(sc.context), false)
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("92:68:c3:f8:76:47")
@@ -186,8 +186,8 @@ public class GeolocationApiTest {
               .createWifiAccessPoint();
 
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          GeolocationApi.newRequest(sc.context).builder
+              .ConsiderIp(GeolocationApi.newRequest(sc.context), false)
               .WifiAccessPoints(wifiAccessPoints)
               .CreatePayload()
               .await();
@@ -211,8 +211,8 @@ public class GeolocationApiTest {
   public void testMaximumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          GeolocationApi.newRequest(sc.context).builder
+              .ConsiderIp(GeolocationApi.newRequest(sc.context), false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(410)
               .RadioType("gsm")
@@ -267,8 +267,8 @@ public class GeolocationApiTest {
   public void testMinimumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          GeolocationApi.newRequest(sc.context).builder
+              .ConsiderIp(GeolocationApi.newRequest(sc.context), false)
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
@@ -329,8 +329,8 @@ public class GeolocationApiTest {
   public void testMaximumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          GeolocationApi.newRequest(sc.context).builder
+              .ConsiderIp(GeolocationApi.newRequest(sc.context), false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
@@ -410,7 +410,7 @@ public class GeolocationApiTest {
                 + "  \"code\": 404\n"
                 + " }\n"
                 + "}")) {
-      GeolocationApi.newRequest(sc.context).ConsiderIp(false).CreatePayload().await();
+      GeolocationApi.newRequest(sc.context).builder.ConsiderIp(GeolocationApi.newRequest(sc.context), false).CreatePayload().await();
     }
   }
 

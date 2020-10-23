@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.maps.GeolocationApiRequest;
+
 /**
  * Request body.
  *
@@ -184,5 +186,10 @@ public class GeolocationPayload implements Serializable {
       this._addedWifiAccessPoints.add(newWifiAccessPoint);
       return this;
     }
+
+	public GeolocationApiRequest ConsiderIp(GeolocationApiRequest geolocationApiRequest, boolean newConsiderIp) {
+	    ConsiderIp(newConsiderIp);
+	    return geolocationApiRequest;
+	  }
   }
 }
