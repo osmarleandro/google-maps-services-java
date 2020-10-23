@@ -398,4 +398,17 @@ abstract class SmoothRateLimiter extends RateLimiter {
       nextFreeTicketMicros = nowMicros;
     }
   }
+
+private Object mutex() {
+    Object mutex = mutexDoNotUseDirectly;
+    if (mutex == null) {
+      synchronized (this) {
+        mutex = mutexDoNotUseDirectly;
+        if (mutex == null) {
+          mutexDoNotUseDirectly = mutex = new Object();
+        }
+      }
+    }
+    return mutex;
+  }
 }
