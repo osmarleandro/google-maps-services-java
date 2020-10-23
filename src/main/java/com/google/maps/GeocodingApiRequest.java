@@ -22,7 +22,6 @@ import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.LocationType;
 
 /** A request for the Geocoding API. */
 public class GeocodingApiRequest
@@ -139,16 +138,5 @@ public class GeocodingApiRequest
    */
   public GeocodingApiRequest resultType(AddressType... resultTypes) {
     return param("result_type", join('|', resultTypes));
-  }
-
-  /**
-   * Sets the location type. Specifying a type will restrict the results to this type. If multiple
-   * types are specified, the API will return all addresses that match any of the types.
-   *
-   * @param locationTypes The location types to restrict to.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest locationType(LocationType... locationTypes) {
-    return param("location_type", join('|', locationTypes));
   }
 }
