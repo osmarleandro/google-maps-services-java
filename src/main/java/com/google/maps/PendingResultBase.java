@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+protected void validateRequest() {
+    if (this.payload.considerIp != null
+        && !this.payload.considerIp
+        && this.payload.wifiAccessPoints != null
+        && this.payload.wifiAccessPoints.length < 2) {
+      throw new IllegalArgumentException("Request must contain two or more 'Wifi Access Points'");
+    }
+  }
 }
