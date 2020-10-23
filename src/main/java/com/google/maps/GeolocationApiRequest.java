@@ -105,4 +105,12 @@ public class GeolocationApiRequest
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
   }
+
+@Override
+public final void cancel() {
+    if (delegate == null) {
+      return;
+    }
+    delegate.cancel();
+  }
 }

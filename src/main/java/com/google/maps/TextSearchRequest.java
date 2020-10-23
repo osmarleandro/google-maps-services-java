@@ -179,7 +179,15 @@ public class TextSearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  @Override
+public final void cancel() {
+    if (delegate == null) {
+      return;
+    }
+    delegate.cancel();
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

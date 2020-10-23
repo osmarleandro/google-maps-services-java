@@ -151,4 +151,12 @@ public class GeocodingApiRequest
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
   }
+
+@Override
+public final void cancel() {
+    if (delegate == null) {
+      return;
+    }
+    delegate.cancel();
+  }
 }

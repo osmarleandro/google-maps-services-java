@@ -38,7 +38,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   private final GeoApiContext context;
   private final ApiConfig config;
   private HashMap<String, List<String>> params = new HashMap<>();
-  private PendingResult<T> delegate;
+  protected PendingResult<T> delegate;
   private Class<? extends R> responseClass;
 
   protected PendingResultBase(GeoApiContext context, ApiConfig config, Class<? extends R> clazz) {
@@ -61,14 +61,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   @Override
   public final T awaitIgnoreError() {
     return makeRequest().awaitIgnoreError();
-  }
-
-  @Override
-  public final void cancel() {
-    if (delegate == null) {
-      return;
-    }
-    delegate.cancel();
   }
 
   private PendingResult<T> makeRequest() {
