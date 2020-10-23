@@ -89,7 +89,7 @@ public class RoadsApiIntegrationTest {
       SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
 
       assertNotNull(Arrays.toString(speeds));
-      assertEquals("/v1/speedLimits", sc.path());
+      assertEquals("/v1/speedLimits", sc.path_RENAMED());
       sc.assertParamValue(join('|', path), "path");
       assertEquals(7, speeds.length);
 
@@ -116,7 +116,7 @@ public class RoadsApiIntegrationTest {
       SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
 
       assertNotNull(Arrays.toString(speeds));
-      assertEquals("/v1/speedLimits", sc.path());
+      assertEquals("/v1/speedLimits", sc.path_RENAMED());
       sc.assertParamValue(join('|', path), "path");
       assertEquals(7, speeds.length);
 
@@ -139,7 +139,7 @@ public class RoadsApiIntegrationTest {
       SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await();
 
       assertNotNull(Arrays.toString(speeds));
-      assertEquals("/v1/speedLimits", sc.path());
+      assertEquals("/v1/speedLimits", sc.path_RENAMED());
       assertEquals(3, speeds.length);
       assertEquals("ChIJc0BrC2EE9YgR71DvaFzNgrA", speeds[2].placeId);
 
@@ -165,7 +165,7 @@ public class RoadsApiIntegrationTest {
       SnappedSpeedLimitResponse response = RoadsApi.snappedSpeedLimits(sc.context, path).await();
 
       assertNotNull(response.toString());
-      assertEquals("/v1/speedLimits", sc.path());
+      assertEquals("/v1/speedLimits", sc.path_RENAMED());
       sc.assertParamValue(join('|', path), "path");
       assertEquals(path.length, response.snappedPoints.length);
       assertEquals(path.length, response.speedLimits.length);
@@ -188,7 +188,7 @@ public class RoadsApiIntegrationTest {
       SnappedPoint[] points = RoadsApi.nearestRoads(sc.context, path).await();
 
       assertNotNull(Arrays.toString(points));
-      assertEquals("/v1/nearestRoads", sc.path());
+      assertEquals("/v1/nearestRoads", sc.path_RENAMED());
       sc.assertParamValue(join('|', path), "points");
       assertEquals(13, points.length);
       assertEquals(-33.86543615612047, points[0].location.lat, 0.0001);

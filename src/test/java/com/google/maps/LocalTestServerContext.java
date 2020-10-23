@@ -97,7 +97,7 @@ public class LocalTestServerContext implements AutoCloseable {
     return parseQueryParamsFromRequestLine(request.getRequestLine());
   }
 
-  public String path() throws InterruptedException {
+  public String path_RENAMED() throws InterruptedException {
     this.takeRequest();
     return request.getPath().split("\\?", -1)[0];
   }
