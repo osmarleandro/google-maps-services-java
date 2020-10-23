@@ -47,11 +47,11 @@ public class LatLng implements UrlValue, Serializable {
 
   @Override
   public String toString() {
-    return toUrlValue();
+    return toUrlValue_RENAMED();
   }
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     // Enforce Locale to English for double to string conversion
     return String.format(Locale.ENGLISH, "%.8f,%.8f", lat, lng);
   }
