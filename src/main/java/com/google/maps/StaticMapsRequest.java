@@ -442,7 +442,7 @@ public class StaticMapsRequest
    * @param path A path to render atop the map, as an EncodedPolyline.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest path(EncodedPolyline path) {
+  public StaticMapsRequest path_RENAMED(EncodedPolyline path) {
     return paramAddToList("path", "enc:" + path.getEncodedPath());
   }
 
