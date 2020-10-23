@@ -18,7 +18,6 @@ package com.google.maps.internal;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
 import com.google.maps.GeolocationApi;
 import java.io.IOException;
 
@@ -123,11 +122,5 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
     }
     reader.endObject();
     return response;
-  }
-
-  /** Not supported. */
-  @Override
-  public void write(JsonWriter out, GeolocationApi.Response value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method.");
   }
 }

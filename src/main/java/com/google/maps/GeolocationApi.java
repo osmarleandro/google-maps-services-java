@@ -15,7 +15,10 @@
 
 package com.google.maps;
 
+import java.io.IOException;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.gson.stream.JsonWriter;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -82,5 +85,11 @@ public class GeolocationApi {
       }
       return ApiException.from(reason, message);
     }
+
+	/** Not supported. 
+	 * @param out TODO*/
+	  public void write(JsonWriter out) throws IOException {
+	    throw new UnsupportedOperationException("Unimplemented method.");
+	  }
   }
 }
