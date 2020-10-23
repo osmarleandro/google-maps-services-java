@@ -35,7 +35,7 @@ public class GeolocationApiRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
     if (this.payload.considerIp != null
         && !this.payload.considerIp
         && this.payload.wifiAccessPoints != null
