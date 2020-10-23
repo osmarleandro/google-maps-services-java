@@ -49,7 +49,7 @@ public class PolylineEncodingTest {
           + "C~w@hnB{e@yF}`D`_Ayx@~vGqn@l}CafC";
 
   @Test
-  public void testPolylineEncodingRoundTrip() throws Exception {
+  public void testPolylineEncodingRoundTrip_RENAMED() throws Exception {
     List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
     String encodedPath = PolylineEncoding.encode(points);
     assertEquals(SYD_MELB_ROUTE, encodedPath);
