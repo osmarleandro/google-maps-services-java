@@ -46,7 +46,6 @@ public class Geometry implements Serializable {
 
   @Override
   public String toString() {
-    return String.format(
-        "[Geometry: %s (%s) bounds=%s, viewport=%s]", location, locationType, bounds, viewport);
-  }
+	return bounds.toString(this);
+}
 }

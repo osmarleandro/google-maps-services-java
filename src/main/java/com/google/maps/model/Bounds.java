@@ -30,4 +30,9 @@ public class Bounds implements Serializable {
   public String toString() {
     return String.format("[%s, %s]", northeast, southwest);
   }
+
+public String toString(Geometry geometry) {
+    return String.format(
+        "[Geometry: %s (%s) bounds=%s, viewport=%s]", geometry.location, geometry.locationType, this, geometry.viewport);
+  }
 }
