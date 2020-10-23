@@ -15,7 +15,11 @@
 
 package com.google.maps.internal;
 
+import static com.google.maps.internal.StringJoin.join;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PlaceAutocompleteRequest;
+import com.google.maps.model.ComponentFilter;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +51,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * A grouping of places to which you would like to restrict your results. Currently, you can use
+   * components to filter by country.
+   *
+   * @param placeAutocompleteRequest TODO
+ * @param filters The component filter to restrict results with.
+ * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+  public PlaceAutocompleteRequest components(PlaceAutocompleteRequest placeAutocompleteRequest, ComponentFilter... filters) {
+    return placeAutocompleteRequest.param("components", join('|', filters));
   }
 }
