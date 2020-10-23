@@ -19,7 +19,6 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
@@ -61,17 +60,6 @@ public class ElevationApiTest {
 
   public ElevationApiTest() {
     directionsAlongPath = retrieveBody("DirectionsAlongPath.json");
-  }
-
-  @Test(expected = InvalidRequestException.class)
-  public void testGetByPointThrowsInvalidRequestExceptionFromResponse() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
-            "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
-
-      // This should throw the InvalidRequestException
-      ElevationApi.getByPoint(sc.context, new LatLng(0, 0)).await();
-    }
   }
 
   @Test(expected = RequestDeniedException.class)

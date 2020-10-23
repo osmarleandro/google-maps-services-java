@@ -15,10 +15,16 @@
 
 package com.google.maps.model;
 
+import com.google.maps.ElevationApi;
+import com.google.maps.ElevationApiTest;
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +73,16 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test(expected = InvalidRequestException.class)
+  public void testGetByPointThrowsInvalidRequestExceptionFromResponse(ElevationApiTest elevationApiTest) throws Exception {
+    try (LocalTestServerContext sc =
+        new LocalTestServerContext(
+            "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
+
+      // This should throw the InvalidRequestException
+      ElevationApi.getByPoint(sc.context, new LatLng(0, 0)).await();
+    }
   }
 }
