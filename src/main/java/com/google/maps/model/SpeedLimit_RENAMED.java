@@ -18,7 +18,7 @@ package com.google.maps.model;
 import java.io.Serializable;
 
 /** A speed limit result from the Roads API. */
-public class SpeedLimit implements Serializable {
+public class SpeedLimit_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
   /**

@@ -25,7 +25,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
-import com.google.maps.model.SpeedLimit;
+import com.google.maps.model.SpeedLimit_RENAMED;
 
 /**
  * The Google Maps Roads API identifies the roads a vehicle was traveling along and provides
@@ -108,7 +108,7 @@ public class RoadsApi {
    * @param path The collected GPS points as a path.
    * @return Returns the speed limits as a {@link PendingResult}.
    */
-  public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, LatLng... path) {
+  public static PendingResult<SpeedLimit_RENAMED[]> speedLimits(GeoApiContext context, LatLng... path) {
     return context.get(SPEEDS_API_CONFIG, SpeedsResponse.class, "path", join('|', path));
   }
 
@@ -127,7 +127,7 @@ public class RoadsApi {
    *     100 placeIds with each request.
    * @return Returns the speed limits as a {@link PendingResult}.
    */
-  public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, String... placeIds) {
+  public static PendingResult<SpeedLimit_RENAMED[]> speedLimits(GeoApiContext context, String... placeIds) {
     String[] placeParams = new String[2 * placeIds.length];
     int i = 0;
     for (String placeId : placeIds) {
@@ -183,8 +183,8 @@ public class RoadsApi {
     }
   }
 
-  public static class SpeedsResponse implements ApiResponse<SpeedLimit[]> {
-    private SpeedLimit[] speedLimits;
+  public static class SpeedsResponse implements ApiResponse<SpeedLimit_RENAMED[]> {
+    private SpeedLimit_RENAMED[] speedLimits;
     private ApiError error;
 
     @Override
@@ -193,7 +193,7 @@ public class RoadsApi {
     }
 
     @Override
-    public SpeedLimit[] getResult() {
+    public SpeedLimit_RENAMED[] getResult() {
       return speedLimits;
     }
 
@@ -205,7 +205,7 @@ public class RoadsApi {
 
   public static class CombinedResponse implements ApiResponse<SnappedSpeedLimitResponse> {
     private SnappedPoint[] snappedPoints;
-    private SpeedLimit[] speedLimits;
+    private SpeedLimit_RENAMED[] speedLimits;
     private ApiError error;
 
     @Override

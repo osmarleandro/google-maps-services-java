@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
-import com.google.maps.model.SpeedLimit;
+import com.google.maps.model.SpeedLimit_RENAMED;
 import java.util.Arrays;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -86,14 +86,14 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
+      SpeedLimit_RENAMED[] speeds = RoadsApi.speedLimits(sc.context, path).await();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
       sc.assertParamValue(join('|', path), "path");
       assertEquals(7, speeds.length);
 
-      for (SpeedLimit speed : speeds) {
+      for (SpeedLimit_RENAMED speed : speeds) {
         assertNotNull(speed.placeId);
         assertEquals(40.0, speed.speedLimit, 0.001);
       }
@@ -113,14 +113,14 @@ public class RoadsApiIntegrationTest {
             new LatLng(33.773250, -84.388840),
             new LatLng(33.771991, -84.388840)
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
+      SpeedLimit_RENAMED[] speeds = RoadsApi.speedLimits(sc.context, path).await();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
       sc.assertParamValue(join('|', path), "path");
       assertEquals(7, speeds.length);
 
-      for (SpeedLimit speed : speeds) {
+      for (SpeedLimit_RENAMED speed : speeds) {
         assertNotNull(speed.placeId);
         assertTrue(speed.speedLimit > 0);
       }
@@ -136,14 +136,14 @@ public class RoadsApiIntegrationTest {
             "ChIJyU-E2mEE9YgRftyNXxcfQYw",
             "ChIJc0BrC2EE9YgR71DvaFzNgrA"
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await();
+      SpeedLimit_RENAMED[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
       assertEquals(3, speeds.length);
       assertEquals("ChIJc0BrC2EE9YgR71DvaFzNgrA", speeds[2].placeId);
 
-      for (SpeedLimit speed : speeds) {
+      for (SpeedLimit_RENAMED speed : speeds) {
         assertTrue(speed.speedLimit > 0);
       }
     }
