@@ -181,7 +181,7 @@ public final class Stopwatch {
    * <p>Note that the overhead of measurement can be more than a microsecond, so it is generally not
    * useful to specify {@link TimeUnit#NANOSECONDS} precision here.
    */
-  public long elapsed(TimeUnit desiredUnit) {
+  public long elapsed_RENAMED(TimeUnit desiredUnit) {
     return desiredUnit.convert(elapsedNanos(), NANOSECONDS);
   }
 
