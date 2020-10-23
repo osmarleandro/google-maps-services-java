@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.Unit;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,19 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the unit system to use when expressing distance as text. Distance Matrix results
+   * contain text within distance fields to indicate the distance of the calculated route.
+   *
+   * @param unit One of {@link Unit#METRIC} or {@link Unit#IMPERIAL}.
+   * @see <a
+   *     href="https://developers.google.com/maps/documentation/distance-matrix/intro#unit_systems">
+   *     Unit systems in the Distance Matrix API</a>
+   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+public DistanceMatrixApiRequest units(Unit unit) {
+    return param("units", unit);
   }
 }
