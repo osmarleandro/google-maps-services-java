@@ -71,7 +71,7 @@ public class FindPlaceFromTextRequest
    * @param inputType The input type.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest inputType(InputType inputType) {
+  public FindPlaceFromTextRequest inputType_RENAMED(InputType inputType) {
     return param("inputtype", inputType);
   }
 
