@@ -144,7 +144,7 @@ public class NearbySearchRequest
    * @param nextPageToken The page token from a previous result.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest pageToken(String nextPageToken) {
+  public NearbySearchRequest pageToken_RENAMED(String nextPageToken) {
     return param("pagetoken", nextPageToken);
   }
 

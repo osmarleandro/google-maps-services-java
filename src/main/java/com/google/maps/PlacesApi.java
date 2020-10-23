@@ -56,7 +56,7 @@ public class PlacesApi {
   public static NearbySearchRequest nearbySearchNextPage(
       GeoApiContext context, String nextPageToken) {
     NearbySearchRequest request = new NearbySearchRequest(context);
-    request.pageToken(nextPageToken);
+    request.pageToken_RENAMED(nextPageToken);
     return request;
   }
 

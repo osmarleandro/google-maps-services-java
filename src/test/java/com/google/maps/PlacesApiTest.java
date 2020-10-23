@@ -634,7 +634,7 @@ public class PlacesApiTest {
           .name("name")
           .openNow(true)
           .type(PlaceType.AIRPORT)
-          .pageToken("next-page-token")
+          .pageToken_RENAMED("next-page-token")
           .await();
 
       sc.assertParamValue(location.toUrlValue(), "location");
