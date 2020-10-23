@@ -188,7 +188,7 @@ public class DistanceMatrixApiRequest
    * @param transitModes The preferred transit modes.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
+  public DistanceMatrixApiRequest transitModes_RENAMED(TransitMode... transitModes) {
     return param("transit_mode", join('|', transitModes));
   }
 
