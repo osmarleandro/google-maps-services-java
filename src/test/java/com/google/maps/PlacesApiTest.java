@@ -629,7 +629,7 @@ public class PlacesApiTest {
           .rankby(RankBy.PROMINENCE)
           .keyword("keyword")
           .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
+          .minPrice_RENAMED(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.EXPENSIVE)
           .name("name")
           .openNow(true)

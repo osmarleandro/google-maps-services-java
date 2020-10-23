@@ -102,7 +102,7 @@ public class NearbySearchRequest
    * @param priceLevel The price level to set as minimum.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest minPrice(PriceLevel priceLevel) {
+  public NearbySearchRequest minPrice_RENAMED(PriceLevel priceLevel) {
     return param("minprice", priceLevel);
   }
 
