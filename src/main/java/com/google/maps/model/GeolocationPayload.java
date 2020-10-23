@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.maps.GeolocationApiRequest;
+
 /**
  * Request body.
  *
@@ -184,5 +186,14 @@ public class GeolocationPayload implements Serializable {
       this._addedWifiAccessPoints.add(newWifiAccessPoint);
       return this;
     }
+
+	public void validateRequest(GeolocationApiRequest geolocationApiRequest) {
+	    if (geolocationApiRequest.payload.considerIp != null
+	        && !geolocationApiRequest.payload.considerIp
+	        && geolocationApiRequest.payload.wifiAccessPoints != null
+	        && geolocationApiRequest.payload.wifiAccessPoints.length < 2) {
+	      throw new IllegalArgumentException("Request must contain two or more 'Wifi Access Points'");
+	    }
+	  }
   }
 }

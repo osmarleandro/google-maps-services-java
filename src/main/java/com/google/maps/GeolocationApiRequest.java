@@ -26,7 +26,7 @@ import com.google.maps.model.WifiAccessPoint;
 public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
-  private GeolocationPayload payload = null;
+  public GeolocationPayload payload = null;
   private GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
@@ -36,13 +36,8 @@ public class GeolocationApiRequest
 
   @Override
   protected void validateRequest() {
-    if (this.payload.considerIp != null
-        && !this.payload.considerIp
-        && this.payload.wifiAccessPoints != null
-        && this.payload.wifiAccessPoints.length < 2) {
-      throw new IllegalArgumentException("Request must contain two or more 'Wifi Access Points'");
-    }
-  }
+	builder.validateRequest(this);
+}
 
   public GeolocationApiRequest HomeMobileCountryCode(int newHomeMobileCountryCode) {
     this.builder.HomeMobileCountryCode(newHomeMobileCountryCode);
