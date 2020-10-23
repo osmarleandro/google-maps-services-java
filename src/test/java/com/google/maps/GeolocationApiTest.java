@@ -384,7 +384,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testNoPayloadGeolocation1() throws Exception {
+  public void testNoPayloadGeolocation1_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
 
