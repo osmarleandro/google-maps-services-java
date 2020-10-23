@@ -83,16 +83,6 @@ public class DistanceMatrixApiRequest
   }
 
   /**
-   * One or more latitude/longitude values to which to calculate distance and time.
-   *
-   * @param points The destination points.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest destinations(LatLng... points) {
-    return param("destinations", join('|', points));
-  }
-
-  /**
    * Specifies the mode of transport to use when calculating directions.
    *
    * <p>Note that Distance Matrix requests only support {@link TravelMode#DRIVING}, {@link
