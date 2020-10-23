@@ -52,6 +52,16 @@ public class FindPlaceFromTextRequest
     public String toUrlValue() {
       return this.inputType;
     }
+
+	/**
+	   * The type of input.
+	   *
+	   * @param findPlaceFromTextRequest TODO
+	 * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
+	   */
+	  public FindPlaceFromTextRequest inputType(FindPlaceFromTextRequest findPlaceFromTextRequest) {
+	    return findPlaceFromTextRequest.param("inputtype", this);
+	  }
   }
 
   /**
@@ -63,16 +73,6 @@ public class FindPlaceFromTextRequest
    */
   public FindPlaceFromTextRequest input(String input) {
     return param("input", input);
-  }
-
-  /**
-   * The type of input.
-   *
-   * @param inputType The input type.
-   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
-   */
-  public FindPlaceFromTextRequest inputType(InputType inputType) {
-    return param("inputtype", inputType);
   }
 
   /**
