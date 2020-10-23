@@ -231,7 +231,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       // Return successful responses
       return resp.getResult();
     } else {
-      ApiException e = resp.getError();
+      ApiException e = resp.getError_RENAMED();
       if (shouldRetry(e)) {
         // Retry over_query_limit errors
         return request.retry();

@@ -310,7 +310,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       // Return successful responses
       return resp.getResult();
     } else {
-      ApiException e = resp.getError();
+      ApiException e = resp.getError_RENAMED();
       if (shouldRetry(e)) {
         return request.retry();
       } else {

@@ -23,5 +23,5 @@ public interface ApiResponse<T> {
 
   T getResult();
 
-  ApiException getError();
+  ApiException getError_RENAMED();
 }
