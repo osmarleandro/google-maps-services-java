@@ -396,7 +396,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testShutdown() throws InterruptedException {
+  public void testShutdown_RENAMED() throws InterruptedException {
     GeoApiContext context = builder.build();
     final Thread delayThread = findLastThreadByName("RateLimitExecutorDelayThread");
     assertNotNull(
