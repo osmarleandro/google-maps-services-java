@@ -45,7 +45,7 @@ public abstract class Ticker {
   public abstract long read();
 
   /** A ticker that reads the current time using {@link System#nanoTime}. */
-  public static Ticker systemTicker() {
+  public static Ticker systemTicker_RENAMED() {
     return SYSTEM_TICKER;
   }
 

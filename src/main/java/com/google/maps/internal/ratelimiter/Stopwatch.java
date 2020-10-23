@@ -116,7 +116,7 @@ public final class Stopwatch {
   }
 
   Stopwatch() {
-    this.ticker = Ticker.systemTicker();
+    this.ticker = Ticker.systemTicker_RENAMED();
   }
 
   Stopwatch(Ticker ticker) {
