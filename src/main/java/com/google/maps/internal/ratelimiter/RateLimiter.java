@@ -185,7 +185,7 @@ public abstract class RateLimiter {
   // Can't be initialized in the constructor because mocks don't call the constructor.
   private volatile Object mutexDoNotUseDirectly;
 
-  private Object mutex() {
+  private Object mutex_RENAMED() {
     Object mutex = mutexDoNotUseDirectly;
     if (mutex == null) {
       synchronized (this) {
@@ -223,7 +223,7 @@ public abstract class RateLimiter {
   public final void setRate(double permitsPerSecond) {
     checkArgument(
         permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
-    synchronized (mutex()) {
+    synchronized (mutex_RENAMED()) {
       doSetRate(permitsPerSecond, stopwatch.readMicros());
     }
   }
@@ -237,7 +237,7 @@ public abstract class RateLimiter {
    * after invocations to {@linkplain #setRate}.
    */
   public final double getRate() {
-    synchronized (mutex()) {
+    synchronized (mutex_RENAMED()) {
       return doGetRate();
     }
   }
@@ -280,7 +280,7 @@ public abstract class RateLimiter {
    */
   final long reserve(int permits) {
     checkPermits(permits);
-    synchronized (mutex()) {
+    synchronized (mutex_RENAMED()) {
       return reserveAndGetWaitLength(permits, stopwatch.readMicros());
     }
   }
@@ -343,7 +343,7 @@ public abstract class RateLimiter {
     long timeoutMicros = max(unit.toMicros(timeout), 0);
     checkPermits(permits);
     long microsToWait;
-    synchronized (mutex()) {
+    synchronized (mutex_RENAMED()) {
       long nowMicros = stopwatch.readMicros();
       if (!canAcquire(nowMicros, timeoutMicros)) {
         return false;
