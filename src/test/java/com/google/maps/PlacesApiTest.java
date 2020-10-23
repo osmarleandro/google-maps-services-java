@@ -58,13 +58,13 @@ public class PlacesApiTest {
 
   private static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
-  private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
+  public static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
   private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
   private static final LatLng SYDNEY = new LatLng(-33.8650, 151.2094);
 
   private final String autocompletePredictionStructuredFormatting;
   private final String placeDetailResponseBody;
-  private final String placeDetailResponseBodyForPermanentlyClosedPlace;
+  public final String placeDetailResponseBodyForPermanentlyClosedPlace;
   private final String quayResponseBody;
   private final String queryAutocompleteResponseBody;
   private final String queryAutocompleteWithPlaceIdResponseBody;
@@ -326,18 +326,6 @@ public class PlacesApiTest {
 
       // Permanently closed:
       assertFalse(placeDetails.permanentlyClosed);
-    }
-  }
-
-  @Test
-  public void testPlaceDetailsLookupPermanentlyClosedPlace() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(placeDetailResponseBodyForPermanentlyClosedPlace)) {
-      PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
-      assertNotNull(placeDetails);
-      assertNotNull(placeDetails.toString());
-      assertTrue(placeDetails.permanentlyClosed);
     }
   }
 
