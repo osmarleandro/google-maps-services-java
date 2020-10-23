@@ -70,7 +70,7 @@ public class ElevationApiTest {
             "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
 
       // This should throw the InvalidRequestException
-      ElevationApi.getByPoint(sc.context, new LatLng(0, 0)).await();
+      ElevationApi.getByPoint_RENAMED(sc.context, new LatLng(0, 0)).await();
     }
   }
 
@@ -110,7 +110,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
+      ElevationResult result = ElevationApi.getByPoint_RENAMED(sc.context, SYDNEY).await();
 
       assertNotNull(result);
       assertNotNull(result.toString());
