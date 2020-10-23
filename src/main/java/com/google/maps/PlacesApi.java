@@ -135,7 +135,7 @@ public class PlacesApi {
   public static PlaceDetailsRequest placeDetails(
       GeoApiContext context, String placeId, PlaceAutocompleteRequest.SessionToken sessionToken) {
     PlaceDetailsRequest request = new PlaceDetailsRequest(context);
-    request.placeId(placeId);
+    request.API_CONFIG.placeId(request, placeId);
     request.sessionToken(sessionToken);
     return request;
   }
@@ -154,7 +154,7 @@ public class PlacesApi {
    */
   public static PlaceDetailsRequest placeDetails(GeoApiContext context, String placeId) {
     PlaceDetailsRequest request = new PlaceDetailsRequest(context);
-    request.placeId(placeId);
+    request.API_CONFIG.placeId(request, placeId);
     return request;
   }
 

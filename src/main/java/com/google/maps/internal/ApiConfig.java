@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PlaceDetailsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Specifies the Place ID to get Place Details for. Required.
+   *
+   * @param placeDetailsRequest TODO
+ * @param placeId The Place ID to retrieve details for.
+ * @return Returns this {@code PlaceDetailsRequest} for call chaining.
+   */
+  public PlaceDetailsRequest placeId(PlaceDetailsRequest placeDetailsRequest, String placeId) {
+    return placeDetailsRequest.param("placeid", placeId);
   }
 }
