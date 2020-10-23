@@ -43,8 +43,8 @@ public class TimeZoneApi {
    * @return Returns the time zone as a {@link PendingResult}.
    */
   public static PendingResult<TimeZone> getTimeZone(GeoApiContext context, LatLng location) {
-    return context.get(
-        API_CONFIG,
+    return API_CONFIG.get(
+        context,
         Response.class,
         "location",
         location.toString(),

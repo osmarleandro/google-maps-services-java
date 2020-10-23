@@ -66,7 +66,7 @@ public class RoadsApi {
    * @return Returns the snapped points as a {@link PendingResult}.
    */
   public static PendingResult<SnappedPoint[]> snapToRoads(GeoApiContext context, LatLng... path) {
-    return context.get(SNAP_TO_ROADS_API_CONFIG, RoadsResponse.class, "path", join('|', path));
+    return SNAP_TO_ROADS_API_CONFIG.get(context, RoadsResponse.class, "path", join('|', path));
   }
 
   /**
@@ -85,8 +85,8 @@ public class RoadsApi {
    */
   public static PendingResult<SnappedPoint[]> snapToRoads(
       GeoApiContext context, boolean interpolate, LatLng... path) {
-    return context.get(
-        SNAP_TO_ROADS_API_CONFIG,
+    return SNAP_TO_ROADS_API_CONFIG.get(
+        context,
         RoadsResponse.class,
         "path",
         join('|', path),
@@ -109,7 +109,7 @@ public class RoadsApi {
    * @return Returns the speed limits as a {@link PendingResult}.
    */
   public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, LatLng... path) {
-    return context.get(SPEEDS_API_CONFIG, SpeedsResponse.class, "path", join('|', path));
+    return SPEEDS_API_CONFIG.get(context, SpeedsResponse.class, "path", join('|', path));
   }
 
   /**
@@ -135,7 +135,7 @@ public class RoadsApi {
       placeParams[i++] = placeId;
     }
 
-    return context.get(SPEEDS_API_CONFIG, SpeedsResponse.class, placeParams);
+    return SPEEDS_API_CONFIG.get(context, SpeedsResponse.class, placeParams);
   }
 
   /**
@@ -147,7 +147,7 @@ public class RoadsApi {
    */
   public static PendingResult<SnappedSpeedLimitResponse> snappedSpeedLimits(
       GeoApiContext context, LatLng... path) {
-    return context.get(SPEEDS_API_CONFIG, CombinedResponse.class, "path", join('|', path));
+    return SPEEDS_API_CONFIG.get(context, CombinedResponse.class, "path", join('|', path));
   }
 
   /**
@@ -160,7 +160,7 @@ public class RoadsApi {
    */
   public static PendingResult<SnappedPoint[]> nearestRoads(
       GeoApiContext context, LatLng... points) {
-    return context.get(NEAREST_ROADS_API_CONFIG, RoadsResponse.class, "points", join('|', points));
+    return NEAREST_ROADS_API_CONFIG.get(context, RoadsResponse.class, "points", join('|', points));
   }
 
   public static class RoadsResponse implements ApiResponse<SnappedPoint[]> {

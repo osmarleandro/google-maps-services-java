@@ -60,14 +60,14 @@ public class GeoApiContext {
   private final RequestHandler requestHandler;
   private final String apiKey;
   private final String baseUrlOverride;
-  private final String channel;
+  public final String channel;
   private final String clientId;
   private final long errorTimeout;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
   private String experienceIdHeaderValue;
-  private final RequestMetricsReporter requestMetricsReporter;
+  public final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
   GeoApiContext(
@@ -219,44 +219,9 @@ public class GeoApiContext {
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
-      ApiConfig config, Class<? extends R> clazz, String... params) {
-    if (params.length % 2 != 0) {
-      throw new IllegalArgumentException("Params must be matching key/value pairs.");
-    }
-
-    StringBuilder query = new StringBuilder();
-
-    boolean channelSet = false;
-    for (int i = 0; i < params.length; i += 2) {
-      if (params[i].equals("channel")) {
-        channelSet = true;
-      }
-      query.append('&').append(params[i]).append('=');
-
-      // URL-encode the parameter.
-      try {
-        query.append(URLEncoder.encode(params[i + 1], "UTF-8"));
-      } catch (UnsupportedEncodingException e) {
-        // This should never happen. UTF-8 support is required for every Java implementation.
-        throw new IllegalStateException(e);
-      }
-    }
-
-    // Channel can be supplied per-request or per-context. We prioritize it from the request,
-    // so if it's not provided there, provide it here
-    if (!channelSet && channel != null && !channel.isEmpty()) {
-      query.append("&channel=").append(channel);
-    }
-
-    return getWithPath(
-        clazz,
-        config.fieldNamingPolicy,
-        config.hostName,
-        config.path,
-        config.supportsClientId,
-        query.toString(),
-        requestMetricsReporter.newRequest(config.path));
-  }
+  ApiConfig config, Class<? extends R> clazz, String... params) {
+	return config.get(this, clazz, params);
+}
 
   <T, R extends ApiResponse<T>> PendingResult<T> post(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
@@ -294,7 +259,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
+  public <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
       Class<R> clazz,
       FieldNamingPolicy fieldNamingPolicy,
       String hostName,

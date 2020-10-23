@@ -15,7 +15,12 @@
 
 package com.google.maps.internal;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +52,45 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public <T, R extends ApiResponse<T>> PendingResult<T> get(
+      GeoApiContext geoApiContext, Class<? extends R> clazz, String... params) {
+    if (params.length % 2 != 0) {
+      throw new IllegalArgumentException("Params must be matching key/value pairs.");
+    }
+
+    StringBuilder query = new StringBuilder();
+
+    boolean channelSet = false;
+    for (int i = 0; i < params.length; i += 2) {
+      if (params[i].equals("channel")) {
+        channelSet = true;
+      }
+      query.append('&').append(params[i]).append('=');
+
+      // URL-encode the parameter.
+      try {
+        query.append(URLEncoder.encode(params[i + 1], "UTF-8"));
+      } catch (UnsupportedEncodingException e) {
+        // This should never happen. UTF-8 support is required for every Java implementation.
+        throw new IllegalStateException(e);
+      }
+    }
+
+    // Channel can be supplied per-request or per-context. We prioritize it from the request,
+    // so if it's not provided there, provide it here
+    if (!channelSet && geoApiContext.channel != null && !geoApiContext.channel.isEmpty()) {
+      query.append("&channel=").append(geoApiContext.channel);
+    }
+
+    return geoApiContext.getWithPath(
+        clazz,
+        fieldNamingPolicy,
+        hostName,
+        path,
+        supportsClientId,
+        query.toString(),
+        geoApiContext.requestMetricsReporter.newRequest(path));
   }
 }
