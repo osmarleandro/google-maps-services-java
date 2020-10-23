@@ -86,13 +86,13 @@ public class DirectionsApiTest {
   public void testBuilder() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.BICYCLING)
-              .avoid(
-                  DirectionsApi.RouteRestriction.HIGHWAYS,
-                  DirectionsApi.RouteRestriction.TOLLS,
-                  DirectionsApi.RouteRestriction.FERRIES)
-              .units(Unit.METRIC)
+          Unit.METRIC
+              .units(DirectionsApi.newRequest(sc.context)
+			      .mode(TravelMode.BICYCLING)
+			      .avoid(
+			          DirectionsApi.RouteRestriction.HIGHWAYS,
+			          DirectionsApi.RouteRestriction.TOLLS,
+			          DirectionsApi.RouteRestriction.FERRIES))
               .region("au")
               .origin("Sydney")
               .destination("Melbourne")

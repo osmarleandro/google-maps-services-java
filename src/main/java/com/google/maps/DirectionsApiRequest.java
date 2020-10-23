@@ -24,7 +24,7 @@ import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
-import com.google.maps.model.Unit;
+
 import java.time.Instant;
 
 /** Request for the Directions API. */
@@ -142,16 +142,6 @@ public class DirectionsApiRequest
    */
   public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
     return param("avoid", join('|', restrictions));
-  }
-
-  /**
-   * Specifies the unit system to use when displaying results.
-   *
-   * @param units The preferred units for displaying distances.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest units(Unit units) {
-    return param("units", units);
   }
 
   /**

@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.DirectionsApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.util.Locale;
 
@@ -31,5 +32,15 @@ public enum Unit implements UrlValue {
   @Override
   public String toUrlValue() {
     return name().toLowerCase(Locale.ENGLISH);
+  }
+
+/**
+   * Specifies the unit system to use when displaying results.
+   *
+   * @param directionsApiRequest TODO
+ * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+  public DirectionsApiRequest units(DirectionsApiRequest directionsApiRequest) {
+    return directionsApiRequest.param("units", this);
   }
 }
