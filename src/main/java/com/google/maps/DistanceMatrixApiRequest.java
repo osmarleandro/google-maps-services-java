@@ -67,7 +67,7 @@ public class DistanceMatrixApiRequest
    * @param points The origin points.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest origins(LatLng... points) {
+  public DistanceMatrixApiRequest origins_RENAMED(LatLng... points) {
     return param("origins", join('|', points));
   }
 
