@@ -310,7 +310,7 @@ public class GeolocationApiTest {
                       .createCellTower())
               .createGeolocationPayload();
 
-      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+      GeolocationResult result = GeolocationApi.geolocate_RENAMED(sc.context, payload).await();
       assertNotNull(result.toString());
       JSONObject body = sc.requestBody();
       assertEquals(false, body.get("considerIp"));
@@ -376,7 +376,7 @@ public class GeolocationApiTest {
       GeolocationPayload payload =
           new GeolocationPayload.GeolocationPayloadBuilder().createGeolocationPayload();
 
-      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+      GeolocationResult result = GeolocationApi.geolocate_RENAMED(sc.context, payload).await();
       assertNotNull(result);
       assertNotNull(result.toString());
       assertNotNull(result.location);
