@@ -609,7 +609,7 @@ public class PlacesApiTest {
       final int width = 200;
       final int height = 100;
 
-      PlacesApi.photo(sc.context, photoReference)
+      PlacesApi.photo_RENAMED(sc.context, photoReference)
           .maxWidth(width)
           .maxHeight(height)
           .awaitIgnoreError();
