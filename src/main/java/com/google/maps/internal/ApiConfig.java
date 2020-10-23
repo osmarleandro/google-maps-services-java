@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PendingResultBase;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,12 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public final void cancel(PendingResultBase pendingResultBase) {
+    if (pendingResultBase.delegate == null) {
+      return;
+    }
+    pendingResultBase.delegate.cancel();
   }
 }
