@@ -80,7 +80,7 @@ public class NearbySearchRequest
    * @param ranking The rank by method.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest rankby(RankBy ranking) {
+  public NearbySearchRequest rankby_RENAMED(RankBy ranking) {
     return param("rankby", ranking);
   }
 

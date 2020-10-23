@@ -626,7 +626,7 @@ public class PlacesApiTest {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
           .radius(5000)
-          .rankby(RankBy.PROMINENCE)
+          .rankby_RENAMED(RankBy.PROMINENCE)
           .keyword("keyword")
           .language("en")
           .minPrice(PriceLevel.INEXPENSIVE)
@@ -671,7 +671,7 @@ public class PlacesApiTest {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
           .radius(5000)
-          .rankby(RankBy.DISTANCE)
+          .rankby_RENAMED(RankBy.DISTANCE)
           .await();
     }
   }
@@ -680,7 +680,7 @@ public class PlacesApiTest {
   public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
+      PlacesApi.nearbySearchQuery(sc.context, location).rankby_RENAMED(RankBy.DISTANCE).await();
     }
   }
 
