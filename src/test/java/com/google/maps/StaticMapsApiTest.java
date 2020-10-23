@@ -66,7 +66,7 @@ public class StaticMapsApiTest {
   }
 
   @Test
-  public void testGetSydneyLatLngStaticMap() throws Exception {
+  public void testGetSydneyLatLngStaticMap_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
