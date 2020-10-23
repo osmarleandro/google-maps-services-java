@@ -15,10 +15,22 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.AutocompletePrediction.MatchedSubstring;
+import com.google.maps.model.AutocompletePrediction.Term;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +79,32 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testQueryAutocompletePizzaNearPar(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTest.queryAutocompleteResponseBody)) {
+      AutocompletePrediction[] predictions =
+          PlacesApi.queryAutocomplete(sc.context, PlacesApiTest.QUERY_AUTOCOMPLETE_INPUT).await();
+
+      assertNotNull(predictions);
+      assertEquals(predictions.length, 5);
+      assertNotNull(Arrays.toString(predictions));
+
+      AutocompletePrediction prediction = predictions[0];
+      assertNotNull(prediction);
+      assertNotNull(prediction.description);
+      assertEquals("pizza near Paris, France", prediction.description);
+
+      assertEquals(3, prediction.matchedSubstrings.length);
+      MatchedSubstring matchedSubstring = prediction.matchedSubstrings[0];
+      assertEquals(5, matchedSubstring.length);
+      assertEquals(0, matchedSubstring.offset);
+
+      assertEquals(4, prediction.terms.length);
+      Term term = prediction.terms[0];
+      assertEquals(0, term.offset);
+      assertEquals("pizza", term.value);
+    }
   }
 }

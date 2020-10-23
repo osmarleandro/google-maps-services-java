@@ -59,14 +59,14 @@ public class PlacesApiTest {
   private static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
   private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
-  private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
+  public static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
   private static final LatLng SYDNEY = new LatLng(-33.8650, 151.2094);
 
   private final String autocompletePredictionStructuredFormatting;
   private final String placeDetailResponseBody;
   private final String placeDetailResponseBodyForPermanentlyClosedPlace;
   private final String quayResponseBody;
-  private final String queryAutocompleteResponseBody;
+  public final String queryAutocompleteResponseBody;
   private final String queryAutocompleteWithPlaceIdResponseBody;
   private final String textSearchResponseBody;
   private final String textSearchPizzaInNYCbody;
@@ -390,33 +390,6 @@ public class PlacesApiTest {
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue("5000", "radius");
       sc.assertParamValue("en", "language");
-    }
-  }
-
-  @Test
-  public void testQueryAutocompletePizzaNearPar() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(queryAutocompleteResponseBody)) {
-      AutocompletePrediction[] predictions =
-          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
-
-      assertNotNull(predictions);
-      assertEquals(predictions.length, 5);
-      assertNotNull(Arrays.toString(predictions));
-
-      AutocompletePrediction prediction = predictions[0];
-      assertNotNull(prediction);
-      assertNotNull(prediction.description);
-      assertEquals("pizza near Paris, France", prediction.description);
-
-      assertEquals(3, prediction.matchedSubstrings.length);
-      AutocompletePrediction.MatchedSubstring matchedSubstring = prediction.matchedSubstrings[0];
-      assertEquals(5, matchedSubstring.length);
-      assertEquals(0, matchedSubstring.offset);
-
-      assertEquals(4, prediction.terms.length);
-      AutocompletePrediction.Term term = prediction.terms[0];
-      assertEquals(0, term.offset);
-      assertEquals("pizza", term.value);
     }
   }
 
