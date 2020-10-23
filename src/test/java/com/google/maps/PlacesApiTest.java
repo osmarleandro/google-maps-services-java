@@ -689,8 +689,8 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
-      PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
-          .offset(4)
+      PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session).API_CONFIG
+          .offset(PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session), 4)
           .origin(location)
           .location(location)
           .radius(5000)

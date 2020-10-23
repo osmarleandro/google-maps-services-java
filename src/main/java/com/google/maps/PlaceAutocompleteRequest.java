@@ -38,7 +38,7 @@ public class PlaceAutocompleteRequest
     extends PendingResultBase<
         AutocompletePrediction[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/autocomplete/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -103,19 +103,6 @@ public class PlaceAutocompleteRequest
    */
   public PlaceAutocompleteRequest input(String input) {
     return param("input", input);
-  }
-
-  /**
-   * The character position in the input term at which the service uses text for predictions. For
-   * example, if the input is 'Googl' and the completion point is 3, the service will match on
-   * 'Goo'. The offset should generally be set to the position of the text caret. If no offset is
-   * supplied, the service will use the entire term.
-   *
-   * @param offset The character offset position of the user's cursor.
-   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
-   */
-  public PlaceAutocompleteRequest offset(int offset) {
-    return param("offset", String.valueOf(offset));
   }
 
   /**
