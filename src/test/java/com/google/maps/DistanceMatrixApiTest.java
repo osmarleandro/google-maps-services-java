@@ -75,7 +75,7 @@ public class DistanceMatrixApiTest {
             "The Pinnacles, Australia"
           };
       DistanceMatrix matrix =
-          DistanceMatrixApi.getDistanceMatrix(sc.context, origins, destinations).await();
+          DistanceMatrixApi.getDistanceMatrix(sc.context, origins, destinations).await_RENAMED();
 
       assertNotNull(matrix.toString());
       assertNotNull(Arrays.toString(matrix.rows));
@@ -135,7 +135,7 @@ public class DistanceMatrixApiTest {
           .units(Unit.IMPERIAL)
           .departureTime(
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
-          .await();
+          .await_RENAMED();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
@@ -164,7 +164,7 @@ public class DistanceMatrixApiTest {
           .destinations(destinations)
           .mode(TravelMode.BICYCLING)
           .language("fr-FR")
-          .await();
+          .await_RENAMED();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
@@ -185,7 +185,7 @@ public class DistanceMatrixApiTest {
           .origins(origins)
           .destinations(destinations)
           .mode(TravelMode.TRANSIT)
-          .await();
+          .await_RENAMED();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
@@ -204,7 +204,7 @@ public class DistanceMatrixApiTest {
           .mode(TravelMode.DRIVING)
           .trafficModel(TrafficModel.PESSIMISTIC)
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
-          .await();
+          .await_RENAMED();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
       sc.assertParamValue("San Francisco International Airport, San Francisco, CA", "destinations");
