@@ -75,16 +75,6 @@ public class NearbySearchRequest
   }
 
   /**
-   * Specifies the order in which results are listed.
-   *
-   * @param ranking The rank by method.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest rankby(RankBy ranking) {
-    return param("rankby", ranking);
-  }
-
-  /**
    * Specifies a term to be matched against all content that Google has indexed for this place. This
    * includes but is not limited to name, type, and address, as well as customer reviews and other
    * third-party content.
