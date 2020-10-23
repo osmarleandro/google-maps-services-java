@@ -116,7 +116,7 @@ public class ElevationApiTest {
       assertNotNull(result.toString());
       assertEquals(SYDNEY_POINT_ELEVATION, result.elevation, EPSILON);
 
-      sc.assertParamValue(SYDNEY.toUrlValue(), "locations");
+      sc.assertParamValue_RENAMED(SYDNEY.toUrlValue(), "locations");
     }
   }
 
@@ -153,7 +153,7 @@ public class ElevationApiTest {
       assertEquals(SYDNEY_ELEVATION, results[0].elevation, EPSILON);
       assertEquals(MELBOURNE_ELEVATION, results[1].elevation, EPSILON);
 
-      sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "locations");
+      sc.assertParamValue_RENAMED("enc:xvumEur{y[jyaWdnbe@", "locations");
     }
   }
 
@@ -254,8 +254,8 @@ public class ElevationApiTest {
       assertEquals(SYDNEY_ELEVATION, results[0].elevation, EPSILON);
       assertEquals(MELBOURNE_ELEVATION, results[9].elevation, EPSILON);
 
-      sc.assertParamValue("10", "samples");
-      sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "path");
+      sc.assertParamValue_RENAMED("10", "samples");
+      sc.assertParamValue_RENAMED("enc:xvumEur{y[jyaWdnbe@", "path");
     }
   }
 
@@ -271,8 +271,8 @@ public class ElevationApiTest {
 
       LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
 
-      sc.assertParamValue("100", "samples");
-      sc.assertParamValue("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");
+      sc.assertParamValue_RENAMED("100", "samples");
+      sc.assertParamValue_RENAMED("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");
     }
   }
 }

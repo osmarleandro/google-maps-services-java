@@ -102,7 +102,7 @@ public class LocalTestServerContext implements AutoCloseable {
     return request.getPath().split("\\?", -1)[0];
   }
 
-  void assertParamValue(String expected, String paramName)
+  void assertParamValue_RENAMED(String expected, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
       this.params = this.actualParams();

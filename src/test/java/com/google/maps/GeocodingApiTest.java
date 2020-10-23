@@ -78,7 +78,7 @@ public class GeocodingApiTest {
       checkSydneyResult(results);
       assertNotNull(Arrays.toString(results));
 
-      sc.assertParamValue("Sydney", "address");
+      sc.assertParamValue_RENAMED("Sydney", "address");
     }
   }
 
@@ -89,7 +89,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
       checkSydneyResult(results);
 
-      sc.assertParamValue(placeID, "place_id");
+      sc.assertParamValue_RENAMED(placeID, "place_id");
     }
   }
 
@@ -118,7 +118,7 @@ public class GeocodingApiTest {
       assertNotNull(resps.get(0));
       checkSydneyResult(resps.get(0));
 
-      sc.assertParamValue("Sydney", "address");
+      sc.assertParamValue_RENAMED("Sydney", "address");
     }
   }
 
@@ -143,7 +143,7 @@ public class GeocodingApiTest {
           "York St Near Barrack St, Sydney NSW 2017, Australia", results[1].formattedAddress);
       assertEquals("Sydney NSW 2000, Australia", results[2].formattedAddress);
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
+      sc.assertParamValue_RENAMED(latlng.toUrlValue(), "latlng");
     }
   }
 
@@ -244,7 +244,7 @@ public class GeocodingApiTest {
       assertEquals(
           "Google Bldg 41, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
           results[0].formattedAddress);
-      sc.assertParamValue(address, "address");
+      sc.assertParamValue_RENAMED(address, "address");
     }
   }
 
@@ -333,8 +333,8 @@ public class GeocodingApiTest {
       assertEquals("Winnetka, Los Angeles, CA, USA", results[0].formattedAddress);
       assertEquals("ChIJ0fd4S_KbwoAR2hRDrsr3HmQ", results[0].placeId);
 
-      sc.assertParamValue("Winnetka", "address");
-      sc.assertParamValue("34.17268400,-118.60479400|34.23614400,-118.50093800", "bounds");
+      sc.assertParamValue_RENAMED("Winnetka", "address");
+      sc.assertParamValue_RENAMED("34.17268400,-118.60479400|34.23614400,-118.50093800", "bounds");
     }
   }
 
@@ -417,8 +417,8 @@ public class GeocodingApiTest {
       assertEquals(AddressType.LOCALITY, results[0].types[0]);
       assertEquals(AddressType.POLITICAL, results[0].types[1]);
 
-      sc.assertParamValue("Toledo", "address");
-      sc.assertParamValue("es", "region");
+      sc.assertParamValue_RENAMED("Toledo", "address");
+      sc.assertParamValue_RENAMED("es", "region");
     }
   }
 
@@ -502,8 +502,8 @@ public class GeocodingApiTest {
       assertEquals("Santa Cruz de Tenerife, Spain", results[0].formattedAddress);
       assertEquals("ChIJcUElzOzMQQwRLuV30nMUEUM", results[0].placeId);
 
-      sc.assertParamValue("country:ES", "components");
-      sc.assertParamValue("santa cruz", "address");
+      sc.assertParamValue_RENAMED("country:ES", "components");
+      sc.assertParamValue_RENAMED("santa cruz", "address");
     }
   }
 
@@ -589,8 +589,8 @@ public class GeocodingApiTest {
       assertEquals(true, results[0].partialMatch);
       assertEquals("ChIJSTKCCzZwQIYRPN4IGI8c6xY", results[0].placeId);
 
-      sc.assertParamValue("administrative_area:TX|country:US", "components");
-      sc.assertParamValue("Torun", "address");
+      sc.assertParamValue_RENAMED("administrative_area:TX|country:US", "components");
+      sc.assertParamValue_RENAMED("Torun", "address");
     }
   }
 
@@ -677,7 +677,7 @@ public class GeocodingApiTest {
       assertEquals("Annankatu, 00101 Helsinki, Finland", results[0].formattedAddress);
       assertEquals("EiBBbm5hbmthdHUsIDAwMTAxIEhlbHNpbmtpLCBTdW9taQ", results[0].placeId);
 
-      sc.assertParamValue(
+      sc.assertParamValue_RENAMED(
           "route:Annegatan|administrative_area:Helsinki|country:Finland", "components");
     }
   }
@@ -701,7 +701,7 @@ public class GeocodingApiTest {
       assertEquals(AddressComponentType.STREET_NUMBER, results[0].addressComponents[0].types[0]);
       assertEquals(AddressType.STREET_ADDRESS, results[0].types[0]);
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
+      sc.assertParamValue_RENAMED(latlng.toUrlValue(), "latlng");
     }
   }
 
@@ -799,9 +799,9 @@ public class GeocodingApiTest {
       assertEquals(LocationType.ROOFTOP, results[0].geometry.locationType);
       assertEquals("ChIJd8BlQ2BZwokRAFUEcm_qrcA", results[0].placeId);
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
-      sc.assertParamValue(LocationType.ROOFTOP.toUrlValue(), "location_type");
-      sc.assertParamValue(AddressType.STREET_ADDRESS.toUrlValue(), "result_type");
+      sc.assertParamValue_RENAMED(latlng.toUrlValue(), "latlng");
+      sc.assertParamValue_RENAMED(LocationType.ROOFTOP.toUrlValue(), "location_type");
+      sc.assertParamValue_RENAMED(AddressType.STREET_ADDRESS.toUrlValue(), "result_type");
     }
   }
 
@@ -812,7 +812,7 @@ public class GeocodingApiTest {
       LatLng location = new LatLng(46.8023388, 1.6551867);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
       assertEquals("1 Rue Fernand Raynaud, 36000 Châteauroux, France", results[0].formattedAddress);
-      sc.assertParamValue(location.toUrlValue(), "latlng");
+      sc.assertParamValue_RENAMED(location.toUrlValue(), "latlng");
     }
   }
 
@@ -919,8 +919,8 @@ public class GeocodingApiTest {
           "Google Bldg 41, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
           results[0].formattedAddress);
 
-      sc.assertParamValue(address, "address");
-      sc.assertParamValue("true", "new_forward_geocoder");
+      sc.assertParamValue_RENAMED(address, "address");
+      sc.assertParamValue_RENAMED("true", "new_forward_geocoder");
     }
   }
 
@@ -943,7 +943,7 @@ public class GeocodingApiTest {
       assertEquals(AddressComponentType.POLITICAL, results[3].addressComponents[0].types[1]);
       assertEquals(AddressComponentType.WARD, results[3].addressComponents[0].types[2]);
 
-      sc.assertParamValue(location.toUrlValue(), "latlng");
+      sc.assertParamValue_RENAMED(location.toUrlValue(), "latlng");
     }
   }
 
@@ -1034,7 +1034,7 @@ public class GeocodingApiTest {
       assertEquals(AddressType.POINT_OF_INTEREST, results[0].types[3]);
       assertEquals(AddressType.STORE, results[0].types[4]);
 
-      sc.assertParamValue(address, "address");
+      sc.assertParamValue_RENAMED(address, "address");
     }
   }
 
@@ -1118,7 +1118,7 @@ public class GeocodingApiTest {
       assertEquals(AddressType.POINT_OF_INTEREST, results[0].types[2]);
       assertEquals(AddressType.SYNAGOGUE, results[0].types[3]);
 
-      sc.assertParamValue(address, "address");
+      sc.assertParamValue_RENAMED(address, "address");
     }
   }
 }
