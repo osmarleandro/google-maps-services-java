@@ -1,4 +1,4 @@
-package com.google.maps;
+package com.google.maps.metrics;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -26,7 +26,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class OpenCensusTest {
+public class OpenCensusTest_RENAMED {
 
   private MockWebServer server;
   private GeoApiContext context;
