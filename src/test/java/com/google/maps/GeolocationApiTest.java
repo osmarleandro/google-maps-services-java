@@ -56,7 +56,7 @@ public class GeolocationApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+              .ConsiderIp_RENAMED(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
@@ -107,7 +107,7 @@ public class GeolocationApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumWifi)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+              .ConsiderIp_RENAMED(false)
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:6b:11")
@@ -137,7 +137,7 @@ public class GeolocationApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+              .ConsiderIp_RENAMED(false)
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("92:68:c3:f8:76:47")
@@ -187,7 +187,7 @@ public class GeolocationApiTest {
 
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+              .ConsiderIp_RENAMED(false)
               .WifiAccessPoints(wifiAccessPoints)
               .CreatePayload()
               .await();
@@ -212,7 +212,7 @@ public class GeolocationApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+              .ConsiderIp_RENAMED(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(410)
               .RadioType("gsm")
@@ -268,7 +268,7 @@ public class GeolocationApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+              .ConsiderIp_RENAMED(false)
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
                       .CellId(39627456)
@@ -330,7 +330,7 @@ public class GeolocationApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumCellTower)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+              .ConsiderIp_RENAMED(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
               .RadioType("gsm")
@@ -410,7 +410,7 @@ public class GeolocationApiTest {
                 + "  \"code\": 404\n"
                 + " }\n"
                 + "}")) {
-      GeolocationApi.newRequest(sc.context).ConsiderIp(false).CreatePayload().await();
+      GeolocationApi.newRequest(sc.context).ConsiderIp_RENAMED(false).CreatePayload().await();
     }
   }
 

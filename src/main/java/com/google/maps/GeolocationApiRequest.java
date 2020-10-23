@@ -64,7 +64,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest ConsiderIp(boolean newConsiderIp) {
+  public GeolocationApiRequest ConsiderIp_RENAMED(boolean newConsiderIp) {
     this.builder.ConsiderIp(newConsiderIp);
     return this;
   }
