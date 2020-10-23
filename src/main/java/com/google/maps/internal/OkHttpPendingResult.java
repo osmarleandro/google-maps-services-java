@@ -197,7 +197,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public void cancel() {
+  public void cancel_RENAMED() {
     call.cancel();
   }
 
