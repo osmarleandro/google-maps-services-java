@@ -18,7 +18,7 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 import static java.util.Objects.requireNonNull;
 
-import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsResult_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
@@ -29,7 +29,7 @@ import java.time.Instant;
 
 /** Request for the Directions API. */
 public class DirectionsApiRequest
-    extends PendingResultBase<DirectionsResult, DirectionsApiRequest, DirectionsApi.Response> {
+    extends PendingResultBase<DirectionsResult_RENAMED, DirectionsApiRequest, DirectionsApi.Response> {
 
   public DirectionsApiRequest(GeoApiContext context) {
     super(context, DirectionsApi.API_CONFIG, DirectionsApi.Response.class);

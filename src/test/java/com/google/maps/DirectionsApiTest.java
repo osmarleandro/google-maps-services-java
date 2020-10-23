@@ -24,7 +24,7 @@ import static org.junit.Assert.assertThat;
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
-import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsResult_RENAMED;
 import com.google.maps.model.GeocodedWaypointStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
@@ -57,7 +57,7 @@ public class DirectionsApiTest {
   @Test
   public void testGetDirections() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(getDirectionsResponse)) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.getDirections(sc.context, "Sydney, AU", "Melbourne, AU").await();
 
       assertNotNull(result);
@@ -85,7 +85,7 @@ public class DirectionsApiTest {
   @Test
   public void testBuilder() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.BICYCLING)
               .avoid(
@@ -120,7 +120,7 @@ public class DirectionsApiTest {
   public void testResponseTimesArePopulatedCorrectly() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(responseTimesArePopulatedCorrectly)) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.TRANSIT)
               .origin("483 George St, Sydney NSW 2000, Australia")
@@ -341,7 +341,7 @@ public class DirectionsApiTest {
   public void testLanguageParameter() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .origin("Toledo")
               .destination("Madrid")
@@ -363,7 +363,7 @@ public class DirectionsApiTest {
   public void testTrafficModel() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .origin("48 Pirrama Road, Pyrmont NSW 2009")
               .destination("182 Church St, Parramatta NSW 2150")
@@ -386,7 +386,7 @@ public class DirectionsApiTest {
   public void testTransitWithoutSpecifyingTime() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
@@ -406,7 +406,7 @@ public class DirectionsApiTest {
   public void testTransitParams() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
@@ -431,7 +431,7 @@ public class DirectionsApiTest {
   public void testTravelModeWalking() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.WALKING)
               .origin("483 George St, Sydney NSW 2000, Australia")
@@ -488,7 +488,7 @@ public class DirectionsApiTest {
                 + "   \"routes\": [{}],\n"
                 + "   \"status\": \"OK\"\n"
                 + "}")) {
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .origin("48 Pirrama Rd, Pyrmont NSW")
               .destination("Airport Dr, Sydney NSW")
@@ -514,7 +514,7 @@ public class DirectionsApiTest {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)
@@ -548,7 +548,7 @@ public class DirectionsApiTest {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
-      DirectionsResult result =
+      DirectionsResult_RENAMED result =
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)

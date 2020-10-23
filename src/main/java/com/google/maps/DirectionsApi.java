@@ -19,7 +19,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
-import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsResult_RENAMED;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.GeocodedWaypoint;
 
@@ -63,7 +63,7 @@ public class DirectionsApi {
     return new DirectionsApiRequest(context).origin(origin).destination(destination);
   }
 
-  public static class Response implements ApiResponse<DirectionsResult> {
+  public static class Response implements ApiResponse<DirectionsResult_RENAMED> {
     public String status;
     public String errorMessage;
     public GeocodedWaypoint[] geocodedWaypoints;
@@ -75,8 +75,8 @@ public class DirectionsApi {
     }
 
     @Override
-    public DirectionsResult getResult() {
-      DirectionsResult result = new DirectionsResult();
+    public DirectionsResult_RENAMED getResult() {
+      DirectionsResult_RENAMED result = new DirectionsResult_RENAMED();
       result.geocodedWaypoints = geocodedWaypoints;
       result.routes = routes;
       return result;
