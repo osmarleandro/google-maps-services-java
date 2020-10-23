@@ -324,7 +324,7 @@ public abstract class RateLimiter {
    * @return {@code true} if the permit was acquired, {@code false} otherwise
    * @since 14.0
    */
-  public boolean tryAcquire() {
+  public boolean tryAcquire_RENAMED() {
     return tryAcquire(1, 0, MICROSECONDS);
   }
 
