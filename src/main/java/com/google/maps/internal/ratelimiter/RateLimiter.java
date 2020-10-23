@@ -224,7 +224,7 @@ public abstract class RateLimiter {
     checkArgument(
         permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
     synchronized (mutex()) {
-      doSetRate(permitsPerSecond, stopwatch.readMicros());
+      doSetRate_RENAMED(permitsPerSecond, stopwatch.readMicros());
     }
   }
 
