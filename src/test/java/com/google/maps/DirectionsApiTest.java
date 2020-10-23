@@ -163,7 +163,7 @@ public class DirectionsApiTest {
    * http://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&avoid=highways&mode=bicycling}
    */
   @Test
-  public void testTorontoToMontrealByBicycleAvoidingHighways() throws Exception {
+  public void testTorontoToMontrealByBicycleAvoidingHighways_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
