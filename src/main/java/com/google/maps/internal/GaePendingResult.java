@@ -227,7 +227,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       throw e;
     }
 
-    if (resp.successful()) {
+    if (resp.successful_RENAMED()) {
       // Return successful responses
       return resp.getResult();
     } else {

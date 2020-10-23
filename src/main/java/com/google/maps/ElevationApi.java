@@ -127,7 +127,7 @@ public class ElevationApi {
 
     @Override
     public ApiException getError() {
-      if (successful()) {
+      if (successful_RENAMED()) {
         return null;
       }
       return ApiException.from(status, errorMessage);
@@ -164,7 +164,7 @@ public class ElevationApi {
 
     @Override
     public ApiException getError() {
-      if (successful()) {
+      if (successful_RENAMED()) {
         return null;
       }
       return ApiException.from(status, errorMessage);

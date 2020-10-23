@@ -108,7 +108,7 @@ public class QueryAutocompleteRequest
 
     @Override
     public ApiException getError() {
-      if (successful()) {
+      if (successful_RENAMED()) {
         return null;
       }
       return ApiException.from(status, errorMessage);

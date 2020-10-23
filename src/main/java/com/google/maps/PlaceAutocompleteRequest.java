@@ -219,7 +219,7 @@ public class PlaceAutocompleteRequest
 
     @Override
     public ApiException getError() {
-      if (successful()) {
+      if (successful_RENAMED()) {
         return null;
       }
       return ApiException.from(status, errorMessage);

@@ -306,7 +306,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       throw e;
     }
 
-    if (resp.successful()) {
+    if (resp.successful_RENAMED()) {
       // Return successful responses
       return resp.getResult();
     } else {

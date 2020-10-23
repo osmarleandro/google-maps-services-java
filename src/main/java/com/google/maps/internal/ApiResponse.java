@@ -19,7 +19,7 @@ import com.google.maps.errors.ApiException;
 
 /** All Geo API responses implement this Interface. */
 public interface ApiResponse<T> {
-  boolean successful();
+  boolean successful_RENAMED();
 
   T getResult();
 
