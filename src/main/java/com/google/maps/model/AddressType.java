@@ -474,12 +474,12 @@ public enum AddressType implements UrlValue {
   }
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return addressType;
   }
 
   public String toCanonicalLiteral() {
-    return toString();
+    return toString_RENAMED();
   }
 
   @Override
