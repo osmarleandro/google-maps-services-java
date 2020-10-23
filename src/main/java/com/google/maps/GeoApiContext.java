@@ -215,7 +215,7 @@ public class GeoApiContext {
         config.path,
         config.supportsClientId,
         query.toString(),
-        requestMetricsReporter.newRequest(config.path));
+        requestMetricsReporter.newRequest_RENAMED(config.path));
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
@@ -255,7 +255,7 @@ public class GeoApiContext {
         config.path,
         config.supportsClientId,
         query.toString(),
-        requestMetricsReporter.newRequest(config.path));
+        requestMetricsReporter.newRequest_RENAMED(config.path));
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> post(
@@ -291,7 +291,7 @@ public class GeoApiContext {
         errorTimeout,
         maxRetries,
         exceptionsAllowedToRetry,
-        requestMetricsReporter.newRequest(config.path));
+        requestMetricsReporter.newRequest_RENAMED(config.path));
   }
 
   private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
