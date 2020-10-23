@@ -19,6 +19,9 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +171,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * One or more addresses to which to calculate distance and time. The service will geocode the
+   * strings and convert them to latitude/longitude coordinates to calculate directions.
+   *
+   * @param destinations Strings to geocode and use as a destination point (e.g. "Jersey City, NJ")
+   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+public DistanceMatrixApiRequest destinations(String... destinations) {
+    return param("destinations", join('|', destinations));
   }
 }
