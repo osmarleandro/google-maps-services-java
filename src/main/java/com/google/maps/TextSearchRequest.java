@@ -47,7 +47,7 @@ public class TextSearchRequest
    * @param query The query string to search for.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest query(String query) {
+  public TextSearchRequest query_RENAMED(String query) {
     return param("query", query);
   }
 

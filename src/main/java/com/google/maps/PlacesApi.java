@@ -70,7 +70,7 @@ public class PlacesApi {
    */
   public static TextSearchRequest textSearchQuery(GeoApiContext context, String query) {
     TextSearchRequest request = new TextSearchRequest(context);
-    request.query(query);
+    request.query_RENAMED(query);
     return request;
   }
 
@@ -86,7 +86,7 @@ public class PlacesApi {
   public static TextSearchRequest textSearchQuery(
       GeoApiContext context, String query, LatLng location) {
     TextSearchRequest request = new TextSearchRequest(context);
-    request.query(query);
+    request.query_RENAMED(query);
     request.location(location);
     return request;
   }
