@@ -36,7 +36,7 @@ import org.json.JSONObject;
 /** Local test mock server for unit tests. */
 public class LocalTestServerContext implements AutoCloseable {
 
-  private final MockWebServer server;
+  public final MockWebServer server;
   public final GeoApiContext context;
   private RecordedRequest request = null;
   private List<NameValuePair> params = null;
@@ -134,10 +134,6 @@ public class LocalTestServerContext implements AutoCloseable {
 
   @Override
   public void close() {
-    try {
-      server.shutdown();
-    } catch (IOException e) {
-      System.err.println("Failed to close server: " + e);
-    }
-  }
+	context.close(this);
+}
 }
