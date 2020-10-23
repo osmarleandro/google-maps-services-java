@@ -36,7 +36,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class GeocodingApiTest {
+public class GeocodingApiTest_RENAMED {
 
   private static final double EPSILON = 0.005;
   private static String simpleGeocodeResponse;
@@ -47,7 +47,7 @@ public class GeocodingApiTest {
   private static String reverseGeocodeWithKitaWardResponse;
   private static String geocodeLibraryType;
 
-  public GeocodingApiTest() {
+  public GeocodingApiTest_RENAMED() {
     simpleGeocodeResponse = retrieveBody("SimpleGeocodeResponse.json");
     placeGeocodeResponse = retrieveBody("PlaceGeocodeResponse.json");
     reverseGeocodeResponse = retrieveBody("ReverseGeocodeResponse.json");
