@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class StaticMapsRequest
     extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
 
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
+  public static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 
   public StaticMapsRequest(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);
@@ -454,17 +454,6 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest visible(LatLng visibleLocation) {
-    return param("visible", visibleLocation);
-  }
-
-  /**
-   * <code>visible</code> instructs the Google Static Maps API service to construct a map such that
-   * the existing locations remain visible.
-   *
-   * @param visibleLocation The location to be made visible in the requested Static Map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
   }
 }

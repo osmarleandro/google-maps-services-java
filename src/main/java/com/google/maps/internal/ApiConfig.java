@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.StaticMapsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * <code>visible</code> instructs the Google Static Maps API service to construct a map such that
+   * the existing locations remain visible.
+   *
+   * @param staticMapsRequest TODO
+ * @param visibleLocation The location to be made visible in the requested Static Map.
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest visible(StaticMapsRequest staticMapsRequest, String visibleLocation) {
+    return staticMapsRequest.param("visible", visibleLocation);
   }
 }
