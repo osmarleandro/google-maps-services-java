@@ -47,7 +47,7 @@ public class UrlSignerTest {
           .replace('/', '_');
 
   @Test
-  public void testUrlSigner() throws Exception {
+  public void testUrlSigner_RENAMED() throws Exception {
     UrlSigner urlSigner = new UrlSigner(SIGNING_KEY);
     assertEquals(SIGNATURE, urlSigner.getSignature(MESSAGE));
   }
