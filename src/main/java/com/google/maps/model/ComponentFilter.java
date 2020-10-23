@@ -99,7 +99,7 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param country The country to filter on.
    * @return Returns a {@link ComponentFilter}.
    */
-  public static ComponentFilter country(String country) {
+  public static ComponentFilter country_RENAMED(String country) {
     return new ComponentFilter("country", country);
   }
 }

@@ -695,7 +695,7 @@ public class PlacesApiTest {
           .location(location)
           .radius(5000)
           .types(PlaceAutocompleteType.ESTABLISHMENT)
-          .components(ComponentFilter.country("AU"))
+          .components(ComponentFilter.country_RENAMED("AU"))
           .await();
 
       sc.assertParamValue("Sydney Town Hall", "input");
@@ -704,7 +704,7 @@ public class PlacesApiTest {
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue("5000", "radius");
       sc.assertParamValue(PlaceAutocompleteType.ESTABLISHMENT.toString(), "types");
-      sc.assertParamValue(ComponentFilter.country("AU").toString(), "components");
+      sc.assertParamValue(ComponentFilter.country_RENAMED("AU").toString(), "components");
       sc.assertParamValue(session.toUrlValue(), "sessiontoken");
     }
   }
@@ -858,7 +858,7 @@ public class PlacesApiTest {
       SessionToken session = new SessionToken();
       AutocompletePrediction[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "po", session)
-              .components(ComponentFilter.country("nz"))
+              .components(ComponentFilter.country_RENAMED("nz"))
               .types(PlaceAutocompleteType.REGIONS)
               .await();
 

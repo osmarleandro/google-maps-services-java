@@ -17,7 +17,7 @@ package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
 import static com.google.maps.model.ComponentFilter.administrativeArea;
-import static com.google.maps.model.ComponentFilter.country;
+import static com.google.maps.model.ComponentFilter.country_RENAMED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -494,7 +494,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address("santa cruz")
-              .components(ComponentFilter.country("ES"))
+              .components(ComponentFilter.country_RENAMED("ES"))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -580,7 +580,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address("Torun")
-              .components(administrativeArea("TX"), country("US"))
+              .components(administrativeArea("TX"), country_RENAMED("US"))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -669,7 +669,7 @@ public class GeocodingApiTest {
               .components(
                   ComponentFilter.route("Annegatan"),
                   ComponentFilter.administrativeArea("Helsinki"),
-                  ComponentFilter.country("Finland"))
+                  ComponentFilter.country_RENAMED("Finland"))
               .await();
 
       assertNotNull(results);
