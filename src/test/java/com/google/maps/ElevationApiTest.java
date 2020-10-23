@@ -93,7 +93,7 @@ public class ElevationApiTest {
   }
 
   @Test
-  public void testGetPoint() throws Exception {
+  public void testGetPoint_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             ""
