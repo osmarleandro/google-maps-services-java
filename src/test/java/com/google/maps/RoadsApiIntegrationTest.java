@@ -128,7 +128,7 @@ public class RoadsApiIntegrationTest {
   }
 
   @Test
-  public void testSpeedLimitsWithPlaceIds() throws Exception {
+  public void testSpeedLimitsWithPlaceIds_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(speedLimitsWithPlaceIdsResponse)) {
       String[] placeIds =
           new String[] {
