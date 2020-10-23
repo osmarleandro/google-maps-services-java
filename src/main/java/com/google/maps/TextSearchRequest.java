@@ -124,7 +124,7 @@ public class TextSearchRequest
    * @param openNow Whether to restrict this search to open places.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest openNow(boolean openNow) {
+  public TextSearchRequest openNow_RENAMED(boolean openNow) {
     return param("opennow", String.valueOf(openNow));
   }
 

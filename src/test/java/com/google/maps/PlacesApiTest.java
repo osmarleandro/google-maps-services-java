@@ -463,7 +463,7 @@ public class PlacesApiTest {
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.VERY_EXPENSIVE)
           .name("name")
-          .openNow(true)
+          .openNow_RENAMED(true)
           .rankby(RankBy.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
@@ -491,7 +491,7 @@ public class PlacesApiTest {
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.VERY_EXPENSIVE)
           .name("name")
-          .openNow(true)
+          .openNow_RENAMED(true)
           .rankby(RankBy.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
