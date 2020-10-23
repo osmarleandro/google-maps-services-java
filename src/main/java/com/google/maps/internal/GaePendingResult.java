@@ -40,7 +40,7 @@ import com.google.maps.model.LocationType;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
 import com.google.maps.model.PriceLevel;
-import com.google.maps.model.TravelMode;
+import com.google.maps.model.TravelMode_RENAMED;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.time.Instant;
@@ -194,7 +194,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
             .registerTypeAdapter(
                 AddressComponentType.class, new SafeEnumAdapter<>(AddressComponentType.UNKNOWN))
             .registerTypeAdapter(AddressType.class, new SafeEnumAdapter<>(AddressType.UNKNOWN))
-            .registerTypeAdapter(TravelMode.class, new SafeEnumAdapter<>(TravelMode.UNKNOWN))
+            .registerTypeAdapter(TravelMode_RENAMED.class, new SafeEnumAdapter<>(TravelMode_RENAMED.UNKNOWN))
             .registerTypeAdapter(LocationType.class, new SafeEnumAdapter<>(LocationType.UNKNOWN))
             .registerTypeAdapter(RatingType.class, new SafeEnumAdapter<>(RatingType.UNKNOWN))
             .registerTypeAdapter(DayOfWeek.class, new DayOfWeekAdapter())

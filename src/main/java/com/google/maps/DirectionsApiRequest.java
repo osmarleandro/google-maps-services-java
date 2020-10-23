@@ -23,7 +23,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
-import com.google.maps.model.TravelMode;
+import com.google.maps.model.TravelMode_RENAMED;
 import com.google.maps.model.Unit;
 import java.time.Instant;
 
@@ -130,7 +130,7 @@ public class DirectionsApiRequest
    * @param mode The travel mode to request directions for.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest mode(TravelMode mode) {
+  public DirectionsApiRequest mode(TravelMode_RENAMED mode) {
     return param("mode", mode);
   }
 

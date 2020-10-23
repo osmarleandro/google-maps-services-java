@@ -24,7 +24,7 @@ import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
-import com.google.maps.model.TravelMode;
+import com.google.maps.model.TravelMode_RENAMED;
 import com.google.maps.model.Unit;
 import java.time.Duration;
 import java.time.Instant;
@@ -129,7 +129,7 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
           .destinations(destinations)
-          .mode(TravelMode.DRIVING)
+          .mode(TravelMode_RENAMED.DRIVING)
           .language("en-AU")
           .avoid(RouteRestriction.TOLLS)
           .units(Unit.IMPERIAL)
@@ -139,7 +139,7 @@ public class DistanceMatrixApiTest {
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode_RENAMED.DRIVING.toUrlValue(), "mode");
       sc.assertParamValue("en-AU", "language");
       sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue(), "avoid");
       sc.assertParamValue(Unit.IMPERIAL.toUrlValue(), "units");
@@ -162,13 +162,13 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
           .destinations(destinations)
-          .mode(TravelMode.BICYCLING)
+          .mode(TravelMode_RENAMED.BICYCLING)
           .language("fr-FR")
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode_RENAMED.BICYCLING.toUrlValue(), "mode");
       sc.assertParamValue("fr-FR", "language");
     }
   }
@@ -184,12 +184,12 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
           .destinations(destinations)
-          .mode(TravelMode.TRANSIT)
+          .mode(TravelMode_RENAMED.TRANSIT)
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
       sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode_RENAMED.TRANSIT.toUrlValue(), "mode");
     }
   }
 
@@ -201,14 +201,14 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins("Fisherman's Wharf, San Francisco")
           .destinations("San Francisco International Airport, San Francisco, CA")
-          .mode(TravelMode.DRIVING)
+          .mode(TravelMode_RENAMED.DRIVING)
           .trafficModel(TrafficModel.PESSIMISTIC)
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
       sc.assertParamValue("San Francisco International Airport, San Francisco, CA", "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode_RENAMED.DRIVING.toUrlValue(), "mode");
       sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
     }
   }

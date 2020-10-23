@@ -24,7 +24,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
-import com.google.maps.model.TravelMode;
+import com.google.maps.model.TravelMode_RENAMED;
 import com.google.maps.model.Unit;
 import java.time.Instant;
 
@@ -95,17 +95,17 @@ public class DistanceMatrixApiRequest
   /**
    * Specifies the mode of transport to use when calculating directions.
    *
-   * <p>Note that Distance Matrix requests only support {@link TravelMode#DRIVING}, {@link
-   * TravelMode#WALKING}, {@link TravelMode#BICYCLING} and {@link TravelMode#TRANSIT}.
+   * <p>Note that Distance Matrix requests only support {@link TravelMode_RENAMED#DRIVING}, {@link
+   * TravelMode_RENAMED#WALKING}, {@link TravelMode_RENAMED#BICYCLING} and {@link TravelMode_RENAMED#TRANSIT}.
    *
    * @param mode One of the travel modes supported by the Distance Matrix API.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest mode(TravelMode mode) {
-    if (TravelMode.DRIVING.equals(mode)
-        || TravelMode.WALKING.equals(mode)
-        || TravelMode.BICYCLING.equals(mode)
-        || TravelMode.TRANSIT.equals(mode)) {
+  public DistanceMatrixApiRequest mode(TravelMode_RENAMED mode) {
+    if (TravelMode_RENAMED.DRIVING.equals(mode)
+        || TravelMode_RENAMED.WALKING.equals(mode)
+        || TravelMode_RENAMED.BICYCLING.equals(mode)
+        || TravelMode_RENAMED.TRANSIT.equals(mode)) {
       return param("mode", mode);
     }
     throw new IllegalArgumentException(

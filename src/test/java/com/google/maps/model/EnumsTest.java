@@ -38,7 +38,7 @@ public class EnumsTest {
 
     assertCannotGetUrlValue(AddressType.UNKNOWN);
     assertCannotGetUrlValue(LocationType.UNKNOWN);
-    assertCannotGetUrlValue(TravelMode.UNKNOWN);
+    assertCannotGetUrlValue(TravelMode_RENAMED.UNKNOWN);
   }
 
   @Test
