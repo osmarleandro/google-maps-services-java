@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.TransitRoutingPreference;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies preferences for transit requests. Using this parameter, you can bias the options
+   * returned, rather than accepting the default best route chosen by the API.
+   *
+   * @param pref The transit routing preferences for this request.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
+    return param("transit_routing_preference", pref);
   }
 }
