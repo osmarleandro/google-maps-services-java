@@ -15,10 +15,16 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.StaticMapsApi;
+import com.google.maps.StaticMapsApiTest;
+import com.google.maps.StaticMapsRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +73,20 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testGetSydneyLatLngStaticMap(StaticMapsApiTest staticMapsApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(staticMapsApiTest.IMAGE)) {
+
+      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(staticMapsApiTest.WIDTH, staticMapsApiTest.HEIGHT));
+      req.center(staticMapsApiTest.SYDNEY);
+      req.zoom(16);
+      req.await();
+
+      sc.assertParamValue("640x480", "size");
+      sc.assertParamValue("-33.86880000,151.20930000", "center");
+      sc.assertParamValue("16", "zoom");
+    }
   }
 }

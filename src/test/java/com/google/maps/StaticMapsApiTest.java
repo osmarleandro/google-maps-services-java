@@ -36,14 +36,14 @@ import org.junit.Test;
 
 public class StaticMapsApiTest {
 
-  private final int WIDTH = 640;
-  private final int HEIGHT = 480;
+  public final int WIDTH = 640;
+  public final int HEIGHT = 480;
   private final LatLng MELBOURNE = new LatLng(-37.8136, 144.9630);
-  private final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
+  public final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
   /** This encoded path matches the exact [MELBOURNE, SYDNEY] points. */
   private final String MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE = "~mxeFwaxsZ_naWk~be@";
 
-  private final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+  public final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
   @Test
   public void testGetSydneyStaticMap() throws Exception {
@@ -62,21 +62,6 @@ public class StaticMapsApiTest {
       assertNotNull(img);
       assertEquals(WIDTH, img.getWidth());
       assertEquals(HEIGHT, img.getHeight());
-    }
-  }
-
-  @Test
-  public void testGetSydneyLatLngStaticMap() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center(SYDNEY);
-      req.zoom(16);
-      req.await();
-
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("-33.86880000,151.20930000", "center");
-      sc.assertParamValue("16", "zoom");
     }
   }
 
