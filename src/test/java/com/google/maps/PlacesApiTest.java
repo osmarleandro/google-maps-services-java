@@ -59,7 +59,7 @@ public class PlacesApiTest {
   private static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
   private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
-  private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
+  public static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
   private static final LatLng SYDNEY = new LatLng(-33.8650, 151.2094);
 
   private final String autocompletePredictionStructuredFormatting;
@@ -371,25 +371,6 @@ public class PlacesApiTest {
       assertEquals(
           "CmRdAAAATDVdhv0RdMEZlvO2jNE_EXXZZnCWvenfvLmWCsYqVtCFxZiasbcv1X0CNDTkpaCtrurGzVxTVt8Fqc7egdA7VyFeq1VFaq1GiFatWrFAUm_H0CN9u2wbfjb1Zf0NL9QiEhCj6I5O2h6eFH_2sa5hyVaEGhTdn8b7RWD-2W64OrT3mFGjzzLWlQ",
           photo.photoReference);
-    }
-  }
-
-  @Test
-  public void testQueryAutocompleteRequest() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
-      PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
-          .offset(10)
-          .location(location)
-          .radius(5000)
-          .language("en")
-          .await();
-
-      sc.assertParamValue(QUERY_AUTOCOMPLETE_INPUT, "input");
-      sc.assertParamValue("10", "offset");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue("en", "language");
     }
   }
 

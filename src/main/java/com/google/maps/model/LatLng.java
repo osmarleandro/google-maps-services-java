@@ -15,10 +15,15 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +72,24 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testQueryAutocompleteRequest(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
+      LatLng location = new LatLng(10, 20);
+      PlacesApi.queryAutocomplete(sc.context, PlacesApiTest.QUERY_AUTOCOMPLETE_INPUT)
+          .offset(10)
+          .location(location)
+          .radius(5000)
+          .language("en")
+          .await();
+
+      sc.assertParamValue(PlacesApiTest.QUERY_AUTOCOMPLETE_INPUT, "input");
+      sc.assertParamValue("10", "offset");
+      sc.assertParamValue(location.toUrlValue(), "location");
+      sc.assertParamValue("5000", "radius");
+      sc.assertParamValue("en", "language");
+    }
   }
 }
