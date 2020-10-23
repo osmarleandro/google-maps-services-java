@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.StaticMapsRequest;
 import com.google.maps.internal.StringJoin;
 import java.io.Serializable;
 
@@ -49,5 +50,15 @@ public class Size implements StringJoin.UrlValue, Serializable {
   @Override
   public String toUrlValue() {
     return String.format("%dx%d", width, height);
+  }
+
+/**
+   * <code>size</code> defines the rectangular dimensions of the map image.
+   *
+   * @param staticMapsRequest TODO
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest size(StaticMapsRequest staticMapsRequest) {
+    return staticMapsRequest.param("size", this);
   }
 }

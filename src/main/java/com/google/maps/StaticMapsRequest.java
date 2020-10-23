@@ -20,7 +20,7 @@ import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.Size;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -78,16 +78,6 @@ public class StaticMapsRequest
    */
   public StaticMapsRequest zoom(int zoom) {
     return param("zoom", zoom);
-  }
-
-  /**
-   * <code>size</code> defines the rectangular dimensions of the map image.
-   *
-   * @param size The Size of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest size(Size size) {
-    return param("size", size);
   }
 
   /**
