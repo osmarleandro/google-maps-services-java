@@ -113,7 +113,7 @@ public class PlacesApi {
    * @param nextPageToken The nextPageToken returned as part of a PlacesSearchResponse.
    * @return Returns a TextSearchRequest that can be executed.
    */
-  public static TextSearchRequest textSearchNextPage(GeoApiContext context, String nextPageToken) {
+  public static TextSearchRequest textSearchNextPage_RENAMED(GeoApiContext context, String nextPageToken) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.pageToken(nextPageToken);
     return request;
