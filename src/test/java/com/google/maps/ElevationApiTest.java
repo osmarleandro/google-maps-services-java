@@ -247,7 +247,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
+      ElevationResult[] results = ElevationApi.getByPath_RENAMED(sc.context, 10, SYDNEY, MELBOURNE).await();
 
       assertNotNull(results);
       assertEquals(10, results.length);

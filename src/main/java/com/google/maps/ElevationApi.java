@@ -59,7 +59,7 @@ public class ElevationApi {
    * @param path The path to sample.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPath(
+  public static PendingResult<ElevationResult[]> getByPath_RENAMED(
       GeoApiContext context, int samples, LatLng... path) {
     return context.get(
         API_CONFIG,
