@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Restricts to only those places that are open for business at the time the query is sent.
+   *
+   * @param openNow Whether to restrict this search to open places.
+   * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+public TextSearchRequest openNow(boolean openNow) {
+    return param("opennow", String.valueOf(openNow));
+  }
 }

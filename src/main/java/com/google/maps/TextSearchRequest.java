@@ -119,16 +119,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Restricts to only those places that are open for business at the time the query is sent.
-   *
-   * @param openNow Whether to restrict this search to open places.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest openNow(boolean openNow) {
-    return param("opennow", String.valueOf(openNow));
-  }
-
-  /**
    * Returns the next 20 results from a previously run search. Setting pageToken will execute a
    * search with the same parameters used previously — all parameters other than pageToken will be
    * ignored.
