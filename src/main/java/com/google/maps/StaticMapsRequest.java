@@ -156,18 +156,6 @@ public class StaticMapsRequest
     return param("maptype", maptype);
   }
 
-  /**
-   * <code>region</code> defines the appropriate borders to display, based on geo-political
-   * sensitivities. Accepts a region code specified as a two-character ccTLD ('top-level domain')
-   * value.
-   *
-   * @param region The region of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest region(String region) {
-    return param("region", region);
-  }
-
   public static class Markers implements UrlValue {
 
     public enum MarkersSize implements UrlValue {
