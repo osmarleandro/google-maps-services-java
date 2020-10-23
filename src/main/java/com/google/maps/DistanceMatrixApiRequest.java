@@ -57,7 +57,7 @@ public class DistanceMatrixApiRequest
    * @param origins Strings to geocode and use as an origin point (e.g. "New York, NY")
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest origins(String... origins) {
+  public DistanceMatrixApiRequest origins_RENAMED(String... origins) {
     return param("origins", join('|', origins));
   }
 

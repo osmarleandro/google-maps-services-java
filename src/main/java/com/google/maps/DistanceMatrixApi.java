@@ -50,7 +50,7 @@ public class DistanceMatrixApi {
 
   public static DistanceMatrixApiRequest getDistanceMatrix(
       GeoApiContext context, String[] origins, String[] destinations) {
-    return newRequest(context).origins(origins).destinations(destinations);
+    return newRequest(context).origins_RENAMED(origins).destinations(destinations);
   }
 
   public static class Response implements ApiResponse<DistanceMatrix> {
