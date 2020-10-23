@@ -43,7 +43,7 @@ public class StaticMapsApiTest {
   /** This encoded path matches the exact [MELBOURNE, SYDNEY] points. */
   private final String MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE = "~mxeFwaxsZ_naWk~be@";
 
-  private final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+  public final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
   @Test
   public void testGetSydneyStaticMap() throws Exception {
@@ -152,16 +152,6 @@ public class StaticMapsApiTest {
       path.addPoint("Melbourne");
       path.addPoint(SYDNEY);
       req.path(path);
-      req.await();
-    }
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testValidateRequest_noSize() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, null);
-      req.center("Google Sydney");
-      req.zoom(16);
       req.await();
     }
   }
