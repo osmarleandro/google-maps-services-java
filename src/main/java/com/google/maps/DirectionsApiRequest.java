@@ -155,14 +155,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * @param region The region code, specified as a ccTLD ("top-level domain") two-character value.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest region(String region) {
-    return param("region", region);
-  }
-
-  /**
    * Set the arrival time for a Transit directions request.
    *
    * @param time The arrival time to calculate directions for.

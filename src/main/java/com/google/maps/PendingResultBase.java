@@ -169,4 +169,12 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * @param region The region code, specified as a ccTLD ("top-level domain") two-character value.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest region(String region) {
+    return param("region", region);
+  }
 }
