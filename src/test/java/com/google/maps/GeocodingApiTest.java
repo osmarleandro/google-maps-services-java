@@ -27,7 +27,7 @@ import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.LocationType;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -134,7 +134,7 @@ public class GeocodingApiTest {
   @Test
   public void testReverseGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(reverseGeocodeResponse)) {
-      LatLng latlng = new LatLng(-33.8674869, 151.2069902);
+      LatLng_RENAMED latlng = new LatLng_RENAMED(-33.8674869, 151.2069902);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
 
       assertEquals(10, results.length);
@@ -325,7 +325,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address("Winnetka")
-              .bounds(new LatLng(34.172684, -118.604794), new LatLng(34.236144, -118.500938))
+              .bounds(new LatLng_RENAMED(34.172684, -118.604794), new LatLng_RENAMED(34.236144, -118.500938))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -690,7 +690,7 @@ public class GeocodingApiTest {
   @Test
   public void testSimpleReverseGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleReverseGeocodeResponse)) {
-      LatLng latlng = new LatLng(40.714224, -73.961452);
+      LatLng_RENAMED latlng = new LatLng_RENAMED(40.714224, -73.961452);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
 
       assertNotNull(results);
@@ -785,7 +785,7 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      LatLng latlng = new LatLng(40.714224, -73.961452);
+      LatLng_RENAMED latlng = new LatLng_RENAMED(40.714224, -73.961452);
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .latlng(latlng)
@@ -809,7 +809,7 @@ public class GeocodingApiTest {
   @Test
   public void testUtfResult() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(utfResultGeocodeResponse)) {
-      LatLng location = new LatLng(46.8023388, 1.6551867);
+      LatLng_RENAMED location = new LatLng_RENAMED(46.8023388, 1.6551867);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
       assertEquals("1 Rue Fernand Raynaud, 36000 Châteauroux, France", results[0].formattedAddress);
       sc.assertParamValue(location.toUrlValue(), "latlng");
@@ -929,7 +929,7 @@ public class GeocodingApiTest {
   public void testReverseGeocodeWithKitaWard() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(reverseGeocodeWithKitaWardResponse)) {
-      LatLng location = new LatLng(35.03937, 135.729243);
+      LatLng_RENAMED location = new LatLng_RENAMED(35.03937, 135.729243);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
 
       assertNotNull(results);

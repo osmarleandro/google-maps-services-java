@@ -26,7 +26,7 @@ import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.GeocodedWaypointStatus;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
@@ -280,7 +280,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
-          .waypoints(new LatLng(42.379322, -71.063384), new LatLng(42.444303, -71.229087))
+          .waypoints(new LatLng_RENAMED(42.379322, -71.063384), new LatLng_RENAMED(42.444303, -71.229087))
           .await();
 
       sc.assertParamValue("Boston,MA", "origin");
@@ -304,8 +304,8 @@ public class DirectionsApiTest {
           .origin("Boston,MA")
           .destination("Concord,MA")
           .waypoints(
-              new DirectionsApiRequest.Waypoint(new LatLng(42.379322, -71.063384), false),
-              new DirectionsApiRequest.Waypoint(new LatLng(42.444303, -71.229087), false))
+              new DirectionsApiRequest.Waypoint(new LatLng_RENAMED(42.379322, -71.063384), false),
+              new DirectionsApiRequest.Waypoint(new LatLng_RENAMED(42.444303, -71.229087), false))
           .await();
 
       sc.assertParamValue("Boston,MA", "origin");
@@ -511,16 +511,16 @@ public class DirectionsApiTest {
   public void testOptimizeWaypointsBeforeWaypoints() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      List<LatLng> waypoints = getOptimizationWaypoints();
-      LatLng origin = waypoints.get(0);
-      LatLng destination = waypoints.get(1);
+      List<LatLng_RENAMED> waypoints = getOptimizationWaypoints();
+      LatLng_RENAMED origin = waypoints.get(0);
+      LatLng_RENAMED destination = waypoints.get(1);
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)
               .departureTime(Instant.now())
               .optimizeWaypoints(true)
-              .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
+              .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng_RENAMED[0]))
               .await();
 
       sc.assertParamValue(origin.toUrlValue(), "origin");
@@ -545,15 +545,15 @@ public class DirectionsApiTest {
   public void testOptimizeWaypointsAfterWaypoints() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      List<LatLng> waypoints = getOptimizationWaypoints();
-      LatLng origin = waypoints.get(0);
-      LatLng destination = waypoints.get(1);
+      List<LatLng_RENAMED> waypoints = getOptimizationWaypoints();
+      LatLng_RENAMED origin = waypoints.get(0);
+      LatLng_RENAMED destination = waypoints.get(1);
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)
               .departureTime(Instant.now())
-              .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
+              .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng_RENAMED[0]))
               .optimizeWaypoints(true)
               .await();
 
@@ -575,14 +575,14 @@ public class DirectionsApiTest {
   }
 
   /** Coordinates in Mexico City. */
-  private List<LatLng> getOptimizationWaypoints() {
-    List<LatLng> waypoints = new ArrayList<>();
-    waypoints.add(new LatLng(19.431676, -99.133999));
-    waypoints.add(new LatLng(19.427915, -99.138939));
-    waypoints.add(new LatLng(19.435436, -99.139145));
-    waypoints.add(new LatLng(19.396436, -99.157176));
-    waypoints.add(new LatLng(19.427705, -99.198858));
-    waypoints.add(new LatLng(19.425869, -99.160716));
+  private List<LatLng_RENAMED> getOptimizationWaypoints() {
+    List<LatLng_RENAMED> waypoints = new ArrayList<>();
+    waypoints.add(new LatLng_RENAMED(19.431676, -99.133999));
+    waypoints.add(new LatLng_RENAMED(19.427915, -99.138939));
+    waypoints.add(new LatLng_RENAMED(19.435436, -99.139145));
+    waypoints.add(new LatLng_RENAMED(19.396436, -99.157176));
+    waypoints.add(new LatLng_RENAMED(19.427705, -99.198858));
+    waypoints.add(new LatLng_RENAMED(19.425869, -99.160716));
     return waypoints;
   }
 }

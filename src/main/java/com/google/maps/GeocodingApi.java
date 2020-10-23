@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 
 /**
  * Geocoding is the process of converting addresses (like "1600 Amphitheatre Parkway, Mountain View,
@@ -62,7 +62,7 @@ public class GeocodingApi {
    * @param location The location to reverse geocode.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest reverseGeocode(GeoApiContext context, LatLng location) {
+  public static GeocodingApiRequest reverseGeocode(GeoApiContext context, LatLng_RENAMED location) {
     GeocodingApiRequest request = new GeocodingApiRequest(context);
     request.latlng(location);
     return request;

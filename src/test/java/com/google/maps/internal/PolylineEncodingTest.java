@@ -19,7 +19,7 @@ import static com.google.maps.model.LatLngAssert.assertEquals;
 import static org.junit.Assert.assertEquals;
 
 import com.google.maps.SmallTests;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -29,8 +29,8 @@ import org.junit.experimental.categories.Category;
 public class PolylineEncodingTest {
 
   private static final double EPSILON = .00001;
-  private static final LatLng SYDNEY = new LatLng(-33.86746, 151.207090);
-  private static final LatLng MELBOURNE = new LatLng(-37.814130, 144.963180);
+  private static final LatLng_RENAMED SYDNEY = new LatLng_RENAMED(-33.86746, 151.207090);
+  private static final LatLng_RENAMED MELBOURNE = new LatLng_RENAMED(-37.814130, 144.963180);
   private static final String SYD_MELB_ROUTE =
       "rvumEis{y[`NsfA~tAbF`bEj^h{@{KlfA~eA~`AbmEghAt~D|e@jlRpO~yH_\\v}LjbBh~FdvCxu@`nCplDbcBf_B|w"
           + "BhIfhCnqEb~D~jCn_EngApdEtoBbfClf@t_CzcCpoEr_Gz_DxmAphDjjBxqCviEf}B|pEvsEzbE~qGfpExjBlqCx}"
@@ -50,16 +50,16 @@ public class PolylineEncodingTest {
 
   @Test
   public void testPolylineEncodingRoundTrip() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
+    List<LatLng_RENAMED> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
     String encodedPath = PolylineEncoding.encode(points);
     assertEquals(SYD_MELB_ROUTE, encodedPath);
   }
 
   @Test
   public void testDecode() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
-    LatLng sydney = points.get(0);
-    LatLng melbourne = points.get(points.size() - 1);
+    List<LatLng_RENAMED> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
+    LatLng_RENAMED sydney = points.get(0);
+    LatLng_RENAMED melbourne = points.get(points.size() - 1);
 
     assertEquals(SYDNEY, sydney, EPSILON);
     assertEquals(MELBOURNE, melbourne, EPSILON);

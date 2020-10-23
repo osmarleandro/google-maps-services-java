@@ -20,7 +20,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.AutocompletePrediction;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 
 /**
  * A <a
@@ -76,7 +76,7 @@ public class QueryAutocompleteRequest
    * @param location The location point around which to search.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest location(LatLng location) {
+  public QueryAutocompleteRequest location(LatLng_RENAMED location) {
     return param("location", location);
   }
 

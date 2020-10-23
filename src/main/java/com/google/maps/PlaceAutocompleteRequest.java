@@ -24,7 +24,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.ComponentFilter;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.PlaceAutocompleteType;
 import java.io.Serializable;
 import java.util.UUID;
@@ -123,20 +123,20 @@ public class PlaceAutocompleteRequest
    * {@link AutocompletePrediction#distanceMeters}). If this value is omitted, straight-line
    * distance will not be returned.
    *
-   * @param origin The {@link LatLng} origin point from which to calculate distance.
+   * @param origin The {@link LatLng_RENAMED} origin point from which to calculate distance.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest origin(LatLng origin) {
+  public PlaceAutocompleteRequest origin(LatLng_RENAMED origin) {
     return param("origin", origin);
   }
 
   /**
    * The point around which you wish to retrieve place information.
    *
-   * @param location The {@link LatLng} location to center this autocomplete search.
+   * @param location The {@link LatLng_RENAMED} location to center this autocomplete search.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest location(LatLng location) {
+  public PlaceAutocompleteRequest location(LatLng_RENAMED location) {
     return param("location", location);
   }
 

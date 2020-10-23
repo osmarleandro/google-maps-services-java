@@ -19,11 +19,11 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import java.io.IOException;
 
 /** Handle conversion from varying types of latitude and longitude representations. */
-public class LatLngAdapter extends TypeAdapter<LatLng> {
+public class LatLngAdapter extends TypeAdapter<LatLng_RENAMED> {
   /**
    * Reads in a JSON object and try to create a LatLng in one of the following formats.
    *
@@ -38,7 +38,7 @@ public class LatLngAdapter extends TypeAdapter<LatLng> {
    * }</pre>
    */
   @Override
-  public LatLng read(JsonReader reader) throws IOException {
+  public LatLng_RENAMED read(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
@@ -63,7 +63,7 @@ public class LatLngAdapter extends TypeAdapter<LatLng> {
     reader.endObject();
 
     if (hasLat && hasLng) {
-      return new LatLng(lat, lng);
+      return new LatLng_RENAMED(lat, lng);
     } else {
       return null;
     }
@@ -71,7 +71,7 @@ public class LatLngAdapter extends TypeAdapter<LatLng> {
 
   /** Not supported. */
   @Override
-  public void write(JsonWriter out, LatLng value) throws IOException {
+  public void write(JsonWriter out, LatLng_RENAMED value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method.");
   }
 }

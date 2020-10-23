@@ -33,7 +33,7 @@ public class Geometry implements Serializable {
    * The geocoded latitude/longitude value. For normal address lookups, this field is typically the
    * most important.
    */
-  public LatLng location;
+  public LatLng_RENAMED location;
 
   /** The level of certainty of this geocoding result. */
   public LocationType locationType;

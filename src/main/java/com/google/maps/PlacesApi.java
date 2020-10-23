@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.PlaceType;
 
 /**
@@ -38,7 +38,7 @@ public class PlacesApi {
    * @param location The latitude/longitude around which to retrieve place information.
    * @return Returns a NearbySearchRequest that can be configured and executed.
    */
-  public static NearbySearchRequest nearbySearchQuery(GeoApiContext context, LatLng location) {
+  public static NearbySearchRequest nearbySearchQuery(GeoApiContext context, LatLng_RENAMED location) {
     NearbySearchRequest request = new NearbySearchRequest(context);
     request.location(location);
     return request;
@@ -84,7 +84,7 @@ public class PlacesApi {
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
   public static TextSearchRequest textSearchQuery(
-      GeoApiContext context, String query, LatLng location) {
+      GeoApiContext context, String query, LatLng_RENAMED location) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
     request.location(location);

@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElementStatus;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
@@ -47,8 +47,8 @@ public class DistanceMatrixApiTest {
   public void testLatLngOriginDestinations() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       DistanceMatrixApi.newRequest(sc.context)
-          .origins(new LatLng(-31.9522, 115.8589), new LatLng(-37.8136, 144.9631))
-          .destinations(new LatLng(-25.344677, 131.036692), new LatLng(-13.092297, 132.394057))
+          .origins(new LatLng_RENAMED(-31.9522, 115.8589), new LatLng_RENAMED(-37.8136, 144.9631))
+          .destinations(new LatLng_RENAMED(-25.344677, 131.036692), new LatLng_RENAMED(-13.092297, 132.394057))
           .awaitIgnoreError();
 
       sc.assertParamValue("-31.95220000,115.85890000|-37.81360000,144.96310000", "origins");

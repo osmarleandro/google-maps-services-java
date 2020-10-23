@@ -21,7 +21,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 
 /*
  *  The Google Maps Geolocation API returns a location and accuracy radius based on information
@@ -57,7 +57,7 @@ public class GeolocationApi {
     public int code = 200;
     public String message = "OK";
     public double accuracy = -1.0;
-    public LatLng location = null;
+    public LatLng_RENAMED location = null;
     public String domain = null;
     public String reason = null;
     public String debugInfo = null;

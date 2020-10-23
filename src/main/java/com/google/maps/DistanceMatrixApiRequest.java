@@ -20,7 +20,7 @@ import static com.google.maps.internal.StringJoin.join;
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
 import com.google.maps.model.DistanceMatrix;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
@@ -67,7 +67,7 @@ public class DistanceMatrixApiRequest
    * @param points The origin points.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest origins(LatLng... points) {
+  public DistanceMatrixApiRequest origins(LatLng_RENAMED... points) {
     return param("origins", join('|', points));
   }
 
@@ -88,7 +88,7 @@ public class DistanceMatrixApiRequest
    * @param points The destination points.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest destinations(LatLng... points) {
+  public DistanceMatrixApiRequest destinations(LatLng_RENAMED... points) {
     return param("destinations", join('|', points));
   }
 

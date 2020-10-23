@@ -22,7 +22,7 @@ public class SnappedPoint implements Serializable {
 
   private static final long serialVersionUID = 1L;
   /** A latitude/longitude value representing the snapped location. */
-  public LatLng location;
+  public LatLng_RENAMED location;
 
   /**
    * The index of the corresponding value in the original request. Each value in the request should

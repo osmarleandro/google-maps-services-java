@@ -22,7 +22,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.FindPlaceFromText;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.PlacesSearchResult;
 
 public class FindPlaceFromTextRequest
@@ -171,9 +171,9 @@ public class FindPlaceFromTextRequest
   }
 
   public static class LocationBiasPoint implements LocationBias {
-    private final LatLng point;
+    private final LatLng_RENAMED point;
 
-    public LocationBiasPoint(LatLng point) {
+    public LocationBiasPoint(LatLng_RENAMED point) {
       this.point = point;
     }
 
@@ -184,10 +184,10 @@ public class FindPlaceFromTextRequest
   }
 
   public static class LocationBiasCircular implements LocationBias {
-    private final LatLng center;
+    private final LatLng_RENAMED center;
     private final int radius;
 
-    public LocationBiasCircular(LatLng center, int radius) {
+    public LocationBiasCircular(LatLng_RENAMED center, int radius) {
       this.center = center;
       this.radius = radius;
     }
@@ -199,10 +199,10 @@ public class FindPlaceFromTextRequest
   }
 
   public static class LocationBiasRectangular implements LocationBias {
-    private final LatLng southWest;
-    private final LatLng northEast;
+    private final LatLng_RENAMED southWest;
+    private final LatLng_RENAMED northEast;
 
-    public LocationBiasRectangular(LatLng southWest, LatLng northEast) {
+    public LocationBiasRectangular(LatLng_RENAMED southWest, LatLng_RENAMED northEast) {
       this.southWest = southWest;
       this.northEast = northEast;
     }

@@ -19,7 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import java.util.TimeZone;
 
 /**
@@ -42,7 +42,7 @@ public class TimeZoneApi {
    * @param location The location for which to retrieve a time zone.
    * @return Returns the time zone as a {@link PendingResult}.
    */
-  public static PendingResult<TimeZone> getTimeZone(GeoApiContext context, LatLng location) {
+  public static PendingResult<TimeZone> getTimeZone(GeoApiContext context, LatLng_RENAMED location) {
     return context.get(
         API_CONFIG,
         Response.class,

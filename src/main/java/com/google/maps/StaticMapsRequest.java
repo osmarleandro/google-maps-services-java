@@ -19,7 +19,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.EncodedPolyline;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class StaticMapsRequest
    * @param location The location of the center of the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest center(LatLng location) {
+  public StaticMapsRequest center(LatLng_RENAMED location) {
     return param("center", location);
   }
 
@@ -281,7 +281,7 @@ public class StaticMapsRequest
      *
      * @param location The location of the added marker.
      */
-    public void addLocation(LatLng location) {
+    public void addLocation(LatLng_RENAMED location) {
       locations.add(location.toUrlValue());
     }
 
@@ -394,7 +394,7 @@ public class StaticMapsRequest
      *
      * @param point The point to add.
      */
-    public void addPoint(LatLng point) {
+    public void addPoint(LatLng_RENAMED point) {
       points.add(point.toUrlValue());
     }
 
@@ -453,7 +453,7 @@ public class StaticMapsRequest
    * @param visibleLocation The location to be made visible in the requested Static Map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest visible(LatLng visibleLocation) {
+  public StaticMapsRequest visible(LatLng_RENAMED visibleLocation) {
     return param("visible", visibleLocation);
   }
 

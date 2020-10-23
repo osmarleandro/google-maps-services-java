@@ -21,7 +21,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.LocationType;
 
 /** A request for the Geocoding API. */
@@ -80,7 +80,7 @@ public class GeocodingApiRequest
    * @param latlng The location to reverse geocode.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest latlng(LatLng latlng) {
+  public GeocodingApiRequest latlng(LatLng_RENAMED latlng) {
     return param("latlng", latlng);
   }
 
@@ -96,7 +96,7 @@ public class GeocodingApiRequest
    * @param northEastBound The North East bound of the bounding box.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
+  public GeocodingApiRequest bounds(LatLng_RENAMED southWestBound, LatLng_RENAMED northEastBound) {
     return param("bounds", join('|', southWestBound, northEastBound));
   }
 

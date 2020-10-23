@@ -25,7 +25,7 @@ import com.google.maps.StaticMapsRequest.Markers.MarkersSize;
 import com.google.maps.StaticMapsRequest.Path;
 import com.google.maps.StaticMapsRequest.StaticMapType;
 import com.google.maps.model.EncodedPolyline;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.Size;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -38,8 +38,8 @@ public class StaticMapsApiTest {
 
   private final int WIDTH = 640;
   private final int HEIGHT = 480;
-  private final LatLng MELBOURNE = new LatLng(-37.8136, 144.9630);
-  private final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
+  private final LatLng_RENAMED MELBOURNE = new LatLng_RENAMED(-37.8136, 144.9630);
+  private final LatLng_RENAMED SYDNEY = new LatLng_RENAMED(-33.8688, 151.2093);
   /** This encoded path matches the exact [MELBOURNE, SYDNEY] points. */
   private final String MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE = "~mxeFwaxsZ_naWk~be@";
 
@@ -212,7 +212,7 @@ public class StaticMapsApiTest {
       markers.addLocation(SYDNEY);
       req.markers(markers);
 
-      List<LatLng> points = new ArrayList<>();
+      List<LatLng_RENAMED> points = new ArrayList<>();
       points.add(MELBOURNE);
       points.add(SYDNEY);
       EncodedPolyline path = new EncodedPolyline(points);
@@ -238,21 +238,21 @@ public class StaticMapsApiTest {
         Markers markers = new Markers();
         markers.color("blue");
         markers.label("S");
-        markers.addLocation(new LatLng(40.702147, -74.015794));
+        markers.addLocation(new LatLng_RENAMED(40.702147, -74.015794));
         req.markers(markers);
       }
       {
         Markers markers = new Markers();
         markers.color("green");
         markers.label("G");
-        markers.addLocation(new LatLng(40.711614, -74.012318));
+        markers.addLocation(new LatLng_RENAMED(40.711614, -74.012318));
         req.markers(markers);
       }
       {
         Markers markers = new Markers();
         markers.color("red");
         markers.label("C");
-        markers.addLocation(new LatLng(40.718217, -73.998284));
+        markers.addLocation(new LatLng_RENAMED(40.718217, -73.998284));
         req.markers(markers);
       }
 

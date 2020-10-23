@@ -35,7 +35,7 @@ import com.google.maps.model.AutocompletePrediction.MatchedSubstring;
 import com.google.maps.model.AutocompleteStructuredFormatting;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.FindPlaceFromText;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.OpeningHours.Period;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 import com.google.maps.model.Photo;
@@ -60,7 +60,7 @@ public class PlacesApiTest {
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
   private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
   private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
-  private static final LatLng SYDNEY = new LatLng(-33.8650, 151.2094);
+  private static final LatLng_RENAMED SYDNEY = new LatLng_RENAMED(-33.8650, 151.2094);
 
   private final String autocompletePredictionStructuredFormatting;
   private final String placeDetailResponseBody;
@@ -377,7 +377,7 @@ public class PlacesApiTest {
   @Test
   public void testQueryAutocompleteRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
           .offset(10)
           .location(location)
@@ -455,7 +455,7 @@ public class PlacesApiTest {
   @Test
   public void testTextSearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.textSearchQuery(sc.context, "Google Sydney")
           .location(location)
           .region("AU")
@@ -484,7 +484,7 @@ public class PlacesApiTest {
   @Test
   public void testTextSearchRequestWithLocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
           .region("AU")
           .radius(3000)
@@ -512,7 +512,7 @@ public class PlacesApiTest {
   @Test
   public void testTextSearchRequestWithType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(-33.866611, 151.195832);
+      LatLng_RENAMED location = new LatLng_RENAMED(-33.866611, 151.195832);
       PlacesSearchResponse results =
           PlacesApi.textSearchQuery(sc.context, PlaceType.ZOO)
               .location(location)
@@ -528,7 +528,7 @@ public class PlacesApiTest {
   @Test(expected = IllegalArgumentException.class)
   public void testTextSearchLocationWithoutRadius() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.textSearchQuery(sc.context, "query").location(location).await();
     }
   }
@@ -623,7 +623,7 @@ public class PlacesApiTest {
   @Test
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
           .radius(5000)
           .rankby(RankBy.PROMINENCE)
@@ -655,7 +655,7 @@ public class PlacesApiTest {
   @SuppressWarnings("deprecation") // Testing a deprecated method
   public void testNearbySearchRequestWithMultipleType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
           .type(PlaceType.AIRPORT, PlaceType.BANK)
           .await();
@@ -668,7 +668,7 @@ public class PlacesApiTest {
   @Test(expected = IllegalArgumentException.class)
   public void testNearbySearchRadiusAndRankbyDistance() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
           .radius(5000)
           .rankby(RankBy.DISTANCE)
@@ -679,7 +679,7 @@ public class PlacesApiTest {
   @Test(expected = IllegalArgumentException.class)
   public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
     }
   }
@@ -688,7 +688,7 @@ public class PlacesApiTest {
   public void testPlaceAutocompleteRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       SessionToken session = new SessionToken();
-      LatLng location = new LatLng(10, 20);
+      LatLng_RENAMED location = new LatLng_RENAMED(10, 20);
       PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
           .offset(4)
           .origin(location)
@@ -884,7 +884,7 @@ public class PlacesApiTest {
       SessionToken session = new SessionToken();
       PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
           .types(PlaceAutocompleteType.ESTABLISHMENT)
-          .location(new LatLng(37.76999, -122.44696))
+          .location(new LatLng_RENAMED(37.76999, -122.44696))
           .radius(500)
           .strictBounds(true)
           .await();
@@ -942,7 +942,7 @@ public class PlacesApiTest {
       PlacesSearchResult candidate = response.candidates[0];
       assertNotNull(candidate);
       assertEquals("140 George St, The Rocks NSW 2000, Australia", candidate.formattedAddress);
-      LatLng location = candidate.geometry.location;
+      LatLng_RENAMED location = candidate.geometry.location;
       assertEquals(-33.8599358, location.lat, 0.00001);
       assertEquals(151.2090295, location.lng, 0.00001);
       assertEquals("Museum of Contemporary Art Australia", candidate.name);
@@ -972,7 +972,7 @@ public class PlacesApiTest {
               FindPlaceFromTextRequest.FieldMask.RATING,
               FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
               FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
+          .locationBias(new LocationBiasPoint(new LatLng_RENAMED(1, 2)))
           .await();
 
       sc.assertParamValue(input, "input");
@@ -997,7 +997,7 @@ public class PlacesApiTest {
               FindPlaceFromTextRequest.FieldMask.RATING,
               FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
               FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
+          .locationBias(new LocationBiasCircular(new LatLng_RENAMED(1, 2), 3000))
           .await();
 
       sc.assertParamValue(input, "input");
@@ -1022,7 +1022,7 @@ public class PlacesApiTest {
               FindPlaceFromTextRequest.FieldMask.RATING,
               FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
               FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
+          .locationBias(new LocationBiasRectangular(new LatLng_RENAMED(1, 2), new LatLng_RENAMED(3, 4)))
           .await();
 
       sc.assertParamValue(input, "input");

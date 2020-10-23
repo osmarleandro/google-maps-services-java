@@ -23,7 +23,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 
 /**
  * The Google Elevation API provides a simple interface to query locations on the earth for
@@ -46,7 +46,7 @@ public class ElevationApi {
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPoints(
-      GeoApiContext context, LatLng... points) {
+      GeoApiContext context, LatLng_RENAMED... points) {
     return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
   }
 
@@ -60,7 +60,7 @@ public class ElevationApi {
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPath(
-      GeoApiContext context, int samples, LatLng... path) {
+      GeoApiContext context, int samples, LatLng_RENAMED... path) {
     return context.get(
         API_CONFIG,
         MultiResponse.class,
@@ -93,7 +93,7 @@ public class ElevationApi {
   /**
    * Chooses the shortest param (only a guess, since the length is different after URL encoding).
    */
-  private static String shortestParam(LatLng[] points) {
+  private static String shortestParam(LatLng_RENAMED[] points) {
     String joined = join('|', points);
     String encoded = "enc:" + PolylineEncoding.encode(points);
     return joined.length() < encoded.length() ? joined : encoded;
@@ -106,7 +106,7 @@ public class ElevationApi {
    * @param location The location to retrieve the elevation for.
    * @return The elevation as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
+  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng_RENAMED location) {
     return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
   }
 

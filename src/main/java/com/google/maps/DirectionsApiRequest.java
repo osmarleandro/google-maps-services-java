@@ -19,7 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 import static java.util.Objects.requireNonNull;
 
 import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
@@ -108,7 +108,7 @@ public class DirectionsApiRequest
    * @param origin The starting location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest origin(LatLng origin) {
+  public DirectionsApiRequest origin(LatLng_RENAMED origin) {
     return origin(origin.toString());
   }
 
@@ -118,7 +118,7 @@ public class DirectionsApiRequest
    * @param destination The ending location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest destination(LatLng destination) {
+  public DirectionsApiRequest destination(LatLng_RENAMED destination) {
     return destination(destination.toString());
   }
 
@@ -270,7 +270,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypoints(LatLng... waypoints) {
+  public DirectionsApiRequest waypoints(LatLng_RENAMED... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);
@@ -385,7 +385,7 @@ public class DirectionsApiRequest
      *
      * @param location The LatLng coordinates of this waypoint.
      */
-    public Waypoint(LatLng location) {
+    public Waypoint(LatLng_RENAMED location) {
       this(location, true);
     }
 
@@ -395,7 +395,7 @@ public class DirectionsApiRequest
      * @param location The LatLng coordinates of this waypoint.
      * @param isStopover Whether this waypoint is a stopover waypoint.
      */
-    public Waypoint(LatLng location, boolean isStopover) {
+    public Waypoint(LatLng_RENAMED location, boolean isStopover) {
       requireNonNull(location, "location may not be null");
       this.location = location.toString();
       this.isStopover = isStopover;

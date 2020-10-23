@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.google.maps.errors.ZeroResultsException;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import java.util.Date;
 import java.util.TimeZone;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class TimeZoneApiTest {
                 + "   \"timeZoneId\" : \"Australia/Sydney\",\n"
                 + "   \"timeZoneName\" : \"Australian Eastern Standard Time\"\n"
                 + "}\n")) {
-      LatLng sydney = new LatLng(-33.8688, 151.2093);
+      LatLng_RENAMED sydney = new LatLng_RENAMED(-33.8688, 151.2093);
       TimeZone tz = TimeZoneApi.getTimeZone(sc.context, sydney).await();
 
       assertNotNull(tz);
@@ -63,14 +63,14 @@ public class TimeZoneApiTest {
   public void testNoResult() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
-      TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
+      TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng_RENAMED(0, 0)).awaitIgnoreError();
       assertNull(resp);
 
       sc.assertParamValue("0.00000000,0.00000000", "location");
 
       try (LocalTestServerContext sc2 =
           new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
-        TimeZoneApi.getTimeZone(sc2.context, new LatLng(0, 0)).await();
+        TimeZoneApi.getTimeZone(sc2.context, new LatLng_RENAMED(0, 0)).await();
       }
     }
   }

@@ -19,7 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
@@ -57,7 +57,7 @@ public class TextSearchRequest
    * @param location The location of the center of the search.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest location(LatLng location) {
+  public TextSearchRequest location(LatLng_RENAMED location) {
     return param("location", location);
   }
 

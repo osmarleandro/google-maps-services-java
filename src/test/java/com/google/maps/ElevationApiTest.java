@@ -23,7 +23,7 @@ import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.LatLngAssert;
 import java.util.Collections;
 import java.util.List;
@@ -37,8 +37,8 @@ public class ElevationApiTest {
   private static final double SYDNEY_POINT_ELEVATION = 19.10829925537109;
   private static final double MELBOURNE_ELEVATION = 25.49982643127441;
   private static final double EPSILON = .00001;
-  private static final LatLng SYDNEY = new LatLng(-33.867487, 151.206990);
-  private static final LatLng MELBOURNE = new LatLng(-37.814107, 144.963280);
+  private static final LatLng_RENAMED SYDNEY = new LatLng_RENAMED(-33.867487, 151.206990);
+  private static final LatLng_RENAMED MELBOURNE = new LatLng_RENAMED(-37.814107, 144.963280);
   private static final EncodedPolyline SYD_MELB_ROUTE =
       new EncodedPolyline(
           "rvumEis{y[`NsfA~tAbF`bEj^h{@{KlfA~eA~`AbmEghAt~D|e@jlRpO~yH_\\v}LjbBh~FdvCxu@`nCplDbcBf_B|w"
@@ -70,7 +70,7 @@ public class ElevationApiTest {
             "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
 
       // This should throw the InvalidRequestException
-      ElevationApi.getByPoint(sc.context, new LatLng(0, 0)).await();
+      ElevationApi.getByPoint(sc.context, new LatLng_RENAMED(0, 0)).await();
     }
   }
 
@@ -87,7 +87,7 @@ public class ElevationApiTest {
 
       // This should throw the RequestDeniedException
       ElevationApi.getByPoints(
-              sc.context, new EncodedPolyline(Collections.singletonList(new LatLng(0, 0))))
+              sc.context, new EncodedPolyline(Collections.singletonList(new LatLng_RENAMED(0, 0))))
           .await();
     }
   }
@@ -265,9 +265,9 @@ public class ElevationApiTest {
       ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
 
-      List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
-      LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
-      LatLng lastElevationPoint = elevation[elevation.length - 1].location;
+      List<LatLng_RENAMED> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
+      LatLng_RENAMED lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
+      LatLng_RENAMED lastElevationPoint = elevation[elevation.length - 1].location;
 
       LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
 

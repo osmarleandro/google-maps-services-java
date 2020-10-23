@@ -15,7 +15,7 @@
 
 package com.google.maps.internal;
 
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,11 +29,11 @@ import java.util.List;
  */
 public class PolylineEncoding {
   /** Decodes an encoded path string into a sequence of LatLngs. */
-  public static List<LatLng> decode(final String encodedPath) {
+  public static List<LatLng_RENAMED> decode(final String encodedPath) {
 
     int len = encodedPath.length();
 
-    final List<LatLng> path = new ArrayList<>(len / 2);
+    final List<LatLng_RENAMED> path = new ArrayList<>(len / 2);
     int index = 0;
     int lat = 0;
     int lng = 0;
@@ -58,20 +58,20 @@ public class PolylineEncoding {
       } while (b >= 0x1f);
       lng += (result & 1) != 0 ? ~(result >> 1) : (result >> 1);
 
-      path.add(new LatLng(lat * 1e-5, lng * 1e-5));
+      path.add(new LatLng_RENAMED(lat * 1e-5, lng * 1e-5));
     }
 
     return path;
   }
 
   /** Encodes a sequence of LatLngs into an encoded path string. */
-  public static String encode(final List<LatLng> path) {
+  public static String encode(final List<LatLng_RENAMED> path) {
     long lastLat = 0;
     long lastLng = 0;
 
     final StringBuilder result = new StringBuilder();
 
-    for (final LatLng point : path) {
+    for (final LatLng_RENAMED point : path) {
       long lat = Math.round(point.lat * 1e5);
       long lng = Math.round(point.lng * 1e5);
 
@@ -97,7 +97,7 @@ public class PolylineEncoding {
   }
 
   /** Encodes an array of LatLngs into an encoded path string. */
-  public static String encode(LatLng[] path) {
+  public static String encode(LatLng_RENAMED[] path) {
     return encode(Arrays.asList(path));
   }
 }

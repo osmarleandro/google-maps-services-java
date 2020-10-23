@@ -56,10 +56,10 @@ public class DirectionsStep implements Serializable {
   public Duration duration;
 
   /** The location of the starting point of this step. */
-  public LatLng startLocation;
+  public LatLng_RENAMED startLocation;
 
   /** The location of the last point of this step. */
-  public LatLng endLocation;
+  public LatLng_RENAMED endLocation;
 
   /**
    * Detailed directions for walking or driving steps in transit directions. Substeps are only

@@ -21,7 +21,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
@@ -55,7 +55,7 @@ public class NearbySearchRequest
    * @param location The location to use as the center of the Nearby Search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest location(LatLng location) {
+  public NearbySearchRequest location(LatLng_RENAMED location) {
     return param("location", location);
   }
 
@@ -64,7 +64,7 @@ public class NearbySearchRequest
    * radius is 50,000 meters. Note that radius must not be included if {@code rankby=DISTANCE} is
    * specified.
    *
-   * @param distance The distance in meters around the {@link #location(LatLng)} to search.
+   * @param distance The distance in meters around the {@link #location(LatLng_RENAMED)} to search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest radius(int distance) {

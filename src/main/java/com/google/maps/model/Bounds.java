@@ -22,9 +22,9 @@ public class Bounds implements Serializable {
 
   private static final long serialVersionUID = 1L;
   /** The northeast corner of the bounding box. */
-  public LatLng northeast;
+  public LatLng_RENAMED northeast;
   /** The southwest corner of the bounding box. */
-  public LatLng southwest;
+  public LatLng_RENAMED southwest;
 
   @Override
   public String toString() {

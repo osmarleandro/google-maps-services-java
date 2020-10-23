@@ -22,7 +22,7 @@ public class LatLngAssert {
 
   private LatLngAssert() {}
 
-  public static void assertEquals(LatLng a, LatLng b, double epsilon) {
+  public static void assertEquals(LatLng_RENAMED a, LatLng_RENAMED b, double epsilon) {
     Assert.assertEquals(a.lat, b.lat, epsilon);
     Assert.assertEquals(a.lng, b.lng, epsilon);
   }

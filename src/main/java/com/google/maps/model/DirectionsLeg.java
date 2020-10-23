@@ -72,7 +72,7 @@ public class DirectionsLeg implements Serializable {
    * road) at the start and end points, startLocation may be different from the provided origin of
    * this leg if, for example, a road is not near the origin.
    */
-  public LatLng startLocation;
+  public LatLng_RENAMED startLocation;
 
   /**
    * The latitude/longitude coordinates of the given destination of this leg. Because the Directions
@@ -80,7 +80,7 @@ public class DirectionsLeg implements Serializable {
    * a road) at the start and end points, endLocation may be different than the provided destination
    * of this leg if, for example, a road is not near the destination.
    */
-  public LatLng endLocation;
+  public LatLng_RENAMED endLocation;
 
   /**
    * The human-readable address (typically a street address) reflecting the start location of this

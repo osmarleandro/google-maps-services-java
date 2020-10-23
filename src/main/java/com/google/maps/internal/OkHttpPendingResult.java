@@ -29,7 +29,7 @@ import com.google.maps.model.AddressType;
 import com.google.maps.model.Distance;
 import com.google.maps.model.Duration;
 import com.google.maps.model.Fare;
-import com.google.maps.model.LatLng;
+import com.google.maps.model.LatLng_RENAMED;
 import com.google.maps.model.LocationType;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
@@ -268,7 +268,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
             .registerTypeAdapter(Distance.class, new DistanceAdapter())
             .registerTypeAdapter(Duration.class, new DurationAdapter())
             .registerTypeAdapter(Fare.class, new FareAdapter())
-            .registerTypeAdapter(LatLng.class, new LatLngAdapter())
+            .registerTypeAdapter(LatLng_RENAMED.class, new LatLngAdapter())
             .registerTypeAdapter(
                 AddressComponentType.class,
                 new SafeEnumAdapter<AddressComponentType>(AddressComponentType.UNKNOWN))
