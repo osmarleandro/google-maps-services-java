@@ -19,10 +19,10 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.google.maps.GeolocationApi;
+import com.google.maps.GeolocationApi_RENAMED;
 import java.io.IOException;
 
-public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Response> {
+public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi_RENAMED.Response> {
   /**
    * Reads in a JSON object to create a Geolocation Response. See:
    * https://developers.google.com/maps/documentation/geolocation/intro#responses
@@ -62,13 +62,13 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
    * </pre>
    */
   @Override
-  public GeolocationApi.Response read(JsonReader reader) throws IOException {
+  public GeolocationApi_RENAMED.Response read(JsonReader reader) throws IOException {
 
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
     }
-    GeolocationApi.Response response = new GeolocationApi.Response();
+    GeolocationApi_RENAMED.Response response = new GeolocationApi_RENAMED.Response();
     LatLngAdapter latLngAdapter = new LatLngAdapter();
 
     reader.beginObject(); // opening {
@@ -127,7 +127,7 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
 
   /** Not supported. */
   @Override
-  public void write(JsonWriter out, GeolocationApi.Response value) throws IOException {
+  public void write(JsonWriter out, GeolocationApi_RENAMED.Response value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method.");
   }
 }

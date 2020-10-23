@@ -32,7 +32,7 @@ import com.google.maps.model.LatLng;
  *
  *
  */
-public class GeolocationApi {
+public class GeolocationApi_RENAMED {
   private static final String API_BASE_URL = "https://www.googleapis.com";
 
   static final ApiConfig GEOLOCATION_API_CONFIG =
@@ -42,7 +42,7 @@ public class GeolocationApi {
           .fieldNamingPolicy(FieldNamingPolicy.IDENTITY)
           .requestVerb("POST");
 
-  private GeolocationApi() {}
+  private GeolocationApi_RENAMED() {}
 
   public static PendingResult<GeolocationResult> geolocate(
       GeoApiContext context, GeolocationPayload payload) {

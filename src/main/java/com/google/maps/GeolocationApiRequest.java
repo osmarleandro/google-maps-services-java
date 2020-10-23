@@ -24,13 +24,13 @@ import com.google.maps.model.WifiAccessPoint;
 
 /** A request for the Geolocation API. */
 public class GeolocationApiRequest
-    extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
+    extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi_RENAMED.Response> {
 
   private GeolocationPayload payload = null;
   private GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
-    super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
+    super(context, GeolocationApi_RENAMED.GEOLOCATION_API_CONFIG, GeolocationApi_RENAMED.Response.class);
     builder = new GeolocationPayload.GeolocationPayloadBuilder();
   }
 

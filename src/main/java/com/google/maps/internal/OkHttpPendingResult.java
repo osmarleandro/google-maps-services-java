@@ -19,7 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.google.maps.GeolocationApi;
+import com.google.maps.GeolocationApi_RENAMED;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
@@ -284,7 +284,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
             .registerTypeAdapter(PriceLevel.class, new PriceLevelAdapter())
             .registerTypeAdapter(Instant.class, new InstantAdapter())
             .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
-            .registerTypeAdapter(GeolocationApi.Response.class, new GeolocationResponseAdapter())
+            .registerTypeAdapter(GeolocationApi_RENAMED.Response.class, new GeolocationResponseAdapter())
             .setFieldNamingPolicy(fieldNamingPolicy)
             .create();
 
