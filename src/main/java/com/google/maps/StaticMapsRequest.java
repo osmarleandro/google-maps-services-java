@@ -453,7 +453,7 @@ public class StaticMapsRequest
    * @param visibleLocation The location to be made visible in the requested Static Map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest visible(LatLng visibleLocation) {
+  public StaticMapsRequest visible_RENAMED(LatLng visibleLocation) {
     return param("visible", visibleLocation);
   }
 
