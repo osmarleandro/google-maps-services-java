@@ -15,9 +15,12 @@
 
 package com.google.maps.model;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Currency;
+
+import com.google.gson.stream.JsonWriter;
 
 /**
  * A representation of ticket cost for use on public transit.
@@ -38,5 +41,11 @@ public class Fare implements Serializable {
   @Override
   public String toString() {
     return String.format("%s %s", value, currency);
+  }
+
+/** This method is not implemented. 
+ * @param out TODO*/
+  public void write(JsonWriter out) throws IOException {
+    throw new UnsupportedOperationException("Unimplemented method");
   }
 }
