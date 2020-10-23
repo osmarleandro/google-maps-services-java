@@ -158,7 +158,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    * @deprecated Please use {@code types} instead.
    */
-  public PlaceAutocompleteRequest type(PlaceAutocompleteType type) {
+  public PlaceAutocompleteRequest type_RENAMED(PlaceAutocompleteType type) {
     return this.types(type);
   }
 
