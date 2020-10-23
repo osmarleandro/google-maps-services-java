@@ -624,16 +624,16 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
-          .openNow(true)
-          .type(PlaceType.AIRPORT)
+      PlaceType.AIRPORT
+          .type(PlacesApi.nearbySearchQuery(sc.context, location)
+		      .radius(5000)
+		      .rankby(RankBy.PROMINENCE)
+		      .keyword("keyword")
+		      .language("en")
+		      .minPrice(PriceLevel.INEXPENSIVE)
+		      .maxPrice(PriceLevel.EXPENSIVE)
+		      .name("name")
+		      .openNow(true))
           .pageToken("next-page-token")
           .await();
 
@@ -814,7 +814,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlaceType.BAR.type(PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000)).await();
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
       sc.assertParamValue("10000", "radius");
@@ -829,7 +829,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlaceType.BAR.type(PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000)).await();
 
       assertEquals(20, response.results.length);
       assertEquals(563, response.results[0].userRatingsTotal);

@@ -149,16 +149,6 @@ public class NearbySearchRequest
   }
 
   /**
-   * Restricts the results to places matching the specified type.
-   *
-   * @param type The {@link PlaceType} to restrict results to.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest type(PlaceType type) {
-    return param("type", type);
-  }
-
-  /**
    * Restricts the results to places matching the specified type. Provides support for multiple
    * types.
    *

@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.NearbySearchRequest;
 import com.google.maps.internal.StringJoin;
 
 /** Used by the Places API to restrict the results to places matching the specified type. */
@@ -143,5 +144,15 @@ public enum PlaceType implements StringJoin.UrlValue {
   @Override
   public String toString() {
     return placeType;
+  }
+
+/**
+   * Restricts the results to places matching the specified type.
+   *
+   * @param nearbySearchRequest TODO
+ * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  public NearbySearchRequest type(NearbySearchRequest nearbySearchRequest) {
+    return nearbySearchRequest.param("type", this);
   }
 }
