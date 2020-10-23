@@ -221,7 +221,7 @@ public class PlacesApi {
   public static FindPlaceFromTextRequest findPlaceFromText(
       GeoApiContext context, String input, FindPlaceFromTextRequest.InputType inputType) {
     FindPlaceFromTextRequest request = new FindPlaceFromTextRequest(context);
-    request.input(input).inputType(inputType);
+    request.input_RENAMED(input).inputType(inputType);
     return request;
   }
 }
