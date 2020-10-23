@@ -34,7 +34,7 @@ public enum TransitMode implements UrlValue {
   }
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     return name().toLowerCase(Locale.ENGLISH);
   }
 }
