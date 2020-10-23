@@ -64,11 +64,11 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   }
 
   @Override
-  public final void cancel() {
+  public final void cancel_RENAMED() {
     if (delegate == null) {
       return;
     }
-    delegate.cancel();
+    delegate.cancel_RENAMED();
   }
 
   private PendingResult<T> makeRequest() {
