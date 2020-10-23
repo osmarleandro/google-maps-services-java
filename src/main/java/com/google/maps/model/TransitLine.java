@@ -59,7 +59,7 @@ public class TransitLine implements Serializable {
   public String textColor;
 
   /** The type of vehicle used on this transit line. */
-  public Vehicle vehicle;
+  public Vehicle_RENAMED vehicle;
 
   @Override
   public String toString() {

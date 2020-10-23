@@ -24,7 +24,7 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/directions/intro#TransitDetails">Transit
  * details</a> for more detail.
  */
-public class Vehicle implements Serializable {
+public class Vehicle_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
