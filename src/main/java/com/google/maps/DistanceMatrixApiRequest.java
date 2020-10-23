@@ -36,20 +36,6 @@ public class DistanceMatrixApiRequest
     super(context, DistanceMatrixApi.API_CONFIG, Response.class);
   }
 
-  @Override
-  protected void validateRequest() {
-    if (!params().containsKey("origins")) {
-      throw new IllegalArgumentException("Request must contain 'origins'");
-    }
-    if (!params().containsKey("destinations")) {
-      throw new IllegalArgumentException("Request must contain 'destinations'");
-    }
-    if (params().containsKey("arrival_time") && params().containsKey("departure_time")) {
-      throw new IllegalArgumentException(
-          "Transit request must not contain both a departureTime and an arrivalTime");
-    }
-  }
-
   /**
    * One or more addresses from which to calculate distance and time. The service will geocode the
    * strings and convert them to latitude/longitude coordinates to calculate directions.
