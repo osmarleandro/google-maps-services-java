@@ -29,7 +29,7 @@ import java.util.Arrays;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(LargeTests.class)
+@Category(LargeTests_RENAMED.class)
 public class RoadsApiIntegrationTest {
 
   private final String snapToRoadResponse;

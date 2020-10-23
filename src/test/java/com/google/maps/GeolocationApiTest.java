@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(LargeTests.class)
+@Category(LargeTests_RENAMED.class)
 public class GeolocationApiTest {
 
   private final String geolocationDocSample;
