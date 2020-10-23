@@ -105,7 +105,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     this.exceptionsAllowedToRetry = exceptionsAllowedToRetry;
     this.metrics = metrics;
 
-    metrics.startNetwork();
+    metrics.startNetwork_RENAMED();
     this.call = client.newCall(request);
   }
 
@@ -322,7 +322,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private T retry() throws ApiException, InterruptedException, IOException {
     retryCounter++;
     LOG.info("Retrying request. Retry #" + retryCounter);
-    metrics.startNetwork();
+    metrics.startNetwork_RENAMED();
     this.call = client.newCall(request);
     return this.await();
   }

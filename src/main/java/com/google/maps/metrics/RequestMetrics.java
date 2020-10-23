@@ -19,7 +19,7 @@ package com.google.maps.metrics;
  */
 public interface RequestMetrics {
 
-  void startNetwork();
+  void startNetwork_RENAMED();
 
   void endNetwork();
 
