@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.GeocodingApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
@@ -67,5 +68,15 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/**
+   * Creates a reverse geocode for {@code latlng}.
+   *
+   * @param geocodingApiRequest TODO
+ * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+  public GeocodingApiRequest latlng(GeocodingApiRequest geocodingApiRequest) {
+    return geocodingApiRequest.param("latlng", this);
   }
 }

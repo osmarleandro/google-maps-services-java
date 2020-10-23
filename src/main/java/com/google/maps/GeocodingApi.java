@@ -64,7 +64,7 @@ public class GeocodingApi {
    */
   public static GeocodingApiRequest reverseGeocode(GeoApiContext context, LatLng location) {
     GeocodingApiRequest request = new GeocodingApiRequest(context);
-    request.latlng(location);
+    location.latlng(request);
     return request;
   }
 
