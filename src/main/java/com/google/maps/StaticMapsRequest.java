@@ -65,7 +65,7 @@ public class StaticMapsRequest
    * @param location The location of the center of the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest center(String location) {
+  public StaticMapsRequest center_RENAMED(String location) {
     return param("center", location);
   }
 
