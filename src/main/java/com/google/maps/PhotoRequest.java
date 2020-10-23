@@ -47,7 +47,7 @@ public class PhotoRequest
    *     are returned from either a Place Search or Place Details request.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest photoReference(String photoReference) {
+  public PhotoRequest photoReference_RENAMED(String photoReference) {
     return param("photoreference", photoReference);
   }
 
