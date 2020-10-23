@@ -879,7 +879,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceAutocompleteWithStrictBounds() throws Exception {
+  public void testPlaceAutocompleteWithStrictBounds_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
       PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
