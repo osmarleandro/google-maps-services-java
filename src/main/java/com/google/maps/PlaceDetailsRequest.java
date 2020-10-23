@@ -44,7 +44,7 @@ public class PlaceDetailsRequest
    * @param placeId The Place ID to retrieve details for.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest placeId(String placeId) {
+  public PlaceDetailsRequest placeId_RENAMED(String placeId) {
     return param("placeid", placeId);
   }
 
