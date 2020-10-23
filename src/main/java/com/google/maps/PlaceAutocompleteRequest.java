@@ -136,7 +136,7 @@ public class PlaceAutocompleteRequest
    * @param location The {@link LatLng} location to center this autocomplete search.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest location(LatLng location) {
+  public PlaceAutocompleteRequest location_RENAMED(LatLng location) {
     return param("location", location);
   }
 
