@@ -27,6 +27,9 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okhttp3.mockwebserver.MockResponse;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -622,5 +625,47 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	public MockResponse createMockGoodResponse() {
+	    MockResponse response = new MockResponse();
+	    response.setResponseCode(200);
+	    response.setBody(
+	        "{\n"
+	            + "   \"results\" : [\n"
+	            + "      {\n"
+	            + "         \"address_components\" : [\n"
+	            + "            {\n"
+	            + "               \"long_name\" : \"1600\",\n"
+	            + "               \"short_name\" : \"1600\",\n"
+	            + "               \"types\" : [ \"street_number\" ]\n"
+	            + "            }\n"
+	            + "         ],\n"
+	            + "         \"formatted_address\" : \"1600 Amphitheatre Parkway, Mountain View, "
+	            + "CA 94043, USA\",\n"
+	            + "         \"geometry\" : {\n"
+	            + "            \"location\" : {\n"
+	            + "               \"lat\" : 37.4220033,\n"
+	            + "               \"lng\" : -122.0839778\n"
+	            + "            },\n"
+	            + "            \"location_type\" : \"ROOFTOP\",\n"
+	            + "            \"viewport\" : {\n"
+	            + "               \"northeast\" : {\n"
+	            + "                  \"lat\" : 37.4233522802915,\n"
+	            + "                  \"lng\" : -122.0826288197085\n"
+	            + "               },\n"
+	            + "               \"southwest\" : {\n"
+	            + "                  \"lat\" : 37.4206543197085,\n"
+	            + "                  \"lng\" : -122.0853267802915\n"
+	            + "               }\n"
+	            + "            }\n"
+	            + "         },\n"
+	            + "         \"types\" : [ \"street_address\" ]\n"
+	            + "      }\n"
+	            + "   ],\n"
+	            + "   \"status\" : \"OK\"\n"
+	            + "}");
+	
+	    return response;
+	  }
   }
 }
