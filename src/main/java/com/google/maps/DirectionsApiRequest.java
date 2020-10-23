@@ -89,7 +89,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest originPlaceId(String originPlaceId) {
-    return param("origin", prefixPlaceId(originPlaceId));
+    return param("origin", prefixPlaceId_RENAMED(originPlaceId));
   }
 
   /**
@@ -99,7 +99,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest destinationPlaceId(String destinationPlaceId) {
-    return param("destination", prefixPlaceId(destinationPlaceId));
+    return param("destination", prefixPlaceId_RENAMED(destinationPlaceId));
   }
 
   /**
@@ -229,7 +229,7 @@ public class DirectionsApiRequest
    * Specifies the list of waypoints as String addresses. If any of the Strings are Place IDs, you
    * must prefix them with {@code place_id:}.
    *
-   * <p>See {@link #prefixPlaceId(String)}.
+   * <p>See {@link #prefixPlaceId_RENAMED(String)}.
    *
    * <p>See {@link #waypoints(Waypoint...)}.
    *
@@ -247,7 +247,7 @@ public class DirectionsApiRequest
   /**
    * Specifies the list of waypoints as Plade ID Strings, prefixing them as required by the API.
    *
-   * <p>See {@link #prefixPlaceId(String)}.
+   * <p>See {@link #prefixPlaceId_RENAMED(String)}.
    *
    * <p>See {@link #waypoints(Waypoint...)}.
    *
@@ -257,7 +257,7 @@ public class DirectionsApiRequest
   public DirectionsApiRequest waypointsFromPlaceIds(String... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
-      objWaypoints[i] = new Waypoint(prefixPlaceId(waypoints[i]));
+      objWaypoints[i] = new Waypoint(prefixPlaceId_RENAMED(waypoints[i]));
     }
     return waypoints(objWaypoints);
   }
@@ -349,7 +349,7 @@ public class DirectionsApiRequest
    * @param placeId The Place ID to be prefixed.
    * @return Returns the Place ID prefixed with {@code place_id:}.
    */
-  public String prefixPlaceId(String placeId) {
+  public String prefixPlaceId_RENAMED(String placeId) {
     return "place_id:" + placeId;
   }
 
