@@ -85,7 +85,7 @@ public class AutocompletePrediction implements Serializable {
   public MatchedSubstring matchedSubstrings[];
 
   /** A description of how the autocomplete query matched the returned result. */
-  public AutocompleteStructuredFormatting structuredFormatting;
+  public AutocompleteStructuredFormatting_RENAMED structuredFormatting;
 
   /**
    * Identifies each section of the returned description. (A section of the description is generally

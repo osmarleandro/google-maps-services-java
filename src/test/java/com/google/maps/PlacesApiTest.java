@@ -32,7 +32,7 @@ import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.AutocompletePrediction.MatchedSubstring;
-import com.google.maps.model.AutocompleteStructuredFormatting;
+import com.google.maps.model.AutocompleteStructuredFormatting_RENAMED;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
@@ -135,7 +135,7 @@ public class PlacesApiTest {
       final AutocompletePrediction prediction = predictions[0];
       assertNotNull(prediction);
       assertEquals("1033 Princes Highway, Heathmere, Victoria, Australia", prediction.description);
-      final AutocompleteStructuredFormatting structuredFormatting = prediction.structuredFormatting;
+      final AutocompleteStructuredFormatting_RENAMED structuredFormatting = prediction.structuredFormatting;
       assertNotNull(structuredFormatting);
       assertEquals("1033 Princes Highway", structuredFormatting.mainText);
       assertEquals("Heathmere, Victoria, Australia", structuredFormatting.secondaryText);
