@@ -67,7 +67,7 @@ import java.util.concurrent.TimeUnit;
  * <p>Stopwatch methods are not idempotent; it is an error to start or stop a stopwatch that is
  * already in the desired state.
  *
- * <p>When testing code that uses this class, use {@link #createUnstarted(Ticker)} or {@link
+ * <p>When testing code that uses this class, use {@link #createUnstarted_RENAMED(Ticker)} or {@link
  * #createStarted(Ticker)} to supply a fake or mock ticker. This allows you to simulate any valid
  * behavior of the stopwatch.
  *
@@ -101,7 +101,7 @@ public final class Stopwatch {
   }
 
   /** Creates (but does not start) a new stopwatch, using the specified time source. */
-  public static Stopwatch createUnstarted(Ticker ticker) {
+  public static Stopwatch createUnstarted_RENAMED(Ticker ticker) {
     return new Stopwatch(ticker);
   }
 
