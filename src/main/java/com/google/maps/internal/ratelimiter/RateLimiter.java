@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A rate limiter. Conceptually, a rate limiter distributes permits at a configurable rate. Each
- * {@link #acquire()} blocks if necessary until a permit is available, and then takes it. Once
+ * {@link #acquire_RENAMED()} blocks if necessary until a permit is available, and then takes it. Once
  * acquired, permits need not be released.
  *
  * <p>Rate limiters are often used to restrict the rate at which some physical or logical resource
@@ -253,7 +253,7 @@ public abstract class RateLimiter {
    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited
    * @since 16.0 (present in 13.0 with {@code void} return type})
    */
-  public double acquire() {
+  public double acquire_RENAMED() {
     return acquire(1);
   }
 
