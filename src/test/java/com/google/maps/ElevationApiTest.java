@@ -262,7 +262,7 @@ public class ElevationApiTest {
   @Test
   public void testDirectionsAlongPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
-      ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
+      ElevationResult[] elevation = ElevationApi.getByPath_RENAMED(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
 
       List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();

@@ -79,7 +79,7 @@ public class ElevationApi {
    * @param encodedPolyline The path to sample as an encoded polyline.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPath(
+  public static PendingResult<ElevationResult[]> getByPath_RENAMED(
       GeoApiContext context, int samples, EncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG,
