@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.QueryAutocompleteRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
@@ -67,5 +68,15 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/**
+   * The point around which you wish to retrieve place information.
+   *
+   * @param queryAutocompleteRequest TODO
+ * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
+   */
+  public QueryAutocompleteRequest location(QueryAutocompleteRequest queryAutocompleteRequest) {
+    return queryAutocompleteRequest.param("location", this);
   }
 }
