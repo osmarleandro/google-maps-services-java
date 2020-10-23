@@ -295,7 +295,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testAlternatePayloadBuilderGeolocation() throws Exception {
+  public void testAlternatePayloadBuilderGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(geolocationAlternatePayloadBuilder)) {
       GeolocationPayload payload =
