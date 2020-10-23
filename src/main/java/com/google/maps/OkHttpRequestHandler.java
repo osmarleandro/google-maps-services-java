@@ -44,7 +44,7 @@ import okhttp3.Route;
  */
 public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
   private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-  private final OkHttpClient client;
+  public final OkHttpClient client;
   private final ExecutorService executorService;
 
   /* package */ OkHttpRequestHandler(OkHttpClient client, ExecutorService executorService) {
@@ -64,22 +64,9 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       RequestMetrics metrics) {
-    Request.Builder builder = new Request.Builder().get().header("User-Agent", userAgent);
-    if (experienceIdHeaderValue != null) {
-      builder = builder.header(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue);
-    }
-    Request req = builder.url(hostName + url).build();
-
-    return new OkHttpPendingResult<>(
-        req,
-        client,
-        clazz,
-        fieldNamingPolicy,
-        errorTimeout,
-        maxRetries,
-        exceptionsAllowedToRetry,
-        metrics);
-  }
+		return exceptionsAllowedToRetry.handle(hostName, url, userAgent, experienceIdHeaderValue, clazz,
+				fieldNamingPolicy, errorTimeout, maxRetries, this, metrics);
+	}
 
   @Override
   public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(

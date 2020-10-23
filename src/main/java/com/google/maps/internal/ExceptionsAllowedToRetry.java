@@ -15,7 +15,15 @@
 
 package com.google.maps.internal;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.maps.OkHttpRequestHandler;
+import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
+import com.google.maps.metrics.RequestMetrics;
+
+import okhttp3.Request;
+import okhttp3.Request.Builder;
+
 import java.util.HashSet;
 
 public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiException>> {
@@ -36,5 +44,24 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
 
     sb.append(']');
     return sb.toString();
+  }
+
+public <T, R extends ApiResponse<T>> PendingResult<T> handle(
+      String hostName, String url, String userAgent, String experienceIdHeaderValue, Class<R> clazz, FieldNamingPolicy fieldNamingPolicy, long errorTimeout, Integer maxRetries, OkHttpRequestHandler okHttpRequestHandler, RequestMetrics metrics) {
+    Builder builder = new Builder().get().header("User-Agent", userAgent);
+    if (experienceIdHeaderValue != null) {
+      builder = builder.header(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue);
+    }
+    Request req = builder.url(hostName + url).build();
+
+    return new OkHttpPendingResult<>(
+        req,
+        okHttpRequestHandler.client,
+        clazz,
+        fieldNamingPolicy,
+        errorTimeout,
+        maxRetries,
+        this,
+        metrics);
   }
 }
