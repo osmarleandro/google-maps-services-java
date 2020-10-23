@@ -20,6 +20,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -168,5 +169,18 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Set the departure time for a transit or driving directions request. If both departure time and
+   * traffic model are not provided, then "now" is assumed. If traffic model is supplied, then
+   * departure time must be specified. Duration in traffic will only be returned if the departure
+   * time is specified.
+   *
+   * @param time The departure time to calculate directions for.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest departureTime(Instant time) {
+    return param("departure_time", Long.toString(time.toEpochMilli() / 1000L));
   }
 }
