@@ -208,7 +208,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testMaximumWifiGeolocation() throws Exception {
+  public void testMaximumWifiGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
