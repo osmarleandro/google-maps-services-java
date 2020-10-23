@@ -28,7 +28,7 @@ import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.LocationType;
+import com.google.maps.model.LocationType_RENAMED;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -128,7 +128,7 @@ public class GeocodingApiTest {
     assertNotNull(results[0].geometry.location);
     assertEquals(-33.8674869, results[0].geometry.location.lat, EPSILON);
     assertEquals(151.2069902, results[0].geometry.location.lng, EPSILON);
-    assertEquals(LocationType.APPROXIMATE, results[0].geometry.locationType);
+    assertEquals(LocationType_RENAMED.APPROXIMATE, results[0].geometry.locationType);
   }
 
   @Test
@@ -789,18 +789,18 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .latlng(latlng)
-              .locationType(LocationType.ROOFTOP)
+              .locationType(LocationType_RENAMED.ROOFTOP)
               .resultType(AddressType.STREET_ADDRESS)
               .await();
 
       assertNotNull(results);
       assertNotNull(Arrays.toString(results));
       assertEquals("277 Bedford Ave, Brooklyn, NY 11211, USA", results[0].formattedAddress);
-      assertEquals(LocationType.ROOFTOP, results[0].geometry.locationType);
+      assertEquals(LocationType_RENAMED.ROOFTOP, results[0].geometry.locationType);
       assertEquals("ChIJd8BlQ2BZwokRAFUEcm_qrcA", results[0].placeId);
 
       sc.assertParamValue(latlng.toUrlValue(), "latlng");
-      sc.assertParamValue(LocationType.ROOFTOP.toUrlValue(), "location_type");
+      sc.assertParamValue(LocationType_RENAMED.ROOFTOP.toUrlValue(), "location_type");
       sc.assertParamValue(AddressType.STREET_ADDRESS.toUrlValue(), "result_type");
     }
   }

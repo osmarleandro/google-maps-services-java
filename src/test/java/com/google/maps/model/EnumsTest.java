@@ -37,7 +37,7 @@ public class EnumsTest {
     assertNotNull(AddressComponentType.UNKNOWN); // Does not implement UrlValue.
 
     assertCannotGetUrlValue(AddressType.UNKNOWN);
-    assertCannotGetUrlValue(LocationType.UNKNOWN);
+    assertCannotGetUrlValue(LocationType_RENAMED.UNKNOWN);
     assertCannotGetUrlValue(TravelMode.UNKNOWN);
   }
 
