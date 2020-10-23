@@ -422,17 +422,17 @@ public class StaticMapsRequest
 
       return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
     }
-  }
 
-  /**
-   * The <code>path</code> parameter defines a set of one or more locations connected by a path to
-   * overlay on the map image.
-   *
-   * @param path A path to render atop the map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest path(Path path) {
-    return paramAddToList("path", path);
+	/**
+	   * The <code>path</code> parameter defines a set of one or more locations connected by a path to
+	   * overlay on the map image.
+	   *
+	   * @param staticMapsRequest TODO
+	 * @return Returns this {@code StaticMapsRequest} for call chaining.
+	   */
+	  public StaticMapsRequest path(StaticMapsRequest staticMapsRequest) {
+	    return staticMapsRequest.paramAddToList("path", this);
+	  }
   }
 
   /**
