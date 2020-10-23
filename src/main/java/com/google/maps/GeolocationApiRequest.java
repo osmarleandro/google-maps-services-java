@@ -94,7 +94,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest CreatePayload() {
+  public GeolocationApiRequest CreatePayload_RENAMED() {
     if (this.payload == null) {
       // if the payload has not been set, create it
       this.payload = this.builder.createGeolocationPayload();

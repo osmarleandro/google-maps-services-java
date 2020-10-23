@@ -85,7 +85,7 @@ public class GeolocationApiTest {
                       .SignalToNoiseRatio(4)
                       .Age(0)
                       .createWifiAccessPoint())
-              .CreatePayload()
+              .CreatePayload_RENAMED()
               .await();
 
       assertNotNull(result.toString());
@@ -116,7 +116,7 @@ public class GeolocationApiTest {
                   new WifiAccessPoint.WifiAccessPointBuilder()
                       .MacAddress("94:b4:0f:ff:6b:10")
                       .createWifiAccessPoint())
-              .CreatePayload()
+              .CreatePayload_RENAMED()
               .await();
 
       assertNotNull(result.toString());
@@ -150,7 +150,7 @@ public class GeolocationApiTest {
                       .SignalStrength(-55)
                       .SignalToNoiseRatio(55)
                       .createWifiAccessPoint())
-              .CreatePayload()
+              .CreatePayload_RENAMED()
               .await();
 
       assertNotNull(result.toString());
@@ -189,7 +189,7 @@ public class GeolocationApiTest {
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .WifiAccessPoints(wifiAccessPoints)
-              .CreatePayload()
+              .CreatePayload_RENAMED()
               .await();
 
       assertNotNull(result.toString());
@@ -233,7 +233,7 @@ public class GeolocationApiTest {
                       .Channel(40)
                       .Age(0)
                       .createWifiAccessPoint())
-              .CreatePayload()
+              .CreatePayload_RENAMED()
               .await();
 
       assertNotNull(result.toString());
@@ -276,7 +276,7 @@ public class GeolocationApiTest {
                       .MobileCountryCode(310)
                       .MobileNetworkCode(260)
                       .createCellTower())
-              .CreatePayload()
+              .CreatePayload_RENAMED()
               .await();
 
       assertNotNull(result.toString());
@@ -345,7 +345,7 @@ public class GeolocationApiTest {
                       .SignalStrength(-103)
                       .TimingAdvance(15)
                       .createCellTower())
-              .CreatePayload()
+              .CreatePayload_RENAMED()
               .await();
 
       assertNotNull(result.toString());
@@ -386,7 +386,7 @@ public class GeolocationApiTest {
   @Test
   public void testNoPayloadGeolocation1() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
+      GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload_RENAMED().await();
 
       assertNotNull(result);
       assertNotNull(result.toString());
@@ -410,7 +410,7 @@ public class GeolocationApiTest {
                 + "  \"code\": 404\n"
                 + " }\n"
                 + "}")) {
-      GeolocationApi.newRequest(sc.context).ConsiderIp(false).CreatePayload().await();
+      GeolocationApi.newRequest(sc.context).ConsiderIp(false).CreatePayload_RENAMED().await();
     }
   }
 
@@ -432,7 +432,7 @@ public class GeolocationApiTest {
                 + "  \"message\": \"Parse Error\"\n"
                 + " }\n"
                 + "}")) {
-      GeolocationApi.newRequest(sc.context).HomeMobileCountryCode(-310).CreatePayload().await();
+      GeolocationApi.newRequest(sc.context).HomeMobileCountryCode(-310).CreatePayload_RENAMED().await();
     }
   }
 }
