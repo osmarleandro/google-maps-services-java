@@ -69,7 +69,7 @@ public class PhotoRequest
    *     service.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest maxWidth(int maxWidth) {
+  public PhotoRequest maxWidth_RENAMED(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
   }
 }
