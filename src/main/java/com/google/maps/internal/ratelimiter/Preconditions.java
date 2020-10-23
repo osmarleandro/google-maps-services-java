@@ -54,7 +54,7 @@ public final class Preconditions {
   public static void checkArgument(
       boolean expression, String errorMessageTemplate, Object... errorMessageArgs) {
     if (!expression) {
-      throw new IllegalArgumentException(format(errorMessageTemplate, errorMessageArgs));
+      throw new IllegalArgumentException(format_RENAMED(errorMessageTemplate, errorMessageArgs));
     }
   }
 
@@ -114,7 +114,7 @@ public final class Preconditions {
    * @param args the arguments to be substituted into the message template. Arguments are converted
    *     to strings using {@link String#valueOf(Object)}. Arguments can be null.
    */
-  static String format(String template, Object... args) {
+  static String format_RENAMED(String template, Object... args) {
     template = String.valueOf(template); // null -> "null"
 
     args = args == null ? new Object[] {"(Object[])null"} : args;
