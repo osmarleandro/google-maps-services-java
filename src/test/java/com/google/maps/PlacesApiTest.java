@@ -162,7 +162,7 @@ public class PlacesApiTest {
       sc.assertParamValue("place_id,name,types", "fields");
 
       assertNotNull(placeDetails);
-      assertNotNull(placeDetails.toString());
+      assertNotNull(placeDetails.toString_RENAMED());
 
       // Address
       assertNotNull(placeDetails.addressComponents);
@@ -336,7 +336,7 @@ public class PlacesApiTest {
       PlaceDetails placeDetails =
           PlacesApi.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
       assertNotNull(placeDetails);
-      assertNotNull(placeDetails.toString());
+      assertNotNull(placeDetails.toString_RENAMED());
       assertTrue(placeDetails.permanentlyClosed);
     }
   }
@@ -347,7 +347,7 @@ public class PlacesApiTest {
       PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
       assertNotNull(placeDetails);
-      assertNotNull(placeDetails.toString());
+      assertNotNull(placeDetails.toString_RENAMED());
       assertEquals(GOOGLE_SYDNEY, placeDetails.placeId);
       assertEquals(98, placeDetails.userRatingsTotal);
     }
@@ -358,7 +358,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(quayResponseBody)) {
       PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, QUAY_PLACE_ID).await();
       assertNotNull(placeDetails);
-      assertNotNull(placeDetails.toString());
+      assertNotNull(placeDetails.toString_RENAMED());
       assertNotNull(placeDetails.priceLevel);
       assertEquals(PriceLevel.VERY_EXPENSIVE, placeDetails.priceLevel);
       assertNotNull(placeDetails.photos);
@@ -476,8 +476,8 @@ public class PlacesApiTest {
       sc.assertParamValue(String.valueOf(4), "maxprice");
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.assertParamValue(RankBy.DISTANCE.toString_RENAMED(), "rankby");
+      sc.assertParamValue(PlaceType.AIRPORT.toString_RENAMED(), "type");
     }
   }
 
@@ -504,8 +504,8 @@ public class PlacesApiTest {
       sc.assertParamValue(String.valueOf(4), "maxprice");
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.assertParamValue(RankBy.DISTANCE.toString_RENAMED(), "rankby");
+      sc.assertParamValue(PlaceType.AIRPORT.toString_RENAMED(), "type");
     }
   }
 
@@ -521,7 +521,7 @@ public class PlacesApiTest {
 
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue(String.valueOf(500), "radius");
-      sc.assertParamValue(PlaceType.ZOO.toString(), "type");
+      sc.assertParamValue(PlaceType.ZOO.toString_RENAMED(), "type");
     }
   }
 
@@ -541,7 +541,7 @@ public class PlacesApiTest {
       assertNotNull(results);
       assertNotNull(results.results);
       assertEquals(1, results.results.length);
-      assertNotNull(results.toString());
+      assertNotNull(results.toString_RENAMED());
 
       PlacesSearchResult result = results.results[0];
       assertNotNull(result.formattedAddress);
@@ -590,7 +590,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(textSearchPizzaInNYCbody)) {
       PlacesSearchResponse results =
           PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
-      assertNotNull(results.toString());
+      assertNotNull(results.toString_RENAMED());
       assertNotNull(results.nextPageToken);
       assertEquals(
           "CuQB1wAAANI17eHXt1HpqbLjkj7T5Ti69DEAClo02Qampg7Q6W_O_krFbge7hnTtDR7oVF3asex"
@@ -639,14 +639,14 @@ public class PlacesApiTest {
 
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(RankBy.PROMINENCE.toString(), "rankby");
+      sc.assertParamValue(RankBy.PROMINENCE.toString_RENAMED(), "rankby");
       sc.assertParamValue("keyword", "keyword");
       sc.assertParamValue("en", "language");
-      sc.assertParamValue(PriceLevel.INEXPENSIVE.toString(), "minprice");
-      sc.assertParamValue(PriceLevel.EXPENSIVE.toString(), "maxprice");
+      sc.assertParamValue(PriceLevel.INEXPENSIVE.toString_RENAMED(), "minprice");
+      sc.assertParamValue(PriceLevel.EXPENSIVE.toString_RENAMED(), "maxprice");
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.assertParamValue(PlaceType.AIRPORT.toString_RENAMED(), "type");
       sc.assertParamValue("next-page-token", "pagetoken");
     }
   }
@@ -661,7 +661,7 @@ public class PlacesApiTest {
           .await();
 
       sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString(), "type");
+      sc.assertParamValue(PlaceType.AIRPORT.toString_RENAMED() + "|" + PlaceType.BANK.toString_RENAMED(), "type");
     }
   }
 
@@ -703,8 +703,8 @@ public class PlacesApiTest {
       sc.assertParamValue(location.toUrlValue(), "origin");
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(PlaceAutocompleteType.ESTABLISHMENT.toString(), "types");
-      sc.assertParamValue(ComponentFilter.country("AU").toString(), "components");
+      sc.assertParamValue(PlaceAutocompleteType.ESTABLISHMENT.toString_RENAMED(), "types");
+      sc.assertParamValue(ComponentFilter.country("AU").toString_RENAMED(), "components");
       sc.assertParamValue(session.toUrlValue(), "sessiontoken");
     }
   }
@@ -717,7 +717,7 @@ public class PlacesApiTest {
 
       sc.assertParamValue("Google Sydney", "query");
 
-      assertNotNull(response.toString());
+      assertNotNull(response.toString_RENAMED());
       assertEquals(1, response.results.length);
       PlacesSearchResult result = response.results[0];
       assertEquals("5, 48 Pirrama Rd, Pyrmont NSW 2009, Australia", result.formattedAddress);
@@ -733,7 +733,7 @@ public class PlacesApiTest {
 
       sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
 
-      assertNotNull(placeDetails.toString());
+      assertNotNull(placeDetails.toString_RENAMED());
       assertEquals(10, placeDetails.photos.length);
       assertEquals(
           "CmRaAAAA-N3w5YTMXWautuDW7IZgX9knz_2fNyyUpCWpvYdVEVb8RurBiisMKvr7AFxMW8dsu2yakYoqjW-IYSFk2cylXVM_c50cCxfm7MlgjPErFxumlcW1bLNOe--SwLYmWlvkEhDxjz75xRqim-CkVlwFyp7sGhTs1fE02MZ6GQcc-TugrepSaeWapA",
@@ -751,7 +751,7 @@ public class PlacesApiTest {
 
       sc.assertParamValue("Pizza in New York", "query");
 
-      assertNotNull(response.toString());
+      assertNotNull(response.toString_RENAMED());
       assertEquals(20, response.results.length);
       assertEquals(
           "CvQB6AAAAPQLwX6KjvGbOw81Y7aYVhXRlHR8M60aCRXFDM9eyflac4BjE5MaNxTj_1T429x3H2kzBd-ztTFXCSu1CPh3kY44Gu0gmL-xfnArnPE9-BgfqXTpgzGPZNeCltB7m341y4LnU-NE2omFPoDWIrOPIyHnyi05Qol9eP2wKW7XPUhMlHvyl9MeVgZ8COBZKvCdENHbhBD1MN1lWlada6A9GPFj06cCp1aqRGW6v98-IHcIcM9RcfMcS4dLAFm6TsgLq4tpeU6E1kSzhrvDiLMBXdJYFlI0qJmytd2wS3vD0t3zKgU6Im_mY-IJL7AwAqhugBIQ8k0X_n6TnacL9BExELBaixoUo8nPOwWm0Nx02haufF2dY0VL-tg",
@@ -768,7 +768,7 @@ public class PlacesApiTest {
       sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
       sc.assertParamValue("fr", "language");
 
-      assertNotNull(details.toString());
+      assertNotNull(details.toString_RENAMED());
       assertEquals("ChIJ442GNENu5kcRGYUrvgqHw88", details.placeId);
       assertEquals(
           "35 Rue du Chevalier de la Barre, 75018 Paris, France", details.formattedAddress);

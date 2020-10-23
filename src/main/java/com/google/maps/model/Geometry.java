@@ -45,7 +45,7 @@ public class Geometry implements Serializable {
   public Bounds viewport;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format(
         "[Geometry: %s (%s) bounds=%s, viewport=%s]", location, locationType, bounds, viewport);
   }
