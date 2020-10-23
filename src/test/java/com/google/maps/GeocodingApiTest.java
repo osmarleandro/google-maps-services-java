@@ -1040,7 +1040,7 @@ public class GeocodingApiTest {
 
   /** Testing supported Address Types for Geocoding - Synagogue. */
   @Test
-  public void testSupportedAddressTypesSynagogue() throws Exception {
+  public void testSupportedAddressTypesSynagogue_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
