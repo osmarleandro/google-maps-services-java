@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.StaticMapsRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
@@ -67,5 +68,16 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/**
+   * <code>visible</code> instructs the Google Static Maps API service to construct a map such that
+   * the existing locations remain visible.
+   *
+   * @param staticMapsRequest TODO
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest visible(StaticMapsRequest staticMapsRequest) {
+    return staticMapsRequest.param("visible", this);
   }
 }
