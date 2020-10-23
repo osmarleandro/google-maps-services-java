@@ -96,7 +96,7 @@ public final class Stopwatch {
   /**
    * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
    */
-  public static Stopwatch createUnstarted() {
+  public static Stopwatch createUnstarted_RENAMED() {
     return new Stopwatch();
   }
 
