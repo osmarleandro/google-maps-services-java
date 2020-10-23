@@ -89,7 +89,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Stopwatch {
   private final Ticker ticker;
-  private boolean isRunning;
+  boolean isRunning;
   private long elapsedNanos;
   private long startTick;
 
@@ -121,14 +121,6 @@ public final class Stopwatch {
 
   Stopwatch(Ticker ticker) {
     this.ticker = checkNotNull(ticker, "ticker");
-  }
-
-  /**
-   * Returns {@code true} if {@link #start()} has been called on this stopwatch, and {@link #stop()}
-   * has not been called since the last call to {@code start()}.
-   */
-  public boolean isRunning() {
-    return isRunning;
   }
 
   /**
