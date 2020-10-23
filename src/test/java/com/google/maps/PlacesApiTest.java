@@ -837,7 +837,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceAutocomplete() throws Exception {
+  public void testPlaceAutocomplete_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
       AutocompletePrediction[] predictions =
