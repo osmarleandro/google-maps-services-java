@@ -52,21 +52,17 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
           threadFactory("Rate Limited Dispatcher", true));
 
   private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
-  private final RateLimiter rateLimiter =
+  public final RateLimiter rateLimiter =
       RateLimiter.create(DEFAULT_QUERIES_PER_SECOND, 1, TimeUnit.SECONDS);
 
   final Thread delayThread;
 
   public RateLimitExecutorService() {
-    setQueriesPerSecond(DEFAULT_QUERIES_PER_SECOND);
+    rateLimiter.setQueriesPerSecond(this, DEFAULT_QUERIES_PER_SECOND);
     delayThread = new Thread(this);
     delayThread.setDaemon(true);
     delayThread.setName("RateLimitExecutorDelayThread");
     delayThread.start();
-  }
-
-  public void setQueriesPerSecond(int maxQps) {
-    this.rateLimiter.setRate(maxQps);
   }
 
   /** Main loop. */
