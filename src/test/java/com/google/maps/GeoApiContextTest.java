@@ -334,7 +334,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testExperienceIdIsInHeader() throws Exception {
+  public void testExperienceIdIsInHeader_RENAMED() throws Exception {
     final String experienceId = "exp1";
     final RecordedRequest request = makeMockRequest(experienceId);
     assertEquals(experienceId, request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID));
