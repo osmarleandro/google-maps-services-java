@@ -200,7 +200,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
             .registerTypeAdapter(DayOfWeek.class, new DayOfWeekAdapter())
             .registerTypeAdapter(PriceLevel.class, new PriceLevelAdapter())
             .registerTypeAdapter(Instant.class, new InstantAdapter())
-            .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+            .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter_RENAMED())
             .registerTypeAdapter(GeolocationApi.Response.class, new GeolocationResponseAdapter())
             .registerTypeAdapter(EncodedPolyline.class, new EncodedPolylineInstanceCreator(""))
             .setFieldNamingPolicy(fieldNamingPolicy)
