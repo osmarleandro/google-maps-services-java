@@ -238,7 +238,7 @@ public abstract class RateLimiter {
    */
   public final double getRate() {
     synchronized (mutex()) {
-      return doGetRate();
+      return doGetRate_RENAMED();
     }
   }
 
