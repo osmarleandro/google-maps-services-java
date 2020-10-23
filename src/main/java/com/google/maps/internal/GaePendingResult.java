@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.maps.GeolocationApi;
-import com.google.maps.ImageResult;
+import com.google.maps.ImageResult_RENAMED;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.UnknownErrorException;
@@ -178,9 +178,9 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
 
     if (contentType != null
         && contentType.startsWith("image")
-        && responseClass == ImageResult.Response.class
+        && responseClass == ImageResult_RENAMED.Response.class
         && response.getResponseCode() == 200) {
-      ImageResult result = new ImageResult(contentType, bytes);
+      ImageResult_RENAMED result = new ImageResult_RENAMED(contentType, bytes);
       return (T) result;
     }
 

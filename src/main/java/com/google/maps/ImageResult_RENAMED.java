@@ -20,9 +20,9 @@ import com.google.maps.internal.ApiResponse;
 import java.io.Serializable;
 
 /** {@code ImageResult} is the object returned from API end points that return images. */
-public class ImageResult implements Serializable {
+public class ImageResult_RENAMED implements Serializable {
 
-  public ImageResult(String contentType, byte[] imageData) {
+  public ImageResult_RENAMED(String contentType, byte[] imageData) {
     this.imageData = imageData;
     this.contentType = contentType;
   }
@@ -39,7 +39,7 @@ public class ImageResult implements Serializable {
    * <code>ImageResult.Response</code> is a type system hack to enable API endpoints to return a
    * <code>ImageResult</code>.
    */
-  public static class Response implements ApiResponse<ImageResult> {
+  public static class Response implements ApiResponse<ImageResult_RENAMED> {
     @Override
     public boolean successful() {
       return true;
@@ -51,7 +51,7 @@ public class ImageResult implements Serializable {
     }
 
     @Override
-    public ImageResult getResult() {
+    public ImageResult_RENAMED getResult() {
       return null;
     }
   }

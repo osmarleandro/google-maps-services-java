@@ -26,12 +26,12 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class StaticMapsRequest
-    extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
+    extends PendingResultBase<ImageResult_RENAMED, StaticMapsRequest, ImageResult_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 
   public StaticMapsRequest(GeoApiContext context) {
-    super(context, API_CONFIG, ImageResult.Response.class);
+    super(context, API_CONFIG, ImageResult_RENAMED.Response.class);
   }
 
   @Override

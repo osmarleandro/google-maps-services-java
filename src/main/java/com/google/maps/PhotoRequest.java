@@ -22,12 +22,12 @@ import com.google.maps.internal.ApiConfig;
  * Photo</a> request.
  */
 public class PhotoRequest
-    extends PendingResultBase<ImageResult, PhotoRequest, ImageResult.Response> {
+    extends PendingResultBase<ImageResult_RENAMED, PhotoRequest, ImageResult_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
 
   public PhotoRequest(GeoApiContext context) {
-    super(context, API_CONFIG, ImageResult.Response.class);
+    super(context, API_CONFIG, ImageResult_RENAMED.Response.class);
   }
 
   @Override
