@@ -19,6 +19,9 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +171,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Indicates that the calculated route(s) should avoid the indicated features.
+   *
+   * @param restrictions one or more of {@link DirectionsApi.RouteRestriction} objects.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
+    return param("avoid", join('|', restrictions));
   }
 }
