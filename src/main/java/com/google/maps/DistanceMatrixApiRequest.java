@@ -118,7 +118,7 @@ public class DistanceMatrixApiRequest
    * @param restriction A {@link RouteRestriction} object.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest avoid(RouteRestriction restriction) {
+  public DistanceMatrixApiRequest avoid_RENAMED(RouteRestriction restriction) {
     return param("avoid", restriction);
   }
 
