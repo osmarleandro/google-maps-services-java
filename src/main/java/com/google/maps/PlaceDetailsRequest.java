@@ -55,7 +55,7 @@ public class PlaceDetailsRequest
    * @param sessionToken Session Token is the session identifier.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest sessionToken(PlaceAutocompleteRequest.SessionToken sessionToken) {
+  public PlaceDetailsRequest sessionToken(PlaceAutocompleteRequest_RENAMED.SessionToken sessionToken) {
     return param("sessiontoken", sessionToken);
   }
 

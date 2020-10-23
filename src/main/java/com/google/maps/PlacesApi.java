@@ -133,7 +133,7 @@ public class PlacesApi {
    * @return Returns a PlaceDetailsRequest that you can configure and execute.
    */
   public static PlaceDetailsRequest placeDetails(
-      GeoApiContext context, String placeId, PlaceAutocompleteRequest.SessionToken sessionToken) {
+      GeoApiContext context, String placeId, PlaceAutocompleteRequest_RENAMED.SessionToken sessionToken) {
     PlaceDetailsRequest request = new PlaceDetailsRequest(context);
     request.placeId(placeId);
     request.sessionToken(sessionToken);
@@ -189,9 +189,9 @@ public class PlacesApi {
    *     character.
    * @return Returns a PlaceAutocompleteRequest that you can configure and execute.
    */
-  public static PlaceAutocompleteRequest placeAutocomplete(
-      GeoApiContext context, String input, PlaceAutocompleteRequest.SessionToken sessionToken) {
-    PlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
+  public static PlaceAutocompleteRequest_RENAMED placeAutocomplete(
+      GeoApiContext context, String input, PlaceAutocompleteRequest_RENAMED.SessionToken sessionToken) {
+    PlaceAutocompleteRequest_RENAMED request = new PlaceAutocompleteRequest_RENAMED(context);
     request.input(input);
     request.sessionToken(sessionToken);
     return request;

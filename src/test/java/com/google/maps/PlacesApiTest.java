@@ -26,7 +26,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasCircular;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasIP;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
-import com.google.maps.PlaceAutocompleteRequest.SessionToken;
+import com.google.maps.PlaceAutocompleteRequest_RENAMED.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;

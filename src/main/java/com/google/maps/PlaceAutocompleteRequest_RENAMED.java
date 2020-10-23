@@ -34,15 +34,15 @@ import java.util.UUID;
  * href="https://developers.google.com/places/web-service/autocomplete#place_autocomplete_requests">Place
  * Autocomplete</a> request.
  */
-public class PlaceAutocompleteRequest
+public class PlaceAutocompleteRequest_RENAMED
     extends PendingResultBase<
-        AutocompletePrediction[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> {
+        AutocompletePrediction[], PlaceAutocompleteRequest_RENAMED, PlaceAutocompleteRequest_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/autocomplete/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
-  protected PlaceAutocompleteRequest(GeoApiContext context) {
+  protected PlaceAutocompleteRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);
   }
 
@@ -90,7 +90,7 @@ public class PlaceAutocompleteRequest
    * @param sessionToken Session Token is the session identifier.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest sessionToken(SessionToken sessionToken) {
+  public PlaceAutocompleteRequest_RENAMED sessionToken(SessionToken sessionToken) {
     return param("sessiontoken", sessionToken);
   }
 
@@ -101,7 +101,7 @@ public class PlaceAutocompleteRequest
    * @param input The input text to autocomplete.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest input(String input) {
+  public PlaceAutocompleteRequest_RENAMED input(String input) {
     return param("input", input);
   }
 
@@ -114,7 +114,7 @@ public class PlaceAutocompleteRequest
    * @param offset The character offset position of the user's cursor.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest offset(int offset) {
+  public PlaceAutocompleteRequest_RENAMED offset(int offset) {
     return param("offset", String.valueOf(offset));
   }
 
@@ -126,7 +126,7 @@ public class PlaceAutocompleteRequest
    * @param origin The {@link LatLng} origin point from which to calculate distance.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest origin(LatLng origin) {
+  public PlaceAutocompleteRequest_RENAMED origin(LatLng origin) {
     return param("origin", origin);
   }
 
@@ -136,7 +136,7 @@ public class PlaceAutocompleteRequest
    * @param location The {@link LatLng} location to center this autocomplete search.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest location(LatLng location) {
+  public PlaceAutocompleteRequest_RENAMED location(LatLng location) {
     return param("location", location);
   }
 
@@ -147,7 +147,7 @@ public class PlaceAutocompleteRequest
    * @param radius The radius over which to bias results.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest radius(int radius) {
+  public PlaceAutocompleteRequest_RENAMED radius(int radius) {
     return param("radius", String.valueOf(radius));
   }
 
@@ -158,7 +158,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    * @deprecated Please use {@code types} instead.
    */
-  public PlaceAutocompleteRequest type(PlaceAutocompleteType type) {
+  public PlaceAutocompleteRequest_RENAMED type(PlaceAutocompleteType type) {
     return this.types(type);
   }
 
@@ -168,7 +168,7 @@ public class PlaceAutocompleteRequest
    * @param types The type to restrict results to.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest types(PlaceAutocompleteType types) {
+  public PlaceAutocompleteRequest_RENAMED types(PlaceAutocompleteType types) {
     return param("types", types);
   }
 
@@ -179,7 +179,7 @@ public class PlaceAutocompleteRequest
    * @param filters The component filter to restrict results with.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest components(ComponentFilter... filters) {
+  public PlaceAutocompleteRequest_RENAMED components(ComponentFilter... filters) {
     return param("components", join('|', filters));
   }
 
@@ -191,7 +191,7 @@ public class PlaceAutocompleteRequest
    * @param strictBounds Whether to strictly bound results.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest strictBounds(boolean strictBounds) {
+  public PlaceAutocompleteRequest_RENAMED strictBounds(boolean strictBounds) {
     return param("strictbounds", Boolean.toString(strictBounds));
   }
 
