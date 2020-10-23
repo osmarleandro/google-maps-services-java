@@ -72,7 +72,7 @@ public class PlaceDetails implements Serializable {
   public String placeId;
 
   /** The scope of the placeId. */
-  @Deprecated public PlaceIdScope scope;
+  @Deprecated public PlaceIdScope_RENAMED scope;
 
   /** The Plus Code location identifier for this place. */
   public PlusCode plusCode;
@@ -99,7 +99,7 @@ public class PlaceDetails implements Serializable {
      * The scope of an alternative place ID will always be APP, indicating that the alternative
      * place ID is recognised by your application only.
      */
-    public PlaceIdScope scope;
+    public PlaceIdScope_RENAMED scope;
 
     @Override
     public String toString() {
