@@ -170,7 +170,7 @@ public final class Stopwatch {
     return this;
   }
 
-  private long elapsedNanos() {
+  long elapsedNanos() {
     return isRunning ? ticker.read() - startTick + elapsedNanos : elapsedNanos;
   }
 
@@ -188,16 +188,10 @@ public final class Stopwatch {
   /** Returns a string representation of the current elapsed time. */
   @Override
   public String toString() {
-    long nanos = elapsedNanos();
+	return ticker.toString(this);
+}
 
-    TimeUnit unit = chooseUnit(nanos);
-    double value = (double) nanos / NANOSECONDS.convert(1, unit);
-
-    // Too bad this functionality is not exposed as a regular method call
-    return Platform.formatCompact4Digits(value) + " " + abbreviate(unit);
-  }
-
-  private static TimeUnit chooseUnit(long nanos) {
+  static TimeUnit chooseUnit(long nanos) {
     if (DAYS.convert(nanos, NANOSECONDS) > 0) {
       return DAYS;
     }
@@ -219,7 +213,7 @@ public final class Stopwatch {
     return NANOSECONDS;
   }
 
-  private static String abbreviate(TimeUnit unit) {
+  static String abbreviate(TimeUnit unit) {
     switch (unit) {
       case NANOSECONDS:
         return "ns";

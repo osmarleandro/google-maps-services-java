@@ -28,6 +28,10 @@
 
 package com.google.maps.internal.ratelimiter;
 
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
+
+import java.util.concurrent.TimeUnit;
+
 /**
  * A time source; returns a time value representing the number of nanoseconds elapsed since some
  * fixed but arbitrary point in time. Note that most users should use {@link Stopwatch} instead of
@@ -44,7 +48,19 @@ public abstract class Ticker {
   /** Returns the number of nanoseconds elapsed since this ticker's fixed point of reference. */
   public abstract long read();
 
-  /** A ticker that reads the current time using {@link System#nanoTime}. */
+  /** Returns a string representation of the current elapsed time. 
+ * @param stopwatch TODO*/
+  public String toString(Stopwatch stopwatch) {
+    long nanos = stopwatch.elapsedNanos();
+
+    TimeUnit unit = Stopwatch.chooseUnit(nanos);
+    double value = (double) nanos / NANOSECONDS.convert(1, unit);
+
+    // Too bad this functionality is not exposed as a regular method call
+    return Platform.formatCompact4Digits(value) + " " + Stopwatch.abbreviate(unit);
+  }
+
+/** A ticker that reads the current time using {@link System#nanoTime}. */
   public static Ticker systemTicker() {
     return SYSTEM_TICKER;
   }
