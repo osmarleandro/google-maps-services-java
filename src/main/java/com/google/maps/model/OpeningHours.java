@@ -15,9 +15,13 @@
 
 package com.google.maps.model;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Arrays;
+
+import com.google.gson.stream.JsonWriter;
+import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 
 /**
  * Opening hours for a Place Details result. Please see <a
@@ -67,6 +71,12 @@ public class OpeningHours implements Serializable {
         public String getName() {
           return name;
         }
+
+		/** This method is not implemented. 
+		 * @param writer TODO*/
+		  public void write(JsonWriter writer) throws IOException {
+		    throw new UnsupportedOperationException("Unimplemented method");
+		  }
       }
 
       /** Day that this Open/Close pair is for. */

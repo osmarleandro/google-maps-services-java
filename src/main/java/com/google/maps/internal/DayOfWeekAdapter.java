@@ -18,7 +18,6 @@ package com.google.maps.internal;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 import java.io.IOException;
 
@@ -60,11 +59,5 @@ public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> {
     }
 
     return DayOfWeek.UNKNOWN;
-  }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, DayOfWeek value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
   }
 }
