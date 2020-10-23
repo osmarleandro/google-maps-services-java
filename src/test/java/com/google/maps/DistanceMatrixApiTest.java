@@ -77,7 +77,7 @@ public class DistanceMatrixApiTest {
       DistanceMatrix matrix =
           DistanceMatrixApi.getDistanceMatrix(sc.context, origins, destinations).await();
 
-      assertNotNull(matrix.toString());
+      assertNotNull(matrix.toString_RENAMED());
       assertNotNull(Arrays.toString(matrix.rows));
 
       // Rows length will match the number of origin elements, regardless of whether they're

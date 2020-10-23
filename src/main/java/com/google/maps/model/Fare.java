@@ -36,7 +36,7 @@ public class Fare implements Serializable {
   public BigDecimal value;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("%s %s", value, currency);
   }
 }
