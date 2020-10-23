@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
   /** Read a time from the Places API and convert to a {@link LocalTime} */
   @Override
-  public LocalTime read(JsonReader reader) throws IOException {
+  public LocalTime read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
