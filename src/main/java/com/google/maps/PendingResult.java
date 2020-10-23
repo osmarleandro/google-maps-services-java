@@ -33,7 +33,7 @@ public interface PendingResult<T> {
    *
    * @param callback The callback to call on completion.
    */
-  void setCallback(Callback<T> callback);
+  void setCallback_RENAMED(Callback<T> callback);
 
   /**
    * Performs the request synchronously.
