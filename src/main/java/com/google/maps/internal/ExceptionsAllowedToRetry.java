@@ -15,6 +15,7 @@
 
 package com.google.maps.internal;
 
+import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import java.util.HashSet;
 
@@ -36,5 +37,14 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
 
     sb.append(']');
     return sb.toString();
+  }
+
+/**
+   * Shut down this GeoApiContext instance, reclaiming resources. After shutdown() has been called,
+   * no further queries may be done against this instance.
+ * @param geoApiContext TODO
+   */
+  public void shutdown(GeoApiContext geoApiContext) {
+    geoApiContext.requestHandler.shutdown();
   }
 }

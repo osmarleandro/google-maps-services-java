@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  * reuse it for all your Google Geo API queries. This is because each GeoApiContext manages its own
  * thread pool, back-end client, and other resources.
  *
- * <p>When you are finished with a GeoApiContext object, you must call {@link #shutdown()} on it to
+ * <p>When you are finished with a GeoApiContext object, you must call {@link #MISSING()} on it to
  * release its resources.
  */
 public class GeoApiContext {
@@ -57,13 +57,13 @@ public class GeoApiContext {
   private static final String USER_AGENT = "GoogleGeoApiClientJava/" + VERSION;
   private static final int DEFAULT_BACKOFF_TIMEOUT_MILLIS = 60 * 1000; // 60s
 
-  private final RequestHandler requestHandler;
+  public final RequestHandler requestHandler;
   private final String apiKey;
   private final String baseUrlOverride;
   private final String channel;
   private final String clientId;
   private final long errorTimeout;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  public final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
   private String experienceIdHeaderValue;
@@ -177,14 +177,6 @@ public class GeoApiContext {
    */
   public void clearExperienceId() {
     experienceIdHeaderValue = null;
-  }
-
-  /**
-   * Shut down this GeoApiContext instance, reclaiming resources. After shutdown() has been called,
-   * no further queries may be done against this instance.
-   */
-  public void shutdown() {
-    requestHandler.shutdown();
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(

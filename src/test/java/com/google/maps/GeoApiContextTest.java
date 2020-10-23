@@ -406,7 +406,7 @@ public class GeoApiContextTest {
         delayThread.isAlive());
     // this is needed to make sure that delay thread has reached queue.take()
     delayThread.join(10);
-    context.shutdown();
+    context.exceptionsAllowedToRetry.shutdown(context);
     delayThread.join(10);
     assertFalse(delayThread.isAlive());
   }
