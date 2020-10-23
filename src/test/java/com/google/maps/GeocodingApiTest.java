@@ -824,7 +824,7 @@ public class GeocodingApiTest {
    * Address Geocoding in the Google Maps APIs</a> for the reasoning behind this usage.
    */
   @Test
-  public void testCustomParameterPassThrough() throws Exception {
+  public void testCustomParameterPassThrough_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
