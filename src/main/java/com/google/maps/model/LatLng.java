@@ -15,10 +15,18 @@
 
 package com.google.maps.model;
 
+import com.google.maps.internal.PolylineEncoding;
+import com.google.maps.internal.PolylineEncodingTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static com.google.maps.model.LatLngAssert.assertEquals;
+
 import java.io.Serializable;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +75,15 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testDecode() throws Exception {
+    List<LatLng> points = PolylineEncoding.decode(PolylineEncodingTest.SYD_MELB_ROUTE);
+    LatLng sydney = points.get(0);
+    LatLng melbourne = points.get(points.size() - 1);
+
+    assertEquals(PolylineEncodingTest.SYDNEY, sydney, PolylineEncodingTest.EPSILON);
+    assertEquals(this, melbourne, PolylineEncodingTest.EPSILON);
   }
 }

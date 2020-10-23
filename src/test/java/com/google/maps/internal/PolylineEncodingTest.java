@@ -28,10 +28,10 @@ import org.junit.experimental.categories.Category;
 @Category(SmallTests.class)
 public class PolylineEncodingTest {
 
-  private static final double EPSILON = .00001;
-  private static final LatLng SYDNEY = new LatLng(-33.86746, 151.207090);
-  private static final LatLng MELBOURNE = new LatLng(-37.814130, 144.963180);
-  private static final String SYD_MELB_ROUTE =
+  public static final double EPSILON = .00001;
+  public static final LatLng SYDNEY = new LatLng(-33.86746, 151.207090);
+  public static final LatLng MELBOURNE = new LatLng(-37.814130, 144.963180);
+  public static final String SYD_MELB_ROUTE =
       "rvumEis{y[`NsfA~tAbF`bEj^h{@{KlfA~eA~`AbmEghAt~D|e@jlRpO~yH_\\v}LjbBh~FdvCxu@`nCplDbcBf_B|w"
           + "BhIfhCnqEb~D~jCn_EngApdEtoBbfClf@t_CzcCpoEr_Gz_DxmAphDjjBxqCviEf}B|pEvsEzbE~qGfpExjBlqCx}"
           + "BvmLb`FbrQdpEvkAbjDllD|uDldDj`Ef|AzcEx_Gtm@vuI~xArwD`dArlFnhEzmHjtC~eDluAfkC|eAdhGpJh}N_m"
@@ -53,15 +53,5 @@ public class PolylineEncodingTest {
     List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
     String encodedPath = PolylineEncoding.encode(points);
     assertEquals(SYD_MELB_ROUTE, encodedPath);
-  }
-
-  @Test
-  public void testDecode() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
-    LatLng sydney = points.get(0);
-    LatLng melbourne = points.get(points.size() - 1);
-
-    assertEquals(SYDNEY, sydney, EPSILON);
-    assertEquals(MELBOURNE, melbourne, EPSILON);
   }
 }
