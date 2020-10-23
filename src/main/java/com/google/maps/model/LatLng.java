@@ -15,10 +15,19 @@
 
 package com.google.maps.model;
 
+import com.google.maps.ElevationApi;
+import com.google.maps.ElevationApiTest;
+import com.google.maps.LocalTestServerContext;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +76,42 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testGetPoints(ElevationApiTest elevationApiTest) throws Exception {
+    try (LocalTestServerContext sc =
+        new LocalTestServerContext(
+            ""
+                + "{\n"
+                + "   \"results\" : [\n"
+                + "      {\n"
+                + "         \"elevation\" : 19.11174774169922,\n"
+                + "         \"location\" : {\n"
+                + "            \"lat\" : -33.86749,\n"
+                + "            \"lng\" : 151.20699\n"
+                + "         },\n"
+                + "         \"resolution\" : 4.771975994110107\n"
+                + "      },\n"
+                + "      {\n"
+                + "         \"elevation\" : 25.49982643127441,\n"
+                + "         \"location\" : {\n"
+                + "            \"lat\" : -37.81411,\n"
+                + "            \"lng\" : 144.96328\n"
+                + "         },\n"
+                + "         \"resolution\" : 152.7032318115234\n"
+                + "      }\n"
+                + "   ],\n"
+                + "   \"status\" : \"OK\"\n"
+                + "}\n")) {
+      ElevationResult[] results = ElevationApi.getByPoints(sc.context, ElevationApiTest.SYDNEY, this).await();
+
+      assertNotNull(results);
+      assertEquals(2, results.length);
+      assertEquals(ElevationApiTest.SYDNEY_ELEVATION, results[0].elevation, ElevationApiTest.EPSILON);
+      assertEquals(ElevationApiTest.MELBOURNE_ELEVATION, results[1].elevation, ElevationApiTest.EPSILON);
+
+      sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "locations");
+    }
   }
 }

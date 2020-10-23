@@ -33,12 +33,12 @@ import org.junit.experimental.categories.Category;
 @Category(MediumTests.class)
 public class ElevationApiTest {
 
-  private static final double SYDNEY_ELEVATION = 19.11174774169922;
+  public static final double SYDNEY_ELEVATION = 19.11174774169922;
   private static final double SYDNEY_POINT_ELEVATION = 19.10829925537109;
-  private static final double MELBOURNE_ELEVATION = 25.49982643127441;
-  private static final double EPSILON = .00001;
-  private static final LatLng SYDNEY = new LatLng(-33.867487, 151.206990);
-  private static final LatLng MELBOURNE = new LatLng(-37.814107, 144.963280);
+  public static final double MELBOURNE_ELEVATION = 25.49982643127441;
+  public static final double EPSILON = .00001;
+  public static final LatLng SYDNEY = new LatLng(-33.867487, 151.206990);
+  public static final LatLng MELBOURNE = new LatLng(-37.814107, 144.963280);
   private static final EncodedPolyline SYD_MELB_ROUTE =
       new EncodedPolyline(
           "rvumEis{y[`NsfA~tAbF`bEj^h{@{KlfA~eA~`AbmEghAt~D|e@jlRpO~yH_\\v}LjbBh~FdvCxu@`nCplDbcBf_B|w"
@@ -117,43 +117,6 @@ public class ElevationApiTest {
       assertEquals(SYDNEY_POINT_ELEVATION, result.elevation, EPSILON);
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "locations");
-    }
-  }
-
-  @Test
-  public void testGetPoints() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(
-            ""
-                + "{\n"
-                + "   \"results\" : [\n"
-                + "      {\n"
-                + "         \"elevation\" : 19.11174774169922,\n"
-                + "         \"location\" : {\n"
-                + "            \"lat\" : -33.86749,\n"
-                + "            \"lng\" : 151.20699\n"
-                + "         },\n"
-                + "         \"resolution\" : 4.771975994110107\n"
-                + "      },\n"
-                + "      {\n"
-                + "         \"elevation\" : 25.49982643127441,\n"
-                + "         \"location\" : {\n"
-                + "            \"lat\" : -37.81411,\n"
-                + "            \"lng\" : 144.96328\n"
-                + "         },\n"
-                + "         \"resolution\" : 152.7032318115234\n"
-                + "      }\n"
-                + "   ],\n"
-                + "   \"status\" : \"OK\"\n"
-                + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPoints(sc.context, SYDNEY, MELBOURNE).await();
-
-      assertNotNull(results);
-      assertEquals(2, results.length);
-      assertEquals(SYDNEY_ELEVATION, results[0].elevation, EPSILON);
-      assertEquals(MELBOURNE_ELEVATION, results[1].elevation, EPSILON);
-
-      sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "locations");
     }
   }
 
