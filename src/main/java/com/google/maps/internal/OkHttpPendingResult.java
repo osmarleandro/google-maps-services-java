@@ -110,7 +110,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public void setCallback(Callback<T> callback) {
+  public void setCallback_RENAMED(Callback<T> callback) {
     this.callback = callback;
     call.enqueue(this);
   }

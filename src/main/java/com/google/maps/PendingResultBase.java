@@ -49,7 +49,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   @Override
   public final void setCallback(Callback<T> callback) {
-    makeRequest().setCallback(callback);
+    makeRequest().setCallback_RENAMED(callback);
   }
 
   @Override

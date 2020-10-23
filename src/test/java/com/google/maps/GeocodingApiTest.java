@@ -110,7 +110,7 @@ public class GeocodingApiTest {
               fail("Got error when expected success.");
             }
           };
-      GeocodingApi.newRequest(sc.context).address("Sydney").setCallback(callback);
+      GeocodingApi.newRequest(sc.context).address("Sydney").setCallback_RENAMED(callback);
 
       Thread.sleep(2500);
 
