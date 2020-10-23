@@ -77,7 +77,7 @@ public class PlaceDetailsRequest
    * @param fields The Field Masks of the fields to return.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest fields(FieldMask... fields) {
+  public PlaceDetailsRequest fields_RENAMED(FieldMask... fields) {
     return param("fields", StringJoin.join(',', fields));
   }
 
