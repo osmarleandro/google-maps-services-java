@@ -30,7 +30,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(LargeTests.class)
-public class RoadsApiIntegrationTest {
+public class RoadsApiIntegrationTest_RENAMED {
 
   private final String snapToRoadResponse;
   private final String speedLimitsResponse;
@@ -39,7 +39,7 @@ public class RoadsApiIntegrationTest {
   private final String snappedSpeedLimitResponse;
   private final String nearestRoadsResponse;
 
-  public RoadsApiIntegrationTest() {
+  public RoadsApiIntegrationTest_RENAMED() {
     snapToRoadResponse = retrieveBody("RoadsApiSnapToRoadResponse.json");
     speedLimitsResponse = retrieveBody("RoadsApiSpeedLimitsResponse.json");
     speedLimitsUSAResponse = retrieveBody("RoadsApiSpeedLimitsUSAResponse.json");
