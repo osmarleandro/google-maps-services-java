@@ -43,7 +43,7 @@ public class InstantAdapter extends TypeAdapter<Instant> {
 
   /** This method is not implemented. */
   @Override
-  public void write(JsonWriter out, Instant value) throws IOException {
+  public void write_RENAMED(JsonWriter out, Instant value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method");
   }
 }
