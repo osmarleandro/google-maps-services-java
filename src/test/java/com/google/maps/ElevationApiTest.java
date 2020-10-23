@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils_RENAMED.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

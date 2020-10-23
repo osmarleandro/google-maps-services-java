@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.findLastThreadByName;
+import static com.google.maps.TestUtils_RENAMED.findLastThreadByName;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -277,7 +277,7 @@ public class GeoApiContextTest {
     // exception is not allowed to be retried.
     MockResponse overQueryLimitResponse = new MockResponse();
     overQueryLimitResponse.setStatus("HTTP/1.1 400 Internal server error");
-    overQueryLimitResponse.setBody(TestUtils.retrieveBody("OverQueryLimitResponse.json"));
+    overQueryLimitResponse.setBody(TestUtils_RENAMED.retrieveBody("OverQueryLimitResponse.json"));
     server.enqueue(overQueryLimitResponse);
     server.enqueue(overQueryLimitResponse);
     server.enqueue(overQueryLimitResponse);

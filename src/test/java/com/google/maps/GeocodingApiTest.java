@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils_RENAMED.retrieveBody;
 import static com.google.maps.model.ComponentFilter.administrativeArea;
 import static com.google.maps.model.ComponentFilter.country;
 import static org.junit.Assert.assertEquals;
