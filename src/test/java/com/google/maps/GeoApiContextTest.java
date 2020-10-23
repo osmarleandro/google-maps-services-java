@@ -73,7 +73,7 @@ public class GeoApiContextTest {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testGetIncludesDefaultUserAgent() throws Exception {
+  public void testGetIncludesDefaultUserAgent_RENAMED() throws Exception {
     // Set up a mock request
     ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
     String path = "/";
