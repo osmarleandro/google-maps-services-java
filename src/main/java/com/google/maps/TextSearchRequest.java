@@ -108,17 +108,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Specifies one or more terms to be matched against the names of places, separated with space
-   * characters.
-   *
-   * @param name The name to search for.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest name(String name) {
-    return param("name", name);
-  }
-
-  /**
    * Restricts to only those places that are open for business at the time the query is sent.
    *
    * @param openNow Whether to restrict this search to open places.

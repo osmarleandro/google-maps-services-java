@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Specifies one or more terms to be matched against the names of places, separated with space
+   * characters.
+   *
+   * @param name The name to search for.
+   * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+public TextSearchRequest name(String name) {
+    return param("name", name);
+  }
 }
