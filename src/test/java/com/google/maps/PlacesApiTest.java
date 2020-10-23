@@ -653,7 +653,7 @@ public class PlacesApiTest {
 
   @Test
   @SuppressWarnings("deprecation") // Testing a deprecated method
-  public void testNearbySearchRequestWithMultipleType() throws Exception {
+  public void testNearbySearchRequestWithMultipleType_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
