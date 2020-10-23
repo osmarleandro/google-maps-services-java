@@ -38,13 +38,13 @@ public class DistanceMatrixApiRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("origins")) {
+    if (!params_RENAMED().containsKey("origins")) {
       throw new IllegalArgumentException("Request must contain 'origins'");
     }
-    if (!params().containsKey("destinations")) {
+    if (!params_RENAMED().containsKey("destinations")) {
       throw new IllegalArgumentException("Request must contain 'destinations'");
     }
-    if (params().containsKey("arrival_time") && params().containsKey("departure_time")) {
+    if (params_RENAMED().containsKey("arrival_time") && params_RENAMED().containsKey("departure_time")) {
       throw new IllegalArgumentException(
           "Transit request must not contain both a departureTime and an arrivalTime");
     }

@@ -175,23 +175,23 @@ public class NearbySearchRequest
   protected void validateRequest() {
 
     // If pagetoken is included, all other parameters are ignored.
-    if (params().containsKey("pagetoken")) {
+    if (params_RENAMED().containsKey("pagetoken")) {
       return;
     }
 
     // radius must not be included if rankby=distance
-    if (params().containsKey("rankby")
-        && params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
-        && params().containsKey("radius")) {
+    if (params_RENAMED().containsKey("rankby")
+        && params_RENAMED().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && params_RENAMED().containsKey("radius")) {
       throw new IllegalArgumentException("Request must not contain radius with rankby=distance");
     }
 
     // If rankby=distance is specified, then one or more of keyword, name, or type is required.
-    if (params().containsKey("rankby")
-        && params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
-        && !params().containsKey("keyword")
-        && !params().containsKey("name")
-        && !params().containsKey("type")) {
+    if (params_RENAMED().containsKey("rankby")
+        && params_RENAMED().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && !params_RENAMED().containsKey("keyword")
+        && !params_RENAMED().containsKey("name")
+        && !params_RENAMED().containsKey("type")) {
       throw new IllegalArgumentException(
           "With rankby=distance is specified, then one or more of keyword, name, or type is required");
     }

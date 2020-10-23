@@ -40,17 +40,17 @@ public class DirectionsApiRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("origin")) {
+    if (!params_RENAMED().containsKey("origin")) {
       throw new IllegalArgumentException("Request must contain 'origin'");
     }
-    if (!params().containsKey("destination")) {
+    if (!params_RENAMED().containsKey("destination")) {
       throw new IllegalArgumentException("Request must contain 'destination'");
     }
-    if (params().containsKey("arrival_time") && params().containsKey("departure_time")) {
+    if (params_RENAMED().containsKey("arrival_time") && params_RENAMED().containsKey("departure_time")) {
       throw new IllegalArgumentException(
           "Transit request must not contain both a departureTime and an arrivalTime");
     }
-    if (params().containsKey("traffic_model") && !params().containsKey("departure_time")) {
+    if (params_RENAMED().containsKey("traffic_model") && !params_RENAMED().containsKey("departure_time")) {
       throw new IllegalArgumentException(
           "Specifying a traffic model requires that departure time be provided.");
     }

@@ -129,7 +129,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return getInstance();
   }
 
-  protected Map<String, List<String>> params() {
+  protected Map<String, List<String>> params_RENAMED() {
     return Collections.unmodifiableMap(params);
   }
 

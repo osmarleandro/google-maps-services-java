@@ -98,10 +98,10 @@ public class FindPlaceFromTextRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("input")) {
+    if (!params_RENAMED().containsKey("input")) {
       throw new IllegalArgumentException("Request must contain 'input'.");
     }
-    if (!params().containsKey("inputtype")) {
+    if (!params_RENAMED().containsKey("inputtype")) {
       throw new IllegalArgumentException("Request must contain 'inputType'.");
     }
   }
