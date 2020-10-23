@@ -37,4 +37,8 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
     sb.append(']');
     return sb.toString();
   }
+
+public void cancel(GaePendingResult gaePendingResult) {
+    gaePendingResult.call.cancel(true);
+  }
 }
