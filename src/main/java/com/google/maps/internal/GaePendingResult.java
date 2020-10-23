@@ -61,20 +61,20 @@ import org.slf4j.LoggerFactory;
  * request.
  */
 public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingResult<T> {
-  private final HTTPRequest request;
-  private final URLFetchService client;
+  public final HTTPRequest request;
+  public final URLFetchService client;
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
-  private final RequestMetrics metrics;
+  public final RequestMetrics metrics;
 
   private long errorTimeOut;
-  private int retryCounter = 0;
+  public int retryCounter = 0;
   private long cumulativeSleepTime = 0;
-  private Future<HTTPResponse> call;
+  public Future<HTTPResponse> call;
 
-  private static final Logger LOG = LoggerFactory.getLogger(GaePendingResult.class.getName());
+  public static final Logger LOG = LoggerFactory.getLogger(GaePendingResult.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
@@ -242,7 +242,8 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     }
   }
 
-  private T retry() throws IOException, ApiException, InterruptedException {
+  @Override
+private T retry() throws IOException, ApiException, InterruptedException {
     retryCounter++;
     LOG.info("Retrying request. Retry #{}", retryCounter);
     metrics.startNetwork();
