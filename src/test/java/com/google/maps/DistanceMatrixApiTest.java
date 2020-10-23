@@ -57,7 +57,7 @@ public class DistanceMatrixApiTest {
   }
 
   @Test
-  public void testGetDistanceMatrixWithBasicStringParams() throws Exception {
+  public void testGetDistanceMatrixWithBasicStringParams_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(getDistanceMatrixWithBasicStringParams)) {
       String[] origins =
