@@ -338,4 +338,10 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
+
+@Override
+public A param(String key, int val) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

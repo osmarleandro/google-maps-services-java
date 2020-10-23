@@ -102,7 +102,8 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return paramAddToList(key, val);
   }
 
-  protected A param(String key, int val) {
+  @Override
+protected A param(String key, int val) {
     return this.param(key, Integer.toString(val));
   }
 
