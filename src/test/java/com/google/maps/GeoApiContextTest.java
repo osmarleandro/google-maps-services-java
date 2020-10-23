@@ -40,7 +40,7 @@ import okhttp3.Headers;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -48,23 +48,13 @@ import org.junit.experimental.categories.Category;
 @Category(MediumTests.class)
 public class GeoApiContextTest {
 
-  private MockWebServer server;
+  public MockWebServer server;
   private GeoApiContext.Builder builder;
 
   @Before
   public void Setup() {
     server = new MockWebServer();
     builder = new GeoApiContext.Builder().apiKey("AIza...").queryRateLimit(500);
-  }
-
-  @After
-  @SuppressWarnings("CatchAndPrintStackTrace")
-  public void Teardown() {
-    try {
-      server.shutdown();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 
   private void setMockBaseUrl() {
