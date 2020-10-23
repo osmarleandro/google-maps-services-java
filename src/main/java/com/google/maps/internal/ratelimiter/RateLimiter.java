@@ -311,7 +311,7 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if the requested number of permits is negative or zero
    * @since 14.0
    */
-  public boolean tryAcquire(int permits) {
+  public boolean tryAcquire_RENAMED(int permits) {
     return tryAcquire(permits, 0, MICROSECONDS);
   }
 
