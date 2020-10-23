@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeoApiContext.Builder;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
@@ -27,6 +28,9 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import static org.junit.Assert.assertEquals;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -35,7 +39,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -622,5 +629,31 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@Test
+	  public void testExperienceIdSample() {
+	    // [START maps_experience_id]
+	    final String experienceId = UUID.randomUUID().toString();
+	
+	    // instantiate context with experience id
+	    final GeoApiContext context =
+	        new Builder().apiKey("AIza-Maps-API-Key").experienceId(experienceId).build();
+	
+	    // clear the current experience id
+	    context.clearExperienceId();
+	
+	    // set a new experience id
+	    final String otherExperienceId = UUID.randomUUID().toString();
+	    context.setExperienceId(experienceId, otherExperienceId);
+	
+	    // make API request, the client will set the header
+	    // X-GOOG-MAPS-EXPERIENCE-ID: experienceId,otherExperienceId
+	
+	    // get current experience id
+	    final String ids = context.getExperienceId();
+	    // [END maps_experience_id]
+	
+	    assertEquals(experienceId + "," + otherExperienceId, ids);
+	  }
   }
 }
