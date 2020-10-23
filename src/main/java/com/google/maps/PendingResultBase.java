@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.RankBy;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,31 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+@Override
+protected void validateRequest() {
+
+    // If pagetoken is included, all other parameters are ignored.
+    if (params().containsKey("pagetoken")) {
+      return;
+    }
+
+    // radius must not be included if rankby=distance
+    if (params().containsKey("rankby")
+        && params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && params().containsKey("radius")) {
+      throw new IllegalArgumentException("Request must not contain radius with rankby=distance");
+    }
+
+    // If rankby=distance is specified, then one or more of keyword, name, or type is required.
+    if (params().containsKey("rankby")
+        && params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && !params().containsKey("keyword")
+        && !params().containsKey("name")
+        && !params().containsKey("type")) {
+      throw new IllegalArgumentException(
+          "With rankby=distance is specified, then one or more of keyword, name, or type is required");
+    }
   }
 }
