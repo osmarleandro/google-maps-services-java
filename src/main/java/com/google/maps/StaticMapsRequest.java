@@ -86,7 +86,7 @@ public class StaticMapsRequest
    * @param size The Size of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest size(Size size) {
+  public StaticMapsRequest size_RENAMED(Size size) {
     return param("size", size);
   }
 
