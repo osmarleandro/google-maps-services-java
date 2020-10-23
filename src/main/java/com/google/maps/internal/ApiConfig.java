@@ -16,6 +16,8 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.NearbySearchRequest;
+import com.google.maps.model.RankBy;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +49,30 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public void validateRequest(NearbySearchRequest nearbySearchRequest) {
+
+    // If pagetoken is included, all other parameters are ignored.
+    if (nearbySearchRequest.params().containsKey("pagetoken")) {
+      return;
+    }
+
+    // radius must not be included if rankby=distance
+    if (nearbySearchRequest.params().containsKey("rankby")
+        && nearbySearchRequest.params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && nearbySearchRequest.params().containsKey("radius")) {
+      throw new IllegalArgumentException("Request must not contain radius with rankby=distance");
+    }
+
+    // If rankby=distance is specified, then one or more of keyword, name, or type is required.
+    if (nearbySearchRequest.params().containsKey("rankby")
+        && nearbySearchRequest.params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && !nearbySearchRequest.params().containsKey("keyword")
+        && !nearbySearchRequest.params().containsKey("name")
+        && !nearbySearchRequest.params().containsKey("type")) {
+      throw new IllegalArgumentException(
+          "With rankby=distance is specified, then one or more of keyword, name, or type is required");
+    }
   }
 }
