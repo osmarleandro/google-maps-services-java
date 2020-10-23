@@ -64,7 +64,7 @@ public class ElevationApiTest {
   }
 
   @Test(expected = InvalidRequestException.class)
-  public void testGetByPointThrowsInvalidRequestExceptionFromResponse() throws Exception {
+  public void testGetByPointThrowsInvalidRequestExceptionFromResponse_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
