@@ -109,7 +109,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest origin(LatLng origin) {
-    return origin(origin.toString());
+    return origin(origin.toString_RENAMED());
   }
 
   /**
@@ -119,7 +119,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest destination(LatLng destination) {
-    return destination(destination.toString());
+    return destination(destination.toString_RENAMED());
   }
 
   /**
@@ -218,7 +218,7 @@ public class DirectionsApiRequest
       this.waypoints = waypoints;
       String[] waypointStrs = new String[waypoints.length];
       for (int i = 0; i < waypoints.length; i++) {
-        waypointStrs[i] = waypoints[i].toString();
+        waypointStrs[i] = waypoints[i].toString_RENAMED();
       }
       param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
       return this;
@@ -397,7 +397,7 @@ public class DirectionsApiRequest
      */
     public Waypoint(LatLng location, boolean isStopover) {
       requireNonNull(location, "location may not be null");
-      this.location = location.toString();
+      this.location = location.toString_RENAMED();
       this.isStopover = isStopover;
     }
 
