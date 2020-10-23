@@ -116,7 +116,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   public T await() throws ApiException, IOException, InterruptedException {
     try {
       HTTPResponse result = call.get();
-      metrics.endNetwork();
+      metrics.endNetwork_RENAMED();
       return parseResponse(this, result);
     } catch (ExecutionException e) {
       if (e.getCause() instanceof IOException) {
