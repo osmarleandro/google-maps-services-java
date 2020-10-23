@@ -18,7 +18,6 @@ package com.google.maps.internal;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import com.google.gson.stream.JsonWriter;
 import com.google.maps.model.PriceLevel;
 import java.io.IOException;
 
@@ -56,11 +55,5 @@ public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
     }
 
     return PriceLevel.UNKNOWN;
-  }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, PriceLevel value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
   }
 }

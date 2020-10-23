@@ -15,6 +15,9 @@
 
 package com.google.maps.model;
 
+import java.io.IOException;
+
+import com.google.gson.stream.JsonWriter;
 import com.google.maps.internal.StringJoin;
 
 /** Used by Places API to restrict search results to those within a given price range. */
@@ -48,5 +51,11 @@ public enum PriceLevel implements StringJoin.UrlValue {
       throw new UnsupportedOperationException("Shouldn't use PriceLevel.UNKNOWN in a request.");
     }
     return priceLevel;
+  }
+
+/** This method is not implemented. 
+ * @param writer TODO*/
+  public void write(JsonWriter writer) throws IOException {
+    throw new UnsupportedOperationException("Unimplemented method");
   }
 }
