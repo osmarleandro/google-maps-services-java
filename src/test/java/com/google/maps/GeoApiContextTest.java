@@ -272,7 +272,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testToggleIfExceptionIsAllowedToRetry() throws Exception {
+  public void testToggleIfExceptionIsAllowedToRetry_RENAMED() throws Exception {
     // Enqueue some error responses, although only the first should be used because the response's
     // exception is not allowed to be retried.
     MockResponse overQueryLimitResponse = new MockResponse();
