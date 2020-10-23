@@ -48,8 +48,8 @@ import org.junit.experimental.categories.Category;
 @Category(MediumTests.class)
 public class GeoApiContextTest {
 
-  private MockWebServer server;
-  private GeoApiContext.Builder builder;
+  public MockWebServer server;
+  public GeoApiContext.Builder builder;
 
   @Before
   public void Setup() {
@@ -67,7 +67,7 @@ public class GeoApiContextTest {
     }
   }
 
-  private void setMockBaseUrl() {
+  public void setMockBaseUrl() {
     builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
   }
 
@@ -129,26 +129,7 @@ public class GeoApiContextTest {
     server.shutdown();
   }
 
-  @Test(expected = IOException.class)
-  public void testSettingMaxRetries() throws Exception {
-    MockResponse errorResponse = createMockBadResponse();
-    MockResponse goodResponse = createMockGoodResponse();
-
-    // Set up the fake web server
-    server.enqueue(errorResponse);
-    server.enqueue(errorResponse);
-    server.enqueue(errorResponse);
-    server.enqueue(goodResponse);
-    server.start();
-    setMockBaseUrl();
-
-    // This should limit the number of retries, ensuring that the success response is NOT returned.
-    builder.maxRetries(2);
-
-    builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
-  }
-
-  private MockResponse createMockGoodResponse() {
+  public MockResponse createMockGoodResponse() {
     MockResponse response = new MockResponse();
     response.setResponseCode(200);
     response.setBody(
@@ -190,7 +171,7 @@ public class GeoApiContextTest {
     return response;
   }
 
-  private MockResponse createMockBadResponse() {
+  public MockResponse createMockBadResponse() {
     MockResponse response = new MockResponse();
     response.setStatus("HTTP/1.1 500 Internal server error");
     response.setBody("Uh-oh. Server Error.");
