@@ -39,7 +39,7 @@ public class ApiConfig {
     return this;
   }
 
-  public ApiConfig supportsClientId(boolean supportsClientId) {
+  public ApiConfig supportsClientId_RENAMED(boolean supportsClientId) {
     this.supportsClientId = supportsClientId;
     return this;
   }

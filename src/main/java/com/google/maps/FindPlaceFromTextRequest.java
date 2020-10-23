@@ -32,7 +32,7 @@ public class FindPlaceFromTextRequest
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/findplacefromtext/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-          .supportsClientId(false);
+          .supportsClientId_RENAMED(false);
 
   public FindPlaceFromTextRequest(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);
