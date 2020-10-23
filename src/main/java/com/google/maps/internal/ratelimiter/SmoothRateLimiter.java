@@ -29,6 +29,7 @@
 package com.google.maps.internal.ratelimiter;
 
 import static java.lang.Math.min;
+import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.concurrent.TimeUnit;
@@ -397,5 +398,18 @@ abstract class SmoothRateLimiter extends RateLimiter {
       storedPermits = min(maxPermits, storedPermits + newPermits);
       nextFreeTicketMicros = nowMicros;
     }
+  }
+
+/**
+   * Acquires a permit from this {@link RateLimiter} if it can be acquired immediately without
+   * delay.
+   *
+   * <p>This method is equivalent to {@code tryAcquire(1)}.
+   *
+   * @return {@code true} if the permit was acquired, {@code false} otherwise
+   * @since 14.0
+   */
+public boolean tryAcquire() {
+    return tryAcquire(1, 0, MICROSECONDS);
   }
 }
