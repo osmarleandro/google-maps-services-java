@@ -51,7 +51,7 @@ public class GeocodingApi {
    */
   public static GeocodingApiRequest geocode(GeoApiContext context, String address) {
     GeocodingApiRequest request = new GeocodingApiRequest(context);
-    request.address(address);
+    request.address_RENAMED(address);
     return request;
   }
 

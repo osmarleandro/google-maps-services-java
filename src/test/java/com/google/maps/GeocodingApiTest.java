@@ -60,7 +60,7 @@ public class GeocodingApiTest {
   @Test
   public void testGeocodeLibraryType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geocodeLibraryType)) {
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("80 FR").await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address_RENAMED("80 FR").await();
 
       assertEquals(1, results.length);
       assertEquals(3, results[0].types.length);
@@ -74,7 +74,7 @@ public class GeocodingApiTest {
   @Test
   public void testSimpleGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("Sydney").await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address_RENAMED("Sydney").await();
       checkSydneyResult(results);
       assertNotNull(Arrays.toString(results));
 
@@ -110,7 +110,7 @@ public class GeocodingApiTest {
               fail("Got error when expected success.");
             }
           };
-      GeocodingApi.newRequest(sc.context).address("Sydney").setCallback(callback);
+      GeocodingApi.newRequest(sc.context).address_RENAMED("Sydney").setCallback(callback);
 
       Thread.sleep(2500);
 
@@ -237,7 +237,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       String address = "1600 Amphitheatre Parkway, Mountain View, CA";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address(address).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address_RENAMED(address).await();
 
       assertNotNull(results);
       assertNotNull(Arrays.toString(results));
@@ -324,7 +324,7 @@ public class GeocodingApiTest {
                 + "}\n")) {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address("Winnetka")
+              .address_RENAMED("Winnetka")
               .bounds(new LatLng(34.172684, -118.604794), new LatLng(34.236144, -118.500938))
               .await();
 
@@ -408,7 +408,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context).address("Toledo").region("es").await();
+          GeocodingApi.newRequest(sc.context).address_RENAMED("Toledo").region("es").await();
 
       assertNotNull(Arrays.toString(results));
 
@@ -493,7 +493,7 @@ public class GeocodingApiTest {
                 + "}\n")) {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address("santa cruz")
+              .address_RENAMED("santa cruz")
               .components(ComponentFilter.country("ES"))
               .await();
 
@@ -579,7 +579,7 @@ public class GeocodingApiTest {
                 + "}\n")) {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address("Torun")
+              .address_RENAMED("Torun")
               .components(administrativeArea("TX"), country("US"))
               .await();
 
@@ -910,7 +910,7 @@ public class GeocodingApiTest {
       String address = "1600 Amphitheatre Parkway, Mountain View, CA";
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address(address)
+              .address_RENAMED(address)
               .custom("new_forward_geocoder", "true")
               .await();
 
@@ -1024,7 +1024,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       String address = "Noah's Marketplace, 21800 W Eleven Mile Rd";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address(address).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address_RENAMED(address).await();
 
       assertNotNull(results);
       assertNotNull(Arrays.toString(results));
@@ -1109,7 +1109,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       String address = "Ahavas Olam, 15620 W. Ten Mile Road";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address(address).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address_RENAMED(address).await();
 
       assertNotNull(results);
       assertNotNull(Arrays.toString(results));

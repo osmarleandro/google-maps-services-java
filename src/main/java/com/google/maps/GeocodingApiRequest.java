@@ -60,7 +60,7 @@ public class GeocodingApiRequest
    * @param address The address to geocode.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest address(String address) {
+  public GeocodingApiRequest address_RENAMED(String address) {
     return param("address", address);
   }
 
