@@ -177,7 +177,7 @@ public class DistanceMatrixApiRequest
    * @param arrivalTime The preferred arrival time.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
+  public DistanceMatrixApiRequest arrivalTime_RENAMED(Instant arrivalTime) {
     return param("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
   }
 
