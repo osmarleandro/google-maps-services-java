@@ -511,7 +511,7 @@ public class DirectionsApiTest {
   public void testOptimizeWaypointsBeforeWaypoints() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      List<LatLng> waypoints = getOptimizationWaypoints();
+      List<LatLng> waypoints = getOptimizationWaypoints_RENAMED();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
       DirectionsResult result =
@@ -545,7 +545,7 @@ public class DirectionsApiTest {
   public void testOptimizeWaypointsAfterWaypoints() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      List<LatLng> waypoints = getOptimizationWaypoints();
+      List<LatLng> waypoints = getOptimizationWaypoints_RENAMED();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
       DirectionsResult result =
@@ -575,7 +575,7 @@ public class DirectionsApiTest {
   }
 
   /** Coordinates in Mexico City. */
-  private List<LatLng> getOptimizationWaypoints() {
+  private List<LatLng> getOptimizationWaypoints_RENAMED() {
     List<LatLng> waypoints = new ArrayList<>();
     waypoints.add(new LatLng(19.431676, -99.133999));
     waypoints.add(new LatLng(19.427915, -99.138939));
