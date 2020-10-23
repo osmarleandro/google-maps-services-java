@@ -79,7 +79,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     validateRequest();
     switch (config.requestVerb) {
       case "GET":
-        return delegate = context.get(config, responseClass, params);
+        return delegate = config.get(context, responseClass, params);
       case "POST":
         return delegate = context.post(config, responseClass, params);
       default:

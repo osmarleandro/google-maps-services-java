@@ -86,7 +86,7 @@ public class GeoApiContextTest {
     setMockBaseUrl();
 
     // Build & execute the request using our context
-    builder.build().get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+    new ApiConfig(path).get(builder.build(), fakeResponse.getClass(), params).awaitIgnoreError();
 
     // Read the headers
     server.shutdown();
@@ -388,7 +388,7 @@ public class GeoApiContextTest {
 
     // Build & execute the request using our context
     final GeoApiContext context = builder.experienceId(experienceId).build();
-    context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+    new ApiConfig(path).get(context, fakeResponse.getClass(), params).awaitIgnoreError();
 
     // Read the header
     server.shutdown();

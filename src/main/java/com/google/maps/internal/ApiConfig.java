@@ -15,7 +15,15 @@
 
 package com.google.maps.internal;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +55,36 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public <T, R extends ApiResponse<T>> PendingResult<T> get(
+      GeoApiContext geoApiContext, Class<? extends R> clazz, Map<String, List<String>> params) {
+    if (geoApiContext.channel != null && !geoApiContext.channel.isEmpty() && !params.containsKey("channel")) {
+      params.put("channel", Collections.singletonList(geoApiContext.channel));
+    }
+
+    StringBuilder query = new StringBuilder();
+
+    for (Map.Entry<String, List<String>> param : params.entrySet()) {
+      List<String> values = param.getValue();
+      for (String value : values) {
+        query.append('&').append(param.getKey()).append("=");
+        try {
+          query.append(URLEncoder.encode(value, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+          // This should never happen. UTF-8 support is required for every Java implementation.
+          throw new IllegalStateException(e);
+        }
+      }
+    }
+
+    return geoApiContext.getWithPath(
+        clazz,
+        fieldNamingPolicy,
+        hostName,
+        path,
+        supportsClientId,
+        query.toString(),
+        geoApiContext.requestMetricsReporter.newRequest(path));
   }
 }

@@ -32,7 +32,6 @@ import java.net.Proxy;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -60,14 +59,14 @@ public class GeoApiContext {
   private final RequestHandler requestHandler;
   private final String apiKey;
   private final String baseUrlOverride;
-  private final String channel;
+  public final String channel;
   private final String clientId;
   private final long errorTimeout;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
   private String experienceIdHeaderValue;
-  private final RequestMetricsReporter requestMetricsReporter;
+  public final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
   GeoApiContext(
@@ -188,37 +187,6 @@ public class GeoApiContext {
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
-      ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
-    if (channel != null && !channel.isEmpty() && !params.containsKey("channel")) {
-      params.put("channel", Collections.singletonList(channel));
-    }
-
-    StringBuilder query = new StringBuilder();
-
-    for (Map.Entry<String, List<String>> param : params.entrySet()) {
-      List<String> values = param.getValue();
-      for (String value : values) {
-        query.append('&').append(param.getKey()).append("=");
-        try {
-          query.append(URLEncoder.encode(value, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-          // This should never happen. UTF-8 support is required for every Java implementation.
-          throw new IllegalStateException(e);
-        }
-      }
-    }
-
-    return getWithPath(
-        clazz,
-        config.fieldNamingPolicy,
-        config.hostName,
-        config.path,
-        config.supportsClientId,
-        query.toString(),
-        requestMetricsReporter.newRequest(config.path));
-  }
-
-  <T, R extends ApiResponse<T>> PendingResult<T> get(
       ApiConfig config, Class<? extends R> clazz, String... params) {
     if (params.length % 2 != 0) {
       throw new IllegalArgumentException("Params must be matching key/value pairs.");
@@ -294,7 +262,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
+  public <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
       Class<R> clazz,
       FieldNamingPolicy fieldNamingPolicy,
       String hostName,
