@@ -167,7 +167,7 @@ public class StaticMapsApiTest {
   }
 
   @Test
-  public void testMarkerAndPath() throws Exception {
+  public void testMarkerAndPath_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       Markers markers = new Markers();
