@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ import java.util.Map;
  * <p>{@code T} is the class of the result, {@code A} is the actual base class of this abstract
  * class, and R is the type of the request.
  */
-abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R extends ApiResponse<T>>
+abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R extends ApiResponse_RENAMED<T>>
     implements PendingResult<T> {
 
   private final GeoApiContext context;

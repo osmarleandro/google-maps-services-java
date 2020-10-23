@@ -19,7 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
@@ -110,7 +110,7 @@ public class ElevationApi {
     return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
   }
 
-  private static class SingularResponse implements ApiResponse<ElevationResult> {
+  private static class SingularResponse implements ApiResponse_RENAMED<ElevationResult> {
     public String status;
     public String errorMessage;
     public ElevationResult[] results;
@@ -147,7 +147,7 @@ public class ElevationApi {
         API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());
   }
 
-  private static class MultiResponse implements ApiResponse<ElevationResult[]> {
+  private static class MultiResponse implements ApiResponse_RENAMED<ElevationResult[]> {
     public String status;
     public String errorMessage;
     public ElevationResult[] results;

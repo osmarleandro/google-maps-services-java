@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.model.LatLng;
 import java.util.TimeZone;
 
@@ -54,7 +54,7 @@ public class TimeZoneApi {
         "0");
   }
 
-  private static class Response implements ApiResponse<TimeZone> {
+  private static class Response implements ApiResponse_RENAMED<TimeZone> {
     public String status;
     public String errorMessage;
 

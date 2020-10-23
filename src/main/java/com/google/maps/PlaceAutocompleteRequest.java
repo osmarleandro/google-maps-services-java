@@ -20,7 +20,7 @@ import static com.google.maps.internal.StringJoin.join;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.ComponentFilter;
@@ -202,7 +202,7 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  public static class Response implements ApiResponse_RENAMED<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

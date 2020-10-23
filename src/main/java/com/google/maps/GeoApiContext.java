@@ -19,7 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.internal.StringJoin;
@@ -105,7 +105,7 @@ public class GeoApiContext {
    */
   public interface RequestHandler {
 
-    <T, R extends ApiResponse<T>> PendingResult<T> handle(
+    <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> handle(
         String hostName,
         String url,
         String userAgent,
@@ -117,7 +117,7 @@ public class GeoApiContext {
         ExceptionsAllowedToRetry exceptionsAllowedToRetry,
         RequestMetrics metrics);
 
-    <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
+    <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> handlePost(
         String hostName,
         String url,
         String payload,
@@ -187,7 +187,7 @@ public class GeoApiContext {
     requestHandler.shutdown();
   }
 
-  <T, R extends ApiResponse<T>> PendingResult<T> get(
+  <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> get(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
     if (channel != null && !channel.isEmpty() && !params.containsKey("channel")) {
       params.put("channel", Collections.singletonList(channel));
@@ -218,7 +218,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  <T, R extends ApiResponse<T>> PendingResult<T> get(
+  <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> get(
       ApiConfig config, Class<? extends R> clazz, String... params) {
     if (params.length % 2 != 0) {
       throw new IllegalArgumentException("Params must be matching key/value pairs.");
@@ -258,7 +258,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  <T, R extends ApiResponse<T>> PendingResult<T> post(
+  <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> post(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
 
     checkContext(config.supportsClientId);
@@ -294,7 +294,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
+  private <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> getWithPath(
       Class<R> clazz,
       FieldNamingPolicy fieldNamingPolicy,
       String hostName,

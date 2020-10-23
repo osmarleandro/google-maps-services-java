@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import java.io.Serializable;
 
 /** {@code ImageResult} is the object returned from API end points that return images. */
@@ -39,7 +39,7 @@ public class ImageResult implements Serializable {
    * <code>ImageResult.Response</code> is a type system hack to enable API endpoints to return a
    * <code>ImageResult</code>.
    */
-  public static class Response implements ApiResponse<ImageResult> {
+  public static class Response implements ApiResponse_RENAMED<ImageResult> {
     @Override
     public boolean successful() {
       return true;

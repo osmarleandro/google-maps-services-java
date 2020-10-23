@@ -21,7 +21,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiError;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
@@ -163,7 +163,7 @@ public class RoadsApi {
     return context.get(NEAREST_ROADS_API_CONFIG, RoadsResponse.class, "points", join('|', points));
   }
 
-  public static class RoadsResponse implements ApiResponse<SnappedPoint[]> {
+  public static class RoadsResponse implements ApiResponse_RENAMED<SnappedPoint[]> {
     private SnappedPoint[] snappedPoints;
     private ApiError error;
 
@@ -183,7 +183,7 @@ public class RoadsApi {
     }
   }
 
-  public static class SpeedsResponse implements ApiResponse<SpeedLimit[]> {
+  public static class SpeedsResponse implements ApiResponse_RENAMED<SpeedLimit[]> {
     private SpeedLimit[] speedLimits;
     private ApiError error;
 
@@ -203,7 +203,7 @@ public class RoadsApi {
     }
   }
 
-  public static class CombinedResponse implements ApiResponse<SnappedSpeedLimitResponse> {
+  public static class CombinedResponse implements ApiResponse_RENAMED<SnappedSpeedLimitResponse> {
     private SnappedPoint[] snappedPoints;
     private SpeedLimit[] speedLimits;
     private ApiError error;

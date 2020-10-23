@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
@@ -179,7 +179,7 @@ public class TextSearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  public static class Response implements ApiResponse_RENAMED<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

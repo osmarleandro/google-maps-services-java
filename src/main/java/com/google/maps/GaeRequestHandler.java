@@ -25,7 +25,7 @@ import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.GeoApiContext.RequestHandler;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.GaePendingResult;
 import com.google.maps.internal.HttpHeaders;
@@ -49,7 +49,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
   /* package */ GaeRequestHandler() {}
 
   @Override
-  public <T, R extends ApiResponse<T>> PendingResult<T> handle(
+  public <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> handle(
       String hostName,
       String url,
       String userAgent,
@@ -85,7 +85,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   @Override
-  public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
+  public <T, R extends ApiResponse_RENAMED<T>> PendingResult<T> handlePost(
       String hostName,
       String url,
       String payload,

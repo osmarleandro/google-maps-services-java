@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 
@@ -68,7 +68,7 @@ public class GeocodingApi {
     return request;
   }
 
-  public static class Response implements ApiResponse<GeocodingResult[]> {
+  public static class Response implements ApiResponse_RENAMED<GeocodingResult[]> {
     public String status;
     public String errorMessage;
     public GeocodingResult[] results;

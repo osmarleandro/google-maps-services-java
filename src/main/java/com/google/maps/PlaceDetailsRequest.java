@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.PlaceDetails;
@@ -88,7 +88,7 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  public static class Response implements ApiResponse_RENAMED<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;

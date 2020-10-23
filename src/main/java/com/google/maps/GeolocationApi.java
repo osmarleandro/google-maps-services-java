@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
 import com.google.maps.model.LatLng;
@@ -53,7 +53,7 @@ public class GeolocationApi {
     return new GeolocationApiRequest(context);
   }
 
-  public static class Response implements ApiResponse<GeolocationResult> {
+  public static class Response implements ApiResponse_RENAMED<GeolocationResult> {
     public int code = 200;
     public String message = "OK";
     public double accuracy = -1.0;

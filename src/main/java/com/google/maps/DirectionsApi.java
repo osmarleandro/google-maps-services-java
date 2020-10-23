@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
@@ -63,7 +63,7 @@ public class DirectionsApi {
     return new DirectionsApiRequest(context).origin(origin).destination(destination);
   }
 
-  public static class Response implements ApiResponse<DirectionsResult> {
+  public static class Response implements ApiResponse_RENAMED<DirectionsResult> {
     public String status;
     public String errorMessage;
     public GeocodedWaypoint[] geocodedWaypoints;

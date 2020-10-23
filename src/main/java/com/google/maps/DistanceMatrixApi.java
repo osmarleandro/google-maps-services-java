@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.ApiResponse_RENAMED;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixRow;
 
@@ -53,7 +53,7 @@ public class DistanceMatrixApi {
     return newRequest(context).origins(origins).destinations(destinations);
   }
 
-  public static class Response implements ApiResponse<DistanceMatrix> {
+  public static class Response implements ApiResponse_RENAMED<DistanceMatrix> {
     public String status;
     public String errorMessage;
     public String[] originAddresses;
