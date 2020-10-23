@@ -44,7 +44,7 @@ public class DirectionsStep implements Serializable {
   public String htmlInstructions;
 
   /** The distance covered by this step until the next step. */
-  public Distance distance;
+  public Distance_RENAMED distance;
 
   /**
    * The maneuver required to move ahead. E.g., turn-left. Please note, this field is undocumented,

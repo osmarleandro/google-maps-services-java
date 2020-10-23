@@ -18,7 +18,7 @@ package com.google.maps.model;
 import java.io.Serializable;
 
 /** The distance component for Directions API results. */
-public class Distance implements Serializable {
+public class Distance_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

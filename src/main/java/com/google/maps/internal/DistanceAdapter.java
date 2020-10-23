@@ -19,20 +19,20 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.google.maps.model.Distance;
+import com.google.maps.model.Distance_RENAMED;
 import java.io.IOException;
 
 /**
- * This class handles conversion from JSON to {@link Distance}.
+ * This class handles conversion from JSON to {@link Distance_RENAMED}.
  *
  * <p>Please see <a
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">GSON
  * Type Adapter</a> for more detail.
  */
-public class DistanceAdapter extends TypeAdapter<Distance> {
+public class DistanceAdapter extends TypeAdapter<Distance_RENAMED> {
 
   /**
-   * Read a distance object from a Directions API result and convert it to a {@link Distance}.
+   * Read a distance object from a Directions API result and convert it to a {@link Distance_RENAMED}.
    *
    * <p>We are expecting to receive something akin to the following:
    *
@@ -43,13 +43,13 @@ public class DistanceAdapter extends TypeAdapter<Distance> {
    * </pre>
    */
   @Override
-  public Distance read(JsonReader reader) throws IOException {
+  public Distance_RENAMED read(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
     }
 
-    Distance distance = new Distance();
+    Distance_RENAMED distance = new Distance_RENAMED();
 
     reader.beginObject();
     while (reader.hasNext()) {
@@ -67,7 +67,7 @@ public class DistanceAdapter extends TypeAdapter<Distance> {
 
   /** This method is not implemented. */
   @Override
-  public void write(JsonWriter writer, Distance value) throws IOException {
+  public void write(JsonWriter writer, Distance_RENAMED value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method");
   }
 }

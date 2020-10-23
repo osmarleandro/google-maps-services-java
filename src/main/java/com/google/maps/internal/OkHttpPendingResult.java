@@ -26,7 +26,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
-import com.google.maps.model.Distance;
+import com.google.maps.model.Distance_RENAMED;
 import com.google.maps.model.Duration;
 import com.google.maps.model.Fare;
 import com.google.maps.model.LatLng;
@@ -265,7 +265,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     Gson gson =
         new GsonBuilder()
             .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeAdapter())
-            .registerTypeAdapter(Distance.class, new DistanceAdapter())
+            .registerTypeAdapter(Distance_RENAMED.class, new DistanceAdapter())
             .registerTypeAdapter(Duration.class, new DurationAdapter())
             .registerTypeAdapter(Fare.class, new FareAdapter())
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())

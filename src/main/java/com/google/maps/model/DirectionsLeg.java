@@ -35,7 +35,7 @@ public class DirectionsLeg implements Serializable {
   public DirectionsStep[] steps;
 
   /** The total distance covered by this leg. */
-  public Distance distance;
+  public Distance_RENAMED distance;
 
   /** The total duration of this leg. */
   public Duration duration;

@@ -19,12 +19,12 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.google.maps.model.Distance;
+import com.google.maps.model.Distance_RENAMED;
 import com.google.maps.model.Duration;
 import java.io.IOException;
 
 /**
- * This class handles conversion from JSON to {@link Distance}.
+ * This class handles conversion from JSON to {@link Distance_RENAMED}.
  *
  * <p>Please see <a
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">GSON
@@ -33,7 +33,7 @@ import java.io.IOException;
 public class DurationAdapter extends TypeAdapter<Duration> {
 
   /**
-   * Read a distance object from a Directions API result and convert it to a {@link Distance}.
+   * Read a distance object from a Directions API result and convert it to a {@link Distance_RENAMED}.
    *
    * <p>We are expecting to receive something akin to the following:
    *
