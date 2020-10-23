@@ -164,7 +164,7 @@ public final class Stopwatch {
    *
    * @return this {@code Stopwatch} instance
    */
-  public Stopwatch reset() {
+  public Stopwatch reset_RENAMED() {
     elapsedNanos = 0;
     isRunning = false;
     return this;
