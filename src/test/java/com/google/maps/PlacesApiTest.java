@@ -56,7 +56,7 @@ import org.junit.Test;
 
 public class PlacesApiTest {
 
-  private static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
+  public static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
   private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
   private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
@@ -110,15 +110,6 @@ public class PlacesApiTest {
     placesApiKitaWard = retrieveBody("placesApiKitaWardResponse.json");
     findPlaceFromTextMuseumOfContemporaryArt =
         retrieveBody("FindPlaceFromTextMuseumOfContemporaryArt.json");
-  }
-
-  @Test
-  public void testPlaceDetailsRequest() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
-
-      sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
-    }
   }
 
   @Test
