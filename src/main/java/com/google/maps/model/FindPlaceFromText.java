@@ -21,7 +21,7 @@ public class FindPlaceFromText implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  public PlacesSearchResult candidates[];
+  public PlacesSearchResult_RENAMED candidates[];
 
   @Override
   public String toString() {

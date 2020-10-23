@@ -44,7 +44,7 @@ import com.google.maps.model.PlaceDetails;
 import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
-import com.google.maps.model.PlacesSearchResult;
+import com.google.maps.model.PlacesSearchResult_RENAMED;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
 import java.net.URI;
@@ -543,7 +543,7 @@ public class PlacesApiTest {
       assertEquals(1, results.results.length);
       assertNotNull(results.toString());
 
-      PlacesSearchResult result = results.results[0];
+      PlacesSearchResult_RENAMED result = results.results[0];
       assertNotNull(result.formattedAddress);
       assertEquals("5, 48 Pirrama Rd, Pyrmont NSW 2009, Australia", result.formattedAddress);
       assertNotNull(result.geometry);
@@ -719,7 +719,7 @@ public class PlacesApiTest {
 
       assertNotNull(response.toString());
       assertEquals(1, response.results.length);
-      PlacesSearchResult result = response.results[0];
+      PlacesSearchResult_RENAMED result = response.results[0];
       assertEquals("5, 48 Pirrama Rd, Pyrmont NSW 2009, Australia", result.formattedAddress);
       assertEquals("ChIJN1t_tDeuEmsRUsoyG83frY4", result.placeId);
       assertEquals("OPERATIONAL", result.businessStatus);
@@ -939,7 +939,7 @@ public class PlacesApiTest {
       sc.assertParamValue("ipbias", "locationbias");
 
       assertNotNull(response);
-      PlacesSearchResult candidate = response.candidates[0];
+      PlacesSearchResult_RENAMED candidate = response.candidates[0];
       assertNotNull(candidate);
       assertEquals("140 George St, The Rocks NSW 2000, Australia", candidate.formattedAddress);
       LatLng location = candidate.geometry.location;

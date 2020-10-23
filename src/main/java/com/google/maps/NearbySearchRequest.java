@@ -24,7 +24,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
-import com.google.maps.model.PlacesSearchResult;
+import com.google.maps.model.PlacesSearchResult_RENAMED;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
 
@@ -201,7 +201,7 @@ public class NearbySearchRequest
 
     public String status;
     public String htmlAttributions[];
-    public PlacesSearchResult results[];
+    public PlacesSearchResult_RENAMED results[];
     public String nextPageToken;
     public String errorMessage;
 

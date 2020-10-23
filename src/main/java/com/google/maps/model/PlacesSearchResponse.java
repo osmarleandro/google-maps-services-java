@@ -29,7 +29,7 @@ public class PlacesSearchResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** The list of Search Results. */
-  public PlacesSearchResult results[];
+  public PlacesSearchResult_RENAMED results[];
 
   /** Attributions about this listing which must be displayed to the user. */
   public String htmlAttributions[];

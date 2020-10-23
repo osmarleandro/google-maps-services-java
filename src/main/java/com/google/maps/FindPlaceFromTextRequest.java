@@ -23,7 +23,7 @@ import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.PlacesSearchResult;
+import com.google.maps.model.PlacesSearchResult_RENAMED;
 
 public class FindPlaceFromTextRequest
     extends PendingResultBase<
@@ -109,7 +109,7 @@ public class FindPlaceFromTextRequest
   public static class Response implements ApiResponse<FindPlaceFromText> {
 
     public String status;
-    public PlacesSearchResult candidates[];
+    public PlacesSearchResult_RENAMED candidates[];
     public String errorMessage;
 
     @Override
