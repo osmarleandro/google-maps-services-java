@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.DirectionsApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
@@ -67,5 +68,15 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/**
+   * The origin, as a latitude/longitude location.
+   *
+   * @param directionsApiRequest TODO
+ * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+  public DirectionsApiRequest origin(DirectionsApiRequest directionsApiRequest) {
+    return directionsApiRequest.origin(toString());
   }
 }
