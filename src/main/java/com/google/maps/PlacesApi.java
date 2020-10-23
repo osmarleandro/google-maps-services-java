@@ -40,7 +40,7 @@ public class PlacesApi {
    */
   public static NearbySearchRequest nearbySearchQuery(GeoApiContext context, LatLng location) {
     NearbySearchRequest request = new NearbySearchRequest(context);
-    request.location(location);
+    location.location(request);
     return request;
   }
 

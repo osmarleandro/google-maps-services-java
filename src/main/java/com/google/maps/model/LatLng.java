@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.NearbySearchRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
@@ -67,5 +68,15 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+/**
+   * Specifies the latitude/longitude around which to retrieve place information.
+   *
+   * @param nearbySearchRequest TODO
+ * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  public NearbySearchRequest location(NearbySearchRequest nearbySearchRequest) {
+    return nearbySearchRequest.param("location", this);
   }
 }

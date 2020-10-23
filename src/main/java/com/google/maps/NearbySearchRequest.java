@@ -50,21 +50,11 @@ public class NearbySearchRequest
   }
 
   /**
-   * Specifies the latitude/longitude around which to retrieve place information.
-   *
-   * @param location The location to use as the center of the Nearby Search.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest location(LatLng location) {
-    return param("location", location);
-  }
-
-  /**
    * Specifies the distance (in meters) within which to return place results. The maximum allowed
    * radius is 50,000 meters. Note that radius must not be included if {@code rankby=DISTANCE} is
    * specified.
    *
-   * @param distance The distance in meters around the {@link #location(LatLng)} to search.
+   * @param distance The distance in meters around the {@link #MISSING()} to search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest radius(int distance) {
