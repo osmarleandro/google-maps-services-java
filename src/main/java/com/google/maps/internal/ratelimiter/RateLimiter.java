@@ -37,7 +37,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothBursty;
 import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothWarmingUp;
-import java.util.Locale;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -385,11 +385,6 @@ public abstract class RateLimiter {
    *     arbitrary past or present time
    */
   abstract long reserveEarliestAvailable(int permits, long nowMicros);
-
-  @Override
-  public String toString() {
-    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
-  }
 
   abstract static class SleepingStopwatch {
     /** Constructor for use by subclasses. */

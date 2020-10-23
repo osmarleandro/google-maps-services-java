@@ -31,6 +31,7 @@ package com.google.maps.internal.ratelimiter;
 import static java.lang.Math.min;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 abstract class SmoothRateLimiter extends RateLimiter {
@@ -397,5 +398,10 @@ abstract class SmoothRateLimiter extends RateLimiter {
       storedPermits = min(maxPermits, storedPermits + newPermits);
       nextFreeTicketMicros = nowMicros;
     }
+  }
+
+@Override
+public String toString() {
+    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
   }
 }
