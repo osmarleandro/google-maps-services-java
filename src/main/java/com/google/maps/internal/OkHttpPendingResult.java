@@ -211,7 +211,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public void onResponse(Call call, Response response) throws IOException {
+  public void onResponse_RENAMED(Call call, Response response) throws IOException {
     metrics.endNetwork();
     if (callback != null) {
       try {
