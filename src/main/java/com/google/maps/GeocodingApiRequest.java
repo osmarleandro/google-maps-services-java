@@ -65,16 +65,6 @@ public class GeocodingApiRequest
   }
 
   /**
-   * Creates a forward geocode for {@code placeId}.
-   *
-   * @param placeId The Place ID to geocode.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest place(String placeId) {
-    return param("place_id", placeId);
-  }
-
-  /**
    * Creates a reverse geocode for {@code latlng}.
    *
    * @param latlng The location to reverse geocode.
