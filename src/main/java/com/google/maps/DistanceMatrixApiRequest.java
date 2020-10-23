@@ -166,7 +166,7 @@ public class DistanceMatrixApiRequest
    * @param trafficModel The traffic model to use in estimating time in traffic.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
+  public DistanceMatrixApiRequest trafficModel_RENAMED(TrafficModel trafficModel) {
     return param("traffic_model", trafficModel);
   }
 

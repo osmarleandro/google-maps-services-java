@@ -202,7 +202,7 @@ public class DistanceMatrixApiTest {
           .origins("Fisherman's Wharf, San Francisco")
           .destinations("San Francisco International Airport, San Francisco, CA")
           .mode(TravelMode.DRIVING)
-          .trafficModel(TrafficModel.PESSIMISTIC)
+          .trafficModel_RENAMED(TrafficModel.PESSIMISTIC)
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
 
