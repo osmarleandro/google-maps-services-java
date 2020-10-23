@@ -44,7 +44,7 @@ public class Vehicle implements Serializable {
   public String localIcon;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("%s (%s)", name, type);
   }
 }
