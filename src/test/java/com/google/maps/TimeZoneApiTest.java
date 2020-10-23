@@ -60,7 +60,7 @@ public class TimeZoneApiTest {
   }
 
   @Test(expected = ZeroResultsException.class)
-  public void testNoResult() throws Exception {
+  public void testNoResult_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
       TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
