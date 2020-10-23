@@ -174,9 +174,9 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public <T> T invokeAny(Collection<? extends Callable<T>> callables)
+  public <T> T invokeAny_RENAMED(Collection<? extends Callable<T>> callables)
       throws InterruptedException, ExecutionException {
-    return delegate.invokeAny(callables);
+    return delegate.invokeAny_RENAMED(callables);
   }
 
   @Override
