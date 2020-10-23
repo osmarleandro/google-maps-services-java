@@ -256,8 +256,8 @@ public class DirectionsApiTest {
           .origin("Boston,MA")
           .destination("Concord,MA")
           .waypoints(
-              new DirectionsApiRequest.Waypoint("Charlestown,MA", false),
-              new DirectionsApiRequest.Waypoint("Lexington,MA", false))
+              new DirectionsApiRequest_RENAMED.Waypoint("Charlestown,MA", false),
+              new DirectionsApiRequest_RENAMED.Waypoint("Lexington,MA", false))
           .await();
 
       sc.assertParamValue("Boston,MA", "origin");
@@ -304,8 +304,8 @@ public class DirectionsApiTest {
           .origin("Boston,MA")
           .destination("Concord,MA")
           .waypoints(
-              new DirectionsApiRequest.Waypoint(new LatLng(42.379322, -71.063384), false),
-              new DirectionsApiRequest.Waypoint(new LatLng(42.444303, -71.229087), false))
+              new DirectionsApiRequest_RENAMED.Waypoint(new LatLng(42.379322, -71.063384), false),
+              new DirectionsApiRequest_RENAMED.Waypoint(new LatLng(42.444303, -71.229087), false))
           .await();
 
       sc.assertParamValue("Boston,MA", "origin");

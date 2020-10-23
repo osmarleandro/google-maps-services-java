@@ -28,10 +28,10 @@ import com.google.maps.model.Unit;
 import java.time.Instant;
 
 /** Request for the Directions API. */
-public class DirectionsApiRequest
-    extends PendingResultBase<DirectionsResult, DirectionsApiRequest, DirectionsApi.Response> {
+public class DirectionsApiRequest_RENAMED
+    extends PendingResultBase<DirectionsResult, DirectionsApiRequest_RENAMED, DirectionsApi.Response> {
 
-  public DirectionsApiRequest(GeoApiContext context) {
+  public DirectionsApiRequest_RENAMED(GeoApiContext context) {
     super(context, DirectionsApi.API_CONFIG, DirectionsApi.Response.class);
   }
 
@@ -65,7 +65,7 @@ public class DirectionsApiRequest
    * @param origin The starting location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest origin(String origin) {
+  public DirectionsApiRequest_RENAMED origin(String origin) {
     return param("origin", origin);
   }
 
@@ -78,7 +78,7 @@ public class DirectionsApiRequest
    * @param destination The ending location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest destination(String destination) {
+  public DirectionsApiRequest_RENAMED destination(String destination) {
     return param("destination", destination);
   }
 
@@ -88,7 +88,7 @@ public class DirectionsApiRequest
    * @param originPlaceId The starting location Place ID for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest originPlaceId(String originPlaceId) {
+  public DirectionsApiRequest_RENAMED originPlaceId(String originPlaceId) {
     return param("origin", prefixPlaceId(originPlaceId));
   }
 
@@ -98,7 +98,7 @@ public class DirectionsApiRequest
    * @param destinationPlaceId The ending location Place ID for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest destinationPlaceId(String destinationPlaceId) {
+  public DirectionsApiRequest_RENAMED destinationPlaceId(String destinationPlaceId) {
     return param("destination", prefixPlaceId(destinationPlaceId));
   }
 
@@ -108,7 +108,7 @@ public class DirectionsApiRequest
    * @param origin The starting location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest origin(LatLng origin) {
+  public DirectionsApiRequest_RENAMED origin(LatLng origin) {
     return origin(origin.toString());
   }
 
@@ -118,7 +118,7 @@ public class DirectionsApiRequest
    * @param destination The ending location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest destination(LatLng destination) {
+  public DirectionsApiRequest_RENAMED destination(LatLng destination) {
     return destination(destination.toString());
   }
 
@@ -130,7 +130,7 @@ public class DirectionsApiRequest
    * @param mode The travel mode to request directions for.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest mode(TravelMode mode) {
+  public DirectionsApiRequest_RENAMED mode(TravelMode mode) {
     return param("mode", mode);
   }
 
@@ -140,7 +140,7 @@ public class DirectionsApiRequest
    * @param restrictions one or more of {@link DirectionsApi.RouteRestriction} objects.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
+  public DirectionsApiRequest_RENAMED avoid(DirectionsApi.RouteRestriction... restrictions) {
     return param("avoid", join('|', restrictions));
   }
 
@@ -150,7 +150,7 @@ public class DirectionsApiRequest
    * @param units The preferred units for displaying distances.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest units(Unit units) {
+  public DirectionsApiRequest_RENAMED units(Unit units) {
     return param("units", units);
   }
 
@@ -158,7 +158,7 @@ public class DirectionsApiRequest
    * @param region The region code, specified as a ccTLD ("top-level domain") two-character value.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest region(String region) {
+  public DirectionsApiRequest_RENAMED region(String region) {
     return param("region", region);
   }
 
@@ -168,7 +168,7 @@ public class DirectionsApiRequest
    * @param time The arrival time to calculate directions for.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest arrivalTime(Instant time) {
+  public DirectionsApiRequest_RENAMED arrivalTime(Instant time) {
     return param("arrival_time", Long.toString(time.toEpochMilli() / 1000L));
   }
 
@@ -181,7 +181,7 @@ public class DirectionsApiRequest
    * @param time The departure time to calculate directions for.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest departureTime(Instant time) {
+  public DirectionsApiRequest_RENAMED departureTime(Instant time) {
     return param("departure_time", Long.toString(time.toEpochMilli() / 1000L));
   }
 
@@ -192,7 +192,7 @@ public class DirectionsApiRequest
    *
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest departureTimeNow() {
+  public DirectionsApiRequest_RENAMED departureTimeNow() {
     return param("departure_time", "now");
   }
 
@@ -209,7 +209,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypoints(Waypoint... waypoints) {
+  public DirectionsApiRequest_RENAMED waypoints(Waypoint... waypoints) {
     if (waypoints == null || waypoints.length == 0) {
       this.waypoints = new Waypoint[0];
       param("waypoints", "");
@@ -236,7 +236,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypoints(String... waypoints) {
+  public DirectionsApiRequest_RENAMED waypoints(String... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);
@@ -254,7 +254,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypointsFromPlaceIds(String... waypoints) {
+  public DirectionsApiRequest_RENAMED waypointsFromPlaceIds(String... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(prefixPlaceId(waypoints[i]));
@@ -270,7 +270,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypoints(LatLng... waypoints) {
+  public DirectionsApiRequest_RENAMED waypoints(LatLng... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);
@@ -285,7 +285,7 @@ public class DirectionsApiRequest
    * @param optimize Whether to optimize waypoints.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest optimizeWaypoints(boolean optimize) {
+  public DirectionsApiRequest_RENAMED optimizeWaypoints(boolean optimize) {
     optimizeWaypoints = optimize;
     if (waypoints != null) {
       return waypoints(waypoints);
@@ -302,7 +302,7 @@ public class DirectionsApiRequest
    * @param alternateRoutes whether to return alternate routes.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest alternatives(boolean alternateRoutes) {
+  public DirectionsApiRequest_RENAMED alternatives(boolean alternateRoutes) {
     if (alternateRoutes) {
       return param("alternatives", "true");
     } else {
@@ -317,7 +317,7 @@ public class DirectionsApiRequest
    * @param transitModes The preferred transit modes.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest transitMode(TransitMode... transitModes) {
+  public DirectionsApiRequest_RENAMED transitMode(TransitMode... transitModes) {
     return param("transit_mode", join('|', transitModes));
   }
 
@@ -328,7 +328,7 @@ public class DirectionsApiRequest
    * @param pref The transit routing preferences for this request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
+  public DirectionsApiRequest_RENAMED transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
   }
 
@@ -339,7 +339,7 @@ public class DirectionsApiRequest
    * @param trafficModel The traffic model for estimating driving time.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
+  public DirectionsApiRequest_RENAMED trafficModel(TrafficModel trafficModel) {
     return param("traffic_model", trafficModel);
   }
 

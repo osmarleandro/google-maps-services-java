@@ -45,8 +45,8 @@ public class DirectionsApi {
    * @param context Context that the DirectionsApiRequest will be executed against
    * @return A newly constructed DirectionsApiRequest between the given points.
    */
-  public static DirectionsApiRequest newRequest(GeoApiContext context) {
-    return new DirectionsApiRequest(context);
+  public static DirectionsApiRequest_RENAMED newRequest(GeoApiContext context) {
+    return new DirectionsApiRequest_RENAMED(context);
   }
 
   /**
@@ -58,9 +58,9 @@ public class DirectionsApi {
    * @param destination Destination address as text
    * @return A newly constructed DirectionsApiRequest between the given points.
    */
-  public static DirectionsApiRequest getDirections(
+  public static DirectionsApiRequest_RENAMED getDirections(
       GeoApiContext context, String origin, String destination) {
-    return new DirectionsApiRequest(context).origin(origin).destination(destination);
+    return new DirectionsApiRequest_RENAMED(context).origin(origin).destination(destination);
   }
 
   public static class Response implements ApiResponse<DirectionsResult> {
@@ -93,7 +93,7 @@ public class DirectionsApi {
 
   /**
    * Directions may be calculated that adhere to certain restrictions. This is configured by calling
-   * {@link com.google.maps.DirectionsApiRequest#avoid} or {@link
+   * {@link com.google.maps.DirectionsApiRequest_RENAMED#avoid} or {@link
    * com.google.maps.DistanceMatrixApiRequest#avoid}.
    *
    * @see <a href="https://developers.google.com/maps/documentation/directions/intro#Restrictions">
