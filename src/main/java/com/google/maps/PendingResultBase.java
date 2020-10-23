@@ -169,4 +169,17 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * The character position in the input term at which the service uses text for predictions. For
+   * example, if the input is 'Googl' and the completion point is 3, the service will match on
+   * 'Goo'. The offset should generally be set to the position of the text caret. If no offset is
+   * supplied, the service will use the entire term.
+   *
+   * @param offset The character offset to search from.
+   * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
+   */
+public QueryAutocompleteRequest offset(int offset) {
+    return param("offset", String.valueOf(offset));
+  }
 }
