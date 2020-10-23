@@ -136,7 +136,7 @@ public class PlacesApi {
       GeoApiContext context, String placeId, PlaceAutocompleteRequest.SessionToken sessionToken) {
     PlaceDetailsRequest request = new PlaceDetailsRequest(context);
     request.placeId(placeId);
-    request.sessionToken(sessionToken);
+    request.sessionToken_RENAMED(sessionToken);
     return request;
   }
 
