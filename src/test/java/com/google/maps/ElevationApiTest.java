@@ -75,7 +75,7 @@ public class ElevationApiTest {
   }
 
   @Test(expected = RequestDeniedException.class)
-  public void testGetByPointsThrowsRequestDeniedExceptionFromResponse() throws Exception {
+  public void testGetByPointsThrowsRequestDeniedExceptionFromResponse_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             ""
