@@ -254,7 +254,7 @@ public class GeocodingApiTest {
    * Winnetka within (34.172684,-118.604794) - (34.236144,-118.500938)</a>.
    */
   @Test
-  public void testGeocodeWithBounds() throws Exception {
+  public void testGeocodeWithBounds_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
