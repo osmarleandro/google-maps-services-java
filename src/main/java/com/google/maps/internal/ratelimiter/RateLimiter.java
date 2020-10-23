@@ -131,7 +131,7 @@ public abstract class RateLimiter {
 
   static RateLimiter create(double permitsPerSecond, SleepingStopwatch stopwatch) {
     RateLimiter rateLimiter = new SmoothBursty(stopwatch, 1.0 /* maxBurstSeconds */);
-    rateLimiter.setRate(permitsPerSecond);
+    rateLimiter.stopwatch.setRate(rateLimiter, permitsPerSecond);
     return rateLimiter;
   }
 
@@ -172,7 +172,7 @@ public abstract class RateLimiter {
       double coldFactor,
       SleepingStopwatch stopwatch) {
     RateLimiter rateLimiter = new SmoothWarmingUp(stopwatch, warmupPeriod, unit, coldFactor);
-    rateLimiter.setRate(permitsPerSecond);
+    rateLimiter.stopwatch.setRate(rateLimiter, permitsPerSecond);
     return rateLimiter;
   }
 
@@ -180,7 +180,7 @@ public abstract class RateLimiter {
    * The underlying timer; used both to measure elapsed time and sleep as necessary. A separate
    * object to facilitate testing.
    */
-  private final SleepingStopwatch stopwatch;
+  public final SleepingStopwatch stopwatch;
 
   // Can't be initialized in the constructor because mocks don't call the constructor.
   private volatile Object mutexDoNotUseDirectly;
@@ -200,32 +200,6 @@ public abstract class RateLimiter {
 
   RateLimiter(SleepingStopwatch stopwatch) {
     this.stopwatch = checkNotNull(stopwatch);
-  }
-
-  /**
-   * Updates the stable rate of this {@code RateLimiter}, that is, the {@code permitsPerSecond}
-   * argument provided in the factory method that constructed the {@code RateLimiter}. Currently
-   * throttled threads will <b>not</b> be awakened as a result of this invocation, thus they do not
-   * observe the new rate; only subsequent requests will.
-   *
-   * <p>Note though that, since each request repays (by waiting, if necessary) the cost of the
-   * <i>previous</i> request, this means that the very next request after an invocation to {@code
-   * setRate} will not be affected by the new rate; it will pay the cost of the previous request,
-   * which is in terms of the previous rate.
-   *
-   * <p>The behavior of the {@code RateLimiter} is not modified in any other way, e.g. if the {@code
-   * RateLimiter} was configured with a warmup period of 20 seconds, it still has a warmup period of
-   * 20 seconds after this method invocation.
-   *
-   * @param permitsPerSecond the new stable rate of this {@code RateLimiter}
-   * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
-   */
-  public final void setRate(double permitsPerSecond) {
-    checkArgument(
-        permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
-    synchronized (mutex()) {
-      doSetRate(permitsPerSecond, stopwatch.readMicros());
-    }
   }
 
   abstract void doSetRate(double permitsPerSecond, long nowMicros);
@@ -402,7 +376,34 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    /**
+	   * Updates the stable rate of this {@code RateLimiter}, that is, the {@code permitsPerSecond}
+	   * argument provided in the factory method that constructed the {@code RateLimiter}. Currently
+	   * throttled threads will <b>not</b> be awakened as a result of this invocation, thus they do not
+	   * observe the new rate; only subsequent requests will.
+	   *
+	   * <p>Note though that, since each request repays (by waiting, if necessary) the cost of the
+	   * <i>previous</i> request, this means that the very next request after an invocation to {@code
+	   * setRate} will not be affected by the new rate; it will pay the cost of the previous request,
+	   * which is in terms of the previous rate.
+	   *
+	   * <p>The behavior of the {@code RateLimiter} is not modified in any other way, e.g. if the {@code
+	   * RateLimiter} was configured with a warmup period of 20 seconds, it still has a warmup period of
+	   * 20 seconds after this method invocation.
+	   *
+	   * @param rateLimiter TODO
+	 * @param permitsPerSecond the new stable rate of this {@code RateLimiter}
+	 * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
+	   */
+	  public final void setRate(RateLimiter rateLimiter, double permitsPerSecond) {
+	    checkArgument(
+	        permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
+	    synchronized (rateLimiter.mutex()) {
+	      rateLimiter.doSetRate(permitsPerSecond, readMicros());
+	    }
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
