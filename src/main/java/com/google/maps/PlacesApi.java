@@ -83,7 +83,7 @@ public class PlacesApi {
    * @param location The latitude/longitude around which to retrieve place information.
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(
+  public static TextSearchRequest textSearchQuery_RENAMED(
       GeoApiContext context, String query, LatLng location) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
