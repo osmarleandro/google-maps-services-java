@@ -25,7 +25,7 @@ public enum Unit implements UrlValue {
 
   @Override
   public String toString() {
-    return toUrlValue();
+    return toUrlValue_RENAMED();
   }
 
   @Override

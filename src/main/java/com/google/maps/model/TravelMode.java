@@ -45,7 +45,7 @@ public enum TravelMode implements UrlValue {
   }
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     if (this == UNKNOWN) {
       throw new UnsupportedOperationException("Shouldn't use TravelMode.UNKNOWN in a request.");
     }

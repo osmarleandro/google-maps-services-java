@@ -101,15 +101,15 @@ public class DirectionsApiTest {
       assertNotNull(result.routes);
       assertEquals(1, result.routes.length);
 
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue_RENAMED(), "mode");
       sc.assertParamValue(
-          DirectionsApi.RouteRestriction.HIGHWAYS.toUrlValue()
+          DirectionsApi.RouteRestriction.HIGHWAYS.toUrlValue_RENAMED()
               + "|"
-              + DirectionsApi.RouteRestriction.TOLLS.toUrlValue()
+              + DirectionsApi.RouteRestriction.TOLLS.toUrlValue_RENAMED()
               + "|"
-              + DirectionsApi.RouteRestriction.FERRIES.toUrlValue(),
+              + DirectionsApi.RouteRestriction.FERRIES.toUrlValue_RENAMED(),
           "avoid");
-      sc.assertParamValue(Unit.METRIC.toUrlValue(), "units");
+      sc.assertParamValue(Unit.METRIC.toUrlValue_RENAMED(), "units");
       sc.assertParamValue("au", "region");
       sc.assertParamValue("Sydney", "origin");
       sc.assertParamValue("Melbourne", "destination");
@@ -133,7 +133,7 @@ public class DirectionsApiTest {
       assertEquals("1:54 pm", fmt.format(result.routes[0].legs[0].arrivalTime).toLowerCase());
       assertEquals("1:21 pm", fmt.format(result.routes[0].legs[0].departureTime).toLowerCase());
 
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue_RENAMED(), "mode");
       sc.assertParamValue("483 George St, Sydney NSW 2000, Australia", "origin");
       sc.assertParamValue("182 Church St, Parramatta NSW 2150, Australia", "destination");
     }
@@ -175,8 +175,8 @@ public class DirectionsApiTest {
 
       sc.assertParamValue("Toronto", "origin");
       sc.assertParamValue("Montreal", "destination");
-      sc.assertParamValue(RouteRestriction.HIGHWAYS.toUrlValue(), "avoid");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
+      sc.assertParamValue(RouteRestriction.HIGHWAYS.toUrlValue_RENAMED(), "avoid");
+      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue_RENAMED(), "mode");
     }
   }
 
@@ -193,8 +193,8 @@ public class DirectionsApiTest {
 
       sc.assertParamValue("San Francisco", "origin");
       sc.assertParamValue("Seattle", "destination");
-      sc.assertParamValue(RouteRestriction.INDOOR.toUrlValue(), "avoid");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
+      sc.assertParamValue(RouteRestriction.INDOOR.toUrlValue_RENAMED(), "avoid");
+      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue_RENAMED(), "mode");
     }
   }
 
@@ -216,7 +216,7 @@ public class DirectionsApiTest {
 
       sc.assertParamValue("Brooklyn", "origin");
       sc.assertParamValue("Queens", "destination");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue_RENAMED(), "mode");
     }
   }
 
@@ -374,8 +374,8 @@ public class DirectionsApiTest {
 
       sc.assertParamValue("48 Pirrama Road, Pyrmont NSW 2009", "origin");
       sc.assertParamValue("182 Church St, Parramatta NSW 2150", "destination");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+      sc.assertParamValue(TravelMode.DRIVING.toUrlValue_RENAMED(), "mode");
+      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue_RENAMED(), "traffic_model");
 
       assertNotNull(result.toString());
     }
@@ -395,7 +395,7 @@ public class DirectionsApiTest {
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
       sc.assertParamValue("Union Square, San Francisco", "destination");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue_RENAMED(), "mode");
 
       assertNotNull(result.toString());
     }
@@ -417,11 +417,11 @@ public class DirectionsApiTest {
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
       sc.assertParamValue("Union Square, San Francisco", "destination");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue_RENAMED(), "mode");
       sc.assertParamValue(
-          TransitMode.BUS.toUrlValue() + "|" + TransitMode.TRAM.toUrlValue(), "transit_mode");
+          TransitMode.BUS.toUrlValue_RENAMED() + "|" + TransitMode.TRAM.toUrlValue_RENAMED(), "transit_mode");
       sc.assertParamValue(
-          TransitRoutingPreference.LESS_WALKING.toUrlValue(), "transit_routing_preference");
+          TransitRoutingPreference.LESS_WALKING.toUrlValue_RENAMED(), "transit_routing_preference");
 
       assertNotNull(result.toString());
     }
@@ -442,7 +442,7 @@ public class DirectionsApiTest {
       assertNotNull(result.routes);
       assertNotNull(result.routes[0]);
 
-      sc.assertParamValue(TravelMode.WALKING.toUrlValue(), "mode");
+      sc.assertParamValue(TravelMode.WALKING.toUrlValue_RENAMED(), "mode");
       sc.assertParamValue("483 George St, Sydney NSW 2000, Australia", "origin");
       sc.assertParamValue("182 Church St, Parramatta NSW 2150, Australia", "destination");
 
@@ -523,17 +523,17 @@ public class DirectionsApiTest {
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .await();
 
-      sc.assertParamValue(origin.toUrlValue(), "origin");
-      sc.assertParamValue(destination.toUrlValue(), "destination");
+      sc.assertParamValue(origin.toUrlValue_RENAMED(), "origin");
+      sc.assertParamValue(destination.toUrlValue_RENAMED(), "destination");
       sc.assertParamValue(
           "optimize:true|"
-              + waypoints.get(2).toUrlValue()
+              + waypoints.get(2).toUrlValue_RENAMED()
               + "|"
-              + waypoints.get(3).toUrlValue()
+              + waypoints.get(3).toUrlValue_RENAMED()
               + "|"
-              + waypoints.get(4).toUrlValue()
+              + waypoints.get(4).toUrlValue_RENAMED()
               + "|"
-              + waypoints.get(5).toUrlValue(),
+              + waypoints.get(5).toUrlValue_RENAMED(),
           "waypoints");
 
       assertNotNull(result.toString());
@@ -557,17 +557,17 @@ public class DirectionsApiTest {
               .optimizeWaypoints(true)
               .await();
 
-      sc.assertParamValue(origin.toUrlValue(), "origin");
-      sc.assertParamValue(destination.toUrlValue(), "destination");
+      sc.assertParamValue(origin.toUrlValue_RENAMED(), "origin");
+      sc.assertParamValue(destination.toUrlValue_RENAMED(), "destination");
       sc.assertParamValue(
           "optimize:true|"
-              + waypoints.get(2).toUrlValue()
+              + waypoints.get(2).toUrlValue_RENAMED()
               + "|"
-              + waypoints.get(3).toUrlValue()
+              + waypoints.get(3).toUrlValue_RENAMED()
               + "|"
-              + waypoints.get(4).toUrlValue()
+              + waypoints.get(4).toUrlValue_RENAMED()
               + "|"
-              + waypoints.get(5).toUrlValue(),
+              + waypoints.get(5).toUrlValue_RENAMED(),
           "waypoints");
 
       assertNotNull(result.toString());
