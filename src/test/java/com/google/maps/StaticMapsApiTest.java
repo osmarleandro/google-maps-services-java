@@ -46,7 +46,7 @@ public class StaticMapsApiTest {
   private final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
   @Test
-  public void testGetSydneyStaticMap() throws Exception {
+  public void testGetSydneyStaticMap_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
