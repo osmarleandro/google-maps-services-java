@@ -130,7 +130,7 @@ public class StaticMapsRequest
    * @param format The format of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest format(ImageFormat format) {
+  public StaticMapsRequest format_RENAMED(ImageFormat format) {
     return param("format", format);
   }
 
