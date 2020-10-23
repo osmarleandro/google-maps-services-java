@@ -302,7 +302,7 @@ public class DirectionsApiRequest
    * @param alternateRoutes whether to return alternate routes.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest alternatives(boolean alternateRoutes) {
+  public DirectionsApiRequest alternatives_RENAMED(boolean alternateRoutes) {
     if (alternateRoutes) {
       return param("alternatives", "true");
     } else {
