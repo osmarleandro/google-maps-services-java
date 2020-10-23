@@ -169,4 +169,19 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Sets the region code, specified as a ccTLD ("top-level domain") two-character value. This
+   * parameter will only influence, not fully restrict, results from the geocoder.
+   *
+   * <p>For more information see <a
+   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#RegionCodes">Region
+   * Biasing</a>.
+   *
+   * @param region The region code to influence results.
+   * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+public GeocodingApiRequest region(String region) {
+    return param("region", region);
+  }
 }
