@@ -82,7 +82,7 @@ public class OpenCensusTest {
   }
 
   @Test
-  public void testSuccess() throws Exception {
+  public void testSuccess_RENAMED() throws Exception {
     server.enqueue(mockResponse(500, "OK", 100)); // retry 1
     server.enqueue(mockResponse(500, "OK", 100)); // retry 2
     server.enqueue(mockResponse(200, "OK", 300)); // succeed
