@@ -88,10 +88,10 @@ import java.util.concurrent.TimeUnit;
  * @author Kevin Bourrillion
  */
 public final class Stopwatch {
-  private final Ticker ticker;
-  private boolean isRunning;
-  private long elapsedNanos;
-  private long startTick;
+  final Ticker ticker;
+  boolean isRunning;
+  long elapsedNanos;
+  long startTick;
 
   /**
    * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
@@ -124,7 +124,7 @@ public final class Stopwatch {
   }
 
   /**
-   * Returns {@code true} if {@link #start()} has been called on this stopwatch, and {@link #stop()}
+   * Returns {@code true} if {@link #start()} has been called on this stopwatch, and {@link #MISSING()}
    * has not been called since the last call to {@code start()}.
    */
   public boolean isRunning() {
@@ -141,21 +141,6 @@ public final class Stopwatch {
     checkState(!isRunning, "This stopwatch is already running.");
     isRunning = true;
     startTick = ticker.read();
-    return this;
-  }
-
-  /**
-   * Stops the stopwatch. Future reads will return the fixed duration that had elapsed up to this
-   * point.
-   *
-   * @return this {@code Stopwatch} instance
-   * @throws IllegalStateException if the stopwatch is already stopped.
-   */
-  public Stopwatch stop() {
-    long tick = ticker.read();
-    checkState(isRunning, "This stopwatch is already stopped.");
-    isRunning = false;
-    elapsedNanos += tick - startTick;
     return this;
   }
 
