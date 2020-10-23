@@ -158,7 +158,7 @@ public class RoadsApi {
    * @param points The sequence of points to be aligned to nearest roads
    * @return Returns the snapped points as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedPoint[]> nearestRoads(
+  public static PendingResult<SnappedPoint[]> nearestRoads_RENAMED(
       GeoApiContext context, LatLng... points) {
     return context.get(NEAREST_ROADS_API_CONFIG, RoadsResponse.class, "points", join('|', points));
   }

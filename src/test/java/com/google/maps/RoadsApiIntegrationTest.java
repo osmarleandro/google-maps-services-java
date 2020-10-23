@@ -185,7 +185,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedPoint[] points = RoadsApi.nearestRoads(sc.context, path).await();
+      SnappedPoint[] points = RoadsApi.nearestRoads_RENAMED(sc.context, path).await();
 
       assertNotNull(Arrays.toString(points));
       assertEquals("/v1/nearestRoads", sc.path());
