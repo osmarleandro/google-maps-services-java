@@ -49,7 +49,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest HomeMobileNetworkCode(int newHomeMobileNetworkCode) {
+  public GeolocationApiRequest HomeMobileNetworkCode_RENAMED(int newHomeMobileNetworkCode) {
     this.builder.HomeMobileNetworkCode(newHomeMobileNetworkCode);
     return this;
   }

@@ -58,7 +58,7 @@ public class GeolocationApiTest {
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
+              .HomeMobileNetworkCode_RENAMED(260)
               .RadioType("gsm")
               .Carrier("T-Mobile")
               .AddCellTower(
@@ -214,7 +214,7 @@ public class GeolocationApiTest {
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(410)
+              .HomeMobileNetworkCode_RENAMED(410)
               .RadioType("gsm")
               .Carrier("Vodafone")
               .AddWifiAccessPoint(
@@ -332,7 +332,7 @@ public class GeolocationApiTest {
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
+              .HomeMobileNetworkCode_RENAMED(260)
               .RadioType("gsm")
               .Carrier("Vodafone")
               .AddCellTower(
