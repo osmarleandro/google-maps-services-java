@@ -185,19 +185,6 @@ public abstract class RateLimiter {
   // Can't be initialized in the constructor because mocks don't call the constructor.
   private volatile Object mutexDoNotUseDirectly;
 
-  private Object mutex() {
-    Object mutex = mutexDoNotUseDirectly;
-    if (mutex == null) {
-      synchronized (this) {
-        mutex = mutexDoNotUseDirectly;
-        if (mutex == null) {
-          mutexDoNotUseDirectly = mutex = new Object();
-        }
-      }
-    }
-    return mutex;
-  }
-
   RateLimiter(SleepingStopwatch stopwatch) {
     this.stopwatch = checkNotNull(stopwatch);
   }
@@ -223,7 +210,7 @@ public abstract class RateLimiter {
   public final void setRate(double permitsPerSecond) {
     checkArgument(
         permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
-    synchronized (mutex()) {
+    synchronized (stopwatch.mutex(this)) {
       doSetRate(permitsPerSecond, stopwatch.readMicros());
     }
   }
@@ -237,7 +224,7 @@ public abstract class RateLimiter {
    * after invocations to {@linkplain #setRate}.
    */
   public final double getRate() {
-    synchronized (mutex()) {
+    synchronized (stopwatch.mutex(this)) {
       return doGetRate();
     }
   }
@@ -280,7 +267,7 @@ public abstract class RateLimiter {
    */
   final long reserve(int permits) {
     checkPermits(permits);
-    synchronized (mutex()) {
+    synchronized (stopwatch.mutex(this)) {
       return reserveAndGetWaitLength(permits, stopwatch.readMicros());
     }
   }
@@ -343,7 +330,7 @@ public abstract class RateLimiter {
     long timeoutMicros = max(unit.toMicros(timeout), 0);
     checkPermits(permits);
     long microsToWait;
-    synchronized (mutex()) {
+    synchronized (stopwatch.mutex(this)) {
       long nowMicros = stopwatch.readMicros();
       if (!canAcquire(nowMicros, timeoutMicros)) {
         return false;
@@ -402,7 +389,20 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    Object mutex(RateLimiter rateLimiter) {
+	    Object mutex = rateLimiter.mutexDoNotUseDirectly;
+	    if (mutex == null) {
+	      synchronized (rateLimiter) {
+	        mutex = rateLimiter.mutexDoNotUseDirectly;
+	        if (mutex == null) {
+	          rateLimiter.mutexDoNotUseDirectly = mutex = new Object();
+	        }
+	      }
+	    }
+	    return mutex;
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
