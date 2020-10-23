@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils.retrieveBody_RENAMED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -40,7 +40,7 @@ public class DistanceMatrixApiTest {
 
   public DistanceMatrixApiTest() {
     getDistanceMatrixWithBasicStringParams =
-        retrieveBody("GetDistanceMatrixWithBasicStringParams.json");
+        retrieveBody_RENAMED("GetDistanceMatrixWithBasicStringParams.json");
   }
 
   @Test

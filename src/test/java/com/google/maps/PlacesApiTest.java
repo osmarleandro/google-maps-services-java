@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils.retrieveBody_RENAMED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -84,32 +84,32 @@ public class PlacesApiTest {
 
   public PlacesApiTest() {
     autocompletePredictionStructuredFormatting =
-        retrieveBody("AutocompletePredictionStructuredFormatting.json");
-    placeDetailResponseBody = retrieveBody("PlaceDetailsResponse.json");
+        retrieveBody_RENAMED("AutocompletePredictionStructuredFormatting.json");
+    placeDetailResponseBody = retrieveBody_RENAMED("PlaceDetailsResponse.json");
     placeDetailResponseBodyForPermanentlyClosedPlace =
-        retrieveBody("PlaceDetailsResponseForPermanentlyClosedPlace.json");
-    quayResponseBody = retrieveBody("PlaceDetailsQuay.json");
-    queryAutocompleteResponseBody = retrieveBody("QueryAutocompleteResponse.json");
+        retrieveBody_RENAMED("PlaceDetailsResponseForPermanentlyClosedPlace.json");
+    quayResponseBody = retrieveBody_RENAMED("PlaceDetailsQuay.json");
+    queryAutocompleteResponseBody = retrieveBody_RENAMED("QueryAutocompleteResponse.json");
     queryAutocompleteWithPlaceIdResponseBody =
-        retrieveBody("QueryAutocompleteResponseWithPlaceID.json");
-    textSearchResponseBody = retrieveBody("TextSearchResponse.json");
-    textSearchPizzaInNYCbody = retrieveBody("TextSearchPizzaInNYC.json");
-    placesApiTextSearch = retrieveBody("PlacesApiTextSearchResponse.json");
-    placesApiPhoto = retrieveBody("PlacesApiPhotoResponse.json");
-    placesApiPizzaInNewYork = retrieveBody("PlacesApiPizzaInNewYorkResponse.json");
-    placesApiDetailsInFrench = retrieveBody("PlacesApiDetailsInFrenchResponse.json");
+        retrieveBody_RENAMED("QueryAutocompleteResponseWithPlaceID.json");
+    textSearchResponseBody = retrieveBody_RENAMED("TextSearchResponse.json");
+    textSearchPizzaInNYCbody = retrieveBody_RENAMED("TextSearchPizzaInNYC.json");
+    placesApiTextSearch = retrieveBody_RENAMED("PlacesApiTextSearchResponse.json");
+    placesApiPhoto = retrieveBody_RENAMED("PlacesApiPhotoResponse.json");
+    placesApiPizzaInNewYork = retrieveBody_RENAMED("PlacesApiPizzaInNewYorkResponse.json");
+    placesApiDetailsInFrench = retrieveBody_RENAMED("PlacesApiDetailsInFrenchResponse.json");
     placesApiNearbySearchRequestByKeyword =
-        retrieveBody("PlacesApiNearbySearchRequestByKeywordResponse.json");
+        retrieveBody_RENAMED("PlacesApiNearbySearchRequestByKeywordResponse.json");
     placesApiNearbySearchRequestByName =
-        retrieveBody("PlacesApiNearbySearchRequestByNameResponse.json");
+        retrieveBody_RENAMED("PlacesApiNearbySearchRequestByNameResponse.json");
     placesApiNearbySearchRequestByType =
-        retrieveBody("PlacesApiNearbySearchRequestByTypeResponse.json");
-    placesApiPlaceAutocomplete = retrieveBody("PlacesApiPlaceAutocompleteResponse.json");
+        retrieveBody_RENAMED("PlacesApiNearbySearchRequestByTypeResponse.json");
+    placesApiPlaceAutocomplete = retrieveBody_RENAMED("PlacesApiPlaceAutocompleteResponse.json");
     placesApiPlaceAutocompleteWithType =
-        retrieveBody("PlacesApiPlaceAutocompleteWithTypeResponse.json");
-    placesApiKitaWard = retrieveBody("placesApiKitaWardResponse.json");
+        retrieveBody_RENAMED("PlacesApiPlaceAutocompleteWithTypeResponse.json");
+    placesApiKitaWard = retrieveBody_RENAMED("placesApiKitaWardResponse.json");
     findPlaceFromTextMuseumOfContemporaryArt =
-        retrieveBody("FindPlaceFromTextMuseumOfContemporaryArt.json");
+        retrieveBody_RENAMED("FindPlaceFromTextMuseumOfContemporaryArt.json");
   }
 
   @Test
@@ -1034,7 +1034,7 @@ public class PlacesApiTest {
 
   @Test
   public void testPlaceDetailsWithBusinessStatus() throws Exception {
-    final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
+    final String jsonString = retrieveBody_RENAMED("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
     final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
     assertNotNull(placeDetails);
@@ -1043,7 +1043,7 @@ public class PlacesApiTest {
 
   @Test
   public void testPlaceDetailsRequestHasFieldMask() throws Exception {
-    final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
+    final String jsonString = retrieveBody_RENAMED("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
 
     PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();

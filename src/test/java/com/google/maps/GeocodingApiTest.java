@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils.retrieveBody_RENAMED;
 import static com.google.maps.model.ComponentFilter.administrativeArea;
 import static com.google.maps.model.ComponentFilter.country;
 import static org.junit.Assert.assertEquals;
@@ -48,13 +48,13 @@ public class GeocodingApiTest {
   private static String geocodeLibraryType;
 
   public GeocodingApiTest() {
-    simpleGeocodeResponse = retrieveBody("SimpleGeocodeResponse.json");
-    placeGeocodeResponse = retrieveBody("PlaceGeocodeResponse.json");
-    reverseGeocodeResponse = retrieveBody("ReverseGeocodeResponse.json");
-    simpleReverseGeocodeResponse = retrieveBody("SimpleReverseGeocodeResponse.json");
-    utfResultGeocodeResponse = retrieveBody("UtfResultGeocodeResponse.json");
-    reverseGeocodeWithKitaWardResponse = retrieveBody("ReverseGeocodeWithKitaWardResponse.json");
-    geocodeLibraryType = retrieveBody("GeocodeLibraryType.json");
+    simpleGeocodeResponse = retrieveBody_RENAMED("SimpleGeocodeResponse.json");
+    placeGeocodeResponse = retrieveBody_RENAMED("PlaceGeocodeResponse.json");
+    reverseGeocodeResponse = retrieveBody_RENAMED("ReverseGeocodeResponse.json");
+    simpleReverseGeocodeResponse = retrieveBody_RENAMED("SimpleReverseGeocodeResponse.json");
+    utfResultGeocodeResponse = retrieveBody_RENAMED("UtfResultGeocodeResponse.json");
+    reverseGeocodeWithKitaWardResponse = retrieveBody_RENAMED("ReverseGeocodeWithKitaWardResponse.json");
+    geocodeLibraryType = retrieveBody_RENAMED("GeocodeLibraryType.json");
   }
 
   @Test

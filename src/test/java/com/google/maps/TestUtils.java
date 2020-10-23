@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class TestUtils {
-  public static String retrieveBody(String filename) {
+  public static String retrieveBody_RENAMED(String filename) {
     InputStream input = TestUtils.class.getResourceAsStream(filename);
     try (Scanner s = new java.util.Scanner(input, StandardCharsets.UTF_8.name())) {
       s.useDelimiter("\\A");

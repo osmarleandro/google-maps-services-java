@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils.retrieveBody_RENAMED;
 import static com.google.maps.internal.StringJoin.join;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,12 +40,12 @@ public class RoadsApiIntegrationTest {
   private final String nearestRoadsResponse;
 
   public RoadsApiIntegrationTest() {
-    snapToRoadResponse = retrieveBody("RoadsApiSnapToRoadResponse.json");
-    speedLimitsResponse = retrieveBody("RoadsApiSpeedLimitsResponse.json");
-    speedLimitsUSAResponse = retrieveBody("RoadsApiSpeedLimitsUSAResponse.json");
-    speedLimitsWithPlaceIdsResponse = retrieveBody("RoadsApiSpeedLimitsWithPlaceIds.json");
-    snappedSpeedLimitResponse = retrieveBody("RoadsApiSnappedSpeedLimitResponse.json");
-    nearestRoadsResponse = retrieveBody("RoadsApiNearestRoadsResponse.json");
+    snapToRoadResponse = retrieveBody_RENAMED("RoadsApiSnapToRoadResponse.json");
+    speedLimitsResponse = retrieveBody_RENAMED("RoadsApiSpeedLimitsResponse.json");
+    speedLimitsUSAResponse = retrieveBody_RENAMED("RoadsApiSpeedLimitsUSAResponse.json");
+    speedLimitsWithPlaceIdsResponse = retrieveBody_RENAMED("RoadsApiSpeedLimitsWithPlaceIds.json");
+    snappedSpeedLimitResponse = retrieveBody_RENAMED("RoadsApiSnappedSpeedLimitResponse.json");
+    nearestRoadsResponse = retrieveBody_RENAMED("RoadsApiNearestRoadsResponse.json");
   }
 
   @Test

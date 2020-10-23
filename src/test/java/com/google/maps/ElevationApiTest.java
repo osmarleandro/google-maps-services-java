@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils.retrieveBody_RENAMED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -60,7 +60,7 @@ public class ElevationApiTest {
   private final String directionsAlongPath;
 
   public ElevationApiTest() {
-    directionsAlongPath = retrieveBody("DirectionsAlongPath.json");
+    directionsAlongPath = retrieveBody_RENAMED("DirectionsAlongPath.json");
   }
 
   @Test(expected = InvalidRequestException.class)

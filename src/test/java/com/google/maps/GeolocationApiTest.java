@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils.retrieveBody_RENAMED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -42,13 +42,13 @@ public class GeolocationApiTest {
   private final String geolocationMaximumCellTower;
 
   public GeolocationApiTest() {
-    geolocationDocSample = retrieveBody("GeolocationDocSampleResponse.json");
-    geolocationMinimumWifi = retrieveBody("GeolocationMinimumWifiResponse.json");
-    geolocationBasic = retrieveBody("GeolocationBasicResponse.json");
-    geolocationMaximumWifi = retrieveBody("GeolocationMaximumWifiResponse.json");
-    geolocationMinimumCellTower = retrieveBody("GeolocationMinimumCellTowerResponse.json");
-    geolocationAlternatePayloadBuilder = retrieveBody("GeolocationAlternatePayloadBuilder.json");
-    geolocationMaximumCellTower = retrieveBody("GeolocationMaximumCellTower.json");
+    geolocationDocSample = retrieveBody_RENAMED("GeolocationDocSampleResponse.json");
+    geolocationMinimumWifi = retrieveBody_RENAMED("GeolocationMinimumWifiResponse.json");
+    geolocationBasic = retrieveBody_RENAMED("GeolocationBasicResponse.json");
+    geolocationMaximumWifi = retrieveBody_RENAMED("GeolocationMaximumWifiResponse.json");
+    geolocationMinimumCellTower = retrieveBody_RENAMED("GeolocationMinimumCellTowerResponse.json");
+    geolocationAlternatePayloadBuilder = retrieveBody_RENAMED("GeolocationAlternatePayloadBuilder.json");
+    geolocationMaximumCellTower = retrieveBody_RENAMED("GeolocationMaximumCellTower.json");
   }
 
   @Test

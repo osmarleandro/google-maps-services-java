@@ -277,7 +277,7 @@ public class GeoApiContextTest {
     // exception is not allowed to be retried.
     MockResponse overQueryLimitResponse = new MockResponse();
     overQueryLimitResponse.setStatus("HTTP/1.1 400 Internal server error");
-    overQueryLimitResponse.setBody(TestUtils.retrieveBody("OverQueryLimitResponse.json"));
+    overQueryLimitResponse.setBody(TestUtils.retrieveBody_RENAMED("OverQueryLimitResponse.json"));
     server.enqueue(overQueryLimitResponse);
     server.enqueue(overQueryLimitResponse);
     server.enqueue(overQueryLimitResponse);

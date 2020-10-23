@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.TestUtils.retrieveBody_RENAMED;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -49,9 +49,9 @@ public class DirectionsApiTest {
   private final String responseTimesArePopulatedCorrectly;
 
   public DirectionsApiTest() {
-    getDirectionsResponse = retrieveBody("GetDirectionsResponse.json");
-    builderResponse = retrieveBody("DirectionsApiBuilderResponse.json");
-    responseTimesArePopulatedCorrectly = retrieveBody("ResponseTimesArePopulatedCorrectly.json");
+    getDirectionsResponse = retrieveBody_RENAMED("GetDirectionsResponse.json");
+    builderResponse = retrieveBody_RENAMED("DirectionsApiBuilderResponse.json");
+    responseTimesArePopulatedCorrectly = retrieveBody_RENAMED("ResponseTimesArePopulatedCorrectly.json");
   }
 
   @Test
