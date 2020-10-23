@@ -275,6 +275,11 @@ abstract class SmoothRateLimiter extends RateLimiter {
     double coolDownIntervalMicros() {
       return warmupPeriodMicros / maxPermits;
     }
+
+	@Override
+	final double doGetRate() {
+	    return SECONDS.toMicros(1L) / stableIntervalMicros;
+	  }
   }
 
   /**
@@ -316,6 +321,11 @@ abstract class SmoothRateLimiter extends RateLimiter {
     double coolDownIntervalMicros() {
       return stableIntervalMicros;
     }
+
+	@Override
+	final double doGetRate() {
+	    return SECONDS.toMicros(1L) / stableIntervalMicros;
+	  }
   }
 
   /** The currently stored permits. */
@@ -328,7 +338,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
    * The interval between two unit requests, at our stable rate. E.g., a stable rate of 5 permits
    * per second has a stable interval of 200ms.
    */
-  double stableIntervalMicros;
+  protected double stableIntervalMicros;
 
   /**
    * The time when the next request (no matter its size) will be granted. After granting a request,
@@ -349,11 +359,6 @@ abstract class SmoothRateLimiter extends RateLimiter {
   }
 
   abstract void doSetRate(double permitsPerSecond, double stableIntervalMicros);
-
-  @Override
-  final double doGetRate() {
-    return SECONDS.toMicros(1L) / stableIntervalMicros;
-  }
 
   @Override
   final long queryEarliestAvailable(long nowMicros) {
