@@ -42,13 +42,13 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class DirectionsApiTest {
+public class DirectionsApiTest_RENAMED {
 
   private final String getDirectionsResponse;
   private final String builderResponse;
   private final String responseTimesArePopulatedCorrectly;
 
-  public DirectionsApiTest() {
+  public DirectionsApiTest_RENAMED() {
     getDirectionsResponse = retrieveBody("GetDirectionsResponse.json");
     builderResponse = retrieveBody("DirectionsApiBuilderResponse.json");
     responseTimesArePopulatedCorrectly = retrieveBody("ResponseTimesArePopulatedCorrectly.json");
