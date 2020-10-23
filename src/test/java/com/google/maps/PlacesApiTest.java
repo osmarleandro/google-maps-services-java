@@ -27,7 +27,6 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasIP;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
-import com.google.maps.PlaceDetailsRequest.FieldMask;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -1039,15 +1038,5 @@ public class PlacesApiTest {
     final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
     assertNotNull(placeDetails);
     assertEquals("OPERATIONAL", placeDetails.businessStatus);
-  }
-
-  @Test
-  public void testPlaceDetailsRequestHasFieldMask() throws Exception {
-    final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
-    final LocalTestServerContext server = new LocalTestServerContext(jsonString);
-
-    PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
-
-    server.assertParamValue("business_status", "fields");
   }
 }
