@@ -15,6 +15,9 @@
 
 package com.google.maps;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 
 /**
@@ -71,5 +74,11 @@ public class PhotoRequest
    */
   public PhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
+  }
+
+@Override
+public final ImageResult await() throws ApiException, InterruptedException, IOException {
+    PendingResult<ImageResult> request = makeRequest();
+    return request.await();
   }
 }

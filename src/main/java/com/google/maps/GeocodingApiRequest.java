@@ -17,6 +17,9 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
@@ -150,5 +153,11 @@ public class GeocodingApiRequest
    */
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
+  }
+
+@Override
+public final GeocodingResult[] await() throws ApiException, InterruptedException, IOException {
+    PendingResult<GeocodingResult[]> request = makeRequest();
+    return request.await();
   }
 }

@@ -15,7 +15,10 @@
 
 package com.google.maps;
 
+import java.io.IOException;
+
 import com.google.gson.Gson;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationPayload.GeolocationPayloadBuilder;
@@ -104,5 +107,11 @@ public class GeolocationApiRequest
     Gson gson = new Gson();
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
+  }
+
+@Override
+public final GeolocationResult await() throws ApiException, InterruptedException, IOException {
+    PendingResult<GeolocationResult> request = makeRequest();
+    return request.await();
   }
 }

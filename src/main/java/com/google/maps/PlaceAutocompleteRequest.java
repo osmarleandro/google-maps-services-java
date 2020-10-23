@@ -26,6 +26,8 @@ import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceAutocompleteType;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -202,7 +204,13 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  @Override
+public final AutocompletePrediction[] await() throws ApiException, InterruptedException, IOException {
+    PendingResult<AutocompletePrediction[]> request = makeRequest();
+    return request.await();
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

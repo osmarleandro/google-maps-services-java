@@ -19,6 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
@@ -26,6 +27,8 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Instant;
 
 /** A request to the Distance Matrix API. */
@@ -201,5 +204,11 @@ public class DistanceMatrixApiRequest
    */
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
+  }
+
+@Override
+public final DistanceMatrix await() throws ApiException, InterruptedException, IOException {
+    PendingResult<DistanceMatrix> request = makeRequest();
+    return request.await();
   }
 }

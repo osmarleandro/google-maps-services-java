@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.io.IOException;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -106,7 +108,13 @@ public class FindPlaceFromTextRequest
     }
   }
 
-  public static class Response implements ApiResponse<FindPlaceFromText> {
+  @Override
+public final FindPlaceFromText await() throws ApiException, InterruptedException, IOException {
+    PendingResult<FindPlaceFromText> request = makeRequest();
+    return request.await();
+  }
+
+public static class Response implements ApiResponse<FindPlaceFromText> {
 
     public String status;
     public PlacesSearchResult candidates[];

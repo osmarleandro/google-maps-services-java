@@ -15,12 +15,15 @@
 
 package com.google.maps;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -466,5 +469,11 @@ public class StaticMapsRequest
    */
   public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
+  }
+
+@Override
+public final ImageResult await() throws ApiException, InterruptedException, IOException {
+    PendingResult<ImageResult> request = makeRequest();
+    return request.await();
   }
 }

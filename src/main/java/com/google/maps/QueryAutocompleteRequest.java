@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.io.IOException;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -91,7 +93,13 @@ public class QueryAutocompleteRequest
     return param("radius", String.valueOf(radius));
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  @Override
+public final AutocompletePrediction[] await() throws ApiException, InterruptedException, IOException {
+    PendingResult<AutocompletePrediction[]> request = makeRequest();
+    return request.await();
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

@@ -15,11 +15,10 @@
 
 package com.google.maps;
 
-import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -53,12 +52,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   }
 
   @Override
-  public final T await() throws ApiException, InterruptedException, IOException {
-    PendingResult<T> request = makeRequest();
-    return request.await();
-  }
-
-  @Override
   public final T awaitIgnoreError() {
     return makeRequest().awaitIgnoreError();
   }
@@ -71,7 +64,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     delegate.cancel();
   }
 
-  private PendingResult<T> makeRequest() {
+  protected PendingResult<T> makeRequest() {
     if (delegate != null) {
       throw new IllegalStateException(
           "'await', 'awaitIgnoreError' or 'setCallback' was already called.");

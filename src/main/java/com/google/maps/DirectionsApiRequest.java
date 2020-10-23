@@ -18,6 +18,9 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
@@ -353,7 +356,13 @@ public class DirectionsApiRequest
     return "place_id:" + placeId;
   }
 
-  public static class Waypoint {
+  @Override
+public final DirectionsResult await() throws ApiException, InterruptedException, IOException {
+    PendingResult<DirectionsResult> request = makeRequest();
+    return request.await();
+  }
+
+public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;
     /** Whether this waypoint is a stopover waypoint. */

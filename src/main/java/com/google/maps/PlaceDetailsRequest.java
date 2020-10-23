@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.io.IOException;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -88,7 +90,13 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  @Override
+public final PlaceDetails await() throws ApiException, InterruptedException, IOException {
+    PendingResult<PlaceDetails> request = makeRequest();
+    return request.await();
+  }
+
+public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;

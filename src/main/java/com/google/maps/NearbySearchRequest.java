@@ -17,6 +17,8 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.io.IOException;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -197,7 +199,13 @@ public class NearbySearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  @Override
+public final PlacesSearchResponse await() throws ApiException, InterruptedException, IOException {
+    PendingResult<PlacesSearchResponse> request = makeRequest();
+    return request.await();
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];
