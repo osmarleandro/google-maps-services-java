@@ -208,7 +208,7 @@ public class GeoApiContext {
       }
     }
 
-    return getWithPath(
+    return getWithPath_RENAMED(
         clazz,
         config.fieldNamingPolicy,
         config.hostName,
@@ -248,7 +248,7 @@ public class GeoApiContext {
       query.append("&channel=").append(channel);
     }
 
-    return getWithPath(
+    return getWithPath_RENAMED(
         clazz,
         config.fieldNamingPolicy,
         config.hostName,
@@ -294,7 +294,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
+  private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath_RENAMED(
       Class<R> clazz,
       FieldNamingPolicy fieldNamingPolicy,
       String hostName,
