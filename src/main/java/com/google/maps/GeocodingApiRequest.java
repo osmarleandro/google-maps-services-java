@@ -111,7 +111,7 @@ public class GeocodingApiRequest
    * @param region The region code to influence results.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest region(String region) {
+  public GeocodingApiRequest region_RENAMED(String region) {
     return param("region", region);
   }
 
