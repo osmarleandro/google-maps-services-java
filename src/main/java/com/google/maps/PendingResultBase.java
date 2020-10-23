@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Sets the photoReference for this request.
+   *
+   * @param photoReference A string identifier that uniquely identifies a photo. Photo references
+   *     are returned from either a Place Search or Place Details request.
+   * @return Returns the configured PhotoRequest.
+   */
+public PhotoRequest photoReference(String photoReference) {
+    return param("photoreference", photoReference);
+  }
 }
