@@ -38,7 +38,7 @@ public enum PriceLevel implements StringJoin.UrlValue {
   }
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return priceLevel;
   }
 
