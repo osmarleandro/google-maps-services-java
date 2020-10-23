@@ -34,11 +34,11 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class DistanceMatrixApiTest {
+public class DistanceMatrixApiTest_RENAMED {
 
   private final String getDistanceMatrixWithBasicStringParams;
 
-  public DistanceMatrixApiTest() {
+  public DistanceMatrixApiTest_RENAMED() {
     getDistanceMatrixWithBasicStringParams =
         retrieveBody("GetDistanceMatrixWithBasicStringParams.json");
   }
