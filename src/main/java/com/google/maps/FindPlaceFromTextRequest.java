@@ -66,16 +66,6 @@ public class FindPlaceFromTextRequest
   }
 
   /**
-   * The type of input.
-   *
-   * @param inputType The input type.
-   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
-   */
-  public FindPlaceFromTextRequest inputType(InputType inputType) {
-    return param("inputtype", inputType);
-  }
-
-  /**
    * The fields specifying the types of place data to return.
    *
    * @param fields The fields to return.
