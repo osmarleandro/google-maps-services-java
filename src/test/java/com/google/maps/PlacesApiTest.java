@@ -760,7 +760,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsInFrench() throws Exception {
+  public void testPlaceDetailsInFrench_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
       PlaceDetails details =
           PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
