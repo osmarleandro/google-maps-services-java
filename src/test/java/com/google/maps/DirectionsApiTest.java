@@ -83,7 +83,7 @@ public class DirectionsApiTest {
   }
 
   @Test
-  public void testBuilder() throws Exception {
+  public void testBuilder_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
