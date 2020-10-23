@@ -339,7 +339,7 @@ public class DirectionsApiRequest
    * @param trafficModel The traffic model for estimating driving time.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
+  public DirectionsApiRequest trafficModel_RENAMED(TrafficModel trafficModel) {
     return param("traffic_model", trafficModel);
   }
 

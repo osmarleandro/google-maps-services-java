@@ -369,7 +369,7 @@ public class DirectionsApiTest {
               .destination("182 Church St, Parramatta NSW 2150")
               .mode(TravelMode.DRIVING)
               .departureTime(Instant.now().plus(Duration.ofMinutes(2)))
-              .trafficModel(TrafficModel.PESSIMISTIC)
+              .trafficModel_RENAMED(TrafficModel.PESSIMISTIC)
               .await();
 
       sc.assertParamValue("48 Pirrama Road, Pyrmont NSW 2009", "origin");
