@@ -140,7 +140,7 @@ public class DirectionsApiRequest
    * @param restrictions one or more of {@link DirectionsApi.RouteRestriction} objects.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
+  public DirectionsApiRequest avoid_RENAMED(DirectionsApi.RouteRestriction... restrictions) {
     return param("avoid", join('|', restrictions));
   }
 

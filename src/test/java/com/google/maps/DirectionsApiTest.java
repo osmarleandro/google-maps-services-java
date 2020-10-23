@@ -88,7 +88,7 @@ public class DirectionsApiTest {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.BICYCLING)
-              .avoid(
+              .avoid_RENAMED(
                   DirectionsApi.RouteRestriction.HIGHWAYS,
                   DirectionsApi.RouteRestriction.TOLLS,
                   DirectionsApi.RouteRestriction.FERRIES)
@@ -169,7 +169,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("Toronto")
           .destination("Montreal")
-          .avoid(DirectionsApi.RouteRestriction.HIGHWAYS)
+          .avoid_RENAMED(DirectionsApi.RouteRestriction.HIGHWAYS)
           .mode(TravelMode.BICYCLING)
           .await();
 
@@ -187,7 +187,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("San Francisco")
           .destination("Seattle")
-          .avoid(RouteRestriction.INDOOR)
+          .avoid_RENAMED(RouteRestriction.INDOOR)
           .mode(TravelMode.BICYCLING)
           .await();
 
