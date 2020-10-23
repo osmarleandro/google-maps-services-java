@@ -18,14 +18,14 @@ package com.google.maps.internal;
 import static com.google.maps.model.LatLngAssert.assertEquals;
 import static org.junit.Assert.assertEquals;
 
-import com.google.maps.SmallTests;
+import com.google.maps.SmallTests_RENAMED;
 import com.google.maps.model.LatLng;
 import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 /** Test case for {@link PolylineEncoding}. */
-@Category(SmallTests.class)
+@Category(SmallTests_RENAMED.class)
 public class PolylineEncodingTest {
 
   private static final double EPSILON = .00001;

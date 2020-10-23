@@ -19,7 +19,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.google.maps.SmallTests;
+import com.google.maps.SmallTests_RENAMED;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +31,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 /** Test case for {@link UrlSigner}. */
-@Category(SmallTests.class)
+@Category(SmallTests_RENAMED.class)
 public class UrlSignerTest {
 
   // From http://en.wikipedia.org/wiki/Hash-based_message_authentication_code
