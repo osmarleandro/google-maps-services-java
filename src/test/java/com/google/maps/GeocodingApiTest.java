@@ -926,7 +926,7 @@ public class GeocodingApiTest {
 
   /** Testing Kita Ward reverse geocode. */
   @Test
-  public void testReverseGeocodeWithKitaWard() throws Exception {
+  public void testReverseGeocodeWithKitaWard_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(reverseGeocodeWithKitaWardResponse)) {
       LatLng location = new LatLng(35.03937, 135.729243);
