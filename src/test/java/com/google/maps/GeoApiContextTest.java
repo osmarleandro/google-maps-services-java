@@ -199,7 +199,7 @@ public class GeoApiContextTest {
   }
 
   @Test(expected = IOException.class)
-  public void testRetryCanBeDisabled() throws Exception {
+  public void testRetryCanBeDisabled_RENAMED() throws Exception {
     // Set up 2 mock responses, an error that shouldn't be retried and a success
     MockResponse errorResponse = new MockResponse();
     errorResponse.setStatus("HTTP/1.1 500 Internal server error");
