@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.maps.GeolocationApiRequest;
+
 /**
  * Request body.
  *
@@ -184,5 +187,17 @@ public class GeolocationPayload implements Serializable {
       this._addedWifiAccessPoints.add(newWifiAccessPoint);
       return this;
     }
+
+	public GeolocationApiRequest CreatePayload(GeolocationApiRequest geolocationApiRequest) {
+	    if (geolocationApiRequest.payload == null) {
+	      // if the payload has not been set, create it
+	      geolocationApiRequest.payload = createGeolocationPayload();
+	    } else {
+	      // use the payload that has been explicitly set by the Payload method above
+	    }
+	    Gson gson = new Gson();
+	    String jsonPayload = gson.toJson(geolocationApiRequest.payload);
+	    return geolocationApiRequest.param("_payload", jsonPayload);
+	  }
   }
 }

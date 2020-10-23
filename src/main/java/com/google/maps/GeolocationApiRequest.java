@@ -15,7 +15,6 @@
 
 package com.google.maps;
 
-import com.google.gson.Gson;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationPayload.GeolocationPayloadBuilder;
@@ -26,8 +25,8 @@ import com.google.maps.model.WifiAccessPoint;
 public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
-  private GeolocationPayload payload = null;
-  private GeolocationPayloadBuilder builder = null;
+  public GeolocationPayload payload = null;
+  public GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
     super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
@@ -92,17 +91,5 @@ public class GeolocationApiRequest
   public GeolocationApiRequest Payload(GeolocationPayload payload) {
     this.payload = payload;
     return this;
-  }
-
-  public GeolocationApiRequest CreatePayload() {
-    if (this.payload == null) {
-      // if the payload has not been set, create it
-      this.payload = this.builder.createGeolocationPayload();
-    } else {
-      // use the payload that has been explicitly set by the Payload method above
-    }
-    Gson gson = new Gson();
-    String jsonPayload = gson.toJson(this.payload);
-    return param("_payload", jsonPayload);
   }
 }
