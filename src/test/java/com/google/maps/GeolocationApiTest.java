@@ -371,7 +371,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testNoPayloadGeolocation0() throws Exception {
+  public void testNoPayloadGeolocation0_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationPayload payload =
           new GeolocationPayload.GeolocationPayloadBuilder().createGeolocationPayload();
