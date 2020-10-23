@@ -15,10 +15,18 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +75,20 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testNearbySearchRequestByType(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc =
+        new LocalTestServerContext(placesApiTest.placesApiNearbySearchRequestByType)) {
+      PlacesSearchResponse response =
+          PlacesApi.nearbySearchQuery(sc.context, this).radius(10000).type(PlaceType.BAR).await();
+
+      sc.assertParamValue(toUrlValue(), "location");
+      sc.assertParamValue("10000", "radius");
+      sc.assertParamValue(PlaceType.BAR.toUrlValue(), "type");
+
+      assertEquals(20, response.results.length);
+    }
   }
 }
