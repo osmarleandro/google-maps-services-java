@@ -24,7 +24,6 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
-import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
 
@@ -90,26 +89,6 @@ public class DistanceMatrixApiRequest
    */
   public DistanceMatrixApiRequest destinations(LatLng... points) {
     return param("destinations", join('|', points));
-  }
-
-  /**
-   * Specifies the mode of transport to use when calculating directions.
-   *
-   * <p>Note that Distance Matrix requests only support {@link TravelMode#DRIVING}, {@link
-   * TravelMode#WALKING}, {@link TravelMode#BICYCLING} and {@link TravelMode#TRANSIT}.
-   *
-   * @param mode One of the travel modes supported by the Distance Matrix API.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest mode(TravelMode mode) {
-    if (TravelMode.DRIVING.equals(mode)
-        || TravelMode.WALKING.equals(mode)
-        || TravelMode.BICYCLING.equals(mode)
-        || TravelMode.TRANSIT.equals(mode)) {
-      return param("mode", mode);
-    }
-    throw new IllegalArgumentException(
-        "Distance Matrix API travel modes must be Driving, Transit, Walking or Bicycling");
   }
 
   /**
