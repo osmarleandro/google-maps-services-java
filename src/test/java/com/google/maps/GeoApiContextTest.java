@@ -121,7 +121,7 @@ public class GeoApiContextTest {
 
     // Execute
     GeocodingResult[] result =
-        builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
+        builder.build().get_RENAMED(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
     assertEquals(1, result.length);
     assertEquals(
         "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA", result[0].formattedAddress);
@@ -145,7 +145,7 @@ public class GeoApiContextTest {
     // This should limit the number of retries, ensuring that the success response is NOT returned.
     builder.maxRetries(2);
 
-    builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
+    builder.build().get_RENAMED(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
   }
 
   private MockResponse createMockGoodResponse() {
@@ -218,7 +218,7 @@ public class GeoApiContextTest {
     builder.disableRetries();
 
     // We should get the error response here, not the success response.
-    builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
+    builder.build().get_RENAMED(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
   }
 
   @Test
@@ -238,7 +238,7 @@ public class GeoApiContextTest {
     builder.retryTimeout(5, TimeUnit.SECONDS);
 
     try {
-      builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
+      builder.build().get_RENAMED(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
     } catch (IOException ioe) {
       // Ensure the message matches the status line in the mock responses.
       assertEquals("Server Error: 500 Internal server error", ioe.getMessage());
@@ -262,7 +262,7 @@ public class GeoApiContextTest {
     setMockBaseUrl();
     builder
         .build()
-        .get(new ApiConfig("/"), GeocodingApi.Response.class, "a", "1", "a", "2", "a", "3")
+        .get_RENAMED(new ApiConfig("/"), GeocodingApi.Response.class, "a", "1", "a", "2", "a", "3")
         .awaitIgnoreError();
 
     server.shutdown();
@@ -292,7 +292,7 @@ public class GeoApiContextTest {
     try {
       builder
           .build()
-          .get(new ApiConfig("/"), GeocodingApi.Response.class, "any-key", "any-value")
+          .get_RENAMED(new ApiConfig("/"), GeocodingApi.Response.class, "any-key", "any-value")
           .await();
     } catch (OverQueryLimitException e) {
       assertEquals(1, server.getRequestCount());

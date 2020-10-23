@@ -218,7 +218,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  <T, R extends ApiResponse<T>> PendingResult<T> get(
+  <T, R extends ApiResponse<T>> PendingResult<T> get_RENAMED(
       ApiConfig config, Class<? extends R> clazz, String... params) {
     if (params.length % 2 != 0) {
       throw new IllegalArgumentException("Params must be matching key/value pairs.");

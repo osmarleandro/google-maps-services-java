@@ -47,7 +47,7 @@ public class ElevationApi {
    */
   public static PendingResult<ElevationResult[]> getByPoints(
       GeoApiContext context, LatLng... points) {
-    return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
+    return context.get_RENAMED(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
   }
 
   /**
@@ -61,7 +61,7 @@ public class ElevationApi {
    */
   public static PendingResult<ElevationResult[]> getByPath(
       GeoApiContext context, int samples, LatLng... path) {
-    return context.get(
+    return context.get_RENAMED(
         API_CONFIG,
         MultiResponse.class,
         "samples",
@@ -81,7 +81,7 @@ public class ElevationApi {
    */
   public static PendingResult<ElevationResult[]> getByPath(
       GeoApiContext context, int samples, EncodedPolyline encodedPolyline) {
-    return context.get(
+    return context.get_RENAMED(
         API_CONFIG,
         MultiResponse.class,
         "samples",
@@ -107,7 +107,7 @@ public class ElevationApi {
    * @return The elevation as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
-    return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
+    return context.get_RENAMED(API_CONFIG, SingularResponse.class, "locations", location.toString());
   }
 
   private static class SingularResponse implements ApiResponse<ElevationResult> {
@@ -143,7 +143,7 @@ public class ElevationApi {
    */
   public static PendingResult<ElevationResult[]> getByPoints(
       GeoApiContext context, EncodedPolyline encodedPolyline) {
-    return context.get(
+    return context.get_RENAMED(
         API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());
   }
 
