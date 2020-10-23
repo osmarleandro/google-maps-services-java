@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  * <p>{@code T} is the type of the result of this pending result, and {@code R} is the type of the
  * request.
  */
-public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingResult<T> {
+public class GaePendingResult_RENAMED<T, R extends ApiResponse<T>> implements PendingResult<T> {
   private final HTTPRequest request;
   private final URLFetchService client;
   private final Class<R> responseClass;
@@ -74,7 +74,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private long cumulativeSleepTime = 0;
   private Future<HTTPResponse> call;
 
-  private static final Logger LOG = LoggerFactory.getLogger(GaePendingResult.class.getName());
+  private static final Logger LOG = LoggerFactory.getLogger(GaePendingResult_RENAMED.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
@@ -85,7 +85,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
    * @param errorTimeOut Number of milliseconds to re-send erroring requests.
    * @param maxRetries Number of times allowed to re-send erroring requests.
    */
-  public GaePendingResult(
+  public GaePendingResult_RENAMED(
       HTTPRequest request,
       URLFetchService client,
       Class<R> responseClass,
@@ -145,7 +145,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponse(GaePendingResult<T, R> request, HTTPResponse response)
+  private T parseResponse(GaePendingResult_RENAMED<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
     try {
       T result = parseResponseInternal(request, response);
@@ -158,7 +158,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponseInternal(GaePendingResult<T, R> request, HTTPResponse response)
+  private T parseResponseInternal(GaePendingResult_RENAMED<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
     if (shouldRetry(response)) {
       // Retry is a blocking method, but that's OK. If we're here, we're either in an await()

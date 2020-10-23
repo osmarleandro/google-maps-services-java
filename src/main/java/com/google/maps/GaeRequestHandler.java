@@ -27,7 +27,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.GeoApiContext.RequestHandler;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
-import com.google.maps.internal.GaePendingResult;
+import com.google.maps.internal.GaePendingResult_RENAMED;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.metrics.RequestMetrics;
 import java.net.MalformedURLException;
@@ -73,7 +73,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       throw (new RuntimeException(e));
     }
 
-    return new GaePendingResult<>(
+    return new GaePendingResult_RENAMED<>(
         req,
         client,
         clazz,
@@ -112,7 +112,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       throw (new RuntimeException(e));
     }
 
-    return new GaePendingResult<>(
+    return new GaePendingResult_RENAMED<>(
         req,
         client,
         clazz,
