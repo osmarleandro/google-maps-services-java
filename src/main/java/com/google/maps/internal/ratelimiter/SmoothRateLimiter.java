@@ -398,4 +398,8 @@ abstract class SmoothRateLimiter extends RateLimiter {
       nextFreeTicketMicros = nowMicros;
     }
   }
+
+private boolean canAcquire(long nowMicros, long timeoutMicros) {
+    return queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
+  }
 }
