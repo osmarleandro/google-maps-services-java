@@ -87,7 +87,7 @@ public class PlacesApi {
       GeoApiContext context, String query, LatLng location) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
-    request.location(location);
+    location.location(request);
     return request;
   }
 

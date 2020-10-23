@@ -19,7 +19,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
@@ -49,16 +48,6 @@ public class TextSearchRequest
    */
   public TextSearchRequest query(String query) {
     return param("query", query);
-  }
-
-  /**
-   * Specifies the latitude/longitude around which to retrieve place information.
-   *
-   * @param location The location of the center of the search.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest location(LatLng location) {
-    return param("location", location);
   }
 
   /**
