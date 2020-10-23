@@ -33,10 +33,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /** Rate Limit Policy for Google Maps Web Services APIs. */
-public class RateLimitExecutorService implements ExecutorService, Runnable {
+public class RateLimitExecutorService_RENAMED implements ExecutorService, Runnable {
 
   private static final Logger LOG =
-      LoggerFactory.getLogger(RateLimitExecutorService.class.getName());
+      LoggerFactory.getLogger(RateLimitExecutorService_RENAMED.class.getName());
   private static final int DEFAULT_QUERIES_PER_SECOND = 50;
 
   // It's important we set Ok's second arg to threadFactory(.., true) to ensure the threads are
@@ -57,7 +57,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
 
   final Thread delayThread;
 
-  public RateLimitExecutorService() {
+  public RateLimitExecutorService_RENAMED() {
     setQueriesPerSecond(DEFAULT_QUERIES_PER_SECOND);
     delayThread = new Thread(this);
     delayThread.setDaemon(true);

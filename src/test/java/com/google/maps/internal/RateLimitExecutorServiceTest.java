@@ -39,7 +39,7 @@ public class RateLimitExecutorServiceTest {
   @Test
   public void testRateLimitDoesNotExceedSuppliedQps() throws Exception {
     int qps = 10;
-    RateLimitExecutorService service = new RateLimitExecutorService();
+    RateLimitExecutorService_RENAMED service = new RateLimitExecutorService_RENAMED();
     service.setQueriesPerSecond(qps);
     final ConcurrentHashMap<Integer, Integer> executedTimestamps = new ConcurrentHashMap<>();
 
@@ -94,7 +94,7 @@ public class RateLimitExecutorServiceTest {
 
   @Test
   public void testDelayThreadIsStoppedAfterShutdownIsCalled() throws InterruptedException {
-    RateLimitExecutorService service = new RateLimitExecutorService();
+    RateLimitExecutorService_RENAMED service = new RateLimitExecutorService_RENAMED();
     final Thread delayThread = service.delayThread;
     assertNotNull(
         "Delay thread should be created in constructor of RateLimitExecutorService", delayThread);

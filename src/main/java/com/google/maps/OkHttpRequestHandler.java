@@ -21,7 +21,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.internal.OkHttpPendingResult;
-import com.google.maps.internal.RateLimitExecutorService;
+import com.google.maps.internal.RateLimitExecutorService_RENAMED;
 import com.google.maps.metrics.RequestMetrics;
 import java.io.IOException;
 import java.net.Proxy;
@@ -122,12 +122,12 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
   /** Builder strategy for constructing an {@code OkHTTPRequestHandler}. */
   public static class Builder implements GeoApiContext.RequestHandler.Builder {
     private final OkHttpClient.Builder builder;
-    private final RateLimitExecutorService rateLimitExecutorService;
+    private final RateLimitExecutorService_RENAMED rateLimitExecutorService;
     private final Dispatcher dispatcher;
 
     public Builder() {
       builder = new OkHttpClient.Builder();
-      rateLimitExecutorService = new RateLimitExecutorService();
+      rateLimitExecutorService = new RateLimitExecutorService_RENAMED();
       dispatcher = new Dispatcher(rateLimitExecutorService);
       builder.dispatcher(dispatcher);
     }
