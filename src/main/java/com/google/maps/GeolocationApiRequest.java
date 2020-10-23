@@ -105,4 +105,17 @@ public class GeolocationApiRequest
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
   }
+
+/**
+   * A channel to pass with the request. channel is used by Google Maps API for Work users to be
+   * able to track usage across different applications with the same clientID. See <a
+   * href="https://developers.google.com/maps/documentation/business/clientside/quota">Premium Plan
+   * Usage Rates and Limits</a>.
+   *
+   * @param channel String to pass with the request for analytics.
+   * @return Returns the request for call chaining.
+   */
+public GeolocationApiRequest channel(String channel) {
+    return param("channel", channel);
+  }
 }
