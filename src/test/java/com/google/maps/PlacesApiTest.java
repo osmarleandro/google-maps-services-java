@@ -79,7 +79,7 @@ public class PlacesApiTest {
   private final String placesApiNearbySearchRequestByType;
   private final String placesApiPlaceAutocomplete;
   private final String placesApiPlaceAutocompleteWithType;
-  private final String placesApiKitaWard;
+  public final String placesApiKitaWard;
   private final String findPlaceFromTextMuseumOfContemporaryArt;
 
   public PlacesApiTest() {
@@ -895,20 +895,6 @@ public class PlacesApiTest {
       sc.assertParamValue("500", "radius");
       sc.assertParamValue("true", "strictbounds");
       sc.assertParamValue(session.toUrlValue(), "sessiontoken");
-    }
-  }
-
-  @Test
-  public void testKitaWard() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiKitaWard)) {
-      String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
-      PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
-
-      sc.assertParamValue(query, "query");
-
-      assertEquals(
-          "Kita Ward, Kyoto, Kyoto Prefecture, Japan", response.results[0].formattedAddress);
-      assertTrue(Arrays.asList(response.results[0].types).contains("ward"));
     }
   }
 
