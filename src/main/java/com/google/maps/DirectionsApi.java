@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -131,5 +132,15 @@ public class DirectionsApi {
     public String toUrlValue() {
       return restriction;
     }
+
+	/**
+	   * Introduces restrictions to the route. Only one restriction can be specified.
+	   *
+	   * @param distanceMatrixApiRequest TODO
+	 * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+	   */
+	  public DistanceMatrixApiRequest avoid(DistanceMatrixApiRequest distanceMatrixApiRequest) {
+	    return distanceMatrixApiRequest.param("avoid", this);
+	  }
   }
 }
