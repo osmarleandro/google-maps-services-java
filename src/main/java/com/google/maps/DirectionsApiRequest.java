@@ -21,7 +21,6 @@ import static java.util.Objects.requireNonNull;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
-import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
@@ -308,17 +307,6 @@ public class DirectionsApiRequest
     } else {
       return param("alternatives", "false");
     }
-  }
-
-  /**
-   * Specifies one or more preferred modes of transit. This parameter may only be specified for
-   * requests where the mode is transit.
-   *
-   * @param transitModes The preferred transit modes.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest transitMode(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
   }
 
   /**
