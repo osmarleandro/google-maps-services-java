@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApi.Response;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
@@ -27,6 +28,10 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okhttp3.mockwebserver.MockResponse;
+
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -36,6 +41,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -622,5 +629,28 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@Test(expected = IOException.class)
+	  public void testRetryCanBeDisabled(GeoApiContextTest geoApiContextTest) throws Exception {
+	    // Set up 2 mock responses, an error that shouldn't be retried and a success
+	    MockResponse errorResponse = new MockResponse();
+	    errorResponse.setStatus("HTTP/1.1 500 Internal server error");
+	    errorResponse.setBody("Uh-oh. Server Error.");
+	    geoApiContextTest.server.enqueue(errorResponse);
+	
+	    MockResponse goodResponse = new MockResponse();
+	    goodResponse.setResponseCode(200);
+	    goodResponse.setBody("{\n   \"results\" : [],\n   \"status\" : \"ZERO_RESULTS\"\n}");
+	    geoApiContextTest.server.enqueue(goodResponse);
+	
+	    geoApiContextTest.server.start();
+	    geoApiContextTest.setMockBaseUrl();
+	
+	    // This should disable the retry, ensuring that the success response is NOT returned
+	    disableRetries();
+	
+	    // We should get the error response here, not the success response.
+	    build().get(new ApiConfig("/"), Response.class, "k", "v").await();
+	  }
   }
 }
