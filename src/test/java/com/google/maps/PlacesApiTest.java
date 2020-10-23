@@ -378,10 +378,10 @@ public class PlacesApiTest {
   public void testQueryAutocompleteRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
-          .offset(10)
-          .location(location)
-          .radius(5000)
+      PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).offset(10).location(location).API_CONFIG
+          .radius(PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
+		      .offset(10)
+		      .location(location), 5000)
           .language("en")
           .await();
 

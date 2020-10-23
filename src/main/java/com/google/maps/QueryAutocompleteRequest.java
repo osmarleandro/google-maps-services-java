@@ -31,7 +31,7 @@ public class QueryAutocompleteRequest
     extends PendingResultBase<
         AutocompletePrediction[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/queryautocomplete/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -78,17 +78,6 @@ public class QueryAutocompleteRequest
    */
   public QueryAutocompleteRequest location(LatLng location) {
     return param("location", location);
-  }
-
-  /**
-   * The distance (in meters) within which to return place results. Note that setting a radius
-   * biases results to the indicated area, but may not fully restrict results to the specified area.
-   *
-   * @param radius The radius around which to bias results.
-   * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
-   */
-  public QueryAutocompleteRequest radius(int radius) {
-    return param("radius", String.valueOf(radius));
   }
 
   public static class Response implements ApiResponse<AutocompletePrediction[]> {
