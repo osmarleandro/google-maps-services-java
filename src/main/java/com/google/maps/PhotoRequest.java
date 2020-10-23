@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 
 /**
  * A <a href="https://developers.google.com/places/web-service/photos#place_photo_requests">Place
@@ -24,7 +24,7 @@ import com.google.maps.internal.ApiConfig;
 public class PhotoRequest
     extends PendingResultBase<ImageResult, PhotoRequest, ImageResult.Response> {
 
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
+  static final ApiConfig_RENAMED API_CONFIG = new ApiConfig_RENAMED("/maps/api/place/photo");
 
   public PhotoRequest(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);

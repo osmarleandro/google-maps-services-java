@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.EncodedPolyline;
@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class StaticMapsRequest
     extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
 
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
+  static final ApiConfig_RENAMED API_CONFIG = new ApiConfig_RENAMED("/maps/api/staticmap");
 
   public StaticMapsRequest(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);

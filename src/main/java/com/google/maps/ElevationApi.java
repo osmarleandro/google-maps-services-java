@@ -18,7 +18,7 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.ElevationResult;
@@ -34,7 +34,7 @@ import com.google.maps.model.LatLng;
  * Elevation API documentation</a>.
  */
 public class ElevationApi {
-  private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/elevation/json");
+  private static final ApiConfig_RENAMED API_CONFIG = new ApiConfig_RENAMED("/maps/api/elevation/json");
 
   private ElevationApi() {}
 

@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
@@ -30,8 +30,8 @@ import com.google.maps.model.PlaceDetails;
 public class PlaceDetailsRequest
     extends PendingResultBase<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
-      new ApiConfig("/maps/api/place/details/json")
+  static final ApiConfig_RENAMED API_CONFIG =
+      new ApiConfig_RENAMED("/maps/api/place/details/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
   public PlaceDetailsRequest(GeoApiContext context) {

@@ -19,7 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
@@ -36,8 +36,8 @@ public class NearbySearchRequest
     extends PendingResultBase<
         PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
-      new ApiConfig("/maps/api/place/nearbysearch/json")
+  static final ApiConfig_RENAMED API_CONFIG =
+      new ApiConfig_RENAMED("/maps/api/place/nearbysearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
   /**

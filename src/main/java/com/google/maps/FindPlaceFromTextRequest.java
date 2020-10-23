@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
@@ -29,8 +29,8 @@ public class FindPlaceFromTextRequest
     extends PendingResultBase<
         FindPlaceFromText, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
-      new ApiConfig("/maps/api/place/findplacefromtext/json")
+  static final ApiConfig_RENAMED API_CONFIG =
+      new ApiConfig_RENAMED("/maps/api/place/findplacefromtext/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
           .supportsClientId(false);
 

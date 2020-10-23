@@ -17,7 +17,7 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
@@ -28,7 +28,7 @@ import com.google.maps.model.LocationType;
 public class GeocodingApiRequest
     extends PendingResultBase<GeocodingResult[], GeocodingApiRequest, GeocodingApi.Response> {
 
-  private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
+  private static final ApiConfig_RENAMED API_CONFIG = new ApiConfig_RENAMED("/maps/api/geocode/json");
 
   public GeocodingApiRequest(GeoApiContext context) {
     super(context, API_CONFIG, GeocodingApi.Response.class);

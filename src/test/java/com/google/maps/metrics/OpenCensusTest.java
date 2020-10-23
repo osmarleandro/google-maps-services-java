@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.metrics.OpenCensusMetrics;
 import com.google.maps.metrics.OpenCensusRequestMetricsReporter;
 import com.google.maps.model.GeocodingResult;
@@ -88,7 +88,7 @@ public class OpenCensusTest {
     server.enqueue(mockResponse(200, "OK", 300)); // succeed
 
     GeocodingResult[] result =
-        context.get(new ApiConfig("/path"), GeocodingApi.Response.class, "k", "v").await();
+        context.get(new ApiConfig_RENAMED("/path"), GeocodingApi.Response.class, "k", "v").await();
     assertEquals(1, result.length);
 
     List<TagValue> tags =

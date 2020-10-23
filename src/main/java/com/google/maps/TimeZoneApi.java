@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import java.util.TimeZone;
@@ -30,8 +30,8 @@ import java.util.TimeZone;
  * documentation</a>.
  */
 public class TimeZoneApi {
-  private static final ApiConfig API_CONFIG =
-      new ApiConfig("/maps/api/timezone/json").fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
+  private static final ApiConfig_RENAMED API_CONFIG =
+      new ApiConfig_RENAMED("/maps/api/timezone/json").fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
 
   private TimeZoneApi() {}
 

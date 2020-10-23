@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
@@ -36,12 +36,12 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     implements PendingResult<T> {
 
   private final GeoApiContext context;
-  private final ApiConfig config;
+  private final ApiConfig_RENAMED config;
   private HashMap<String, List<String>> params = new HashMap<>();
   private PendingResult<T> delegate;
   private Class<? extends R> responseClass;
 
-  protected PendingResultBase(GeoApiContext context, ApiConfig config, Class<? extends R> clazz) {
+  protected PendingResultBase(GeoApiContext context, ApiConfig_RENAMED config, Class<? extends R> clazz) {
     this.context = context;
     this.config = config;
     this.responseClass = clazz;

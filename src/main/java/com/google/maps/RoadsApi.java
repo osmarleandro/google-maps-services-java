@@ -20,7 +20,7 @@ import static com.google.maps.internal.StringJoin.join;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiError;
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
@@ -37,20 +37,20 @@ import com.google.maps.model.SpeedLimit;
 public class RoadsApi {
   static final String API_BASE_URL = "https://roads.googleapis.com";
 
-  static final ApiConfig SNAP_TO_ROADS_API_CONFIG =
-      new ApiConfig("/v1/snapToRoads")
+  static final ApiConfig_RENAMED SNAP_TO_ROADS_API_CONFIG =
+      new ApiConfig_RENAMED("/v1/snapToRoads")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
           .fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
 
-  static final ApiConfig SPEEDS_API_CONFIG =
-      new ApiConfig("/v1/speedLimits")
+  static final ApiConfig_RENAMED SPEEDS_API_CONFIG =
+      new ApiConfig_RENAMED("/v1/speedLimits")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
           .fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
 
-  static final ApiConfig NEAREST_ROADS_API_CONFIG =
-      new ApiConfig("/v1/nearestRoads")
+  static final ApiConfig_RENAMED NEAREST_ROADS_API_CONFIG =
+      new ApiConfig_RENAMED("/v1/nearestRoads")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
           .fieldNamingPolicy(FieldNamingPolicy.IDENTITY);

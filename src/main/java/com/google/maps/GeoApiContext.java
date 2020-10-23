@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.OverQueryLimitException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
@@ -188,7 +188,7 @@ public class GeoApiContext {
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
-      ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
+      ApiConfig_RENAMED config, Class<? extends R> clazz, Map<String, List<String>> params) {
     if (channel != null && !channel.isEmpty() && !params.containsKey("channel")) {
       params.put("channel", Collections.singletonList(channel));
     }
@@ -219,7 +219,7 @@ public class GeoApiContext {
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
-      ApiConfig config, Class<? extends R> clazz, String... params) {
+      ApiConfig_RENAMED config, Class<? extends R> clazz, String... params) {
     if (params.length % 2 != 0) {
       throw new IllegalArgumentException("Params must be matching key/value pairs.");
     }
@@ -259,7 +259,7 @@ public class GeoApiContext {
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> post(
-      ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
+      ApiConfig_RENAMED config, Class<? extends R> clazz, Map<String, List<String>> params) {
 
     checkContext(config.supportsClientId);
 

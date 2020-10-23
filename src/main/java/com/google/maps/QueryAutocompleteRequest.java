@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
-import com.google.maps.internal.ApiConfig;
+import com.google.maps.internal.ApiConfig_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.LatLng;
@@ -31,8 +31,8 @@ public class QueryAutocompleteRequest
     extends PendingResultBase<
         AutocompletePrediction[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
-      new ApiConfig("/maps/api/place/queryautocomplete/json")
+  static final ApiConfig_RENAMED API_CONFIG =
+      new ApiConfig_RENAMED("/maps/api/place/queryautocomplete/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
   protected QueryAutocompleteRequest(GeoApiContext context) {

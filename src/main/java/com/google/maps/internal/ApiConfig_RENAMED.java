@@ -18,33 +18,33 @@ package com.google.maps.internal;
 import com.google.gson.FieldNamingPolicy;
 
 /** API configuration builder. Defines fields that are variable per-API. */
-public class ApiConfig {
+public class ApiConfig_RENAMED {
   public String path;
   public FieldNamingPolicy fieldNamingPolicy = FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
   public String hostName = "https://maps.googleapis.com";
   public boolean supportsClientId = true;
   public String requestVerb = "GET";
 
-  public ApiConfig(String path) {
+  public ApiConfig_RENAMED(String path) {
     this.path = path;
   }
 
-  public ApiConfig fieldNamingPolicy(FieldNamingPolicy fieldNamingPolicy) {
+  public ApiConfig_RENAMED fieldNamingPolicy(FieldNamingPolicy fieldNamingPolicy) {
     this.fieldNamingPolicy = fieldNamingPolicy;
     return this;
   }
 
-  public ApiConfig hostName(String hostName) {
+  public ApiConfig_RENAMED hostName(String hostName) {
     this.hostName = hostName;
     return this;
   }
 
-  public ApiConfig supportsClientId(boolean supportsClientId) {
+  public ApiConfig_RENAMED supportsClientId(boolean supportsClientId) {
     this.supportsClientId = supportsClientId;
     return this;
   }
 
-  public ApiConfig requestVerb(String requestVerb) {
+  public ApiConfig_RENAMED requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
   }
