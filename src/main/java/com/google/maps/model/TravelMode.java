@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.DistanceMatrixApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.util.Locale;
 
@@ -50,5 +51,25 @@ public enum TravelMode implements UrlValue {
       throw new UnsupportedOperationException("Shouldn't use TravelMode.UNKNOWN in a request.");
     }
     return name().toLowerCase(Locale.ENGLISH);
+  }
+
+/**
+   * Specifies the mode of transport to use when calculating directions.
+   *
+   * <p>Note that Distance Matrix requests only support {@link TravelMode#DRIVING}, {@link
+   * TravelMode#WALKING}, {@link TravelMode#BICYCLING} and {@link TravelMode#TRANSIT}.
+   *
+   * @param distanceMatrixApiRequest TODO
+ * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+  public DistanceMatrixApiRequest mode(DistanceMatrixApiRequest distanceMatrixApiRequest) {
+    if (TravelMode.DRIVING.equals(this)
+        || TravelMode.WALKING.equals(this)
+        || TravelMode.BICYCLING.equals(this)
+        || TravelMode.TRANSIT.equals(this)) {
+      return distanceMatrixApiRequest.param("mode", this);
+    }
+    throw new IllegalArgumentException(
+        "Distance Matrix API travel modes must be Driving, Transit, Walking or Bicycling");
   }
 }
