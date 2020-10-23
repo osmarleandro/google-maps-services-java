@@ -85,17 +85,6 @@ public class FindPlaceFromTextRequest
     return param("fields", StringJoin.join(',', fields));
   }
 
-  /**
-   * Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng
-   * pairs representing the points of a rectangle.
-   *
-   * @param locationBias The location bias for this request.
-   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
-   */
-  public FindPlaceFromTextRequest locationBias(LocationBias locationBias) {
-    return param("locationbias", locationBias);
-  }
-
   @Override
   protected void validateRequest() {
     if (!params().containsKey("input")) {
@@ -161,7 +150,18 @@ public class FindPlaceFromTextRequest
     }
   }
 
-  public interface LocationBias extends UrlValue {}
+  public interface LocationBias extends UrlValue {
+
+	/**
+	   * Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng
+	   * pairs representing the points of a rectangle.
+	   *
+	   * @param findPlaceFromTextRequest TODO
+	 * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
+	   */
+	  default FindPlaceFromTextRequest locationBias(FindPlaceFromTextRequest findPlaceFromTextRequest) {
+	    return findPlaceFromTextRequest.param("locationbias", this);
+	  }}
 
   public static class LocationBiasIP implements LocationBias {
     @Override

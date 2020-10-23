@@ -920,16 +920,16 @@ public class PlacesApiTest {
       String input = "Museum of Contemporary Art Australia";
 
       FindPlaceFromText response =
-          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-              .fields(
-                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
-                  FindPlaceFromTextRequest.FieldMask.PHOTOS,
-                  FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-                  FindPlaceFromTextRequest.FieldMask.NAME,
-                  FindPlaceFromTextRequest.FieldMask.RATING,
-                  FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-                  FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-              .locationBias(new LocationBiasIP())
+          new LocationBiasIP()
+              .locationBias(PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+			      .fields(
+			          FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
+			          FindPlaceFromTextRequest.FieldMask.PHOTOS,
+			          FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+			          FindPlaceFromTextRequest.FieldMask.NAME,
+			          FindPlaceFromTextRequest.FieldMask.RATING,
+			          FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+			          FindPlaceFromTextRequest.FieldMask.GEOMETRY))
               .await();
 
       sc.assertParamValue(input, "input");
@@ -964,15 +964,15 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
+      new LocationBiasPoint(new LatLng(1, 2))
+          .locationBias(PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+		      .fields(
+		          FindPlaceFromTextRequest.FieldMask.PHOTOS,
+		          FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+		          FindPlaceFromTextRequest.FieldMask.NAME,
+		          FindPlaceFromTextRequest.FieldMask.RATING,
+		          FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+		          FindPlaceFromTextRequest.FieldMask.GEOMETRY))
           .await();
 
       sc.assertParamValue(input, "input");
@@ -989,15 +989,15 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
+      new LocationBiasCircular(new LatLng(1, 2), 3000)
+          .locationBias(PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+		      .fields(
+		          FindPlaceFromTextRequest.FieldMask.PHOTOS,
+		          FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+		          FindPlaceFromTextRequest.FieldMask.NAME,
+		          FindPlaceFromTextRequest.FieldMask.RATING,
+		          FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+		          FindPlaceFromTextRequest.FieldMask.GEOMETRY))
           .await();
 
       sc.assertParamValue(input, "input");
@@ -1014,15 +1014,15 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
+      new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4))
+          .locationBias(PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+		      .fields(
+		          FindPlaceFromTextRequest.FieldMask.PHOTOS,
+		          FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+		          FindPlaceFromTextRequest.FieldMask.NAME,
+		          FindPlaceFromTextRequest.FieldMask.RATING,
+		          FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+		          FindPlaceFromTextRequest.FieldMask.GEOMETRY))
           .await();
 
       sc.assertParamValue(input, "input");
