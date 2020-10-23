@@ -15,7 +15,12 @@
 
 package com.google.maps.internal;
 
+import java.util.List;
+import java.util.Map;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +52,41 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public <T, R extends ApiResponse<T>> PendingResult<T> post(
+      GeoApiContext geoApiContext, Class<? extends R> clazz, Map<String, List<String>> params) {
+
+    geoApiContext.checkContext(supportsClientId);
+
+    StringBuilder url = new StringBuilder(path);
+    if (supportsClientId && geoApiContext.clientId != null) {
+      url.append("?client=").append(geoApiContext.clientId);
+    } else {
+      url.append("?key=").append(geoApiContext.apiKey);
+    }
+
+    if (supportsClientId && geoApiContext.urlSigner != null) {
+      String signature = geoApiContext.urlSigner.getSignature(url.toString());
+      url.append("&signature=").append(signature);
+    }
+
+    String hostName = hostName;
+    if (geoApiContext.baseUrlOverride != null) {
+      hostName = geoApiContext.baseUrlOverride;
+    }
+
+    return geoApiContext.requestHandler.handlePost(
+        hostName,
+        url.toString(),
+        params.get("_payload").get(0),
+        GeoApiContext.USER_AGENT,
+        geoApiContext.experienceIdHeaderValue,
+        clazz,
+        fieldNamingPolicy,
+        geoApiContext.errorTimeout,
+        geoApiContext.maxRetries,
+        geoApiContext.exceptionsAllowedToRetry,
+        geoApiContext.requestMetricsReporter.newRequest(path));
   }
 }

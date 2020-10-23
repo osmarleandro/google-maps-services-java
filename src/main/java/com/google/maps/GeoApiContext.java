@@ -54,20 +54,20 @@ import java.util.concurrent.TimeUnit;
 public class GeoApiContext {
 
   private static final String VERSION = "@VERSION@"; // Populated by the build script
-  private static final String USER_AGENT = "GoogleGeoApiClientJava/" + VERSION;
+  public static final String USER_AGENT = "GoogleGeoApiClientJava/" + VERSION;
   private static final int DEFAULT_BACKOFF_TIMEOUT_MILLIS = 60 * 1000; // 60s
 
-  private final RequestHandler requestHandler;
-  private final String apiKey;
-  private final String baseUrlOverride;
+  public final RequestHandler requestHandler;
+  public final String apiKey;
+  public final String baseUrlOverride;
   private final String channel;
-  private final String clientId;
-  private final long errorTimeout;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
-  private final Integer maxRetries;
-  private final UrlSigner urlSigner;
-  private String experienceIdHeaderValue;
-  private final RequestMetricsReporter requestMetricsReporter;
+  public final String clientId;
+  public final long errorTimeout;
+  public final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  public final Integer maxRetries;
+  public final UrlSigner urlSigner;
+  public String experienceIdHeaderValue;
+  public final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
   GeoApiContext(
@@ -258,42 +258,6 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  <T, R extends ApiResponse<T>> PendingResult<T> post(
-      ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
-
-    checkContext(config.supportsClientId);
-
-    StringBuilder url = new StringBuilder(config.path);
-    if (config.supportsClientId && clientId != null) {
-      url.append("?client=").append(clientId);
-    } else {
-      url.append("?key=").append(apiKey);
-    }
-
-    if (config.supportsClientId && urlSigner != null) {
-      String signature = urlSigner.getSignature(url.toString());
-      url.append("&signature=").append(signature);
-    }
-
-    String hostName = config.hostName;
-    if (baseUrlOverride != null) {
-      hostName = baseUrlOverride;
-    }
-
-    return requestHandler.handlePost(
-        hostName,
-        url.toString(),
-        params.get("_payload").get(0),
-        USER_AGENT,
-        experienceIdHeaderValue,
-        clazz,
-        config.fieldNamingPolicy,
-        errorTimeout,
-        maxRetries,
-        exceptionsAllowedToRetry,
-        requestMetricsReporter.newRequest(config.path));
-  }
-
   private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
       Class<R> clazz,
       FieldNamingPolicy fieldNamingPolicy,
@@ -337,7 +301,7 @@ public class GeoApiContext {
         metrics);
   }
 
-  private void checkContext(boolean canUseClientId) {
+  public void checkContext(boolean canUseClientId) {
     if (urlSigner == null && apiKey == null) {
       throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
     } else if (!canUseClientId && apiKey == null) {
