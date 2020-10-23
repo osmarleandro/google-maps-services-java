@@ -349,7 +349,12 @@ public class GeoApiContext {
     }
   }
 
-  /** The Builder for {@code GeoApiContext}. */
+  public String path(LocalTestServerContext localTestServerContext) throws InterruptedException {
+    localTestServerContext.takeRequest();
+    return localTestServerContext.request.getPath().split("\\?", -1)[0];
+  }
+
+/** The Builder for {@code GeoApiContext}. */
   public static class Builder {
 
     private RequestHandler.Builder builder;

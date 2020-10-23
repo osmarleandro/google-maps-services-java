@@ -38,7 +38,7 @@ public class LocalTestServerContext implements AutoCloseable {
 
   private final MockWebServer server;
   public final GeoApiContext context;
-  private RecordedRequest request = null;
+  public RecordedRequest request = null;
   private List<NameValuePair> params = null;
 
   LocalTestServerContext(BufferedImage image) throws IOException {
@@ -82,7 +82,7 @@ public class LocalTestServerContext implements AutoCloseable {
     return URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
   }
 
-  private void takeRequest() throws InterruptedException {
+  public void takeRequest() throws InterruptedException {
     if (this.request == null) this.request = server.takeRequest();
   }
 
@@ -95,11 +95,6 @@ public class LocalTestServerContext implements AutoCloseable {
   private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
     this.takeRequest();
     return parseQueryParamsFromRequestLine(request.getRequestLine());
-  }
-
-  public String path() throws InterruptedException {
-    this.takeRequest();
-    return request.getPath().split("\\?", -1)[0];
   }
 
   void assertParamValue(String expected, String paramName)
