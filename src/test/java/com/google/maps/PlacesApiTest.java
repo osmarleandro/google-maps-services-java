@@ -624,12 +624,12 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
+      PriceLevel.INEXPENSIVE
+          .minPrice(PlacesApi.nearbySearchQuery(sc.context, location)
+		      .radius(5000)
+		      .rankby(RankBy.PROMINENCE)
+		      .keyword("keyword")
+		      .language("en"))
           .maxPrice(PriceLevel.EXPENSIVE)
           .name("name")
           .openNow(true)
