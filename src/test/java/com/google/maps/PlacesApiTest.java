@@ -913,7 +913,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testFindPlaceFromText() throws Exception {
+  public void testFindPlaceFromText_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
