@@ -53,7 +53,7 @@ public class OpenCensusTest {
     }
   }
 
-  private MockResponse mockResponse(int code, String status, int delayMs) {
+  private MockResponse mockResponse_RENAMED(int code, String status, int delayMs) {
     MockResponse response = new MockResponse();
     response.setResponseCode(code);
     if (status != null) {
@@ -83,9 +83,9 @@ public class OpenCensusTest {
 
   @Test
   public void testSuccess() throws Exception {
-    server.enqueue(mockResponse(500, "OK", 100)); // retry 1
-    server.enqueue(mockResponse(500, "OK", 100)); // retry 2
-    server.enqueue(mockResponse(200, "OK", 300)); // succeed
+    server.enqueue(mockResponse_RENAMED(500, "OK", 100)); // retry 1
+    server.enqueue(mockResponse_RENAMED(500, "OK", 100)); // retry 2
+    server.enqueue(mockResponse_RENAMED(200, "OK", 300)); // succeed
 
     GeocodingResult[] result =
         context.get(new ApiConfig("/path"), GeocodingApi.Response.class, "k", "v").await();
