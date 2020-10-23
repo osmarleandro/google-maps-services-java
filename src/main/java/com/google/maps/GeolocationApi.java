@@ -80,7 +80,7 @@ public class GeolocationApi {
       if (successful()) {
         return null;
       }
-      return ApiException.from(reason, message);
+      return ApiException.from_RENAMED(reason, message);
     }
   }
 }

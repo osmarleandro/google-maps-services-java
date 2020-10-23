@@ -78,7 +78,7 @@ public class TimeZoneApi {
       if (successful()) {
         return null;
       }
-      return ApiException.from(status, errorMessage);
+      return ApiException.from_RENAMED(status, errorMessage);
     }
   }
 }

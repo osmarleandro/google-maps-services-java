@@ -179,7 +179,7 @@ public class RoadsApi {
 
     @Override
     public ApiException getError() {
-      return ApiException.from(error.status, error.message);
+      return ApiException.from_RENAMED(error.status, error.message);
     }
   }
 
@@ -199,7 +199,7 @@ public class RoadsApi {
 
     @Override
     public ApiException getError() {
-      return ApiException.from(error.status, error.message);
+      return ApiException.from_RENAMED(error.status, error.message);
     }
   }
 
@@ -223,7 +223,7 @@ public class RoadsApi {
 
     @Override
     public ApiException getError() {
-      return ApiException.from(error.status, error.message);
+      return ApiException.from_RENAMED(error.status, error.message);
     }
   }
 }
