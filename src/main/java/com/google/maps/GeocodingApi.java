@@ -38,7 +38,7 @@ public class GeocodingApi {
    * @param context The {@link GeoApiContext} to make requests through.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest newRequest(GeoApiContext context) {
+  public static GeocodingApiRequest newRequest_RENAMED(GeoApiContext context) {
     return new GeocodingApiRequest(context);
   }
 
