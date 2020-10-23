@@ -216,7 +216,7 @@ public class StaticMapsApiTest {
       points.add(MELBOURNE);
       points.add(SYDNEY);
       EncodedPolyline path = new EncodedPolyline(points);
-      req.path(path);
+      path.path(req);
 
       req.await();
 

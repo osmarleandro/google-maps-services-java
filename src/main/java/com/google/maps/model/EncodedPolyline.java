@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.StaticMapsRequest;
 import com.google.maps.internal.PolylineEncoding;
 import java.io.Serializable;
 import java.util.List;
@@ -60,5 +61,16 @@ public class EncodedPolyline implements Serializable {
   @Override
   public String toString() {
     return String.format("[EncodedPolyline: %s]", points);
+  }
+
+/**
+   * The <code>path</code> parameter defines a set of one or more locations connected by a path to
+   * overlay on the map image. This variant of the method accepts the path as an EncodedPolyline.
+   *
+   * @param staticMapsRequest TODO
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest path(StaticMapsRequest staticMapsRequest) {
+    return staticMapsRequest.paramAddToList("path", "enc:" + getEncodedPath());
   }
 }
