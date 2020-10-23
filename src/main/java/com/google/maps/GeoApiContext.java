@@ -92,7 +92,7 @@ public class GeoApiContext {
     this.maxRetries = maxRetries;
     this.urlSigner = urlSigner;
     this.requestMetricsReporter = requestMetricsReporter;
-    setExperienceId(experienceIdHeaderValue);
+    setExperienceId_RENAMED(experienceIdHeaderValue);
   }
 
   /**
@@ -158,7 +158,7 @@ public class GeoApiContext {
    *
    * @param experienceId The experience ID if set, otherwise null
    */
-  public void setExperienceId(String... experienceId) {
+  public void setExperienceId_RENAMED(String... experienceId) {
     if (experienceId == null || experienceId.length == 0) {
       experienceIdHeaderValue = null;
       return;
