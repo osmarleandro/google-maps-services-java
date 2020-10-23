@@ -33,7 +33,7 @@ import com.google.maps.model.RankBy;
 public class TextSearchRequest
     extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/textsearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -105,17 +105,6 @@ public class TextSearchRequest
    */
   public TextSearchRequest maxPrice(PriceLevel priceLevel) {
     return param("maxprice", priceLevel);
-  }
-
-  /**
-   * Specifies one or more terms to be matched against the names of places, separated with space
-   * characters.
-   *
-   * @param name The name to search for.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest name(String name) {
-    return param("name", name);
   }
 
   /**
