@@ -19,16 +19,16 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.google.maps.model.Fare;
+import com.google.maps.model.Fare_RENAMED;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-/** This class handles conversion from JSON to {@link com.google.maps.model.Fare}. */
-public class FareAdapter extends TypeAdapter<Fare> {
+/** This class handles conversion from JSON to {@link com.google.maps.model.Fare_RENAMED}. */
+public class FareAdapter extends TypeAdapter<Fare_RENAMED> {
 
   /**
-   * Read a Fare object from the Directions API and convert to a {@link com.google.maps.model.Fare}
+   * Read a Fare object from the Directions API and convert to a {@link com.google.maps.model.Fare_RENAMED}
    *
    * <pre>{
    *   "currency": "USD",
@@ -36,13 +36,13 @@ public class FareAdapter extends TypeAdapter<Fare> {
    * }</pre>
    */
   @Override
-  public Fare read(JsonReader reader) throws IOException {
+  public Fare_RENAMED read(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
     }
 
-    Fare fare = new Fare();
+    Fare_RENAMED fare = new Fare_RENAMED();
     reader.beginObject();
     while (reader.hasNext()) {
       String key = reader.nextName();
@@ -63,7 +63,7 @@ public class FareAdapter extends TypeAdapter<Fare> {
 
   /** This method is not implemented. */
   @Override
-  public void write(JsonWriter out, Fare value) throws IOException {
+  public void write(JsonWriter out, Fare_RENAMED value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method");
   }
 }

@@ -65,7 +65,7 @@ public class DirectionsRoute implements Serializable {
    * returned for transit directions, and only for routes where fare information is available for
    * all transit legs.
    */
-  public Fare fare;
+  public Fare_RENAMED fare;
 
   /**
    * Warnings to be displayed when showing these directions. You must handle and display these

@@ -34,7 +34,7 @@ import com.google.maps.model.AddressType;
 import com.google.maps.model.Distance;
 import com.google.maps.model.Duration;
 import com.google.maps.model.EncodedPolyline;
-import com.google.maps.model.Fare;
+import com.google.maps.model.Fare_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
@@ -189,7 +189,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
             .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeAdapter())
             .registerTypeAdapter(Distance.class, new DistanceAdapter())
             .registerTypeAdapter(Duration.class, new DurationAdapter())
-            .registerTypeAdapter(Fare.class, new FareAdapter())
+            .registerTypeAdapter(Fare_RENAMED.class, new FareAdapter())
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())
             .registerTypeAdapter(
                 AddressComponentType.class, new SafeEnumAdapter<>(AddressComponentType.UNKNOWN))

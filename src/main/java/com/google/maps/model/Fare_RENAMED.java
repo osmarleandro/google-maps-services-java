@@ -25,7 +25,7 @@ import java.util.Currency;
  * <p>See the <a href="https://developers.google.com/maps/documentation/directions/intro#Routes">
  * Routes Documentation</a> for more detail.
  */
-public class Fare implements Serializable {
+public class Fare_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
