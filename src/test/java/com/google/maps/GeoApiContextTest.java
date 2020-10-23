@@ -48,8 +48,8 @@ import org.junit.experimental.categories.Category;
 @Category(MediumTests.class)
 public class GeoApiContextTest {
 
-  private MockWebServer server;
-  private GeoApiContext.Builder builder;
+  public MockWebServer server;
+  public GeoApiContext.Builder builder;
 
   @Before
   public void Setup() {
@@ -67,7 +67,7 @@ public class GeoApiContextTest {
     }
   }
 
-  private void setMockBaseUrl() {
+  public void setMockBaseUrl() {
     builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
   }
 
@@ -245,30 +245,6 @@ public class GeoApiContextTest {
       return;
     }
     fail("Internal server error was expected but not observed.");
-  }
-
-  @Test
-  public void testQueryParamsHaveOrderPreserved() throws Exception {
-    // This test is important for APIs (such as the speed limits API) where multiple parameters
-    // must be provided with the same name with order preserved.
-
-    MockResponse response = new MockResponse();
-    response.setResponseCode(200);
-    response.setBody("{}");
-
-    server.enqueue(response);
-    server.start();
-
-    setMockBaseUrl();
-    builder
-        .build()
-        .get(new ApiConfig("/"), GeocodingApi.Response.class, "a", "1", "a", "2", "a", "3")
-        .awaitIgnoreError();
-
-    server.shutdown();
-    RecordedRequest request = server.takeRequest();
-    String path = request.getPath();
-    assertTrue(path.contains("a=1&a=2&a=3"));
   }
 
   @Test
