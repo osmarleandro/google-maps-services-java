@@ -31,7 +31,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(LargeTests.class)
-public class GeolocationApiTest {
+public class GeolocationApiTest_RENAMED {
 
   private final String geolocationDocSample;
   private final String geolocationMinimumWifi;
@@ -41,7 +41,7 @@ public class GeolocationApiTest {
   private final String geolocationAlternatePayloadBuilder;
   private final String geolocationMaximumCellTower;
 
-  public GeolocationApiTest() {
+  public GeolocationApiTest_RENAMED() {
     geolocationDocSample = retrieveBody("GeolocationDocSampleResponse.json");
     geolocationMinimumWifi = retrieveBody("GeolocationMinimumWifiResponse.json");
     geolocationBasic = retrieveBody("GeolocationBasicResponse.json");
