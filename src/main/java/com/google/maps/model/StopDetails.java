@@ -38,4 +38,21 @@ public class StopDetails implements Serializable {
   public String toString() {
     return String.format("%s (%s)", name, location);
   }
+
+public String toString(TransitDetails transitDetails) {
+    StringBuilder sb = new StringBuilder("[");
+    sb.append(transitDetails.departureStop).append(" at ").append(transitDetails.departureTime);
+    sb.append(" -> ");
+    sb.append(this).append(" at ").append(transitDetails.arrivalTime);
+    if (transitDetails.headsign != null) {
+      sb.append(" (").append(transitDetails.headsign).append(" )");
+    }
+    if (transitDetails.line != null) {
+      sb.append(" on ").append(transitDetails.line);
+    }
+    sb.append(", ").append(transitDetails.numStops).append(" stops");
+    sb.append(", headway=").append(transitDetails.headway).append(" s");
+    sb.append("]");
+    return sb.toString();
+  }
 }

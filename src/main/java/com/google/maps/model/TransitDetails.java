@@ -65,19 +65,6 @@ public class TransitDetails implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[");
-    sb.append(departureStop).append(" at ").append(departureTime);
-    sb.append(" -> ");
-    sb.append(arrivalStop).append(" at ").append(arrivalTime);
-    if (headsign != null) {
-      sb.append(" (").append(headsign).append(" )");
-    }
-    if (line != null) {
-      sb.append(" on ").append(line);
-    }
-    sb.append(", ").append(numStops).append(" stops");
-    sb.append(", headway=").append(headway).append(" s");
-    sb.append("]");
-    return sb.toString();
-  }
+	return arrivalStop.toString(this);
+}
 }
