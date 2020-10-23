@@ -72,7 +72,7 @@ public class DirectionsApiTest {
       assertEquals(1, result.routes.length);
       assertNotNull(result.routes[0]);
       assertEquals("M31 and National Highway M31", result.routes[0].summary);
-      assertThat(result.routes[0].overviewPolyline.decodePath().size(), not(0));
+      assertThat(result.routes[0].overviewPolyline.decodePath_RENAMED().size(), not(0));
       assertEquals(1, result.routes[0].legs.length);
       assertEquals("Melbourne VIC, Australia", result.routes[0].legs[0].endAddress);
       assertEquals("Sydney NSW, Australia", result.routes[0].legs[0].startAddress);

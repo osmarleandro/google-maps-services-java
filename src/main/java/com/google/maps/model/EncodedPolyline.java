@@ -51,7 +51,7 @@ public class EncodedPolyline implements Serializable {
     return points;
   }
 
-  public List<LatLng> decodePath() {
+  public List<LatLng> decodePath_RENAMED() {
     return PolylineEncoding.decode(points);
   }
 

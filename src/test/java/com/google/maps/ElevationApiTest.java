@@ -265,7 +265,7 @@ public class ElevationApiTest {
       ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
 
-      List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
+      List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath_RENAMED();
       LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
       LatLng lastElevationPoint = elevation[elevation.length - 1].location;
 
