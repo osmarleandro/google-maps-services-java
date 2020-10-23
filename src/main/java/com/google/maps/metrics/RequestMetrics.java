@@ -23,5 +23,5 @@ public interface RequestMetrics {
 
   void endNetwork();
 
-  void endRequest(Exception exception, int httpStatusCode, long retryCount);
+  void endRequest_RENAMED(Exception exception, int httpStatusCode, long retryCount);
 }
