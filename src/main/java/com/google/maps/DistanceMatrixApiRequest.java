@@ -202,4 +202,8 @@ public class DistanceMatrixApiRequest
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
   }
+
+protected DistanceMatrixApiRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
 }

@@ -179,7 +179,11 @@ public class TextSearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  protected TextSearchRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

@@ -151,4 +151,8 @@ public class GeocodingApiRequest
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
   }
+
+protected GeocodingApiRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
 }

@@ -105,4 +105,8 @@ public class GeolocationApiRequest
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
   }
+
+protected GeolocationApiRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
 }

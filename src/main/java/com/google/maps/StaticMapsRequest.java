@@ -467,4 +467,8 @@ public class StaticMapsRequest
   public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
   }
+
+protected StaticMapsRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
 }

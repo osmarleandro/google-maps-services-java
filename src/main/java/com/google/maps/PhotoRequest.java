@@ -72,4 +72,8 @@ public class PhotoRequest
   public PhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
   }
+
+protected PhotoRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
 }

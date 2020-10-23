@@ -91,7 +91,11 @@ public class QueryAutocompleteRequest
     return param("radius", String.valueOf(radius));
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  protected QueryAutocompleteRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

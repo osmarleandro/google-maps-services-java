@@ -88,7 +88,11 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  protected PlaceDetailsRequest param(String key, int val) {
+    return this.param(key, Integer.toString(val));
+  }
+
+public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;
