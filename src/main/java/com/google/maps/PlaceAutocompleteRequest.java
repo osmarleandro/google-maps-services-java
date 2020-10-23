@@ -81,6 +81,17 @@ public class PlaceAutocompleteRequest
     public String toUrlValue() {
       return uuid.toString();
     }
+
+	/**
+	   * Sets the SessionToken for this request. Use this for Place Details requests that are called
+	   * following an autocomplete request in the same user session. Optional.
+	   *
+	   * @param placeDetailsRequest TODO
+	 * @return Returns this {@code PlaceDetailsRequest} for call chaining.
+	   */
+	  public PlaceDetailsRequest sessionToken(PlaceDetailsRequest placeDetailsRequest) {
+	    return placeDetailsRequest.param("sessiontoken", this);
+	  }
   }
 
   /**
