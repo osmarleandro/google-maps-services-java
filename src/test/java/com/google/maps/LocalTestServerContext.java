@@ -86,7 +86,7 @@ public class LocalTestServerContext implements AutoCloseable {
     if (this.request == null) this.request = server.takeRequest();
   }
 
-  public JSONObject requestBody() throws InterruptedException {
+  public JSONObject requestBody_RENAMED() throws InterruptedException {
     this.takeRequest();
 
     return new JSONObject(request.getBody().readUtf8());
