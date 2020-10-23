@@ -33,7 +33,7 @@ public class AutocompleteStructuredFormatting implements Serializable {
   public String secondaryText;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("(");
     sb.append("\"").append(mainText).append("\"");
     sb.append(" at ").append(Arrays.toString(mainTextMatchedSubstrings));
