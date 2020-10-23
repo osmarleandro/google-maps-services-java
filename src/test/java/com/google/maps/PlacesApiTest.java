@@ -685,7 +685,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceAutocompleteRequest() throws Exception {
+  public void testPlaceAutocompleteRequest_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
