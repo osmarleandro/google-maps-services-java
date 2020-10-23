@@ -47,7 +47,7 @@ public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> {
   }
 
   @Override
-  public void write(JsonWriter out, E value) throws IOException {
+  public void write_RENAMED(JsonWriter out, E value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method");
   }
 
