@@ -28,7 +28,7 @@ import com.google.maps.internal.StringJoin;
  * href="https://developers.google.com/maps/documentation/geocoding/intro#ComponentFiltering">Component
  * Filtering</a> for more detail.
  */
-public class ComponentFilter implements StringJoin.UrlValue {
+public class ComponentFilter_RENAMED implements StringJoin.UrlValue {
   public final String component;
   public final String value;
 
@@ -38,7 +38,7 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param component The component to filter.
    * @param value The value of the filter.
    */
-  public ComponentFilter(String component, String value) {
+  public ComponentFilter_RENAMED(String component, String value) {
     this.component = component;
     this.value = value;
   }
@@ -57,49 +57,49 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * Matches long or short name of a route.
    *
    * @param route The name of the route to filter on.
-   * @return Returns a {@link ComponentFilter}.
+   * @return Returns a {@link ComponentFilter_RENAMED}.
    */
-  public static ComponentFilter route(String route) {
-    return new ComponentFilter("route", route);
+  public static ComponentFilter_RENAMED route(String route) {
+    return new ComponentFilter_RENAMED("route", route);
   }
 
   /**
    * Matches against both locality and sublocality types.
    *
    * @param locality The locality to filter on.
-   * @return Returns a {@link ComponentFilter}.
+   * @return Returns a {@link ComponentFilter_RENAMED}.
    */
-  public static ComponentFilter locality(String locality) {
-    return new ComponentFilter("locality", locality);
+  public static ComponentFilter_RENAMED locality(String locality) {
+    return new ComponentFilter_RENAMED("locality", locality);
   }
 
   /**
    * Matches all the administrative area levels.
    *
    * @param administrativeArea The administrative area to filter on.
-   * @return Returns a {@link ComponentFilter}.
+   * @return Returns a {@link ComponentFilter_RENAMED}.
    */
-  public static ComponentFilter administrativeArea(String administrativeArea) {
-    return new ComponentFilter("administrative_area", administrativeArea);
+  public static ComponentFilter_RENAMED administrativeArea(String administrativeArea) {
+    return new ComponentFilter_RENAMED("administrative_area", administrativeArea);
   }
 
   /**
    * Matches postal code or postal code prefix.
    *
    * @param postalCode The postal code to filter on.
-   * @return Returns a {@link ComponentFilter}.
+   * @return Returns a {@link ComponentFilter_RENAMED}.
    */
-  public static ComponentFilter postalCode(String postalCode) {
-    return new ComponentFilter("postal_code", postalCode);
+  public static ComponentFilter_RENAMED postalCode(String postalCode) {
+    return new ComponentFilter_RENAMED("postal_code", postalCode);
   }
 
   /**
    * Matches a country name or a two letter ISO 3166-1 country code.
    *
    * @param country The country to filter on.
-   * @return Returns a {@link ComponentFilter}.
+   * @return Returns a {@link ComponentFilter_RENAMED}.
    */
-  public static ComponentFilter country(String country) {
-    return new ComponentFilter("country", country);
+  public static ComponentFilter_RENAMED country(String country) {
+    return new ComponentFilter_RENAMED("country", country);
   }
 }

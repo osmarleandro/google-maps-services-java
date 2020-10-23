@@ -23,7 +23,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.AutocompletePrediction;
-import com.google.maps.model.ComponentFilter;
+import com.google.maps.model.ComponentFilter_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceAutocompleteType;
 import java.io.Serializable;
@@ -179,7 +179,7 @@ public class PlaceAutocompleteRequest
    * @param filters The component filter to restrict results with.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest components(ComponentFilter... filters) {
+  public PlaceAutocompleteRequest components(ComponentFilter_RENAMED... filters) {
     return param("components", join('|', filters));
   }
 

@@ -19,7 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
-import com.google.maps.model.ComponentFilter;
+import com.google.maps.model.ComponentFilter_RENAMED;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
@@ -126,7 +126,7 @@ public class GeocodingApiRequest
    * @param filters Component filters to apply to the request.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest components(ComponentFilter... filters) {
+  public GeocodingApiRequest components(ComponentFilter_RENAMED... filters) {
     return param("components", join('|', filters));
   }
 

@@ -16,8 +16,8 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
-import static com.google.maps.model.ComponentFilter.administrativeArea;
-import static com.google.maps.model.ComponentFilter.country;
+import static com.google.maps.model.ComponentFilter_RENAMED.administrativeArea;
+import static com.google.maps.model.ComponentFilter_RENAMED.country;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -25,7 +25,7 @@ import static org.junit.Assert.fail;
 
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
-import com.google.maps.model.ComponentFilter;
+import com.google.maps.model.ComponentFilter_RENAMED;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
@@ -494,7 +494,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address("santa cruz")
-              .components(ComponentFilter.country("ES"))
+              .components(ComponentFilter_RENAMED.country("ES"))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -667,9 +667,9 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .components(
-                  ComponentFilter.route("Annegatan"),
-                  ComponentFilter.administrativeArea("Helsinki"),
-                  ComponentFilter.country("Finland"))
+                  ComponentFilter_RENAMED.route("Annegatan"),
+                  ComponentFilter_RENAMED.administrativeArea("Helsinki"),
+                  ComponentFilter_RENAMED.country("Finland"))
               .await();
 
       assertNotNull(results);
