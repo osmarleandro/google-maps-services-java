@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.QueryAutocompleteRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,11 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public void validateRequest(QueryAutocompleteRequest queryAutocompleteRequest) {
+    if (!queryAutocompleteRequest.params().containsKey("input")) {
+      throw new IllegalArgumentException("Request must contain 'input'.");
+    }
   }
 }
