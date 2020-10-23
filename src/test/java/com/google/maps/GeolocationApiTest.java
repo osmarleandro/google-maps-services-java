@@ -103,7 +103,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testMinimumWifiGeolocation() throws Exception {
+  public void testMinimumWifiGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumWifi)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
