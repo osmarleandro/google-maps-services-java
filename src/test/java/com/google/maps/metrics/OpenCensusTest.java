@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.metrics.OpenCensusMetrics;
-import com.google.maps.metrics.OpenCensusRequestMetricsReporter;
+import com.google.maps.metrics.OpenCensusRequestMetricsReporter_RENAMED;
 import com.google.maps.model.GeocodingResult;
 import io.opencensus.stats.AggregationData;
 import io.opencensus.stats.Stats;
@@ -37,7 +37,7 @@ public class OpenCensusTest {
     context =
         new GeoApiContext.Builder()
             .apiKey("AIza...")
-            .requestMetricsReporter(new OpenCensusRequestMetricsReporter())
+            .requestMetricsReporter(new OpenCensusRequestMetricsReporter_RENAMED())
             .baseUrlOverride("http://127.0.0.1:" + server.getPort())
             .build();
     OpenCensusMetrics.registerAllViews();

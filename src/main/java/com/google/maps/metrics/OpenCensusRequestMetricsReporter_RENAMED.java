@@ -6,11 +6,11 @@ import io.opencensus.tags.Tagger;
 import io.opencensus.tags.Tags;
 
 /** An OpenCensus logger that generates success and latency metrics. */
-public final class OpenCensusRequestMetricsReporter implements RequestMetricsReporter {
+public final class OpenCensusRequestMetricsReporter_RENAMED implements RequestMetricsReporter {
   private static final Tagger tagger = Tags.getTagger();
   private static final StatsRecorder statsRecorder = Stats.getStatsRecorder();
 
-  public OpenCensusRequestMetricsReporter() {}
+  public OpenCensusRequestMetricsReporter_RENAMED() {}
 
   @Override
   public RequestMetrics newRequest(String requestName) {
