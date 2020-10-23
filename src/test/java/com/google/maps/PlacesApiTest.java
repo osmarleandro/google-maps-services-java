@@ -381,7 +381,7 @@ public class PlacesApiTest {
       PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
           .offset(10)
           .location(location)
-          .radius(5000)
+          .radius_RENAMED(5000)
           .language("en")
           .await();
 

@@ -87,7 +87,7 @@ public class QueryAutocompleteRequest
    * @param radius The radius around which to bias results.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest radius(int radius) {
+  public QueryAutocompleteRequest radius_RENAMED(int radius) {
     return param("radius", String.valueOf(radius));
   }
 
