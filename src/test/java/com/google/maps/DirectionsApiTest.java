@@ -321,7 +321,7 @@ public class DirectionsApiTest {
    * http://maps.googleapis.com/maps/api/directions/json?origin=Toledo&destination=Madrid&region=es}
    */
   @Test
-  public void testToledoToMadridInSpain() throws Exception {
+  public void testToledoToMadridInSpain_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
