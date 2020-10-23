@@ -90,18 +90,6 @@ public class StaticMapsRequest
     return param("size", size);
   }
 
-  /**
-   * <code>scale</code> affects the number of pixels that are returned. Setting <code>scale</code>
-   * to 2 returns twice as many pixels as <code>scale</code> set to 1 while retaining the same
-   * coverage area and level of detail (i.e. the contents of the map doesn't change).
-   *
-   * @param scale The scale of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest scale(int scale) {
-    return param("scale", scale);
-  }
-
   public enum ImageFormat implements UrlValue {
     png("png"),
     png8("png8"),

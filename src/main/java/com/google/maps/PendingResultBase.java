@@ -169,4 +169,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * <code>scale</code> affects the number of pixels that are returned. Setting <code>scale</code>
+   * to 2 returns twice as many pixels as <code>scale</code> set to 1 while retaining the same
+   * coverage area and level of detail (i.e. the contents of the map doesn't change).
+   *
+   * @param scale The scale of the static map.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest scale(int scale) {
+    return param("scale", scale);
+  }
 }
