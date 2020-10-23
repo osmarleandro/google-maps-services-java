@@ -328,7 +328,7 @@ public class StaticMapsRequest
    * @param markers A group of markers with the same style.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest markers(Markers markers) {
+  public StaticMapsRequest markers_RENAMED(Markers markers) {
     return paramAddToList("markers", markers);
   }
 

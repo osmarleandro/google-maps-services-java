@@ -135,7 +135,7 @@ public class StaticMapsApiTest {
       markers.label("A");
       markers.addLocation("Melbourne");
       markers.addLocation(SYDNEY);
-      req.markers(markers);
+      req.markers_RENAMED(markers);
       req.await();
     }
   }
@@ -177,7 +177,7 @@ public class StaticMapsApiTest {
       markers.label("A");
       markers.addLocation("Melbourne");
       markers.addLocation(SYDNEY);
-      req.markers(markers);
+      req.markers_RENAMED(markers);
 
       Path path = new Path();
       path.color("green");
@@ -210,7 +210,7 @@ public class StaticMapsApiTest {
       markers.label("A");
       markers.addLocation("Melbourne");
       markers.addLocation(SYDNEY);
-      req.markers(markers);
+      req.markers_RENAMED(markers);
 
       List<LatLng> points = new ArrayList<>();
       points.add(MELBOURNE);
@@ -239,21 +239,21 @@ public class StaticMapsApiTest {
         markers.color("blue");
         markers.label("S");
         markers.addLocation(new LatLng(40.702147, -74.015794));
-        req.markers(markers);
+        req.markers_RENAMED(markers);
       }
       {
         Markers markers = new Markers();
         markers.color("green");
         markers.label("G");
         markers.addLocation(new LatLng(40.711614, -74.012318));
-        req.markers(markers);
+        req.markers_RENAMED(markers);
       }
       {
         Markers markers = new Markers();
         markers.color("red");
         markers.label("C");
         markers.addLocation(new LatLng(40.718217, -73.998284));
-        req.markers(markers);
+        req.markers_RENAMED(markers);
       }
 
       req.await();
