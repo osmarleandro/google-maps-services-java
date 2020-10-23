@@ -414,7 +414,7 @@ public abstract class RateLimiter {
         @Override
         protected void sleepMicrosUninterruptibly(long micros) {
           if (micros > 0) {
-            sleepUninterruptibly(micros, MICROSECONDS);
+            sleepUninterruptibly_RENAMED(micros, MICROSECONDS);
           }
         }
       };
@@ -426,7 +426,7 @@ public abstract class RateLimiter {
   }
 
   /** Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly. */
-  private static void sleepUninterruptibly(long sleepFor, TimeUnit unit) {
+  private static void sleepUninterruptibly_RENAMED(long sleepFor, TimeUnit unit) {
     boolean interrupted = false;
     try {
       long remainingNanos = unit.toNanos(sleepFor);
