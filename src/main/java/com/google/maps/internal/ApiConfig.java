@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.TextSearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,18 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Returns the next 20 results from a previously run search. Setting pageToken will execute a
+   * search with the same parameters used previously — all parameters other than pageToken will be
+   * ignored.
+   *
+   * @param textSearchRequest TODO
+ * @param nextPageToken A {@code pageToken} from a prior result.
+ * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+  public TextSearchRequest pageToken(TextSearchRequest textSearchRequest, String nextPageToken) {
+    return textSearchRequest.param("pagetoken", nextPageToken);
   }
 }

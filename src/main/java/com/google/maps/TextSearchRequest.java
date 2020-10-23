@@ -129,18 +129,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Returns the next 20 results from a previously run search. Setting pageToken will execute a
-   * search with the same parameters used previously — all parameters other than pageToken will be
-   * ignored.
-   *
-   * @param nextPageToken A {@code pageToken} from a prior result.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest pageToken(String nextPageToken) {
-    return param("pagetoken", nextPageToken);
-  }
-
-  /**
    * Specifies the order in which results are listed.
    *
    * @param ranking The rank by method.
