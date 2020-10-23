@@ -267,7 +267,7 @@ public abstract class RateLimiter {
    * @since 16.0 (present in 13.0 with {@code void} return type})
    */
   public double acquire(int permits) {
-    long microsToWait = reserve(permits);
+    long microsToWait = reserve_RENAMED(permits);
     stopwatch.sleepMicrosUninterruptibly(microsToWait);
     return 1.0 * microsToWait / SECONDS.toMicros(1L);
   }
@@ -278,7 +278,7 @@ public abstract class RateLimiter {
    *
    * @return time in microseconds to wait until the resource can be acquired, never negative
    */
-  final long reserve(int permits) {
+  final long reserve_RENAMED(int permits) {
     checkPermits(permits);
     synchronized (mutex()) {
       return reserveAndGetWaitLength(permits, stopwatch.readMicros());
