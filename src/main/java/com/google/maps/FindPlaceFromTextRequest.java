@@ -106,7 +106,13 @@ public class FindPlaceFromTextRequest
     }
   }
 
-  public static class Response implements ApiResponse<FindPlaceFromText> {
+  private FindPlaceFromTextRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    FindPlaceFromTextRequest result = (FindPlaceFromTextRequest) this;
+    return result;
+  }
+
+public static class Response implements ApiResponse<FindPlaceFromText> {
 
     public String status;
     public PlacesSearchResult candidates[];

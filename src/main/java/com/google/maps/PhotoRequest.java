@@ -72,4 +72,10 @@ public class PhotoRequest
   public PhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
   }
+
+private PhotoRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    PhotoRequest result = (PhotoRequest) this;
+    return result;
+  }
 }

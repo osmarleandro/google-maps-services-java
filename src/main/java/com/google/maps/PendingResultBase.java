@@ -90,12 +90,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   protected abstract void validateRequest();
 
-  private A getInstance() {
-    @SuppressWarnings("unchecked")
-    A result = (A) this;
-    return result;
-  }
-
   protected A param(String key, String val) {
     // Enforce singleton parameter semantics for most API surfaces
     params.put(key, new ArrayList<String>());

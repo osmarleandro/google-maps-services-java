@@ -197,7 +197,13 @@ public class NearbySearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  private NearbySearchRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    NearbySearchRequest result = (NearbySearchRequest) this;
+    return result;
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

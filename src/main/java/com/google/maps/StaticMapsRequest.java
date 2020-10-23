@@ -467,4 +467,10 @@ public class StaticMapsRequest
   public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
   }
+
+private StaticMapsRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    StaticMapsRequest result = (StaticMapsRequest) this;
+    return result;
+  }
 }

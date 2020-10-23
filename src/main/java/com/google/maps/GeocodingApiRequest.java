@@ -151,4 +151,10 @@ public class GeocodingApiRequest
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
   }
+
+private GeocodingApiRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    GeocodingApiRequest result = (GeocodingApiRequest) this;
+    return result;
+  }
 }

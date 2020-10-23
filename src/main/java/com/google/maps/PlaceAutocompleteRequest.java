@@ -202,7 +202,13 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  private PlaceAutocompleteRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    PlaceAutocompleteRequest result = (PlaceAutocompleteRequest) this;
+    return result;
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

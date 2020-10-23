@@ -202,4 +202,10 @@ public class DistanceMatrixApiRequest
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
   }
+
+private DistanceMatrixApiRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    DistanceMatrixApiRequest result = (DistanceMatrixApiRequest) this;
+    return result;
+  }
 }

@@ -105,4 +105,10 @@ public class GeolocationApiRequest
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
   }
+
+private GeolocationApiRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    GeolocationApiRequest result = (GeolocationApiRequest) this;
+    return result;
+  }
 }

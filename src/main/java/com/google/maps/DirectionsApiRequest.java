@@ -353,7 +353,13 @@ public class DirectionsApiRequest
     return "place_id:" + placeId;
   }
 
-  public static class Waypoint {
+  private DirectionsApiRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    DirectionsApiRequest result = (DirectionsApiRequest) this;
+    return result;
+  }
+
+public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;
     /** Whether this waypoint is a stopover waypoint. */

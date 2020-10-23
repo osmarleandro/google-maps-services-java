@@ -179,7 +179,13 @@ public class TextSearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  private TextSearchRequest getInstance() {
+    @SuppressWarnings("unchecked")
+    TextSearchRequest result = (TextSearchRequest) this;
+    return result;
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];
