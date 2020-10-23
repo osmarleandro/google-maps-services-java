@@ -56,7 +56,7 @@ import org.junit.Test;
 
 public class PlacesApiTest {
 
-  private static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
+  public static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
   private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
   private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
@@ -71,7 +71,7 @@ public class PlacesApiTest {
   private final String textSearchResponseBody;
   private final String textSearchPizzaInNYCbody;
   private final String placesApiTextSearch;
-  private final String placesApiPhoto;
+  public final String placesApiPhoto;
   private final String placesApiPizzaInNewYork;
   private final String placesApiDetailsInFrench;
   private final String placesApiNearbySearchRequestByKeyword;
@@ -723,23 +723,6 @@ public class PlacesApiTest {
       assertEquals("5, 48 Pirrama Rd, Pyrmont NSW 2009, Australia", result.formattedAddress);
       assertEquals("ChIJN1t_tDeuEmsRUsoyG83frY4", result.placeId);
       assertEquals("OPERATIONAL", result.businessStatus);
-    }
-  }
-
-  @Test
-  public void testPhoto() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
-
-      sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
-
-      assertNotNull(placeDetails.toString());
-      assertEquals(10, placeDetails.photos.length);
-      assertEquals(
-          "CmRaAAAA-N3w5YTMXWautuDW7IZgX9knz_2fNyyUpCWpvYdVEVb8RurBiisMKvr7AFxMW8dsu2yakYoqjW-IYSFk2cylXVM_c50cCxfm7MlgjPErFxumlcW1bLNOe--SwLYmWlvkEhDxjz75xRqim-CkVlwFyp7sGhTs1fE02MZ6GQcc-TugrepSaeWapA",
-          placeDetails.photos[0].photoReference);
-      assertEquals(1365, placeDetails.photos[0].height);
-      assertEquals(2048, placeDetails.photos[0].width);
     }
   }
 

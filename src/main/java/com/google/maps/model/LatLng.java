@@ -15,10 +15,19 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +76,22 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testPhoto(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTest.placesApiPhoto)) {
+      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, PlacesApiTest.GOOGLE_SYDNEY).await();
+
+      sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
+
+      assertNotNull(placeDetails.toString());
+      assertEquals(10, placeDetails.photos.length);
+      assertEquals(
+          "CmRaAAAA-N3w5YTMXWautuDW7IZgX9knz_2fNyyUpCWpvYdVEVb8RurBiisMKvr7AFxMW8dsu2yakYoqjW-IYSFk2cylXVM_c50cCxfm7MlgjPErFxumlcW1bLNOe--SwLYmWlvkEhDxjz75xRqim-CkVlwFyp7sGhTs1fE02MZ6GQcc-TugrepSaeWapA",
+          placeDetails.photos[0].photoReference);
+      assertEquals(1365, placeDetails.photos[0].height);
+      assertEquals(2048, placeDetails.photos[0].width);
+    }
   }
 }
