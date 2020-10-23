@@ -77,7 +77,7 @@ public class PlacesApiTest {
   private final String placesApiNearbySearchRequestByKeyword;
   private final String placesApiNearbySearchRequestByName;
   private final String placesApiNearbySearchRequestByType;
-  private final String placesApiPlaceAutocomplete;
+  public final String placesApiPlaceAutocomplete;
   private final String placesApiPlaceAutocompleteWithType;
   private final String placesApiKitaWard;
   private final String findPlaceFromTextMuseumOfContemporaryArt;
@@ -875,26 +875,6 @@ public class PlacesApiTest {
           assertFalse(prediction.types[j].equals("zoo"));
         }
       }
-    }
-  }
-
-  @Test
-  public void testPlaceAutocompleteWithStrictBounds() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
-      SessionToken session = new SessionToken();
-      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
-          .location(new LatLng(37.76999, -122.44696))
-          .radius(500)
-          .strictBounds(true)
-          .await();
-
-      sc.assertParamValue("Amoeba", "input");
-      sc.assertParamValue("establishment", "types");
-      sc.assertParamValue("37.76999000,-122.44696000", "location");
-      sc.assertParamValue("500", "radius");
-      sc.assertParamValue("true", "strictbounds");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
     }
   }
 

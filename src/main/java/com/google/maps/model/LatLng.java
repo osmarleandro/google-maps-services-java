@@ -15,10 +15,16 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlaceAutocompleteRequest.SessionToken;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +73,25 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testPlaceAutocompleteWithStrictBounds(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTest.placesApiPlaceAutocomplete)) {
+      SessionToken session = new SessionToken();
+      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
+          .types(PlaceAutocompleteType.ESTABLISHMENT)
+          .location(new LatLng(37.76999, -122.44696))
+          .radius(500)
+          .strictBounds(true)
+          .await();
+
+      sc.assertParamValue("Amoeba", "input");
+      sc.assertParamValue("establishment", "types");
+      sc.assertParamValue("37.76999000,-122.44696000", "location");
+      sc.assertParamValue("500", "radius");
+      sc.assertParamValue("true", "strictbounds");
+      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+    }
   }
 }
