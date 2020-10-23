@@ -181,7 +181,7 @@ public class DirectionsApiTest {
   }
 
   @Test
-  public void testSanFranciscoToSeattleByBicycleAvoidingIndoor() throws Exception {
+  public void testSanFranciscoToSeattleByBicycleAvoidingIndoor_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
