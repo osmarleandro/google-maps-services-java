@@ -666,7 +666,7 @@ public class PlacesApiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testNearbySearchRadiusAndRankbyDistance() throws Exception {
+  public void testNearbySearchRadiusAndRankbyDistance_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
