@@ -71,7 +71,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
 
   /** Main loop. */
   @Override
-  public void run() {
+  public void run_RENAMED() {
     try {
       while (!delegate.isShutdown()) {
         this.rateLimiter.acquire();
