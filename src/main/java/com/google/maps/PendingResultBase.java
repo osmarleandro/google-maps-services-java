@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * <code>zoom</code> (required if markers not present) defines the zoom level of the map, which
+   * determines the magnification level of the map.
+   *
+   * @param zoom The zoom level of the region.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest zoom(int zoom) {
+    return param("zoom", zoom);
+  }
 }
