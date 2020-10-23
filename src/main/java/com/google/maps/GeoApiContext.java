@@ -63,10 +63,10 @@ public class GeoApiContext {
   private final String channel;
   private final String clientId;
   private final long errorTimeout;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  public final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
-  private String experienceIdHeaderValue;
+  public String experienceIdHeaderValue;
   private final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
@@ -154,7 +154,7 @@ public class GeoApiContext {
   /**
    * Sets the value for the HTTP header field name {@link HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} to
    * be used on subsequent API calls. Calling this method with {@code null} is equivalent to calling
-   * {@link #clearExperienceId()}.
+   * {@link #MISSING()}.
    *
    * @param experienceId The experience ID if set, otherwise null
    */
@@ -169,14 +169,6 @@ public class GeoApiContext {
   /** @return Returns the experience ID if set, otherwise, null */
   public String getExperienceId() {
     return experienceIdHeaderValue;
-  }
-
-  /**
-   * Clears the experience ID if set the HTTP header field {@link
-   * HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} will be omitted from subsequent calls.
-   */
-  public void clearExperienceId() {
-    experienceIdHeaderValue = null;
   }
 
   /**

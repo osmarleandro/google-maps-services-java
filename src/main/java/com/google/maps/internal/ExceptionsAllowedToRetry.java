@@ -15,6 +15,7 @@
 
 package com.google.maps.internal;
 
+import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import java.util.HashSet;
 
@@ -36,5 +37,14 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
 
     sb.append(']');
     return sb.toString();
+  }
+
+/**
+   * Clears the experience ID if set the HTTP header field {@link
+   * HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} will be omitted from subsequent calls.
+ * @param geoApiContext TODO
+   */
+  public void clearExperienceId(GeoApiContext geoApiContext) {
+    geoApiContext.experienceIdHeaderValue = null;
   }
 }
