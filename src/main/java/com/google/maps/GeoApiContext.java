@@ -280,7 +280,7 @@ public class GeoApiContext {
       hostName = baseUrlOverride;
     }
 
-    return requestHandler.handlePost(
+    return requestHandler.handlePost_RENAMED(
         hostName,
         url.toString(),
         params.get("_payload").get(0),
