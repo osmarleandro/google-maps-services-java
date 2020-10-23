@@ -343,16 +343,6 @@ public class DirectionsApiRequest
     return param("traffic_model", trafficModel);
   }
 
-  /**
-   * Helper method for prefixing a Place ID, as specified by the API.
-   *
-   * @param placeId The Place ID to be prefixed.
-   * @return Returns the Place ID prefixed with {@code place_id:}.
-   */
-  public String prefixPlaceId(String placeId) {
-    return "place_id:" + placeId;
-  }
-
   public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;

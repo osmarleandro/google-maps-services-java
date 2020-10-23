@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * Helper method for prefixing a Place ID, as specified by the API.
+   *
+   * @param placeId The Place ID to be prefixed.
+   * @return Returns the Place ID prefixed with {@code place_id:}.
+   */
+public String prefixPlaceId(String placeId) {
+    return "place_id:" + placeId;
+  }
 }
