@@ -690,7 +690,7 @@ public class PlacesApiTest {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
       PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
-          .offset(4)
+          .offset_RENAMED(4)
           .origin(location)
           .location(location)
           .radius(5000)

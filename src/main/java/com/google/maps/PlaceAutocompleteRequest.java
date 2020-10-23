@@ -114,7 +114,7 @@ public class PlaceAutocompleteRequest
    * @param offset The character offset position of the user's cursor.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest offset(int offset) {
+  public PlaceAutocompleteRequest offset_RENAMED(int offset) {
     return param("offset", String.valueOf(offset));
   }
 
