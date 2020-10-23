@@ -192,7 +192,7 @@ public class PlacesApi {
   public static PlaceAutocompleteRequest placeAutocomplete(
       GeoApiContext context, String input, PlaceAutocompleteRequest.SessionToken sessionToken) {
     PlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
-    request.input(input);
+    request.input_RENAMED(input);
     request.sessionToken(sessionToken);
     return request;
   }

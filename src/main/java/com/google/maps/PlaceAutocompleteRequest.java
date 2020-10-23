@@ -101,7 +101,7 @@ public class PlaceAutocompleteRequest
    * @param input The input text to autocomplete.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest input(String input) {
+  public PlaceAutocompleteRequest input_RENAMED(String input) {
     return param("input", input);
   }
 
