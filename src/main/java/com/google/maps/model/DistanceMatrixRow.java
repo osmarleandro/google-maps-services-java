@@ -29,7 +29,7 @@ public class DistanceMatrixRow implements Serializable {
   public DistanceMatrixElement[] elements;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("[DistanceMatrixRow %d elements]", elements.length);
   }
 }
