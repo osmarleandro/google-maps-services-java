@@ -17,6 +17,8 @@ package com.google.maps.model;
 
 import java.io.Serializable;
 
+import com.google.maps.GeolocationApiRequest;
+
 /**
  * A WiFi access point.
  *
@@ -82,7 +84,12 @@ public class WifiAccessPoint implements Serializable {
     return sb.toString();
   }
 
-  public static class WifiAccessPointBuilder {
+  public GeolocationApiRequest AddWifiAccessPoint(GeolocationApiRequest geolocationApiRequest) {
+    geolocationApiRequest.builder.AddWifiAccessPoint(this);
+    return geolocationApiRequest;
+  }
+
+public static class WifiAccessPointBuilder {
     private String _macAddress = null;
     private Integer _signalStrength = null;
     private Integer _age = null;

@@ -55,36 +55,36 @@ public class GeolocationApiTest {
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(260)
-              .RadioType("gsm")
-              .Carrier("T-Mobile")
-              .AddCellTower(
-                  new CellTower.CellTowerBuilder()
-                      .CellId(39627456)
-                      .LocationAreaCode(40495)
-                      .MobileCountryCode(310)
-                      .MobileNetworkCode(260)
-                      .Age(0)
-                      .SignalStrength(-95)
-                      .createCellTower())
+          new WifiAccessPoint.WifiAccessPointBuilder()
+		      .MacAddress("01:23:45:67:89:AC")
+		      .SignalStrength(4)
+		      .SignalToNoiseRatio(4)
+		      .Age(0)
+		      .createWifiAccessPoint()
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("01:23:45:67:89:AB")
-                      .SignalStrength(-65)
-                      .SignalToNoiseRatio(8)
-                      .Channel(8)
-                      .Age(0)
-                      .createWifiAccessPoint())
-              .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("01:23:45:67:89:AC")
-                      .SignalStrength(4)
-                      .SignalToNoiseRatio(4)
-                      .Age(0)
-                      .createWifiAccessPoint())
+				      .MacAddress("01:23:45:67:89:AB")
+				      .SignalStrength(-65)
+				      .SignalToNoiseRatio(8)
+				      .Channel(8)
+				      .Age(0)
+				      .createWifiAccessPoint()
+				      .AddWifiAccessPoint(
+				          GeolocationApi.newRequest(sc.context)
+						      .ConsiderIp(false)
+						      .HomeMobileCountryCode(310)
+						      .HomeMobileNetworkCode(260)
+						      .RadioType("gsm")
+						      .Carrier("T-Mobile")
+						      .AddCellTower(
+						          new CellTower.CellTowerBuilder()
+						              .CellId(39627456)
+						              .LocationAreaCode(40495)
+						              .MobileCountryCode(310)
+						              .MobileNetworkCode(260)
+						              .Age(0)
+						              .SignalStrength(-95)
+						              .createCellTower())))
               .CreatePayload()
               .await();
 
@@ -106,16 +106,16 @@ public class GeolocationApiTest {
   public void testMinimumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          new WifiAccessPoint.WifiAccessPointBuilder()
+		      .MacAddress("94:b4:0f:ff:6b:10")
+		      .createWifiAccessPoint()
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("94:b4:0f:ff:6b:11")
-                      .createWifiAccessPoint())
-              .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("94:b4:0f:ff:6b:10")
-                      .createWifiAccessPoint())
+				      .MacAddress("94:b4:0f:ff:6b:11")
+				      .createWifiAccessPoint()
+				      .AddWifiAccessPoint(
+				          GeolocationApi.newRequest(sc.context)
+						      .ConsiderIp(false)))
               .CreatePayload()
               .await();
 
@@ -136,20 +136,20 @@ public class GeolocationApiTest {
   public void testBasicGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
+          new WifiAccessPoint.WifiAccessPointBuilder()
+		      .MacAddress("94:b4:0f:ff:6b:11")
+		      .SignalStrength(-55)
+		      .SignalToNoiseRatio(55)
+		      .createWifiAccessPoint()
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("92:68:c3:f8:76:47")
-                      .SignalStrength(-42)
-                      .SignalToNoiseRatio(68)
-                      .createWifiAccessPoint())
-              .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("94:b4:0f:ff:6b:11")
-                      .SignalStrength(-55)
-                      .SignalToNoiseRatio(55)
-                      .createWifiAccessPoint())
+				      .MacAddress("92:68:c3:f8:76:47")
+				      .SignalStrength(-42)
+				      .SignalToNoiseRatio(68)
+				      .createWifiAccessPoint()
+				      .AddWifiAccessPoint(
+				          GeolocationApi.newRequest(sc.context)
+						      .ConsiderIp(false)))
               .CreatePayload()
               .await();
 
@@ -211,28 +211,28 @@ public class GeolocationApiTest {
   public void testMaximumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
       GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .HomeMobileCountryCode(310)
-              .HomeMobileNetworkCode(410)
-              .RadioType("gsm")
-              .Carrier("Vodafone")
+          new WifiAccessPoint.WifiAccessPointBuilder()
+		      .MacAddress("94:b4:0f:ff:88:30")
+		      .SignalStrength(-64)
+		      .SignalToNoiseRatio(46)
+		      .Channel(40)
+		      .Age(0)
+		      .createWifiAccessPoint()
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("94:b4:0f:ff:88:31")
-                      .SignalStrength(-61)
-                      .SignalToNoiseRatio(49)
-                      .Channel(40)
-                      .Age(0)
-                      .createWifiAccessPoint())
-              .AddWifiAccessPoint(
-                  new WifiAccessPoint.WifiAccessPointBuilder()
-                      .MacAddress("94:b4:0f:ff:88:30")
-                      .SignalStrength(-64)
-                      .SignalToNoiseRatio(46)
-                      .Channel(40)
-                      .Age(0)
-                      .createWifiAccessPoint())
+				      .MacAddress("94:b4:0f:ff:88:31")
+				      .SignalStrength(-61)
+				      .SignalToNoiseRatio(49)
+				      .Channel(40)
+				      .Age(0)
+				      .createWifiAccessPoint()
+				      .AddWifiAccessPoint(
+				          GeolocationApi.newRequest(sc.context)
+						      .ConsiderIp(false)
+						      .HomeMobileCountryCode(310)
+						      .HomeMobileNetworkCode(410)
+						      .RadioType("gsm")
+						      .Carrier("Vodafone")))
               .CreatePayload()
               .await();
 
