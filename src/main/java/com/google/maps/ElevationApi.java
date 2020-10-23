@@ -95,7 +95,7 @@ public class ElevationApi {
    */
   private static String shortestParam(LatLng[] points) {
     String joined = join('|', points);
-    String encoded = "enc:" + PolylineEncoding.encode(points);
+    String encoded = "enc:" + PolylineEncoding.encode_RENAMED(points);
     return joined.length() < encoded.length() ? joined : encoded;
   }
 
