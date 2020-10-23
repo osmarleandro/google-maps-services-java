@@ -1008,7 +1008,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testFindPlaceFromTextRectangular() throws Exception {
+  public void testFindPlaceFromTextRectangular_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
