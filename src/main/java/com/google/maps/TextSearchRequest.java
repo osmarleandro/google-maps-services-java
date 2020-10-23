@@ -33,7 +33,7 @@ import com.google.maps.model.RankBy;
 public class TextSearchRequest
     extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/textsearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -72,19 +72,6 @@ public class TextSearchRequest
    */
   public TextSearchRequest region(String region) {
     return param("region", region);
-  }
-
-  /**
-   * Specifies the distance (in meters) within which to bias place results.
-   *
-   * @param radius The radius of the search bias.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest radius(int radius) {
-    if (radius > 50000) {
-      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
-    }
-    return param("radius", String.valueOf(radius));
   }
 
   /**

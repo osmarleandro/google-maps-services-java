@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.TextSearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,19 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Specifies the distance (in meters) within which to bias place results.
+   *
+   * @param textSearchRequest TODO
+ * @param radius The radius of the search bias.
+ * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+  public TextSearchRequest radius(TextSearchRequest textSearchRequest, int radius) {
+    if (radius > 50000) {
+      throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
+    }
+    return textSearchRequest.param("radius", String.valueOf(radius));
   }
 }
