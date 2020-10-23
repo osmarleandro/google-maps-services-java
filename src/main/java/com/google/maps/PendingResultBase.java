@@ -19,6 +19,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.LatLng;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +172,21 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Sets the bounding box of the viewport within which to bias geocode results more prominently.
+   * This parameter will only influence, not fully restrict, results from the geocoder.
+   *
+   * <p>For more information see <a
+   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#Viewports">
+   * Viewport Biasing</a>.
+   *
+   * @param southWestBound The South West bound of the bounding box.
+   * @param northEastBound The North East bound of the bounding box.
+   * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
+    return param("bounds", join('|', southWestBound, northEastBound));
   }
 }
