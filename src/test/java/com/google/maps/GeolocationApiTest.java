@@ -59,7 +59,7 @@ public class GeolocationApiTest {
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
-              .RadioType("gsm")
+              .RadioType_RENAMED("gsm")
               .Carrier("T-Mobile")
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
@@ -215,7 +215,7 @@ public class GeolocationApiTest {
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(410)
-              .RadioType("gsm")
+              .RadioType_RENAMED("gsm")
               .Carrier("Vodafone")
               .AddWifiAccessPoint(
                   new WifiAccessPoint.WifiAccessPointBuilder()
@@ -333,7 +333,7 @@ public class GeolocationApiTest {
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
               .HomeMobileNetworkCode(260)
-              .RadioType("gsm")
+              .RadioType_RENAMED("gsm")
               .Carrier("Vodafone")
               .AddCellTower(
                   new CellTower.CellTowerBuilder()

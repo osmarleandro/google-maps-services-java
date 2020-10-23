@@ -54,7 +54,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest RadioType(String newRadioType) {
+  public GeolocationApiRequest RadioType_RENAMED(String newRadioType) {
     this.builder.RadioType(newRadioType);
     return this;
   }
