@@ -94,7 +94,7 @@ public class DirectionsApi {
   /**
    * Directions may be calculated that adhere to certain restrictions. This is configured by calling
    * {@link com.google.maps.DirectionsApiRequest#avoid} or {@link
-   * com.google.maps.DistanceMatrixApiRequest#avoid}.
+   * com.google.maps.DistanceMatrixApiRequest_RENAMED#avoid}.
    *
    * @see <a href="https://developers.google.com/maps/documentation/directions/intro#Restrictions">
    *     Restrictions in the Directions API</a>
