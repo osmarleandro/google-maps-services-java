@@ -297,7 +297,7 @@ public abstract class RateLimiter {
    * @return {@code true} if the permit was acquired, {@code false} otherwise
    * @throws IllegalArgumentException if the requested number of permits is negative or zero
    */
-  public boolean tryAcquire(long timeout, TimeUnit unit) {
+  public boolean tryAcquire_RENAMED(long timeout, TimeUnit unit) {
     return tryAcquire(1, timeout, unit);
   }
 
