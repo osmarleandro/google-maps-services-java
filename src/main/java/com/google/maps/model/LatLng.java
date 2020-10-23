@@ -15,10 +15,19 @@
 
 package com.google.maps.model;
 
+import com.google.maps.ElevationApi;
+import com.google.maps.ElevationApiTest;
+import com.google.maps.LocalTestServerContext;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+
 import java.io.Serializable;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +76,22 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testDirectionsAlongPath(ElevationApiTest elevationApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(elevationApiTest.directionsAlongPath)) {
+      ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, ElevationApiTest.SYD_MELB_ROUTE).await();
+      assertEquals(100, elevation.length);
+
+      List<LatLng> overviewPolylinePath = ElevationApiTest.SYD_MELB_ROUTE.decodePath();
+      LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
+      LatLng lastElevationPoint = elevation[elevation.length - 1].location;
+
+      LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, ElevationApiTest.EPSILON);
+
+      sc.assertParamValue("100", "samples");
+      sc.assertParamValue("enc:" + ElevationApiTest.SYD_MELB_ROUTE.getEncodedPath(), "path");
+    }
   }
 }

@@ -24,9 +24,9 @@ import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.LatLngAssert;
+
 import java.util.Collections;
-import java.util.List;
+
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -36,10 +36,10 @@ public class ElevationApiTest {
   private static final double SYDNEY_ELEVATION = 19.11174774169922;
   private static final double SYDNEY_POINT_ELEVATION = 19.10829925537109;
   private static final double MELBOURNE_ELEVATION = 25.49982643127441;
-  private static final double EPSILON = .00001;
+  public static final double EPSILON = .00001;
   private static final LatLng SYDNEY = new LatLng(-33.867487, 151.206990);
   private static final LatLng MELBOURNE = new LatLng(-37.814107, 144.963280);
-  private static final EncodedPolyline SYD_MELB_ROUTE =
+  public static final EncodedPolyline SYD_MELB_ROUTE =
       new EncodedPolyline(
           "rvumEis{y[`NsfA~tAbF`bEj^h{@{KlfA~eA~`AbmEghAt~D|e@jlRpO~yH_\\v}LjbBh~FdvCxu@`nCplDbcBf_B|w"
               + "BhIfhCnqEb~D~jCn_EngApdEtoBbfClf@t_CzcCpoEr_Gz_DxmAphDjjBxqCviEf}B|pEvsEzbE~qGfpExjBlqCx}"
@@ -57,7 +57,7 @@ public class ElevationApiTest {
               + "p`CxhCt_@loDsS|eDlmChgFlqCbjCxk@vbGxmCjbMba@rpBaoClcCk_DhgEzYdzBl\\vsA_JfGztAbShkGtEhlDzh"
               + "C~w@hnB{e@yF}`D`_Ayx@~vGqn@l}CafC");
 
-  private final String directionsAlongPath;
+  public final String directionsAlongPath;
 
   public ElevationApiTest() {
     directionsAlongPath = retrieveBody("DirectionsAlongPath.json");
@@ -256,23 +256,6 @@ public class ElevationApiTest {
 
       sc.assertParamValue("10", "samples");
       sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "path");
-    }
-  }
-
-  @Test
-  public void testDirectionsAlongPath() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
-      ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
-      assertEquals(100, elevation.length);
-
-      List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
-      LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
-      LatLng lastElevationPoint = elevation[elevation.length - 1].location;
-
-      LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
-
-      sc.assertParamValue("100", "samples");
-      sc.assertParamValue("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");
     }
   }
 }
