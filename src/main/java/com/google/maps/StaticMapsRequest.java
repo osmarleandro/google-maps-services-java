@@ -35,7 +35,7 @@ public class StaticMapsRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
     if (!((params().containsKey("center") && params().containsKey("zoom"))
         || params().containsKey("markers")
         || params().containsKey("path"))) {
