@@ -169,4 +169,17 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+protected void validateRequest() {
+    if (!((params().containsKey("center") && params().containsKey("zoom"))
+        || params().containsKey("markers")
+        || params().containsKey("path"))) {
+      throw new IllegalArgumentException(
+          "Request must contain 'center' and 'zoom' if 'markers' or 'path' aren't present.");
+    }
+    if (!params().containsKey("size")) {
+      throw new IllegalArgumentException("Request must contain 'size'.");
+    }
+  }
 }

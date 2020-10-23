@@ -34,19 +34,6 @@ public class StaticMapsRequest
     super(context, API_CONFIG, ImageResult.Response.class);
   }
 
-  @Override
-  protected void validateRequest() {
-    if (!((params().containsKey("center") && params().containsKey("zoom"))
-        || params().containsKey("markers")
-        || params().containsKey("path"))) {
-      throw new IllegalArgumentException(
-          "Request must contain 'center' and 'zoom' if 'markers' or 'path' aren't present.");
-    }
-    if (!params().containsKey("size")) {
-      throw new IllegalArgumentException("Request must contain 'size'.");
-    }
-  }
-
   /**
    * <code>center</code> (required if markers not present) defines the center of the map,
    * equidistant from all edges of the map.
