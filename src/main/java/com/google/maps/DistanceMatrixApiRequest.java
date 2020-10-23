@@ -132,7 +132,7 @@ public class DistanceMatrixApiRequest
    *     Unit systems in the Distance Matrix API</a>
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest units(Unit unit) {
+  public DistanceMatrixApiRequest units_RENAMED(Unit unit) {
     return param("units", unit);
   }
 

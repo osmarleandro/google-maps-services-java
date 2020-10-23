@@ -132,7 +132,7 @@ public class DistanceMatrixApiTest {
           .mode(TravelMode.DRIVING)
           .language("en-AU")
           .avoid(RouteRestriction.TOLLS)
-          .units(Unit.IMPERIAL)
+          .units_RENAMED(Unit.IMPERIAL)
           .departureTime(
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
           .await();
