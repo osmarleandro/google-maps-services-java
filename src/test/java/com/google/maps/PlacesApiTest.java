@@ -677,7 +677,7 @@ public class PlacesApiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType() throws Exception {
+  public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
