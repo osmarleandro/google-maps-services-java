@@ -345,7 +345,7 @@ public abstract class RateLimiter {
     long microsToWait;
     synchronized (mutex()) {
       long nowMicros = stopwatch.readMicros();
-      if (!canAcquire(nowMicros, timeoutMicros)) {
+      if (!stopwatch.canAcquire(this, nowMicros, timeoutMicros)) {
         return false;
       } else {
         microsToWait = reserveAndGetWaitLength(permits, nowMicros);
@@ -353,10 +353,6 @@ public abstract class RateLimiter {
     }
     stopwatch.sleepMicrosUninterruptibly(microsToWait);
     return true;
-  }
-
-  private boolean canAcquire(long nowMicros, long timeoutMicros) {
-    return queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
   }
 
   /**
@@ -402,7 +398,11 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    boolean canAcquire(RateLimiter rateLimiter, long nowMicros, long timeoutMicros) {
+	    return rateLimiter.queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
