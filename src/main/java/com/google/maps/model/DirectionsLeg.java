@@ -96,23 +96,6 @@ public class DirectionsLeg implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb =
-        new StringBuilder(
-            String.format(
-                "[DirectionsLeg: \"%s\" -> \"%s\" (%s -> %s)",
-                startAddress, endAddress, startLocation, endLocation));
-    if (departureTime != null) {
-      sb.append(", departureTime=").append(departureTime);
-    }
-    if (arrivalTime != null) {
-      sb.append(", arrivalTime=").append(arrivalTime);
-    }
-    if (durationInTraffic != null) {
-      sb.append(", durationInTraffic=").append(durationInTraffic);
-    }
-    sb.append(", duration=").append(duration);
-    sb.append(", distance=").append(distance);
-    sb.append(": ").append(steps.length).append(" steps]");
-    return sb.toString();
-  }
+	return distance.toString(this);
+}
 }

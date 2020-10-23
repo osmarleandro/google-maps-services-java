@@ -38,4 +38,25 @@ public class Distance implements Serializable {
   public String toString() {
     return humanReadable;
   }
+
+public String toString(DirectionsLeg directionsLeg) {
+    StringBuilder sb =
+        new StringBuilder(
+            String.format(
+                "[DirectionsLeg: \"%s\" -> \"%s\" (%s -> %s)",
+                directionsLeg.startAddress, directionsLeg.endAddress, directionsLeg.startLocation, directionsLeg.endLocation));
+    if (directionsLeg.departureTime != null) {
+      sb.append(", departureTime=").append(directionsLeg.departureTime);
+    }
+    if (directionsLeg.arrivalTime != null) {
+      sb.append(", arrivalTime=").append(directionsLeg.arrivalTime);
+    }
+    if (directionsLeg.durationInTraffic != null) {
+      sb.append(", durationInTraffic=").append(directionsLeg.durationInTraffic);
+    }
+    sb.append(", duration=").append(directionsLeg.duration);
+    sb.append(", distance=").append(this);
+    sb.append(": ").append(directionsLeg.steps.length).append(" steps]");
+    return sb.toString();
+  }
 }
