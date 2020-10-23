@@ -27,6 +27,9 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okhttp3.mockwebserver.MockResponse;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -622,5 +625,13 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	public MockResponse createMockBadResponse() {
+	    MockResponse response = new MockResponse();
+	    response.setStatus("HTTP/1.1 500 Internal server error");
+	    response.setBody("Uh-oh. Server Error.");
+	
+	    return response;
+	  }
   }
 }
