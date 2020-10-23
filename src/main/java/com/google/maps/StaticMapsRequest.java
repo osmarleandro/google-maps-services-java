@@ -77,7 +77,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest zoom(int zoom) {
-    return param("zoom", zoom);
+    return param_RENAMED("zoom", zoom);
   }
 
   /**
@@ -99,7 +99,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest scale(int scale) {
-    return param("scale", scale);
+    return param_RENAMED("scale", scale);
   }
 
   public enum ImageFormat implements UrlValue {
