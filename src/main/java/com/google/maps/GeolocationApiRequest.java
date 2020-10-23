@@ -26,7 +26,7 @@ import com.google.maps.model.WifiAccessPoint;
 public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
-  private GeolocationPayload payload = null;
+  public GeolocationPayload payload = null;
   private GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
@@ -86,11 +86,6 @@ public class GeolocationApiRequest
 
   public GeolocationApiRequest AddWifiAccessPoint(WifiAccessPoint newWifiAccessPoint) {
     this.builder.AddWifiAccessPoint(newWifiAccessPoint);
-    return this;
-  }
-
-  public GeolocationApiRequest Payload(GeolocationPayload payload) {
-    this.payload = payload;
     return this;
   }
 

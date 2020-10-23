@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.maps.GeolocationApiRequest;
+
 /**
  * Request body.
  *
@@ -107,7 +109,12 @@ public class GeolocationPayload implements Serializable {
     return sb.toString();
   }
 
-  public static class GeolocationPayloadBuilder {
+  public GeolocationApiRequest Payload(GeolocationApiRequest geolocationApiRequest) {
+    geolocationApiRequest.payload = this;
+    return geolocationApiRequest;
+  }
+
+public static class GeolocationPayloadBuilder {
     private Integer _homeMobileCountryCode = null;
     private Integer _homeMobileNetworkCode = null;
     private String _radioType = null;
