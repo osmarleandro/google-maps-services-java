@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.LatLng;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * <code>visible</code> instructs the Google Static Maps API service to construct a map such that
+   * the existing locations remain visible.
+   *
+   * @param visibleLocation The location to be made visible in the requested Static Map.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest visible(LatLng visibleLocation) {
+    return param("visible", visibleLocation);
   }
 }
