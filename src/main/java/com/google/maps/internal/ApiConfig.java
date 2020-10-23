@@ -15,7 +15,11 @@
 
 package com.google.maps.internal;
 
+import static com.google.maps.internal.StringJoin.join;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApiRequest;
+import com.google.maps.model.AddressType;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +51,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the result type. Specifying a type will restrict the results to this type. If multiple
+   * types are specified, the API will return all addresses that match any of the types.
+   *
+   * @param geocodingApiRequest TODO
+ * @param resultTypes The result types to restrict to.
+ * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+  public GeocodingApiRequest resultType(GeocodingApiRequest geocodingApiRequest, AddressType... resultTypes) {
+    return geocodingApiRequest.param("result_type", join('|', resultTypes));
   }
 }
