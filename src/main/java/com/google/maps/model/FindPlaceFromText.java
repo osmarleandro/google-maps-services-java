@@ -24,7 +24,7 @@ public class FindPlaceFromText implements Serializable {
   public PlacesSearchResult candidates[];
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("[FindPlaceFromText %d candidates]", candidates.length);
   }
 }
