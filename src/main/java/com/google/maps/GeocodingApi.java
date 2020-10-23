@@ -62,7 +62,7 @@ public class GeocodingApi {
    * @param location The location to reverse geocode.
    * @return Returns the request, ready to run.
    */
-  public static GeocodingApiRequest reverseGeocode(GeoApiContext context, LatLng location) {
+  public static GeocodingApiRequest reverseGeocode_RENAMED(GeoApiContext context, LatLng location) {
     GeocodingApiRequest request = new GeocodingApiRequest(context);
     request.latlng(location);
     return request;
