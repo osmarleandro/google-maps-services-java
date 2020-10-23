@@ -132,7 +132,7 @@ public class NearbySearchRequest
    * @param openNow Whether to restrict to places that are open.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest openNow(boolean openNow) {
+  public NearbySearchRequest openNow_RENAMED(boolean openNow) {
     return param("opennow", String.valueOf(openNow));
   }
 

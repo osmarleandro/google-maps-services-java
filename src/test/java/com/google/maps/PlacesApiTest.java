@@ -632,7 +632,7 @@ public class PlacesApiTest {
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.EXPENSIVE)
           .name("name")
-          .openNow(true)
+          .openNow_RENAMED(true)
           .type(PlaceType.AIRPORT)
           .pageToken("next-page-token")
           .await();
