@@ -21,7 +21,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.PolylineEncoding;
-import com.google.maps.model.ElevationResult;
+import com.google.maps.model.ElevationResult_RENAMED;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 
@@ -45,7 +45,7 @@ public class ElevationApi {
    * @param points The points to retrieve elevations for.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPoints(
+  public static PendingResult<ElevationResult_RENAMED[]> getByPoints(
       GeoApiContext context, LatLng... points) {
     return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
   }
@@ -59,7 +59,7 @@ public class ElevationApi {
    * @param path The path to sample.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPath(
+  public static PendingResult<ElevationResult_RENAMED[]> getByPath(
       GeoApiContext context, int samples, LatLng... path) {
     return context.get(
         API_CONFIG,
@@ -79,7 +79,7 @@ public class ElevationApi {
    * @param encodedPolyline The path to sample as an encoded polyline.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPath(
+  public static PendingResult<ElevationResult_RENAMED[]> getByPath(
       GeoApiContext context, int samples, EncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG,
@@ -106,14 +106,14 @@ public class ElevationApi {
    * @param location The location to retrieve the elevation for.
    * @return The elevation as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
+  public static PendingResult<ElevationResult_RENAMED> getByPoint(GeoApiContext context, LatLng location) {
     return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
   }
 
-  private static class SingularResponse implements ApiResponse<ElevationResult> {
+  private static class SingularResponse implements ApiResponse<ElevationResult_RENAMED> {
     public String status;
     public String errorMessage;
-    public ElevationResult[] results;
+    public ElevationResult_RENAMED[] results;
 
     @Override
     public boolean successful() {
@@ -121,7 +121,7 @@ public class ElevationApi {
     }
 
     @Override
-    public ElevationResult getResult() {
+    public ElevationResult_RENAMED getResult() {
       return results[0];
     }
 
@@ -141,16 +141,16 @@ public class ElevationApi {
    * @param encodedPolyline The encoded polyline to retrieve elevations for.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPoints(
+  public static PendingResult<ElevationResult_RENAMED[]> getByPoints(
       GeoApiContext context, EncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());
   }
 
-  private static class MultiResponse implements ApiResponse<ElevationResult[]> {
+  private static class MultiResponse implements ApiResponse<ElevationResult_RENAMED[]> {
     public String status;
     public String errorMessage;
-    public ElevationResult[] results;
+    public ElevationResult_RENAMED[] results;
 
     @Override
     public boolean successful() {
@@ -158,7 +158,7 @@ public class ElevationApi {
     }
 
     @Override
-    public ElevationResult[] getResult() {
+    public ElevationResult_RENAMED[] getResult() {
       return results;
     }
 

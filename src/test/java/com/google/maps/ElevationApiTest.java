@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
-import com.google.maps.model.ElevationResult;
+import com.google.maps.model.ElevationResult_RENAMED;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LatLngAssert;
@@ -110,7 +110,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
+      ElevationResult_RENAMED result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
 
       assertNotNull(result);
       assertNotNull(result.toString());
@@ -146,7 +146,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPoints(sc.context, SYDNEY, MELBOURNE).await();
+      ElevationResult_RENAMED[] results = ElevationApi.getByPoints(sc.context, SYDNEY, MELBOURNE).await();
 
       assertNotNull(results);
       assertEquals(2, results.length);
@@ -247,7 +247,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
+      ElevationResult_RENAMED[] results = ElevationApi.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
 
       assertNotNull(results);
       assertEquals(10, results.length);
@@ -262,7 +262,7 @@ public class ElevationApiTest {
   @Test
   public void testDirectionsAlongPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
-      ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
+      ElevationResult_RENAMED[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
 
       List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
