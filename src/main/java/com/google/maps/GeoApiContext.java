@@ -27,6 +27,11 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okhttp3.mockwebserver.RecordedRequest;
+
+import static org.junit.Assert.assertEquals;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -36,6 +41,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -622,5 +629,12 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@Test
+	  public void testExperienceIdIsInHeader(GeoApiContextTest geoApiContextTest) throws Exception {
+	    final String experienceId = "exp1";
+	    final RecordedRequest request = geoApiContextTest.makeMockRequest(experienceId);
+	    assertEquals(experienceId, request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID));
+	  }
   }
 }
