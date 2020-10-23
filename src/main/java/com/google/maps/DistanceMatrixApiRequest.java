@@ -37,7 +37,7 @@ public class DistanceMatrixApiRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
     if (!params().containsKey("origins")) {
       throw new IllegalArgumentException("Request must contain 'origins'");
     }
