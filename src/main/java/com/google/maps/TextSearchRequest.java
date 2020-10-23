@@ -21,7 +21,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
-import com.google.maps.model.PlacesSearchResponse;
+import com.google.maps.model.PlacesSearchResponse_RENAMED;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
@@ -31,7 +31,7 @@ import com.google.maps.model.RankBy;
  * Search</a> request.
  */
 public class TextSearchRequest
-    extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
+    extends PendingResultBase<PlacesSearchResponse_RENAMED, TextSearchRequest, TextSearchRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/textsearch/json")
@@ -179,7 +179,7 @@ public class TextSearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  public static class Response implements ApiResponse<PlacesSearchResponse_RENAMED> {
 
     public String status;
     public String htmlAttributions[];
@@ -193,8 +193,8 @@ public class TextSearchRequest
     }
 
     @Override
-    public PlacesSearchResponse getResult() {
-      PlacesSearchResponse result = new PlacesSearchResponse();
+    public PlacesSearchResponse_RENAMED getResult() {
+      PlacesSearchResponse_RENAMED result = new PlacesSearchResponse_RENAMED();
       result.htmlAttributions = htmlAttributions;
       result.results = results;
       result.nextPageToken = nextPageToken;

@@ -23,7 +23,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
-import com.google.maps.model.PlacesSearchResponse;
+import com.google.maps.model.PlacesSearchResponse_RENAMED;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
@@ -34,7 +34,7 @@ import com.google.maps.model.RankBy;
  */
 public class NearbySearchRequest
     extends PendingResultBase<
-        PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
+        PlacesSearchResponse_RENAMED, NearbySearchRequest, NearbySearchRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
@@ -197,7 +197,7 @@ public class NearbySearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  public static class Response implements ApiResponse<PlacesSearchResponse_RENAMED> {
 
     public String status;
     public String htmlAttributions[];
@@ -211,8 +211,8 @@ public class NearbySearchRequest
     }
 
     @Override
-    public PlacesSearchResponse getResult() {
-      PlacesSearchResponse result = new PlacesSearchResponse();
+    public PlacesSearchResponse_RENAMED getResult() {
+      PlacesSearchResponse_RENAMED result = new PlacesSearchResponse_RENAMED();
       result.htmlAttributions = htmlAttributions;
       result.results = results;
       result.nextPageToken = nextPageToken;
