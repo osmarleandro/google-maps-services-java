@@ -117,7 +117,7 @@ public class DirectionsApiTest {
   }
 
   @Test
-  public void testResponseTimesArePopulatedCorrectly() throws Exception {
+  public void testResponseTimesArePopulatedCorrectly_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(responseTimesArePopulatedCorrectly)) {
       DirectionsResult result =
