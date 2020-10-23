@@ -693,7 +693,7 @@ public class PlacesApiTest {
           .offset(4)
           .origin(location)
           .location(location)
-          .radius(5000)
+          .radius_RENAMED(5000)
           .types(PlaceAutocompleteType.ESTABLISHMENT)
           .components(ComponentFilter.country("AU"))
           .await();
@@ -885,7 +885,7 @@ public class PlacesApiTest {
       PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
           .types(PlaceAutocompleteType.ESTABLISHMENT)
           .location(new LatLng(37.76999, -122.44696))
-          .radius(500)
+          .radius_RENAMED(500)
           .strictBounds(true)
           .await();
 

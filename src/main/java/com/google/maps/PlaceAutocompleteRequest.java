@@ -147,7 +147,7 @@ public class PlaceAutocompleteRequest
    * @param radius The radius over which to bias results.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest radius(int radius) {
+  public PlaceAutocompleteRequest radius_RENAMED(int radius) {
     return param("radius", String.valueOf(radius));
   }
 
