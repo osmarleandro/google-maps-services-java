@@ -32,9 +32,9 @@ import com.google.maps.model.RankBy;
  * A <a href="https://developers.google.com/places/web-service/search#PlaceSearchRequests">Nearby
  * Search</a> request.
  */
-public class NearbySearchRequest
+public class NearbySearchRequest_RENAMED
     extends PendingResultBase<
-        PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
+        PlacesSearchResponse, NearbySearchRequest_RENAMED, NearbySearchRequest_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
@@ -45,7 +45,7 @@ public class NearbySearchRequest
    *
    * @param context The {@code GeoApiContext} to make requests through.
    */
-  public NearbySearchRequest(GeoApiContext context) {
+  public NearbySearchRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);
   }
 
@@ -55,7 +55,7 @@ public class NearbySearchRequest
    * @param location The location to use as the center of the Nearby Search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest location(LatLng location) {
+  public NearbySearchRequest_RENAMED location(LatLng location) {
     return param("location", location);
   }
 
@@ -67,7 +67,7 @@ public class NearbySearchRequest
    * @param distance The distance in meters around the {@link #location(LatLng)} to search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest radius(int distance) {
+  public NearbySearchRequest_RENAMED radius(int distance) {
     if (distance > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
@@ -80,7 +80,7 @@ public class NearbySearchRequest
    * @param ranking The rank by method.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest rankby(RankBy ranking) {
+  public NearbySearchRequest_RENAMED rankby(RankBy ranking) {
     return param("rankby", ranking);
   }
 
@@ -92,7 +92,7 @@ public class NearbySearchRequest
    * @param keyword The keyword to search for.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest keyword(String keyword) {
+  public NearbySearchRequest_RENAMED keyword(String keyword) {
     return param("keyword", keyword);
   }
 
@@ -102,7 +102,7 @@ public class NearbySearchRequest
    * @param priceLevel The price level to set as minimum.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest minPrice(PriceLevel priceLevel) {
+  public NearbySearchRequest_RENAMED minPrice(PriceLevel priceLevel) {
     return param("minprice", priceLevel);
   }
 
@@ -112,7 +112,7 @@ public class NearbySearchRequest
    * @param priceLevel The price level to set as maximum.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
+  public NearbySearchRequest_RENAMED maxPrice(PriceLevel priceLevel) {
     return param("maxprice", priceLevel);
   }
 
@@ -122,7 +122,7 @@ public class NearbySearchRequest
    * @param name Search for Places with this name.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest name(String name) {
+  public NearbySearchRequest_RENAMED name(String name) {
     return param("name", name);
   }
 
@@ -132,7 +132,7 @@ public class NearbySearchRequest
    * @param openNow Whether to restrict to places that are open.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest openNow(boolean openNow) {
+  public NearbySearchRequest_RENAMED openNow(boolean openNow) {
     return param("opennow", String.valueOf(openNow));
   }
 
@@ -144,7 +144,7 @@ public class NearbySearchRequest
    * @param nextPageToken The page token from a previous result.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest pageToken(String nextPageToken) {
+  public NearbySearchRequest_RENAMED pageToken(String nextPageToken) {
     return param("pagetoken", nextPageToken);
   }
 
@@ -154,7 +154,7 @@ public class NearbySearchRequest
    * @param type The {@link PlaceType} to restrict results to.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest type(PlaceType type) {
+  public NearbySearchRequest_RENAMED type(PlaceType type) {
     return param("type", type);
   }
 
@@ -167,7 +167,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   @Deprecated
-  public NearbySearchRequest type(PlaceType... types) {
+  public NearbySearchRequest_RENAMED type(PlaceType... types) {
     return param("type", join('|', types));
   }
 
