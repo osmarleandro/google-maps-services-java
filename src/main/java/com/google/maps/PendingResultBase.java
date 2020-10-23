@@ -169,4 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+/**
+   * The text input specifying which place to search for (for example, a name, address, or phone
+   * number).
+   *
+   * @param input The text input.
+   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
+   */
+public FindPlaceFromTextRequest input(String input) {
+    return param("input", input);
+  }
 }
