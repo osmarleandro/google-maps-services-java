@@ -852,7 +852,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceAutocompleteWithType() throws Exception {
+  public void testPlaceAutocompleteWithType_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiPlaceAutocompleteWithType)) {
       SessionToken session = new SessionToken();
