@@ -353,7 +353,18 @@ public class DirectionsApiRequest
     return "place_id:" + placeId;
   }
 
-  public static class Waypoint {
+  /**
+   * Custom parameter. For advanced usage only.
+   *
+   * @param parameter The name of the custom parameter.
+   * @param value The value of the custom parameter.
+   * @return Returns the request for call chaining.
+   */
+public DirectionsApiRequest custom(String parameter, String value) {
+    return param(parameter, value);
+  }
+
+public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;
     /** Whether this waypoint is a stopover waypoint. */

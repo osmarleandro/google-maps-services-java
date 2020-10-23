@@ -202,7 +202,18 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  /**
+   * Custom parameter. For advanced usage only.
+   *
+   * @param parameter The name of the custom parameter.
+   * @param value The value of the custom parameter.
+   * @return Returns the request for call chaining.
+   */
+public PlaceAutocompleteRequest custom(String parameter, String value) {
+    return param(parameter, value);
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

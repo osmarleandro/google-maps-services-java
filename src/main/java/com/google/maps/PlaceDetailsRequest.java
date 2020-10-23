@@ -88,7 +88,18 @@ public class PlaceDetailsRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlaceDetails> {
+  /**
+   * Custom parameter. For advanced usage only.
+   *
+   * @param parameter The name of the custom parameter.
+   * @param value The value of the custom parameter.
+   * @return Returns the request for call chaining.
+   */
+public PlaceDetailsRequest custom(String parameter, String value) {
+    return param(parameter, value);
+  }
+
+public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
     public String[] htmlAttributions;

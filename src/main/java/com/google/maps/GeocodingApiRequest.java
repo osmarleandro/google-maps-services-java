@@ -151,4 +151,15 @@ public class GeocodingApiRequest
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
     return param("location_type", join('|', locationTypes));
   }
+
+/**
+   * Custom parameter. For advanced usage only.
+   *
+   * @param parameter The name of the custom parameter.
+   * @param value The value of the custom parameter.
+   * @return Returns the request for call chaining.
+   */
+public GeocodingApiRequest custom(String parameter, String value) {
+    return param(parameter, value);
+  }
 }

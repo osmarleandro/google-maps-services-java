@@ -105,4 +105,15 @@ public class GeolocationApiRequest
     String jsonPayload = gson.toJson(this.payload);
     return param("_payload", jsonPayload);
   }
+
+/**
+   * Custom parameter. For advanced usage only.
+   *
+   * @param parameter The name of the custom parameter.
+   * @param value The value of the custom parameter.
+   * @return Returns the request for call chaining.
+   */
+public GeolocationApiRequest custom(String parameter, String value) {
+    return param(parameter, value);
+  }
 }
