@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.StaticMapsRequest.StaticMapType;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * <code>maptype</code> defines the type of map to construct.
+   *
+   * @param maptype The map type of the static map.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest maptype(StaticMapType maptype) {
+    return param("maptype", maptype);
   }
 }
