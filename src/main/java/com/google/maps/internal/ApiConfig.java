@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.StaticMapsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * <code>zoom</code> (required if markers not present) defines the zoom level of the map, which
+   * determines the magnification level of the map.
+   *
+   * @param staticMapsRequest TODO
+ * @param zoom The zoom level of the region.
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest zoom(StaticMapsRequest staticMapsRequest, int zoom) {
+    return staticMapsRequest.param("zoom", zoom);
   }
 }

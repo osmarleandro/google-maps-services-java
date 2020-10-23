@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class StaticMapsRequest
     extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
 
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
+  public static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 
   public StaticMapsRequest(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);
@@ -67,17 +67,6 @@ public class StaticMapsRequest
    */
   public StaticMapsRequest center(String location) {
     return param("center", location);
-  }
-
-  /**
-   * <code>zoom</code> (required if markers not present) defines the zoom level of the map, which
-   * determines the magnification level of the map.
-   *
-   * @param zoom The zoom level of the region.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest zoom(int zoom) {
-    return param("zoom", zoom);
   }
 
   /**

@@ -51,7 +51,7 @@ public class StaticMapsApiTest {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Google Sydney");
-      req.zoom(16);
+      req.API_CONFIG.zoom(req, 16);
       ByteArrayInputStream bais = new ByteArrayInputStream(req.await().imageData);
       BufferedImage img = ImageIO.read(bais);
 
@@ -71,7 +71,7 @@ public class StaticMapsApiTest {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center(SYDNEY);
-      req.zoom(16);
+      req.API_CONFIG.zoom(req, 16);
       req.await();
 
       sc.assertParamValue("640x480", "size");
@@ -86,7 +86,7 @@ public class StaticMapsApiTest {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Sydney");
-      req.zoom(16);
+      req.API_CONFIG.zoom(req, 16);
       req.scale(2);
       req.format(ImageFormat.png32);
       req.maptype(StaticMapType.hybrid);
@@ -109,7 +109,7 @@ public class StaticMapsApiTest {
   public void testValidateRequest_noCenter() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.zoom(16);
+      req.API_CONFIG.zoom(req, 16);
       req.await();
     }
   }
@@ -161,7 +161,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, null);
       req.center("Google Sydney");
-      req.zoom(16);
+      req.API_CONFIG.zoom(req, 16);
       req.await();
     }
   }
@@ -232,7 +232,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Brooklyn Bridge, New York, NY");
-      req.zoom(13);
+      req.API_CONFIG.zoom(req, 13);
       req.maptype(StaticMapType.roadmap);
       {
         Markers markers = new Markers();
