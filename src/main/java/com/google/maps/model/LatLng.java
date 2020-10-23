@@ -15,10 +15,22 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlaceAutocompleteRequest.SessionToken;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +79,32 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testPlaceAutocompleteWithType(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc =
+        new LocalTestServerContext(placesApiTest.placesApiPlaceAutocompleteWithType)) {
+      SessionToken session = new SessionToken();
+      AutocompletePrediction[] predictions =
+          PlacesApi.placeAutocomplete(sc.context, "po", session)
+              .components(ComponentFilter.country("nz"))
+              .types(PlaceAutocompleteType.REGIONS)
+              .await();
+
+      sc.assertParamValue("po", "input");
+      sc.assertParamValue("country:nz", "components");
+      sc.assertParamValue("(regions)", "types");
+      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+
+      assertNotNull(Arrays.toString(predictions));
+      assertEquals(5, predictions.length);
+      for (AutocompletePrediction prediction : predictions) {
+        for (int j = 0; j < prediction.types.length; j++) {
+          assertFalse(prediction.types[j].equals("route"));
+          assertFalse(prediction.types[j].equals("zoo"));
+        }
+      }
+    }
   }
 }

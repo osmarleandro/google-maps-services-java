@@ -78,7 +78,7 @@ public class PlacesApiTest {
   private final String placesApiNearbySearchRequestByName;
   private final String placesApiNearbySearchRequestByType;
   private final String placesApiPlaceAutocomplete;
-  private final String placesApiPlaceAutocompleteWithType;
+  public final String placesApiPlaceAutocompleteWithType;
   private final String placesApiKitaWard;
   private final String findPlaceFromTextMuseumOfContemporaryArt;
 
@@ -848,33 +848,6 @@ public class PlacesApiTest {
 
       assertEquals(5, predictions.length);
       assertTrue(predictions[0].description.contains("Town Hall"));
-    }
-  }
-
-  @Test
-  public void testPlaceAutocompleteWithType() throws Exception {
-    try (LocalTestServerContext sc =
-        new LocalTestServerContext(placesApiPlaceAutocompleteWithType)) {
-      SessionToken session = new SessionToken();
-      AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "po", session)
-              .components(ComponentFilter.country("nz"))
-              .types(PlaceAutocompleteType.REGIONS)
-              .await();
-
-      sc.assertParamValue("po", "input");
-      sc.assertParamValue("country:nz", "components");
-      sc.assertParamValue("(regions)", "types");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
-
-      assertNotNull(Arrays.toString(predictions));
-      assertEquals(5, predictions.length);
-      for (AutocompletePrediction prediction : predictions) {
-        for (int j = 0; j < prediction.types.length; j++) {
-          assertFalse(prediction.types[j].equals("route"));
-          assertFalse(prediction.types[j].equals("zoo"));
-        }
-      }
     }
   }
 
