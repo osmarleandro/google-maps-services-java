@@ -152,7 +152,7 @@ public class StaticMapsRequest
    * @param maptype The map type of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest maptype(StaticMapType maptype) {
+  public StaticMapsRequest maptype_RENAMED(StaticMapType maptype) {
     return param("maptype", maptype);
   }
 
