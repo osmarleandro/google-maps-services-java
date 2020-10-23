@@ -28,6 +28,6 @@ public class Bounds implements Serializable {
 
   @Override
   public String toString() {
-    return String.format("[%s, %s]", northeast, southwest);
-  }
+	return northeast.toString(this);
+}
 }
