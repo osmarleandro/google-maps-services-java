@@ -311,7 +311,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       return resp.getResult();
     } else {
       ApiException e = resp.getError();
-      if (shouldRetry(e)) {
+      if (shouldRetry_RENAMED(e)) {
         return request.retry();
       } else {
         throw e;
@@ -333,7 +333,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         && (maxRetries == null || retryCounter < maxRetries);
   }
 
-  private boolean shouldRetry(ApiException exception) {
+  private boolean shouldRetry_RENAMED(ApiException exception) {
     return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
