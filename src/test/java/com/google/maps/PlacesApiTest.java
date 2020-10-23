@@ -375,7 +375,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testQueryAutocompleteRequest() throws Exception {
+  public void testQueryAutocompleteRequest_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
