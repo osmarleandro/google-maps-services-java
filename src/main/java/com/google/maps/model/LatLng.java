@@ -68,4 +68,8 @@ public class LatLng implements UrlValue, Serializable {
   public int hashCode() {
     return Objects.hash(lat, lng);
   }
+
+public String toString(SnappedPoint snappedPoint) {
+    return String.format("[%s, placeId=%s, originalIndex=%s]", this, snappedPoint.placeId, snappedPoint.originalIndex);
+  }
 }
