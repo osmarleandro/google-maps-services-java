@@ -34,8 +34,8 @@ package com.google.maps.internal.ratelimiter;
  * <p>This is a minimal port of Google Guava's com.google.common.math.LongMath, just sufficient to
  * implement the ratelimiter classes.
  */
-public final class LongMath {
-  private LongMath() {}
+public final class LongMath_RENAMED {
+  private LongMath_RENAMED() {}
 
   /**
    * Returns the sum of {@code a} and {@code b} unless it would overflow or underflow in which case
