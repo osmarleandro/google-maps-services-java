@@ -21,12 +21,12 @@ import com.google.maps.internal.ApiConfig;
  * A <a href="https://developers.google.com/places/web-service/photos#place_photo_requests">Place
  * Photo</a> request.
  */
-public class PhotoRequest
-    extends PendingResultBase<ImageResult, PhotoRequest, ImageResult.Response> {
+public class PhotoRequest_RENAMED
+    extends PendingResultBase<ImageResult, PhotoRequest_RENAMED, ImageResult.Response> {
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
 
-  public PhotoRequest(GeoApiContext context) {
+  public PhotoRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);
   }
 
@@ -47,7 +47,7 @@ public class PhotoRequest
    *     are returned from either a Place Search or Place Details request.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest photoReference(String photoReference) {
+  public PhotoRequest_RENAMED photoReference(String photoReference) {
     return param("photoreference", photoReference);
   }
 
@@ -58,7 +58,7 @@ public class PhotoRequest
    *     Photos service.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest maxHeight(int maxHeight) {
+  public PhotoRequest_RENAMED maxHeight(int maxHeight) {
     return param("maxheight", String.valueOf(maxHeight));
   }
 
@@ -69,7 +69,7 @@ public class PhotoRequest
    *     service.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest maxWidth(int maxWidth) {
+  public PhotoRequest_RENAMED maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
   }
 }
