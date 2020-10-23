@@ -54,17 +54,6 @@ public class StaticMapsRequest
    * @param location The location of the center of the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest center(LatLng location) {
-    return param("center", location);
-  }
-
-  /**
-   * <code>center</code> (required if markers not present) defines the center of the map,
-   * equidistant from all edges of the map.
-   *
-   * @param location The location of the center of the map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
   public StaticMapsRequest center(String location) {
     return param("center", location);
   }
