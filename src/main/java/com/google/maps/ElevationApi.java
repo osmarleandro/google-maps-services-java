@@ -47,7 +47,7 @@ public class ElevationApi {
    */
   public static PendingResult<ElevationResult[]> getByPoints(
       GeoApiContext context, LatLng... points) {
-    return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
+    return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam_RENAMED(points));
   }
 
   /**
@@ -67,7 +67,7 @@ public class ElevationApi {
         "samples",
         String.valueOf(samples),
         "path",
-        shortestParam(path));
+        shortestParam_RENAMED(path));
   }
 
   /**
@@ -93,7 +93,7 @@ public class ElevationApi {
   /**
    * Chooses the shortest param (only a guess, since the length is different after URL encoding).
    */
-  private static String shortestParam(LatLng[] points) {
+  private static String shortestParam_RENAMED(LatLng[] points) {
     String joined = join('|', points);
     String encoded = "enc:" + PolylineEncoding.encode(points);
     return joined.length() < encoded.length() ? joined : encoded;
