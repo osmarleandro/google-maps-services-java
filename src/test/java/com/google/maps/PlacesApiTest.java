@@ -42,7 +42,7 @@ import com.google.maps.model.Photo;
 import com.google.maps.model.PlaceAutocompleteType;
 import com.google.maps.model.PlaceDetails;
 import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
-import com.google.maps.model.PlaceType;
+import com.google.maps.model.PlaceType_RENAMED;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
@@ -465,7 +465,7 @@ public class PlacesApiTest {
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
-          .type(PlaceType.AIRPORT)
+          .type(PlaceType_RENAMED.AIRPORT)
           .await();
 
       sc.assertParamValue("Google Sydney", "query");
@@ -477,7 +477,7 @@ public class PlacesApiTest {
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
       sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.assertParamValue(PlaceType_RENAMED.AIRPORT.toString(), "type");
     }
   }
 
@@ -493,7 +493,7 @@ public class PlacesApiTest {
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
-          .type(PlaceType.AIRPORT)
+          .type(PlaceType_RENAMED.AIRPORT)
           .await();
 
       sc.assertParamValue("Google Sydney", "query");
@@ -505,7 +505,7 @@ public class PlacesApiTest {
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
       sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.assertParamValue(PlaceType_RENAMED.AIRPORT.toString(), "type");
     }
   }
 
@@ -514,14 +514,14 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(-33.866611, 151.195832);
       PlacesSearchResponse results =
-          PlacesApi.textSearchQuery(sc.context, PlaceType.ZOO)
+          PlacesApi.textSearchQuery(sc.context, PlaceType_RENAMED.ZOO)
               .location(location)
               .radius(500)
               .await();
 
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue(String.valueOf(500), "radius");
-      sc.assertParamValue(PlaceType.ZOO.toString(), "type");
+      sc.assertParamValue(PlaceType_RENAMED.ZOO.toString(), "type");
     }
   }
 
@@ -633,7 +633,7 @@ public class PlacesApiTest {
           .maxPrice(PriceLevel.EXPENSIVE)
           .name("name")
           .openNow(true)
-          .type(PlaceType.AIRPORT)
+          .type(PlaceType_RENAMED.AIRPORT)
           .pageToken("next-page-token")
           .await();
 
@@ -646,7 +646,7 @@ public class PlacesApiTest {
       sc.assertParamValue(PriceLevel.EXPENSIVE.toString(), "maxprice");
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.assertParamValue(PlaceType_RENAMED.AIRPORT.toString(), "type");
       sc.assertParamValue("next-page-token", "pagetoken");
     }
   }
@@ -657,11 +657,11 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .type(PlaceType.AIRPORT, PlaceType.BANK)
+          .type(PlaceType_RENAMED.AIRPORT, PlaceType_RENAMED.BANK)
           .await();
 
       sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString(), "type");
+      sc.assertParamValue(PlaceType_RENAMED.AIRPORT.toString() + "|" + PlaceType_RENAMED.BANK.toString(), "type");
     }
   }
 
@@ -814,11 +814,11 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType_RENAMED.BAR).await();
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
       sc.assertParamValue("10000", "radius");
-      sc.assertParamValue(PlaceType.BAR.toUrlValue(), "type");
+      sc.assertParamValue(PlaceType_RENAMED.BAR.toUrlValue(), "type");
 
       assertEquals(20, response.results.length);
     }
@@ -829,7 +829,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType_RENAMED.BAR).await();
 
       assertEquals(20, response.results.length);
       assertEquals(563, response.results[0].userRatingsTotal);

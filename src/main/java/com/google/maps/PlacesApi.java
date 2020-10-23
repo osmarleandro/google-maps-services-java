@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.maps.model.LatLng;
-import com.google.maps.model.PlaceType;
+import com.google.maps.model.PlaceType_RENAMED;
 
 /**
  * Performs a text search for places. The Google Places API enables you to get data from the same
@@ -98,7 +98,7 @@ public class PlacesApi {
    * @param type Restricts the results to places matching the specified PlaceType.
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(GeoApiContext context, PlaceType type) {
+  public static TextSearchRequest textSearchQuery(GeoApiContext context, PlaceType_RENAMED type) {
     TextSearchRequest request = new TextSearchRequest(context);
     request.type(type);
     return request;

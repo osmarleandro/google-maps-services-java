@@ -22,7 +22,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.PlaceType;
+import com.google.maps.model.PlaceType_RENAMED;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
@@ -151,10 +151,10 @@ public class NearbySearchRequest
   /**
    * Restricts the results to places matching the specified type.
    *
-   * @param type The {@link PlaceType} to restrict results to.
+   * @param type The {@link PlaceType_RENAMED} to restrict results to.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest type(PlaceType type) {
+  public NearbySearchRequest type(PlaceType_RENAMED type) {
     return param("type", type);
   }
 
@@ -163,11 +163,11 @@ public class NearbySearchRequest
    * types.
    *
    * @deprecated Multiple search types are ignored by the Places API.
-   * @param types The {@link PlaceType}s to restrict results to.
+   * @param types The {@link PlaceType_RENAMED}s to restrict results to.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   @Deprecated
-  public NearbySearchRequest type(PlaceType... types) {
+  public NearbySearchRequest type(PlaceType_RENAMED... types) {
     return param("type", join('|', types));
   }
 
