@@ -32,13 +32,8 @@ public class PhotoRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("photoreference")) {
-      throw new IllegalArgumentException("Request must contain 'photoReference'.");
-    }
-    if (!params().containsKey("maxheight") && !params().containsKey("maxwidth")) {
-      throw new IllegalArgumentException("Request must contain 'maxHeight' or 'maxWidth'.");
-    }
-  }
+	API_CONFIG.validateRequest(this);
+}
 
   /**
    * Sets the photoReference for this request.

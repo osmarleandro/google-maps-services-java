@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PhotoRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,14 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public void validateRequest(PhotoRequest photoRequest) {
+    if (!photoRequest.params().containsKey("photoreference")) {
+      throw new IllegalArgumentException("Request must contain 'photoReference'.");
+    }
+    if (!photoRequest.params().containsKey("maxheight") && !photoRequest.params().containsKey("maxwidth")) {
+      throw new IllegalArgumentException("Request must contain 'maxHeight' or 'maxWidth'.");
+    }
   }
 }
