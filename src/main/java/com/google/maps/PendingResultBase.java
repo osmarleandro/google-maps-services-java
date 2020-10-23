@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+protected void validateRequest() {
+    if (!params().containsKey("photoreference")) {
+      throw new IllegalArgumentException("Request must contain 'photoReference'.");
+    }
+    if (!params().containsKey("maxheight") && !params().containsKey("maxwidth")) {
+      throw new IllegalArgumentException("Request must contain 'maxHeight' or 'maxWidth'.");
+    }
+  }
 }
