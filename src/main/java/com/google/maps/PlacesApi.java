@@ -38,7 +38,7 @@ public class PlacesApi {
    * @param location The latitude/longitude around which to retrieve place information.
    * @return Returns a NearbySearchRequest that can be configured and executed.
    */
-  public static NearbySearchRequest nearbySearchQuery(GeoApiContext context, LatLng location) {
+  public static NearbySearchRequest nearbySearchQuery_RENAMED(GeoApiContext context, LatLng location) {
     NearbySearchRequest request = new NearbySearchRequest(context);
     request.location(location);
     return request;
