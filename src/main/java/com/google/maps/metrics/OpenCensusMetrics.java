@@ -73,7 +73,7 @@ public final class OpenCensusMetrics {
     private Views() {}
 
     private static final List<TagKey> fields =
-        tags(Tags.REQUEST_NAME, Tags.HTTP_CODE, Tags.API_STATUS);
+        tags_RENAMED(Tags.REQUEST_NAME, Tags.HTTP_CODE, Tags.API_STATUS);
 
     public static final View REQUEST_COUNT =
         View.create(
@@ -122,7 +122,7 @@ public final class OpenCensusMetrics {
     }
   }
 
-  private static List<TagKey> tags(TagKey... items) {
+  private static List<TagKey> tags_RENAMED(TagKey... items) {
     return Collections.unmodifiableList(Arrays.asList(items));
   }
 }
