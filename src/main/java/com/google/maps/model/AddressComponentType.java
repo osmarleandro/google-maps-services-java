@@ -293,11 +293,11 @@ public enum AddressComponentType {
   }
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return addressComponentType;
   }
 
   public String toCanonicalLiteral() {
-    return toString();
+    return toString_RENAMED();
   }
 }
