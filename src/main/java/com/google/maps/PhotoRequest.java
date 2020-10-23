@@ -31,7 +31,7 @@ public class PhotoRequest
   }
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
     if (!params().containsKey("photoreference")) {
       throw new IllegalArgumentException("Request must contain 'photoReference'.");
     }
