@@ -96,7 +96,7 @@ import java.util.concurrent.TimeUnit;
  * @author Dimitris Andreou
  * @since 13.0
  */
-public abstract class RateLimiter {
+public abstract class RateLimiter_RENAMED {
   /**
    * Creates a {@code RateLimiter} with the specified stable throughput, given as "permits per
    * second" (commonly referred to as <i>QPS</i>, queries per second).
@@ -112,7 +112,7 @@ public abstract class RateLimiter {
    *     permits become available per second
    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
    */
-  public static RateLimiter create(double permitsPerSecond) {
+  public static RateLimiter_RENAMED create(double permitsPerSecond) {
     /*
      * The default RateLimiter configuration can save the unused permits of up to one second. This
      * is to avoid unnecessary stalls in situations like this: A RateLimiter of 1qps, and 4 threads,
@@ -129,8 +129,8 @@ public abstract class RateLimiter {
     return create(permitsPerSecond, SleepingStopwatch.createFromSystemTimer());
   }
 
-  static RateLimiter create(double permitsPerSecond, SleepingStopwatch stopwatch) {
-    RateLimiter rateLimiter = new SmoothBursty(stopwatch, 1.0 /* maxBurstSeconds */);
+  static RateLimiter_RENAMED create(double permitsPerSecond, SleepingStopwatch stopwatch) {
+    RateLimiter_RENAMED rateLimiter = new SmoothBursty(stopwatch, 1.0 /* maxBurstSeconds */);
     rateLimiter.setRate(permitsPerSecond);
     return rateLimiter;
   }
@@ -159,19 +159,19 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero or {@code
    *     warmupPeriod} is negative
    */
-  public static RateLimiter create(double permitsPerSecond, long warmupPeriod, TimeUnit unit) {
+  public static RateLimiter_RENAMED create(double permitsPerSecond, long warmupPeriod, TimeUnit unit) {
     checkArgument(warmupPeriod >= 0, "warmupPeriod must not be negative: %s", warmupPeriod);
     return create(
         permitsPerSecond, warmupPeriod, unit, 3.0, SleepingStopwatch.createFromSystemTimer());
   }
 
-  static RateLimiter create(
+  static RateLimiter_RENAMED create(
       double permitsPerSecond,
       long warmupPeriod,
       TimeUnit unit,
       double coldFactor,
       SleepingStopwatch stopwatch) {
-    RateLimiter rateLimiter = new SmoothWarmingUp(stopwatch, warmupPeriod, unit, coldFactor);
+    RateLimiter_RENAMED rateLimiter = new SmoothWarmingUp(stopwatch, warmupPeriod, unit, coldFactor);
     rateLimiter.setRate(permitsPerSecond);
     return rateLimiter;
   }
@@ -198,7 +198,7 @@ public abstract class RateLimiter {
     return mutex;
   }
 
-  RateLimiter(SleepingStopwatch stopwatch) {
+  RateLimiter_RENAMED(SleepingStopwatch stopwatch) {
     this.stopwatch = checkNotNull(stopwatch);
   }
 
@@ -302,7 +302,7 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Acquires permits from this {@link RateLimiter} if it can be acquired immediately without delay.
+   * Acquires permits from this {@link RateLimiter_RENAMED} if it can be acquired immediately without delay.
    *
    * <p>This method is equivalent to {@code tryAcquire(permits, 0, anyUnit)}.
    *
@@ -316,7 +316,7 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Acquires a permit from this {@link RateLimiter} if it can be acquired immediately without
+   * Acquires a permit from this {@link RateLimiter_RENAMED} if it can be acquired immediately without
    * delay.
    *
    * <p>This method is equivalent to {@code tryAcquire(1)}.

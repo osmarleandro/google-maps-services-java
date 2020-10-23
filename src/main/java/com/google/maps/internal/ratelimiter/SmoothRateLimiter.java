@@ -33,7 +33,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.concurrent.TimeUnit;
 
-abstract class SmoothRateLimiter extends RateLimiter {
+abstract class SmoothRateLimiter extends RateLimiter_RENAMED {
   /*
    * How is the RateLimiter designed, and why?
    *
