@@ -19,6 +19,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.ComponentFilter;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +172,20 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Sets the component filters. Each component filter consists of a component:value pair and will
+   * fully restrict the results from the geocoder.
+   *
+   * <p>For more information see <a
+   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#ComponentFiltering">
+   * Component Filtering</a>.
+   *
+   * @param filters Component filters to apply to the request.
+   * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+public GeocodingApiRequest components(ComponentFilter... filters) {
+    return param("components", join('|', filters));
   }
 }

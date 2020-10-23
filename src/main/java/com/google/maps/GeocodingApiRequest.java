@@ -19,7 +19,6 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
-import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
@@ -113,21 +112,6 @@ public class GeocodingApiRequest
    */
   public GeocodingApiRequest region(String region) {
     return param("region", region);
-  }
-
-  /**
-   * Sets the component filters. Each component filter consists of a component:value pair and will
-   * fully restrict the results from the geocoder.
-   *
-   * <p>For more information see <a
-   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#ComponentFiltering">
-   * Component Filtering</a>.
-   *
-   * @param filters Component filters to apply to the request.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
   }
 
   /**
