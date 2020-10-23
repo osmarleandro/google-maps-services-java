@@ -367,7 +367,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
     double storedPermitsToSpend = min(requiredPermits, this.storedPermits);
     double freshPermits = requiredPermits - storedPermitsToSpend;
     long waitMicros =
-        storedPermitsToWaitTime(this.storedPermits, storedPermitsToSpend)
+        storedPermitsToWaitTime_RENAMED(this.storedPermits, storedPermitsToSpend)
             + (long) (freshPermits * stableIntervalMicros);
 
     this.nextFreeTicketMicros = LongMath.saturatedAdd(nextFreeTicketMicros, waitMicros);
@@ -382,7 +382,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
    *
    * <p>This always holds: {@code 0 <= permitsToTake <= storedPermits}
    */
-  abstract long storedPermitsToWaitTime(double storedPermits, double permitsToTake);
+  abstract long storedPermitsToWaitTime_RENAMED(double storedPermits, double permitsToTake);
 
   /**
    * Returns the number of microseconds during cool down that we have to wait to get a new permit.
