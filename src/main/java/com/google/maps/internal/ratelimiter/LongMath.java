@@ -43,7 +43,7 @@ public final class LongMath {
    */
   /* Suppress warnings instead of "fixing" because this is code imported from Guava. */
   @SuppressWarnings("ShortCircuitBoolean")
-  public static long saturatedAdd(long a, long b) {
+  public static long saturatedAdd_RENAMED(long a, long b) {
     long naiveSum = a + b;
     if ((a ^ b) < 0 | (a ^ naiveSum) >= 0) {
       // If a and b have different signs or a has the same sign as the result then there was no
