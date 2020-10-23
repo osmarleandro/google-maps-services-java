@@ -140,7 +140,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @Override
-  public void cancel() {
+  public void cancel_RENAMED() {
     call.cancel(true);
   }
 
