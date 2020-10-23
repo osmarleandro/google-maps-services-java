@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -554,7 +554,7 @@ public class GeoApiContext {
      * @return Returns this builder for call chaining.
      */
     public Builder setIfExceptionIsAllowedToRetry(
-        Class<? extends ApiException> exception, boolean allowedToRetry) {
+        Class<? extends ApiException_RENAMED> exception, boolean allowedToRetry) {
       if (allowedToRetry) {
         exceptionsAllowedToRetry.add(exception);
       } else {

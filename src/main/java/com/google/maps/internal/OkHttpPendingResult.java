@@ -22,7 +22,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
@@ -135,7 +135,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public T await() throws ApiException, IOException, InterruptedException {
+  public T await() throws ApiException_RENAMED, IOException, InterruptedException {
     // Handle sleeping for retried requests
     if (retryCounter > 0) {
       // 0.5 * (1.5 ^ i) represents an increased sleep time of 1.5x per iteration,
@@ -224,7 +224,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
   @SuppressWarnings("unchecked")
   private T parseResponse(OkHttpPendingResult<T, R> request, Response response)
-      throws ApiException, InterruptedException, IOException {
+      throws ApiException_RENAMED, InterruptedException, IOException {
     try {
       T result = parseResponseInternal(request, response);
       metrics.endRequest(null, response.code(), retryCounter);
@@ -237,7 +237,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
-      throws ApiException, InterruptedException, IOException {
+      throws ApiException_RENAMED, InterruptedException, IOException {
     if (shouldRetry(response)) {
       // since we are retrying the request we must close the response
       response.close();
@@ -310,7 +310,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       // Return successful responses
       return resp.getResult();
     } else {
-      ApiException e = resp.getError();
+      ApiException_RENAMED e = resp.getError();
       if (shouldRetry(e)) {
         return request.retry();
       } else {
@@ -319,7 +319,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     }
   }
 
-  private T retry() throws ApiException, InterruptedException, IOException {
+  private T retry() throws ApiException_RENAMED, InterruptedException, IOException {
     retryCounter++;
     LOG.info("Retrying request. Retry #" + retryCounter);
     metrics.startNetwork();
@@ -333,7 +333,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         && (maxRetries == null || retryCounter < maxRetries);
   }
 
-  private boolean shouldRetry(ApiException exception) {
+  private boolean shouldRetry(ApiException_RENAMED exception) {
     return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);

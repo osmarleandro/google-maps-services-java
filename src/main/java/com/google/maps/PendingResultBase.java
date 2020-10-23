@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
@@ -53,7 +53,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   }
 
   @Override
-  public final T await() throws ApiException, InterruptedException, IOException {
+  public final T await() throws ApiException_RENAMED, InterruptedException, IOException {
     PendingResult<T> request = makeRequest();
     return request.await();
   }

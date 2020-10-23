@@ -21,7 +21,7 @@ package com.google.maps.errors;
  * @see <a href="https://developers.google.com/maps/documentation/distance-matrix/usage-limits">
  *     Limits</a>
  */
-public class MaxElementsExceededException extends ApiException {
+public class MaxElementsExceededException extends ApiException_RENAMED {
 
   private static final long serialVersionUID = 5926526363472768479L;
 

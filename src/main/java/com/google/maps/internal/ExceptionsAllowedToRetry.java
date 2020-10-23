@@ -15,10 +15,10 @@
 
 package com.google.maps.internal;
 
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import java.util.HashSet;
 
-public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiException>> {
+public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiException_RENAMED>> {
 
   private static final long serialVersionUID = 5283992240187266422L;
 

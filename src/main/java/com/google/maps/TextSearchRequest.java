@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
@@ -202,11 +202,11 @@ public class TextSearchRequest
     }
 
     @Override
-    public ApiException getError() {
+    public ApiException_RENAMED getError() {
       if (successful()) {
         return null;
       }
-      return ApiException.from(status, errorMessage);
+      return ApiException_RENAMED.from(status, errorMessage);
     }
   }
 }

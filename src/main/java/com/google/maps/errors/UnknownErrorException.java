@@ -18,7 +18,7 @@ package com.google.maps.errors;
 /**
  * Indicates that the server encountered an unknown error. In some cases these are safe to retry.
  */
-public class UnknownErrorException extends ApiException {
+public class UnknownErrorException extends ApiException_RENAMED {
 
   private static final long serialVersionUID = -4588344280364816431L;
 

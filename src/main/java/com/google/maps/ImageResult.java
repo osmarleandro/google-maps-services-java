@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import com.google.maps.internal.ApiResponse;
 import java.io.Serializable;
 
@@ -46,7 +46,7 @@ public class ImageResult implements Serializable {
     }
 
     @Override
-    public ApiException getError() {
+    public ApiException_RENAMED getError() {
       return null;
     }
 

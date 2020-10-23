@@ -15,7 +15,7 @@
 
 package com.google.maps.internal;
 
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 
 /** All Geo API responses implement this Interface. */
 public interface ApiResponse<T> {
@@ -23,5 +23,5 @@ public interface ApiResponse<T> {
 
   T getResult();
 
-  ApiException getError();
+  ApiException_RENAMED getError();
 }

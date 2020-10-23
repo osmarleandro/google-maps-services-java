@@ -16,7 +16,7 @@
 package com.google.maps.errors;
 
 /** Indicates that the requesting account has exceeded its daily quota. */
-public class OverDailyLimitException extends ApiException {
+public class OverDailyLimitException extends ApiException_RENAMED {
 
   private static final long serialVersionUID = 9172790459877314621L;
 

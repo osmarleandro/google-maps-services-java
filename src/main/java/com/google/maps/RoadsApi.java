@@ -19,7 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiError;
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
@@ -178,8 +178,8 @@ public class RoadsApi {
     }
 
     @Override
-    public ApiException getError() {
-      return ApiException.from(error.status, error.message);
+    public ApiException_RENAMED getError() {
+      return ApiException_RENAMED.from(error.status, error.message);
     }
   }
 
@@ -198,8 +198,8 @@ public class RoadsApi {
     }
 
     @Override
-    public ApiException getError() {
-      return ApiException.from(error.status, error.message);
+    public ApiException_RENAMED getError() {
+      return ApiException_RENAMED.from(error.status, error.message);
     }
   }
 
@@ -222,8 +222,8 @@ public class RoadsApi {
     }
 
     @Override
-    public ApiException getError() {
-      return ApiException.from(error.status, error.message);
+    public ApiException_RENAMED getError() {
+      return ApiException_RENAMED.from(error.status, error.message);
     }
   }
 }

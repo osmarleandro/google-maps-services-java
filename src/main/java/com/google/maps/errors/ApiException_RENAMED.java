@@ -19,10 +19,10 @@ package com.google.maps.errors;
  * ApiException and its descendants represent an error returned by the remote API. API errors are
  * determined by the {@code status} field returned in any of the Geo API responses.
  */
-public class ApiException extends Exception {
+public class ApiException_RENAMED extends Exception {
   private static final long serialVersionUID = -6550606366694345191L;
 
-  protected ApiException(String message) {
+  protected ApiException_RENAMED(String message) {
     super(message);
   }
 
@@ -34,7 +34,7 @@ public class ApiException extends Exception {
    * @param errorMessage The error message returned from the API
    * @return The appropriate ApiException based on the status or null if no error occurred.
    */
-  public static ApiException from(String status, String errorMessage) {
+  public static ApiException_RENAMED from(String status, String errorMessage) {
     // Classic Geo API error formats
     if ("OK".equals(status)) {
       return null;

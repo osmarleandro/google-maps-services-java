@@ -26,7 +26,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException_RENAMED;
 import com.google.maps.errors.UnknownErrorException;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
@@ -113,7 +113,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   }
 
   @Override
-  public T await() throws ApiException, IOException, InterruptedException {
+  public T await() throws ApiException_RENAMED, IOException, InterruptedException {
     try {
       HTTPResponse result = call.get();
       metrics.endNetwork();
@@ -146,7 +146,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
 
   @SuppressWarnings("unchecked")
   private T parseResponse(GaePendingResult<T, R> request, HTTPResponse response)
-      throws IOException, ApiException, InterruptedException {
+      throws IOException, ApiException_RENAMED, InterruptedException {
     try {
       T result = parseResponseInternal(request, response);
       metrics.endRequest(null, response.getResponseCode(), retryCounter);
@@ -159,7 +159,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
 
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(GaePendingResult<T, R> request, HTTPResponse response)
-      throws IOException, ApiException, InterruptedException {
+      throws IOException, ApiException_RENAMED, InterruptedException {
     if (shouldRetry(response)) {
       // Retry is a blocking method, but that's OK. If we're here, we're either in an await()
       // call, which is blocking anyway, or we're handling a callback in a separate thread.
@@ -231,7 +231,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       // Return successful responses
       return resp.getResult();
     } else {
-      ApiException e = resp.getError();
+      ApiException_RENAMED e = resp.getError();
       if (shouldRetry(e)) {
         // Retry over_query_limit errors
         return request.retry();
@@ -242,7 +242,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     }
   }
 
-  private T retry() throws IOException, ApiException, InterruptedException {
+  private T retry() throws IOException, ApiException_RENAMED, InterruptedException {
     retryCounter++;
     LOG.info("Retrying request. Retry #{}", retryCounter);
     metrics.startNetwork();
@@ -256,7 +256,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
         && (maxRetries == null || retryCounter < maxRetries);
   }
 
-  private boolean shouldRetry(ApiException exception) {
+  private boolean shouldRetry(ApiException_RENAMED exception) {
     return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
