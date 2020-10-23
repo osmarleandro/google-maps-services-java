@@ -106,7 +106,7 @@ public class StaticMapsApiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testValidateRequest_noCenter() throws Exception {
+  public void testValidateRequest_noCenter_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.zoom(16);
