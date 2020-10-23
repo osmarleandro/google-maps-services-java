@@ -46,7 +46,7 @@ public class GeolocationPayload implements Serializable {
       String _radioType,
       String _carrier,
       Boolean _considerIp,
-      CellTower[] _cellTowers,
+      CellTower_RENAMED[] _cellTowers,
       WifiAccessPoint[] _wifiAccessPoints) {
     homeMobileCountryCode = _homeMobileCountryCode;
     homeMobileNetworkCode = _homeMobileNetworkCode;
@@ -74,8 +74,8 @@ public class GeolocationPayload implements Serializable {
    * Defaults to true. Set considerIp to false to disable fall back.
    */
   public Boolean considerIp = null;
-  /** An array of cell tower objects. See {@link com.google.maps.model.CellTower}. */
-  public CellTower[] cellTowers;
+  /** An array of cell tower objects. See {@link com.google.maps.model.CellTower_RENAMED}. */
+  public CellTower_RENAMED[] cellTowers;
   /** An array of WiFi access point objects. See {@link com.google.maps.model.WifiAccessPoint}. */
   public WifiAccessPoint[] wifiAccessPoints;
 
@@ -113,8 +113,8 @@ public class GeolocationPayload implements Serializable {
     private String _radioType = null;
     private String _carrier = null;
     private Boolean _considerIp = null;
-    private CellTower[] _cellTowers = null;
-    private List<CellTower> _addedCellTowers = new ArrayList<>();
+    private CellTower_RENAMED[] _cellTowers = null;
+    private List<CellTower_RENAMED> _addedCellTowers = new ArrayList<>();
     private WifiAccessPoint[] _wifiAccessPoints = null;
     private List<WifiAccessPoint> _addedWifiAccessPoints = new ArrayList<>();
 
@@ -127,7 +127,7 @@ public class GeolocationPayload implements Serializable {
 
       // same logic as above for cell towers
       if (!_addedCellTowers.isEmpty()) {
-        _cellTowers = _addedCellTowers.toArray(new CellTower[0]);
+        _cellTowers = _addedCellTowers.toArray(new CellTower_RENAMED[0]);
       }
 
       return new GeolocationPayload(
@@ -165,12 +165,12 @@ public class GeolocationPayload implements Serializable {
       return this;
     }
 
-    public GeolocationPayloadBuilder CellTowers(CellTower[] newCellTowers) {
+    public GeolocationPayloadBuilder CellTowers(CellTower_RENAMED[] newCellTowers) {
       this._cellTowers = newCellTowers;
       return this;
     }
 
-    public GeolocationPayloadBuilder AddCellTower(CellTower newCellTower) {
+    public GeolocationPayloadBuilder AddCellTower(CellTower_RENAMED newCellTower) {
       this._addedCellTowers.add(newCellTower);
       return this;
     }

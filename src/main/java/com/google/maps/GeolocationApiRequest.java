@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.Gson;
-import com.google.maps.model.CellTower;
+import com.google.maps.model.CellTower_RENAMED;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationPayload.GeolocationPayloadBuilder;
 import com.google.maps.model.GeolocationResult;
@@ -69,12 +69,12 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest CellTowers(CellTower[] newCellTowers) {
+  public GeolocationApiRequest CellTowers(CellTower_RENAMED[] newCellTowers) {
     this.builder.CellTowers(newCellTowers);
     return this;
   }
 
-  public GeolocationApiRequest AddCellTower(CellTower newCellTower) {
+  public GeolocationApiRequest AddCellTower(CellTower_RENAMED newCellTower) {
     this.builder.AddCellTower(newCellTower);
     return this;
   }

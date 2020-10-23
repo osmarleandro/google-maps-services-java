@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
-import com.google.maps.model.CellTower;
+import com.google.maps.model.CellTower_RENAMED;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
 import com.google.maps.model.WifiAccessPoint;
@@ -62,7 +62,7 @@ public class GeolocationApiTest {
               .RadioType("gsm")
               .Carrier("T-Mobile")
               .AddCellTower(
-                  new CellTower.CellTowerBuilder()
+                  new CellTower_RENAMED.CellTowerBuilder()
                       .CellId(39627456)
                       .LocationAreaCode(40495)
                       .MobileCountryCode(310)
@@ -270,7 +270,7 @@ public class GeolocationApiTest {
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .AddCellTower(
-                  new CellTower.CellTowerBuilder()
+                  new CellTower_RENAMED.CellTowerBuilder()
                       .CellId(39627456)
                       .LocationAreaCode(40495)
                       .MobileCountryCode(310)
@@ -302,7 +302,7 @@ public class GeolocationApiTest {
           new GeolocationPayload.GeolocationPayloadBuilder()
               .ConsiderIp(false)
               .AddCellTower(
-                  new CellTower.CellTowerBuilder()
+                  new CellTower_RENAMED.CellTowerBuilder()
                       .CellId(39627456)
                       .LocationAreaCode(40495)
                       .MobileCountryCode(310)
@@ -336,7 +336,7 @@ public class GeolocationApiTest {
               .RadioType("gsm")
               .Carrier("Vodafone")
               .AddCellTower(
-                  new CellTower.CellTowerBuilder()
+                  new CellTower_RENAMED.CellTowerBuilder()
                       .CellId(39627456)
                       .LocationAreaCode(40495)
                       .MobileCountryCode(310)

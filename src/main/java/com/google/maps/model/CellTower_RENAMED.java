@@ -26,14 +26,14 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/geolocation/intro#cell_tower_object">Cell
  * Tower Object</a> for more detail.
  */
-public class CellTower implements Serializable {
+public class CellTower_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  public CellTower() {}
+  public CellTower_RENAMED() {}
 
   // constructor only used by the builder class below
-  private CellTower(
+  private CellTower_RENAMED(
       Integer _cellId,
       Integer _locationAreaCode,
       Integer _mobileCountryCode,
@@ -103,8 +103,8 @@ public class CellTower implements Serializable {
     private Integer _timingAdvance = null;
 
     // create the actual cell tower
-    public CellTower createCellTower() {
-      return new CellTower(
+    public CellTower_RENAMED createCellTower() {
+      return new CellTower_RENAMED(
           _cellId,
           _locationAreaCode,
           _mobileCountryCode,
