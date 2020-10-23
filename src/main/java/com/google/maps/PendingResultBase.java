@@ -169,4 +169,11 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+protected void validateRequest() {
+    if (!params().containsKey("placeid")) {
+      throw new IllegalArgumentException("Request must contain 'placeId'.");
+    }
+  }
 }
