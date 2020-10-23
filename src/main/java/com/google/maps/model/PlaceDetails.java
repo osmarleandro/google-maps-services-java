@@ -18,7 +18,6 @@ package com.google.maps.model;
 import java.io.Serializable;
 import java.net.URL;
 import java.time.Instant;
-import java.util.Arrays;
 
 /**
  * The result of a Place Details request. A Place Details request returns more comprehensive
@@ -232,62 +231,6 @@ public class PlaceDetails implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[PlaceDetails: ");
-    sb.append("\"").append(name).append("\"");
-    sb.append(" ").append(placeId).append(" (").append(scope).append(")");
-    sb.append(" address=\"").append(formattedAddress).append("\"");
-    sb.append(" geometry=").append(geometry);
-    if (vicinity != null) {
-      sb.append(", vicinity=").append(vicinity);
-    }
-    if (types != null && types.length > 0) {
-      sb.append(", types=").append(Arrays.toString(types));
-    }
-    if (altIds != null && altIds.length > 0) {
-      sb.append(", altIds=").append(Arrays.toString(altIds));
-    }
-    if (formattedPhoneNumber != null) {
-      sb.append(", phone=").append(formattedPhoneNumber);
-    }
-    if (internationalPhoneNumber != null) {
-      sb.append(", internationalPhoneNumber=").append(internationalPhoneNumber);
-    }
-    if (url != null) {
-      sb.append(", url=").append(url);
-    }
-    if (website != null) {
-      sb.append(", website=").append(website);
-    }
-    if (icon != null) {
-      sb.append(", icon");
-    }
-    if (openingHours != null) {
-      sb.append(", openingHours");
-      sb.append(", utcOffset=").append(utcOffset);
-    }
-    if (priceLevel != null) {
-      sb.append(", priceLevel=").append(priceLevel);
-    }
-    sb.append(", rating=").append(rating);
-    if (permanentlyClosed) {
-      sb.append(", permanentlyClosed");
-    }
-    if (userRatingsTotal > 0) {
-      sb.append(", userRatingsTotal=").append(userRatingsTotal);
-    }
-    if (photos != null && photos.length > 0) {
-      sb.append(", ").append(photos.length).append(" photos");
-    }
-    if (reviews != null && reviews.length > 0) {
-      sb.append(", ").append(reviews.length).append(" reviews");
-    }
-    if (htmlAttributions != null && htmlAttributions.length > 0) {
-      sb.append(", ").append(htmlAttributions.length).append(" htmlAttributions");
-    }
-    if (businessStatus != null) {
-      sb.append(", businessStatus=").append(businessStatus);
-    }
-    sb.append("]");
-    return sb.toString();
-  }
+	return geometry.toString(this);
+}
 }
