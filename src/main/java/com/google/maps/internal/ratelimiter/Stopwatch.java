@@ -187,7 +187,7 @@ public final class Stopwatch {
 
   /** Returns a string representation of the current elapsed time. */
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     long nanos = elapsedNanos();
 
     TimeUnit unit = chooseUnit(nanos);
