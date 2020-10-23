@@ -19,11 +19,11 @@ package com.google.maps.errors;
  * Indicates that the API call was not configured for the supplied credentials and environmental
  * conditions. Check the error message for details.
  */
-public class AccessNotConfiguredException extends ApiException {
+public class AccessNotConfiguredException_RENAMED extends ApiException {
 
   private static final long serialVersionUID = -9167434506751721386L;
 
-  public AccessNotConfiguredException(String errorMessage) {
+  public AccessNotConfiguredException_RENAMED(String errorMessage) {
     super(errorMessage);
   }
 }

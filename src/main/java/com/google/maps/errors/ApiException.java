@@ -64,7 +64,7 @@ public class ApiException extends Exception {
 
     // New-style Geo API error formats
     if ("ACCESS_NOT_CONFIGURED".equals(status)) {
-      return new AccessNotConfiguredException(errorMessage);
+      return new AccessNotConfiguredException_RENAMED(errorMessage);
     } else if ("INVALID_ARGUMENT".equals(status)) {
       return new InvalidRequestException(errorMessage);
     } else if ("RESOURCE_EXHAUSTED".equals(status)) {
@@ -75,7 +75,7 @@ public class ApiException extends Exception {
 
     // Geolocation Errors
     if ("keyInvalid".equals(status)) {
-      return new AccessNotConfiguredException(errorMessage);
+      return new AccessNotConfiguredException_RENAMED(errorMessage);
     } else if ("dailyLimitExceeded".equals(status)) {
       return new OverDailyLimitException(errorMessage);
     } else if ("userRateLimitExceeded".equals(status)) {
