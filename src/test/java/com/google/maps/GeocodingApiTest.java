@@ -513,7 +513,7 @@ public class GeocodingApiTest {
    * Geocoding Torun, with administrative area of "TX" and country of "US"</a>.
    */
   @Test
-  public void testGeocodeWithMultipleComponentFilters() throws Exception {
+  public void testGeocodeWithMultipleComponentFilters_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
