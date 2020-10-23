@@ -361,7 +361,7 @@ public class GeoApiContextTest {
 
     // set a new experience id
     final String otherExperienceId = UUID.randomUUID().toString();
-    context.setExperienceId(experienceId, otherExperienceId);
+    context.exceptionsAllowedToRetry.setExperienceId(context, experienceId, otherExperienceId);
 
     // make API request, the client will set the header
     // X-GOOG-MAPS-EXPERIENCE-ID: experienceId,otherExperienceId

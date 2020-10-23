@@ -22,7 +22,6 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
-import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
@@ -63,10 +62,10 @@ public class GeoApiContext {
   private final String channel;
   private final String clientId;
   private final long errorTimeout;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  public final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
-  private String experienceIdHeaderValue;
+  public String experienceIdHeaderValue;
   private final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
@@ -92,7 +91,7 @@ public class GeoApiContext {
     this.maxRetries = maxRetries;
     this.urlSigner = urlSigner;
     this.requestMetricsReporter = requestMetricsReporter;
-    setExperienceId(experienceIdHeaderValue);
+    exceptionsAllowedToRetry.setExperienceId(this, experienceIdHeaderValue);
   }
 
   /**
@@ -149,21 +148,6 @@ public class GeoApiContext {
 
       RequestHandler build();
     }
-  }
-
-  /**
-   * Sets the value for the HTTP header field name {@link HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} to
-   * be used on subsequent API calls. Calling this method with {@code null} is equivalent to calling
-   * {@link #clearExperienceId()}.
-   *
-   * @param experienceId The experience ID if set, otherwise null
-   */
-  public void setExperienceId(String... experienceId) {
-    if (experienceId == null || experienceId.length == 0) {
-      experienceIdHeaderValue = null;
-      return;
-    }
-    experienceIdHeaderValue = StringJoin.join(",", experienceId);
   }
 
   /** @return Returns the experience ID if set, otherwise, null */
