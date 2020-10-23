@@ -22,7 +22,6 @@ import com.google.maps.DistanceMatrixApi.Response;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
-import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
@@ -179,17 +178,6 @@ public class DistanceMatrixApiRequest
    */
   public DistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
     return param("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
-  }
-
-  /**
-   * Specifies one or more preferred modes of transit. This parameter may only be specified for
-   * requests where the mode is transit.
-   *
-   * @param transitModes The preferred transit modes.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
   }
 
   /**

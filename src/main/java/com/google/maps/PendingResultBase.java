@@ -19,6 +19,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.TransitMode;
+
+import static com.google.maps.internal.StringJoin.join;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +172,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies one or more preferred modes of transit. This parameter may only be specified for
+   * requests where the mode is transit.
+   *
+   * @param transitModes The preferred transit modes.
+   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
+    return param("transit_mode", join('|', transitModes));
   }
 }
