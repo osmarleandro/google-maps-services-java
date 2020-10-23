@@ -107,7 +107,7 @@ public class ElevationApi {
    * @return The elevation as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
-    return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
+    return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString_RENAMED());
   }
 
   private static class SingularResponse implements ApiResponse<ElevationResult> {
