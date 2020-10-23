@@ -55,17 +55,6 @@ public class FindPlaceFromTextRequest
   }
 
   /**
-   * The text input specifying which place to search for (for example, a name, address, or phone
-   * number).
-   *
-   * @param input The text input.
-   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
-   */
-  public FindPlaceFromTextRequest input(String input) {
-    return param("input", input);
-  }
-
-  /**
    * The type of input.
    *
    * @param inputType The input type.
