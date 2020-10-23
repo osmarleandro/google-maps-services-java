@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.DistanceMatrixApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.util.Locale;
 
@@ -31,5 +32,19 @@ public enum Unit implements UrlValue {
   @Override
   public String toUrlValue() {
     return name().toLowerCase(Locale.ENGLISH);
+  }
+
+/**
+   * Specifies the unit system to use when expressing distance as text. Distance Matrix results
+   * contain text within distance fields to indicate the distance of the calculated route.
+   *
+   * @param distanceMatrixApiRequest TODO
+ * @see <a
+   *     href="https://developers.google.com/maps/documentation/distance-matrix/intro#unit_systems">
+   *     Unit systems in the Distance Matrix API</a>
+   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+  public DistanceMatrixApiRequest units(DistanceMatrixApiRequest distanceMatrixApiRequest) {
+    return distanceMatrixApiRequest.param("units", this);
   }
 }

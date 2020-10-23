@@ -126,13 +126,13 @@ public class DistanceMatrixApiTest {
             "The Pinnacles, Australia"
           };
 
-      DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
-          .destinations(destinations)
-          .mode(TravelMode.DRIVING)
-          .language("en-AU")
-          .avoid(RouteRestriction.TOLLS)
-          .units(Unit.IMPERIAL)
+      Unit.IMPERIAL
+          .units(DistanceMatrixApi.newRequest(sc.context)
+		      .origins(origins)
+		      .destinations(destinations)
+		      .mode(TravelMode.DRIVING)
+		      .language("en-AU")
+		      .avoid(RouteRestriction.TOLLS))
           .departureTime(
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
           .await();
