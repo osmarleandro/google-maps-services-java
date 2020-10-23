@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.EncodedPolyline;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * The <code>path</code> parameter defines a set of one or more locations connected by a path to
+   * overlay on the map image. This variant of the method accepts the path as an EncodedPolyline.
+   *
+   * @param path A path to render atop the map, as an EncodedPolyline.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest path(EncodedPolyline path) {
+    return paramAddToList("path", "enc:" + path.getEncodedPath());
   }
 }
