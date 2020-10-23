@@ -6,7 +6,7 @@ import io.opencensus.tags.TagValue;
 import io.opencensus.tags.Tagger;
 
 /** An OpenCensus logger that generates success and latency metrics. */
-final class OpenCensusRequestMetrics implements RequestMetrics {
+final class OpenCensusRequestMetrics_RENAMED implements RequestMetrics {
   private final String requestName;
   private final Tagger tagger;
   private final StatsRecorder statsRecorder;
@@ -16,7 +16,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
   private long networkTime;
   private boolean finished;
 
-  OpenCensusRequestMetrics(String requestName, Tagger tagger, StatsRecorder statsRecorder) {
+  OpenCensusRequestMetrics_RENAMED(String requestName, Tagger tagger, StatsRecorder statsRecorder) {
     this.requestName = requestName;
     this.tagger = tagger;
     this.statsRecorder = statsRecorder;
