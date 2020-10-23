@@ -54,7 +54,7 @@ public class StaticMapsRequest
    * @param location The location of the center of the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest center(LatLng location) {
+  public StaticMapsRequest center_RENAMED(LatLng location) {
     return param("center", location);
   }
 
