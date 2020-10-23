@@ -77,7 +77,7 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest location(LatLng location) {
-    return param("location", location);
+    return param_RENAMED("location", location);
   }
 
   /**

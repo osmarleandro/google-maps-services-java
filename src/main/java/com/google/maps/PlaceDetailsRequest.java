@@ -56,7 +56,7 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest sessionToken(PlaceAutocompleteRequest.SessionToken sessionToken) {
-    return param("sessiontoken", sessionToken);
+    return param_RENAMED("sessiontoken", sessionToken);
   }
 
   /**

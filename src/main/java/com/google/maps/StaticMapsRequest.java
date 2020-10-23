@@ -55,7 +55,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest center(LatLng location) {
-    return param("center", location);
+    return param_RENAMED("center", location);
   }
 
   /**
@@ -87,7 +87,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest size(Size size) {
-    return param("size", size);
+    return param_RENAMED("size", size);
   }
 
   /**
@@ -131,7 +131,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest format(ImageFormat format) {
-    return param("format", format);
+    return param_RENAMED("format", format);
   }
 
   public enum StaticMapType implements UrlValue {
@@ -153,7 +153,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest maptype(StaticMapType maptype) {
-    return param("maptype", maptype);
+    return param_RENAMED("maptype", maptype);
   }
 
   /**
@@ -454,7 +454,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest visible(LatLng visibleLocation) {
-    return param("visible", visibleLocation);
+    return param_RENAMED("visible", visibleLocation);
   }
 
   /**

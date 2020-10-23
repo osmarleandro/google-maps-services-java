@@ -58,7 +58,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest location(LatLng location) {
-    return param("location", location);
+    return param_RENAMED("location", location);
   }
 
   /**
@@ -94,7 +94,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest minPrice(PriceLevel priceLevel) {
-    return param("minprice", priceLevel);
+    return param_RENAMED("minprice", priceLevel);
   }
 
   /**
@@ -104,7 +104,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest maxPrice(PriceLevel priceLevel) {
-    return param("maxprice", priceLevel);
+    return param_RENAMED("maxprice", priceLevel);
   }
 
   /**
@@ -147,7 +147,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest rankby(RankBy ranking) {
-    return param("rankby", ranking);
+    return param_RENAMED("rankby", ranking);
   }
 
   /**
@@ -157,7 +157,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest type(PlaceType type) {
-    return param("type", type);
+    return param_RENAMED("type", type);
   }
 
   @Override

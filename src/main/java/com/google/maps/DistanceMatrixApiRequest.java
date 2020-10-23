@@ -106,7 +106,7 @@ public class DistanceMatrixApiRequest
         || TravelMode.WALKING.equals(mode)
         || TravelMode.BICYCLING.equals(mode)
         || TravelMode.TRANSIT.equals(mode)) {
-      return param("mode", mode);
+      return param_RENAMED("mode", mode);
     }
     throw new IllegalArgumentException(
         "Distance Matrix API travel modes must be Driving, Transit, Walking or Bicycling");
@@ -119,7 +119,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest avoid(RouteRestriction restriction) {
-    return param("avoid", restriction);
+    return param_RENAMED("avoid", restriction);
   }
 
   /**
@@ -133,7 +133,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest units(Unit unit) {
-    return param("units", unit);
+    return param_RENAMED("units", unit);
   }
 
   /**
@@ -167,7 +167,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
+    return param_RENAMED("traffic_model", trafficModel);
   }
 
   /**
@@ -200,6 +200,6 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
-    return param("transit_routing_preference", pref);
+    return param_RENAMED("transit_routing_preference", pref);
   }
 }

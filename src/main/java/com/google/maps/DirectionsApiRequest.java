@@ -131,7 +131,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest mode(TravelMode mode) {
-    return param("mode", mode);
+    return param_RENAMED("mode", mode);
   }
 
   /**
@@ -151,7 +151,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest units(Unit units) {
-    return param("units", units);
+    return param_RENAMED("units", units);
   }
 
   /**
@@ -329,7 +329,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
-    return param("transit_routing_preference", pref);
+    return param_RENAMED("transit_routing_preference", pref);
   }
 
   /**
@@ -340,7 +340,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
+    return param_RENAMED("traffic_model", trafficModel);
   }
 
   /**

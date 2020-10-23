@@ -56,7 +56,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest location(LatLng location) {
-    return param("location", location);
+    return param_RENAMED("location", location);
   }
 
   /**
@@ -81,7 +81,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest rankby(RankBy ranking) {
-    return param("rankby", ranking);
+    return param_RENAMED("rankby", ranking);
   }
 
   /**
@@ -103,7 +103,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest minPrice(PriceLevel priceLevel) {
-    return param("minprice", priceLevel);
+    return param_RENAMED("minprice", priceLevel);
   }
 
   /**
@@ -113,7 +113,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
-    return param("maxprice", priceLevel);
+    return param_RENAMED("maxprice", priceLevel);
   }
 
   /**
@@ -155,7 +155,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest type(PlaceType type) {
-    return param("type", type);
+    return param_RENAMED("type", type);
   }
 
   /**

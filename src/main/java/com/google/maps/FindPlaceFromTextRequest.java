@@ -72,7 +72,7 @@ public class FindPlaceFromTextRequest
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
   public FindPlaceFromTextRequest inputType(InputType inputType) {
-    return param("inputtype", inputType);
+    return param_RENAMED("inputtype", inputType);
   }
 
   /**
@@ -93,7 +93,7 @@ public class FindPlaceFromTextRequest
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
   public FindPlaceFromTextRequest locationBias(LocationBias locationBias) {
-    return param("locationbias", locationBias);
+    return param_RENAMED("locationbias", locationBias);
   }
 
   @Override

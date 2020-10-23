@@ -91,7 +91,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest sessionToken(SessionToken sessionToken) {
-    return param("sessiontoken", sessionToken);
+    return param_RENAMED("sessiontoken", sessionToken);
   }
 
   /**
@@ -127,7 +127,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest origin(LatLng origin) {
-    return param("origin", origin);
+    return param_RENAMED("origin", origin);
   }
 
   /**
@@ -137,7 +137,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest location(LatLng location) {
-    return param("location", location);
+    return param_RENAMED("location", location);
   }
 
   /**
@@ -169,7 +169,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest types(PlaceAutocompleteType types) {
-    return param("types", types);
+    return param_RENAMED("types", types);
   }
 
   /**
