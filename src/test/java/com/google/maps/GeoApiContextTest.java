@@ -48,8 +48,8 @@ import org.junit.experimental.categories.Category;
 @Category(MediumTests.class)
 public class GeoApiContextTest {
 
-  private MockWebServer server;
-  private GeoApiContext.Builder builder;
+  public MockWebServer server;
+  public GeoApiContext.Builder builder;
 
   @Before
   public void Setup() {
@@ -67,7 +67,7 @@ public class GeoApiContextTest {
     }
   }
 
-  private void setMockBaseUrl() {
+  public void setMockBaseUrl() {
     builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
   }
 
@@ -219,32 +219,6 @@ public class GeoApiContextTest {
 
     // We should get the error response here, not the success response.
     builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
-  }
-
-  @Test
-  public void testRetryEventuallyReturnsTheRightException() throws Exception {
-    MockResponse errorResponse = new MockResponse();
-    errorResponse.setStatus("HTTP/1.1 500 Internal server error");
-    errorResponse.setBody("Uh-oh. Server Error.");
-
-    // Enqueue some error responses.
-    for (int i = 0; i < 10; i++) {
-      server.enqueue(errorResponse);
-    }
-    server.start();
-
-    // Wire the mock web server to the context
-    setMockBaseUrl();
-    builder.retryTimeout(5, TimeUnit.SECONDS);
-
-    try {
-      builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
-    } catch (IOException ioe) {
-      // Ensure the message matches the status line in the mock responses.
-      assertEquals("Server Error: 500 Internal server error", ioe.getMessage());
-      return;
-    }
-    fail("Internal server error was expected but not observed.");
   }
 
   @Test
