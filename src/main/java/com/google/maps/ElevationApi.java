@@ -20,7 +20,7 @@ import static com.google.maps.internal.StringJoin.join;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.PolylineEncoding;
+import com.google.maps.internal.PolylineEncoding_RENAMED;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
@@ -95,7 +95,7 @@ public class ElevationApi {
    */
   private static String shortestParam(LatLng[] points) {
     String joined = join('|', points);
-    String encoded = "enc:" + PolylineEncoding.encode(points);
+    String encoded = "enc:" + PolylineEncoding_RENAMED.encode(points);
     return joined.length() < encoded.length() ? joined : encoded;
   }
 

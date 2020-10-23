@@ -24,7 +24,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-/** Test case for {@link PolylineEncoding}. */
+/** Test case for {@link PolylineEncoding_RENAMED}. */
 @Category(SmallTests.class)
 public class PolylineEncodingTest {
 
@@ -50,14 +50,14 @@ public class PolylineEncodingTest {
 
   @Test
   public void testPolylineEncodingRoundTrip() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
-    String encodedPath = PolylineEncoding.encode(points);
+    List<LatLng> points = PolylineEncoding_RENAMED.decode(SYD_MELB_ROUTE);
+    String encodedPath = PolylineEncoding_RENAMED.encode(points);
     assertEquals(SYD_MELB_ROUTE, encodedPath);
   }
 
   @Test
   public void testDecode() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
+    List<LatLng> points = PolylineEncoding_RENAMED.decode(SYD_MELB_ROUTE);
     LatLng sydney = points.get(0);
     LatLng melbourne = points.get(points.size() - 1);
 

@@ -15,7 +15,7 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.PolylineEncoding;
+import com.google.maps.internal.PolylineEncoding_RENAMED;
 import java.io.Serializable;
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class EncodedPolyline implements Serializable {
 
   /** @param points A path as a collection of {@code LatLng} points. */
   public EncodedPolyline(List<LatLng> points) {
-    this.points = PolylineEncoding.encode(points);
+    this.points = PolylineEncoding_RENAMED.encode(points);
   }
 
   public String getEncodedPath() {
@@ -52,7 +52,7 @@ public class EncodedPolyline implements Serializable {
   }
 
   public List<LatLng> decodePath() {
-    return PolylineEncoding.decode(points);
+    return PolylineEncoding_RENAMED.decode(points);
   }
 
   // Use the encoded point representation; decoding to get an alternate representation for

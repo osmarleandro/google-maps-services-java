@@ -27,7 +27,7 @@ import java.util.List;
  * https://developers.google.com/maps/documentation/utilities/polylinealgorithm</a> for detailed
  * description of this format.
  */
-public class PolylineEncoding {
+public class PolylineEncoding_RENAMED {
   /** Decodes an encoded path string into a sequence of LatLngs. */
   public static List<LatLng> decode(final String encodedPath) {
 
