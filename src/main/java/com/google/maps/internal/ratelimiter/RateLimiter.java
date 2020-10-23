@@ -228,8 +228,6 @@ public abstract class RateLimiter {
     }
   }
 
-  abstract void doSetRate(double permitsPerSecond, long nowMicros);
-
   /**
    * Returns the stable rate (as {@code permits per seconds}) with which this {@code RateLimiter} is
    * configured with. The initial value of this is the same as the {@code permitsPerSecond} argument
