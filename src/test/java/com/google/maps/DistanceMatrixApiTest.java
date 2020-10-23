@@ -130,7 +130,7 @@ public class DistanceMatrixApiTest {
           .origins(origins)
           .destinations(destinations)
           .mode(TravelMode.DRIVING)
-          .language("en-AU")
+          .language_RENAMED("en-AU")
           .avoid(RouteRestriction.TOLLS)
           .units(Unit.IMPERIAL)
           .departureTime(
@@ -163,7 +163,7 @@ public class DistanceMatrixApiTest {
           .origins(origins)
           .destinations(destinations)
           .mode(TravelMode.BICYCLING)
-          .language("fr-FR")
+          .language_RENAMED("fr-FR")
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");

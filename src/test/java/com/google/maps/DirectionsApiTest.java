@@ -346,7 +346,7 @@ public class DirectionsApiTest {
               .origin("Toledo")
               .destination("Madrid")
               .region("es")
-              .language("es")
+              .language_RENAMED("es")
               .await();
 
       sc.assertParamValue("Toledo", "origin");

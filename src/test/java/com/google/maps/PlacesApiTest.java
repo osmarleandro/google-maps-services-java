@@ -382,7 +382,7 @@ public class PlacesApiTest {
           .offset(10)
           .location(location)
           .radius(5000)
-          .language("en")
+          .language_RENAMED("en")
           .await();
 
       sc.assertParamValue(QUERY_AUTOCOMPLETE_INPUT, "input");
@@ -628,7 +628,7 @@ public class PlacesApiTest {
           .radius(5000)
           .rankby(RankBy.PROMINENCE)
           .keyword("keyword")
-          .language("en")
+          .language_RENAMED("en")
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.EXPENSIVE)
           .name("name")
@@ -763,7 +763,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsInFrench() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
       PlaceDetails details =
-          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
+          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language_RENAMED("fr").await();
 
       sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
       sc.assertParamValue("fr", "language");
