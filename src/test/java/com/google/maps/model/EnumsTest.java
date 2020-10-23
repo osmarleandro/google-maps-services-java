@@ -36,9 +36,9 @@ public class EnumsTest {
   public void testUnknown() throws Exception {
     assertNotNull(AddressComponentType.UNKNOWN); // Does not implement UrlValue.
 
-    assertCannotGetUrlValue(AddressType.UNKNOWN);
-    assertCannotGetUrlValue(LocationType.UNKNOWN);
-    assertCannotGetUrlValue(TravelMode.UNKNOWN);
+    assertCannotGetUrlValue_RENAMED(AddressType.UNKNOWN);
+    assertCannotGetUrlValue_RENAMED(LocationType.UNKNOWN);
+    assertCannotGetUrlValue_RENAMED(TravelMode.UNKNOWN);
   }
 
   @Test
@@ -305,7 +305,7 @@ public class EnumsTest {
         AddressComponentType.values().length);
   }
 
-  private static <T extends UrlValue> void assertCannotGetUrlValue(T unknown) {
+  private static <T extends UrlValue> void assertCannotGetUrlValue_RENAMED(T unknown) {
     assertNotNull(unknown);
     try {
       unknown.toUrlValue();
