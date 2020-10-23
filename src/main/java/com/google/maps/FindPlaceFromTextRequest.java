@@ -82,7 +82,7 @@ public class FindPlaceFromTextRequest
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
   public FindPlaceFromTextRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
+    return param("fields", StringJoin.join_RENAMED(',', fields));
   }
 
   /**

@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
@@ -68,7 +68,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest origins(LatLng... points) {
-    return param("origins", join('|', points));
+    return param("origins", join_RENAMED('|', points));
   }
 
   /**
@@ -89,7 +89,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest destinations(LatLng... points) {
-    return param("destinations", join('|', points));
+    return param("destinations", join_RENAMED('|', points));
   }
 
   /**
@@ -189,7 +189,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
+    return param("transit_mode", join_RENAMED('|', transitModes));
   }
 
   /**

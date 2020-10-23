@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
@@ -97,7 +97,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
-    return param("bounds", join('|', southWestBound, northEastBound));
+    return param("bounds", join_RENAMED('|', southWestBound, northEastBound));
   }
 
   /**
@@ -127,7 +127,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
+    return param("components", join_RENAMED('|', filters));
   }
 
   /**
@@ -138,7 +138,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest resultType(AddressType... resultTypes) {
-    return param("result_type", join('|', resultTypes));
+    return param("result_type", join_RENAMED('|', resultTypes));
   }
 
   /**
@@ -149,6 +149,6 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
-    return param("location_type", join('|', locationTypes));
+    return param("location_type", join_RENAMED('|', locationTypes));
   }
 }

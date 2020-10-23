@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
@@ -180,7 +180,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
+    return param("components", join_RENAMED('|', filters));
   }
 
   /**

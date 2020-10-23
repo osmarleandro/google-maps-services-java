@@ -16,7 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -64,7 +64,7 @@ public class RoadsApiIntegrationTest {
       SnappedPoint[] points = RoadsApi.snapToRoads(sc.context, false, path).await();
 
       assertNotNull(Arrays.toString(points));
-      sc.assertParamValue(join('|', path), "path");
+      sc.assertParamValue(join_RENAMED('|', path), "path");
       sc.assertParamValue("false", "interpolate");
       assertEquals(7, points.length);
       assertEquals(-33.86523340256843, points[0].location.lat, 0.0001);
@@ -90,7 +90,7 @@ public class RoadsApiIntegrationTest {
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
-      sc.assertParamValue(join('|', path), "path");
+      sc.assertParamValue(join_RENAMED('|', path), "path");
       assertEquals(7, speeds.length);
 
       for (SpeedLimit speed : speeds) {
@@ -117,7 +117,7 @@ public class RoadsApiIntegrationTest {
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
-      sc.assertParamValue(join('|', path), "path");
+      sc.assertParamValue(join_RENAMED('|', path), "path");
       assertEquals(7, speeds.length);
 
       for (SpeedLimit speed : speeds) {
@@ -166,7 +166,7 @@ public class RoadsApiIntegrationTest {
 
       assertNotNull(response.toString());
       assertEquals("/v1/speedLimits", sc.path());
-      sc.assertParamValue(join('|', path), "path");
+      sc.assertParamValue(join_RENAMED('|', path), "path");
       assertEquals(path.length, response.snappedPoints.length);
       assertEquals(path.length, response.speedLimits.length);
     }
@@ -189,7 +189,7 @@ public class RoadsApiIntegrationTest {
 
       assertNotNull(Arrays.toString(points));
       assertEquals("/v1/nearestRoads", sc.path());
-      sc.assertParamValue(join('|', path), "points");
+      sc.assertParamValue(join_RENAMED('|', path), "points");
       assertEquals(13, points.length);
       assertEquals(-33.86543615612047, points[0].location.lat, 0.0001);
       assertEquals(151.1930101572747, points[0].location.lng, 0.0001);

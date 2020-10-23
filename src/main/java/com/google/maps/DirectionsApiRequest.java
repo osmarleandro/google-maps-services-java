@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 import static java.util.Objects.requireNonNull;
 
 import com.google.maps.model.DirectionsResult;
@@ -141,7 +141,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
-    return param("avoid", join('|', restrictions));
+    return param("avoid", join_RENAMED('|', restrictions));
   }
 
   /**
@@ -318,7 +318,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest transitMode(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
+    return param("transit_mode", join_RENAMED('|', transitModes));
   }
 
   /**

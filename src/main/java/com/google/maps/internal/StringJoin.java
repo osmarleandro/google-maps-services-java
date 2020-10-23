@@ -61,7 +61,7 @@ public class StringJoin {
     return result.toString();
   }
 
-  public static String join(char delim, UrlValue... parts) {
+  public static String join_RENAMED(char delim, UrlValue... parts) {
     String[] strings = new String[parts.length];
     int i = 0;
     for (UrlValue part : parts) {

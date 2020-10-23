@@ -78,7 +78,7 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
+    return param("fields", StringJoin.join_RENAMED(',', fields));
   }
 
   @Override

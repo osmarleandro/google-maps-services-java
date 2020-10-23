@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin.join_RENAMED;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
@@ -168,7 +168,7 @@ public class NearbySearchRequest
    */
   @Deprecated
   public NearbySearchRequest type(PlaceType... types) {
-    return param("type", join('|', types));
+    return param("type", join_RENAMED('|', types));
   }
 
   @Override
