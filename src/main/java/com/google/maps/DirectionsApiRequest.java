@@ -328,7 +328,7 @@ public class DirectionsApiRequest
    * @param pref The transit routing preferences for this request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
+  public DirectionsApiRequest transitRoutingPreference_RENAMED(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
   }
 

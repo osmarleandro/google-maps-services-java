@@ -412,7 +412,7 @@ public class DirectionsApiTest {
               .destination("Union Square, San Francisco")
               .mode(TravelMode.TRANSIT)
               .transitMode(TransitMode.BUS, TransitMode.TRAM)
-              .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
+              .transitRoutingPreference_RENAMED(TransitRoutingPreference.LESS_WALKING)
               .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
