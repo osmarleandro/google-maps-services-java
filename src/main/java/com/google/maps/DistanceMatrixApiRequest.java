@@ -62,16 +62,6 @@ public class DistanceMatrixApiRequest
   }
 
   /**
-   * One or more latitude/longitude values from which to calculate distance and time.
-   *
-   * @param points The origin points.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest origins(LatLng... points) {
-    return param("origins", join('|', points));
-  }
-
-  /**
    * One or more addresses to which to calculate distance and time. The service will geocode the
    * strings and convert them to latitude/longitude coordinates to calculate directions.
    *
