@@ -464,7 +464,7 @@ public class StaticMapsRequest
    * @param visibleLocation The location to be made visible in the requested Static Map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest visible(String visibleLocation) {
+  public StaticMapsRequest visible_RENAMED(String visibleLocation) {
     return param("visible", visibleLocation);
   }
 }
