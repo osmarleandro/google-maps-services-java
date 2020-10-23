@@ -264,7 +264,7 @@ public class GeolocationApiTest {
   }
 
   @Test
-  public void testMinimumCellTowerGeolocation() throws Exception {
+  public void testMinimumCellTowerGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
