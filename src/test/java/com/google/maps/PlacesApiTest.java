@@ -127,7 +127,7 @@ public class PlacesApiTest {
         new LocalTestServerContext(autocompletePredictionStructuredFormatting)) {
       SessionToken session = new SessionToken();
       final AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "1", session).await();
+          PlacesApi.placeAutocomplete_RENAMED(sc.context, "1", session).await();
 
       assertNotNull(predictions);
       assertNotNull(Arrays.toString(predictions));
@@ -689,7 +689,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
-      PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
+      PlacesApi.placeAutocomplete_RENAMED(sc.context, "Sydney Town Hall", session)
           .offset(4)
           .origin(location)
           .location(location)
@@ -841,7 +841,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
       AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
+          PlacesApi.placeAutocomplete_RENAMED(sc.context, "Sydney Town Ha", session).await();
 
       sc.assertParamValue("Sydney Town Ha", "input");
       sc.assertParamValue(session.toUrlValue(), "sessiontoken");
@@ -857,7 +857,7 @@ public class PlacesApiTest {
         new LocalTestServerContext(placesApiPlaceAutocompleteWithType)) {
       SessionToken session = new SessionToken();
       AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "po", session)
+          PlacesApi.placeAutocomplete_RENAMED(sc.context, "po", session)
               .components(ComponentFilter.country("nz"))
               .types(PlaceAutocompleteType.REGIONS)
               .await();
@@ -882,7 +882,7 @@ public class PlacesApiTest {
   public void testPlaceAutocompleteWithStrictBounds() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
-      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
+      PlacesApi.placeAutocomplete_RENAMED(sc.context, "Amoeba", session)
           .types(PlaceAutocompleteType.ESTABLISHMENT)
           .location(new LatLng(37.76999, -122.44696))
           .radius(500)

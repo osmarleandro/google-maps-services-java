@@ -189,7 +189,7 @@ public class PlacesApi {
    *     character.
    * @return Returns a PlaceAutocompleteRequest that you can configure and execute.
    */
-  public static PlaceAutocompleteRequest placeAutocomplete(
+  public static PlaceAutocompleteRequest placeAutocomplete_RENAMED(
       GeoApiContext context, String input, PlaceAutocompleteRequest.SessionToken sessionToken) {
     PlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
     request.input(input);
