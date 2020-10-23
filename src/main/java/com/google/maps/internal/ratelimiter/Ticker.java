@@ -42,7 +42,7 @@ public abstract class Ticker {
   protected Ticker() {}
 
   /** Returns the number of nanoseconds elapsed since this ticker's fixed point of reference. */
-  public abstract long read();
+  public abstract long read_RENAMED();
 
   /** A ticker that reads the current time using {@link System#nanoTime}. */
   public static Ticker systemTicker() {

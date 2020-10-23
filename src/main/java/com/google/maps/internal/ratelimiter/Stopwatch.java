@@ -140,7 +140,7 @@ public final class Stopwatch {
   public Stopwatch start() {
     checkState(!isRunning, "This stopwatch is already running.");
     isRunning = true;
-    startTick = ticker.read();
+    startTick = ticker.read_RENAMED();
     return this;
   }
 
@@ -152,7 +152,7 @@ public final class Stopwatch {
    * @throws IllegalStateException if the stopwatch is already stopped.
    */
   public Stopwatch stop() {
-    long tick = ticker.read();
+    long tick = ticker.read_RENAMED();
     checkState(isRunning, "This stopwatch is already stopped.");
     isRunning = false;
     elapsedNanos += tick - startTick;
@@ -171,7 +171,7 @@ public final class Stopwatch {
   }
 
   private long elapsedNanos() {
-    return isRunning ? ticker.read() - startTick + elapsedNanos : elapsedNanos;
+    return isRunning ? ticker.read_RENAMED() - startTick + elapsedNanos : elapsedNanos;
   }
 
   /**
