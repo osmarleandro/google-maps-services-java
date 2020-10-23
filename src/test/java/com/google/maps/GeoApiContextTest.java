@@ -318,7 +318,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testNoExperienceId() {
+  public void testNoExperienceId_RENAMED() {
     final GeoApiContext context = builder.build();
     assertNull(context.getExperienceId());
   }
