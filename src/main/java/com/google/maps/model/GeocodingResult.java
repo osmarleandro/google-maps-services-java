@@ -46,7 +46,7 @@ public class GeocodingResult implements Serializable {
   public String[] postcodeLocalities;
 
   /** Location information for this result. */
-  public Geometry geometry;
+  public Geometry_RENAMED geometry;
 
   /**
    * The types of the returned result. This array contains a set of zero or more tags identifying
