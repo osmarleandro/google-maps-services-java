@@ -61,7 +61,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedPoint[] points = RoadsApi.snapToRoads(sc.context, false, path).await();
+      SnappedPoint[] points = RoadsApi.snapToRoads(sc.context, false, path).await_RENAMED();
 
       assertNotNull(Arrays.toString(points));
       sc.assertParamValue(join('|', path), "path");
@@ -86,7 +86,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
+      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await_RENAMED();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
@@ -113,7 +113,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(33.773250, -84.388840),
             new LatLng(33.771991, -84.388840)
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await();
+      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, path).await_RENAMED();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
@@ -136,7 +136,7 @@ public class RoadsApiIntegrationTest {
             "ChIJyU-E2mEE9YgRftyNXxcfQYw",
             "ChIJc0BrC2EE9YgR71DvaFzNgrA"
           };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await();
+      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await_RENAMED();
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
@@ -162,7 +162,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedSpeedLimitResponse response = RoadsApi.snappedSpeedLimits(sc.context, path).await();
+      SnappedSpeedLimitResponse response = RoadsApi.snappedSpeedLimits(sc.context, path).await_RENAMED();
 
       assertNotNull(response.toString());
       assertEquals("/v1/speedLimits", sc.path());
@@ -185,7 +185,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedPoint[] points = RoadsApi.nearestRoads(sc.context, path).await();
+      SnappedPoint[] points = RoadsApi.nearestRoads(sc.context, path).await_RENAMED();
 
       assertNotNull(Arrays.toString(points));
       assertEquals("/v1/nearestRoads", sc.path());
