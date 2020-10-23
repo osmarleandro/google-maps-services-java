@@ -19,6 +19,9 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.AutocompletePrediction;
+import com.google.maps.model.LatLng;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +171,17 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * The origin point from which to calculate straight-line distance to the destination (returned as
+   * {@link AutocompletePrediction#distanceMeters}). If this value is omitted, straight-line
+   * distance will not be returned.
+   *
+   * @param origin The {@link LatLng} origin point from which to calculate distance.
+   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
+   */
+public PlaceAutocompleteRequest origin(LatLng origin) {
+    return param("origin", origin);
   }
 }
