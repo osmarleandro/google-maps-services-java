@@ -929,7 +929,7 @@ public class PlacesApiTest {
                   FindPlaceFromTextRequest.FieldMask.RATING,
                   FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
                   FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-              .locationBias(new LocationBiasIP())
+              .locationBias_RENAMED(new LocationBiasIP())
               .await();
 
       sc.assertParamValue(input, "input");
@@ -972,7 +972,7 @@ public class PlacesApiTest {
               FindPlaceFromTextRequest.FieldMask.RATING,
               FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
               FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
+          .locationBias_RENAMED(new LocationBiasPoint(new LatLng(1, 2)))
           .await();
 
       sc.assertParamValue(input, "input");
@@ -997,7 +997,7 @@ public class PlacesApiTest {
               FindPlaceFromTextRequest.FieldMask.RATING,
               FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
               FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
+          .locationBias_RENAMED(new LocationBiasCircular(new LatLng(1, 2), 3000))
           .await();
 
       sc.assertParamValue(input, "input");
@@ -1022,7 +1022,7 @@ public class PlacesApiTest {
               FindPlaceFromTextRequest.FieldMask.RATING,
               FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
               FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-          .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
+          .locationBias_RENAMED(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
           .await();
 
       sc.assertParamValue(input, "input");

@@ -92,7 +92,7 @@ public class FindPlaceFromTextRequest
    * @param locationBias The location bias for this request.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest locationBias(LocationBias locationBias) {
+  public FindPlaceFromTextRequest locationBias_RENAMED(LocationBias locationBias) {
     return param("locationbias", locationBias);
   }
 
