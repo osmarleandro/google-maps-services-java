@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.StaticMapsRequest.Path;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * The <code>path</code> parameter defines a set of one or more locations connected by a path to
+   * overlay on the map image.
+   *
+   * @param path A path to render atop the map.
+   * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+public StaticMapsRequest path(Path path) {
+    return paramAddToList("path", path);
   }
 }

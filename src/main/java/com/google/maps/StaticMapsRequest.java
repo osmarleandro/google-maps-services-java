@@ -426,17 +426,6 @@ public class StaticMapsRequest
 
   /**
    * The <code>path</code> parameter defines a set of one or more locations connected by a path to
-   * overlay on the map image.
-   *
-   * @param path A path to render atop the map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest path(Path path) {
-    return paramAddToList("path", path);
-  }
-
-  /**
-   * The <code>path</code> parameter defines a set of one or more locations connected by a path to
    * overlay on the map image. This variant of the method accepts the path as an EncodedPolyline.
    *
    * @param path A path to render atop the map, as an EncodedPolyline.
