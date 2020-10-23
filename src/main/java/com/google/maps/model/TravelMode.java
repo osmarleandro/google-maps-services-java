@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.DirectionsApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.util.Locale;
 
@@ -50,5 +51,17 @@ public enum TravelMode implements UrlValue {
       throw new UnsupportedOperationException("Shouldn't use TravelMode.UNKNOWN in a request.");
     }
     return name().toLowerCase(Locale.ENGLISH);
+  }
+
+/**
+   * Specifies the mode of transport to use when calculating directions. The mode defaults to
+   * driving if left unspecified. If you set the mode to {@code TRANSIT} you must also specify
+   * either a {@code departureTime} or an {@code arrivalTime}.
+   *
+   * @param directionsApiRequest TODO
+ * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+  public DirectionsApiRequest mode(DirectionsApiRequest directionsApiRequest) {
+    return directionsApiRequest.param("mode", this);
   }
 }

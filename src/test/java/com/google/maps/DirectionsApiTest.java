@@ -86,8 +86,8 @@ public class DirectionsApiTest {
   public void testBuilder() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.BICYCLING)
+          TravelMode.BICYCLING
+              .mode(DirectionsApi.newRequest(sc.context))
               .avoid(
                   DirectionsApi.RouteRestriction.HIGHWAYS,
                   DirectionsApi.RouteRestriction.TOLLS,
@@ -121,8 +121,8 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(responseTimesArePopulatedCorrectly)) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.TRANSIT)
+          TravelMode.TRANSIT
+              .mode(DirectionsApi.newRequest(sc.context))
               .origin("483 George St, Sydney NSW 2000, Australia")
               .destination("182 Church St, Parramatta NSW 2150, Australia")
               .await();
@@ -166,11 +166,11 @@ public class DirectionsApiTest {
   public void testTorontoToMontrealByBicycleAvoidingHighways() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsApi.newRequest(sc.context)
-          .origin("Toronto")
-          .destination("Montreal")
-          .avoid(DirectionsApi.RouteRestriction.HIGHWAYS)
-          .mode(TravelMode.BICYCLING)
+      TravelMode.BICYCLING
+          .mode(DirectionsApi.newRequest(sc.context)
+		      .origin("Toronto")
+		      .destination("Montreal")
+		      .avoid(DirectionsApi.RouteRestriction.HIGHWAYS))
           .await();
 
       sc.assertParamValue("Toronto", "origin");
@@ -184,11 +184,11 @@ public class DirectionsApiTest {
   public void testSanFranciscoToSeattleByBicycleAvoidingIndoor() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsApi.newRequest(sc.context)
-          .origin("San Francisco")
-          .destination("Seattle")
-          .avoid(RouteRestriction.INDOOR)
-          .mode(TravelMode.BICYCLING)
+      TravelMode.BICYCLING
+          .mode(DirectionsApi.newRequest(sc.context)
+		      .origin("San Francisco")
+		      .destination("Seattle")
+		      .avoid(RouteRestriction.INDOOR))
           .await();
 
       sc.assertParamValue("San Francisco", "origin");
@@ -208,10 +208,10 @@ public class DirectionsApiTest {
   public void testBrooklynToQueensByTransit() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsApi.newRequest(sc.context)
-          .origin("Brooklyn")
-          .destination("Queens")
-          .mode(TravelMode.TRANSIT)
+      TravelMode.TRANSIT
+          .mode(DirectionsApi.newRequest(sc.context)
+		      .origin("Brooklyn")
+		      .destination("Queens"))
           .await();
 
       sc.assertParamValue("Brooklyn", "origin");
@@ -364,10 +364,10 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .origin("48 Pirrama Road, Pyrmont NSW 2009")
-              .destination("182 Church St, Parramatta NSW 2150")
-              .mode(TravelMode.DRIVING)
+          TravelMode.DRIVING
+              .mode(DirectionsApi.newRequest(sc.context)
+			      .origin("48 Pirrama Road, Pyrmont NSW 2009")
+			      .destination("182 Church St, Parramatta NSW 2150"))
               .departureTime(Instant.now().plus(Duration.ofMinutes(2)))
               .trafficModel(TrafficModel.PESSIMISTIC)
               .await();
@@ -387,10 +387,10 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .origin("Fisherman's Wharf, San Francisco")
-              .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
+          TravelMode.TRANSIT
+              .mode(DirectionsApi.newRequest(sc.context)
+			      .origin("Fisherman's Wharf, San Francisco")
+			      .destination("Union Square, San Francisco"))
               .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
@@ -407,10 +407,10 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .origin("Fisherman's Wharf, San Francisco")
-              .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
+          TravelMode.TRANSIT
+              .mode(DirectionsApi.newRequest(sc.context)
+			      .origin("Fisherman's Wharf, San Francisco")
+			      .destination("Union Square, San Francisco"))
               .transitMode(TransitMode.BUS, TransitMode.TRAM)
               .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
               .await();
@@ -432,8 +432,8 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.WALKING)
+          TravelMode.WALKING
+              .mode(DirectionsApi.newRequest(sc.context))
               .origin("483 George St, Sydney NSW 2000, Australia")
               .destination("182 Church St, Parramatta NSW 2150, Australia")
               .await();
@@ -489,10 +489,10 @@ public class DirectionsApiTest {
                 + "   \"status\": \"OK\"\n"
                 + "}")) {
       DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .origin("48 Pirrama Rd, Pyrmont NSW")
-              .destination("Airport Dr, Sydney NSW")
-              .mode(TravelMode.DRIVING)
+          TravelMode.DRIVING
+              .mode(DirectionsApi.newRequest(sc.context)
+			      .origin("48 Pirrama Rd, Pyrmont NSW")
+			      .destination("Airport Dr, Sydney NSW"))
               .await();
 
       assertNotNull(result.toString());
