@@ -398,4 +398,16 @@ abstract class SmoothRateLimiter extends RateLimiter {
       nextFreeTicketMicros = nowMicros;
     }
   }
+
+/**
+   * Returns the stable rate (as {@code permits per seconds}) with which this {@code RateLimiter} is
+   * configured with. The initial value of this is the same as the {@code permitsPerSecond} argument
+   * passed in the factory method that produced this {@code RateLimiter}, and it is only updated
+   * after invocations to {@linkplain #setRate}.
+   */
+public final double getRate() {
+    synchronized (mutex()) {
+      return doGetRate();
+    }
+  }
 }

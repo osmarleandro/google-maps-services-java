@@ -185,7 +185,7 @@ public abstract class RateLimiter {
   // Can't be initialized in the constructor because mocks don't call the constructor.
   private volatile Object mutexDoNotUseDirectly;
 
-  private Object mutex() {
+  protected Object mutex() {
     Object mutex = mutexDoNotUseDirectly;
     if (mutex == null) {
       synchronized (this) {
@@ -230,19 +230,7 @@ public abstract class RateLimiter {
 
   abstract void doSetRate(double permitsPerSecond, long nowMicros);
 
-  /**
-   * Returns the stable rate (as {@code permits per seconds}) with which this {@code RateLimiter} is
-   * configured with. The initial value of this is the same as the {@code permitsPerSecond} argument
-   * passed in the factory method that produced this {@code RateLimiter}, and it is only updated
-   * after invocations to {@linkplain #setRate}.
-   */
-  public final double getRate() {
-    synchronized (mutex()) {
-      return doGetRate();
-    }
-  }
-
-  abstract double doGetRate();
+  protected abstract double doGetRate();
 
   /**
    * Acquires a single permit from this {@code RateLimiter}, blocking until the request can be
