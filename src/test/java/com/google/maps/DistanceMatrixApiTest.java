@@ -128,7 +128,7 @@ public class DistanceMatrixApiTest {
 
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
-          .destinations(destinations)
+          .destinations_RENAMED(destinations)
           .mode(TravelMode.DRIVING)
           .language("en-AU")
           .avoid(RouteRestriction.TOLLS)
@@ -161,7 +161,7 @@ public class DistanceMatrixApiTest {
       String[] destinations = new String[] {"San Francisco", "Victoria BC"};
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
-          .destinations(destinations)
+          .destinations_RENAMED(destinations)
           .mode(TravelMode.BICYCLING)
           .language("fr-FR")
           .await();
@@ -183,7 +183,7 @@ public class DistanceMatrixApiTest {
           new String[] {"Mikkeller Bar, San Francisco", "Moscone Center, San Francisco"};
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
-          .destinations(destinations)
+          .destinations_RENAMED(destinations)
           .mode(TravelMode.TRANSIT)
           .await();
 
@@ -200,7 +200,7 @@ public class DistanceMatrixApiTest {
       final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
       DistanceMatrixApi.newRequest(sc.context)
           .origins("Fisherman's Wharf, San Francisco")
-          .destinations("San Francisco International Airport, San Francisco, CA")
+          .destinations_RENAMED("San Francisco International Airport, San Francisco, CA")
           .mode(TravelMode.DRIVING)
           .trafficModel(TrafficModel.PESSIMISTIC)
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))

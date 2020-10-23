@@ -78,7 +78,7 @@ public class DistanceMatrixApiRequest
    * @param destinations Strings to geocode and use as a destination point (e.g. "Jersey City, NJ")
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest destinations(String... destinations) {
+  public DistanceMatrixApiRequest destinations_RENAMED(String... destinations) {
     return param("destinations", join('|', destinations));
   }
 
