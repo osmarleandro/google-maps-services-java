@@ -61,7 +61,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedPoint[] points = RoadsApi.snapToRoads(sc.context, false, path).await();
+      SnappedPoint[] points = RoadsApi.snapToRoads_RENAMED(sc.context, false, path).await();
 
       assertNotNull(Arrays.toString(points));
       sc.assertParamValue(join('|', path), "path");

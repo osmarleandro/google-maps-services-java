@@ -83,7 +83,7 @@ public class RoadsApi {
    * @param path The path to be snapped.
    * @return Returns the snapped points as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedPoint[]> snapToRoads(
+  public static PendingResult<SnappedPoint[]> snapToRoads_RENAMED(
       GeoApiContext context, boolean interpolate, LatLng... path) {
     return context.get(
         SNAP_TO_ROADS_API_CONFIG,
