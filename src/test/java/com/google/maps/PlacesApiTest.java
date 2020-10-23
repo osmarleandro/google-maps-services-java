@@ -117,7 +117,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
-      sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
+      sc.context.assertParamValue(sc, GOOGLE_SYDNEY, "placeid");
     }
   }
 
@@ -158,8 +158,8 @@ public class PlacesApiTest {
                   PlaceDetailsRequest.FieldMask.TYPES)
               .await();
 
-      sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
-      sc.assertParamValue("place_id,name,types", "fields");
+      sc.context.assertParamValue(sc, GOOGLE_SYDNEY, "placeid");
+      sc.context.assertParamValue(sc, "place_id,name,types", "fields");
 
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
@@ -385,11 +385,11 @@ public class PlacesApiTest {
           .language("en")
           .await();
 
-      sc.assertParamValue(QUERY_AUTOCOMPLETE_INPUT, "input");
-      sc.assertParamValue("10", "offset");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue("en", "language");
+      sc.context.assertParamValue(sc, QUERY_AUTOCOMPLETE_INPUT, "input");
+      sc.context.assertParamValue(sc, "10", "offset");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "5000", "radius");
+      sc.context.assertParamValue(sc, "en", "language");
     }
   }
 
@@ -468,16 +468,16 @@ public class PlacesApiTest {
           .type(PlaceType.AIRPORT)
           .await();
 
-      sc.assertParamValue("Google Sydney", "query");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("AU", "region");
-      sc.assertParamValue(String.valueOf(3000), "radius");
-      sc.assertParamValue(String.valueOf(1), "minprice");
-      sc.assertParamValue(String.valueOf(4), "maxprice");
-      sc.assertParamValue("name", "name");
-      sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.context.assertParamValue(sc, "Google Sydney", "query");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "AU", "region");
+      sc.context.assertParamValue(sc, String.valueOf(3000), "radius");
+      sc.context.assertParamValue(sc, String.valueOf(1), "minprice");
+      sc.context.assertParamValue(sc, String.valueOf(4), "maxprice");
+      sc.context.assertParamValue(sc, "name", "name");
+      sc.context.assertParamValue(sc, "true", "opennow");
+      sc.context.assertParamValue(sc, RankBy.DISTANCE.toString(), "rankby");
+      sc.context.assertParamValue(sc, PlaceType.AIRPORT.toString(), "type");
     }
   }
 
@@ -496,16 +496,16 @@ public class PlacesApiTest {
           .type(PlaceType.AIRPORT)
           .await();
 
-      sc.assertParamValue("Google Sydney", "query");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("AU", "region");
-      sc.assertParamValue(String.valueOf(3000), "radius");
-      sc.assertParamValue(String.valueOf(1), "minprice");
-      sc.assertParamValue(String.valueOf(4), "maxprice");
-      sc.assertParamValue("name", "name");
-      sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      sc.context.assertParamValue(sc, "Google Sydney", "query");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "AU", "region");
+      sc.context.assertParamValue(sc, String.valueOf(3000), "radius");
+      sc.context.assertParamValue(sc, String.valueOf(1), "minprice");
+      sc.context.assertParamValue(sc, String.valueOf(4), "maxprice");
+      sc.context.assertParamValue(sc, "name", "name");
+      sc.context.assertParamValue(sc, "true", "opennow");
+      sc.context.assertParamValue(sc, RankBy.DISTANCE.toString(), "rankby");
+      sc.context.assertParamValue(sc, PlaceType.AIRPORT.toString(), "type");
     }
   }
 
@@ -519,9 +519,9 @@ public class PlacesApiTest {
               .radius(500)
               .await();
 
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(String.valueOf(500), "radius");
-      sc.assertParamValue(PlaceType.ZOO.toString(), "type");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, String.valueOf(500), "radius");
+      sc.context.assertParamValue(sc, PlaceType.ZOO.toString(), "type");
     }
   }
 
@@ -614,9 +614,9 @@ public class PlacesApiTest {
           .maxHeight(height)
           .awaitIgnoreError();
 
-      sc.assertParamValue(photoReference, "photoreference");
-      sc.assertParamValue(String.valueOf(width), "maxwidth");
-      sc.assertParamValue(String.valueOf(height), "maxheight");
+      sc.context.assertParamValue(sc, photoReference, "photoreference");
+      sc.context.assertParamValue(sc, String.valueOf(width), "maxwidth");
+      sc.context.assertParamValue(sc, String.valueOf(height), "maxheight");
     }
   }
 
@@ -637,17 +637,17 @@ public class PlacesApiTest {
           .pageToken("next-page-token")
           .await();
 
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(RankBy.PROMINENCE.toString(), "rankby");
-      sc.assertParamValue("keyword", "keyword");
-      sc.assertParamValue("en", "language");
-      sc.assertParamValue(PriceLevel.INEXPENSIVE.toString(), "minprice");
-      sc.assertParamValue(PriceLevel.EXPENSIVE.toString(), "maxprice");
-      sc.assertParamValue("name", "name");
-      sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
-      sc.assertParamValue("next-page-token", "pagetoken");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "5000", "radius");
+      sc.context.assertParamValue(sc, RankBy.PROMINENCE.toString(), "rankby");
+      sc.context.assertParamValue(sc, "keyword", "keyword");
+      sc.context.assertParamValue(sc, "en", "language");
+      sc.context.assertParamValue(sc, PriceLevel.INEXPENSIVE.toString(), "minprice");
+      sc.context.assertParamValue(sc, PriceLevel.EXPENSIVE.toString(), "maxprice");
+      sc.context.assertParamValue(sc, "name", "name");
+      sc.context.assertParamValue(sc, "true", "opennow");
+      sc.context.assertParamValue(sc, PlaceType.AIRPORT.toString(), "type");
+      sc.context.assertParamValue(sc, "next-page-token", "pagetoken");
     }
   }
 
@@ -660,8 +660,8 @@ public class PlacesApiTest {
           .type(PlaceType.AIRPORT, PlaceType.BANK)
           .await();
 
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString(), "type");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString(), "type");
     }
   }
 
@@ -698,14 +698,14 @@ public class PlacesApiTest {
           .components(ComponentFilter.country("AU"))
           .await();
 
-      sc.assertParamValue("Sydney Town Hall", "input");
-      sc.assertParamValue(Integer.toString(4), "offset");
-      sc.assertParamValue(location.toUrlValue(), "origin");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(PlaceAutocompleteType.ESTABLISHMENT.toString(), "types");
-      sc.assertParamValue(ComponentFilter.country("AU").toString(), "components");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      sc.context.assertParamValue(sc, "Sydney Town Hall", "input");
+      sc.context.assertParamValue(sc, Integer.toString(4), "offset");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "origin");
+      sc.context.assertParamValue(sc, location.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "5000", "radius");
+      sc.context.assertParamValue(sc, PlaceAutocompleteType.ESTABLISHMENT.toString(), "types");
+      sc.context.assertParamValue(sc, ComponentFilter.country("AU").toString(), "components");
+      sc.context.assertParamValue(sc, session.toUrlValue(), "sessiontoken");
     }
   }
 
@@ -715,7 +715,7 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
 
-      sc.assertParamValue("Google Sydney", "query");
+      sc.context.assertParamValue(sc, "Google Sydney", "query");
 
       assertNotNull(response.toString());
       assertEquals(1, response.results.length);
@@ -731,7 +731,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
       PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
-      sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
+      sc.context.assertParamValue(sc, "ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
 
       assertNotNull(placeDetails.toString());
       assertEquals(10, placeDetails.photos.length);
@@ -749,7 +749,7 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
 
-      sc.assertParamValue("Pizza in New York", "query");
+      sc.context.assertParamValue(sc, "Pizza in New York", "query");
 
       assertNotNull(response.toString());
       assertEquals(20, response.results.length);
@@ -765,8 +765,8 @@ public class PlacesApiTest {
       PlaceDetails details =
           PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
 
-      sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
-      sc.assertParamValue("fr", "language");
+      sc.context.assertParamValue(sc, "ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
+      sc.context.assertParamValue(sc, "fr", "language");
 
       assertNotNull(details.toString());
       assertEquals("ChIJ442GNENu5kcRGYUrvgqHw88", details.placeId);
@@ -783,9 +783,9 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
 
-      sc.assertParamValue("10000", "radius");
-      sc.assertParamValue("pub", "keyword");
-      sc.assertParamValue(SYDNEY.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "10000", "radius");
+      sc.context.assertParamValue(sc, "pub", "keyword");
+      sc.context.assertParamValue(sc, SYDNEY.toUrlValue(), "location");
 
       assertEquals(20, response.results.length);
     }
@@ -801,9 +801,9 @@ public class PlacesApiTest {
               .name("Sydney Town Hall")
               .await();
 
-      sc.assertParamValue("Sydney Town Hall", "name");
-      sc.assertParamValue(SYDNEY.toUrlValue(), "location");
-      sc.assertParamValue("10000", "radius");
+      sc.context.assertParamValue(sc, "Sydney Town Hall", "name");
+      sc.context.assertParamValue(sc, SYDNEY.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "10000", "radius");
 
       assertEquals("Sydney Town Hall", response.results[0].name);
     }
@@ -816,9 +816,9 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
 
-      sc.assertParamValue(SYDNEY.toUrlValue(), "location");
-      sc.assertParamValue("10000", "radius");
-      sc.assertParamValue(PlaceType.BAR.toUrlValue(), "type");
+      sc.context.assertParamValue(sc, SYDNEY.toUrlValue(), "location");
+      sc.context.assertParamValue(sc, "10000", "radius");
+      sc.context.assertParamValue(sc, PlaceType.BAR.toUrlValue(), "type");
 
       assertEquals(20, response.results.length);
     }
@@ -843,8 +843,8 @@ public class PlacesApiTest {
       AutocompletePrediction[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
 
-      sc.assertParamValue("Sydney Town Ha", "input");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      sc.context.assertParamValue(sc, "Sydney Town Ha", "input");
+      sc.context.assertParamValue(sc, session.toUrlValue(), "sessiontoken");
 
       assertEquals(5, predictions.length);
       assertTrue(predictions[0].description.contains("Town Hall"));
@@ -862,10 +862,10 @@ public class PlacesApiTest {
               .types(PlaceAutocompleteType.REGIONS)
               .await();
 
-      sc.assertParamValue("po", "input");
-      sc.assertParamValue("country:nz", "components");
-      sc.assertParamValue("(regions)", "types");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      sc.context.assertParamValue(sc, "po", "input");
+      sc.context.assertParamValue(sc, "country:nz", "components");
+      sc.context.assertParamValue(sc, "(regions)", "types");
+      sc.context.assertParamValue(sc, session.toUrlValue(), "sessiontoken");
 
       assertNotNull(Arrays.toString(predictions));
       assertEquals(5, predictions.length);
@@ -889,12 +889,12 @@ public class PlacesApiTest {
           .strictBounds(true)
           .await();
 
-      sc.assertParamValue("Amoeba", "input");
-      sc.assertParamValue("establishment", "types");
-      sc.assertParamValue("37.76999000,-122.44696000", "location");
-      sc.assertParamValue("500", "radius");
-      sc.assertParamValue("true", "strictbounds");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      sc.context.assertParamValue(sc, "Amoeba", "input");
+      sc.context.assertParamValue(sc, "establishment", "types");
+      sc.context.assertParamValue(sc, "37.76999000,-122.44696000", "location");
+      sc.context.assertParamValue(sc, "500", "radius");
+      sc.context.assertParamValue(sc, "true", "strictbounds");
+      sc.context.assertParamValue(sc, session.toUrlValue(), "sessiontoken");
     }
   }
 
@@ -904,7 +904,7 @@ public class PlacesApiTest {
       String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
       PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
 
-      sc.assertParamValue(query, "query");
+      sc.context.assertParamValue(sc, query, "query");
 
       assertEquals(
           "Kita Ward, Kyoto, Kyoto Prefecture, Japan", response.results[0].formattedAddress);
@@ -932,11 +932,11 @@ public class PlacesApiTest {
               .locationBias(new LocationBiasIP())
               .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue(
-          "business_status,photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("ipbias", "locationbias");
+      sc.context.assertParamValue(sc, input, "input");
+      sc.context.assertParamValue(sc, "textquery", "inputtype");
+      sc.context.assertParamValue(
+          sc, "business_status,photos,formatted_address,name,rating,opening_hours,geometry", "fields");
+      sc.context.assertParamValue(sc, "ipbias", "locationbias");
 
       assertNotNull(response);
       PlacesSearchResult candidate = response.candidates[0];
@@ -975,10 +975,10 @@ public class PlacesApiTest {
           .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
           .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("point:1.00000000,2.00000000", "locationbias");
+      sc.context.assertParamValue(sc, input, "input");
+      sc.context.assertParamValue(sc, "textquery", "inputtype");
+      sc.context.assertParamValue(sc, "photos,formatted_address,name,rating,opening_hours,geometry", "fields");
+      sc.context.assertParamValue(sc, "point:1.00000000,2.00000000", "locationbias");
     }
   }
 
@@ -1000,10 +1000,10 @@ public class PlacesApiTest {
           .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
           .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("circle:3000@1.00000000,2.00000000", "locationbias");
+      sc.context.assertParamValue(sc, input, "input");
+      sc.context.assertParamValue(sc, "textquery", "inputtype");
+      sc.context.assertParamValue(sc, "photos,formatted_address,name,rating,opening_hours,geometry", "fields");
+      sc.context.assertParamValue(sc, "circle:3000@1.00000000,2.00000000", "locationbias");
     }
   }
 
@@ -1025,10 +1025,10 @@ public class PlacesApiTest {
           .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
           .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("rectangle:1.00000000,2.00000000|3.00000000,4.00000000", "locationbias");
+      sc.context.assertParamValue(sc, input, "input");
+      sc.context.assertParamValue(sc, "textquery", "inputtype");
+      sc.context.assertParamValue(sc, "photos,formatted_address,name,rating,opening_hours,geometry", "fields");
+      sc.context.assertParamValue(sc, "rectangle:1.00000000,2.00000000|3.00000000,4.00000000", "locationbias");
     }
   }
 
@@ -1048,6 +1048,6 @@ public class PlacesApiTest {
 
     PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
 
-    server.assertParamValue("business_status", "fields");
+    server.context.assertParamValue(server, "business_status", "fields");
   }
 }

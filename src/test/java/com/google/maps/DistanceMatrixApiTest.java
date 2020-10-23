@@ -51,8 +51,8 @@ public class DistanceMatrixApiTest {
           .destinations(new LatLng(-25.344677, 131.036692), new LatLng(-13.092297, 132.394057))
           .awaitIgnoreError();
 
-      sc.assertParamValue("-31.95220000,115.85890000|-37.81360000,144.96310000", "origins");
-      sc.assertParamValue("-25.34467700,131.03669200|-13.09229700,132.39405700", "destinations");
+      sc.context.assertParamValue(sc, "-31.95220000,115.85890000|-37.81360000,144.96310000", "origins");
+      sc.context.assertParamValue(sc, "-25.34467700,131.03669200|-13.09229700,132.39405700", "destinations");
     }
   }
 
@@ -103,8 +103,8 @@ public class DistanceMatrixApiTest {
           matrix.destinationAddresses[3]);
       assertEquals("Pinnacles Drive, Cervantes WA 6511, Australia", matrix.destinationAddresses[4]);
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
+      sc.context.assertParamValue(sc, StringUtils.join(origins, "|"), "origins");
+      sc.context.assertParamValue(sc, StringUtils.join(destinations, "|"), "destinations");
     }
   }
 
@@ -137,12 +137,12 @@ public class DistanceMatrixApiTest {
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
           .await();
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue("en-AU", "language");
-      sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue(), "avoid");
-      sc.assertParamValue(Unit.IMPERIAL.toUrlValue(), "units");
+      sc.context.assertParamValue(sc, StringUtils.join(origins, "|"), "origins");
+      sc.context.assertParamValue(sc, StringUtils.join(destinations, "|"), "destinations");
+      sc.context.assertParamValue(sc, TravelMode.DRIVING.toUrlValue(), "mode");
+      sc.context.assertParamValue(sc, "en-AU", "language");
+      sc.context.assertParamValue(sc, RouteRestriction.TOLLS.toUrlValue(), "avoid");
+      sc.context.assertParamValue(sc, Unit.IMPERIAL.toUrlValue(), "units");
     }
   }
 
@@ -166,10 +166,10 @@ public class DistanceMatrixApiTest {
           .language("fr-FR")
           .await();
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
-      sc.assertParamValue("fr-FR", "language");
+      sc.context.assertParamValue(sc, StringUtils.join(origins, "|"), "origins");
+      sc.context.assertParamValue(sc, StringUtils.join(destinations, "|"), "destinations");
+      sc.context.assertParamValue(sc, TravelMode.BICYCLING.toUrlValue(), "mode");
+      sc.context.assertParamValue(sc, "fr-FR", "language");
     }
   }
 
@@ -187,9 +187,9 @@ public class DistanceMatrixApiTest {
           .mode(TravelMode.TRANSIT)
           .await();
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      sc.context.assertParamValue(sc, StringUtils.join(origins, "|"), "origins");
+      sc.context.assertParamValue(sc, StringUtils.join(destinations, "|"), "destinations");
+      sc.context.assertParamValue(sc, TravelMode.TRANSIT.toUrlValue(), "mode");
     }
   }
 
@@ -206,10 +206,10 @@ public class DistanceMatrixApiTest {
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
 
-      sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
-      sc.assertParamValue("San Francisco International Airport, San Francisco, CA", "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+      sc.context.assertParamValue(sc, "Fisherman's Wharf, San Francisco", "origins");
+      sc.context.assertParamValue(sc, "San Francisco International Airport, San Francisco, CA", "destinations");
+      sc.context.assertParamValue(sc, TravelMode.DRIVING.toUrlValue(), "mode");
+      sc.context.assertParamValue(sc, TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
     }
   }
 }

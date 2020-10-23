@@ -55,9 +55,9 @@ public class StaticMapsApiTest {
       ByteArrayInputStream bais = new ByteArrayInputStream(req.await().imageData);
       BufferedImage img = ImageIO.read(bais);
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Google Sydney", "center");
-      sc.assertParamValue("16", "zoom");
+      sc.context.assertParamValue(sc, "640x480", "size");
+      sc.context.assertParamValue(sc, "Google Sydney", "center");
+      sc.context.assertParamValue(sc, "16", "zoom");
 
       assertNotNull(img);
       assertEquals(WIDTH, img.getWidth());
@@ -74,9 +74,9 @@ public class StaticMapsApiTest {
       req.zoom(16);
       req.await();
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("-33.86880000,151.20930000", "center");
-      sc.assertParamValue("16", "zoom");
+      sc.context.assertParamValue(sc, "640x480", "size");
+      sc.context.assertParamValue(sc, "-33.86880000,151.20930000", "center");
+      sc.context.assertParamValue(sc, "16", "zoom");
     }
   }
 
@@ -94,14 +94,14 @@ public class StaticMapsApiTest {
       req.visible("Melbourne");
       req.await();
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Sydney", "center");
-      sc.assertParamValue("16", "zoom");
-      sc.assertParamValue("2", "scale");
-      sc.assertParamValue("png32", "format");
-      sc.assertParamValue("hybrid", "maptype");
-      sc.assertParamValue("AU", "region");
-      sc.assertParamValue("Melbourne", "visible");
+      sc.context.assertParamValue(sc, "640x480", "size");
+      sc.context.assertParamValue(sc, "Sydney", "center");
+      sc.context.assertParamValue(sc, "16", "zoom");
+      sc.context.assertParamValue(sc, "2", "scale");
+      sc.context.assertParamValue(sc, "png32", "format");
+      sc.context.assertParamValue(sc, "hybrid", "maptype");
+      sc.context.assertParamValue(sc, "AU", "region");
+      sc.context.assertParamValue(sc, "Melbourne", "visible");
     }
   }
 
@@ -190,11 +190,11 @@ public class StaticMapsApiTest {
 
       req.await();
 
-      sc.assertParamValue(
-          "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
+      sc.context.assertParamValue(
+          sc, "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
           "markers");
-      sc.assertParamValue(
-          "weight:3|color:green|fillcolor:0xAACCEE|geodesic:true|Melbourne|-33.86880000,151.20930000",
+      sc.context.assertParamValue(
+          sc, "weight:3|color:green|fillcolor:0xAACCEE|geodesic:true|Melbourne|-33.86880000,151.20930000",
           "path");
     }
   }
@@ -220,10 +220,10 @@ public class StaticMapsApiTest {
 
       req.await();
 
-      sc.assertParamValue(
-          "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
+      sc.context.assertParamValue(
+          sc, "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
           "markers");
-      sc.assertParamValue("enc:" + MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE, "path");
+      sc.context.assertParamValue(sc, "enc:" + MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE, "path");
     }
   }
 
@@ -258,10 +258,10 @@ public class StaticMapsApiTest {
 
       req.await();
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Brooklyn Bridge, New York, NY", "center");
-      sc.assertParamValue("13", "zoom");
-      sc.assertParamValue("roadmap", "maptype");
+      sc.context.assertParamValue(sc, "640x480", "size");
+      sc.context.assertParamValue(sc, "Brooklyn Bridge, New York, NY", "center");
+      sc.context.assertParamValue(sc, "13", "zoom");
+      sc.context.assertParamValue(sc, "roadmap", "maptype");
 
       List<String> expected = new ArrayList<>();
       expected.add("color:blue|label:S|40.70214700,-74.01579400");

@@ -27,8 +27,13 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -36,6 +41,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.http.NameValuePair;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -349,7 +356,22 @@ public class GeoApiContext {
     }
   }
 
-  /** The Builder for {@code GeoApiContext}. */
+  public void assertParamValue(LocalTestServerContext localTestServerContext, String expected, String paramName)
+      throws URISyntaxException, InterruptedException {
+    if (localTestServerContext.params == null) {
+      localTestServerContext.params = localTestServerContext.actualParams();
+    }
+    boolean paramFound = false;
+    for (NameValuePair pair : localTestServerContext.params) {
+      if (pair.getName().equals(paramName)) {
+        paramFound = true;
+        assertEquals(expected, pair.getValue());
+      }
+    }
+    assertTrue(paramFound);
+  }
+
+/** The Builder for {@code GeoApiContext}. */
   public static class Builder {
 
     private RequestHandler.Builder builder;
