@@ -231,7 +231,7 @@ public class PlaceDetails implements Serializable {
   public String businessStatus;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[PlaceDetails: ");
     sb.append("\"").append(name).append("\"");
     sb.append(" ").append(placeId).append(" (").append(scope).append(")");
