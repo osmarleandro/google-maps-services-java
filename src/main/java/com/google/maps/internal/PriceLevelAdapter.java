@@ -32,7 +32,7 @@ import java.io.IOException;
 public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
 
   @Override
-  public PriceLevel read(JsonReader reader) throws IOException {
+  public PriceLevel read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
