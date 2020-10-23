@@ -130,7 +130,7 @@ public class GeoApiContextTest {
   }
 
   @Test(expected = IOException.class)
-  public void testSettingMaxRetries() throws Exception {
+  public void testSettingMaxRetries_RENAMED() throws Exception {
     MockResponse errorResponse = createMockBadResponse();
     MockResponse goodResponse = createMockGoodResponse();
 
