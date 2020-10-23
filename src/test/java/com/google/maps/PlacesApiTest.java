@@ -603,7 +603,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPhotoRequest() throws Exception {
+  public void testPhotoRequest_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       final String photoReference = "Photo Reference";
       final int width = 200;
