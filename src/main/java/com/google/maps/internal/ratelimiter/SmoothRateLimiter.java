@@ -387,13 +387,13 @@ abstract class SmoothRateLimiter extends RateLimiter {
   /**
    * Returns the number of microseconds during cool down that we have to wait to get a new permit.
    */
-  abstract double coolDownIntervalMicros();
+  abstract double coolDownIntervalMicros_RENAMED();
 
   /** Updates {@code storedPermits} and {@code nextFreeTicketMicros} based on the current time. */
   void resync(long nowMicros) {
     // if nextFreeTicket is in the past, resync to now
     if (nowMicros > nextFreeTicketMicros) {
-      double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros();
+      double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros_RENAMED();
       storedPermits = min(maxPermits, storedPermits + newPermits);
       nextFreeTicketMicros = nowMicros;
     }
