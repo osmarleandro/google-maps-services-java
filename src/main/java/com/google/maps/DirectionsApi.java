@@ -20,7 +20,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.DirectionsRoute_RENAMED;
 import com.google.maps.model.GeocodedWaypoint;
 
 /**
@@ -67,7 +67,7 @@ public class DirectionsApi {
     public String status;
     public String errorMessage;
     public GeocodedWaypoint[] geocodedWaypoints;
-    public DirectionsRoute[] routes;
+    public DirectionsRoute_RENAMED[] routes;
 
     @Override
     public boolean successful() {
