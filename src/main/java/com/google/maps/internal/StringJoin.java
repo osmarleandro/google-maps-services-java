@@ -65,7 +65,7 @@ public class StringJoin {
     String[] strings = new String[parts.length];
     int i = 0;
     for (UrlValue part : parts) {
-      strings[i++] = part.toUrlValue();
+      strings[i++] = part.toUrlValue_RENAMED();
     }
 
     return join(delim, strings);
