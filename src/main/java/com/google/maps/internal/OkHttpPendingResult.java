@@ -41,6 +41,7 @@ import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import okhttp3.Call;
@@ -338,4 +339,10 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
+
+@Override
+public Map<String, List<String>> params() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

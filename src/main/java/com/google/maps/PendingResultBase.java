@@ -37,7 +37,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   private final GeoApiContext context;
   private final ApiConfig config;
-  private HashMap<String, List<String>> params = new HashMap<>();
+  HashMap<String, List<String>> params = new HashMap<>();
   private PendingResult<T> delegate;
   private Class<? extends R> responseClass;
 
@@ -129,7 +129,8 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return getInstance();
   }
 
-  protected Map<String, List<String>> params() {
+  @Override
+protected Map<String, List<String>> params() {
     return Collections.unmodifiableMap(params);
   }
 

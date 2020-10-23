@@ -17,6 +17,8 @@ package com.google.maps;
 
 import com.google.maps.errors.ApiException;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A pending result from an API call.
@@ -57,7 +59,9 @@ public interface PendingResult<T> {
   /** Attempts to cancel the request. */
   void cancel();
 
-  /**
+  Map<String, List<String>> params();
+
+/**
    * The callback interface the API client code needs to implement to handle API results.
    *
    * @param <T> The type of the result object.
