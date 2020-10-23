@@ -69,7 +69,7 @@ public class PlacesApiTest {
   private final String queryAutocompleteResponseBody;
   private final String queryAutocompleteWithPlaceIdResponseBody;
   private final String textSearchResponseBody;
-  private final String textSearchPizzaInNYCbody;
+  public final String textSearchPizzaInNYCbody;
   private final String placesApiTextSearch;
   private final String placesApiPhoto;
   private final String placesApiPizzaInNewYork;
@@ -582,23 +582,6 @@ public class PlacesApiTest {
       assertNotNull(result.types);
       assertNotNull(result.types[0]);
       assertEquals("establishment", result.types[0]);
-    }
-  }
-
-  @Test
-  public void testTextSearchNYC() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(textSearchPizzaInNYCbody)) {
-      PlacesSearchResponse results =
-          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
-      assertNotNull(results.toString());
-      assertNotNull(results.nextPageToken);
-      assertEquals(
-          "CuQB1wAAANI17eHXt1HpqbLjkj7T5Ti69DEAClo02Qampg7Q6W_O_krFbge7hnTtDR7oVF3asex"
-              + "HcGnUtR1ZKjroYd4BTCXxSGPi9LEkjJ0P_zVE7byjEBcHvkdxB6nCHKHAgVNGqe0ZHuwSYKlr3C1-"
-              + "kuellMYwMlg3WSe69bJr1Ck35uToNZkUGvo4yjoYxNFRn1lABEnjPskbMdyHAjUDwvBDxzgGxpd8t"
-              + "0EzA9UOM8Y1jqWnZGJM7u8gacNFcI4prr0Doh9etjY1yHrgGYI4F7lKPbfLQKiks_wYzoHbcAcdbB"
-              + "jkEhAxDHC0XXQ16thDAlwVbEYaGhSaGDw5sHbaZkG9LZIqbcas0IJU8w",
-          results.nextPageToken);
     }
   }
 

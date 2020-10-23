@@ -15,10 +15,19 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +76,22 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testTextSearchNYC(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTest.textSearchPizzaInNYCbody)) {
+      PlacesSearchResponse results =
+          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
+      assertNotNull(results.toString());
+      assertNotNull(results.nextPageToken);
+      assertEquals(
+          "CuQB1wAAANI17eHXt1HpqbLjkj7T5Ti69DEAClo02Qampg7Q6W_O_krFbge7hnTtDR7oVF3asex"
+              + "HcGnUtR1ZKjroYd4BTCXxSGPi9LEkjJ0P_zVE7byjEBcHvkdxB6nCHKHAgVNGqe0ZHuwSYKlr3C1-"
+              + "kuellMYwMlg3WSe69bJr1Ck35uToNZkUGvo4yjoYxNFRn1lABEnjPskbMdyHAjUDwvBDxzgGxpd8t"
+              + "0EzA9UOM8Y1jqWnZGJM7u8gacNFcI4prr0Doh9etjY1yHrgGYI4F7lKPbfLQKiks_wYzoHbcAcdbB"
+              + "jkEhAxDHC0XXQ16thDAlwVbEYaGhSaGDw5sHbaZkG9LZIqbcas0IJU8w",
+          results.nextPageToken);
+    }
   }
 }
