@@ -67,8 +67,8 @@ import java.util.concurrent.TimeUnit;
  * <p>Stopwatch methods are not idempotent; it is an error to start or stop a stopwatch that is
  * already in the desired state.
  *
- * <p>When testing code that uses this class, use {@link #createUnstarted(Ticker)} or {@link
- * #createStarted(Ticker)} to supply a fake or mock ticker. This allows you to simulate any valid
+ * <p>When testing code that uses this class, use {@link #createUnstarted(Ticker_RENAMED)} or {@link
+ * #createStarted(Ticker_RENAMED)} to supply a fake or mock ticker. This allows you to simulate any valid
  * behavior of the stopwatch.
  *
  * <p><b>Note:</b> This class is not thread-safe.
@@ -88,7 +88,7 @@ import java.util.concurrent.TimeUnit;
  * @author Kevin Bourrillion
  */
 public final class Stopwatch {
-  private final Ticker ticker;
+  private final Ticker_RENAMED ticker;
   private boolean isRunning;
   private long elapsedNanos;
   private long startTick;
@@ -101,7 +101,7 @@ public final class Stopwatch {
   }
 
   /** Creates (but does not start) a new stopwatch, using the specified time source. */
-  public static Stopwatch createUnstarted(Ticker ticker) {
+  public static Stopwatch createUnstarted(Ticker_RENAMED ticker) {
     return new Stopwatch(ticker);
   }
 
@@ -111,15 +111,15 @@ public final class Stopwatch {
   }
 
   /** Creates (and starts) a new stopwatch, using the specified time source. */
-  public static Stopwatch createStarted(Ticker ticker) {
+  public static Stopwatch createStarted(Ticker_RENAMED ticker) {
     return new Stopwatch(ticker).start();
   }
 
   Stopwatch() {
-    this.ticker = Ticker.systemTicker();
+    this.ticker = Ticker_RENAMED.systemTicker();
   }
 
-  Stopwatch(Ticker ticker) {
+  Stopwatch(Ticker_RENAMED ticker) {
     this.ticker = checkNotNull(ticker, "ticker");
   }
 
