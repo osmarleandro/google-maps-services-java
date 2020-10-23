@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import com.google.maps.model.Size;
+import com.google.maps.model.Size_RENAMED;
 
 public class StaticMapsApi {
 
@@ -28,7 +28,7 @@ public class StaticMapsApi {
    * @param size The size of the static map.
    * @return Returns a new {@code StaticMapRequest} with configured size.
    */
-  public static StaticMapsRequest newRequest(GeoApiContext context, Size size) {
+  public static StaticMapsRequest newRequest(GeoApiContext context, Size_RENAMED size) {
     return new StaticMapsRequest(context).size(size);
   }
 }
