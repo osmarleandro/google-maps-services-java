@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A rate limiter. Conceptually, a rate limiter distributes permits at a configurable rate. Each
- * {@link #acquire()} blocks if necessary until a permit is available, and then takes it. Once
+ * {@link #MISSING()} blocks if necessary until a permit is available, and then takes it. Once
  * acquired, permits need not be released.
  *
  * <p>Rate limiters are often used to restrict the rate at which some physical or logical resource
@@ -180,7 +180,7 @@ public abstract class RateLimiter {
    * The underlying timer; used both to measure elapsed time and sleep as necessary. A separate
    * object to facilitate testing.
    */
-  private final SleepingStopwatch stopwatch;
+  public final SleepingStopwatch stopwatch;
 
   // Can't be initialized in the constructor because mocks don't call the constructor.
   private volatile Object mutexDoNotUseDirectly;
@@ -243,19 +243,6 @@ public abstract class RateLimiter {
   }
 
   abstract double doGetRate();
-
-  /**
-   * Acquires a single permit from this {@code RateLimiter}, blocking until the request can be
-   * granted. Tells the amount of time slept, if any.
-   *
-   * <p>This method is equivalent to {@code acquire(1)}.
-   *
-   * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited
-   * @since 16.0 (present in 13.0 with {@code void} return type})
-   */
-  public double acquire() {
-    return acquire(1);
-  }
 
   /**
    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the request
@@ -402,7 +389,21 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    /**
+	   * Acquires a single permit from this {@code RateLimiter}, blocking until the request can be
+	   * granted. Tells the amount of time slept, if any.
+	   *
+	   * <p>This method is equivalent to {@code acquire(1)}.
+	   *
+	   * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited
+	   * @param rateLimiter TODO
+	 * @since 16.0 (present in 13.0 with {@code void} return type})
+	   */
+	  public double acquire(RateLimiter rateLimiter) {
+	    return rateLimiter.acquire(1);
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 

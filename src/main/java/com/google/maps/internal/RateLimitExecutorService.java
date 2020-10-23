@@ -74,7 +74,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   public void run() {
     try {
       while (!delegate.isShutdown()) {
-        this.rateLimiter.acquire();
+        this.rateLimiter.stopwatch.acquire(this.rateLimiter);
         Runnable r = queue.take();
         if (!delegate.isShutdown()) {
           delegate.execute(r);
