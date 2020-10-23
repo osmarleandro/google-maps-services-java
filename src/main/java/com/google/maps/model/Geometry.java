@@ -16,6 +16,7 @@
 package com.google.maps.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /** The geometry of a Geocoding result. */
 public class Geometry implements Serializable {
@@ -48,5 +49,40 @@ public class Geometry implements Serializable {
   public String toString() {
     return String.format(
         "[Geometry: %s (%s) bounds=%s, viewport=%s]", location, locationType, bounds, viewport);
+  }
+
+public String toString(PlacesSearchResult placesSearchResult) {
+    StringBuilder sb = new StringBuilder("[PlacesSearchResult: ");
+    sb.append("\"").append(placesSearchResult.name).append("\"");
+    sb.append(", \"").append(placesSearchResult.formattedAddress).append("\"");
+    sb.append(", geometry=").append(this);
+    sb.append(", placeId=").append(placesSearchResult.placeId);
+    if (placesSearchResult.vicinity != null) {
+      sb.append(", vicinity=").append(placesSearchResult.vicinity);
+    }
+    if (placesSearchResult.types != null && placesSearchResult.types.length > 0) {
+      sb.append(", types=").append(Arrays.toString(placesSearchResult.types));
+    }
+    sb.append(", rating=").append(placesSearchResult.rating);
+    if (placesSearchResult.icon != null) {
+      sb.append(", icon");
+    }
+    if (placesSearchResult.openingHours != null) {
+      sb.append(", openingHours");
+    }
+    if (placesSearchResult.photos != null && placesSearchResult.photos.length > 0) {
+      sb.append(", ").append(placesSearchResult.photos.length).append(" photos");
+    }
+    if (placesSearchResult.permanentlyClosed) {
+      sb.append(", permanentlyClosed");
+    }
+    if (placesSearchResult.userRatingsTotal > 0) {
+      sb.append(", userRatingsTotal=").append(placesSearchResult.userRatingsTotal);
+    }
+    if (placesSearchResult.businessStatus != null) {
+      sb.append(", businessStatus=").append(placesSearchResult.businessStatus);
+    }
+    sb.append("]");
+    return sb.toString();
   }
 }

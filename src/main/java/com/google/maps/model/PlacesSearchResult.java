@@ -17,7 +17,6 @@ package com.google.maps.model;
 
 import java.io.Serializable;
 import java.net.URL;
-import java.util.Arrays;
 
 /**
  * A single result in the search results returned from the Google Places API Web Service.
@@ -82,37 +81,6 @@ public class PlacesSearchResult implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[PlacesSearchResult: ");
-    sb.append("\"").append(name).append("\"");
-    sb.append(", \"").append(formattedAddress).append("\"");
-    sb.append(", geometry=").append(geometry);
-    sb.append(", placeId=").append(placeId);
-    if (vicinity != null) {
-      sb.append(", vicinity=").append(vicinity);
-    }
-    if (types != null && types.length > 0) {
-      sb.append(", types=").append(Arrays.toString(types));
-    }
-    sb.append(", rating=").append(rating);
-    if (icon != null) {
-      sb.append(", icon");
-    }
-    if (openingHours != null) {
-      sb.append(", openingHours");
-    }
-    if (photos != null && photos.length > 0) {
-      sb.append(", ").append(photos.length).append(" photos");
-    }
-    if (permanentlyClosed) {
-      sb.append(", permanentlyClosed");
-    }
-    if (userRatingsTotal > 0) {
-      sb.append(", userRatingsTotal=").append(userRatingsTotal);
-    }
-    if (businessStatus != null) {
-      sb.append(", businessStatus=").append(businessStatus);
-    }
-    sb.append("]");
-    return sb.toString();
-  }
+	return geometry.toString(this);
+}
 }
