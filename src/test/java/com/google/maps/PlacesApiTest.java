@@ -621,37 +621,6 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testNearbySearchRequest() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
-          .openNow(true)
-          .type(PlaceType.AIRPORT)
-          .pageToken("next-page-token")
-          .await();
-
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(RankBy.PROMINENCE.toString(), "rankby");
-      sc.assertParamValue("keyword", "keyword");
-      sc.assertParamValue("en", "language");
-      sc.assertParamValue(PriceLevel.INEXPENSIVE.toString(), "minprice");
-      sc.assertParamValue(PriceLevel.EXPENSIVE.toString(), "maxprice");
-      sc.assertParamValue("name", "name");
-      sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
-      sc.assertParamValue("next-page-token", "pagetoken");
-    }
-  }
-
-  @Test
   @SuppressWarnings("deprecation") // Testing a deprecated method
   public void testNearbySearchRequestWithMultipleType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
