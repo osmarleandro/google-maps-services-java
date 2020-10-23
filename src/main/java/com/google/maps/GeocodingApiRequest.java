@@ -28,7 +28,7 @@ import com.google.maps.model.LocationType;
 public class GeocodingApiRequest
     extends PendingResultBase<GeocodingResult[], GeocodingApiRequest, GeocodingApi.Response> {
 
-  private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
+  public static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
 
   public GeocodingApiRequest(GeoApiContext context) {
     super(context, API_CONFIG, GeocodingApi.Response.class);
@@ -52,16 +52,6 @@ public class GeocodingApiRequest
       throw new IllegalArgumentException(
           "Request must contain at least one of 'address', 'latlng', 'place_id' and 'components'.");
     }
-  }
-
-  /**
-   * Creates a forward geocode for {@code address}.
-   *
-   * @param address The address to geocode.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest address(String address) {
-    return param("address", address);
   }
 
   /**
