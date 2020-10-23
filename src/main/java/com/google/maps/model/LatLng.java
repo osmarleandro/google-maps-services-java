@@ -15,10 +15,21 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.StaticMapsApi;
+import com.google.maps.StaticMapsApiTest;
+import com.google.maps.StaticMapsRequest;
+import com.google.maps.StaticMapsRequest.Markers;
+import com.google.maps.StaticMapsRequest.Markers.CustomIconAnchor;
+import com.google.maps.StaticMapsRequest.Markers.MarkersSize;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +78,33 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testMarkerAndPathAsEncodedPolyline(StaticMapsApiTest staticMapsApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(staticMapsApiTest.IMAGE)) {
+      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(staticMapsApiTest.WIDTH, staticMapsApiTest.HEIGHT));
+      Markers markers = new Markers();
+      markers.size(MarkersSize.small);
+      markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
+      markers.color("blue");
+      markers.label("A");
+      markers.addLocation("Melbourne");
+      markers.addLocation(staticMapsApiTest.SYDNEY);
+      req.markers(markers);
+
+      List<LatLng> points = new ArrayList<>();
+      points.add(this);
+      points.add(staticMapsApiTest.SYDNEY);
+      EncodedPolyline path = new EncodedPolyline(points);
+      req.path(path);
+
+      req.await();
+
+      sc.assertParamValue(
+          "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
+          "markers");
+      sc.assertParamValue("enc:" + staticMapsApiTest.MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE, "path");
+    }
   }
 }
