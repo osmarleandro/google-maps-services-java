@@ -290,7 +290,7 @@ public class EnumsTest {
         addressComponentTypeToLiteralMap.entrySet()) {
       assertEquals(
           AddressComponentTypeLiteralPair.getValue(),
-          AddressComponentTypeLiteralPair.getKey().toCanonicalLiteral());
+          AddressComponentTypeLiteralPair.getKey().toCanonicalLiteral_RENAMED());
     }
     List<AddressComponentType> enumsMinusUnknown =
         new ArrayList<>(Arrays.asList(AddressComponentType.values()));

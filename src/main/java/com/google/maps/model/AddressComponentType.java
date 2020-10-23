@@ -297,7 +297,7 @@ public enum AddressComponentType {
     return addressComponentType;
   }
 
-  public String toCanonicalLiteral() {
+  public String toCanonicalLiteral_RENAMED() {
     return toString();
   }
 }
