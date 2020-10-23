@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.TextSearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,19 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Region used to influence search results. This parameter will only influence, not fully
+   * restrict, search results. If more relevant results exist outside of the specified region, they
+   * may be included. When this parameter is used, the country name is omitted from the resulting
+   * formatted_address for results in the specified region.
+   *
+   * @param textSearchRequest TODO
+ * @param region The ccTLD two-letter code of the region.
+ * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+  public TextSearchRequest region(TextSearchRequest textSearchRequest, String region) {
+    return textSearchRequest.param("region", region);
   }
 }

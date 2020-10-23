@@ -33,7 +33,7 @@ import com.google.maps.model.RankBy;
 public class TextSearchRequest
     extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/textsearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -59,19 +59,6 @@ public class TextSearchRequest
    */
   public TextSearchRequest location(LatLng location) {
     return param("location", location);
-  }
-
-  /**
-   * Region used to influence search results. This parameter will only influence, not fully
-   * restrict, search results. If more relevant results exist outside of the specified region, they
-   * may be included. When this parameter is used, the country name is omitted from the resulting
-   * formatted_address for results in the specified region.
-   *
-   * @param region The ccTLD two-letter code of the region.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest region(String region) {
-    return param("region", region);
   }
 
   /**
