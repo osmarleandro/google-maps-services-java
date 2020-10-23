@@ -169,4 +169,24 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+protected void validateRequest() {
+    // Must not have both address and latlng.
+    if (params().containsKey("latlng")
+        && params().containsKey("address")
+        && params().containsKey("place_id")) {
+      throw new IllegalArgumentException(
+          "Request must contain only one of 'address', 'latlng' or 'place_id'.");
+    }
+
+    // Must contain at least one of place_id, address, latlng, and components;
+    if (!params().containsKey("latlng")
+        && !params().containsKey("address")
+        && !params().containsKey("components")
+        && !params().containsKey("place_id")) {
+      throw new IllegalArgumentException(
+          "Request must contain at least one of 'address', 'latlng', 'place_id' and 'components'.");
+    }
+  }
 }
