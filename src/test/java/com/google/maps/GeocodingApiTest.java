@@ -911,7 +911,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address(address)
-              .custom("new_forward_geocoder", "true")
+              .custom_RENAMED("new_forward_geocoder", "true")
               .await();
 
       assertNotNull(Arrays.toString(results));
