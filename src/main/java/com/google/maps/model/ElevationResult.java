@@ -35,6 +35,6 @@ public class ElevationResult implements Serializable {
 
   @Override
   public String toString() {
-    return String.format("(%s, %f m, resolution=%f m)", location, elevation, resolution);
-  }
+	return location.toString(this);
+}
 }
