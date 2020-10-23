@@ -16,7 +16,7 @@
 package com.google.maps.model;
 
 /**
- * The status result for a single {@link com.google.maps.model.DistanceMatrixElement}.
+ * The status result for a single {@link com.google.maps.model.DistanceMatrixElement_RENAMED}.
  *
  * @see <a
  *     href="https://developers.google.com/maps/documentation/distance-matrix/intro#StatusCodes">
