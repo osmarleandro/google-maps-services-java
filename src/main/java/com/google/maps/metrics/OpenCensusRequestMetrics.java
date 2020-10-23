@@ -51,7 +51,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
             .putLocal(OpenCensusMetrics.Tags.REQUEST_NAME, TagValue.create(requestName))
             .putLocal(
                 OpenCensusMetrics.Tags.HTTP_CODE, TagValue.create(Integer.toString(httpStatusCode)))
-            .putLocal(OpenCensusMetrics.Tags.API_STATUS, TagValue.create(exceptionName(exception)))
+            .putLocal(OpenCensusMetrics.Tags.API_STATUS, TagValue.create(exceptionName_RENAMED(exception)))
             .build();
     statsRecorder
         .newMeasureMap()
@@ -61,7 +61,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
         .record(tagContext);
   }
 
-  private String exceptionName(Exception exception) {
+  private String exceptionName_RENAMED(Exception exception) {
     if (exception == null) {
       return "";
     } else {
