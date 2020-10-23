@@ -298,7 +298,7 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if the requested number of permits is negative or zero
    */
   public boolean tryAcquire(long timeout, TimeUnit unit) {
-    return tryAcquire(1, timeout, unit);
+    return stopwatch.tryAcquire(this, 1, timeout, unit);
   }
 
   /**
@@ -312,7 +312,7 @@ public abstract class RateLimiter {
    * @since 14.0
    */
   public boolean tryAcquire(int permits) {
-    return tryAcquire(permits, 0, MICROSECONDS);
+    return stopwatch.tryAcquire(this, permits, 0, MICROSECONDS);
   }
 
   /**
@@ -325,34 +325,7 @@ public abstract class RateLimiter {
    * @since 14.0
    */
   public boolean tryAcquire() {
-    return tryAcquire(1, 0, MICROSECONDS);
-  }
-
-  /**
-   * Acquires the given number of permits from this {@code RateLimiter} if it can be obtained
-   * without exceeding the specified {@code timeout}, or returns {@code false} immediately (without
-   * waiting) if the permits would not have been granted before the timeout expired.
-   *
-   * @param permits the number of permits to acquire
-   * @param timeout the maximum time to wait for the permits. Negative values are treated as zero.
-   * @param unit the time unit of the timeout argument
-   * @return {@code true} if the permits were acquired, {@code false} otherwise
-   * @throws IllegalArgumentException if the requested number of permits is negative or zero
-   */
-  public boolean tryAcquire(int permits, long timeout, TimeUnit unit) {
-    long timeoutMicros = max(unit.toMicros(timeout), 0);
-    checkPermits(permits);
-    long microsToWait;
-    synchronized (mutex()) {
-      long nowMicros = stopwatch.readMicros();
-      if (!canAcquire(nowMicros, timeoutMicros)) {
-        return false;
-      } else {
-        microsToWait = reserveAndGetWaitLength(permits, nowMicros);
-      }
-    }
-    stopwatch.sleepMicrosUninterruptibly(microsToWait);
-    return true;
+    return stopwatch.tryAcquire(this, 1, 0, MICROSECONDS);
   }
 
   private boolean canAcquire(long nowMicros, long timeoutMicros) {
@@ -402,7 +375,35 @@ public abstract class RateLimiter {
 
     protected abstract void sleepMicrosUninterruptibly(long micros);
 
-    public static SleepingStopwatch createFromSystemTimer() {
+    /**
+	   * Acquires the given number of permits from this {@code RateLimiter} if it can be obtained
+	   * without exceeding the specified {@code timeout}, or returns {@code false} immediately (without
+	   * waiting) if the permits would not have been granted before the timeout expired.
+	   *
+	   * @param rateLimiter TODO
+	 * @param permits the number of permits to acquire
+	 * @param timeout the maximum time to wait for the permits. Negative values are treated as zero.
+	 * @param unit the time unit of the timeout argument
+	 * @return {@code true} if the permits were acquired, {@code false} otherwise
+	   * @throws IllegalArgumentException if the requested number of permits is negative or zero
+	   */
+	  public boolean tryAcquire(RateLimiter rateLimiter, int permits, long timeout, TimeUnit unit) {
+	    long timeoutMicros = max(unit.toMicros(timeout), 0);
+	    RateLimiter.checkPermits(permits);
+	    long microsToWait;
+	    synchronized (rateLimiter.mutex()) {
+	      long nowMicros = readMicros();
+	      if (!rateLimiter.canAcquire(nowMicros, timeoutMicros)) {
+	        return false;
+	      } else {
+	        microsToWait = rateLimiter.reserveAndGetWaitLength(permits, nowMicros);
+	      }
+	    }
+	    sleepMicrosUninterruptibly(microsToWait);
+	    return true;
+	  }
+
+	public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
         final Stopwatch stopwatch = Stopwatch.createStarted();
 
