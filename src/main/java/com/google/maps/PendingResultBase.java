@@ -20,6 +20,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -168,5 +169,28 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the desired time of departure.
+   *
+   * <p>The departure time may be specified in two cases:
+   *
+   * <ul>
+   *   <li>For requests where the travel mode is transit: You can optionally specify one of
+   *       departure_time or arrival_time. If neither time is specified, the departure_time defaults
+   *       to now. (That is, the departure time defaults to the current time.)
+   *   <li>For requests where the travel mode is driving: Google Maps API for Work customers can
+   *       specify the departure_time to receive trip duration considering current traffic
+   *       conditions. The departure_time must be set to within a few minutes of the current time.
+   * </ul>
+   *
+   * <p>Setting the parameter to null will remove it from the API request.
+   *
+   * @param departureTime The time of departure.
+   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+public DistanceMatrixApiRequest departureTime(Instant departureTime) {
+    return param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L));
   }
 }
