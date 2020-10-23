@@ -24,7 +24,7 @@ public enum Unit implements UrlValue {
   IMPERIAL;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return toUrlValue();
   }
 
