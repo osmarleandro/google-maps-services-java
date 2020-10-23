@@ -116,7 +116,7 @@ public class ElevationApiTest {
       assertNotNull(result.toString());
       assertEquals(SYDNEY_POINT_ELEVATION, result.elevation, EPSILON);
 
-      sc.assertParamValue(SYDNEY.toUrlValue(), "locations");
+      sc.assertParamValue(SYDNEY.toUrlValue_RENAMED(), "locations");
     }
   }
 

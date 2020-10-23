@@ -52,7 +52,7 @@ public enum LocationType implements UrlValue {
   UNKNOWN;
 
   @Override
-  public String toUrlValue() {
+  public String toUrlValue_RENAMED() {
     if (this == UNKNOWN) {
       throw new UnsupportedOperationException("Shouldn't use LocationType.UNKNOWN in a request.");
     }

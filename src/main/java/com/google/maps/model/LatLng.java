@@ -47,7 +47,7 @@ public class LatLng implements UrlValue, Serializable {
 
   @Override
   public String toString() {
-    return toUrlValue();
+    return toUrlValue_RENAMED();
   }
 
   @Override
