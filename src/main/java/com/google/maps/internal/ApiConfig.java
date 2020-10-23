@@ -15,7 +15,11 @@
 
 package com.google.maps.internal;
 
+import static com.google.maps.internal.StringJoin.join;
+
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.NearbySearchRequest;
+import com.google.maps.model.PlaceType;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +51,19 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Restricts the results to places matching the specified type. Provides support for multiple
+   * types.
+   *
+   * @param nearbySearchRequest TODO
+ * @param types The {@link PlaceType}s to restrict results to.
+ * @deprecated Multiple search types are ignored by the Places API.
+   * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  @Deprecated
+  public NearbySearchRequest type(NearbySearchRequest nearbySearchRequest, PlaceType... types) {
+    return nearbySearchRequest.param("type", join('|', types));
   }
 }
