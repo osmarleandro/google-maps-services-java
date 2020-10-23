@@ -57,7 +57,7 @@ public class LatLng implements UrlValue, Serializable {
   }
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals_RENAMED(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     LatLng latLng = (LatLng) o;
