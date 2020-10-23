@@ -17,7 +17,7 @@ package com.google.maps.model;
 
 import java.io.Serializable;
 
-public class FindPlaceFromText implements Serializable {
+public class FindPlaceFromText_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

@@ -34,7 +34,7 @@ import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.AutocompletePrediction.MatchedSubstring;
 import com.google.maps.model.AutocompleteStructuredFormatting;
 import com.google.maps.model.ComponentFilter;
-import com.google.maps.model.FindPlaceFromText;
+import com.google.maps.model.FindPlaceFromText_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.OpeningHours.Period;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
@@ -919,7 +919,7 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      FindPlaceFromText response =
+      FindPlaceFromText_RENAMED response =
           PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
               .fields(
                   FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,

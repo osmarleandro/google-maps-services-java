@@ -21,13 +21,13 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
-import com.google.maps.model.FindPlaceFromText;
+import com.google.maps.model.FindPlaceFromText_RENAMED;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
 
 public class FindPlaceFromTextRequest
     extends PendingResultBase<
-        FindPlaceFromText, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> {
+        FindPlaceFromText_RENAMED, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/findplacefromtext/json")
@@ -106,7 +106,7 @@ public class FindPlaceFromTextRequest
     }
   }
 
-  public static class Response implements ApiResponse<FindPlaceFromText> {
+  public static class Response implements ApiResponse<FindPlaceFromText_RENAMED> {
 
     public String status;
     public PlacesSearchResult candidates[];
@@ -118,8 +118,8 @@ public class FindPlaceFromTextRequest
     }
 
     @Override
-    public FindPlaceFromText getResult() {
-      FindPlaceFromText result = new FindPlaceFromText();
+    public FindPlaceFromText_RENAMED getResult() {
+      FindPlaceFromText_RENAMED result = new FindPlaceFromText_RENAMED();
       result.candidates = candidates;
       return result;
     }
