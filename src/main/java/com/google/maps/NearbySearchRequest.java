@@ -92,7 +92,7 @@ public class NearbySearchRequest
    * @param keyword The keyword to search for.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest keyword(String keyword) {
+  public NearbySearchRequest keyword_RENAMED(String keyword) {
     return param("keyword", keyword);
   }
 

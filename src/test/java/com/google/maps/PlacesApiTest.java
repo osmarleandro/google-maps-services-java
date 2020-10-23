@@ -627,7 +627,7 @@ public class PlacesApiTest {
       PlacesApi.nearbySearchQuery(sc.context, location)
           .radius(5000)
           .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
+          .keyword_RENAMED("keyword")
           .language("en")
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.EXPENSIVE)
@@ -781,7 +781,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByKeyword)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword_RENAMED("pub").await();
 
       sc.assertParamValue("10000", "radius");
       sc.assertParamValue("pub", "keyword");
