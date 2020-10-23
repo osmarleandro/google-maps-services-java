@@ -39,10 +39,10 @@ import com.google.maps.model.DistanceMatrixRow;
  * @see <a href="https://developers.google.com/maps/documentation/distancematrix/">Distance Matrix
  *     API Documentation</a>
  */
-public class DistanceMatrixApi {
+public class DistanceMatrixApi_RENAMED {
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/distancematrix/json");
 
-  private DistanceMatrixApi() {}
+  private DistanceMatrixApi_RENAMED() {}
 
   public static DistanceMatrixApiRequest newRequest(GeoApiContext context) {
     return new DistanceMatrixApiRequest(context);
