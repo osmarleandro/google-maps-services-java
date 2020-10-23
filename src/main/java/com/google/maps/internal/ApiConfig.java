@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.QueryAutocompleteRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,19 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * The character position in the input term at which the service uses text for predictions. For
+   * example, if the input is 'Googl' and the completion point is 3, the service will match on
+   * 'Goo'. The offset should generally be set to the position of the text caret. If no offset is
+   * supplied, the service will use the entire term.
+   *
+   * @param queryAutocompleteRequest TODO
+ * @param offset The character offset to search from.
+ * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
+   */
+  public QueryAutocompleteRequest offset(QueryAutocompleteRequest queryAutocompleteRequest, int offset) {
+    return queryAutocompleteRequest.param("offset", String.valueOf(offset));
   }
 }
