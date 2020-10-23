@@ -35,7 +35,7 @@ import java.util.UUID;
  * Autocomplete</a> request.
  */
 public class PlaceAutocompleteRequest
-    extends PendingResultBase<
+    extends PendingResultBase_RENAMED<
         AutocompletePrediction[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> {
 
   static final ApiConfig API_CONFIG =

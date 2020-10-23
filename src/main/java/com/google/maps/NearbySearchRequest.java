@@ -33,7 +33,7 @@ import com.google.maps.model.RankBy;
  * Search</a> request.
  */
 public class NearbySearchRequest
-    extends PendingResultBase<
+    extends PendingResultBase_RENAMED<
         PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
 
   static final ApiConfig API_CONFIG =

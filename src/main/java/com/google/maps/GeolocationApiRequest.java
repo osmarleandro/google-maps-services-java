@@ -24,7 +24,7 @@ import com.google.maps.model.WifiAccessPoint;
 
 /** A request for the Geolocation API. */
 public class GeolocationApiRequest
-    extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
+    extends PendingResultBase_RENAMED<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
   private GeolocationPayload payload = null;
   private GeolocationPayloadBuilder builder = null;

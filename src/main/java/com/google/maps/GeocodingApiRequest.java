@@ -26,7 +26,7 @@ import com.google.maps.model.LocationType;
 
 /** A request for the Geocoding API. */
 public class GeocodingApiRequest
-    extends PendingResultBase<GeocodingResult[], GeocodingApiRequest, GeocodingApi.Response> {
+    extends PendingResultBase_RENAMED<GeocodingResult[], GeocodingApiRequest, GeocodingApi.Response> {
 
   private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/geocode/json");
 

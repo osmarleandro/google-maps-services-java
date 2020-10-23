@@ -22,7 +22,7 @@ import com.google.maps.internal.ApiConfig;
  * Photo</a> request.
  */
 public class PhotoRequest
-    extends PendingResultBase<ImageResult, PhotoRequest, ImageResult.Response> {
+    extends PendingResultBase_RENAMED<ImageResult, PhotoRequest, ImageResult.Response> {
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
 

@@ -26,7 +26,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
 
 public class FindPlaceFromTextRequest
-    extends PendingResultBase<
+    extends PendingResultBase_RENAMED<
         FindPlaceFromText, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> {
 
   static final ApiConfig API_CONFIG =

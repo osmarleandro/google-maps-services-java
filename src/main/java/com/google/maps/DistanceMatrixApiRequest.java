@@ -30,7 +30,7 @@ import java.time.Instant;
 
 /** A request to the Distance Matrix API. */
 public class DistanceMatrixApiRequest
-    extends PendingResultBase<DistanceMatrix, DistanceMatrixApiRequest, Response> {
+    extends PendingResultBase_RENAMED<DistanceMatrix, DistanceMatrixApiRequest, Response> {
 
   public DistanceMatrixApiRequest(GeoApiContext context) {
     super(context, DistanceMatrixApi.API_CONFIG, Response.class);

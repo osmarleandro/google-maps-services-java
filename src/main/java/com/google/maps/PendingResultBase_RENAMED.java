@@ -32,7 +32,7 @@ import java.util.Map;
  * <p>{@code T} is the class of the result, {@code A} is the actual base class of this abstract
  * class, and R is the type of the request.
  */
-abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R extends ApiResponse<T>>
+abstract class PendingResultBase_RENAMED<T, A extends PendingResultBase_RENAMED<T, A, R>, R extends ApiResponse<T>>
     implements PendingResult<T> {
 
   private final GeoApiContext context;
@@ -41,7 +41,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   private PendingResult<T> delegate;
   private Class<? extends R> responseClass;
 
-  protected PendingResultBase(GeoApiContext context, ApiConfig config, Class<? extends R> clazz) {
+  protected PendingResultBase_RENAMED(GeoApiContext context, ApiConfig config, Class<? extends R> clazz) {
     this.context = context;
     this.config = config;
     this.responseClass = clazz;

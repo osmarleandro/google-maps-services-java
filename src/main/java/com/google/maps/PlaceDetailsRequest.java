@@ -28,7 +28,7 @@ import com.google.maps.model.PlaceDetails;
  * Details</a> request.
  */
 public class PlaceDetailsRequest
-    extends PendingResultBase<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
+    extends PendingResultBase_RENAMED<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/details/json")

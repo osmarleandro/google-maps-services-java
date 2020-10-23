@@ -28,7 +28,7 @@ import com.google.maps.model.LatLng;
  * Autocomplete</a> request.
  */
 public class QueryAutocompleteRequest
-    extends PendingResultBase<
+    extends PendingResultBase_RENAMED<
         AutocompletePrediction[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> {
 
   static final ApiConfig API_CONFIG =

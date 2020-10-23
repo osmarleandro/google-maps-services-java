@@ -31,7 +31,7 @@ import com.google.maps.model.RankBy;
  * Search</a> request.
  */
 public class TextSearchRequest
-    extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
+    extends PendingResultBase_RENAMED<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/textsearch/json")

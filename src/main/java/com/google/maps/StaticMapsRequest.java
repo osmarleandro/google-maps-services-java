@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class StaticMapsRequest
-    extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
+    extends PendingResultBase_RENAMED<ImageResult, StaticMapsRequest, ImageResult.Response> {
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 

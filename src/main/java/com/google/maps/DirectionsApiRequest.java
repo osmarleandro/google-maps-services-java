@@ -29,7 +29,7 @@ import java.time.Instant;
 
 /** Request for the Directions API. */
 public class DirectionsApiRequest
-    extends PendingResultBase<DirectionsResult, DirectionsApiRequest, DirectionsApi.Response> {
+    extends PendingResultBase_RENAMED<DirectionsResult, DirectionsApiRequest, DirectionsApi.Response> {
 
   public DirectionsApiRequest(GeoApiContext context) {
     super(context, DirectionsApi.API_CONFIG, DirectionsApi.Response.class);
