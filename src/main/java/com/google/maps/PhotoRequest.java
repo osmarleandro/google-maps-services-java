@@ -48,7 +48,7 @@ public class PhotoRequest
    * @return Returns the configured PhotoRequest.
    */
   public PhotoRequest photoReference(String photoReference) {
-    return param("photoreference", photoReference);
+    return param_RENAMED("photoreference", photoReference);
   }
 
   /**
@@ -59,7 +59,7 @@ public class PhotoRequest
    * @return Returns the configured PhotoRequest.
    */
   public PhotoRequest maxHeight(int maxHeight) {
-    return param("maxheight", String.valueOf(maxHeight));
+    return param_RENAMED("maxheight", String.valueOf(maxHeight));
   }
 
   /**
@@ -70,6 +70,6 @@ public class PhotoRequest
    * @return Returns the configured PhotoRequest.
    */
   public PhotoRequest maxWidth(int maxWidth) {
-    return param("maxwidth", String.valueOf(maxWidth));
+    return param_RENAMED("maxwidth", String.valueOf(maxWidth));
   }
 }

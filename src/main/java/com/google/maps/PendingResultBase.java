@@ -96,19 +96,19 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return result;
   }
 
-  protected A param(String key, String val) {
+  protected A param_RENAMED(String key, String val) {
     // Enforce singleton parameter semantics for most API surfaces
     params.put(key, new ArrayList<String>());
     return paramAddToList(key, val);
   }
 
   protected A param(String key, int val) {
-    return this.param(key, Integer.toString(val));
+    return this.param_RENAMED(key, Integer.toString(val));
   }
 
   protected A param(String key, UrlValue val) {
     if (val != null) {
-      return this.param(key, val.toUrlValue());
+      return this.param_RENAMED(key, val.toUrlValue());
     }
     return getInstance();
   }
@@ -143,7 +143,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @return Returns the request for call chaining.
    */
   public final A language(String language) {
-    return param("language", language);
+    return param_RENAMED("language", language);
   }
 
   /**
@@ -156,7 +156,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @return Returns the request for call chaining.
    */
   public A channel(String channel) {
-    return param("channel", channel);
+    return param_RENAMED("channel", channel);
   }
 
   /**
@@ -167,6 +167,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @return Returns the request for call chaining.
    */
   public A custom(String parameter, String value) {
-    return param(parameter, value);
+    return param_RENAMED(parameter, value);
   }
 }

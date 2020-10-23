@@ -48,7 +48,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest query(String query) {
-    return param("query", query);
+    return param_RENAMED("query", query);
   }
 
   /**
@@ -71,7 +71,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest region(String region) {
-    return param("region", region);
+    return param_RENAMED("region", region);
   }
 
   /**
@@ -84,7 +84,7 @@ public class TextSearchRequest
     if (radius > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
-    return param("radius", String.valueOf(radius));
+    return param_RENAMED("radius", String.valueOf(radius));
   }
 
   /**
@@ -115,7 +115,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest name(String name) {
-    return param("name", name);
+    return param_RENAMED("name", name);
   }
 
   /**
@@ -125,7 +125,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest openNow(boolean openNow) {
-    return param("opennow", String.valueOf(openNow));
+    return param_RENAMED("opennow", String.valueOf(openNow));
   }
 
   /**
@@ -137,7 +137,7 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest pageToken(String nextPageToken) {
-    return param("pagetoken", nextPageToken);
+    return param_RENAMED("pagetoken", nextPageToken);
   }
 
   /**

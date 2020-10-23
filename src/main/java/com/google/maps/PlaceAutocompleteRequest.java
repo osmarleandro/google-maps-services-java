@@ -102,7 +102,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest input(String input) {
-    return param("input", input);
+    return param_RENAMED("input", input);
   }
 
   /**
@@ -115,7 +115,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest offset(int offset) {
-    return param("offset", String.valueOf(offset));
+    return param_RENAMED("offset", String.valueOf(offset));
   }
 
   /**
@@ -148,7 +148,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest radius(int radius) {
-    return param("radius", String.valueOf(radius));
+    return param_RENAMED("radius", String.valueOf(radius));
   }
 
   /**
@@ -180,7 +180,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
+    return param_RENAMED("components", join('|', filters));
   }
 
   /**
@@ -192,7 +192,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest strictBounds(boolean strictBounds) {
-    return param("strictbounds", Boolean.toString(strictBounds));
+    return param_RENAMED("strictbounds", Boolean.toString(strictBounds));
   }
 
   @Override

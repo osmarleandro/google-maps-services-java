@@ -54,7 +54,7 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest input(String input) {
-    return param("input", input);
+    return param_RENAMED("input", input);
   }
 
   /**
@@ -67,7 +67,7 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest offset(int offset) {
-    return param("offset", String.valueOf(offset));
+    return param_RENAMED("offset", String.valueOf(offset));
   }
 
   /**
@@ -88,7 +88,7 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest radius(int radius) {
-    return param("radius", String.valueOf(radius));
+    return param_RENAMED("radius", String.valueOf(radius));
   }
 
   public static class Response implements ApiResponse<AutocompletePrediction[]> {

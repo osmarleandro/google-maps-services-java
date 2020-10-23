@@ -66,7 +66,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest origin(String origin) {
-    return param("origin", origin);
+    return param_RENAMED("origin", origin);
   }
 
   /**
@@ -79,7 +79,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest destination(String destination) {
-    return param("destination", destination);
+    return param_RENAMED("destination", destination);
   }
 
   /**
@@ -89,7 +89,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest originPlaceId(String originPlaceId) {
-    return param("origin", prefixPlaceId(originPlaceId));
+    return param_RENAMED("origin", prefixPlaceId(originPlaceId));
   }
 
   /**
@@ -99,7 +99,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest destinationPlaceId(String destinationPlaceId) {
-    return param("destination", prefixPlaceId(destinationPlaceId));
+    return param_RENAMED("destination", prefixPlaceId(destinationPlaceId));
   }
 
   /**
@@ -141,7 +141,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
-    return param("avoid", join('|', restrictions));
+    return param_RENAMED("avoid", join('|', restrictions));
   }
 
   /**
@@ -159,7 +159,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest region(String region) {
-    return param("region", region);
+    return param_RENAMED("region", region);
   }
 
   /**
@@ -169,7 +169,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest arrivalTime(Instant time) {
-    return param("arrival_time", Long.toString(time.toEpochMilli() / 1000L));
+    return param_RENAMED("arrival_time", Long.toString(time.toEpochMilli() / 1000L));
   }
 
   /**
@@ -182,7 +182,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest departureTime(Instant time) {
-    return param("departure_time", Long.toString(time.toEpochMilli() / 1000L));
+    return param_RENAMED("departure_time", Long.toString(time.toEpochMilli() / 1000L));
   }
 
   /**
@@ -193,7 +193,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest departureTimeNow() {
-    return param("departure_time", "now");
+    return param_RENAMED("departure_time", "now");
   }
 
   /**
@@ -212,7 +212,7 @@ public class DirectionsApiRequest
   public DirectionsApiRequest waypoints(Waypoint... waypoints) {
     if (waypoints == null || waypoints.length == 0) {
       this.waypoints = new Waypoint[0];
-      param("waypoints", "");
+      param_RENAMED("waypoints", "");
       return this;
     } else {
       this.waypoints = waypoints;
@@ -220,7 +220,7 @@ public class DirectionsApiRequest
       for (int i = 0; i < waypoints.length; i++) {
         waypointStrs[i] = waypoints[i].toString();
       }
-      param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+      param_RENAMED("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
       return this;
     }
   }
@@ -304,9 +304,9 @@ public class DirectionsApiRequest
    */
   public DirectionsApiRequest alternatives(boolean alternateRoutes) {
     if (alternateRoutes) {
-      return param("alternatives", "true");
+      return param_RENAMED("alternatives", "true");
     } else {
-      return param("alternatives", "false");
+      return param_RENAMED("alternatives", "false");
     }
   }
 
@@ -318,7 +318,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest transitMode(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
+    return param_RENAMED("transit_mode", join('|', transitModes));
   }
 
   /**

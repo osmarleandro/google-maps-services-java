@@ -71,7 +71,7 @@ public class NearbySearchRequest
     if (distance > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
-    return param("radius", String.valueOf(distance));
+    return param_RENAMED("radius", String.valueOf(distance));
   }
 
   /**
@@ -93,7 +93,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest keyword(String keyword) {
-    return param("keyword", keyword);
+    return param_RENAMED("keyword", keyword);
   }
 
   /**
@@ -123,7 +123,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest name(String name) {
-    return param("name", name);
+    return param_RENAMED("name", name);
   }
 
   /**
@@ -133,7 +133,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest openNow(boolean openNow) {
-    return param("opennow", String.valueOf(openNow));
+    return param_RENAMED("opennow", String.valueOf(openNow));
   }
 
   /**
@@ -145,7 +145,7 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest pageToken(String nextPageToken) {
-    return param("pagetoken", nextPageToken);
+    return param_RENAMED("pagetoken", nextPageToken);
   }
 
   /**
@@ -168,7 +168,7 @@ public class NearbySearchRequest
    */
   @Deprecated
   public NearbySearchRequest type(PlaceType... types) {
-    return param("type", join('|', types));
+    return param_RENAMED("type", join('|', types));
   }
 
   @Override

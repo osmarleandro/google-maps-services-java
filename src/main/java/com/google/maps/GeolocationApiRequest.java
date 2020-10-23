@@ -103,6 +103,6 @@ public class GeolocationApiRequest
     }
     Gson gson = new Gson();
     String jsonPayload = gson.toJson(this.payload);
-    return param("_payload", jsonPayload);
+    return param_RENAMED("_payload", jsonPayload);
   }
 }

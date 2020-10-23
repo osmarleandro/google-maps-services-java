@@ -45,7 +45,7 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest placeId(String placeId) {
-    return param("placeid", placeId);
+    return param_RENAMED("placeid", placeId);
   }
 
   /**
@@ -68,7 +68,7 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest region(String region) {
-    return param("region", region);
+    return param_RENAMED("region", region);
   }
 
   /**
@@ -78,7 +78,7 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
+    return param_RENAMED("fields", StringJoin.join(',', fields));
   }
 
   @Override

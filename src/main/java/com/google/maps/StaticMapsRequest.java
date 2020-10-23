@@ -66,7 +66,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest center(String location) {
-    return param("center", location);
+    return param_RENAMED("center", location);
   }
 
   /**
@@ -165,7 +165,7 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest region(String region) {
-    return param("region", region);
+    return param_RENAMED("region", region);
   }
 
   public static class Markers implements UrlValue {
@@ -465,6 +465,6 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest visible(String visibleLocation) {
-    return param("visible", visibleLocation);
+    return param_RENAMED("visible", visibleLocation);
   }
 }

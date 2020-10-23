@@ -61,7 +61,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest address(String address) {
-    return param("address", address);
+    return param_RENAMED("address", address);
   }
 
   /**
@@ -71,7 +71,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest place(String placeId) {
-    return param("place_id", placeId);
+    return param_RENAMED("place_id", placeId);
   }
 
   /**
@@ -97,7 +97,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
-    return param("bounds", join('|', southWestBound, northEastBound));
+    return param_RENAMED("bounds", join('|', southWestBound, northEastBound));
   }
 
   /**
@@ -112,7 +112,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest region(String region) {
-    return param("region", region);
+    return param_RENAMED("region", region);
   }
 
   /**
@@ -127,7 +127,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
+    return param_RENAMED("components", join('|', filters));
   }
 
   /**
@@ -138,7 +138,7 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest resultType(AddressType... resultTypes) {
-    return param("result_type", join('|', resultTypes));
+    return param_RENAMED("result_type", join('|', resultTypes));
   }
 
   /**
@@ -149,6 +149,6 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
-    return param("location_type", join('|', locationTypes));
+    return param_RENAMED("location_type", join('|', locationTypes));
   }
 }

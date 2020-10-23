@@ -58,7 +58,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest origins(String... origins) {
-    return param("origins", join('|', origins));
+    return param_RENAMED("origins", join('|', origins));
   }
 
   /**
@@ -68,7 +68,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest origins(LatLng... points) {
-    return param("origins", join('|', points));
+    return param_RENAMED("origins", join('|', points));
   }
 
   /**
@@ -79,7 +79,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest destinations(String... destinations) {
-    return param("destinations", join('|', destinations));
+    return param_RENAMED("destinations", join('|', destinations));
   }
 
   /**
@@ -89,7 +89,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest destinations(LatLng... points) {
-    return param("destinations", join('|', points));
+    return param_RENAMED("destinations", join('|', points));
   }
 
   /**
@@ -156,7 +156,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest departureTime(Instant departureTime) {
-    return param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L));
+    return param_RENAMED("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L));
   }
 
   /**
@@ -178,7 +178,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
-    return param("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
+    return param_RENAMED("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
   }
 
   /**
@@ -189,7 +189,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
+    return param_RENAMED("transit_mode", join('|', transitModes));
   }
 
   /**
