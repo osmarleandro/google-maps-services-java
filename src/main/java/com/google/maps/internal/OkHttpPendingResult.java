@@ -167,13 +167,13 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         new okhttp3.Callback() {
           @Override
           public void onFailure(Call call, IOException e) {
-            metrics.endNetwork();
+            metrics.endNetwork_RENAMED();
             waiter.add(new QueuedResponse(parent, e));
           }
 
           @Override
           public void onResponse(Call call, Response response) throws IOException {
-            metrics.endNetwork();
+            metrics.endNetwork_RENAMED();
             waiter.add(new QueuedResponse(parent, response));
           }
         });
@@ -203,7 +203,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
   @Override
   public void onFailure(Call call, IOException ioe) {
-    metrics.endNetwork();
+    metrics.endNetwork_RENAMED();
     if (callback != null) {
       metrics.endRequest(ioe, 0, retryCounter);
       callback.onFailure(ioe);
@@ -212,7 +212,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
   @Override
   public void onResponse(Call call, Response response) throws IOException {
-    metrics.endNetwork();
+    metrics.endNetwork_RENAMED();
     if (callback != null) {
       try {
         callback.onResult(parseResponse(this, response));
