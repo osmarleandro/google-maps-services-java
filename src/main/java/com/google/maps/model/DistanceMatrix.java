@@ -53,7 +53,7 @@ public class DistanceMatrix implements Serializable {
   }
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format(
         "DistanceMatrix: %d origins x %d destinations, %d rows",
         originAddresses.length, destinationAddresses.length, rows.length);
