@@ -27,15 +27,26 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okhttp3.Headers;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.RecordedRequest;
+
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -622,5 +633,40 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@SuppressWarnings("unchecked")
+	  @Test
+	  public void testGetIncludesDefaultUserAgent(GeoApiContextTest geoApiContextTest) throws Exception {
+	    // Set up a mock request
+	    ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
+	    String path = "/";
+	    Map<String, List<String>> params = new HashMap<>();
+	    params.put("key", Collections.singletonList("value"));
+	
+	    // Set up the fake web server
+	    geoApiContextTest.server.enqueue(new MockResponse());
+	    geoApiContextTest.server.start();
+	    geoApiContextTest.setMockBaseUrl();
+	
+	    // Build & execute the request using our context
+	    build().get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+	
+	    // Read the headers
+	    geoApiContextTest.server.shutdown();
+	    RecordedRequest request = geoApiContextTest.server.takeRequest();
+	    Headers headers = request.getHeaders();
+	    boolean headerFound = false;
+	    for (String headerName : headers.names()) {
+	      if (headerName.equals("User-Agent")) {
+	        headerFound = true;
+	        String headerValue = headers.get(headerName);
+	        assertTrue(
+	            "User agent not in correct format",
+	            headerValue.matches("GoogleGeoApiClientJava/[^\\s]+"));
+	      }
+	    }
+	
+	    assertTrue("User agent header not present", headerFound);
+	  }
   }
 }

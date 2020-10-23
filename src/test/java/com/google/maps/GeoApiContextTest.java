@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import okhttp3.Headers;
+
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -48,8 +48,8 @@ import org.junit.experimental.categories.Category;
 @Category(MediumTests.class)
 public class GeoApiContextTest {
 
-  private MockWebServer server;
-  private GeoApiContext.Builder builder;
+  public MockWebServer server;
+  public GeoApiContext.Builder builder;
 
   @Before
   public void Setup() {
@@ -67,43 +67,8 @@ public class GeoApiContextTest {
     }
   }
 
-  private void setMockBaseUrl() {
+  public void setMockBaseUrl() {
     builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
-  }
-
-  @SuppressWarnings("unchecked")
-  @Test
-  public void testGetIncludesDefaultUserAgent() throws Exception {
-    // Set up a mock request
-    ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
-    String path = "/";
-    Map<String, List<String>> params = new HashMap<>();
-    params.put("key", Collections.singletonList("value"));
-
-    // Set up the fake web server
-    server.enqueue(new MockResponse());
-    server.start();
-    setMockBaseUrl();
-
-    // Build & execute the request using our context
-    builder.build().get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
-
-    // Read the headers
-    server.shutdown();
-    RecordedRequest request = server.takeRequest();
-    Headers headers = request.getHeaders();
-    boolean headerFound = false;
-    for (String headerName : headers.names()) {
-      if (headerName.equals("User-Agent")) {
-        headerFound = true;
-        String headerValue = headers.get(headerName);
-        assertTrue(
-            "User agent not in correct format",
-            headerValue.matches("GoogleGeoApiClientJava/[^\\s]+"));
-      }
-    }
-
-    assertTrue("User agent header not present", headerFound);
   }
 
   @Test
