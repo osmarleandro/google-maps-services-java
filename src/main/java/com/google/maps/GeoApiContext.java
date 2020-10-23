@@ -26,7 +26,7 @@ import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
-import com.google.maps.metrics.RequestMetricsReporter;
+import com.google.maps.metrics.RequestMetricsReporter_RENAMED;
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -67,7 +67,7 @@ public class GeoApiContext {
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
   private String experienceIdHeaderValue;
-  private final RequestMetricsReporter requestMetricsReporter;
+  private final RequestMetricsReporter_RENAMED requestMetricsReporter;
 
   /* package */
   GeoApiContext(
@@ -80,7 +80,7 @@ public class GeoApiContext {
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       Integer maxRetries,
       UrlSigner urlSigner,
-      RequestMetricsReporter requestMetricsReporter,
+      RequestMetricsReporter_RENAMED requestMetricsReporter,
       String... experienceIdHeaderValue) {
     this.requestHandler = requestHandler;
     this.apiKey = apiKey;
@@ -362,7 +362,7 @@ public class GeoApiContext {
     private ExceptionsAllowedToRetry exceptionsAllowedToRetry = new ExceptionsAllowedToRetry();
     private Integer maxRetries;
     private UrlSigner urlSigner;
-    private RequestMetricsReporter requestMetricsReporter = new NoOpRequestMetricsReporter();
+    private RequestMetricsReporter_RENAMED requestMetricsReporter = new NoOpRequestMetricsReporter();
     private String[] experienceIdHeaderValue;
 
     /** Builder pattern for the enclosing {@code GeoApiContext}. */
@@ -598,7 +598,7 @@ public class GeoApiContext {
       return this;
     }
 
-    public Builder requestMetricsReporter(RequestMetricsReporter requestMetricsReporter) {
+    public Builder requestMetricsReporter(RequestMetricsReporter_RENAMED requestMetricsReporter) {
       this.requestMetricsReporter = requestMetricsReporter;
       return this;
     }
