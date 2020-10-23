@@ -63,8 +63,8 @@ import org.slf4j.LoggerFactory;
 public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingResult<T> {
   private final HTTPRequest request;
   private final URLFetchService client;
-  private final Class<R> responseClass;
-  private final FieldNamingPolicy fieldNamingPolicy;
+  public final Class<R> responseClass;
+  public final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final RequestMetrics metrics;
@@ -157,7 +157,8 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @Override
+@SuppressWarnings("unchecked")
   private T parseResponseInternal(GaePendingResult<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
     if (shouldRetry(response)) {
@@ -242,7 +243,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     }
   }
 
-  private T retry() throws IOException, ApiException, InterruptedException {
+  public T retry() throws IOException, ApiException, InterruptedException {
     retryCounter++;
     LOG.info("Retrying request. Retry #{}", retryCounter);
     metrics.startNetwork();
@@ -250,13 +251,13 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     return this.await();
   }
 
-  private boolean shouldRetry(HTTPResponse response) {
+  public boolean shouldRetry(HTTPResponse response) {
     return RETRY_ERROR_CODES.contains(response.getResponseCode())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
 
-  private boolean shouldRetry(ApiException exception) {
+  public boolean shouldRetry(ApiException exception) {
     return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
