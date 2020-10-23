@@ -265,7 +265,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     Gson gson =
         new GsonBuilder()
             .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeAdapter())
-            .registerTypeAdapter(Distance.class, new DistanceAdapter())
+            .registerTypeAdapter(Distance.class, new DistanceAdapter_RENAMED())
             .registerTypeAdapter(Duration.class, new DurationAdapter())
             .registerTypeAdapter(Fare.class, new FareAdapter())
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())
