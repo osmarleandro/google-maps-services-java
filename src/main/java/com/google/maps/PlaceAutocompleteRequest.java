@@ -90,7 +90,7 @@ public class PlaceAutocompleteRequest
    * @param sessionToken Session Token is the session identifier.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest sessionToken(SessionToken sessionToken) {
+  public PlaceAutocompleteRequest sessionToken_RENAMED(SessionToken sessionToken) {
     return param("sessiontoken", sessionToken);
   }
 
