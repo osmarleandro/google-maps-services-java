@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.maps.FindPlaceFromTextRequest.LocationBias;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,16 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Prefer results in a specified area, by specifying either a radius plus lat/lng, or two lat/lng
+   * pairs representing the points of a rectangle.
+   *
+   * @param locationBias The location bias for this request.
+   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
+   */
+public FindPlaceFromTextRequest locationBias(LocationBias locationBias) {
+    return param("locationbias", locationBias);
   }
 }
