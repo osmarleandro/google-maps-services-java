@@ -44,7 +44,7 @@ public class SnappedPoint implements Serializable {
   public String placeId;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("[%s, placeId=%s, originalIndex=%s]", location, placeId, originalIndex);
   }
 }
