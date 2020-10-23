@@ -38,7 +38,7 @@ public class GeolocationResult implements Serializable {
   public double accuracy;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format("%s, accuracy=%s m", location, accuracy);
   }
 }
