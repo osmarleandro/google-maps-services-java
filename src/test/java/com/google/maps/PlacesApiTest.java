@@ -612,7 +612,7 @@ public class PlacesApiTest {
       PlacesApi.photo(sc.context, photoReference)
           .maxWidth(width)
           .maxHeight(height)
-          .awaitIgnoreError();
+          .awaitIgnoreError_RENAMED();
 
       sc.assertParamValue(photoReference, "photoreference");
       sc.assertParamValue(String.valueOf(width), "maxwidth");

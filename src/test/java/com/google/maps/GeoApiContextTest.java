@@ -86,7 +86,7 @@ public class GeoApiContextTest {
     setMockBaseUrl();
 
     // Build & execute the request using our context
-    builder.build().get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+    builder.build().get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError_RENAMED();
 
     // Read the headers
     server.shutdown();
@@ -263,7 +263,7 @@ public class GeoApiContextTest {
     builder
         .build()
         .get(new ApiConfig("/"), GeocodingApi.Response.class, "a", "1", "a", "2", "a", "3")
-        .awaitIgnoreError();
+        .awaitIgnoreError_RENAMED();
 
     server.shutdown();
     RecordedRequest request = server.takeRequest();
@@ -388,7 +388,7 @@ public class GeoApiContextTest {
 
     // Build & execute the request using our context
     final GeoApiContext context = builder.experienceId(experienceId).build();
-    context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+    context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError_RENAMED();
 
     // Read the header
     server.shutdown();

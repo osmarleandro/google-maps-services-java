@@ -52,7 +52,7 @@ public interface PendingResult<T> {
    *
    * @return The result, or null if there was any error or exception ignored.
    */
-  T awaitIgnoreError();
+  T awaitIgnoreError_RENAMED();
 
   /** Attempts to cancel the request. */
   void cancel();
