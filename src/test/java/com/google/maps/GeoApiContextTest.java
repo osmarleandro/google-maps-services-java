@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 
-import com.google.maps.errors.OverQueryLimitException;
+import com.google.maps.errors.OverQueryLimitException_RENAMED;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.HttpHeaders;
@@ -285,7 +285,7 @@ public class GeoApiContextTest {
 
     builder.retryTimeout(1, TimeUnit.MILLISECONDS);
     builder.maxRetries(10);
-    builder.setIfExceptionIsAllowedToRetry(OverQueryLimitException.class, false);
+    builder.setIfExceptionIsAllowedToRetry(OverQueryLimitException_RENAMED.class, false);
 
     setMockBaseUrl();
 
@@ -294,7 +294,7 @@ public class GeoApiContextTest {
           .build()
           .get(new ApiConfig("/"), GeocodingApi.Response.class, "any-key", "any-value")
           .await();
-    } catch (OverQueryLimitException e) {
+    } catch (OverQueryLimitException_RENAMED e) {
       assertEquals(1, server.getRequestCount());
       return;
     }

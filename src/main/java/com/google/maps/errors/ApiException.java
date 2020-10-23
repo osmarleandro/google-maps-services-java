@@ -53,7 +53,7 @@ public class ApiException extends Exception {
           .equalsIgnoreCase(errorMessage)) {
         return new OverDailyLimitException(errorMessage);
       }
-      return new OverQueryLimitException(errorMessage);
+      return new OverQueryLimitException_RENAMED(errorMessage);
     } else if ("REQUEST_DENIED".equals(status)) {
       return new RequestDeniedException(errorMessage);
     } else if ("UNKNOWN_ERROR".equals(status)) {
@@ -68,7 +68,7 @@ public class ApiException extends Exception {
     } else if ("INVALID_ARGUMENT".equals(status)) {
       return new InvalidRequestException(errorMessage);
     } else if ("RESOURCE_EXHAUSTED".equals(status)) {
-      return new OverQueryLimitException(errorMessage);
+      return new OverQueryLimitException_RENAMED(errorMessage);
     } else if ("PERMISSION_DENIED".equals(status)) {
       return new RequestDeniedException(errorMessage);
     }
@@ -79,7 +79,7 @@ public class ApiException extends Exception {
     } else if ("dailyLimitExceeded".equals(status)) {
       return new OverDailyLimitException(errorMessage);
     } else if ("userRateLimitExceeded".equals(status)) {
-      return new OverQueryLimitException(errorMessage);
+      return new OverQueryLimitException_RENAMED(errorMessage);
     } else if ("notFound".equals(status)) {
       return new NotFoundException(errorMessage);
     } else if ("parseError".equals(status)) {
