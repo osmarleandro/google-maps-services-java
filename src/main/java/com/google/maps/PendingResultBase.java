@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.Unit;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the unit system to use when displaying results.
+   *
+   * @param units The preferred units for displaying distances.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest units(Unit units) {
+    return param("units", units);
   }
 }
