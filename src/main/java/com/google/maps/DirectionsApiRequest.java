@@ -65,7 +65,7 @@ public class DirectionsApiRequest
    * @param origin The starting location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest origin(String origin) {
+  public DirectionsApiRequest origin_RENAMED(String origin) {
     return param("origin", origin);
   }
 
@@ -109,7 +109,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest origin(LatLng origin) {
-    return origin(origin.toString());
+    return origin_RENAMED(origin.toString());
   }
 
   /**
