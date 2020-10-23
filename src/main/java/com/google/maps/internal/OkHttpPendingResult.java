@@ -25,7 +25,7 @@ import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
-import com.google.maps.model.AddressType;
+import com.google.maps.model.AddressType_RENAMED;
 import com.google.maps.model.Distance;
 import com.google.maps.model.Duration;
 import com.google.maps.model.Fare;
@@ -273,7 +273,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
                 AddressComponentType.class,
                 new SafeEnumAdapter<AddressComponentType>(AddressComponentType.UNKNOWN))
             .registerTypeAdapter(
-                AddressType.class, new SafeEnumAdapter<AddressType>(AddressType.UNKNOWN))
+                AddressType_RENAMED.class, new SafeEnumAdapter<AddressType_RENAMED>(AddressType_RENAMED.UNKNOWN))
             .registerTypeAdapter(
                 TravelMode.class, new SafeEnumAdapter<TravelMode>(TravelMode.UNKNOWN))
             .registerTypeAdapter(

@@ -24,7 +24,7 @@ import com.google.maps.internal.StringJoin.UrlValue;
  * Please see <a href="https://developers.google.com/places/supported_types">Place Types</a> for
  * more detail.
  */
-public enum AddressType implements UrlValue {
+public enum AddressType_RENAMED implements UrlValue {
 
   /** A precise street address. */
   STREET_ADDRESS("street_address"),
@@ -469,7 +469,7 @@ public enum AddressType implements UrlValue {
 
   private final String addressType;
 
-  AddressType(final String addressType) {
+  AddressType_RENAMED(final String addressType) {
     this.addressType = addressType;
   }
 

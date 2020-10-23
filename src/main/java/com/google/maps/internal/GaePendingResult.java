@@ -30,7 +30,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.errors.UnknownErrorException;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
-import com.google.maps.model.AddressType;
+import com.google.maps.model.AddressType_RENAMED;
 import com.google.maps.model.Distance;
 import com.google.maps.model.Duration;
 import com.google.maps.model.EncodedPolyline;
@@ -193,7 +193,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())
             .registerTypeAdapter(
                 AddressComponentType.class, new SafeEnumAdapter<>(AddressComponentType.UNKNOWN))
-            .registerTypeAdapter(AddressType.class, new SafeEnumAdapter<>(AddressType.UNKNOWN))
+            .registerTypeAdapter(AddressType_RENAMED.class, new SafeEnumAdapter<>(AddressType_RENAMED.UNKNOWN))
             .registerTypeAdapter(TravelMode.class, new SafeEnumAdapter<>(TravelMode.UNKNOWN))
             .registerTypeAdapter(LocationType.class, new SafeEnumAdapter<>(LocationType.UNKNOWN))
             .registerTypeAdapter(RatingType.class, new SafeEnumAdapter<>(RatingType.UNKNOWN))
