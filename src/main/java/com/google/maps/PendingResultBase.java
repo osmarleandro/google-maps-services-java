@@ -20,6 +20,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -168,5 +169,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Set the arrival time for a Transit directions request.
+   *
+   * @param time The arrival time to calculate directions for.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest arrivalTime(Instant time) {
+    return param("arrival_time", Long.toString(time.toEpochMilli() / 1000L));
   }
 }
