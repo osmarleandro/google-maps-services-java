@@ -133,7 +133,7 @@ public class LocalTestServerContext implements AutoCloseable {
   }
 
   @Override
-  public void close() {
+  public void close_RENAMED() {
     try {
       server.shutdown();
     } catch (IOException e) {
