@@ -124,7 +124,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   @Override
-  public void shutdown() {
+  public void shutdown_RENAMED() {
     // do nothing
   }
 
