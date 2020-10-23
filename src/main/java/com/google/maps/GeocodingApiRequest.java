@@ -18,7 +18,6 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
@@ -128,17 +127,6 @@ public class GeocodingApiRequest
    */
   public GeocodingApiRequest components(ComponentFilter... filters) {
     return param("components", join('|', filters));
-  }
-
-  /**
-   * Sets the result type. Specifying a type will restrict the results to this type. If multiple
-   * types are specified, the API will return all addresses that match any of the types.
-   *
-   * @param resultTypes The result types to restrict to.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest resultType(AddressType... resultTypes) {
-    return param("result_type", join('|', resultTypes));
   }
 
   /**
