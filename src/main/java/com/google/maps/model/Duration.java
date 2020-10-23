@@ -32,7 +32,7 @@ public class Duration implements Serializable {
   public String humanReadable;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return humanReadable;
   }
 }
