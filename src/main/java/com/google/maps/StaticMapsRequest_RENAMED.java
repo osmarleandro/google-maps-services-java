@@ -25,12 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class StaticMapsRequest
-    extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
+public class StaticMapsRequest_RENAMED
+    extends PendingResultBase<ImageResult, StaticMapsRequest_RENAMED, ImageResult.Response> {
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 
-  public StaticMapsRequest(GeoApiContext context) {
+  public StaticMapsRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);
   }
 
@@ -54,7 +54,7 @@ public class StaticMapsRequest
    * @param location The location of the center of the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest center(LatLng location) {
+  public StaticMapsRequest_RENAMED center(LatLng location) {
     return param("center", location);
   }
 
@@ -65,7 +65,7 @@ public class StaticMapsRequest
    * @param location The location of the center of the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest center(String location) {
+  public StaticMapsRequest_RENAMED center(String location) {
     return param("center", location);
   }
 
@@ -76,7 +76,7 @@ public class StaticMapsRequest
    * @param zoom The zoom level of the region.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest zoom(int zoom) {
+  public StaticMapsRequest_RENAMED zoom(int zoom) {
     return param("zoom", zoom);
   }
 
@@ -86,7 +86,7 @@ public class StaticMapsRequest
    * @param size The Size of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest size(Size size) {
+  public StaticMapsRequest_RENAMED size(Size size) {
     return param("size", size);
   }
 
@@ -98,7 +98,7 @@ public class StaticMapsRequest
    * @param scale The scale of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest scale(int scale) {
+  public StaticMapsRequest_RENAMED scale(int scale) {
     return param("scale", scale);
   }
 
@@ -130,7 +130,7 @@ public class StaticMapsRequest
    * @param format The format of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest format(ImageFormat format) {
+  public StaticMapsRequest_RENAMED format(ImageFormat format) {
     return param("format", format);
   }
 
@@ -152,7 +152,7 @@ public class StaticMapsRequest
    * @param maptype The map type of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest maptype(StaticMapType maptype) {
+  public StaticMapsRequest_RENAMED maptype(StaticMapType maptype) {
     return param("maptype", maptype);
   }
 
@@ -164,7 +164,7 @@ public class StaticMapsRequest
    * @param region The region of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest region(String region) {
+  public StaticMapsRequest_RENAMED region(String region) {
     return param("region", region);
   }
 
@@ -328,7 +328,7 @@ public class StaticMapsRequest
    * @param markers A group of markers with the same style.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest markers(Markers markers) {
+  public StaticMapsRequest_RENAMED markers(Markers markers) {
     return paramAddToList("markers", markers);
   }
 
@@ -431,7 +431,7 @@ public class StaticMapsRequest
    * @param path A path to render atop the map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest path(Path path) {
+  public StaticMapsRequest_RENAMED path(Path path) {
     return paramAddToList("path", path);
   }
 
@@ -442,7 +442,7 @@ public class StaticMapsRequest
    * @param path A path to render atop the map, as an EncodedPolyline.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest path(EncodedPolyline path) {
+  public StaticMapsRequest_RENAMED path(EncodedPolyline path) {
     return paramAddToList("path", "enc:" + path.getEncodedPath());
   }
 
@@ -453,7 +453,7 @@ public class StaticMapsRequest
    * @param visibleLocation The location to be made visible in the requested Static Map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest visible(LatLng visibleLocation) {
+  public StaticMapsRequest_RENAMED visible(LatLng visibleLocation) {
     return param("visible", visibleLocation);
   }
 
@@ -464,7 +464,7 @@ public class StaticMapsRequest
    * @param visibleLocation The location to be made visible in the requested Static Map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest visible(String visibleLocation) {
+  public StaticMapsRequest_RENAMED visible(String visibleLocation) {
     return param("visible", visibleLocation);
   }
 }
