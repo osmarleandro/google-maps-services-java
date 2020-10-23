@@ -55,7 +55,7 @@ public class DirectionsApiTest {
   }
 
   @Test
-  public void testGetDirections() throws Exception {
+  public void testGetDirections_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(getDirectionsResponse)) {
       DirectionsResult result =
           DirectionsApi.getDirections(sc.context, "Sydney, AU", "Melbourne, AU").await();
