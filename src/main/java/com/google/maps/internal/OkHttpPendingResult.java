@@ -282,7 +282,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
                 RatingType.class, new SafeEnumAdapter<RatingType>(RatingType.UNKNOWN))
             .registerTypeAdapter(DayOfWeek.class, new DayOfWeekAdapter())
             .registerTypeAdapter(PriceLevel.class, new PriceLevelAdapter())
-            .registerTypeAdapter(Instant.class, new InstantAdapter())
+            .registerTypeAdapter(Instant.class, new InstantAdapter_RENAMED())
             .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
             .registerTypeAdapter(GeolocationApi.Response.class, new GeolocationResponseAdapter())
             .setFieldNamingPolicy(fieldNamingPolicy)
