@@ -920,9 +920,9 @@ public class PlacesApiTest {
       String input = "Museum of Contemporary Art Australia";
 
       FindPlaceFromText response =
-          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).API_CONFIG
               .fields(
-                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
+                  PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY), FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
                   FindPlaceFromTextRequest.FieldMask.PHOTOS,
                   FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
                   FindPlaceFromTextRequest.FieldMask.NAME,
@@ -964,9 +964,9 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).API_CONFIG
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
+              PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY), FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
               FindPlaceFromTextRequest.FieldMask.NAME,
               FindPlaceFromTextRequest.FieldMask.RATING,
@@ -989,9 +989,9 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).API_CONFIG
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
+              PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY), FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
               FindPlaceFromTextRequest.FieldMask.NAME,
               FindPlaceFromTextRequest.FieldMask.RATING,
@@ -1014,9 +1014,9 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).API_CONFIG
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
+              PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY), FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
               FindPlaceFromTextRequest.FieldMask.NAME,
               FindPlaceFromTextRequest.FieldMask.RATING,

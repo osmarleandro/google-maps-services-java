@@ -19,7 +19,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
@@ -29,7 +28,7 @@ public class FindPlaceFromTextRequest
     extends PendingResultBase<
         FindPlaceFromText, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/findplacefromtext/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
           .supportsClientId(false);
@@ -73,16 +72,6 @@ public class FindPlaceFromTextRequest
    */
   public FindPlaceFromTextRequest inputType(InputType inputType) {
     return param("inputtype", inputType);
-  }
-
-  /**
-   * The fields specifying the types of place data to return.
-   *
-   * @param fields The fields to return.
-   * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
-   */
-  public FindPlaceFromTextRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
   }
 
   /**

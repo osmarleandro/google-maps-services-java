@@ -16,6 +16,8 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.FindPlaceFromTextRequest;
+import com.google.maps.FindPlaceFromTextRequest.FieldMask;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +49,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * The fields specifying the types of place data to return.
+   *
+   * @param findPlaceFromTextRequest TODO
+ * @param fields The fields to return.
+ * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
+   */
+  public FindPlaceFromTextRequest fields(FindPlaceFromTextRequest findPlaceFromTextRequest, FieldMask... fields) {
+    return findPlaceFromTextRequest.param("fields", StringJoin.join(',', fields));
   }
 }
