@@ -88,7 +88,7 @@ public class DirectionsApiRequest
    * @param originPlaceId The starting location Place ID for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest originPlaceId(String originPlaceId) {
+  public DirectionsApiRequest originPlaceId_RENAMED(String originPlaceId) {
     return param("origin", prefixPlaceId(originPlaceId));
   }
 
