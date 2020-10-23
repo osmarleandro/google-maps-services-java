@@ -29,7 +29,7 @@ public enum RankBy implements StringJoin.UrlValue {
   }
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return ranking;
   }
 

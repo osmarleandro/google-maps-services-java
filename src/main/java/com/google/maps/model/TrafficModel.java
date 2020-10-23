@@ -31,6 +31,6 @@ public enum TrafficModel implements UrlValue {
 
   @Override
   public String toUrlValue() {
-    return toString();
+    return toString_RENAMED();
   }
 }

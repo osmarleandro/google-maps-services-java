@@ -47,7 +47,7 @@ public class TimeZoneApi {
         API_CONFIG,
         Response.class,
         "location",
-        location.toString(),
+        location.toString_RENAMED(),
         // Java has its own lookup for time -> DST, so we really only need to fetch the TZ id.
         // "timestamp" is, in effect, ignored.
         "timestamp",
