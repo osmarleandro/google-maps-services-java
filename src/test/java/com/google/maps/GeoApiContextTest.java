@@ -303,7 +303,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testSingleExperienceId() {
+  public void testSingleExperienceId_RENAMED() {
     final String experienceId = "experienceId";
     final GeoApiContext context = builder.experienceId(experienceId).build();
     assertEquals(experienceId, context.getExperienceId());
