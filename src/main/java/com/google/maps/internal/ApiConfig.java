@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.NearbySearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,18 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Returns the next 20 results from a previously run search. Setting {@code pageToken} will
+   * execute a search with the same parameters used previously — all parameters other than {@code
+   * pageToken} will be ignored.
+   *
+   * @param nearbySearchRequest TODO
+ * @param nextPageToken The page token from a previous result.
+ * @return Returns this {@code NearbyApiRequest} for call chaining.
+   */
+  public NearbySearchRequest pageToken(NearbySearchRequest nearbySearchRequest, String nextPageToken) {
+    return nearbySearchRequest.param("pagetoken", nextPageToken);
   }
 }

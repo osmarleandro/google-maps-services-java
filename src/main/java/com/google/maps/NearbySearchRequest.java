@@ -36,7 +36,7 @@ public class NearbySearchRequest
     extends PendingResultBase<
         PlacesSearchResponse, NearbySearchRequest, NearbySearchRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/nearbysearch/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -134,18 +134,6 @@ public class NearbySearchRequest
    */
   public NearbySearchRequest openNow(boolean openNow) {
     return param("opennow", String.valueOf(openNow));
-  }
-
-  /**
-   * Returns the next 20 results from a previously run search. Setting {@code pageToken} will
-   * execute a search with the same parameters used previously — all parameters other than {@code
-   * pageToken} will be ignored.
-   *
-   * @param nextPageToken The page token from a previous result.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest pageToken(String nextPageToken) {
-    return param("pagetoken", nextPageToken);
   }
 
   /**

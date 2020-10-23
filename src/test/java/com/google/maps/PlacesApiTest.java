@@ -624,17 +624,19 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
-          .openNow(true)
-          .type(PlaceType.AIRPORT)
-          .pageToken("next-page-token")
+      PlacesApi.nearbySearchQuery(sc.context, location).radius(5000).rankby(RankBy.PROMINENCE).keyword("keyword")
+			.language("en").minPrice(PriceLevel.INEXPENSIVE).maxPrice(PriceLevel.EXPENSIVE).name("name").openNow(true)
+			.type(PlaceType.AIRPORT).API_CONFIG
+          .pageToken(PlacesApi.nearbySearchQuery(sc.context, location)
+		      .radius(5000)
+		      .rankby(RankBy.PROMINENCE)
+		      .keyword("keyword")
+		      .language("en")
+		      .minPrice(PriceLevel.INEXPENSIVE)
+		      .maxPrice(PriceLevel.EXPENSIVE)
+		      .name("name")
+		      .openNow(true)
+		      .type(PlaceType.AIRPORT), "next-page-token")
           .await();
 
       sc.assertParamValue(location.toUrlValue(), "location");
