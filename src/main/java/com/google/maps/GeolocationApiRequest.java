@@ -79,7 +79,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest WifiAccessPoints(WifiAccessPoint[] newWifiAccessPoints) {
+  public GeolocationApiRequest WifiAccessPoints_RENAMED(WifiAccessPoint[] newWifiAccessPoints) {
     this.builder.WifiAccessPoints(newWifiAccessPoints);
     return this;
   }

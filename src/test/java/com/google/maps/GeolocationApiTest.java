@@ -188,7 +188,7 @@ public class GeolocationApiTest {
       GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
-              .WifiAccessPoints(wifiAccessPoints)
+              .WifiAccessPoints_RENAMED(wifiAccessPoints)
               .CreatePayload()
               .await();
 
