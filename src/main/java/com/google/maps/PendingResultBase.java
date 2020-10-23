@@ -169,4 +169,22 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+protected void validateRequest() {
+    if (!params().containsKey("origin")) {
+      throw new IllegalArgumentException("Request must contain 'origin'");
+    }
+    if (!params().containsKey("destination")) {
+      throw new IllegalArgumentException("Request must contain 'destination'");
+    }
+    if (params().containsKey("arrival_time") && params().containsKey("departure_time")) {
+      throw new IllegalArgumentException(
+          "Transit request must not contain both a departureTime and an arrivalTime");
+    }
+    if (params().containsKey("traffic_model") && !params().containsKey("departure_time")) {
+      throw new IllegalArgumentException(
+          "Specifying a traffic model requires that departure time be provided.");
+    }
+  }
 }
