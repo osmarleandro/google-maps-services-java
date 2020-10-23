@@ -77,7 +77,7 @@ public class PlacesApiTest {
   private final String placesApiNearbySearchRequestByKeyword;
   private final String placesApiNearbySearchRequestByName;
   private final String placesApiNearbySearchRequestByType;
-  private final String placesApiPlaceAutocomplete;
+  public final String placesApiPlaceAutocomplete;
   private final String placesApiPlaceAutocompleteWithType;
   private final String placesApiKitaWard;
   private final String findPlaceFromTextMuseumOfContemporaryArt;
@@ -833,21 +833,6 @@ public class PlacesApiTest {
 
       assertEquals(20, response.results.length);
       assertEquals(563, response.results[0].userRatingsTotal);
-    }
-  }
-
-  @Test
-  public void testPlaceAutocomplete() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
-      SessionToken session = new SessionToken();
-      AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
-
-      sc.assertParamValue("Sydney Town Ha", "input");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
-
-      assertEquals(5, predictions.length);
-      assertTrue(predictions[0].description.contains("Town Hall"));
     }
   }
 
