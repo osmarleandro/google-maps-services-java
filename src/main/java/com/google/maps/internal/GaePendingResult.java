@@ -202,7 +202,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
             .registerTypeAdapter(Instant.class, new InstantAdapter())
             .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
             .registerTypeAdapter(GeolocationApi.Response.class, new GeolocationResponseAdapter())
-            .registerTypeAdapter(EncodedPolyline.class, new EncodedPolylineInstanceCreator(""))
+            .registerTypeAdapter(EncodedPolyline.class, new EncodedPolylineInstanceCreator_RENAMED(""))
             .setFieldNamingPolicy(fieldNamingPolicy)
             .create();
 
