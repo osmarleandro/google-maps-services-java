@@ -76,7 +76,7 @@ public class StaticMapsRequest
    * @param zoom The zoom level of the region.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest zoom(int zoom) {
+  public StaticMapsRequest zoom_RENAMED(int zoom) {
     return param("zoom", zoom);
   }
 
