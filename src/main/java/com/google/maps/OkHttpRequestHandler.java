@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.GeoApiContext.RequestHandler;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.ExceptionsAllowedToRetry;
+import com.google.maps.internal.ExceptionsAllowedToRetry_RENAMED;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.internal.OkHttpPendingResult;
 import com.google.maps.internal.RateLimitExecutorService;
@@ -62,7 +62,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
       FieldNamingPolicy fieldNamingPolicy,
       long errorTimeout,
       Integer maxRetries,
-      ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+      ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
       RequestMetrics metrics) {
     Request.Builder builder = new Request.Builder().get().header("User-Agent", userAgent);
     if (experienceIdHeaderValue != null) {
@@ -92,7 +92,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
       FieldNamingPolicy fieldNamingPolicy,
       long errorTimeout,
       Integer maxRetries,
-      ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+      ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
       RequestMetrics metrics) {
     RequestBody body = RequestBody.create(JSON, payload);
     Request.Builder builder = new Request.Builder().post(body).header("User-Agent", userAgent);

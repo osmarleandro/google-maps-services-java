@@ -66,7 +66,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  private final ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry;
   private final RequestMetrics metrics;
 
   private long errorTimeOut;
@@ -92,7 +92,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       FieldNamingPolicy fieldNamingPolicy,
       long errorTimeOut,
       Integer maxRetries,
-      ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+      ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
       RequestMetrics metrics) {
     this.request = request;
     this.client = client;

@@ -73,7 +73,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private long errorTimeOut;
   private int retryCounter = 0;
   private long cumulativeSleepTime = 0;
-  private ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  private ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry;
 
   private static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
@@ -94,7 +94,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       FieldNamingPolicy fieldNamingPolicy,
       long errorTimeOut,
       Integer maxRetries,
-      ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+      ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
       RequestMetrics metrics) {
     this.request = request;
     this.client = client;

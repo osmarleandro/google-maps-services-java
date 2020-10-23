@@ -26,7 +26,7 @@ import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.GeoApiContext.RequestHandler;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.ExceptionsAllowedToRetry;
+import com.google.maps.internal.ExceptionsAllowedToRetry_RENAMED;
 import com.google.maps.internal.GaePendingResult;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.metrics.RequestMetrics;
@@ -58,7 +58,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       FieldNamingPolicy fieldNamingPolicy,
       long errorTimeout,
       Integer maxRetries,
-      ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+      ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
       RequestMetrics metrics) {
     FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
     HTTPRequest req;
@@ -95,7 +95,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       FieldNamingPolicy fieldNamingPolicy,
       long errorTimeout,
       Integer maxRetries,
-      ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+      ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
       RequestMetrics metrics) {
     FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
     HTTPRequest req = null;

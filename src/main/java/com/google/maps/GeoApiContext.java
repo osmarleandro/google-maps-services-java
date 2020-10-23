@@ -20,7 +20,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.ExceptionsAllowedToRetry;
+import com.google.maps.internal.ExceptionsAllowedToRetry_RENAMED;
 import com.google.maps.internal.HttpHeaders;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.UrlSigner;
@@ -63,7 +63,7 @@ public class GeoApiContext {
   private final String channel;
   private final String clientId;
   private final long errorTimeout;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  private final ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry;
   private final Integer maxRetries;
   private final UrlSigner urlSigner;
   private String experienceIdHeaderValue;
@@ -77,7 +77,7 @@ public class GeoApiContext {
       String channel,
       String clientId,
       long errorTimeout,
-      ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+      ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
       Integer maxRetries,
       UrlSigner urlSigner,
       RequestMetricsReporter requestMetricsReporter,
@@ -114,7 +114,7 @@ public class GeoApiContext {
         FieldNamingPolicy fieldNamingPolicy,
         long errorTimeout,
         Integer maxRetries,
-        ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+        ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
         RequestMetrics metrics);
 
     <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
@@ -127,7 +127,7 @@ public class GeoApiContext {
         FieldNamingPolicy fieldNamingPolicy,
         long errorTimeout,
         Integer maxRetries,
-        ExceptionsAllowedToRetry exceptionsAllowedToRetry,
+        ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry,
         RequestMetrics metrics);
 
     void shutdown();
@@ -359,7 +359,7 @@ public class GeoApiContext {
     private String channel;
     private String clientId;
     private long errorTimeout = DEFAULT_BACKOFF_TIMEOUT_MILLIS;
-    private ExceptionsAllowedToRetry exceptionsAllowedToRetry = new ExceptionsAllowedToRetry();
+    private ExceptionsAllowedToRetry_RENAMED exceptionsAllowedToRetry = new ExceptionsAllowedToRetry_RENAMED();
     private Integer maxRetries;
     private UrlSigner urlSigner;
     private RequestMetricsReporter requestMetricsReporter = new NoOpRequestMetricsReporter();
