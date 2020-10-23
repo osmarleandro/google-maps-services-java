@@ -76,7 +76,7 @@ public class QueryAutocompleteRequest
    * @param location The location point around which to search.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest location(LatLng location) {
+  public QueryAutocompleteRequest location_RENAMED(LatLng location) {
     return param("location", location);
   }
 

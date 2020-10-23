@@ -380,7 +380,7 @@ public class PlacesApiTest {
       LatLng location = new LatLng(10, 20);
       PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
           .offset(10)
-          .location(location)
+          .location_RENAMED(location)
           .radius(5000)
           .language("en")
           .await();
