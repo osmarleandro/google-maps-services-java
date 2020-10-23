@@ -155,7 +155,7 @@ public class DistanceMatrixApiTest {
    * language: french</a>.
    */
   @Test
-  public void testLanguageParameter() throws Exception {
+  public void testLanguageParameter_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       String[] origins = new String[] {"Vancouver BC", "Seattle"};
       String[] destinations = new String[] {"San Francisco", "Victoria BC"};
