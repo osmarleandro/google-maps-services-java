@@ -75,7 +75,7 @@ public class PlaceDetails implements Serializable {
   @Deprecated public PlaceIdScope scope;
 
   /** The Plus Code location identifier for this place. */
-  public PlusCode plusCode;
+  public PlusCode_RENAMED plusCode;
 
   /** Whether the place has permanently closed. */
   public boolean permanentlyClosed;
