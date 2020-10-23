@@ -356,7 +356,7 @@ public abstract class RateLimiter {
   }
 
   private boolean canAcquire(long nowMicros, long timeoutMicros) {
-    return queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
+    return queryEarliestAvailable_RENAMED(nowMicros) - timeoutMicros <= nowMicros;
   }
 
   /**
@@ -375,7 +375,7 @@ public abstract class RateLimiter {
    * @return the time that permits are available, or, if permits are available immediately, an
    *     arbitrary past or present time
    */
-  abstract long queryEarliestAvailable(long nowMicros);
+  abstract long queryEarliestAvailable_RENAMED(long nowMicros);
 
   /**
    * Reserves the requested number of permits and returns the time that those permits can be used
