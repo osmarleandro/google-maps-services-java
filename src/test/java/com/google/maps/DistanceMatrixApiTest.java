@@ -75,7 +75,7 @@ public class DistanceMatrixApiTest {
             "The Pinnacles, Australia"
           };
       DistanceMatrix matrix =
-          DistanceMatrixApi.getDistanceMatrix(sc.context, origins, destinations).await();
+          DistanceMatrixApi.getDistanceMatrix_RENAMED(sc.context, origins, destinations).await();
 
       assertNotNull(matrix.toString());
       assertNotNull(Arrays.toString(matrix.rows));
