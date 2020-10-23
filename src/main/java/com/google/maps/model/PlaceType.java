@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.TextSearchRequest;
 import com.google.maps.internal.StringJoin;
 
 /** Used by the Places API to restrict the results to places matching the specified type. */
@@ -143,5 +144,15 @@ public enum PlaceType implements StringJoin.UrlValue {
   @Override
   public String toString() {
     return placeType;
+  }
+
+/**
+   * Restricts the results to places matching the specified type.
+   *
+   * @param textSearchRequest TODO
+ * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+  public TextSearchRequest type(TextSearchRequest textSearchRequest) {
+    return textSearchRequest.param("type", this);
   }
 }

@@ -20,7 +20,6 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
@@ -148,16 +147,6 @@ public class TextSearchRequest
    */
   public TextSearchRequest rankby(RankBy ranking) {
     return param("rankby", ranking);
-  }
-
-  /**
-   * Restricts the results to places matching the specified type.
-   *
-   * @param type The type of place to restrict the results with.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest type(PlaceType type) {
-    return param("type", type);
   }
 
   @Override
