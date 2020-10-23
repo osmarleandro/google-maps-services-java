@@ -56,7 +56,7 @@ public class PolylineEncodingTest {
   }
 
   @Test
-  public void testDecode() throws Exception {
+  public void testDecode_RENAMED() throws Exception {
     List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
     LatLng sydney = points.get(0);
     LatLng melbourne = points.get(points.size() - 1);
