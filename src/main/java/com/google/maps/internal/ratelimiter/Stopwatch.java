@@ -89,9 +89,9 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Stopwatch {
   private final Ticker ticker;
-  private boolean isRunning;
-  private long elapsedNanos;
-  private long startTick;
+  boolean isRunning;
+  long elapsedNanos;
+  long startTick;
 
   /**
    * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
@@ -170,10 +170,6 @@ public final class Stopwatch {
     return this;
   }
 
-  private long elapsedNanos() {
-    return isRunning ? ticker.read() - startTick + elapsedNanos : elapsedNanos;
-  }
-
   /**
    * Returns the current elapsed time shown on this stopwatch, expressed in the desired time unit,
    * with any fraction rounded down.
@@ -182,13 +178,13 @@ public final class Stopwatch {
    * useful to specify {@link TimeUnit#NANOSECONDS} precision here.
    */
   public long elapsed(TimeUnit desiredUnit) {
-    return desiredUnit.convert(elapsedNanos(), NANOSECONDS);
+    return desiredUnit.convert(ticker.elapsedNanos(this), NANOSECONDS);
   }
 
   /** Returns a string representation of the current elapsed time. */
   @Override
   public String toString() {
-    long nanos = elapsedNanos();
+    long nanos = ticker.elapsedNanos(this);
 
     TimeUnit unit = chooseUnit(nanos);
     double value = (double) nanos / NANOSECONDS.convert(1, unit);
