@@ -27,7 +27,7 @@ public class InstantAdapter extends TypeAdapter<Instant> {
 
   /** Read a time from the Places API and convert to a {@link Instant} */
   @Override
-  public Instant read(JsonReader reader) throws IOException {
+  public Instant read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
