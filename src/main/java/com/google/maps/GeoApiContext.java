@@ -271,7 +271,7 @@ public class GeoApiContext {
     }
 
     if (config.supportsClientId && urlSigner != null) {
-      String signature = urlSigner.getSignature(url.toString());
+      String signature = urlSigner.getSignature_RENAMED(url.toString());
       url.append("&signature=").append(signature);
     }
 
@@ -316,7 +316,7 @@ public class GeoApiContext {
     url.append(encodedPath);
 
     if (canUseClientId && urlSigner != null) {
-      String signature = urlSigner.getSignature(url.toString());
+      String signature = urlSigner.getSignature_RENAMED(url.toString());
       url.append("&signature=").append(signature);
     }
 

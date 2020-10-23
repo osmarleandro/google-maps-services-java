@@ -49,7 +49,7 @@ public class UrlSignerTest {
   @Test
   public void testUrlSigner() throws Exception {
     UrlSigner urlSigner = new UrlSigner(SIGNING_KEY);
-    assertEquals(SIGNATURE, urlSigner.getSignature(MESSAGE));
+    assertEquals(SIGNATURE, urlSigner.getSignature_RENAMED(MESSAGE));
   }
 
   @Test
@@ -66,7 +66,7 @@ public class UrlSignerTest {
             @Override
             public void run() {
               try {
-                if (!SIGNATURE.equals(urlSigner.getSignature(MESSAGE))) {
+                if (!SIGNATURE.equals(urlSigner.getSignature_RENAMED(MESSAGE))) {
                   fails.add(true);
                 }
               } catch (Exception e) {
