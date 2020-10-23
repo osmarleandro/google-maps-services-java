@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApiRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,24 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public void validateRequest(GeocodingApiRequest geocodingApiRequest) {
+    // Must not have both address and latlng.
+    if (geocodingApiRequest.params().containsKey("latlng")
+        && geocodingApiRequest.params().containsKey("address")
+        && geocodingApiRequest.params().containsKey("place_id")) {
+      throw new IllegalArgumentException(
+          "Request must contain only one of 'address', 'latlng' or 'place_id'.");
+    }
+
+    // Must contain at least one of place_id, address, latlng, and components;
+    if (!geocodingApiRequest.params().containsKey("latlng")
+        && !geocodingApiRequest.params().containsKey("address")
+        && !geocodingApiRequest.params().containsKey("components")
+        && !geocodingApiRequest.params().containsKey("place_id")) {
+      throw new IllegalArgumentException(
+          "Request must contain at least one of 'address', 'latlng', 'place_id' and 'components'.");
+    }
   }
 }
