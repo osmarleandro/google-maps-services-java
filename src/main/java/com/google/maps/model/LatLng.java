@@ -15,10 +15,19 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +76,26 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testPlaceDetailsLookupQuay(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTest.quayResponseBody)) {
+      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, PlacesApiTest.QUAY_PLACE_ID).await();
+      assertNotNull(placeDetails);
+      assertNotNull(placeDetails.toString());
+      assertNotNull(placeDetails.priceLevel);
+      assertEquals(PriceLevel.VERY_EXPENSIVE, placeDetails.priceLevel);
+      assertNotNull(placeDetails.photos);
+      Photo photo = placeDetails.photos[0];
+      assertEquals(1944, photo.height);
+      assertEquals(2592, photo.width);
+      assertEquals(
+          "<a href=\"https://maps.google.com/maps/contrib/101719343658521132777\">James Prendergast</a>",
+          photo.htmlAttributions[0]);
+      assertEquals(
+          "CmRdAAAATDVdhv0RdMEZlvO2jNE_EXXZZnCWvenfvLmWCsYqVtCFxZiasbcv1X0CNDTkpaCtrurGzVxTVt8Fqc7egdA7VyFeq1VFaq1GiFatWrFAUm_H0CN9u2wbfjb1Zf0NL9QiEhCj6I5O2h6eFH_2sa5hyVaEGhTdn8b7RWD-2W64OrT3mFGjzzLWlQ",
+          photo.photoReference);
+    }
   }
 }

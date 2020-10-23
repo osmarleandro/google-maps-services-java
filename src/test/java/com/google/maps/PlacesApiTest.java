@@ -57,7 +57,7 @@ import org.junit.Test;
 public class PlacesApiTest {
 
   private static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
-  private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
+  public static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
   private static final String PERMANENTLY_CLOSED_PLACE_ID = "ChIJZQvy3jAbdkgR9avxegjoCe0";
   private static final String QUERY_AUTOCOMPLETE_INPUT = "pizza near par";
   private static final LatLng SYDNEY = new LatLng(-33.8650, 151.2094);
@@ -65,7 +65,7 @@ public class PlacesApiTest {
   private final String autocompletePredictionStructuredFormatting;
   private final String placeDetailResponseBody;
   private final String placeDetailResponseBodyForPermanentlyClosedPlace;
-  private final String quayResponseBody;
+  public final String quayResponseBody;
   private final String queryAutocompleteResponseBody;
   private final String queryAutocompleteWithPlaceIdResponseBody;
   private final String textSearchResponseBody;
@@ -350,27 +350,6 @@ public class PlacesApiTest {
       assertNotNull(placeDetails.toString());
       assertEquals(GOOGLE_SYDNEY, placeDetails.placeId);
       assertEquals(98, placeDetails.userRatingsTotal);
-    }
-  }
-
-  @Test
-  public void testPlaceDetailsLookupQuay() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(quayResponseBody)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, QUAY_PLACE_ID).await();
-      assertNotNull(placeDetails);
-      assertNotNull(placeDetails.toString());
-      assertNotNull(placeDetails.priceLevel);
-      assertEquals(PriceLevel.VERY_EXPENSIVE, placeDetails.priceLevel);
-      assertNotNull(placeDetails.photos);
-      Photo photo = placeDetails.photos[0];
-      assertEquals(1944, photo.height);
-      assertEquals(2592, photo.width);
-      assertEquals(
-          "<a href=\"https://maps.google.com/maps/contrib/101719343658521132777\">James Prendergast</a>",
-          photo.htmlAttributions[0]);
-      assertEquals(
-          "CmRdAAAATDVdhv0RdMEZlvO2jNE_EXXZZnCWvenfvLmWCsYqVtCFxZiasbcv1X0CNDTkpaCtrurGzVxTVt8Fqc7egdA7VyFeq1VFaq1GiFatWrFAUm_H0CN9u2wbfjb1Zf0NL9QiEhCj6I5O2h6eFH_2sa5hyVaEGhTdn8b7RWD-2W64OrT3mFGjzzLWlQ",
-          photo.photoReference);
     }
   }
 
