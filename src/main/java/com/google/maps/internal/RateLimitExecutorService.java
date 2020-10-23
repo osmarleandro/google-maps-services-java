@@ -136,8 +136,8 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public boolean isTerminated() {
-    return delegate.isTerminated();
+  public boolean isTerminated_RENAMED() {
+    return delegate.isTerminated_RENAMED();
   }
 
   @Override
