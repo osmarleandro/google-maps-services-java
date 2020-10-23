@@ -28,6 +28,8 @@
 
 package com.google.maps.internal.ratelimiter;
 
+import static com.google.maps.internal.ratelimiter.Preconditions.checkState;
+
 /**
  * A time source; returns a time value representing the number of nanoseconds elapsed since some
  * fixed but arbitrary point in time. Note that most users should use {@link Stopwatch} instead of
@@ -44,7 +46,21 @@ public abstract class Ticker {
   /** Returns the number of nanoseconds elapsed since this ticker's fixed point of reference. */
   public abstract long read();
 
-  /** A ticker that reads the current time using {@link System#nanoTime}. */
+  /**
+   * Starts the stopwatch.
+   *
+   * @return this {@code Stopwatch} instance
+   * @param stopwatch TODO
+ * @throws IllegalStateException if the stopwatch is already running.
+   */
+  public Stopwatch start(Stopwatch stopwatch) {
+    checkState(!stopwatch.isRunning, "This stopwatch is already running.");
+    stopwatch.isRunning = true;
+    stopwatch.startTick = read();
+    return stopwatch;
+  }
+
+/** A ticker that reads the current time using {@link System#nanoTime}. */
   public static Ticker systemTicker() {
     return SYSTEM_TICKER;
   }

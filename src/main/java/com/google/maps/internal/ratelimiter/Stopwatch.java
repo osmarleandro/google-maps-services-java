@@ -88,10 +88,10 @@ import java.util.concurrent.TimeUnit;
  * @author Kevin Bourrillion
  */
 public final class Stopwatch {
-  private final Ticker ticker;
-  private boolean isRunning;
+  final Ticker ticker;
+  boolean isRunning;
   private long elapsedNanos;
-  private long startTick;
+  long startTick;
 
   /**
    * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
@@ -107,12 +107,12 @@ public final class Stopwatch {
 
   /** Creates (and starts) a new stopwatch using {@link System#nanoTime} as its time source. */
   public static Stopwatch createStarted() {
-    return new Stopwatch().start();
+    return new Stopwatch().ticker.start(new Stopwatch());
   }
 
   /** Creates (and starts) a new stopwatch, using the specified time source. */
   public static Stopwatch createStarted(Ticker ticker) {
-    return new Stopwatch(ticker).start();
+    return new Stopwatch(ticker).ticker.start(new Stopwatch(ticker));
   }
 
   Stopwatch() {
@@ -124,24 +124,11 @@ public final class Stopwatch {
   }
 
   /**
-   * Returns {@code true} if {@link #start()} has been called on this stopwatch, and {@link #stop()}
+   * Returns {@code true} if {@link #MISSING()} has been called on this stopwatch, and {@link #stop()}
    * has not been called since the last call to {@code start()}.
    */
   public boolean isRunning() {
     return isRunning;
-  }
-
-  /**
-   * Starts the stopwatch.
-   *
-   * @return this {@code Stopwatch} instance
-   * @throws IllegalStateException if the stopwatch is already running.
-   */
-  public Stopwatch start() {
-    checkState(!isRunning, "This stopwatch is already running.");
-    isRunning = true;
-    startTick = ticker.read();
-    return this;
   }
 
   /**
