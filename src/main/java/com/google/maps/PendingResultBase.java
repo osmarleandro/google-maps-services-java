@@ -15,10 +15,13 @@
 
 package com.google.maps;
 
+import com.google.maps.DirectionsApiRequest.Waypoint;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.LatLng;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +171,21 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * The list of waypoints as latitude/longitude locations.
+   *
+   * <p>See {@link #waypoints(Waypoint...)}.
+   *
+   * @param waypoints The waypoints to add to this directions request.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest waypoints(LatLng... waypoints) {
+    Waypoint[] objWaypoints = new Waypoint[waypoints.length];
+    for (int i = 0; i < waypoints.length; i++) {
+      objWaypoints[i] = new Waypoint(waypoints[i]);
+    }
+    return waypoints(objWaypoints);
   }
 }

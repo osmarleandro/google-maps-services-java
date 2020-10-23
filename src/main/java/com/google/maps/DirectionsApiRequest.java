@@ -263,22 +263,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * The list of waypoints as latitude/longitude locations.
-   *
-   * <p>See {@link #waypoints(Waypoint...)}.
-   *
-   * @param waypoints The waypoints to add to this directions request.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest waypoints(LatLng... waypoints) {
-    Waypoint[] objWaypoints = new Waypoint[waypoints.length];
-    for (int i = 0; i < waypoints.length; i++) {
-      objWaypoints[i] = new Waypoint(waypoints[i]);
-    }
-    return waypoints(objWaypoints);
-  }
-
-  /**
    * Allow the Directions service to optimize the provided route by rearranging the waypoints in a
    * more efficient order.
    *
