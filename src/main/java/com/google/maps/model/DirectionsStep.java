@@ -83,7 +83,7 @@ public class DirectionsStep implements Serializable {
    * href="https://developers.google.com/maps/documentation/directions/intro#TransitDetails">Transit
    * Details</a> for more detail.
    */
-  public TransitDetails transitDetails;
+  public TransitDetails_RENAMED transitDetails;
 
   @Override
   public String toString() {
