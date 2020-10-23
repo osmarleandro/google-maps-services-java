@@ -19,7 +19,7 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.google.maps.errors.InvalidRequestException;
+import com.google.maps.errors.InvalidRequestException_RENAMED;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
@@ -414,7 +414,7 @@ public class GeolocationApiTest {
     }
   }
 
-  @Test(expected = InvalidRequestException.class)
+  @Test(expected = InvalidRequestException_RENAMED.class)
   public void testInvalidArgumentGeolocation() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(

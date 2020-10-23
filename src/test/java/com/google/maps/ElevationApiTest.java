@@ -19,7 +19,7 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.google.maps.errors.InvalidRequestException;
+import com.google.maps.errors.InvalidRequestException_RENAMED;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
@@ -63,7 +63,7 @@ public class ElevationApiTest {
     directionsAlongPath = retrieveBody("DirectionsAlongPath.json");
   }
 
-  @Test(expected = InvalidRequestException.class)
+  @Test(expected = InvalidRequestException_RENAMED.class)
   public void testGetByPointThrowsInvalidRequestExceptionFromResponse() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(

@@ -16,11 +16,11 @@
 package com.google.maps.errors;
 
 /** Indicates that the API received a malformed request. */
-public class InvalidRequestException extends ApiException {
+public class InvalidRequestException_RENAMED extends ApiException {
 
   private static final long serialVersionUID = -5682669561780594333L;
 
-  public InvalidRequestException(String errorMessage) {
+  public InvalidRequestException_RENAMED(String errorMessage) {
     super(errorMessage);
   }
 }

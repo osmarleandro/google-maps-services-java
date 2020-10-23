@@ -39,7 +39,7 @@ public class ApiException extends Exception {
     if ("OK".equals(status)) {
       return null;
     } else if ("INVALID_REQUEST".equals(status)) {
-      return new InvalidRequestException(errorMessage);
+      return new InvalidRequestException_RENAMED(errorMessage);
     } else if ("MAX_ELEMENTS_EXCEEDED".equals(status)) {
       return new MaxElementsExceededException(errorMessage);
     } else if ("MAX_ROUTE_LENGTH_EXCEEDED".equals(status)) {
@@ -66,7 +66,7 @@ public class ApiException extends Exception {
     if ("ACCESS_NOT_CONFIGURED".equals(status)) {
       return new AccessNotConfiguredException(errorMessage);
     } else if ("INVALID_ARGUMENT".equals(status)) {
-      return new InvalidRequestException(errorMessage);
+      return new InvalidRequestException_RENAMED(errorMessage);
     } else if ("RESOURCE_EXHAUSTED".equals(status)) {
       return new OverQueryLimitException(errorMessage);
     } else if ("PERMISSION_DENIED".equals(status)) {
@@ -83,9 +83,9 @@ public class ApiException extends Exception {
     } else if ("notFound".equals(status)) {
       return new NotFoundException(errorMessage);
     } else if ("parseError".equals(status)) {
-      return new InvalidRequestException(errorMessage);
+      return new InvalidRequestException_RENAMED(errorMessage);
     } else if ("invalid".equals(status)) {
-      return new InvalidRequestException(errorMessage);
+      return new InvalidRequestException_RENAMED(errorMessage);
     }
 
     // We've hit an unknown error. This is not a state we should hit,
