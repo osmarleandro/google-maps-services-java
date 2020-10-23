@@ -43,10 +43,10 @@ public class DistanceMatrix implements Serializable {
   /**
    * An array of elements, each of which in turn contains a status, duration, and distance element.
    */
-  public final DistanceMatrixRow[] rows;
+  public final DistanceMatrixRow_RENAMED[] rows;
 
   public DistanceMatrix(
-      String[] originAddresses, String[] destinationAddresses, DistanceMatrixRow[] rows) {
+      String[] originAddresses, String[] destinationAddresses, DistanceMatrixRow_RENAMED[] rows) {
     this.originAddresses = originAddresses;
     this.destinationAddresses = destinationAddresses;
     this.rows = rows;

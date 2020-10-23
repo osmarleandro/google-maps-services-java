@@ -19,7 +19,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.DistanceMatrix;
-import com.google.maps.model.DistanceMatrixRow;
+import com.google.maps.model.DistanceMatrixRow_RENAMED;
 
 /**
  * The Google Distance Matrix API is a service that provides travel distance and time for a matrix
@@ -58,7 +58,7 @@ public class DistanceMatrixApi {
     public String errorMessage;
     public String[] originAddresses;
     public String[] destinationAddresses;
-    public DistanceMatrixRow[] rows;
+    public DistanceMatrixRow_RENAMED[] rows;
 
     @Override
     public boolean successful() {
