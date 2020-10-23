@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.PlaceDetailsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,18 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Sets the Region for this request. The region code, specified as a ccTLD (country code top-level
+   * domain) two-character value. Most ccTLD codes are identical to ISO 3166-1 codes, with some
+   * exceptions. This parameter will only influence, not fully restrict, results.
+   *
+   * @param placeDetailsRequest TODO
+ * @param region The region code.
+ * @return Returns this {@code PlaceDetailsRequest} for call chaining.
+   */
+  public PlaceDetailsRequest region(PlaceDetailsRequest placeDetailsRequest, String region) {
+    return placeDetailsRequest.param("region", region);
   }
 }
