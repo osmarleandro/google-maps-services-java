@@ -39,7 +39,7 @@ public class DirectionsApiRequest
   protected Waypoint[] waypoints;
 
   @Override
-  protected void validateRequest() {
+  protected void validateRequest_RENAMED() {
     if (!params().containsKey("origin")) {
       throw new IllegalArgumentException("Request must contain 'origin'");
     }
