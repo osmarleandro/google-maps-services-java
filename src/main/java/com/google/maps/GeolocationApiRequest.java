@@ -17,8 +17,8 @@ package com.google.maps;
 
 import com.google.gson.Gson;
 import com.google.maps.model.CellTower;
-import com.google.maps.model.GeolocationPayload;
-import com.google.maps.model.GeolocationPayload.GeolocationPayloadBuilder;
+import com.google.maps.model.GeolocationPayload_RENAMED;
+import com.google.maps.model.GeolocationPayload_RENAMED.GeolocationPayloadBuilder;
 import com.google.maps.model.GeolocationResult;
 import com.google.maps.model.WifiAccessPoint;
 
@@ -26,12 +26,12 @@ import com.google.maps.model.WifiAccessPoint;
 public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
-  private GeolocationPayload payload = null;
+  private GeolocationPayload_RENAMED payload = null;
   private GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
     super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
-    builder = new GeolocationPayload.GeolocationPayloadBuilder();
+    builder = new GeolocationPayload_RENAMED.GeolocationPayloadBuilder();
   }
 
   @Override
@@ -89,7 +89,7 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest Payload(GeolocationPayload payload) {
+  public GeolocationApiRequest Payload(GeolocationPayload_RENAMED payload) {
     this.payload = payload;
     return this;
   }

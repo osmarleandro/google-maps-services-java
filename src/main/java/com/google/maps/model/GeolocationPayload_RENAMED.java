@@ -33,14 +33,14 @@ import java.util.List;
  *
  * <p>The following fields are supported, and all fields are optional:
  */
-public class GeolocationPayload implements Serializable {
+public class GeolocationPayload_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  public GeolocationPayload() {}
+  public GeolocationPayload_RENAMED() {}
 
   // constructor only used by the builder class below
-  private GeolocationPayload(
+  private GeolocationPayload_RENAMED(
       Integer _homeMobileCountryCode,
       Integer _homeMobileNetworkCode,
       String _radioType,
@@ -118,7 +118,7 @@ public class GeolocationPayload implements Serializable {
     private WifiAccessPoint[] _wifiAccessPoints = null;
     private List<WifiAccessPoint> _addedWifiAccessPoints = new ArrayList<>();
 
-    public GeolocationPayload createGeolocationPayload() {
+    public GeolocationPayload_RENAMED createGeolocationPayload() {
       // if wifi access points have been added individually...
       if (!_addedWifiAccessPoints.isEmpty()) {
         // ...use them as our list of access points by converting the list to an array
@@ -130,7 +130,7 @@ public class GeolocationPayload implements Serializable {
         _cellTowers = _addedCellTowers.toArray(new CellTower[0]);
       }
 
-      return new GeolocationPayload(
+      return new GeolocationPayload_RENAMED(
           _homeMobileCountryCode,
           _homeMobileNetworkCode,
           _radioType,

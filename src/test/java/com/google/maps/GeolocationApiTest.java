@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
-import com.google.maps.model.GeolocationPayload;
+import com.google.maps.model.GeolocationPayload_RENAMED;
 import com.google.maps.model.GeolocationResult;
 import com.google.maps.model.WifiAccessPoint;
 import org.json.JSONArray;
@@ -298,8 +298,8 @@ public class GeolocationApiTest {
   public void testAlternatePayloadBuilderGeolocation() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(geolocationAlternatePayloadBuilder)) {
-      GeolocationPayload payload =
-          new GeolocationPayload.GeolocationPayloadBuilder()
+      GeolocationPayload_RENAMED payload =
+          new GeolocationPayload_RENAMED.GeolocationPayloadBuilder()
               .ConsiderIp(false)
               .AddCellTower(
                   new CellTower.CellTowerBuilder()
@@ -373,8 +373,8 @@ public class GeolocationApiTest {
   @Test
   public void testNoPayloadGeolocation0() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      GeolocationPayload payload =
-          new GeolocationPayload.GeolocationPayloadBuilder().createGeolocationPayload();
+      GeolocationPayload_RENAMED payload =
+          new GeolocationPayload_RENAMED.GeolocationPayloadBuilder().createGeolocationPayload();
 
       GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
       assertNotNull(result);

@@ -19,7 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.model.GeolocationPayload;
+import com.google.maps.model.GeolocationPayload_RENAMED;
 import com.google.maps.model.GeolocationResult;
 import com.google.maps.model.LatLng;
 
@@ -45,7 +45,7 @@ public class GeolocationApi {
   private GeolocationApi() {}
 
   public static PendingResult<GeolocationResult> geolocate(
-      GeoApiContext context, GeolocationPayload payload) {
+      GeoApiContext context, GeolocationPayload_RENAMED payload) {
     return new GeolocationApiRequest(context).Payload(payload).CreatePayload();
   }
 
