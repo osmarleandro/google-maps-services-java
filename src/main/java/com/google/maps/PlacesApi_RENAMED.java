@@ -27,9 +27,9 @@ import com.google.maps.model.PlaceType;
  * <p>See also: <a href="https://developers.google.com/places/web-service/">Places API Web Service
  * documentation</a>.
  */
-public class PlacesApi {
+public class PlacesApi_RENAMED {
 
-  private PlacesApi() {}
+  private PlacesApi_RENAMED() {}
 
   /**
    * Performs a search for nearby Places.

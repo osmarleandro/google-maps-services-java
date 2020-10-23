@@ -115,7 +115,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlacesApi_RENAMED.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
       sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
     }
@@ -127,7 +127,7 @@ public class PlacesApiTest {
         new LocalTestServerContext(autocompletePredictionStructuredFormatting)) {
       SessionToken session = new SessionToken();
       final AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "1", session).await();
+          PlacesApi_RENAMED.placeAutocomplete(sc.context, "1", session).await();
 
       assertNotNull(predictions);
       assertNotNull(Arrays.toString(predictions));
@@ -151,7 +151,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsLookupGoogleSydney() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
       PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
+          PlacesApi_RENAMED.placeDetails(sc.context, GOOGLE_SYDNEY)
               .fields(
                   PlaceDetailsRequest.FieldMask.PLACE_ID,
                   PlaceDetailsRequest.FieldMask.NAME,
@@ -334,7 +334,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placeDetailResponseBodyForPermanentlyClosedPlace)) {
       PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
+          PlacesApi_RENAMED.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
       assertTrue(placeDetails.permanentlyClosed);
@@ -344,7 +344,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupReturnsUserRatingsTotal() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlaceDetails placeDetails = PlacesApi_RENAMED.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
@@ -356,7 +356,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupQuay() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(quayResponseBody)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, QUAY_PLACE_ID).await();
+      PlaceDetails placeDetails = PlacesApi_RENAMED.placeDetails(sc.context, QUAY_PLACE_ID).await();
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
       assertNotNull(placeDetails.priceLevel);
@@ -378,7 +378,7 @@ public class PlacesApiTest {
   public void testQueryAutocompleteRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
+      PlacesApi_RENAMED.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
           .offset(10)
           .location(location)
           .radius(5000)
@@ -397,7 +397,7 @@ public class PlacesApiTest {
   public void testQueryAutocompletePizzaNearPar() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(queryAutocompleteResponseBody)) {
       AutocompletePrediction[] predictions =
-          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
+          PlacesApi_RENAMED.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
 
       assertNotNull(predictions);
       assertEquals(predictions.length, 5);
@@ -425,7 +425,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(queryAutocompleteWithPlaceIdResponseBody)) {
       AutocompletePrediction[] predictions =
-          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
+          PlacesApi_RENAMED.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
 
       assertNotNull(predictions);
       assertEquals(predictions.length, 1);
@@ -456,7 +456,7 @@ public class PlacesApiTest {
   public void testTextSearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "Google Sydney")
+      PlacesApi_RENAMED.textSearchQuery(sc.context, "Google Sydney")
           .location(location)
           .region("AU")
           .radius(3000)
@@ -485,7 +485,7 @@ public class PlacesApiTest {
   public void testTextSearchRequestWithLocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
+      PlacesApi_RENAMED.textSearchQuery(sc.context, "Google Sydney", location)
           .region("AU")
           .radius(3000)
           .minPrice(PriceLevel.INEXPENSIVE)
@@ -514,7 +514,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(-33.866611, 151.195832);
       PlacesSearchResponse results =
-          PlacesApi.textSearchQuery(sc.context, PlaceType.ZOO)
+          PlacesApi_RENAMED.textSearchQuery(sc.context, PlaceType.ZOO)
               .location(location)
               .radius(500)
               .await();
@@ -529,14 +529,14 @@ public class PlacesApiTest {
   public void testTextSearchLocationWithoutRadius() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "query").location(location).await();
+      PlacesApi_RENAMED.textSearchQuery(sc.context, "query").location(location).await();
     }
   }
 
   @Test
   public void testTextSearchResponse() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(textSearchResponseBody)) {
-      PlacesSearchResponse results = PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
+      PlacesSearchResponse results = PlacesApi_RENAMED.textSearchQuery(sc.context, "Google Sydney").await();
 
       assertNotNull(results);
       assertNotNull(results.results);
@@ -589,7 +589,7 @@ public class PlacesApiTest {
   public void testTextSearchNYC() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(textSearchPizzaInNYCbody)) {
       PlacesSearchResponse results =
-          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
+          PlacesApi_RENAMED.textSearchQuery(sc.context, "Pizza in New York").await();
       assertNotNull(results.toString());
       assertNotNull(results.nextPageToken);
       assertEquals(
@@ -609,7 +609,7 @@ public class PlacesApiTest {
       final int width = 200;
       final int height = 100;
 
-      PlacesApi.photo(sc.context, photoReference)
+      PlacesApi_RENAMED.photo(sc.context, photoReference)
           .maxWidth(width)
           .maxHeight(height)
           .awaitIgnoreError();
@@ -624,7 +624,7 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
+      PlacesApi_RENAMED.nearbySearchQuery(sc.context, location)
           .radius(5000)
           .rankby(RankBy.PROMINENCE)
           .keyword("keyword")
@@ -656,7 +656,7 @@ public class PlacesApiTest {
   public void testNearbySearchRequestWithMultipleType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
+      PlacesApi_RENAMED.nearbySearchQuery(sc.context, location)
           .type(PlaceType.AIRPORT, PlaceType.BANK)
           .await();
 
@@ -669,7 +669,7 @@ public class PlacesApiTest {
   public void testNearbySearchRadiusAndRankbyDistance() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
+      PlacesApi_RENAMED.nearbySearchQuery(sc.context, location)
           .radius(5000)
           .rankby(RankBy.DISTANCE)
           .await();
@@ -680,7 +680,7 @@ public class PlacesApiTest {
   public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
+      PlacesApi_RENAMED.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
     }
   }
 
@@ -689,7 +689,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
-      PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
+      PlacesApi_RENAMED.placeAutocomplete(sc.context, "Sydney Town Hall", session)
           .offset(4)
           .origin(location)
           .location(location)
@@ -713,7 +713,7 @@ public class PlacesApiTest {
   public void testTextSearch() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiTextSearch)) {
       PlacesSearchResponse response =
-          PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
+          PlacesApi_RENAMED.textSearchQuery(sc.context, "Google Sydney").await();
 
       sc.assertParamValue("Google Sydney", "query");
 
@@ -729,7 +729,7 @@ public class PlacesApiTest {
   @Test
   public void testPhoto() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+      PlaceDetails placeDetails = PlacesApi_RENAMED.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
       sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
 
@@ -747,7 +747,7 @@ public class PlacesApiTest {
   public void testPizzaInNewYorkPagination() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPizzaInNewYork)) {
       PlacesSearchResponse response =
-          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
+          PlacesApi_RENAMED.textSearchQuery(sc.context, "Pizza in New York").await();
 
       sc.assertParamValue("Pizza in New York", "query");
 
@@ -763,7 +763,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsInFrench() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
       PlaceDetails details =
-          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
+          PlacesApi_RENAMED.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
 
       sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
       sc.assertParamValue("fr", "language");
@@ -781,7 +781,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByKeyword)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
+          PlacesApi_RENAMED.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
 
       sc.assertParamValue("10000", "radius");
       sc.assertParamValue("pub", "keyword");
@@ -796,7 +796,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByName)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
+          PlacesApi_RENAMED.nearbySearchQuery(sc.context, SYDNEY)
               .radius(10000)
               .name("Sydney Town Hall")
               .await();
@@ -814,7 +814,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi_RENAMED.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
       sc.assertParamValue("10000", "radius");
@@ -829,7 +829,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi_RENAMED.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
 
       assertEquals(20, response.results.length);
       assertEquals(563, response.results[0].userRatingsTotal);
@@ -841,7 +841,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
       AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
+          PlacesApi_RENAMED.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
 
       sc.assertParamValue("Sydney Town Ha", "input");
       sc.assertParamValue(session.toUrlValue(), "sessiontoken");
@@ -857,7 +857,7 @@ public class PlacesApiTest {
         new LocalTestServerContext(placesApiPlaceAutocompleteWithType)) {
       SessionToken session = new SessionToken();
       AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "po", session)
+          PlacesApi_RENAMED.placeAutocomplete(sc.context, "po", session)
               .components(ComponentFilter.country("nz"))
               .types(PlaceAutocompleteType.REGIONS)
               .await();
@@ -882,7 +882,7 @@ public class PlacesApiTest {
   public void testPlaceAutocompleteWithStrictBounds() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
-      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
+      PlacesApi_RENAMED.placeAutocomplete(sc.context, "Amoeba", session)
           .types(PlaceAutocompleteType.ESTABLISHMENT)
           .location(new LatLng(37.76999, -122.44696))
           .radius(500)
@@ -902,7 +902,7 @@ public class PlacesApiTest {
   public void testKitaWard() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiKitaWard)) {
       String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
-      PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
+      PlacesSearchResponse response = PlacesApi_RENAMED.textSearchQuery(sc.context, query).await();
 
       sc.assertParamValue(query, "query");
 
@@ -920,7 +920,7 @@ public class PlacesApiTest {
       String input = "Museum of Contemporary Art Australia";
 
       FindPlaceFromText response =
-          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+          PlacesApi_RENAMED.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
               .fields(
                   FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
                   FindPlaceFromTextRequest.FieldMask.PHOTOS,
@@ -964,7 +964,7 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+      PlacesApi_RENAMED.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
               FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
@@ -989,7 +989,7 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+      PlacesApi_RENAMED.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
               FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
@@ -1014,7 +1014,7 @@ public class PlacesApiTest {
 
       String input = "Museum of Contemporary Art Australia";
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+      PlacesApi_RENAMED.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
               FindPlaceFromTextRequest.FieldMask.PHOTOS,
               FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
@@ -1036,7 +1036,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsWithBusinessStatus() throws Exception {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
-    final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
+    final PlaceDetails placeDetails = PlacesApi_RENAMED.placeDetails(server.context, "testPlaceId").await();
     assertNotNull(placeDetails);
     assertEquals("OPERATIONAL", placeDetails.businessStatus);
   }
@@ -1046,7 +1046,7 @@ public class PlacesApiTest {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
 
-    PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
+    PlacesApi_RENAMED.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
 
     server.assertParamValue("business_status", "fields");
   }
