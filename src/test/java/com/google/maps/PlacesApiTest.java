@@ -510,7 +510,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testTextSearchRequestWithType() throws Exception {
+  public void testTextSearchRequestWithType_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(-33.866611, 151.195832);
       PlacesSearchResponse results =
