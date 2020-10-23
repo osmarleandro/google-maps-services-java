@@ -31,7 +31,7 @@ import org.junit.experimental.categories.Category;
 public class TimeZoneApiTest {
 
   @Test
-  public void testGetTimeZone() throws Exception {
+  public void testGetTimeZone_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
