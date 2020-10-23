@@ -33,10 +33,10 @@ import com.google.maps.model.LatLng;
  * <p>See <a href="https://developers.google.com/maps/documentation/elevation/start">the Google Maps
  * Elevation API documentation</a>.
  */
-public class ElevationApi {
+public class ElevationApi_RENAMED {
   private static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/elevation/json");
 
-  private ElevationApi() {}
+  private ElevationApi_RENAMED() {}
 
   /**
    * Gets a list of elevations for a list of points.

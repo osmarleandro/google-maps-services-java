@@ -70,7 +70,7 @@ public class ElevationApiTest {
             "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
 
       // This should throw the InvalidRequestException
-      ElevationApi.getByPoint(sc.context, new LatLng(0, 0)).await();
+      ElevationApi_RENAMED.getByPoint(sc.context, new LatLng(0, 0)).await();
     }
   }
 
@@ -86,7 +86,7 @@ public class ElevationApiTest {
                 + "}")) {
 
       // This should throw the RequestDeniedException
-      ElevationApi.getByPoints(
+      ElevationApi_RENAMED.getByPoints(
               sc.context, new EncodedPolyline(Collections.singletonList(new LatLng(0, 0))))
           .await();
     }
@@ -110,7 +110,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
+      ElevationResult result = ElevationApi_RENAMED.getByPoint(sc.context, SYDNEY).await();
 
       assertNotNull(result);
       assertNotNull(result.toString());
@@ -146,7 +146,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPoints(sc.context, SYDNEY, MELBOURNE).await();
+      ElevationResult[] results = ElevationApi_RENAMED.getByPoints(sc.context, SYDNEY, MELBOURNE).await();
 
       assertNotNull(results);
       assertEquals(2, results.length);
@@ -247,7 +247,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
+      ElevationResult[] results = ElevationApi_RENAMED.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
 
       assertNotNull(results);
       assertEquals(10, results.length);
@@ -262,7 +262,7 @@ public class ElevationApiTest {
   @Test
   public void testDirectionsAlongPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
-      ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
+      ElevationResult[] elevation = ElevationApi_RENAMED.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
 
       List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
