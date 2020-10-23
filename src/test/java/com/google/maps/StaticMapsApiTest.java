@@ -267,7 +267,7 @@ public class StaticMapsApiTest {
       expected.add("color:blue|label:S|40.70214700,-74.01579400");
       expected.add("color:green|label:G|40.71161400,-74.01231800");
       expected.add("color:red|label:C|40.71821700,-73.99828400");
-      sc.assertParamValues(expected, "markers");
+      sc.assertParamValues_RENAMED(expected, "markers");
     }
   }
 }

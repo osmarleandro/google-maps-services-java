@@ -117,7 +117,7 @@ public class LocalTestServerContext implements AutoCloseable {
     assertTrue(paramFound);
   }
 
-  void assertParamValues(List<String> expecteds, String paramName)
+  void assertParamValues_RENAMED(List<String> expecteds, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
       this.params = this.actualParams();
