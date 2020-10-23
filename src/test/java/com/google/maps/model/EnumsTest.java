@@ -188,7 +188,7 @@ public class EnumsTest {
     for (Map.Entry<AddressType, String> addressTypeLiteralPair :
         addressTypeToLiteralMap.entrySet()) {
       assertEquals(
-          addressTypeLiteralPair.getValue(), addressTypeLiteralPair.getKey().toCanonicalLiteral());
+          addressTypeLiteralPair.getValue(), addressTypeLiteralPair.getKey().toCanonicalLiteral_RENAMED());
     }
     List<AddressType> enumsMinusUnknown = new ArrayList<>(Arrays.asList(AddressType.values()));
     enumsMinusUnknown.remove(AddressType.UNKNOWN);

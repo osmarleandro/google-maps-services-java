@@ -478,7 +478,7 @@ public enum AddressType implements UrlValue {
     return addressType;
   }
 
-  public String toCanonicalLiteral() {
+  public String toCanonicalLiteral_RENAMED() {
     return toString();
   }
 
