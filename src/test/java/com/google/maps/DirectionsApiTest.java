@@ -93,7 +93,7 @@ public class DirectionsApiTest {
                   DirectionsApi.RouteRestriction.TOLLS,
                   DirectionsApi.RouteRestriction.FERRIES)
               .units(Unit.METRIC)
-              .region("au")
+              .region_RENAMED("au")
               .origin("Sydney")
               .destination("Melbourne")
               .await();
@@ -327,7 +327,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("Toledo")
           .destination("Madrid")
-          .region("es")
+          .region_RENAMED("es")
           .await();
 
       sc.assertParamValue("Toledo", "origin");
@@ -345,7 +345,7 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .origin("Toledo")
               .destination("Madrid")
-              .region("es")
+              .region_RENAMED("es")
               .language("es")
               .await();
 

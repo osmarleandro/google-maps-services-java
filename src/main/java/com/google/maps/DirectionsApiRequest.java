@@ -158,7 +158,7 @@ public class DirectionsApiRequest
    * @param region The region code, specified as a ccTLD ("top-level domain") two-character value.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest region(String region) {
+  public DirectionsApiRequest region_RENAMED(String region) {
     return param("region", region);
   }
 
