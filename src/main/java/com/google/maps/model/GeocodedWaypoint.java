@@ -29,7 +29,7 @@ public class GeocodedWaypoint implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** The status code resulting from the geocoding operation for this waypoint. */
-  public GeocodedWaypointStatus geocoderStatus;
+  public GeocodedWaypointStatus_RENAMED geocoderStatus;
 
   /**
    * Indicates that the geocoder did not return an exact match for the original request, though it

@@ -21,7 +21,7 @@ package com.google.maps.model;
  * @see <a href="https://developers.google.com/maps/documentation/directions/intro#StatusCodes">
  *     Documentation on status codes</a>
  */
-public enum GeocodedWaypointStatus {
+public enum GeocodedWaypointStatus_RENAMED {
   /** Indicates the response contains a valid result. */
   OK,
 
