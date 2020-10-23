@@ -59,7 +59,7 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param route The name of the route to filter on.
    * @return Returns a {@link ComponentFilter}.
    */
-  public static ComponentFilter route(String route) {
+  public static ComponentFilter route_RENAMED(String route) {
     return new ComponentFilter("route", route);
   }
 
