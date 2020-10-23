@@ -78,8 +78,8 @@ public class PolylineEncoding {
       long dLat = lat - lastLat;
       long dLng = lng - lastLng;
 
-      encode(dLat, result);
-      encode(dLng, result);
+      encode_RENAMED(dLat, result);
+      encode_RENAMED(dLng, result);
 
       lastLat = lat;
       lastLng = lng;
@@ -87,7 +87,7 @@ public class PolylineEncoding {
     return result.toString();
   }
 
-  private static void encode(long v, StringBuilder result) {
+  private static void encode_RENAMED(long v, StringBuilder result) {
     v = v < 0 ? ~(v << 1) : v << 1;
     while (v >= 0x20) {
       result.append(Character.toChars((int) ((0x20 | (v & 0x1f)) + 63)));
