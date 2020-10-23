@@ -192,7 +192,7 @@ public class DirectionsApiRequest
    *
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest departureTimeNow() {
+  public DirectionsApiRequest departureTimeNow_RENAMED() {
     return param("departure_time", "now");
   }
 
