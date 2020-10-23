@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class StaticMapsRequest
     extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
 
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
+  public static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 
   public StaticMapsRequest(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);
@@ -55,17 +55,6 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest center(LatLng location) {
-    return param("center", location);
-  }
-
-  /**
-   * <code>center</code> (required if markers not present) defines the center of the map,
-   * equidistant from all edges of the map.
-   *
-   * @param location The location of the center of the map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest center(String location) {
     return param("center", location);
   }
 

@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.StaticMapsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * <code>center</code> (required if markers not present) defines the center of the map,
+   * equidistant from all edges of the map.
+   *
+   * @param staticMapsRequest TODO
+ * @param location The location of the center of the map.
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest center(StaticMapsRequest staticMapsRequest, String location) {
+    return staticMapsRequest.param("center", location);
   }
 }
