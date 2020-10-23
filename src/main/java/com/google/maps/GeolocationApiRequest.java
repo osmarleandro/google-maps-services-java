@@ -27,7 +27,7 @@ public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
   private GeolocationPayload payload = null;
-  private GeolocationPayloadBuilder builder = null;
+  GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
     super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
@@ -61,11 +61,6 @@ public class GeolocationApiRequest
 
   public GeolocationApiRequest Carrier(String newCarrier) {
     this.builder.Carrier(newCarrier);
-    return this;
-  }
-
-  public GeolocationApiRequest ConsiderIp(boolean newConsiderIp) {
-    this.builder.ConsiderIp(newConsiderIp);
     return this;
   }
 
