@@ -157,7 +157,7 @@ public class StaticMapsApiTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testValidateRequest_noSize() throws Exception {
+  public void testValidateRequest_noSize_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, null);
       req.center("Google Sydney");
