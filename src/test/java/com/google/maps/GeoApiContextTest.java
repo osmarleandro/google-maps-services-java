@@ -310,7 +310,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testMultipleExperienceId() {
+  public void testMultipleExperienceId_RENAMED() {
     final String experienceId1 = "experienceId1";
     final String experienceId2 = "experienceId2";
     final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
