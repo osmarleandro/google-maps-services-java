@@ -23,7 +23,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
-import com.google.maps.model.PriceLevel;
+import com.google.maps.model.PriceLevel_RENAMED;
 import com.google.maps.model.RankBy;
 
 /**
@@ -93,7 +93,7 @@ public class TextSearchRequest
    * @param priceLevel The minimum price level to restrict results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest minPrice(PriceLevel priceLevel) {
+  public TextSearchRequest minPrice(PriceLevel_RENAMED priceLevel) {
     return param("minprice", priceLevel);
   }
 
@@ -103,7 +103,7 @@ public class TextSearchRequest
    * @param priceLevel The maximum price leve to restrict results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest maxPrice(PriceLevel priceLevel) {
+  public TextSearchRequest maxPrice(PriceLevel_RENAMED priceLevel) {
     return param("maxprice", priceLevel);
   }
 

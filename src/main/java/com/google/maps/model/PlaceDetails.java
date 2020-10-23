@@ -117,7 +117,7 @@ public class PlaceDetails implements Serializable {
    * The price level of the place. The exact amount indicated by a specific value will vary from
    * region to region.
    */
-  public PriceLevel priceLevel;
+  public PriceLevel_RENAMED priceLevel;
 
   /** The place's rating, from 1.0 to 5.0, based on aggregated user reviews. */
   public float rating;

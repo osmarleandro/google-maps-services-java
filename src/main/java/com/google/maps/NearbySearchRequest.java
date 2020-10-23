@@ -25,7 +25,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
-import com.google.maps.model.PriceLevel;
+import com.google.maps.model.PriceLevel_RENAMED;
 import com.google.maps.model.RankBy;
 
 /**
@@ -102,7 +102,7 @@ public class NearbySearchRequest
    * @param priceLevel The price level to set as minimum.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest minPrice(PriceLevel priceLevel) {
+  public NearbySearchRequest minPrice(PriceLevel_RENAMED priceLevel) {
     return param("minprice", priceLevel);
   }
 
@@ -112,7 +112,7 @@ public class NearbySearchRequest
    * @param priceLevel The price level to set as maximum.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
+  public NearbySearchRequest maxPrice(PriceLevel_RENAMED priceLevel) {
     return param("maxprice", priceLevel);
   }
 

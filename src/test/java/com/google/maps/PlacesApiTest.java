@@ -45,7 +45,7 @@ import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
-import com.google.maps.model.PriceLevel;
+import com.google.maps.model.PriceLevel_RENAMED;
 import com.google.maps.model.RankBy;
 import java.net.URI;
 import java.time.LocalTime;
@@ -360,7 +360,7 @@ public class PlacesApiTest {
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
       assertNotNull(placeDetails.priceLevel);
-      assertEquals(PriceLevel.VERY_EXPENSIVE, placeDetails.priceLevel);
+      assertEquals(PriceLevel_RENAMED.VERY_EXPENSIVE, placeDetails.priceLevel);
       assertNotNull(placeDetails.photos);
       Photo photo = placeDetails.photos[0];
       assertEquals(1944, photo.height);
@@ -460,8 +460,8 @@ public class PlacesApiTest {
           .location(location)
           .region("AU")
           .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
+          .minPrice(PriceLevel_RENAMED.INEXPENSIVE)
+          .maxPrice(PriceLevel_RENAMED.VERY_EXPENSIVE)
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
@@ -488,8 +488,8 @@ public class PlacesApiTest {
       PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
           .region("AU")
           .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
+          .minPrice(PriceLevel_RENAMED.INEXPENSIVE)
+          .maxPrice(PriceLevel_RENAMED.VERY_EXPENSIVE)
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
@@ -629,8 +629,8 @@ public class PlacesApiTest {
           .rankby(RankBy.PROMINENCE)
           .keyword("keyword")
           .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
+          .minPrice(PriceLevel_RENAMED.INEXPENSIVE)
+          .maxPrice(PriceLevel_RENAMED.EXPENSIVE)
           .name("name")
           .openNow(true)
           .type(PlaceType.AIRPORT)
@@ -642,8 +642,8 @@ public class PlacesApiTest {
       sc.assertParamValue(RankBy.PROMINENCE.toString(), "rankby");
       sc.assertParamValue("keyword", "keyword");
       sc.assertParamValue("en", "language");
-      sc.assertParamValue(PriceLevel.INEXPENSIVE.toString(), "minprice");
-      sc.assertParamValue(PriceLevel.EXPENSIVE.toString(), "maxprice");
+      sc.assertParamValue(PriceLevel_RENAMED.INEXPENSIVE.toString(), "minprice");
+      sc.assertParamValue(PriceLevel_RENAMED.EXPENSIVE.toString(), "maxprice");
       sc.assertParamValue("name", "name");
       sc.assertParamValue("true", "opennow");
       sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");

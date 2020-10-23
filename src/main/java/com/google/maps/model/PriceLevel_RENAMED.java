@@ -18,7 +18,7 @@ package com.google.maps.model;
 import com.google.maps.internal.StringJoin;
 
 /** Used by Places API to restrict search results to those within a given price range. */
-public enum PriceLevel implements StringJoin.UrlValue {
+public enum PriceLevel_RENAMED implements StringJoin.UrlValue {
   FREE("0"),
   INEXPENSIVE("1"),
   MODERATE("2"),
@@ -33,7 +33,7 @@ public enum PriceLevel implements StringJoin.UrlValue {
 
   private final String priceLevel;
 
-  PriceLevel(final String priceLevel) {
+  PriceLevel_RENAMED(final String priceLevel) {
     this.priceLevel = priceLevel;
   }
 

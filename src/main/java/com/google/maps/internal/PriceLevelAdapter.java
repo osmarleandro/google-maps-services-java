@@ -19,20 +19,20 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import com.google.maps.model.PriceLevel;
+import com.google.maps.model.PriceLevel_RENAMED;
 import java.io.IOException;
 
 /**
- * This class handles conversion from JSON to {@link PriceLevel}.
+ * This class handles conversion from JSON to {@link PriceLevel_RENAMED}.
  *
  * <p>Please see <a
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">GSON
  * Type Adapter</a> for more detail.
  */
-public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
+public class PriceLevelAdapter extends TypeAdapter<PriceLevel_RENAMED> {
 
   @Override
-  public PriceLevel read(JsonReader reader) throws IOException {
+  public PriceLevel_RENAMED read(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
@@ -43,24 +43,24 @@ public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
 
       switch (priceLevel) {
         case 0:
-          return PriceLevel.FREE;
+          return PriceLevel_RENAMED.FREE;
         case 1:
-          return PriceLevel.INEXPENSIVE;
+          return PriceLevel_RENAMED.INEXPENSIVE;
         case 2:
-          return PriceLevel.MODERATE;
+          return PriceLevel_RENAMED.MODERATE;
         case 3:
-          return PriceLevel.EXPENSIVE;
+          return PriceLevel_RENAMED.EXPENSIVE;
         case 4:
-          return PriceLevel.VERY_EXPENSIVE;
+          return PriceLevel_RENAMED.VERY_EXPENSIVE;
       }
     }
 
-    return PriceLevel.UNKNOWN;
+    return PriceLevel_RENAMED.UNKNOWN;
   }
 
   /** This method is not implemented. */
   @Override
-  public void write(JsonWriter writer, PriceLevel value) throws IOException {
+  public void write(JsonWriter writer, PriceLevel_RENAMED value) throws IOException {
     throw new UnsupportedOperationException("Unimplemented method");
   }
 }
