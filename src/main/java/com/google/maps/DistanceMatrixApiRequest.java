@@ -199,7 +199,7 @@ public class DistanceMatrixApiRequest
    * @param pref The transit routing preference for this distance matrix.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
+  public DistanceMatrixApiRequest transitRoutingPreference_RENAMED(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
   }
 }
