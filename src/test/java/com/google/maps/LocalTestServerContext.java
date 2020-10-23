@@ -38,7 +38,7 @@ public class LocalTestServerContext implements AutoCloseable {
 
   private final MockWebServer server;
   public final GeoApiContext context;
-  private RecordedRequest request = null;
+  public RecordedRequest request = null;
   private List<NameValuePair> params = null;
 
   LocalTestServerContext(BufferedImage image) throws IOException {
@@ -73,7 +73,7 @@ public class LocalTestServerContext implements AutoCloseable {
             .build();
   }
 
-  private List<NameValuePair> parseQueryParamsFromRequestLine(String requestLine)
+  public List<NameValuePair> parseQueryParamsFromRequestLine(String requestLine)
       throws URISyntaxException {
     // Extract the URL part from the HTTP request line
     String[] chunks = requestLine.split("\\s", -1);
@@ -82,7 +82,7 @@ public class LocalTestServerContext implements AutoCloseable {
     return URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
   }
 
-  private void takeRequest() throws InterruptedException {
+  public void takeRequest() throws InterruptedException {
     if (this.request == null) this.request = server.takeRequest();
   }
 
@@ -90,11 +90,6 @@ public class LocalTestServerContext implements AutoCloseable {
     this.takeRequest();
 
     return new JSONObject(request.getBody().readUtf8());
-  }
-
-  private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
-    this.takeRequest();
-    return parseQueryParamsFromRequestLine(request.getRequestLine());
   }
 
   public String path() throws InterruptedException {
@@ -105,7 +100,7 @@ public class LocalTestServerContext implements AutoCloseable {
   void assertParamValue(String expected, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
-      this.params = this.actualParams();
+      this.params = this.context.actualParams(this);
     }
     boolean paramFound = false;
     for (NameValuePair pair : params) {
@@ -120,7 +115,7 @@ public class LocalTestServerContext implements AutoCloseable {
   void assertParamValues(List<String> expecteds, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
-      this.params = this.actualParams();
+      this.params = this.context.actualParams(this);
     }
     int paramsFound = 0;
     for (NameValuePair pair : params) {
