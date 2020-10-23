@@ -70,7 +70,7 @@ public class TextSearchRequest
    * @param region The ccTLD two-letter code of the region.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest region(String region) {
+  public TextSearchRequest region_RENAMED(String region) {
     return param("region", region);
   }
 
