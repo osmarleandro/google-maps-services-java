@@ -15,10 +15,15 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.PlacesApiTest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +72,33 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testTextSearchRequestWithLocation(PlacesApiTest placesApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
+      LatLng location = new LatLng(10, 20);
+      PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
+          .region("AU")
+          .radius(3000)
+          .minPrice(PriceLevel.INEXPENSIVE)
+          .maxPrice(PriceLevel.VERY_EXPENSIVE)
+          .name("name")
+          .openNow(true)
+          .rankby(RankBy.DISTANCE)
+          .type(PlaceType.AIRPORT)
+          .await();
+
+      sc.assertParamValue("Google Sydney", "query");
+      sc.assertParamValue(location.toUrlValue(), "location");
+      sc.assertParamValue("AU", "region");
+      sc.assertParamValue(String.valueOf(3000), "radius");
+      sc.assertParamValue(String.valueOf(1), "minprice");
+      sc.assertParamValue(String.valueOf(4), "maxprice");
+      sc.assertParamValue("name", "name");
+      sc.assertParamValue("true", "opennow");
+      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
+      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+    }
   }
 }
