@@ -34,7 +34,7 @@ import org.junit.experimental.categories.Category;
 public class EnumsTest {
   @Test
   public void testUnknown() throws Exception {
-    assertNotNull(AddressComponentType.UNKNOWN); // Does not implement UrlValue.
+    assertNotNull(AddressComponentType_RENAMED.UNKNOWN); // Does not implement UrlValue.
 
     assertCannotGetUrlValue(AddressType.UNKNOWN);
     assertCannotGetUrlValue(LocationType.UNKNOWN);
@@ -202,107 +202,107 @@ public class EnumsTest {
 
   @Test
   public void testCanonicalLiteralsForAddressComponentType() {
-    Map<AddressComponentType, String> addressComponentTypeToLiteralMap =
-        new HashMap<AddressComponentType, String>();
+    Map<AddressComponentType_RENAMED, String> addressComponentTypeToLiteralMap =
+        new HashMap<AddressComponentType_RENAMED, String>();
     // Short alias just to avoid line wrapping in the below code
-    Map<AddressComponentType, String> m = addressComponentTypeToLiteralMap;
-    m.put(AddressComponentType.STREET_ADDRESS, "street_address");
-    m.put(AddressComponentType.ROUTE, "route");
-    m.put(AddressComponentType.INTERSECTION, "intersection");
-    m.put(AddressComponentType.POLITICAL, "political");
-    m.put(AddressComponentType.COUNTRY, "country");
-    m.put(AddressComponentType.CONTINENT, "continent");
-    m.put(AddressComponentType.ADMINISTRATIVE_AREA_LEVEL_1, "administrative_area_level_1");
-    m.put(AddressComponentType.ADMINISTRATIVE_AREA_LEVEL_2, "administrative_area_level_2");
-    m.put(AddressComponentType.ADMINISTRATIVE_AREA_LEVEL_3, "administrative_area_level_3");
-    m.put(AddressComponentType.ADMINISTRATIVE_AREA_LEVEL_4, "administrative_area_level_4");
-    m.put(AddressComponentType.ADMINISTRATIVE_AREA_LEVEL_5, "administrative_area_level_5");
-    m.put(AddressComponentType.COLLOQUIAL_AREA, "colloquial_area");
-    m.put(AddressComponentType.LOCALITY, "locality");
-    m.put(AddressComponentType.WARD, "ward");
-    m.put(AddressComponentType.SUBLOCALITY, "sublocality");
-    m.put(AddressComponentType.SUBLOCALITY_LEVEL_1, "sublocality_level_1");
-    m.put(AddressComponentType.SUBLOCALITY_LEVEL_2, "sublocality_level_2");
-    m.put(AddressComponentType.SUBLOCALITY_LEVEL_3, "sublocality_level_3");
-    m.put(AddressComponentType.SUBLOCALITY_LEVEL_4, "sublocality_level_4");
-    m.put(AddressComponentType.SUBLOCALITY_LEVEL_5, "sublocality_level_5");
-    m.put(AddressComponentType.NEIGHBORHOOD, "neighborhood");
-    m.put(AddressComponentType.PREMISE, "premise");
-    m.put(AddressComponentType.SUBPREMISE, "subpremise");
-    m.put(AddressComponentType.POSTAL_CODE, "postal_code");
-    m.put(AddressComponentType.POST_BOX, "post_box");
-    m.put(AddressComponentType.POSTAL_CODE_PREFIX, "postal_code_prefix");
-    m.put(AddressComponentType.POSTAL_CODE_SUFFIX, "postal_code_suffix");
-    m.put(AddressComponentType.NATURAL_FEATURE, "natural_feature");
-    m.put(AddressComponentType.AIRPORT, "airport");
-    m.put(AddressComponentType.PARK, "park");
-    m.put(AddressComponentType.FLOOR, "floor");
-    m.put(AddressComponentType.PARKING, "parking");
-    m.put(AddressComponentType.POINT_OF_INTEREST, "point_of_interest");
-    m.put(AddressComponentType.BUS_STATION, "bus_station");
-    m.put(AddressComponentType.TRAIN_STATION, "train_station");
-    m.put(AddressComponentType.SUBWAY_STATION, "subway_station");
-    m.put(AddressComponentType.TRANSIT_STATION, "transit_station");
-    m.put(AddressComponentType.LIGHT_RAIL_STATION, "light_rail_station");
-    m.put(AddressComponentType.ESTABLISHMENT, "establishment");
-    m.put(AddressComponentType.POSTAL_TOWN, "postal_town");
-    m.put(AddressComponentType.ROOM, "room");
-    m.put(AddressComponentType.STREET_NUMBER, "street_number");
-    m.put(AddressComponentType.GENERAL_CONTRACTOR, "general_contractor");
-    m.put(AddressComponentType.FOOD, "food");
-    m.put(AddressComponentType.REAL_ESTATE_AGENCY, "real_estate_agency");
-    m.put(AddressComponentType.CAR_RENTAL, "car_rental");
-    m.put(AddressComponentType.STORE, "store");
-    m.put(AddressComponentType.SHOPPING_MALL, "shopping_mall");
-    m.put(AddressComponentType.LODGING, "lodging");
-    m.put(AddressComponentType.TRAVEL_AGENCY, "travel_agency");
-    m.put(AddressComponentType.ELECTRONICS_STORE, "electronics_store");
-    m.put(AddressComponentType.HOME_GOODS_STORE, "home_goods_store");
-    m.put(AddressComponentType.SCHOOL, "school");
-    m.put(AddressComponentType.ART_GALLERY, "art_gallery");
-    m.put(AddressComponentType.LAWYER, "lawyer");
-    m.put(AddressComponentType.RESTAURANT, "restaurant");
-    m.put(AddressComponentType.BAR, "bar");
-    m.put(AddressComponentType.MEAL_TAKEAWAY, "meal_takeaway");
-    m.put(AddressComponentType.CLOTHING_STORE, "clothing_store");
-    m.put(AddressComponentType.LOCAL_GOVERNMENT_OFFICE, "local_government_office");
-    m.put(AddressComponentType.FINANCE, "finance");
-    m.put(AddressComponentType.MOVING_COMPANY, "moving_company");
-    m.put(AddressComponentType.STORAGE, "storage");
-    m.put(AddressComponentType.CAFE, "cafe");
-    m.put(AddressComponentType.CAR_REPAIR, "car_repair");
-    m.put(AddressComponentType.HEALTH, "health");
-    m.put(AddressComponentType.INSURANCE_AGENCY, "insurance_agency");
-    m.put(AddressComponentType.PAINTER, "painter");
-    m.put(AddressComponentType.ARCHIPELAGO, "archipelago");
-    m.put(AddressComponentType.MUSEUM, "museum");
-    m.put(AddressComponentType.RV_PARK, "rv_park");
-    m.put(AddressComponentType.CAMPGROUND, "campground");
-    m.put(AddressComponentType.MEAL_DELIVERY, "meal_delivery");
-    m.put(AddressComponentType.PRIMARY_SCHOOL, "primary_school");
-    m.put(AddressComponentType.SECONDARY_SCHOOL, "secondary_school");
-    m.put(AddressComponentType.TOWN_SQUARE, "town_square");
-    m.put(AddressComponentType.TOURIST_ATTRACTION, "tourist_attraction");
-    m.put(AddressComponentType.PLUS_CODE, "plus_code");
-    m.put(AddressComponentType.DRUGSTORE, "drugstore");
+    Map<AddressComponentType_RENAMED, String> m = addressComponentTypeToLiteralMap;
+    m.put(AddressComponentType_RENAMED.STREET_ADDRESS, "street_address");
+    m.put(AddressComponentType_RENAMED.ROUTE, "route");
+    m.put(AddressComponentType_RENAMED.INTERSECTION, "intersection");
+    m.put(AddressComponentType_RENAMED.POLITICAL, "political");
+    m.put(AddressComponentType_RENAMED.COUNTRY, "country");
+    m.put(AddressComponentType_RENAMED.CONTINENT, "continent");
+    m.put(AddressComponentType_RENAMED.ADMINISTRATIVE_AREA_LEVEL_1, "administrative_area_level_1");
+    m.put(AddressComponentType_RENAMED.ADMINISTRATIVE_AREA_LEVEL_2, "administrative_area_level_2");
+    m.put(AddressComponentType_RENAMED.ADMINISTRATIVE_AREA_LEVEL_3, "administrative_area_level_3");
+    m.put(AddressComponentType_RENAMED.ADMINISTRATIVE_AREA_LEVEL_4, "administrative_area_level_4");
+    m.put(AddressComponentType_RENAMED.ADMINISTRATIVE_AREA_LEVEL_5, "administrative_area_level_5");
+    m.put(AddressComponentType_RENAMED.COLLOQUIAL_AREA, "colloquial_area");
+    m.put(AddressComponentType_RENAMED.LOCALITY, "locality");
+    m.put(AddressComponentType_RENAMED.WARD, "ward");
+    m.put(AddressComponentType_RENAMED.SUBLOCALITY, "sublocality");
+    m.put(AddressComponentType_RENAMED.SUBLOCALITY_LEVEL_1, "sublocality_level_1");
+    m.put(AddressComponentType_RENAMED.SUBLOCALITY_LEVEL_2, "sublocality_level_2");
+    m.put(AddressComponentType_RENAMED.SUBLOCALITY_LEVEL_3, "sublocality_level_3");
+    m.put(AddressComponentType_RENAMED.SUBLOCALITY_LEVEL_4, "sublocality_level_4");
+    m.put(AddressComponentType_RENAMED.SUBLOCALITY_LEVEL_5, "sublocality_level_5");
+    m.put(AddressComponentType_RENAMED.NEIGHBORHOOD, "neighborhood");
+    m.put(AddressComponentType_RENAMED.PREMISE, "premise");
+    m.put(AddressComponentType_RENAMED.SUBPREMISE, "subpremise");
+    m.put(AddressComponentType_RENAMED.POSTAL_CODE, "postal_code");
+    m.put(AddressComponentType_RENAMED.POST_BOX, "post_box");
+    m.put(AddressComponentType_RENAMED.POSTAL_CODE_PREFIX, "postal_code_prefix");
+    m.put(AddressComponentType_RENAMED.POSTAL_CODE_SUFFIX, "postal_code_suffix");
+    m.put(AddressComponentType_RENAMED.NATURAL_FEATURE, "natural_feature");
+    m.put(AddressComponentType_RENAMED.AIRPORT, "airport");
+    m.put(AddressComponentType_RENAMED.PARK, "park");
+    m.put(AddressComponentType_RENAMED.FLOOR, "floor");
+    m.put(AddressComponentType_RENAMED.PARKING, "parking");
+    m.put(AddressComponentType_RENAMED.POINT_OF_INTEREST, "point_of_interest");
+    m.put(AddressComponentType_RENAMED.BUS_STATION, "bus_station");
+    m.put(AddressComponentType_RENAMED.TRAIN_STATION, "train_station");
+    m.put(AddressComponentType_RENAMED.SUBWAY_STATION, "subway_station");
+    m.put(AddressComponentType_RENAMED.TRANSIT_STATION, "transit_station");
+    m.put(AddressComponentType_RENAMED.LIGHT_RAIL_STATION, "light_rail_station");
+    m.put(AddressComponentType_RENAMED.ESTABLISHMENT, "establishment");
+    m.put(AddressComponentType_RENAMED.POSTAL_TOWN, "postal_town");
+    m.put(AddressComponentType_RENAMED.ROOM, "room");
+    m.put(AddressComponentType_RENAMED.STREET_NUMBER, "street_number");
+    m.put(AddressComponentType_RENAMED.GENERAL_CONTRACTOR, "general_contractor");
+    m.put(AddressComponentType_RENAMED.FOOD, "food");
+    m.put(AddressComponentType_RENAMED.REAL_ESTATE_AGENCY, "real_estate_agency");
+    m.put(AddressComponentType_RENAMED.CAR_RENTAL, "car_rental");
+    m.put(AddressComponentType_RENAMED.STORE, "store");
+    m.put(AddressComponentType_RENAMED.SHOPPING_MALL, "shopping_mall");
+    m.put(AddressComponentType_RENAMED.LODGING, "lodging");
+    m.put(AddressComponentType_RENAMED.TRAVEL_AGENCY, "travel_agency");
+    m.put(AddressComponentType_RENAMED.ELECTRONICS_STORE, "electronics_store");
+    m.put(AddressComponentType_RENAMED.HOME_GOODS_STORE, "home_goods_store");
+    m.put(AddressComponentType_RENAMED.SCHOOL, "school");
+    m.put(AddressComponentType_RENAMED.ART_GALLERY, "art_gallery");
+    m.put(AddressComponentType_RENAMED.LAWYER, "lawyer");
+    m.put(AddressComponentType_RENAMED.RESTAURANT, "restaurant");
+    m.put(AddressComponentType_RENAMED.BAR, "bar");
+    m.put(AddressComponentType_RENAMED.MEAL_TAKEAWAY, "meal_takeaway");
+    m.put(AddressComponentType_RENAMED.CLOTHING_STORE, "clothing_store");
+    m.put(AddressComponentType_RENAMED.LOCAL_GOVERNMENT_OFFICE, "local_government_office");
+    m.put(AddressComponentType_RENAMED.FINANCE, "finance");
+    m.put(AddressComponentType_RENAMED.MOVING_COMPANY, "moving_company");
+    m.put(AddressComponentType_RENAMED.STORAGE, "storage");
+    m.put(AddressComponentType_RENAMED.CAFE, "cafe");
+    m.put(AddressComponentType_RENAMED.CAR_REPAIR, "car_repair");
+    m.put(AddressComponentType_RENAMED.HEALTH, "health");
+    m.put(AddressComponentType_RENAMED.INSURANCE_AGENCY, "insurance_agency");
+    m.put(AddressComponentType_RENAMED.PAINTER, "painter");
+    m.put(AddressComponentType_RENAMED.ARCHIPELAGO, "archipelago");
+    m.put(AddressComponentType_RENAMED.MUSEUM, "museum");
+    m.put(AddressComponentType_RENAMED.RV_PARK, "rv_park");
+    m.put(AddressComponentType_RENAMED.CAMPGROUND, "campground");
+    m.put(AddressComponentType_RENAMED.MEAL_DELIVERY, "meal_delivery");
+    m.put(AddressComponentType_RENAMED.PRIMARY_SCHOOL, "primary_school");
+    m.put(AddressComponentType_RENAMED.SECONDARY_SCHOOL, "secondary_school");
+    m.put(AddressComponentType_RENAMED.TOWN_SQUARE, "town_square");
+    m.put(AddressComponentType_RENAMED.TOURIST_ATTRACTION, "tourist_attraction");
+    m.put(AddressComponentType_RENAMED.PLUS_CODE, "plus_code");
+    m.put(AddressComponentType_RENAMED.DRUGSTORE, "drugstore");
 
-    for (Map.Entry<AddressComponentType, String> AddressComponentTypeLiteralPair :
+    for (Map.Entry<AddressComponentType_RENAMED, String> AddressComponentTypeLiteralPair :
         addressComponentTypeToLiteralMap.entrySet()) {
       assertEquals(
           AddressComponentTypeLiteralPair.getValue(),
           AddressComponentTypeLiteralPair.getKey().toCanonicalLiteral());
     }
-    List<AddressComponentType> enumsMinusUnknown =
-        new ArrayList<>(Arrays.asList(AddressComponentType.values()));
-    enumsMinusUnknown.remove(AddressComponentType.UNKNOWN);
-    List<AddressComponentType> onlyInTest =
+    List<AddressComponentType_RENAMED> enumsMinusUnknown =
+        new ArrayList<>(Arrays.asList(AddressComponentType_RENAMED.values()));
+    enumsMinusUnknown.remove(AddressComponentType_RENAMED.UNKNOWN);
+    List<AddressComponentType_RENAMED> onlyInTest =
         setdiff(addressComponentTypeToLiteralMap.keySet(), enumsMinusUnknown);
-    List<AddressComponentType> onlyInEnum =
+    List<AddressComponentType_RENAMED> onlyInEnum =
         setdiff(enumsMinusUnknown, addressComponentTypeToLiteralMap.keySet());
     assertEquals(
         "Unexpected enum elements: Only in test: " + onlyInTest + ". Only in enum: " + onlyInEnum,
         addressComponentTypeToLiteralMap.size() + 1, // 1 for unknown
-        AddressComponentType.values().length);
+        AddressComponentType_RENAMED.values().length);
   }
 
   private static <T extends UrlValue> void assertCannotGetUrlValue(T unknown) {

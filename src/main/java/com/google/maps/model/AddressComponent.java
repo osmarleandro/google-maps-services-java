@@ -42,7 +42,7 @@ public class AddressComponent implements Serializable {
   public String shortName;
 
   /** Indicates the type of each part of the address. Examples include street number or country. */
-  public AddressComponentType[] types;
+  public AddressComponentType_RENAMED[] types;
 
   @Override
   public String toString() {

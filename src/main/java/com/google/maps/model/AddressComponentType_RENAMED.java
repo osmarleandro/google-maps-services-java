@@ -20,7 +20,7 @@ package com.google.maps.model;
  * href="https://developers.google.com/maps/documentation/geocoding/intro#Types">Address Types and
  * Address Component Types</a> for more detail.
  */
-public enum AddressComponentType {
+public enum AddressComponentType_RENAMED {
 
   /** A precise street address. */
   STREET_ADDRESS("street_address"),
@@ -288,7 +288,7 @@ public enum AddressComponentType {
 
   private final String addressComponentType;
 
-  AddressComponentType(final String addressComponentType) {
+  AddressComponentType_RENAMED(final String addressComponentType) {
     this.addressComponentType = addressComponentType;
   }
 
