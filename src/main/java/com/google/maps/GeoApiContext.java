@@ -187,7 +187,7 @@ public class GeoApiContext {
     requestHandler.shutdown();
   }
 
-  <T, R extends ApiResponse<T>> PendingResult<T> get(
+  <T, R extends ApiResponse<T>> PendingResult<T> get_RENAMED(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
     if (channel != null && !channel.isEmpty() && !params.containsKey("channel")) {
       params.put("channel", Collections.singletonList(channel));
