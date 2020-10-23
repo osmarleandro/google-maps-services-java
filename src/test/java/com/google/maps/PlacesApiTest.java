@@ -899,7 +899,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testKitaWard() throws Exception {
+  public void testKitaWard_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiKitaWard)) {
       String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
       PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
