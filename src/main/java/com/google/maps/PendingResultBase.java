@@ -15,9 +15,11 @@
 
 package com.google.maps;
 
+import com.google.maps.PlaceDetailsRequest.FieldMask;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -168,5 +170,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the field masks of the details to be returned by PlaceDetails.
+   *
+   * @param fields The Field Masks of the fields to return.
+   * @return Returns this {@code PlaceDetailsRequest} for call chaining.
+   */
+public PlaceDetailsRequest fields(FieldMask... fields) {
+    return param("fields", StringJoin.join(',', fields));
   }
 }
