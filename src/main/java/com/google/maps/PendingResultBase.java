@@ -15,6 +15,7 @@
 
 package com.google.maps;
 
+import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -168,5 +169,17 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+public GeolocationApiRequest CreatePayload() {
+    if (this.payload == null) {
+      // if the payload has not been set, create it
+      this.payload = this.builder.createGeolocationPayload();
+    } else {
+      // use the payload that has been explicitly set by the Payload method above
+    }
+    Gson gson = new Gson();
+    String jsonPayload = gson.toJson(this.payload);
+    return param("_payload", jsonPayload);
   }
 }
