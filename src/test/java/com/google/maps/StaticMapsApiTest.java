@@ -36,14 +36,14 @@ import org.junit.Test;
 
 public class StaticMapsApiTest {
 
-  private final int WIDTH = 640;
-  private final int HEIGHT = 480;
+  public final int WIDTH = 640;
+  public final int HEIGHT = 480;
   private final LatLng MELBOURNE = new LatLng(-37.8136, 144.9630);
   private final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
   /** This encoded path matches the exact [MELBOURNE, SYDNEY] points. */
   private final String MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE = "~mxeFwaxsZ_naWk~be@";
 
-  private final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+  public final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
   @Test
   public void testGetSydneyStaticMap() throws Exception {
@@ -224,50 +224,6 @@ public class StaticMapsApiTest {
           "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
           "markers");
       sc.assertParamValue("enc:" + MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE, "path");
-    }
-  }
-
-  @Test
-  public void testBrooklynBridgeNYMarkers() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Brooklyn Bridge, New York, NY");
-      req.zoom(13);
-      req.maptype(StaticMapType.roadmap);
-      {
-        Markers markers = new Markers();
-        markers.color("blue");
-        markers.label("S");
-        markers.addLocation(new LatLng(40.702147, -74.015794));
-        req.markers(markers);
-      }
-      {
-        Markers markers = new Markers();
-        markers.color("green");
-        markers.label("G");
-        markers.addLocation(new LatLng(40.711614, -74.012318));
-        req.markers(markers);
-      }
-      {
-        Markers markers = new Markers();
-        markers.color("red");
-        markers.label("C");
-        markers.addLocation(new LatLng(40.718217, -73.998284));
-        req.markers(markers);
-      }
-
-      req.await();
-
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Brooklyn Bridge, New York, NY", "center");
-      sc.assertParamValue("13", "zoom");
-      sc.assertParamValue("roadmap", "maptype");
-
-      List<String> expected = new ArrayList<>();
-      expected.add("color:blue|label:S|40.70214700,-74.01579400");
-      expected.add("color:green|label:G|40.71161400,-74.01231800");
-      expected.add("color:red|label:C|40.71821700,-73.99828400");
-      sc.assertParamValues(expected, "markers");
     }
   }
 }

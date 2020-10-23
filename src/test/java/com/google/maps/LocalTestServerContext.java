@@ -102,7 +102,7 @@ public class LocalTestServerContext implements AutoCloseable {
     return request.getPath().split("\\?", -1)[0];
   }
 
-  void assertParamValue(String expected, String paramName)
+  public void assertParamValue(String expected, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
       this.params = this.actualParams();
@@ -117,7 +117,7 @@ public class LocalTestServerContext implements AutoCloseable {
     assertTrue(paramFound);
   }
 
-  void assertParamValues(List<String> expecteds, String paramName)
+  public void assertParamValues(List<String> expecteds, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
       this.params = this.actualParams();
