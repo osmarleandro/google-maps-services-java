@@ -54,19 +54,19 @@ import java.util.concurrent.TimeUnit;
 public class GeoApiContext {
 
   private static final String VERSION = "@VERSION@"; // Populated by the build script
-  private static final String USER_AGENT = "GoogleGeoApiClientJava/" + VERSION;
+  public static final String USER_AGENT = "GoogleGeoApiClientJava/" + VERSION;
   private static final int DEFAULT_BACKOFF_TIMEOUT_MILLIS = 60 * 1000; // 60s
 
-  private final RequestHandler requestHandler;
-  private final String apiKey;
-  private final String baseUrlOverride;
+  public final RequestHandler requestHandler;
+  public final String apiKey;
+  public final String baseUrlOverride;
   private final String channel;
-  private final String clientId;
-  private final long errorTimeout;
-  private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
-  private final Integer maxRetries;
-  private final UrlSigner urlSigner;
-  private String experienceIdHeaderValue;
+  public final String clientId;
+  public final long errorTimeout;
+  public final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
+  public final Integer maxRetries;
+  public final UrlSigner urlSigner;
+  public String experienceIdHeaderValue;
   private final RequestMetricsReporter requestMetricsReporter;
 
   /* package */
@@ -208,14 +208,14 @@ public class GeoApiContext {
       }
     }
 
-    return getWithPath(
+    return requestMetricsReporter.newRequest(config.path).getWithPath(
         clazz,
         config.fieldNamingPolicy,
         config.hostName,
         config.path,
         config.supportsClientId,
         query.toString(),
-        requestMetricsReporter.newRequest(config.path));
+        this);
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
@@ -248,14 +248,14 @@ public class GeoApiContext {
       query.append("&channel=").append(channel);
     }
 
-    return getWithPath(
+    return requestMetricsReporter.newRequest(config.path).getWithPath(
         clazz,
         config.fieldNamingPolicy,
         config.hostName,
         config.path,
         config.supportsClientId,
         query.toString(),
-        requestMetricsReporter.newRequest(config.path));
+        this);
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> post(
@@ -294,50 +294,7 @@ public class GeoApiContext {
         requestMetricsReporter.newRequest(config.path));
   }
 
-  private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
-      Class<R> clazz,
-      FieldNamingPolicy fieldNamingPolicy,
-      String hostName,
-      String path,
-      boolean canUseClientId,
-      String encodedPath,
-      RequestMetrics metrics) {
-    checkContext(canUseClientId);
-    if (!encodedPath.startsWith("&")) {
-      throw new IllegalArgumentException("encodedPath must start with &");
-    }
-
-    StringBuilder url = new StringBuilder(path);
-    if (canUseClientId && clientId != null) {
-      url.append("?client=").append(clientId);
-    } else {
-      url.append("?key=").append(apiKey);
-    }
-    url.append(encodedPath);
-
-    if (canUseClientId && urlSigner != null) {
-      String signature = urlSigner.getSignature(url.toString());
-      url.append("&signature=").append(signature);
-    }
-
-    if (baseUrlOverride != null) {
-      hostName = baseUrlOverride;
-    }
-
-    return requestHandler.handle(
-        hostName,
-        url.toString(),
-        USER_AGENT,
-        experienceIdHeaderValue,
-        clazz,
-        fieldNamingPolicy,
-        errorTimeout,
-        maxRetries,
-        exceptionsAllowedToRetry,
-        metrics);
-  }
-
-  private void checkContext(boolean canUseClientId) {
+  public void checkContext(boolean canUseClientId) {
     if (urlSigner == null && apiKey == null) {
       throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
     } else if (!canUseClientId && apiKey == null) {
