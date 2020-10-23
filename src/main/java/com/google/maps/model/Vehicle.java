@@ -32,10 +32,10 @@ public class Vehicle implements Serializable {
   public String name;
 
   /**
-   * The type of vehicle that runs on this line. See the {@link com.google.maps.model.VehicleType
+   * The type of vehicle that runs on this line. See the {@link com.google.maps.model.VehicleType_RENAMED
    * VehicleType} documentation for a complete list of supported values.
    */
-  public VehicleType type;
+  public VehicleType_RENAMED type;
 
   /** The URL for an icon associated with this vehicle type. */
   public String icon;
