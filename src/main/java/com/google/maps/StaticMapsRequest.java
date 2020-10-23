@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class StaticMapsRequest
     extends PendingResultBase<ImageResult, StaticMapsRequest, ImageResult.Response> {
 
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
+  public static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/staticmap");
 
   public StaticMapsRequest(GeoApiContext context) {
     super(context, API_CONFIG, ImageResult.Response.class);
@@ -154,18 +154,6 @@ public class StaticMapsRequest
    */
   public StaticMapsRequest maptype(StaticMapType maptype) {
     return param("maptype", maptype);
-  }
-
-  /**
-   * <code>region</code> defines the appropriate borders to display, based on geo-political
-   * sensitivities. Accepts a region code specified as a two-character ccTLD ('top-level domain')
-   * value.
-   *
-   * @param region The region of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest region(String region) {
-    return param("region", region);
   }
 
   public static class Markers implements UrlValue {

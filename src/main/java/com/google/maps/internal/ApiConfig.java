@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.StaticMapsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,18 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * <code>region</code> defines the appropriate borders to display, based on geo-political
+   * sensitivities. Accepts a region code specified as a two-character ccTLD ('top-level domain')
+   * value.
+   *
+   * @param staticMapsRequest TODO
+ * @param region The region of the static map.
+ * @return Returns this {@code StaticMapsRequest} for call chaining.
+   */
+  public StaticMapsRequest region(StaticMapsRequest staticMapsRequest, String region) {
+    return staticMapsRequest.param("region", region);
   }
 }
