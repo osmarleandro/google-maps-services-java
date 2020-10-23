@@ -52,7 +52,7 @@ public class EncodedPolyline implements Serializable {
   }
 
   public List<LatLng> decodePath() {
-    return PolylineEncoding.decode(points);
+    return PolylineEncoding.decode_RENAMED(points);
   }
 
   // Use the encoded point representation; decoding to get an alternate representation for

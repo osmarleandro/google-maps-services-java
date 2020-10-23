@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class PolylineEncoding {
   /** Decodes an encoded path string into a sequence of LatLngs. */
-  public static List<LatLng> decode(final String encodedPath) {
+  public static List<LatLng> decode_RENAMED(final String encodedPath) {
 
     int len = encodedPath.length();
 

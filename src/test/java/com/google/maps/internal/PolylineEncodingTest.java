@@ -50,14 +50,14 @@ public class PolylineEncodingTest {
 
   @Test
   public void testPolylineEncodingRoundTrip() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
+    List<LatLng> points = PolylineEncoding.decode_RENAMED(SYD_MELB_ROUTE);
     String encodedPath = PolylineEncoding.encode(points);
     assertEquals(SYD_MELB_ROUTE, encodedPath);
   }
 
   @Test
   public void testDecode() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
+    List<LatLng> points = PolylineEncoding.decode_RENAMED(SYD_MELB_ROUTE);
     LatLng sydney = points.get(0);
     LatLng melbourne = points.get(points.size() - 1);
 
