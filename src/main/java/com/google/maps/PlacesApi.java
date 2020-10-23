@@ -218,9 +218,9 @@ public class PlacesApi {
    * @param inputType Whether the input is search text, or a phone number.
    * @return Returns a FindPlaceFromTextRequest that you can configure and execute.
    */
-  public static FindPlaceFromTextRequest findPlaceFromText(
-      GeoApiContext context, String input, FindPlaceFromTextRequest.InputType inputType) {
-    FindPlaceFromTextRequest request = new FindPlaceFromTextRequest(context);
+  public static FindPlaceFromTextRequest_RENAMED findPlaceFromText(
+      GeoApiContext context, String input, FindPlaceFromTextRequest_RENAMED.InputType inputType) {
+    FindPlaceFromTextRequest_RENAMED request = new FindPlaceFromTextRequest_RENAMED(context);
     request.input(input).inputType(inputType);
     return request;
   }

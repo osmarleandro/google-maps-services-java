@@ -25,16 +25,16 @@ import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
 
-public class FindPlaceFromTextRequest
+public class FindPlaceFromTextRequest_RENAMED
     extends PendingResultBase<
-        FindPlaceFromText, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> {
+        FindPlaceFromText, FindPlaceFromTextRequest_RENAMED, FindPlaceFromTextRequest_RENAMED.Response> {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/findplacefromtext/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
           .supportsClientId(false);
 
-  public FindPlaceFromTextRequest(GeoApiContext context) {
+  public FindPlaceFromTextRequest_RENAMED(GeoApiContext context) {
     super(context, API_CONFIG, Response.class);
   }
 
@@ -61,7 +61,7 @@ public class FindPlaceFromTextRequest
    * @param input The text input.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest input(String input) {
+  public FindPlaceFromTextRequest_RENAMED input(String input) {
     return param("input", input);
   }
 
@@ -71,7 +71,7 @@ public class FindPlaceFromTextRequest
    * @param inputType The input type.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest inputType(InputType inputType) {
+  public FindPlaceFromTextRequest_RENAMED inputType(InputType inputType) {
     return param("inputtype", inputType);
   }
 
@@ -81,7 +81,7 @@ public class FindPlaceFromTextRequest
    * @param fields The fields to return.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest fields(FieldMask... fields) {
+  public FindPlaceFromTextRequest_RENAMED fields(FieldMask... fields) {
     return param("fields", StringJoin.join(',', fields));
   }
 
@@ -92,7 +92,7 @@ public class FindPlaceFromTextRequest
    * @param locationBias The location bias for this request.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest locationBias(LocationBias locationBias) {
+  public FindPlaceFromTextRequest_RENAMED locationBias(LocationBias locationBias) {
     return param("locationbias", locationBias);
   }
 

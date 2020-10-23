@@ -21,11 +21,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import com.google.maps.FindPlaceFromTextRequest.InputType;
-import com.google.maps.FindPlaceFromTextRequest.LocationBiasCircular;
-import com.google.maps.FindPlaceFromTextRequest.LocationBiasIP;
-import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
-import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
+import com.google.maps.FindPlaceFromTextRequest_RENAMED.InputType;
+import com.google.maps.FindPlaceFromTextRequest_RENAMED.LocationBiasCircular;
+import com.google.maps.FindPlaceFromTextRequest_RENAMED.LocationBiasIP;
+import com.google.maps.FindPlaceFromTextRequest_RENAMED.LocationBiasPoint;
+import com.google.maps.FindPlaceFromTextRequest_RENAMED.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
 import com.google.maps.model.AddressComponentType;
@@ -922,13 +922,13 @@ public class PlacesApiTest {
       FindPlaceFromText response =
           PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
               .fields(
-                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
-                  FindPlaceFromTextRequest.FieldMask.PHOTOS,
-                  FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-                  FindPlaceFromTextRequest.FieldMask.NAME,
-                  FindPlaceFromTextRequest.FieldMask.RATING,
-                  FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-                  FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+                  FindPlaceFromTextRequest_RENAMED.FieldMask.BUSINESS_STATUS,
+                  FindPlaceFromTextRequest_RENAMED.FieldMask.PHOTOS,
+                  FindPlaceFromTextRequest_RENAMED.FieldMask.FORMATTED_ADDRESS,
+                  FindPlaceFromTextRequest_RENAMED.FieldMask.NAME,
+                  FindPlaceFromTextRequest_RENAMED.FieldMask.RATING,
+                  FindPlaceFromTextRequest_RENAMED.FieldMask.OPENING_HOURS,
+                  FindPlaceFromTextRequest_RENAMED.FieldMask.GEOMETRY)
               .locationBias(new LocationBiasIP())
               .await();
 
@@ -966,12 +966,12 @@ public class PlacesApiTest {
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+              FindPlaceFromTextRequest_RENAMED.FieldMask.PHOTOS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.FORMATTED_ADDRESS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.NAME,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.RATING,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.OPENING_HOURS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.GEOMETRY)
           .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
           .await();
 
@@ -991,12 +991,12 @@ public class PlacesApiTest {
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+              FindPlaceFromTextRequest_RENAMED.FieldMask.PHOTOS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.FORMATTED_ADDRESS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.NAME,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.RATING,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.OPENING_HOURS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.GEOMETRY)
           .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
           .await();
 
@@ -1016,12 +1016,12 @@ public class PlacesApiTest {
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+              FindPlaceFromTextRequest_RENAMED.FieldMask.PHOTOS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.FORMATTED_ADDRESS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.NAME,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.RATING,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.OPENING_HOURS,
+              FindPlaceFromTextRequest_RENAMED.FieldMask.GEOMETRY)
           .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
           .await();
 
