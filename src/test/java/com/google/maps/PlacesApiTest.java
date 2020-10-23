@@ -465,7 +465,7 @@ public class PlacesApiTest {
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
-          .type(PlaceType.AIRPORT)
+          .type_RENAMED(PlaceType.AIRPORT)
           .await();
 
       sc.assertParamValue("Google Sydney", "query");
@@ -493,7 +493,7 @@ public class PlacesApiTest {
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
-          .type(PlaceType.AIRPORT)
+          .type_RENAMED(PlaceType.AIRPORT)
           .await();
 
       sc.assertParamValue("Google Sydney", "query");

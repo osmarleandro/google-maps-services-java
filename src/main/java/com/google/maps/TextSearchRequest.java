@@ -156,7 +156,7 @@ public class TextSearchRequest
    * @param type The type of place to restrict the results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest type(PlaceType type) {
+  public TextSearchRequest type_RENAMED(PlaceType type) {
     return param("type", type);
   }
 
