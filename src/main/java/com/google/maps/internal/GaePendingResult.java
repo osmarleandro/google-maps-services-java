@@ -160,7 +160,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(GaePendingResult<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
-    if (shouldRetry(response)) {
+    if (shouldRetry_RENAMED(response)) {
       // Retry is a blocking method, but that's OK. If we're here, we're either in an await()
       // call, which is blocking anyway, or we're handling a callback in a separate thread.
       return request.retry();
@@ -250,7 +250,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     return this.await();
   }
 
-  private boolean shouldRetry(HTTPResponse response) {
+  private boolean shouldRetry_RENAMED(HTTPResponse response) {
     return RETRY_ERROR_CODES.contains(response.getResponseCode())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
