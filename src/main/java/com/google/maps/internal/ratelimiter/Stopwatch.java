@@ -29,7 +29,7 @@
 package com.google.maps.internal.ratelimiter;
 
 import static com.google.maps.internal.ratelimiter.Preconditions.checkNotNull;
-import static com.google.maps.internal.ratelimiter.Preconditions.checkState;
+import static com.google.maps.internal.ratelimiter.Preconditions.checkState_RENAMED;
 import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
@@ -138,7 +138,7 @@ public final class Stopwatch {
    * @throws IllegalStateException if the stopwatch is already running.
    */
   public Stopwatch start() {
-    checkState(!isRunning, "This stopwatch is already running.");
+    checkState_RENAMED(!isRunning, "This stopwatch is already running.");
     isRunning = true;
     startTick = ticker.read();
     return this;
@@ -153,7 +153,7 @@ public final class Stopwatch {
    */
   public Stopwatch stop() {
     long tick = ticker.read();
-    checkState(isRunning, "This stopwatch is already stopped.");
+    checkState_RENAMED(isRunning, "This stopwatch is already stopped.");
     isRunning = false;
     elapsedNanos += tick - startTick;
     return this;

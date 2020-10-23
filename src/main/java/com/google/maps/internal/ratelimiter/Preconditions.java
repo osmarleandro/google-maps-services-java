@@ -97,7 +97,7 @@ public final class Preconditions {
    *     string using {@link String#valueOf(Object)}
    * @throws IllegalStateException if {@code expression} is false
    */
-  public static void checkState(boolean expression, Object errorMessage) {
+  public static void checkState_RENAMED(boolean expression, Object errorMessage) {
     if (!expression) {
       throw new IllegalStateException(String.valueOf(errorMessage));
     }
