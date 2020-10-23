@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.TravelMode;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,17 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the mode of transport to use when calculating directions. The mode defaults to
+   * driving if left unspecified. If you set the mode to {@code TRANSIT} you must also specify
+   * either a {@code departureTime} or an {@code arrivalTime}.
+   *
+   * @param mode The travel mode to request directions for.
+   * @return Returns this {@code DirectionsApiRequest} for call chaining.
+   */
+public DirectionsApiRequest mode(TravelMode mode) {
+    return param("mode", mode);
   }
 }

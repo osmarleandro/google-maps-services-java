@@ -23,7 +23,6 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
-import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
 
@@ -120,18 +119,6 @@ public class DirectionsApiRequest
    */
   public DirectionsApiRequest destination(LatLng destination) {
     return destination(destination.toString());
-  }
-
-  /**
-   * Specifies the mode of transport to use when calculating directions. The mode defaults to
-   * driving if left unspecified. If you set the mode to {@code TRANSIT} you must also specify
-   * either a {@code departureTime} or an {@code arrivalTime}.
-   *
-   * @param mode The travel mode to request directions for.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest mode(TravelMode mode) {
-    return param("mode", mode);
   }
 
   /**
