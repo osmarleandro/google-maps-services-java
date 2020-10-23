@@ -21,7 +21,6 @@ import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
@@ -157,17 +156,6 @@ public class DistanceMatrixApiRequest
    */
   public DistanceMatrixApiRequest departureTime(Instant departureTime) {
     return param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L));
-  }
-
-  /**
-   * Specifies the assumptions to use when calculating time in traffic. This parameter may only be
-   * specified when the travel mode is driving and the request includes a departure_time.
-   *
-   * @param trafficModel The traffic model to use in estimating time in traffic.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
   }
 
   /**
