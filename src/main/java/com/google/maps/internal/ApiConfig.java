@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.TextSearchRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Restricts to only those places that are open for business at the time the query is sent.
+   *
+   * @param textSearchRequest TODO
+ * @param openNow Whether to restrict this search to open places.
+ * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+  public TextSearchRequest openNow(TextSearchRequest textSearchRequest, boolean openNow) {
+    return textSearchRequest.param("opennow", String.valueOf(openNow));
   }
 }

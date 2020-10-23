@@ -456,14 +456,15 @@ public class PlacesApiTest {
   public void testTextSearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "Google Sydney")
-          .location(location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
-          .name("name")
-          .openNow(true)
+      PlacesApi.textSearchQuery(sc.context, "Google Sydney").location(location).region("AU").radius(3000)
+			.minPrice(PriceLevel.INEXPENSIVE).maxPrice(PriceLevel.VERY_EXPENSIVE).name("name").API_CONFIG
+          .openNow(PlacesApi.textSearchQuery(sc.context, "Google Sydney")
+		      .location(location)
+		      .region("AU")
+		      .radius(3000)
+		      .minPrice(PriceLevel.INEXPENSIVE)
+		      .maxPrice(PriceLevel.VERY_EXPENSIVE)
+		      .name("name"), true)
           .rankby(RankBy.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
@@ -485,13 +486,14 @@ public class PlacesApiTest {
   public void testTextSearchRequestWithLocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
-          .name("name")
-          .openNow(true)
+      PlacesApi.textSearchQuery(sc.context, "Google Sydney", location).region("AU").radius(3000)
+			.minPrice(PriceLevel.INEXPENSIVE).maxPrice(PriceLevel.VERY_EXPENSIVE).name("name").API_CONFIG
+          .openNow(PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
+		      .region("AU")
+		      .radius(3000)
+		      .minPrice(PriceLevel.INEXPENSIVE)
+		      .maxPrice(PriceLevel.VERY_EXPENSIVE)
+		      .name("name"), true)
           .rankby(RankBy.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
