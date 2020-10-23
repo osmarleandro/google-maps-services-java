@@ -15,13 +15,13 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin_RENAMED.join;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.internal.StringJoin_RENAMED.UrlValue;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.LatLng;

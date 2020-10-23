@@ -15,10 +15,10 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.StringJoin;
+import com.google.maps.internal.StringJoin_RENAMED;
 
 /** Used by the Places API to specify the order in which results are listed. */
-public enum RankBy implements StringJoin.UrlValue {
+public enum RankBy implements StringJoin_RENAMED.UrlValue {
   PROMINENCE("prominence"),
   DISTANCE("distance");
 

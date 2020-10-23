@@ -15,7 +15,7 @@
 
 package com.google.maps;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin_RENAMED.join;
 
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;

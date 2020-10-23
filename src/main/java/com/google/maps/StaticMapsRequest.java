@@ -16,8 +16,8 @@
 package com.google.maps;
 
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.internal.StringJoin;
-import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.internal.StringJoin_RENAMED;
+import com.google.maps.internal.StringJoin_RENAMED.UrlValue;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
@@ -315,7 +315,7 @@ public class StaticMapsRequest
 
       urlParts.addAll(locations);
 
-      return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
+      return StringJoin_RENAMED.join('|', urlParts.toArray(new String[urlParts.size()]));
     }
   }
 
@@ -420,7 +420,7 @@ public class StaticMapsRequest
 
       urlParts.addAll(points);
 
-      return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
+      return StringJoin_RENAMED.join('|', urlParts.toArray(new String[urlParts.size()]));
     }
   }
 

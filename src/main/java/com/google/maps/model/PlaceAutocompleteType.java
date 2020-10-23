@@ -15,13 +15,13 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.StringJoin;
+import com.google.maps.internal.StringJoin_RENAMED;
 
 /**
  * Used by the Places API to restrict the autocomplete results to places matching the specified
  * type.
  */
-public enum PlaceAutocompleteType implements StringJoin.UrlValue {
+public enum PlaceAutocompleteType implements StringJoin_RENAMED.UrlValue {
   GEOCODE("geocode"),
   ADDRESS("address"),
   ESTABLISHMENT("establishment"),

@@ -15,7 +15,7 @@
 
 package com.google.maps.model;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin_RENAMED.join;
 
 import java.io.Serializable;
 import java.util.ArrayList;

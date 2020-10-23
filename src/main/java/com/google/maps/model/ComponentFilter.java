@@ -15,9 +15,9 @@
 
 package com.google.maps.model;
 
-import static com.google.maps.internal.StringJoin.join;
+import static com.google.maps.internal.StringJoin_RENAMED.join;
 
-import com.google.maps.internal.StringJoin;
+import com.google.maps.internal.StringJoin_RENAMED;
 
 /**
  * A component filter for a geocode request. In a geocoding response, the Google Geocoding API can
@@ -28,7 +28,7 @@ import com.google.maps.internal.StringJoin;
  * href="https://developers.google.com/maps/documentation/geocoding/intro#ComponentFiltering">Component
  * Filtering</a> for more detail.
  */
-public class ComponentFilter implements StringJoin.UrlValue {
+public class ComponentFilter implements StringJoin_RENAMED.UrlValue {
   public final String component;
   public final String value;
 

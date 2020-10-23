@@ -18,7 +18,7 @@ package com.google.maps.internal;
 import java.util.Objects;
 
 /** Utility class to join strings. */
-public class StringJoin {
+public class StringJoin_RENAMED {
 
   /**
    * Marker Interface to enable the URL Value enums in {@link com.google.maps.DirectionsApi} to be
@@ -29,7 +29,7 @@ public class StringJoin {
     String toUrlValue();
   }
 
-  private StringJoin() {}
+  private StringJoin_RENAMED() {}
 
   public static String join(char delim, String... parts) {
     return join(new String(new char[] {delim}), parts);

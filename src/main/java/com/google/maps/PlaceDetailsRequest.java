@@ -19,8 +19,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
-import com.google.maps.internal.StringJoin;
-import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.internal.StringJoin_RENAMED;
+import com.google.maps.internal.StringJoin_RENAMED.UrlValue;
 import com.google.maps.model.PlaceDetails;
 
 /**
@@ -78,7 +78,7 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
+    return param("fields", StringJoin_RENAMED.join(',', fields));
   }
 
   @Override

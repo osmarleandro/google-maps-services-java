@@ -15,7 +15,7 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.internal.StringJoin_RENAMED.UrlValue;
 
 /**
  * Location types for a reverse geocoding request. Please see <a

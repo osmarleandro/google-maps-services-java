@@ -15,10 +15,10 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.StringJoin;
+import com.google.maps.internal.StringJoin_RENAMED;
 import java.io.Serializable;
 
-public class Size implements StringJoin.UrlValue, Serializable {
+public class Size implements StringJoin_RENAMED.UrlValue, Serializable {
   private static final long serialVersionUID = 1L;
 
   /** The width of this Size. */

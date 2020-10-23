@@ -15,10 +15,10 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.StringJoin;
+import com.google.maps.internal.StringJoin_RENAMED;
 
 /** Used by the Places API to restrict the results to places matching the specified type. */
-public enum PlaceType implements StringJoin.UrlValue {
+public enum PlaceType implements StringJoin_RENAMED.UrlValue {
   ACCOUNTING("accounting"),
   AIRPORT("airport"),
   AMUSEMENT_PARK("amusement_park"),

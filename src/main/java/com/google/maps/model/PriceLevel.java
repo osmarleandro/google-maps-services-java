@@ -15,10 +15,10 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.StringJoin;
+import com.google.maps.internal.StringJoin_RENAMED;
 
 /** Used by Places API to restrict search results to those within a given price range. */
-public enum PriceLevel implements StringJoin.UrlValue {
+public enum PriceLevel implements StringJoin_RENAMED.UrlValue {
   FREE("0"),
   INEXPENSIVE("1"),
   MODERATE("2"),

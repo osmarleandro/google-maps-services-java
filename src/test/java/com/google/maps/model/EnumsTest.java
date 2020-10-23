@@ -15,7 +15,7 @@
 
 package com.google.maps.model;
 
-import static com.google.maps.internal.StringJoin.UrlValue;
+import static com.google.maps.internal.StringJoin_RENAMED.UrlValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;

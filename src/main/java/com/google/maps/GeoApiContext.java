@@ -22,7 +22,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
-import com.google.maps.internal.StringJoin;
+import com.google.maps.internal.StringJoin_RENAMED;
 import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
@@ -163,7 +163,7 @@ public class GeoApiContext {
       experienceIdHeaderValue = null;
       return;
     }
-    experienceIdHeaderValue = StringJoin.join(",", experienceId);
+    experienceIdHeaderValue = StringJoin_RENAMED.join(",", experienceId);
   }
 
   /** @return Returns the experience ID if set, otherwise, null */

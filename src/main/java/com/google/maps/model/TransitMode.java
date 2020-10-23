@@ -15,7 +15,7 @@
 
 package com.google.maps.model;
 
-import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.internal.StringJoin_RENAMED.UrlValue;
 import java.util.Locale;
 
 /** You may specify transit mode when requesting transit directions or distances. */
