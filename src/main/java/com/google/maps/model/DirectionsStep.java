@@ -18,7 +18,7 @@ package com.google.maps.model;
 import java.io.Serializable;
 
 /**
- * Each element in the steps of a {@link DirectionsLeg} defines a single step of the calculated
+ * Each element in the steps of a {@link DirectionsLeg_RENAMED} defines a single step of the calculated
  * directions. A step is the most atomic unit of a direction's route, containing a single step
  * describing a specific, single instruction on the journey. E.g. "Turn left at W. 4th St." The step
  * not only describes the instruction but also contains distance and duration information relating
