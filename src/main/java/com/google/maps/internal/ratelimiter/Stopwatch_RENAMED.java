@@ -87,7 +87,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Kevin Bourrillion
  */
-public final class Stopwatch {
+public final class Stopwatch_RENAMED {
   private final Ticker ticker;
   private boolean isRunning;
   private long elapsedNanos;
@@ -96,30 +96,30 @@ public final class Stopwatch {
   /**
    * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
    */
-  public static Stopwatch createUnstarted() {
-    return new Stopwatch();
+  public static Stopwatch_RENAMED createUnstarted() {
+    return new Stopwatch_RENAMED();
   }
 
   /** Creates (but does not start) a new stopwatch, using the specified time source. */
-  public static Stopwatch createUnstarted(Ticker ticker) {
-    return new Stopwatch(ticker);
+  public static Stopwatch_RENAMED createUnstarted(Ticker ticker) {
+    return new Stopwatch_RENAMED(ticker);
   }
 
   /** Creates (and starts) a new stopwatch using {@link System#nanoTime} as its time source. */
-  public static Stopwatch createStarted() {
-    return new Stopwatch().start();
+  public static Stopwatch_RENAMED createStarted() {
+    return new Stopwatch_RENAMED().start();
   }
 
   /** Creates (and starts) a new stopwatch, using the specified time source. */
-  public static Stopwatch createStarted(Ticker ticker) {
-    return new Stopwatch(ticker).start();
+  public static Stopwatch_RENAMED createStarted(Ticker ticker) {
+    return new Stopwatch_RENAMED(ticker).start();
   }
 
-  Stopwatch() {
+  Stopwatch_RENAMED() {
     this.ticker = Ticker.systemTicker();
   }
 
-  Stopwatch(Ticker ticker) {
+  Stopwatch_RENAMED(Ticker ticker) {
     this.ticker = checkNotNull(ticker, "ticker");
   }
 
@@ -137,7 +137,7 @@ public final class Stopwatch {
    * @return this {@code Stopwatch} instance
    * @throws IllegalStateException if the stopwatch is already running.
    */
-  public Stopwatch start() {
+  public Stopwatch_RENAMED start() {
     checkState(!isRunning, "This stopwatch is already running.");
     isRunning = true;
     startTick = ticker.read();
@@ -151,7 +151,7 @@ public final class Stopwatch {
    * @return this {@code Stopwatch} instance
    * @throws IllegalStateException if the stopwatch is already stopped.
    */
-  public Stopwatch stop() {
+  public Stopwatch_RENAMED stop() {
     long tick = ticker.read();
     checkState(isRunning, "This stopwatch is already stopped.");
     isRunning = false;
@@ -164,7 +164,7 @@ public final class Stopwatch {
    *
    * @return this {@code Stopwatch} instance
    */
-  public Stopwatch reset() {
+  public Stopwatch_RENAMED reset() {
     elapsedNanos = 0;
     isRunning = false;
     return this;

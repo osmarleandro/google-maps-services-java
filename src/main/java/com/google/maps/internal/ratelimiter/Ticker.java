@@ -30,7 +30,7 @@ package com.google.maps.internal.ratelimiter;
 
 /**
  * A time source; returns a time value representing the number of nanoseconds elapsed since some
- * fixed but arbitrary point in time. Note that most users should use {@link Stopwatch} instead of
+ * fixed but arbitrary point in time. Note that most users should use {@link Stopwatch_RENAMED} instead of
  * interacting with this class directly.
  *
  * <p><b>Warning:</b> this interface can only be used to measure elapsed time, not wall time.
