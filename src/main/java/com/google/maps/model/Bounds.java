@@ -16,6 +16,7 @@
 package com.google.maps.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /** The northeast and southwest points that delineate the outer bounds of a map. */
 public class Bounds implements Serializable {
@@ -29,5 +30,20 @@ public class Bounds implements Serializable {
   @Override
   public String toString() {
     return String.format("[%s, %s]", northeast, southwest);
+  }
+
+public String toString(DirectionsRoute directionsRoute) {
+    String str =
+        String.format(
+            "[DirectionsRoute: \"%s\", %d legs, waypointOrder=%s, bounds=%s",
+            directionsRoute.summary, directionsRoute.legs.length, Arrays.toString(directionsRoute.waypointOrder), this);
+    if (directionsRoute.fare != null) {
+      str = str + ", fare=" + directionsRoute.fare;
+    }
+    if (directionsRoute.warnings != null && directionsRoute.warnings.length > 0) {
+      str = str + ", " + directionsRoute.warnings.length + " warnings";
+    }
+    str = str + "]";
+    return str;
   }
 }
