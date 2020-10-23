@@ -108,7 +108,7 @@ public class AutocompletePrediction implements Serializable {
   }
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     return String.format(
         "[AutocompletePrediction: \"%s\", placeId=%s, types=%s, terms=%s, "
             + "matchedSubstrings=%s, structuredFormatting=%s]",

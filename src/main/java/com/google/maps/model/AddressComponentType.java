@@ -298,6 +298,6 @@ public enum AddressComponentType {
   }
 
   public String toCanonicalLiteral() {
-    return toString();
+    return toString_RENAMED();
   }
 }
