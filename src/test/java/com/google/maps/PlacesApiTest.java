@@ -727,7 +727,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPhoto() throws Exception {
+  public void testPhoto_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
       PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
