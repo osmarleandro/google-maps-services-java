@@ -23,7 +23,7 @@ import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.TrafficModel;
+import com.google.maps.model.TrafficModel_RENAMED;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Duration;
@@ -202,14 +202,14 @@ public class DistanceMatrixApiTest {
           .origins("Fisherman's Wharf, San Francisco")
           .destinations("San Francisco International Airport, San Francisco, CA")
           .mode(TravelMode.DRIVING)
-          .trafficModel(TrafficModel.PESSIMISTIC)
+          .trafficModel(TrafficModel_RENAMED.PESSIMISTIC)
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
       sc.assertParamValue("San Francisco International Airport, San Francisco, CA", "destinations");
       sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+      sc.assertParamValue(TrafficModel_RENAMED.PESSIMISTIC.toUrlValue(), "traffic_model");
     }
   }
 }

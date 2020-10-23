@@ -27,7 +27,7 @@ import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.GeocodedWaypointStatus;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.TrafficModel;
+import com.google.maps.model.TrafficModel_RENAMED;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
@@ -369,13 +369,13 @@ public class DirectionsApiTest {
               .destination("182 Church St, Parramatta NSW 2150")
               .mode(TravelMode.DRIVING)
               .departureTime(Instant.now().plus(Duration.ofMinutes(2)))
-              .trafficModel(TrafficModel.PESSIMISTIC)
+              .trafficModel(TrafficModel_RENAMED.PESSIMISTIC)
               .await();
 
       sc.assertParamValue("48 Pirrama Road, Pyrmont NSW 2009", "origin");
       sc.assertParamValue("182 Church St, Parramatta NSW 2150", "destination");
       sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+      sc.assertParamValue(TrafficModel_RENAMED.PESSIMISTIC.toUrlValue(), "traffic_model");
 
       assertNotNull(result.toString());
     }

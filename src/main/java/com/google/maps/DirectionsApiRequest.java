@@ -20,7 +20,7 @@ import static java.util.Objects.requireNonNull;
 
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.TrafficModel;
+import com.google.maps.model.TrafficModel_RENAMED;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
@@ -339,7 +339,7 @@ public class DirectionsApiRequest
    * @param trafficModel The traffic model for estimating driving time.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
+  public DirectionsApiRequest trafficModel(TrafficModel_RENAMED trafficModel) {
     return param("traffic_model", trafficModel);
   }
 

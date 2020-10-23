@@ -19,7 +19,7 @@ import com.google.maps.internal.StringJoin.UrlValue;
 import java.util.Locale;
 
 /** Specifies traffic prediction model when requesting future directions. */
-public enum TrafficModel implements UrlValue {
+public enum TrafficModel_RENAMED implements UrlValue {
   BEST_GUESS,
   OPTIMISTIC,
   PESSIMISTIC;

@@ -21,7 +21,7 @@ import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.DistanceMatrixApi.Response;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.TrafficModel;
+import com.google.maps.model.TrafficModel_RENAMED;
 import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
@@ -166,7 +166,7 @@ public class DistanceMatrixApiRequest
    * @param trafficModel The traffic model to use in estimating time in traffic.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
+  public DistanceMatrixApiRequest trafficModel(TrafficModel_RENAMED trafficModel) {
     return param("traffic_model", trafficModel);
   }
 
