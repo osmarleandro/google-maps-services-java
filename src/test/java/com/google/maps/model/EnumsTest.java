@@ -192,8 +192,8 @@ public class EnumsTest {
     }
     List<AddressType> enumsMinusUnknown = new ArrayList<>(Arrays.asList(AddressType.values()));
     enumsMinusUnknown.remove(AddressType.UNKNOWN);
-    List<AddressType> onlyInTest = setdiff(addressTypeToLiteralMap.keySet(), enumsMinusUnknown);
-    List<AddressType> onlyInEnum = setdiff(enumsMinusUnknown, addressTypeToLiteralMap.keySet());
+    List<AddressType> onlyInTest = setdiff_RENAMED(addressTypeToLiteralMap.keySet(), enumsMinusUnknown);
+    List<AddressType> onlyInEnum = setdiff_RENAMED(enumsMinusUnknown, addressTypeToLiteralMap.keySet());
     assertEquals(
         "Unexpected enum elements: Only in test: " + onlyInTest + ". Only in enum: " + onlyInEnum,
         addressTypeToLiteralMap.size() + 1, // 1 for unknown
@@ -296,9 +296,9 @@ public class EnumsTest {
         new ArrayList<>(Arrays.asList(AddressComponentType.values()));
     enumsMinusUnknown.remove(AddressComponentType.UNKNOWN);
     List<AddressComponentType> onlyInTest =
-        setdiff(addressComponentTypeToLiteralMap.keySet(), enumsMinusUnknown);
+        setdiff_RENAMED(addressComponentTypeToLiteralMap.keySet(), enumsMinusUnknown);
     List<AddressComponentType> onlyInEnum =
-        setdiff(enumsMinusUnknown, addressComponentTypeToLiteralMap.keySet());
+        setdiff_RENAMED(enumsMinusUnknown, addressComponentTypeToLiteralMap.keySet());
     assertEquals(
         "Unexpected enum elements: Only in test: " + onlyInTest + ". Only in enum: " + onlyInEnum,
         addressComponentTypeToLiteralMap.size() + 1, // 1 for unknown
@@ -315,7 +315,7 @@ public class EnumsTest {
     }
   }
 
-  private static <T> List<T> setdiff(Collection<T> a, Collection<T> b) {
+  private static <T> List<T> setdiff_RENAMED(Collection<T> a, Collection<T> b) {
     List<T> out = new ArrayList<>(a);
     out.removeAll(b);
     return out;
