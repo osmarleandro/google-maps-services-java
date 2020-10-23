@@ -36,14 +36,14 @@ import org.junit.Test;
 
 public class StaticMapsApiTest {
 
-  private final int WIDTH = 640;
-  private final int HEIGHT = 480;
+  public final int WIDTH = 640;
+  public final int HEIGHT = 480;
   private final LatLng MELBOURNE = new LatLng(-37.8136, 144.9630);
-  private final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
+  public final LatLng SYDNEY = new LatLng(-33.8688, 151.2093);
   /** This encoded path matches the exact [MELBOURNE, SYDNEY] points. */
   private final String MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE = "~mxeFwaxsZ_naWk~be@";
 
-  private final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+  public final BufferedImage IMAGE = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
   @Test
   public void testGetSydneyStaticMap() throws Exception {
@@ -163,39 +163,6 @@ public class StaticMapsApiTest {
       req.center("Google Sydney");
       req.zoom(16);
       req.await();
-    }
-  }
-
-  @Test
-  public void testMarkerAndPath() throws Exception {
-    try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      Markers markers = new Markers();
-      markers.size(MarkersSize.small);
-      markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
-      markers.color("blue");
-      markers.label("A");
-      markers.addLocation("Melbourne");
-      markers.addLocation(SYDNEY);
-      req.markers(markers);
-
-      Path path = new Path();
-      path.color("green");
-      path.fillcolor("0xAACCEE");
-      path.weight(3);
-      path.geodesic(true);
-      path.addPoint("Melbourne");
-      path.addPoint(SYDNEY);
-      req.path(path);
-
-      req.await();
-
-      sc.assertParamValue(
-          "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
-          "markers");
-      sc.assertParamValue(
-          "weight:3|color:green|fillcolor:0xAACCEE|geodesic:true|Melbourne|-33.86880000,151.20930000",
-          "path");
     }
   }
 

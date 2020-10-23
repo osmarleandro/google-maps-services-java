@@ -15,10 +15,20 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.StaticMapsApi;
+import com.google.maps.StaticMapsApiTest;
+import com.google.maps.StaticMapsRequest;
+import com.google.maps.StaticMapsRequest.Markers;
+import com.google.maps.StaticMapsRequest.Markers.CustomIconAnchor;
+import com.google.maps.StaticMapsRequest.Markers.MarkersSize;
+import com.google.maps.StaticMapsRequest.Path;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +77,38 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testMarkerAndPath(StaticMapsApiTest staticMapsApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(staticMapsApiTest.IMAGE)) {
+      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(staticMapsApiTest.WIDTH, staticMapsApiTest.HEIGHT));
+      Markers markers = new Markers();
+      markers.size(MarkersSize.small);
+      markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
+      markers.color("blue");
+      markers.label("A");
+      markers.addLocation("Melbourne");
+      markers.addLocation(staticMapsApiTest.SYDNEY);
+      req.markers(markers);
+
+      Path path = new Path();
+      path.color("green");
+      path.fillcolor("0xAACCEE");
+      path.weight(3);
+      path.geodesic(true);
+      path.addPoint("Melbourne");
+      path.addPoint(staticMapsApiTest.SYDNEY);
+      req.path(path);
+
+      req.await();
+
+      sc.assertParamValue(
+          "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
+          "markers");
+      sc.assertParamValue(
+          "weight:3|color:green|fillcolor:0xAACCEE|geodesic:true|Melbourne|-33.86880000,151.20930000",
+          "path");
+    }
   }
 }
