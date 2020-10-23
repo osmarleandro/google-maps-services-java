@@ -58,7 +58,7 @@ public class DistanceMatrixElement implements Serializable {
   public Fare fare;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     String str =
         String.format(
             "[DistanceMatrixElement %s distance=%s, duration=%s", status, distance, duration);
