@@ -96,7 +96,7 @@ public class GeocodingApiRequest
    * @param northEastBound The North East bound of the bounding box.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
+  public GeocodingApiRequest bounds_RENAMED(LatLng southWestBound, LatLng northEastBound) {
     return param("bounds", join('|', southWestBound, northEastBound));
   }
 
