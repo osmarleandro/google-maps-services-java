@@ -35,6 +35,7 @@ import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+import com.google.maps.internal.RateLimitExecutorService;
 import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothBursty;
 import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothWarmingUp;
 import java.util.Locale;
@@ -391,7 +392,11 @@ public abstract class RateLimiter {
     return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
   }
 
-  abstract static class SleepingStopwatch {
+  public boolean awaitTermination(RateLimitExecutorService rateLimitExecutorService, long l, TimeUnit timeUnit) throws InterruptedException {
+    return rateLimitExecutorService.delegate.awaitTermination(l, timeUnit);
+  }
+
+abstract static class SleepingStopwatch {
     /** Constructor for use by subclasses. */
     protected SleepingStopwatch() {}
 
