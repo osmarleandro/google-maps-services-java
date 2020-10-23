@@ -254,7 +254,7 @@ public abstract class RateLimiter {
    * @since 16.0 (present in 13.0 with {@code void} return type})
    */
   public double acquire() {
-    return acquire(1);
+    return acquire_RENAMED(1);
   }
 
   /**
@@ -266,7 +266,7 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if the requested number of permits is negative or zero
    * @since 16.0 (present in 13.0 with {@code void} return type})
    */
-  public double acquire(int permits) {
+  public double acquire_RENAMED(int permits) {
     long microsToWait = reserve(permits);
     stopwatch.sleepMicrosUninterruptibly(microsToWait);
     return 1.0 * microsToWait / SECONDS.toMicros(1L);
