@@ -83,10 +83,8 @@ public class PlaceDetailsRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("placeid")) {
-      throw new IllegalArgumentException("Request must contain 'placeId'.");
-    }
-  }
+	API_CONFIG.validateRequest(this);
+}
 
   public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
