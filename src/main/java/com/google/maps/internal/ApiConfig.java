@@ -34,7 +34,7 @@ public class ApiConfig {
     return this;
   }
 
-  public ApiConfig hostName(String hostName) {
+  public ApiConfig hostName_RENAMED(String hostName) {
     this.hostName = hostName;
     return this;
   }
