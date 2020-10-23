@@ -74,7 +74,7 @@ public class RoadsApiIntegrationTest {
   }
 
   @Test
-  public void testSpeedLimitsWithLatLngs() throws Exception {
+  public void testSpeedLimitsWithLatLngs_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(speedLimitsResponse)) {
       LatLng[] path =
           new LatLng[] {
