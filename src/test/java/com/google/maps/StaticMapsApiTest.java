@@ -88,7 +88,7 @@ public class StaticMapsApiTest {
       req.center("Sydney");
       req.zoom(16);
       req.scale(2);
-      req.format(ImageFormat.png32);
+      ImageFormat.png32.format(req);
       req.maptype(StaticMapType.hybrid);
       req.region("AU");
       req.visible("Melbourne");

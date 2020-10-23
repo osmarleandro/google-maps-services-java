@@ -120,18 +120,18 @@ public class StaticMapsRequest
     public String toUrlValue() {
       return format;
     }
-  }
 
-  /**
-   * <code>format</code> defines the format of the resulting image. By default, the Google Static
-   * Maps API creates PNG images. There are several possible formats including GIF, JPEG and PNG
-   * types.
-   *
-   * @param format The format of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest format(ImageFormat format) {
-    return param("format", format);
+	/**
+	   * <code>format</code> defines the format of the resulting image. By default, the Google Static
+	   * Maps API creates PNG images. There are several possible formats including GIF, JPEG and PNG
+	   * types.
+	   *
+	   * @param staticMapsRequest TODO
+	 * @return Returns this {@code StaticMapsRequest} for call chaining.
+	   */
+	  public StaticMapsRequest format(StaticMapsRequest staticMapsRequest) {
+	    return staticMapsRequest.param("format", this);
+	  }
   }
 
   public enum StaticMapType implements UrlValue {
