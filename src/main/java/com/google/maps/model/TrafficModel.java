@@ -15,6 +15,7 @@
 
 package com.google.maps.model;
 
+import com.google.maps.DistanceMatrixApiRequest;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.util.Locale;
 
@@ -32,5 +33,16 @@ public enum TrafficModel implements UrlValue {
   @Override
   public String toUrlValue() {
     return toString();
+  }
+
+/**
+   * Specifies the assumptions to use when calculating time in traffic. This parameter may only be
+   * specified when the travel mode is driving and the request includes a departure_time.
+   *
+   * @param distanceMatrixApiRequest TODO
+ * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
+   */
+  public DistanceMatrixApiRequest trafficModel(DistanceMatrixApiRequest distanceMatrixApiRequest) {
+    return distanceMatrixApiRequest.param("traffic_model", this);
   }
 }
