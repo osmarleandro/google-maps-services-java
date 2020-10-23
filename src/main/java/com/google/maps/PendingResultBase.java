@@ -169,4 +169,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+protected void validateRequest() {
+    if (!params().containsKey("input")) {
+      throw new IllegalArgumentException("Request must contain 'input'.");
+    }
+    if (!params().containsKey("inputtype")) {
+      throw new IllegalArgumentException("Request must contain 'inputType'.");
+    }
+  }
 }
