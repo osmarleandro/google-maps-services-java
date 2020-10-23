@@ -21,7 +21,7 @@ import com.google.maps.errors.ApiException;
 public interface ApiResponse<T> {
   boolean successful();
 
-  T getResult();
+  T getResult_RENAMED();
 
   ApiException getError();
 }
