@@ -58,7 +58,7 @@ public class GeocodingApiTest {
   }
 
   @Test
-  public void testGeocodeLibraryType() throws Exception {
+  public void testGeocodeLibraryType_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geocodeLibraryType)) {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("80 FR").await();
 
