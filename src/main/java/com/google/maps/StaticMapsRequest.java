@@ -164,7 +164,7 @@ public class StaticMapsRequest
    * @param region The region of the static map.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest region(String region) {
+  public StaticMapsRequest region_RENAMED(String region) {
     return param("region", region);
   }
 
