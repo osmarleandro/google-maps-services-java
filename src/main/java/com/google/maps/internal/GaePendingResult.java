@@ -189,7 +189,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
             .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeAdapter())
             .registerTypeAdapter(Distance.class, new DistanceAdapter())
             .registerTypeAdapter(Duration.class, new DurationAdapter())
-            .registerTypeAdapter(Fare.class, new FareAdapter())
+            .registerTypeAdapter(Fare.class, new FareAdapter_RENAMED())
             .registerTypeAdapter(LatLng.class, new LatLngAdapter())
             .registerTypeAdapter(
                 AddressComponentType.class, new SafeEnumAdapter<>(AddressComponentType.UNKNOWN))
