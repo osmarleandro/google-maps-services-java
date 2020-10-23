@@ -101,7 +101,7 @@ public class DistanceMatrixApiRequest
    * @param mode One of the travel modes supported by the Distance Matrix API.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest mode(TravelMode mode) {
+  public DistanceMatrixApiRequest mode_RENAMED(TravelMode mode) {
     if (TravelMode.DRIVING.equals(mode)
         || TravelMode.WALKING.equals(mode)
         || TravelMode.BICYCLING.equals(mode)

@@ -129,7 +129,7 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
           .destinations(destinations)
-          .mode(TravelMode.DRIVING)
+          .mode_RENAMED(TravelMode.DRIVING)
           .language("en-AU")
           .avoid(RouteRestriction.TOLLS)
           .units(Unit.IMPERIAL)
@@ -162,7 +162,7 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
           .destinations(destinations)
-          .mode(TravelMode.BICYCLING)
+          .mode_RENAMED(TravelMode.BICYCLING)
           .language("fr-FR")
           .await();
 
@@ -184,7 +184,7 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins(origins)
           .destinations(destinations)
-          .mode(TravelMode.TRANSIT)
+          .mode_RENAMED(TravelMode.TRANSIT)
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
@@ -201,7 +201,7 @@ public class DistanceMatrixApiTest {
       DistanceMatrixApi.newRequest(sc.context)
           .origins("Fisherman's Wharf, San Francisco")
           .destinations("San Francisco International Airport, San Francisco, CA")
-          .mode(TravelMode.DRIVING)
+          .mode_RENAMED(TravelMode.DRIVING)
           .trafficModel(TrafficModel.PESSIMISTIC)
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
