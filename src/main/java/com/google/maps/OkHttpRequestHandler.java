@@ -33,7 +33,6 @@ import okhttp3.Dispatcher;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.Route;
 
@@ -43,8 +42,8 @@ import okhttp3.Route;
  * @see com.google.maps.GeoApiContext.RequestHandler
  */
 public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
-  private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-  private final OkHttpClient client;
+  public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+  public final OkHttpClient client;
   private final ExecutorService executorService;
 
   /* package */ OkHttpRequestHandler(OkHttpClient client, ExecutorService executorService) {
@@ -94,24 +93,9 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       RequestMetrics metrics) {
-    RequestBody body = RequestBody.create(JSON, payload);
-    Request.Builder builder = new Request.Builder().post(body).header("User-Agent", userAgent);
-
-    if (experienceIdHeaderValue != null) {
-      builder = builder.header(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue);
-    }
-    Request req = builder.url(hostName + url).build();
-
-    return new OkHttpPendingResult<>(
-        req,
-        client,
-        clazz,
-        fieldNamingPolicy,
-        errorTimeout,
-        maxRetries,
-        exceptionsAllowedToRetry,
-        metrics);
-  }
+		return exceptionsAllowedToRetry.handlePost(hostName, url, payload, userAgent, experienceIdHeaderValue, clazz,
+				fieldNamingPolicy, errorTimeout, maxRetries, this, metrics);
+	}
 
   @Override
   public void shutdown() {

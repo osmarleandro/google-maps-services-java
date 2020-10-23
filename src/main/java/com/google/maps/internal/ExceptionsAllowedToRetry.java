@@ -15,7 +15,16 @@
 
 package com.google.maps.internal;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.maps.OkHttpRequestHandler;
+import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
+import com.google.maps.metrics.RequestMetrics;
+
+import okhttp3.Request;
+import okhttp3.Request.Builder;
+import okhttp3.RequestBody;
+
 import java.util.HashSet;
 
 public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiException>> {
@@ -36,5 +45,26 @@ public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiE
 
     sb.append(']');
     return sb.toString();
+  }
+
+public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
+      String hostName, String url, String payload, String userAgent, String experienceIdHeaderValue, Class<R> clazz, FieldNamingPolicy fieldNamingPolicy, long errorTimeout, Integer maxRetries, OkHttpRequestHandler okHttpRequestHandler, RequestMetrics metrics) {
+    RequestBody body = RequestBody.create(OkHttpRequestHandler.JSON, payload);
+    Builder builder = new Builder().post(body).header("User-Agent", userAgent);
+
+    if (experienceIdHeaderValue != null) {
+      builder = builder.header(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue);
+    }
+    Request req = builder.url(hostName + url).build();
+
+    return new OkHttpPendingResult<>(
+        req,
+        okHttpRequestHandler.client,
+        clazz,
+        fieldNamingPolicy,
+        errorTimeout,
+        maxRetries,
+        this,
+        metrics);
   }
 }
