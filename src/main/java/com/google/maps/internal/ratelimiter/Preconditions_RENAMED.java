@@ -35,8 +35,8 @@ package com.google.maps.internal.ratelimiter;
  * <p>This is a minimal port of Google Guava's com.google.common.base.Preconditions necessary to
  * implement the ratelimiter classes.
  */
-public final class Preconditions {
-  private Preconditions() {}
+public final class Preconditions_RENAMED {
+  private Preconditions_RENAMED() {}
 
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.

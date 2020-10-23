@@ -28,8 +28,8 @@
 
 package com.google.maps.internal.ratelimiter;
 
-import static com.google.maps.internal.ratelimiter.Preconditions.checkNotNull;
-import static com.google.maps.internal.ratelimiter.Preconditions.checkState;
+import static com.google.maps.internal.ratelimiter.Preconditions_RENAMED.checkNotNull;
+import static com.google.maps.internal.ratelimiter.Preconditions_RENAMED.checkState;
 import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
