@@ -356,7 +356,7 @@ public abstract class RateLimiter {
   }
 
   private boolean canAcquire(long nowMicros, long timeoutMicros) {
-    return queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
+    return queryEarliestAvailable_RENAMED(nowMicros) - timeoutMicros <= nowMicros;
   }
 
   /**

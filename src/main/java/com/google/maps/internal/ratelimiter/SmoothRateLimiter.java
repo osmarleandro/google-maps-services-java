@@ -356,7 +356,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
   }
 
   @Override
-  final long queryEarliestAvailable(long nowMicros) {
+  final long queryEarliestAvailable_RENAMED(long nowMicros) {
     return nextFreeTicketMicros;
   }
 
