@@ -330,7 +330,7 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsLookupPermanentlyClosedPlace() throws Exception {
+  public void testPlaceDetailsLookupPermanentlyClosedPlace_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placeDetailResponseBodyForPermanentlyClosedPlace)) {
       PlaceDetails placeDetails =
