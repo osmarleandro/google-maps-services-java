@@ -15,8 +15,6 @@
 
 package com.google.maps;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 import com.google.appengine.api.urlfetch.FetchOptions;
 import com.google.appengine.api.urlfetch.HTTPHeader;
 import com.google.appengine.api.urlfetch.HTTPMethod;
@@ -43,8 +41,8 @@ import org.slf4j.LoggerFactory;
  * @see com.google.maps.GeoApiContext.RequestHandler
  */
 public class GaeRequestHandler implements GeoApiContext.RequestHandler {
-  private static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
-  private final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
+  public static final Logger LOG = LoggerFactory.getLogger(GaeRequestHandler.class.getName());
+  public final URLFetchService client = URLFetchServiceFactory.getURLFetchService();
 
   /* package */ GaeRequestHandler() {}
 
@@ -97,31 +95,9 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       RequestMetrics metrics) {
-    FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
-    HTTPRequest req = null;
-    try {
-      req = new HTTPRequest(new URL(hostName + url), HTTPMethod.POST, fetchOptions);
-      req.setHeader(new HTTPHeader("Content-Type", "application/json; charset=utf-8"));
-      if (experienceIdHeaderValue != null) {
-        req.setHeader(
-            new HTTPHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue));
-      }
-      req.setPayload(payload.getBytes(UTF_8));
-    } catch (MalformedURLException e) {
-      LOG.error("Request: {}{}", hostName, url, e);
-      throw (new RuntimeException(e));
-    }
-
-    return new GaePendingResult<>(
-        req,
-        client,
-        clazz,
-        fieldNamingPolicy,
-        errorTimeout,
-        maxRetries,
-        exceptionsAllowedToRetry,
-        metrics);
-  }
+		return exceptionsAllowedToRetry.handlePost(hostName, url, payload, userAgent, experienceIdHeaderValue, clazz,
+				fieldNamingPolicy, errorTimeout, maxRetries, this, metrics);
+	}
 
   @Override
   public void shutdown() {
