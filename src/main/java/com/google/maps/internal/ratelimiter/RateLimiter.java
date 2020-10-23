@@ -180,12 +180,12 @@ public abstract class RateLimiter {
    * The underlying timer; used both to measure elapsed time and sleep as necessary. A separate
    * object to facilitate testing.
    */
-  private final SleepingStopwatch stopwatch;
+  protected final SleepingStopwatch stopwatch;
 
   // Can't be initialized in the constructor because mocks don't call the constructor.
   private volatile Object mutexDoNotUseDirectly;
 
-  private Object mutex() {
+  protected Object mutex() {
     Object mutex = mutexDoNotUseDirectly;
     if (mutex == null) {
       synchronized (this) {
@@ -273,19 +273,6 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Reserves the given number of permits from this {@code RateLimiter} for future use, returning
-   * the number of microseconds until the reservation can be consumed.
-   *
-   * @return time in microseconds to wait until the resource can be acquired, never negative
-   */
-  final long reserve(int permits) {
-    checkPermits(permits);
-    synchronized (mutex()) {
-      return reserveAndGetWaitLength(permits, stopwatch.readMicros());
-    }
-  }
-
-  /**
    * Acquires a permit from this {@code RateLimiter} if it can be obtained without exceeding the
    * specified {@code timeout}, or returns {@code false} immediately (without waiting) if the permit
    * would not have been granted before the timeout expired.
@@ -364,7 +351,7 @@ public abstract class RateLimiter {
    *
    * @return the required wait time, never negative
    */
-  final long reserveAndGetWaitLength(int permits, long nowMicros) {
+  protected final long reserveAndGetWaitLength(int permits, long nowMicros) {
     long momentAvailable = reserveEarliestAvailable(permits, nowMicros);
     return max(momentAvailable - nowMicros, 0);
   }
@@ -421,7 +408,7 @@ public abstract class RateLimiter {
     }
   }
 
-  private static void checkPermits(int permits) {
+  protected static void checkPermits(int permits) {
     checkArgument(permits > 0, "Requested permits (%s) must be positive", permits);
   }
 

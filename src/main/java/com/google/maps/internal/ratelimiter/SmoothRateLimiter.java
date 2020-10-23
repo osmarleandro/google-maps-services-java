@@ -398,4 +398,17 @@ abstract class SmoothRateLimiter extends RateLimiter {
       nextFreeTicketMicros = nowMicros;
     }
   }
+
+/**
+   * Reserves the given number of permits from this {@code RateLimiter} for future use, returning
+   * the number of microseconds until the reservation can be consumed.
+   *
+   * @return time in microseconds to wait until the resource can be acquired, never negative
+   */
+final long reserve(int permits) {
+    checkPermits(permits);
+    synchronized (mutex()) {
+      return reserveAndGetWaitLength(permits, stopwatch.readMicros());
+    }
+  }
 }
