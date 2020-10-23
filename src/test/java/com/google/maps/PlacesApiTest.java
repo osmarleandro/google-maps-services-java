@@ -457,7 +457,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.textSearchQuery(sc.context, "Google Sydney")
-          .location(location)
+          .location_RENAMED(location)
           .region("AU")
           .radius(3000)
           .minPrice(PriceLevel.INEXPENSIVE)
@@ -515,7 +515,7 @@ public class PlacesApiTest {
       LatLng location = new LatLng(-33.866611, 151.195832);
       PlacesSearchResponse results =
           PlacesApi.textSearchQuery(sc.context, PlaceType.ZOO)
-              .location(location)
+              .location_RENAMED(location)
               .radius(500)
               .await();
 
@@ -529,7 +529,7 @@ public class PlacesApiTest {
   public void testTextSearchLocationWithoutRadius() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.textSearchQuery(sc.context, "query").location(location).await();
+      PlacesApi.textSearchQuery(sc.context, "query").location_RENAMED(location).await();
     }
   }
 

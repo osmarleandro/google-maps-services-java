@@ -57,7 +57,7 @@ public class TextSearchRequest
    * @param location The location of the center of the search.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest location(LatLng location) {
+  public TextSearchRequest location_RENAMED(LatLng location) {
     return param("location", location);
   }
 
