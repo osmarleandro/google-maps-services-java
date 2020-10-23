@@ -52,7 +52,7 @@ public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> {
   }
 
   @Override
-  public E read(JsonReader reader) throws IOException {
+  public E read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
