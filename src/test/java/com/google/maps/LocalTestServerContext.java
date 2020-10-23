@@ -39,7 +39,7 @@ public class LocalTestServerContext implements AutoCloseable {
   private final MockWebServer server;
   public final GeoApiContext context;
   private RecordedRequest request = null;
-  private List<NameValuePair> params = null;
+  public List<NameValuePair> params = null;
 
   LocalTestServerContext(BufferedImage image) throws IOException {
     this.server = new MockWebServer();
@@ -92,7 +92,7 @@ public class LocalTestServerContext implements AutoCloseable {
     return new JSONObject(request.getBody().readUtf8());
   }
 
-  private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
+  public List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
     this.takeRequest();
     return parseQueryParamsFromRequestLine(request.getRequestLine());
   }
@@ -115,21 +115,6 @@ public class LocalTestServerContext implements AutoCloseable {
       }
     }
     assertTrue(paramFound);
-  }
-
-  void assertParamValues(List<String> expecteds, String paramName)
-      throws URISyntaxException, InterruptedException {
-    if (this.params == null) {
-      this.params = this.actualParams();
-    }
-    int paramsFound = 0;
-    for (NameValuePair pair : params) {
-      if (pair.getName().equals(paramName)) {
-        assertEquals(expecteds.get(paramsFound), pair.getValue());
-        paramsFound++;
-      }
-    }
-    assertEquals(paramsFound, expecteds.size());
   }
 
   @Override
