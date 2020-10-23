@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /** A result from a Geocoding API call. */
-public class GeocodingResult implements Serializable {
+public class GeocodingResult_RENAMED implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

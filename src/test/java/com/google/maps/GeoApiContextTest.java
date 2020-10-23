@@ -28,7 +28,7 @@ import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.HttpHeaders;
-import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.GeocodingResult_RENAMED;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -120,7 +120,7 @@ public class GeoApiContextTest {
     setMockBaseUrl();
 
     // Execute
-    GeocodingResult[] result =
+    GeocodingResult_RENAMED[] result =
         builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
     assertEquals(1, result.length);
     assertEquals(

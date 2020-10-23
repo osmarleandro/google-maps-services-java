@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.metrics.OpenCensusMetrics;
 import com.google.maps.metrics.OpenCensusRequestMetricsReporter;
-import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.GeocodingResult_RENAMED;
 import io.opencensus.stats.AggregationData;
 import io.opencensus.stats.Stats;
 import io.opencensus.stats.View;
@@ -87,7 +87,7 @@ public class OpenCensusTest {
     server.enqueue(mockResponse(500, "OK", 100)); // retry 2
     server.enqueue(mockResponse(200, "OK", 300)); // succeed
 
-    GeocodingResult[] result =
+    GeocodingResult_RENAMED[] result =
         context.get(new ApiConfig("/path"), GeocodingApi.Response.class, "k", "v").await();
     assertEquals(1, result.length);
 
