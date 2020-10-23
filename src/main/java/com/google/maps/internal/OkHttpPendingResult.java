@@ -244,7 +244,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
       // Retry is a blocking method, but that's OK. If we're here, we're either in an await()
       // call, which is blocking anyway, or we're handling a callback in a separate thread.
-      return request.retry();
+      return request.retry_RENAMED();
     }
 
     byte[] bytes;
@@ -312,14 +312,14 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     } else {
       ApiException e = resp.getError();
       if (shouldRetry(e)) {
-        return request.retry();
+        return request.retry_RENAMED();
       } else {
         throw e;
       }
     }
   }
 
-  private T retry() throws ApiException, InterruptedException, IOException {
+  private T retry_RENAMED() throws ApiException, InterruptedException, IOException {
     retryCounter++;
     LOG.info("Retrying request. Retry #" + retryCounter);
     metrics.startNetwork();
