@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.StaticMapsRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,17 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+public void validateRequest(StaticMapsRequest staticMapsRequest) {
+    if (!((staticMapsRequest.params().containsKey("center") && staticMapsRequest.params().containsKey("zoom"))
+        || staticMapsRequest.params().containsKey("markers")
+        || staticMapsRequest.params().containsKey("path"))) {
+      throw new IllegalArgumentException(
+          "Request must contain 'center' and 'zoom' if 'markers' or 'path' aren't present.");
+    }
+    if (!staticMapsRequest.params().containsKey("size")) {
+      throw new IllegalArgumentException("Request must contain 'size'.");
+    }
   }
 }
