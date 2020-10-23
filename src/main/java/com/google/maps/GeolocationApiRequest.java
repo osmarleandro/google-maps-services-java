@@ -27,7 +27,7 @@ public class GeolocationApiRequest
     extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
 
   private GeolocationPayload payload = null;
-  private GeolocationPayloadBuilder builder = null;
+  public GeolocationPayloadBuilder builder = null;
 
   GeolocationApiRequest(GeoApiContext context) {
     super(context, GeolocationApi.GEOLOCATION_API_CONFIG, GeolocationApi.Response.class);
@@ -42,11 +42,6 @@ public class GeolocationApiRequest
         && this.payload.wifiAccessPoints.length < 2) {
       throw new IllegalArgumentException("Request must contain two or more 'Wifi Access Points'");
     }
-  }
-
-  public GeolocationApiRequest HomeMobileCountryCode(int newHomeMobileCountryCode) {
-    this.builder.HomeMobileCountryCode(newHomeMobileCountryCode);
-    return this;
   }
 
   public GeolocationApiRequest HomeMobileNetworkCode(int newHomeMobileNetworkCode) {
