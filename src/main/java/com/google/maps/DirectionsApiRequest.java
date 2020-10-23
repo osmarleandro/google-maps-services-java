@@ -209,7 +209,7 @@ public class DirectionsApiRequest
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest waypoints(Waypoint... waypoints) {
+  public DirectionsApiRequest waypoints_RENAMED(Waypoint... waypoints) {
     if (waypoints == null || waypoints.length == 0) {
       this.waypoints = new Waypoint[0];
       param("waypoints", "");
@@ -231,7 +231,7 @@ public class DirectionsApiRequest
    *
    * <p>See {@link #prefixPlaceId(String)}.
    *
-   * <p>See {@link #waypoints(Waypoint...)}.
+   * <p>See {@link #waypoints_RENAMED(Waypoint...)}.
    *
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
@@ -241,7 +241,7 @@ public class DirectionsApiRequest
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);
     }
-    return waypoints(objWaypoints);
+    return waypoints_RENAMED(objWaypoints);
   }
 
   /**
@@ -249,7 +249,7 @@ public class DirectionsApiRequest
    *
    * <p>See {@link #prefixPlaceId(String)}.
    *
-   * <p>See {@link #waypoints(Waypoint...)}.
+   * <p>See {@link #waypoints_RENAMED(Waypoint...)}.
    *
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
@@ -259,13 +259,13 @@ public class DirectionsApiRequest
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(prefixPlaceId(waypoints[i]));
     }
-    return waypoints(objWaypoints);
+    return waypoints_RENAMED(objWaypoints);
   }
 
   /**
    * The list of waypoints as latitude/longitude locations.
    *
-   * <p>See {@link #waypoints(Waypoint...)}.
+   * <p>See {@link #waypoints_RENAMED(Waypoint...)}.
    *
    * @param waypoints The waypoints to add to this directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
@@ -275,7 +275,7 @@ public class DirectionsApiRequest
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);
     }
-    return waypoints(objWaypoints);
+    return waypoints_RENAMED(objWaypoints);
   }
 
   /**
@@ -288,7 +288,7 @@ public class DirectionsApiRequest
   public DirectionsApiRequest optimizeWaypoints(boolean optimize) {
     optimizeWaypoints = optimize;
     if (waypoints != null) {
-      return waypoints(waypoints);
+      return waypoints_RENAMED(waypoints);
     } else {
       return this;
     }
