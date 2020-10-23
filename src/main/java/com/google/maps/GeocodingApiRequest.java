@@ -80,7 +80,7 @@ public class GeocodingApiRequest
    * @param latlng The location to reverse geocode.
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
-  public GeocodingApiRequest latlng(LatLng latlng) {
+  public GeocodingApiRequest latlng_RENAMED(LatLng latlng) {
     return param("latlng", latlng);
   }
 

@@ -135,7 +135,7 @@ public class GeocodingApiTest {
   public void testReverseGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(reverseGeocodeResponse)) {
       LatLng latlng = new LatLng(-33.8674869, 151.2069902);
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng_RENAMED(latlng).await();
 
       assertEquals(10, results.length);
       assertEquals("343 George St, Sydney NSW 2000, Australia", results[0].formattedAddress);
@@ -691,7 +691,7 @@ public class GeocodingApiTest {
   public void testSimpleReverseGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleReverseGeocodeResponse)) {
       LatLng latlng = new LatLng(40.714224, -73.961452);
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng_RENAMED(latlng).await();
 
       assertNotNull(results);
       assertNotNull(Arrays.toString(results));
@@ -788,7 +788,7 @@ public class GeocodingApiTest {
       LatLng latlng = new LatLng(40.714224, -73.961452);
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .latlng(latlng)
+              .latlng_RENAMED(latlng)
               .locationType(LocationType.ROOFTOP)
               .resultType(AddressType.STREET_ADDRESS)
               .await();
@@ -810,7 +810,7 @@ public class GeocodingApiTest {
   public void testUtfResult() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(utfResultGeocodeResponse)) {
       LatLng location = new LatLng(46.8023388, 1.6551867);
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng_RENAMED(location).await();
       assertEquals("1 Rue Fernand Raynaud, 36000 Châteauroux, France", results[0].formattedAddress);
       sc.assertParamValue(location.toUrlValue(), "latlng");
     }
@@ -930,7 +930,7 @@ public class GeocodingApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(reverseGeocodeWithKitaWardResponse)) {
       LatLng location = new LatLng(35.03937, 135.729243);
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
+      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng_RENAMED(location).await();
 
       assertNotNull(results);
       assertNotNull(Arrays.toString(results));
