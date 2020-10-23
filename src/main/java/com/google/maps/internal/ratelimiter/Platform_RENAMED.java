@@ -38,8 +38,8 @@ import java.util.Locale;
  *
  * @author Jesse Wilson
  */
-final class Platform {
-  private Platform() {}
+final class Platform_RENAMED {
+  private Platform_RENAMED() {}
 
   /** Calls {@link System#nanoTime()}. */
   static long systemNanoTime() {
