@@ -275,6 +275,14 @@ abstract class SmoothRateLimiter extends RateLimiter {
     double coolDownIntervalMicros() {
       return warmupPeriodMicros / maxPermits;
     }
+
+	@Override
+	final void doSetRate(double permitsPerSecond, long nowMicros) {
+	    resync(nowMicros);
+	    double stableIntervalMicros = SECONDS.toMicros(1L) / permitsPerSecond;
+	    this.stableIntervalMicros = stableIntervalMicros;
+	    doSetRate(permitsPerSecond, stableIntervalMicros);
+	  }
   }
 
   /**
@@ -316,6 +324,14 @@ abstract class SmoothRateLimiter extends RateLimiter {
     double coolDownIntervalMicros() {
       return stableIntervalMicros;
     }
+
+	@Override
+	final void doSetRate(double permitsPerSecond, long nowMicros) {
+	    resync(nowMicros);
+	    double stableIntervalMicros = SECONDS.toMicros(1L) / permitsPerSecond;
+	    this.stableIntervalMicros = stableIntervalMicros;
+	    doSetRate(permitsPerSecond, stableIntervalMicros);
+	  }
   }
 
   /** The currently stored permits. */
@@ -328,7 +344,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
    * The interval between two unit requests, at our stable rate. E.g., a stable rate of 5 permits
    * per second has a stable interval of 200ms.
    */
-  double stableIntervalMicros;
+  protected double stableIntervalMicros;
 
   /**
    * The time when the next request (no matter its size) will be granted. After granting a request,
@@ -340,15 +356,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
     super(stopwatch);
   }
 
-  @Override
-  final void doSetRate(double permitsPerSecond, long nowMicros) {
-    resync(nowMicros);
-    double stableIntervalMicros = SECONDS.toMicros(1L) / permitsPerSecond;
-    this.stableIntervalMicros = stableIntervalMicros;
-    doSetRate(permitsPerSecond, stableIntervalMicros);
-  }
-
-  abstract void doSetRate(double permitsPerSecond, double stableIntervalMicros);
+  protected abstract void doSetRate(double permitsPerSecond, double stableIntervalMicros);
 
   @Override
   final double doGetRate() {
@@ -390,7 +398,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
   abstract double coolDownIntervalMicros();
 
   /** Updates {@code storedPermits} and {@code nextFreeTicketMicros} based on the current time. */
-  void resync(long nowMicros) {
+  protected void resync(long nowMicros) {
     // if nextFreeTicket is in the past, resync to now
     if (nowMicros > nextFreeTicketMicros) {
       double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros();
