@@ -72,4 +72,9 @@ public class PhotoRequest
   public PhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
   }
+
+@Override
+public final void setCallback(Callback<ImageResult> callback) {
+    makeRequest().setCallback(callback);
+  }
 }

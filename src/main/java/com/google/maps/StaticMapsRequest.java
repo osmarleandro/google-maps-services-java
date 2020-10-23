@@ -467,4 +467,9 @@ public class StaticMapsRequest
   public StaticMapsRequest visible(String visibleLocation) {
     return param("visible", visibleLocation);
   }
+
+@Override
+public final void setCallback(Callback<ImageResult> callback) {
+    makeRequest().setCallback(callback);
+  }
 }

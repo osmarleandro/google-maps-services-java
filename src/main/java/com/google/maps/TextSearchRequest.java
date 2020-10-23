@@ -179,7 +179,12 @@ public class TextSearchRequest
     }
   }
 
-  public static class Response implements ApiResponse<PlacesSearchResponse> {
+  @Override
+public final void setCallback(Callback<PlacesSearchResponse> callback) {
+    makeRequest().setCallback(callback);
+  }
+
+public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
     public String htmlAttributions[];

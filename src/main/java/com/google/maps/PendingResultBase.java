@@ -48,11 +48,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   }
 
   @Override
-  public final void setCallback(Callback<T> callback) {
-    makeRequest().setCallback(callback);
-  }
-
-  @Override
   public final T await() throws ApiException, InterruptedException, IOException {
     PendingResult<T> request = makeRequest();
     return request.await();
@@ -71,7 +66,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     delegate.cancel();
   }
 
-  private PendingResult<T> makeRequest() {
+  protected PendingResult<T> makeRequest() {
     if (delegate != null) {
       throw new IllegalStateException(
           "'await', 'awaitIgnoreError' or 'setCallback' was already called.");

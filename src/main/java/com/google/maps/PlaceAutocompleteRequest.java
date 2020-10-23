@@ -202,7 +202,12 @@ public class PlaceAutocompleteRequest
     }
   }
 
-  public static class Response implements ApiResponse<AutocompletePrediction[]> {
+  @Override
+public final void setCallback(Callback<AutocompletePrediction[]> callback) {
+    makeRequest().setCallback(callback);
+  }
+
+public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
     public String errorMessage;

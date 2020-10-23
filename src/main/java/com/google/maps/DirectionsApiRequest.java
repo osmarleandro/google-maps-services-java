@@ -353,7 +353,12 @@ public class DirectionsApiRequest
     return "place_id:" + placeId;
   }
 
-  public static class Waypoint {
+  @Override
+public final void setCallback(Callback<DirectionsResult> callback) {
+    makeRequest().setCallback(callback);
+  }
+
+public static class Waypoint {
     /** The location of this waypoint, expressed as an API-recognized location. */
     private String location;
     /** Whether this waypoint is a stopover waypoint. */
