@@ -72,7 +72,7 @@ public class GeocodingApiTest {
   }
 
   @Test
-  public void testSimpleGeocode() throws Exception {
+  public void testSimpleGeocode_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("Sydney").await();
       checkSydneyResult(results);
