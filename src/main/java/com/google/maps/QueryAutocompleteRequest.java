@@ -39,13 +39,6 @@ public class QueryAutocompleteRequest
     super(context, API_CONFIG, Response.class);
   }
 
-  @Override
-  protected void validateRequest() {
-    if (!params().containsKey("input")) {
-      throw new IllegalArgumentException("Request must contain 'input'.");
-    }
-  }
-
   /**
    * The text string on which to search. The Places service will return candidate matches based on
    * this string and order results based on their perceived relevance.
