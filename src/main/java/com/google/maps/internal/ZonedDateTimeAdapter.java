@@ -47,7 +47,7 @@ public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
    * </pre>
    */
   @Override
-  public ZonedDateTime read(JsonReader reader) throws IOException {
+  public ZonedDateTime read_RENAMED(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
       return null;
