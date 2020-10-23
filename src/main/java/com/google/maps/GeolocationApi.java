@@ -40,7 +40,7 @@ public class GeolocationApi {
           .hostName(API_BASE_URL)
           .supportsClientId(false)
           .fieldNamingPolicy(FieldNamingPolicy.IDENTITY)
-          .requestVerb("POST");
+          .requestVerb_RENAMED("POST");
 
   private GeolocationApi() {}
 

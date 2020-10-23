@@ -44,7 +44,7 @@ public class ApiConfig {
     return this;
   }
 
-  public ApiConfig requestVerb(String requestVerb) {
+  public ApiConfig requestVerb_RENAMED(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
   }
