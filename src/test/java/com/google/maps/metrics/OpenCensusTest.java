@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.google.maps.internal.ApiConfig;
-import com.google.maps.metrics.OpenCensusMetrics;
+import com.google.maps.metrics.OpenCensusMetrics_RENAMED;
 import com.google.maps.metrics.OpenCensusRequestMetricsReporter;
 import com.google.maps.model.GeocodingResult;
 import io.opencensus.stats.AggregationData;
@@ -40,7 +40,7 @@ public class OpenCensusTest {
             .requestMetricsReporter(new OpenCensusRequestMetricsReporter())
             .baseUrlOverride("http://127.0.0.1:" + server.getPort())
             .build();
-    OpenCensusMetrics.registerAllViews();
+    OpenCensusMetrics_RENAMED.registerAllViews();
   }
 
   @After

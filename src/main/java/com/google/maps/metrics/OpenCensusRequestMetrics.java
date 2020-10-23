@@ -48,16 +48,16 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
     TagContext tagContext =
         tagger
             .currentBuilder()
-            .putLocal(OpenCensusMetrics.Tags.REQUEST_NAME, TagValue.create(requestName))
+            .putLocal(OpenCensusMetrics_RENAMED.Tags.REQUEST_NAME, TagValue.create(requestName))
             .putLocal(
-                OpenCensusMetrics.Tags.HTTP_CODE, TagValue.create(Integer.toString(httpStatusCode)))
-            .putLocal(OpenCensusMetrics.Tags.API_STATUS, TagValue.create(exceptionName(exception)))
+                OpenCensusMetrics_RENAMED.Tags.HTTP_CODE, TagValue.create(Integer.toString(httpStatusCode)))
+            .putLocal(OpenCensusMetrics_RENAMED.Tags.API_STATUS, TagValue.create(exceptionName(exception)))
             .build();
     statsRecorder
         .newMeasureMap()
-        .put(OpenCensusMetrics.Measures.LATENCY, requestTime)
-        .put(OpenCensusMetrics.Measures.NETWORK_LATENCY, this.networkTime)
-        .put(OpenCensusMetrics.Measures.RETRY_COUNT, retryCount)
+        .put(OpenCensusMetrics_RENAMED.Measures.LATENCY, requestTime)
+        .put(OpenCensusMetrics_RENAMED.Measures.NETWORK_LATENCY, this.networkTime)
+        .put(OpenCensusMetrics_RENAMED.Measures.RETRY_COUNT, retryCount)
         .record(tagContext);
   }
 
