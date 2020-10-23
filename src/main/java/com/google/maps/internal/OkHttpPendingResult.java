@@ -284,7 +284,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
             .registerTypeAdapter(PriceLevel.class, new PriceLevelAdapter())
             .registerTypeAdapter(Instant.class, new InstantAdapter())
             .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
-            .registerTypeAdapter(GeolocationApi.Response.class, new GeolocationResponseAdapter())
+            .registerTypeAdapter(GeolocationApi.Response.class, new GeolocationResponseAdapter_RENAMED())
             .setFieldNamingPolicy(fieldNamingPolicy)
             .create();
 
