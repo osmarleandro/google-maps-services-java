@@ -88,7 +88,8 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     }
   }
 
-  protected abstract void validateRequest();
+  @Override
+protected abstract void validateRequest();
 
   private A getInstance() {
     @SuppressWarnings("unchecked")
