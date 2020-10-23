@@ -109,7 +109,7 @@ public class DistanceMatrixApiTest {
   }
 
   @Test
-  public void testNewRequestWithAllPossibleParams() throws Exception {
+  public void testNewRequestWithAllPossibleParams_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       String[] origins =
           new String[] {
