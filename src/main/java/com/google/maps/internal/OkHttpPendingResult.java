@@ -180,7 +180,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
 
     QueuedResponse r = waiter.take();
     if (r.response != null) {
-      return parseResponse(r.request, r.response);
+      return parseResponse_RENAMED(r.request, r.response);
     } else {
       metrics.endRequest(r.e, 0, retryCounter);
       throw r.e;
@@ -215,7 +215,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     metrics.endNetwork();
     if (callback != null) {
       try {
-        callback.onResult(parseResponse(this, response));
+        callback.onResult(parseResponse_RENAMED(this, response));
       } catch (Exception e) {
         callback.onFailure(e);
       }
@@ -223,7 +223,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponse(OkHttpPendingResult<T, R> request, Response response)
+  private T parseResponse_RENAMED(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     try {
       T result = parseResponseInternal(request, response);
