@@ -882,11 +882,12 @@ public class PlacesApiTest {
   public void testPlaceAutocompleteWithStrictBounds() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
-      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
-          .location(new LatLng(37.76999, -122.44696))
-          .radius(500)
-          .strictBounds(true)
+      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session).types(PlaceAutocompleteType.ESTABLISHMENT)
+			.location(new LatLng(37.76999, -122.44696)).radius(500).API_CONFIG
+          .strictBounds(PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
+		      .types(PlaceAutocompleteType.ESTABLISHMENT)
+		      .location(new LatLng(37.76999, -122.44696))
+		      .radius(500), true)
           .await();
 
       sc.assertParamValue("Amoeba", "input");

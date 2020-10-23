@@ -38,7 +38,7 @@ public class PlaceAutocompleteRequest
     extends PendingResultBase<
         AutocompletePrediction[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> {
 
-  static final ApiConfig API_CONFIG =
+  public static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/autocomplete/json")
           .fieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
 
@@ -181,18 +181,6 @@ public class PlaceAutocompleteRequest
    */
   public PlaceAutocompleteRequest components(ComponentFilter... filters) {
     return param("components", join('|', filters));
-  }
-
-  /**
-   * StrictBounds returns only those places that are strictly within the region defined by location
-   * and radius. This is a restriction, rather than a bias, meaning that results outside this region
-   * will not be returned even if they match the user input.
-   *
-   * @param strictBounds Whether to strictly bound results.
-   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
-   */
-  public PlaceAutocompleteRequest strictBounds(boolean strictBounds) {
-    return param("strictbounds", Boolean.toString(strictBounds));
   }
 
   @Override
