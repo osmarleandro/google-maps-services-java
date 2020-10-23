@@ -16,6 +16,7 @@
 package com.google.maps.internal;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApiRequest;
 
 /** API configuration builder. Defines fields that are variable per-API. */
 public class ApiConfig {
@@ -47,5 +48,16 @@ public class ApiConfig {
   public ApiConfig requestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
+  }
+
+/**
+   * Creates a forward geocode for {@code placeId}.
+   *
+   * @param geocodingApiRequest TODO
+ * @param placeId The Place ID to geocode.
+ * @return Returns this {@code GeocodingApiRequest} for call chaining.
+   */
+  public GeocodingApiRequest place(GeocodingApiRequest geocodingApiRequest, String placeId) {
+    return geocodingApiRequest.param("place_id", placeId);
   }
 }
