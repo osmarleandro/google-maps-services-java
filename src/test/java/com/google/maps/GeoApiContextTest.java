@@ -248,7 +248,7 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testQueryParamsHaveOrderPreserved() throws Exception {
+  public void testQueryParamsHaveOrderPreserved_RENAMED() throws Exception {
     // This test is important for APIs (such as the speed limits API) where multiple parameters
     // must be provided with the same name with order preserved.
 
