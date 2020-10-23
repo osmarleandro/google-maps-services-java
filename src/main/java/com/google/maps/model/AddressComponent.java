@@ -45,7 +45,7 @@ public class AddressComponent implements Serializable {
   public AddressComponentType[] types;
 
   @Override
-  public String toString() {
+  public String toString_RENAMED() {
     StringBuilder sb = new StringBuilder("[AddressComponent: ");
     sb.append("\"").append(longName).append("\"");
     if (shortName != null) {
