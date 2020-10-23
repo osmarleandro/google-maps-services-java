@@ -124,7 +124,7 @@ public class StaticMapsApiTest {
   }
 
   @Test
-  public void testValidateRequest_noCenterAndNoZoomWithMarkers() throws Exception {
+  public void testValidateRequest_noCenterAndNoZoomWithMarkers_RENAMED() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
 
