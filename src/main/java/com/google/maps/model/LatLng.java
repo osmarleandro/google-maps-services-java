@@ -15,10 +15,17 @@
 
 package com.google.maps.model;
 
+import com.google.maps.LocalTestServerContext;
+import com.google.maps.StaticMapsApi;
+import com.google.maps.StaticMapsApiTest;
+import com.google.maps.StaticMapsRequest;
+import com.google.maps.StaticMapsRequest.Path;
 import com.google.maps.internal.StringJoin.UrlValue;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.junit.Test;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
 public class LatLng implements UrlValue, Serializable {
@@ -67,5 +74,21 @@ public class LatLng implements UrlValue, Serializable {
   @Override
   public int hashCode() {
     return Objects.hash(lat, lng);
+  }
+
+@Test
+  public void testValidateRequest_noCenterAndNoZoomWithPath(StaticMapsApiTest staticMapsApiTest) throws Exception {
+    try (LocalTestServerContext sc = new LocalTestServerContext(staticMapsApiTest.IMAGE)) {
+      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(staticMapsApiTest.WIDTH, staticMapsApiTest.HEIGHT));
+      Path path = new Path();
+      path.color("green");
+      path.fillcolor("0xAACCEE");
+      path.weight(3);
+      path.geodesic(true);
+      path.addPoint("Melbourne");
+      path.addPoint(staticMapsApiTest.SYDNEY);
+      req.path(path);
+      req.await();
+    }
   }
 }
