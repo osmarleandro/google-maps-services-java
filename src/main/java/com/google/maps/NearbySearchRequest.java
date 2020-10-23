@@ -55,7 +55,7 @@ public class NearbySearchRequest
    * @param location The location to use as the center of the Nearby Search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest location(LatLng location) {
+  public NearbySearchRequest location_RENAMED(LatLng location) {
     return param("location", location);
   }
 
@@ -64,7 +64,7 @@ public class NearbySearchRequest
    * radius is 50,000 meters. Note that radius must not be included if {@code rankby=DISTANCE} is
    * specified.
    *
-   * @param distance The distance in meters around the {@link #location(LatLng)} to search.
+   * @param distance The distance in meters around the {@link #location_RENAMED(LatLng)} to search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest radius(int distance) {
