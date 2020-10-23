@@ -43,8 +43,8 @@ import okhttp3.Route;
  * @see com.google.maps.GeoApiContext.RequestHandler
  */
 public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
-  private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-  private final OkHttpClient client;
+  static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+  final OkHttpClient client;
   private final ExecutorService executorService;
 
   /* package */ OkHttpRequestHandler(OkHttpClient client, ExecutorService executorService) {
