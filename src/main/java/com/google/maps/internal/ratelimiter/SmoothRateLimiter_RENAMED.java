@@ -33,7 +33,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.concurrent.TimeUnit;
 
-abstract class SmoothRateLimiter extends RateLimiter {
+abstract class SmoothRateLimiter_RENAMED extends RateLimiter {
   /*
    * How is the RateLimiter designed, and why?
    *
@@ -212,7 +212,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
    *       </blockquote>
    * </ul>
    */
-  static final class SmoothWarmingUp extends SmoothRateLimiter {
+  static final class SmoothWarmingUp extends SmoothRateLimiter_RENAMED {
     private final long warmupPeriodMicros;
     /**
      * The slope of the line from the stable interval (when permits == 0), to the cold interval
@@ -283,7 +283,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
    * terms of time, in this sense: if a RateLimiter is 2qps, and this time is specified as 10
    * seconds, we can save up to 2 * 10 = 20 permits.
    */
-  static final class SmoothBursty extends SmoothRateLimiter {
+  static final class SmoothBursty extends SmoothRateLimiter_RENAMED {
     /** The work (permits) of how many seconds can be saved up if this RateLimiter is unused? */
     final double maxBurstSeconds;
 
@@ -336,7 +336,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
    */
   private long nextFreeTicketMicros = 0L; // could be either in the past or future
 
-  private SmoothRateLimiter(SleepingStopwatch stopwatch) {
+  private SmoothRateLimiter_RENAMED(SleepingStopwatch stopwatch) {
     super(stopwatch);
   }
 

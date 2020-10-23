@@ -35,8 +35,8 @@ import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothBursty;
-import com.google.maps.internal.ratelimiter.SmoothRateLimiter.SmoothWarmingUp;
+import com.google.maps.internal.ratelimiter.SmoothRateLimiter_RENAMED.SmoothBursty;
+import com.google.maps.internal.ratelimiter.SmoothRateLimiter_RENAMED.SmoothWarmingUp;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
