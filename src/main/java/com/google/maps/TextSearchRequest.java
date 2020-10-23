@@ -88,16 +88,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Restricts to places that are at least this price level.
-   *
-   * @param priceLevel The minimum price level to restrict results with.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest minPrice(PriceLevel priceLevel) {
-    return param("minprice", priceLevel);
-  }
-
-  /**
    * Restricts to places that are at most this price level.
    *
    * @param priceLevel The maximum price leve to restrict results with.
