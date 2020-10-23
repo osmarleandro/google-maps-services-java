@@ -19,6 +19,8 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.RankBy;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -168,5 +170,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    */
   public A custom(String parameter, String value) {
     return param(parameter, value);
+  }
+
+/**
+   * Specifies the order in which results are listed.
+   *
+   * @param ranking The rank by method.
+   * @return Returns this {@code TextSearchRequest} for call chaining.
+   */
+public TextSearchRequest rankby(RankBy ranking) {
+    return param("rankby", ranking);
   }
 }
