@@ -188,7 +188,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public T awaitIgnoreError() {
+  public T awaitIgnoreError_RENAMED() {
     try {
       return await();
     } catch (Exception e) {
