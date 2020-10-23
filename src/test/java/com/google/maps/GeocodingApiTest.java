@@ -428,7 +428,7 @@ public class GeocodingApiTest {
    * Geocoding "santa cruz" with country set to ES</a>.
    */
   @Test
-  public void testGeocodeWithComponentFilter() throws Exception {
+  public void testGeocodeWithComponentFilter_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             "\n"
