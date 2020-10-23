@@ -145,7 +145,7 @@ public class RoadsApi {
    * @param path The collected GPS points as a path.
    * @return Returns the snapped points and speed limits as a {@link PendingResult}.
    */
-  public static PendingResult<SnappedSpeedLimitResponse> snappedSpeedLimits(
+  public static PendingResult<SnappedSpeedLimitResponse> snappedSpeedLimits_RENAMED(
       GeoApiContext context, LatLng... path) {
     return context.get(SPEEDS_API_CONFIG, CombinedResponse.class, "path", join('|', path));
   }

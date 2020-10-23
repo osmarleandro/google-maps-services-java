@@ -162,7 +162,7 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedSpeedLimitResponse response = RoadsApi.snappedSpeedLimits(sc.context, path).await();
+      SnappedSpeedLimitResponse response = RoadsApi.snappedSpeedLimits_RENAMED(sc.context, path).await();
 
       assertNotNull(response.toString());
       assertEquals("/v1/speedLimits", sc.path());
