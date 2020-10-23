@@ -415,7 +415,7 @@ public class GeolocationApiTest {
   }
 
   @Test(expected = InvalidRequestException.class)
-  public void testInvalidArgumentGeolocation() throws Exception {
+  public void testInvalidArgumentGeolocation_RENAMED() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(
             ""
