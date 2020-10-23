@@ -28,6 +28,7 @@
 
 package com.google.maps.internal.ratelimiter;
 
+import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -397,5 +398,15 @@ abstract class SmoothRateLimiter extends RateLimiter {
       storedPermits = min(maxPermits, storedPermits + newPermits);
       nextFreeTicketMicros = nowMicros;
     }
+  }
+
+/**
+   * Reserves next ticket and returns the wait time that the caller must wait for.
+   *
+   * @return the required wait time, never negative
+   */
+final long reserveAndGetWaitLength(int permits, long nowMicros) {
+    long momentAvailable = reserveEarliestAvailable(permits, nowMicros);
+    return max(momentAvailable - nowMicros, 0);
   }
 }

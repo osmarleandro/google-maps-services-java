@@ -360,16 +360,6 @@ public abstract class RateLimiter {
   }
 
   /**
-   * Reserves next ticket and returns the wait time that the caller must wait for.
-   *
-   * @return the required wait time, never negative
-   */
-  final long reserveAndGetWaitLength(int permits, long nowMicros) {
-    long momentAvailable = reserveEarliestAvailable(permits, nowMicros);
-    return max(momentAvailable - nowMicros, 0);
-  }
-
-  /**
    * Returns the earliest time that permits are available (with one caveat).
    *
    * @return the time that permits are available, or, if permits are available immediately, an
@@ -384,7 +374,7 @@ public abstract class RateLimiter {
    * @return the time that the permits may be used, or, if the permits may be used immediately, an
    *     arbitrary past or present time
    */
-  abstract long reserveEarliestAvailable(int permits, long nowMicros);
+  protected abstract long reserveEarliestAvailable(int permits, long nowMicros);
 
   @Override
   public String toString() {
