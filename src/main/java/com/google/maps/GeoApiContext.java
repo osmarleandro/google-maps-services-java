@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.GeocodingApi.Response;
 import com.google.maps.errors.ApiException;
 import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
@@ -27,6 +28,12 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okhttp3.mockwebserver.MockResponse;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -36,6 +43,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
 
 /**
  * The entry point for making requests against the Google Geo APIs.
@@ -622,5 +631,35 @@ public class GeoApiContext {
           requestMetricsReporter,
           experienceIdHeaderValue);
     }
+
+	@Test
+	  public void testToggleIfExceptionIsAllowedToRetry(GeoApiContextTest geoApiContextTest) throws Exception {
+	    // Enqueue some error responses, although only the first should be used because the response's
+	    // exception is not allowed to be retried.
+	    MockResponse overQueryLimitResponse = new MockResponse();
+	    overQueryLimitResponse.setStatus("HTTP/1.1 400 Internal server error");
+	    overQueryLimitResponse.setBody(TestUtils.retrieveBody("OverQueryLimitResponse.json"));
+	    geoApiContextTest.server.enqueue(overQueryLimitResponse);
+	    geoApiContextTest.server.enqueue(overQueryLimitResponse);
+	    geoApiContextTest.server.enqueue(overQueryLimitResponse);
+	    geoApiContextTest.server.start();
+	
+	    retryTimeout(1, TimeUnit.MILLISECONDS);
+	    maxRetries(10);
+	    setIfExceptionIsAllowedToRetry(OverQueryLimitException.class, false);
+	
+	    geoApiContextTest.setMockBaseUrl();
+	
+	    try {
+	      build()
+	          .get(new ApiConfig("/"), Response.class, "any-key", "any-value")
+	          .await();
+	    } catch (OverQueryLimitException e) {
+	      assertEquals(1, geoApiContextTest.server.getRequestCount());
+	      return;
+	    }
+	
+	    fail("OverQueryLimitException was expected but not observed.");
+	  }
   }
 }
