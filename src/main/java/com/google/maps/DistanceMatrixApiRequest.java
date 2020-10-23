@@ -155,7 +155,7 @@ public class DistanceMatrixApiRequest
    * @param departureTime The time of departure.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest departureTime(Instant departureTime) {
+  public DistanceMatrixApiRequest departureTime_RENAMED(Instant departureTime) {
     return param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L));
   }
 

@@ -133,7 +133,7 @@ public class DistanceMatrixApiTest {
           .language("en-AU")
           .avoid(RouteRestriction.TOLLS)
           .units(Unit.IMPERIAL)
-          .departureTime(
+          .departureTime_RENAMED(
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
           .await();
 
@@ -203,7 +203,7 @@ public class DistanceMatrixApiTest {
           .destinations("San Francisco International Airport, San Francisco, CA")
           .mode(TravelMode.DRIVING)
           .trafficModel(TrafficModel.PESSIMISTIC)
-          .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
+          .departureTime_RENAMED(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
