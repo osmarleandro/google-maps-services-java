@@ -625,7 +625,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
+          .radius_RENAMED(5000)
           .rankby(RankBy.PROMINENCE)
           .keyword("keyword")
           .language("en")
@@ -670,7 +670,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
+          .radius_RENAMED(5000)
           .rankby(RankBy.DISTANCE)
           .await();
     }
@@ -781,7 +781,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByKeyword)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius_RENAMED(10000).keyword("pub").await();
 
       sc.assertParamValue("10000", "radius");
       sc.assertParamValue("pub", "keyword");
@@ -797,7 +797,7 @@ public class PlacesApiTest {
         new LocalTestServerContext(placesApiNearbySearchRequestByName)) {
       PlacesSearchResponse response =
           PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
-              .radius(10000)
+              .radius_RENAMED(10000)
               .name("Sydney Town Hall")
               .await();
 
@@ -814,7 +814,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius_RENAMED(10000).type(PlaceType.BAR).await();
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
       sc.assertParamValue("10000", "radius");
@@ -829,7 +829,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius_RENAMED(10000).type(PlaceType.BAR).await();
 
       assertEquals(20, response.results.length);
       assertEquals(563, response.results[0].userRatingsTotal);

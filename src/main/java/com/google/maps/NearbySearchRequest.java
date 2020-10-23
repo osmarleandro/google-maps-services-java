@@ -67,7 +67,7 @@ public class NearbySearchRequest
    * @param distance The distance in meters around the {@link #location(LatLng)} to search.
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
-  public NearbySearchRequest radius(int distance) {
+  public NearbySearchRequest radius_RENAMED(int distance) {
     if (distance > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
