@@ -12,7 +12,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
   private final StatsRecorder statsRecorder;
 
   private long requestStart;
-  private long networkStart;
+  long networkStart;
   private long networkTime;
   private boolean finished;
 
@@ -69,7 +69,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
     }
   }
 
-  private long milliTime() {
+  long milliTime() {
     return System.currentTimeMillis();
   }
 }
