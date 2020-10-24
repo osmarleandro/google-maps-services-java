@@ -391,7 +391,15 @@ public abstract class RateLimiter {
     return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
   }
 
-  abstract static class SleepingStopwatch {
+  @Override
+protected final void doSetRate(double permitsPerSecond, long nowMicros) {
+    resync(nowMicros);
+    double stableIntervalMicros = SECONDS.toMicros(1L) / permitsPerSecond;
+    this.stableIntervalMicros = stableIntervalMicros;
+    doSetRate(permitsPerSecond, stableIntervalMicros);
+  }
+
+abstract static class SleepingStopwatch {
     /** Constructor for use by subclasses. */
     protected SleepingStopwatch() {}
 
