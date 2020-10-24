@@ -57,7 +57,10 @@ public interface PendingResult<T> {
   /** Attempts to cancel the request. */
   void cancel();
 
-  /**
+  @Override
+void cancel();
+
+/**
    * The callback interface the API client code needs to implement to handle API results.
    *
    * @param <T> The type of the result object.

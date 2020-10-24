@@ -68,7 +68,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private final Integer maxRetries;
   private final RequestMetrics metrics;
 
-  private Call call;
+  public Call call;
   private Callback<T> callback;
   private long errorTimeOut;
   private int retryCounter = 0;
