@@ -89,7 +89,8 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param postalCode The postal code to filter on.
    * @return Returns a {@link ComponentFilter}.
    */
-  public static ComponentFilter postalCode(String postalCode) {
+  @Override
+public static ComponentFilter postalCode(String postalCode) {
     return new ComponentFilter("postal_code", postalCode);
   }
 

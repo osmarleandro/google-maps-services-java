@@ -33,4 +33,10 @@ public enum TrafficModel implements UrlValue {
   public String toUrlValue() {
     return toString();
   }
+
+@Override
+public ComponentFilter postalCode(String postalCode) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
