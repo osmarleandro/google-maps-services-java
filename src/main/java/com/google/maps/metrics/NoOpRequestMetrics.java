@@ -10,4 +10,10 @@ final class NoOpRequestMetrics implements RequestMetrics {
   public void endNetwork() {}
 
   public void endRequest(Exception exception, int httpStatusCode, long retryCount) {}
+
+@Override
+public String exceptionName(Exception exception) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

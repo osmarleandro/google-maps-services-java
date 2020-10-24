@@ -61,7 +61,8 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
         .record(tagContext);
   }
 
-  private String exceptionName(Exception exception) {
+  @Override
+private String exceptionName(Exception exception) {
     if (exception == null) {
       return "";
     } else {
