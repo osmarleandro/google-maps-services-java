@@ -69,7 +69,8 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
     }
   }
 
-  private long milliTime() {
+  @Override
+private long milliTime() {
     return System.currentTimeMillis();
   }
 }
