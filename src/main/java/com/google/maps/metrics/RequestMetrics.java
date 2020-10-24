@@ -24,4 +24,7 @@ public interface RequestMetrics {
   void endNetwork();
 
   void endRequest(Exception exception, int httpStatusCode, long retryCount);
+
+@Override
+void endNetwork();
 }
