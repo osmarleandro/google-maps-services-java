@@ -4,4 +4,6 @@ package com.google.maps.metrics;
 public interface RequestMetricsReporter {
 
   RequestMetrics newRequest(String requestName);
+
+RequestMetrics newRequest(String requestName);
 }
