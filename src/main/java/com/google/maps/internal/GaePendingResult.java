@@ -41,6 +41,9 @@ import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
 import com.google.maps.model.PlaceDetails.Review.AspectRating.RatingType;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.TravelMode;
+
+import okhttp3.Response;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.time.Instant;
@@ -261,4 +264,10 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
+
+@Override
+public T parseResponse(OkHttpPendingResult<T, R> request, Response response) throws ApiException, InterruptedException, IOException {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

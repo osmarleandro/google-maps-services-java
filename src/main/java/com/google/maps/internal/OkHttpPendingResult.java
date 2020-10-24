@@ -66,12 +66,12 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
-  private final RequestMetrics metrics;
+  public final RequestMetrics metrics;
 
   private Call call;
   private Callback<T> callback;
   private long errorTimeOut;
-  private int retryCounter = 0;
+  public int retryCounter = 0;
   private long cumulativeSleepTime = 0;
   private ExceptionsAllowedToRetry exceptionsAllowedToRetry;
 
@@ -222,7 +222,8 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @Override
+@SuppressWarnings("unchecked")
   private T parseResponse(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     try {
@@ -236,7 +237,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @SuppressWarnings("unchecked")
-  private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
+public T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     if (shouldRetry(response)) {
       // since we are retrying the request we must close the response
