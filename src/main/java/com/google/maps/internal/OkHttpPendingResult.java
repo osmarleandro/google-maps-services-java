@@ -63,8 +63,8 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     implements PendingResult<T>, Callback {
   private final Request request;
   private final OkHttpClient client;
-  private final Class<R> responseClass;
-  private final FieldNamingPolicy fieldNamingPolicy;
+  public final Class<R> responseClass;
+  public final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
   private final RequestMetrics metrics;
 
@@ -235,7 +235,8 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @Override
+@SuppressWarnings("unchecked")
   private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     if (shouldRetry(response)) {
@@ -319,7 +320,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     }
   }
 
-  private T retry() throws ApiException, InterruptedException, IOException {
+  public T retry() throws ApiException, InterruptedException, IOException {
     retryCounter++;
     LOG.info("Retrying request. Retry #" + retryCounter);
     metrics.startNetwork();
@@ -327,13 +328,13 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     return this.await();
   }
 
-  private boolean shouldRetry(Response response) {
+  public boolean shouldRetry(Response response) {
     return RETRY_ERROR_CODES.contains(response.code())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
 
-  private boolean shouldRetry(ApiException exception) {
+  public boolean shouldRetry(ApiException exception) {
     return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
