@@ -69,7 +69,8 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param locality The locality to filter on.
    * @return Returns a {@link ComponentFilter}.
    */
-  public static ComponentFilter locality(String locality) {
+  @Override
+public static ComponentFilter locality(String locality) {
     return new ComponentFilter("locality", locality);
   }
 

@@ -489,4 +489,10 @@ public enum AddressType implements UrlValue {
     }
     return addressType;
   }
+
+@Override
+public ComponentFilter locality(String locality) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
