@@ -351,11 +351,6 @@ abstract class SmoothRateLimiter extends RateLimiter {
   abstract void doSetRate(double permitsPerSecond, double stableIntervalMicros);
 
   @Override
-  final double doGetRate() {
-    return SECONDS.toMicros(1L) / stableIntervalMicros;
-  }
-
-  @Override
   final long queryEarliestAvailable(long nowMicros) {
     return nextFreeTicketMicros;
   }
