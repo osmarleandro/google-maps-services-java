@@ -61,21 +61,21 @@ import org.slf4j.LoggerFactory;
  */
 public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     implements PendingResult<T>, Callback {
-  private final Request request;
-  private final OkHttpClient client;
+  public final Request request;
+  public final OkHttpClient client;
   private final Class<R> responseClass;
   private final FieldNamingPolicy fieldNamingPolicy;
   private final Integer maxRetries;
-  private final RequestMetrics metrics;
+  public final RequestMetrics metrics;
 
-  private Call call;
+  public Call call;
   private Callback<T> callback;
   private long errorTimeOut;
-  private int retryCounter = 0;
+  public int retryCounter = 0;
   private long cumulativeSleepTime = 0;
   private ExceptionsAllowedToRetry exceptionsAllowedToRetry;
 
-  private static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult.class.getName());
+  public static final Logger LOG = LoggerFactory.getLogger(OkHttpPendingResult.class.getName());
   private static final List<Integer> RETRY_ERROR_CODES = Arrays.asList(500, 503, 504);
 
   /**
@@ -319,7 +319,8 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     }
   }
 
-  private T retry() throws ApiException, InterruptedException, IOException {
+  @Override
+private T retry() throws ApiException, InterruptedException, IOException {
     retryCounter++;
     LOG.info("Retrying request. Retry #" + retryCounter);
     metrics.startNetwork();
