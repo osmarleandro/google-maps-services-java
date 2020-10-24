@@ -49,4 +49,10 @@ public enum PriceLevel implements StringJoin.UrlValue {
     }
     return priceLevel;
   }
+
+@Override
+public ComponentFilter route(String route) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

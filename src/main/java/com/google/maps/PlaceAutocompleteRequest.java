@@ -81,6 +81,12 @@ public class PlaceAutocompleteRequest
     public String toUrlValue() {
       return uuid.toString();
     }
+
+	@Override
+	public ComponentFilter route(String route) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**

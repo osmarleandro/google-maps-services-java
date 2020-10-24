@@ -37,4 +37,10 @@ public enum RankBy implements StringJoin.UrlValue {
   public String toUrlValue() {
     return ranking;
   }
+
+@Override
+public ComponentFilter route(String route) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

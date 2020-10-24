@@ -17,6 +17,8 @@ package com.google.maps.internal;
 
 import java.util.Objects;
 
+import com.google.maps.model.ComponentFilter;
+
 /** Utility class to join strings. */
 public class StringJoin {
 
@@ -27,6 +29,14 @@ public class StringJoin {
   public interface UrlValue {
     /** @return the object, represented as a URL value (not URL encoded). */
     String toUrlValue();
+
+	/**
+	   * Matches long or short name of a route.
+	   *
+	   * @param route The name of the route to filter on.
+	   * @return Returns a {@link ComponentFilter}.
+	   */
+	ComponentFilter route(String route);
   }
 
   private StringJoin() {}

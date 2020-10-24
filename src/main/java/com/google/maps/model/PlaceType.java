@@ -144,4 +144,10 @@ public enum PlaceType implements StringJoin.UrlValue {
   public String toString() {
     return placeType;
   }
+
+@Override
+public ComponentFilter route(String route) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
