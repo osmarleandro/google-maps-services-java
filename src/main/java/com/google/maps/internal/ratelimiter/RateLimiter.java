@@ -31,6 +31,7 @@ package com.google.maps.internal.ratelimiter;
 import static com.google.maps.internal.ratelimiter.Preconditions.checkArgument;
 import static com.google.maps.internal.ratelimiter.Preconditions.checkNotNull;
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -391,7 +392,17 @@ public abstract class RateLimiter {
     return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
   }
 
-  abstract static class SleepingStopwatch {
+  /** Updates {@code storedPermits} and {@code nextFreeTicketMicros} based on the current time. */
+protected void resync(long nowMicros) {
+    // if nextFreeTicket is in the past, resync to now
+    if (nowMicros > nextFreeTicketMicros) {
+      double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros();
+      storedPermits = min(maxPermits, storedPermits + newPermits);
+      nextFreeTicketMicros = nowMicros;
+    }
+  }
+
+abstract static class SleepingStopwatch {
     /** Constructor for use by subclasses. */
     protected SleepingStopwatch() {}
 
