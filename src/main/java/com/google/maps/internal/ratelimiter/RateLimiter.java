@@ -391,7 +391,16 @@ public abstract class RateLimiter {
     return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
   }
 
-  abstract static class SleepingStopwatch {
+  /**
+   * Translates a specified portion of our currently stored permits which we want to spend/acquire,
+   * into a throttling time. Conceptually, this evaluates the integral of the underlying function we
+   * use, for the range of [(storedPermits - permitsToTake), storedPermits].
+   *
+   * <p>This always holds: {@code 0 <= permitsToTake <= storedPermits}
+   */
+protected abstract long storedPermitsToWaitTime(double storedPermits, double permitsToTake);
+
+abstract static class SleepingStopwatch {
     /** Constructor for use by subclasses. */
     protected SleepingStopwatch() {}
 
