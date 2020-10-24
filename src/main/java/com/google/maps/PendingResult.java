@@ -16,6 +16,9 @@
 package com.google.maps;
 
 import com.google.maps.errors.ApiException;
+
+import okhttp3.Call;
+
 import java.io.IOException;
 
 /**
@@ -57,7 +60,10 @@ public interface PendingResult<T> {
   /** Attempts to cancel the request. */
   void cancel();
 
-  /**
+  @Override
+void onFailure(Call call, IOException ioe);
+
+/**
    * The callback interface the API client code needs to implement to handle API results.
    *
    * @param <T> The type of the result object.
