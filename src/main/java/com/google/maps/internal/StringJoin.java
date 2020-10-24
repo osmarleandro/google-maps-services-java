@@ -27,6 +27,9 @@ public class StringJoin {
   public interface UrlValue {
     /** @return the object, represented as a URL value (not URL encoded). */
     String toUrlValue();
+
+	@Override
+	String toUrlValue();
   }
 
   private StringJoin() {}
