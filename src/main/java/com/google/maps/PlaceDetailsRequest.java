@@ -170,5 +170,11 @@ public class PlaceDetailsRequest
     public String toUrlValue() {
       return field;
     }
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 }

@@ -52,6 +52,12 @@ public class FindPlaceFromTextRequest
     public String toUrlValue() {
       return this.inputType;
     }
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 
   /**
@@ -159,6 +165,12 @@ public class FindPlaceFromTextRequest
     public String toUrlValue() {
       return field;
     }
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 
   public interface LocationBias extends UrlValue {}

@@ -81,6 +81,12 @@ public class PlaceAutocompleteRequest
     public String toUrlValue() {
       return uuid.toString();
     }
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 
   /**

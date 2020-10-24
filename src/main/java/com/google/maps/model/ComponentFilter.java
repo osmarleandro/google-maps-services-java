@@ -53,7 +53,13 @@ public class ComponentFilter implements StringJoin.UrlValue {
     return join(':', component, value);
   }
 
-  /**
+  @Override
+public int hashCode() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+/**
    * Matches long or short name of a route.
    *
    * @param route The name of the route to filter on.

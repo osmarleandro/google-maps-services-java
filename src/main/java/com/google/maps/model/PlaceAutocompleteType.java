@@ -43,4 +43,10 @@ public enum PlaceAutocompleteType implements StringJoin.UrlValue {
   public String toString() {
     return placeType;
   }
+
+@Override
+public int hashCode() {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }

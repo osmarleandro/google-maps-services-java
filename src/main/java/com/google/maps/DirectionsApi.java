@@ -131,5 +131,11 @@ public class DirectionsApi {
     public String toUrlValue() {
       return restriction;
     }
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 }

@@ -37,4 +37,10 @@ public enum TransitMode implements UrlValue {
   public String toUrlValue() {
     return name().toLowerCase(Locale.ENGLISH);
   }
+
+@Override
+public int hashCode() {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }

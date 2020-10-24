@@ -49,4 +49,10 @@ public enum PriceLevel implements StringJoin.UrlValue {
     }
     return priceLevel;
   }
+
+@Override
+public int hashCode() {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }
