@@ -7,14 +7,14 @@ import io.opencensus.tags.Tagger;
 
 /** An OpenCensus logger that generates success and latency metrics. */
 final class OpenCensusRequestMetrics implements RequestMetrics {
-  private final String requestName;
-  private final Tagger tagger;
-  private final StatsRecorder statsRecorder;
+  final String requestName;
+  final Tagger tagger;
+  final StatsRecorder statsRecorder;
 
-  private long requestStart;
+  long requestStart;
   private long networkStart;
-  private long networkTime;
-  private boolean finished;
+  long networkTime;
+  boolean finished;
 
   OpenCensusRequestMetrics(String requestName, Tagger tagger, StatsRecorder statsRecorder) {
     this.requestName = requestName;
@@ -61,7 +61,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
         .record(tagContext);
   }
 
-  private String exceptionName(Exception exception) {
+  String exceptionName(Exception exception) {
     if (exception == null) {
       return "";
     } else {
@@ -69,7 +69,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
     }
   }
 
-  private long milliTime() {
+  long milliTime() {
     return System.currentTimeMillis();
   }
 }
