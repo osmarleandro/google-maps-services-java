@@ -50,4 +50,10 @@ public class Size implements StringJoin.UrlValue, Serializable {
   public String toUrlValue() {
     return String.format("%dx%d", width, height);
   }
+
+@Override
+public boolean equals(Object o) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

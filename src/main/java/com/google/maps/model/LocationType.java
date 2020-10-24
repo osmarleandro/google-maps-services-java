@@ -58,4 +58,10 @@ public enum LocationType implements UrlValue {
     }
     return name();
   }
+
+@Override
+public boolean equals(Object o) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

@@ -32,4 +32,10 @@ public enum Unit implements UrlValue {
   public String toUrlValue() {
     return name().toLowerCase(Locale.ENGLISH);
   }
+
+@Override
+public boolean equals(Object o) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

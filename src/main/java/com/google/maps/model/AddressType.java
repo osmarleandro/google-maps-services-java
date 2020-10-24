@@ -489,4 +489,10 @@ public enum AddressType implements UrlValue {
     }
     return addressType;
   }
+
+@Override
+public boolean equals(Object o) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

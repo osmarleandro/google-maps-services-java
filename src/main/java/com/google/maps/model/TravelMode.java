@@ -51,4 +51,10 @@ public enum TravelMode implements UrlValue {
     }
     return name().toLowerCase(Locale.ENGLISH);
   }
+
+@Override
+public boolean equals(Object o) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

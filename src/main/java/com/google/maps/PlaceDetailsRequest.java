@@ -170,5 +170,11 @@ public class PlaceDetailsRequest
     public String toUrlValue() {
       return field;
     }
+
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
   }
 }
