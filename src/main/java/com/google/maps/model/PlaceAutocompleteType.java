@@ -43,4 +43,10 @@ public enum PlaceAutocompleteType implements StringJoin.UrlValue {
   public String toString() {
     return placeType;
   }
+
+@Override
+public ComponentFilter country(String country) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

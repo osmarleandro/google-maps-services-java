@@ -21,6 +21,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.FindPlaceFromText;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
@@ -52,6 +53,12 @@ public class FindPlaceFromTextRequest
     public String toUrlValue() {
       return this.inputType;
     }
+
+	@Override
+	public ComponentFilter country(String country) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
@@ -159,6 +166,12 @@ public class FindPlaceFromTextRequest
     public String toUrlValue() {
       return field;
     }
+
+	@Override
+	public ComponentFilter country(String country) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   public interface LocationBias extends UrlValue {}

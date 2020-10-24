@@ -58,4 +58,10 @@ public enum LocationType implements UrlValue {
     }
     return name();
   }
+
+@Override
+public ComponentFilter country(String country) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

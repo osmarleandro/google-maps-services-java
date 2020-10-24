@@ -21,6 +21,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.PlaceDetails;
 
 /**
@@ -170,5 +171,11 @@ public class PlaceDetailsRequest
     public String toUrlValue() {
       return field;
     }
+
+	@Override
+	public ComponentFilter country(String country) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 }
