@@ -18,6 +18,7 @@ package com.google.maps;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
@@ -120,6 +121,12 @@ public class StaticMapsRequest
     public String toUrlValue() {
       return format;
     }
+
+	@Override
+	public ComponentFilter administrativeArea(String administrativeArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
@@ -144,6 +151,12 @@ public class StaticMapsRequest
     public String toUrlValue() {
       return this.name();
     }
+
+	@Override
+	public ComponentFilter administrativeArea(String administrativeArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
@@ -180,6 +193,12 @@ public class StaticMapsRequest
       public String toUrlValue() {
         return this.name();
       }
+
+	@Override
+	public ComponentFilter administrativeArea(String administrativeArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     }
 
     public enum CustomIconAnchor implements UrlValue {
@@ -197,6 +216,12 @@ public class StaticMapsRequest
       public String toUrlValue() {
         return this.name();
       }
+
+	@Override
+	public ComponentFilter administrativeArea(String administrativeArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     }
 
     private MarkersSize size;
@@ -317,6 +342,12 @@ public class StaticMapsRequest
 
       return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
     }
+
+	@Override
+	public ComponentFilter administrativeArea(String administrativeArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
@@ -422,6 +453,12 @@ public class StaticMapsRequest
 
       return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
     }
+
+	@Override
+	public ComponentFilter administrativeArea(String administrativeArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**

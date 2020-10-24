@@ -68,4 +68,10 @@ public class LatLng implements UrlValue, Serializable {
   public int hashCode() {
     return Objects.hash(lat, lng);
   }
+
+@Override
+public ComponentFilter administrativeArea(String administrativeArea) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

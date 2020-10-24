@@ -489,4 +489,10 @@ public enum AddressType implements UrlValue {
     }
     return addressType;
   }
+
+@Override
+public ComponentFilter administrativeArea(String administrativeArea) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
