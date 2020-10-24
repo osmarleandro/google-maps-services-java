@@ -120,6 +120,12 @@ public class StaticMapsRequest
     public String toUrlValue() {
       return format;
     }
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
@@ -144,6 +150,12 @@ public class StaticMapsRequest
     public String toUrlValue() {
       return this.name();
     }
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
@@ -180,6 +192,12 @@ public class StaticMapsRequest
       public String toUrlValue() {
         return this.name();
       }
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     }
 
     public enum CustomIconAnchor implements UrlValue {
@@ -197,6 +215,12 @@ public class StaticMapsRequest
       public String toUrlValue() {
         return this.name();
       }
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     }
 
     private MarkersSize size;
@@ -317,6 +341,12 @@ public class StaticMapsRequest
 
       return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
     }
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
@@ -422,6 +452,12 @@ public class StaticMapsRequest
 
       return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
     }
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 
   /**
