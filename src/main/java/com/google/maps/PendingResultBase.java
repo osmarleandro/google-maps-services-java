@@ -19,6 +19,10 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
+
+import okhttp3.Call;
+import okhttp3.Response;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -169,4 +173,10 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   public A custom(String parameter, String value) {
     return param(parameter, value);
   }
+
+@Override
+public void onResponse(Call call, Response response) throws IOException {
+	// TODO Auto-generated method stub
+	
+}
 }
