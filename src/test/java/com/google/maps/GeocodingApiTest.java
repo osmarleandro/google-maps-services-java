@@ -36,7 +36,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class GeocodingApiTest {
+public class GeocodingApiTest implements IGeocodingApiTest {
 
   private static final double EPSILON = 0.005;
   private static String simpleGeocodeResponse;
