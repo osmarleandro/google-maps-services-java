@@ -31,7 +31,7 @@ import java.time.ZonedDateTime;
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">TypeAdapter</a>
  * for more detail.
  */
-public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
+public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> implements IZonedDateTimeAdapter {
 
   /**
    * Read a Time object from a Directions API result and convert it to a {@link ZonedDateTime}.
