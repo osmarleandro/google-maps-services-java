@@ -1,7 +1,7 @@
 package com.google.maps.metrics;
 
 /** A no-op implementation that does nothing */
-final class NoOpRequestMetrics implements RequestMetrics {
+final class NoOpRequestMetrics implements RequestMetrics, INoOpRequestMetrics {
 
   NoOpRequestMetrics(String requestName) {}
 
