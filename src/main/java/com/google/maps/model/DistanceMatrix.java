@@ -24,7 +24,7 @@ import java.io.Serializable;
  *     href="https://developers.google.com/maps/documentation/distancematrix/#DistanceMatrixResponses">
  *     Distance Matrix Results</a>
  */
-public class DistanceMatrix implements Serializable {
+public class DistanceMatrix implements Serializable, IDistanceMatrix {
 
   private static final long serialVersionUID = 1L;
 

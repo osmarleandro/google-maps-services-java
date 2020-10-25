@@ -20,6 +20,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixRow;
+import com.google.maps.model.IDistanceMatrix;
 
 /**
  * The Google Distance Matrix API is a service that provides travel distance and time for a matrix
@@ -74,7 +75,7 @@ public class DistanceMatrixApi {
     }
 
     @Override
-    public DistanceMatrix getResult() {
+    public IDistanceMatrix getResult() {
       return new DistanceMatrix(originAddresses, destinationAddresses, rows);
     }
   }
