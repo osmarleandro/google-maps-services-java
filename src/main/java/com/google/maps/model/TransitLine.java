@@ -44,7 +44,7 @@ public class TransitLine implements Serializable {
   public String color;
 
   /** Information about the operator(s) of this transit line. */
-  public TransitAgency[] agencies;
+  public ITransitAgency[] agencies;
 
   /** The URL for this transit line as provided by the transit agency. */
   public String url;

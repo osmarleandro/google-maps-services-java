@@ -24,7 +24,7 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/directions/intro#TransitDetails">Transit
  * Details</a> for more detail.
  */
-public class TransitAgency implements Serializable {
+public class TransitAgency implements Serializable, ITransitAgency {
 
   private static final long serialVersionUID = 1L;
 
