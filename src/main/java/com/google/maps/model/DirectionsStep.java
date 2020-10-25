@@ -36,7 +36,7 @@ import java.io.Serializable;
  * for that route in the {@code steps} array, such as: "Head north-west", "Turn left onto Arelious
  * Walker", and "Turn left onto Innes Ave".
  */
-public class DirectionsStep implements Serializable {
+public class DirectionsStep implements Serializable, IDirectionsStep {
 
   private static final long serialVersionUID = 1L;
 
