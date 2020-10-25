@@ -21,6 +21,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
+import com.google.maps.model.IGeolocationResult;
 import com.google.maps.model.LatLng;
 
 /*
@@ -68,7 +69,7 @@ public class GeolocationApi {
     }
 
     @Override
-    public GeolocationResult getResult() {
+    public IGeolocationResult getResult() {
       GeolocationResult result = new GeolocationResult();
       result.accuracy = accuracy;
       result.location = location;
