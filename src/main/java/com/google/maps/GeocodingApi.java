@@ -29,7 +29,7 @@ import com.google.maps.model.LatLng;
  * @see <a href="https://developers.google.com/maps/documentation/geocoding/">Geocoding
  *     documentation</a>
  */
-public class GeocodingApi {
+public class GeocodingApi implements IGeocodingApi {
   private GeocodingApi() {}
 
   /**
