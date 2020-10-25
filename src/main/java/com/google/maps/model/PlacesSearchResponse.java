@@ -24,7 +24,7 @@ import java.io.Serializable;
  * href="https://developers.google.com/places/web-service/search#PlaceSearchResponses">Places Search
  * Response</a> for more detail.
  */
-public class PlacesSearchResponse implements Serializable {
+public class PlacesSearchResponse implements Serializable, IPlacesSearchResponse {
 
   private static final long serialVersionUID = 1L;
 

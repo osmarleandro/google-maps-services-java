@@ -19,6 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.model.IPlacesSearchResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
@@ -193,7 +194,7 @@ public class TextSearchRequest
     }
 
     @Override
-    public PlacesSearchResponse getResult() {
+    public IPlacesSearchResponse getResult() {
       PlacesSearchResponse result = new PlacesSearchResponse();
       result.htmlAttributions = htmlAttributions;
       result.results = results;

@@ -35,6 +35,7 @@ import com.google.maps.model.AutocompletePrediction.MatchedSubstring;
 import com.google.maps.model.AutocompleteStructuredFormatting;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.FindPlaceFromText;
+import com.google.maps.model.IPlacesSearchResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.OpeningHours.Period;
 import com.google.maps.model.OpeningHours.Period.OpenClose.DayOfWeek;
@@ -513,7 +514,7 @@ public class PlacesApiTest {
   public void testTextSearchRequestWithType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(-33.866611, 151.195832);
-      PlacesSearchResponse results =
+      IPlacesSearchResponse results =
           PlacesApi.textSearchQuery(sc.context, PlaceType.ZOO)
               .location(location)
               .radius(500)
