@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Category(MediumTests.class)
-public class RateLimitExecutorServiceTest {
+public class RateLimitExecutorServiceTest implements IRateLimitExecutorServiceTest {
 
   private static final Logger LOG =
       LoggerFactory.getLogger(RateLimitExecutorServiceTest.class.getName());
