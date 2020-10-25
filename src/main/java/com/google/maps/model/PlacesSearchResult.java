@@ -26,7 +26,7 @@ import java.util.Arrays;
  * href="https://developers.google.com/places/web-service/search#PlaceSearchResults">Place Search
  * Results</a> for more detail.
  */
-public class PlacesSearchResult implements Serializable {
+public class PlacesSearchResult implements Serializable, IPlacesSearchResult {
 
   private static final long serialVersionUID = 1L;
 
