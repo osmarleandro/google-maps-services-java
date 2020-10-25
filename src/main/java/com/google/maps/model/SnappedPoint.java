@@ -18,7 +18,7 @@ package com.google.maps.model;
 import java.io.Serializable;
 
 /** A point that has been snapped to a road by the Roads API. */
-public class SnappedPoint implements Serializable {
+public class SnappedPoint implements Serializable, ISnappedPoint {
 
   private static final long serialVersionUID = 1L;
   /** A latitude/longitude value representing the snapped location. */

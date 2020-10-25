@@ -22,6 +22,7 @@ import com.google.maps.errors.ApiError;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.model.ISnappedPoint;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
@@ -164,7 +165,7 @@ public class RoadsApi {
   }
 
   public static class RoadsResponse implements ApiResponse<SnappedPoint[]> {
-    private SnappedPoint[] snappedPoints;
+    private ISnappedPoint[] snappedPoints;
     private ApiError error;
 
     @Override
@@ -173,7 +174,7 @@ public class RoadsApi {
     }
 
     @Override
-    public SnappedPoint[] getResult() {
+    public ISnappedPoint[] getResult() {
       return snappedPoints;
     }
 
@@ -204,7 +205,7 @@ public class RoadsApi {
   }
 
   public static class CombinedResponse implements ApiResponse<SnappedSpeedLimitResponse> {
-    private SnappedPoint[] snappedPoints;
+    private ISnappedPoint[] snappedPoints;
     private SpeedLimit[] speedLimits;
     private ApiError error;
 
