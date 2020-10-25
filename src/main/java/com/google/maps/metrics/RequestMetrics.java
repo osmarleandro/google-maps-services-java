@@ -17,7 +17,7 @@ package com.google.maps.metrics;
  * <p>The following metrics can be computed: Total queries, successful queries, total latency,
  * network latency
  */
-public interface RequestMetrics {
+public interface RequestMetrics extends IRequestMetrics {
 
   void startNetwork();
 
