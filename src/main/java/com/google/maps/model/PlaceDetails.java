@@ -28,7 +28,7 @@ import java.util.Arrays;
  * <p>See <a href="https://developers.google.com/places/web-service/details#PlaceDetailsResults">
  * Place Details Results</a> for more detail.
  */
-public class PlaceDetails implements Serializable {
+public class PlaceDetails implements Serializable, IPlaceDetails {
 
   private static final long serialVersionUID = 1L;
 

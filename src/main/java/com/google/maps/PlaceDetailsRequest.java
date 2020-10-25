@@ -21,6 +21,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
+import com.google.maps.model.IPlaceDetails;
 import com.google.maps.model.PlaceDetails;
 
 /**
@@ -100,7 +101,7 @@ public class PlaceDetailsRequest
     }
 
     @Override
-    public PlaceDetails getResult() {
+    public IPlaceDetails getResult() {
       if (result != null) {
         result.htmlAttributions = htmlAttributions;
       }
