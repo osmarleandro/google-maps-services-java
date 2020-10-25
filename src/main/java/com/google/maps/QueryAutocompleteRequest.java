@@ -20,6 +20,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.AutocompletePrediction;
+import com.google.maps.model.IAutocompletePrediction;
 import com.google.maps.model.LatLng;
 
 /**
@@ -93,7 +94,7 @@ public class QueryAutocompleteRequest
 
   public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
-    public AutocompletePrediction predictions[];
+    public IAutocompletePrediction predictions[];
     public String errorMessage;
 
     @Override
@@ -102,7 +103,7 @@ public class QueryAutocompleteRequest
     }
 
     @Override
-    public AutocompletePrediction[] getResult() {
+    public IAutocompletePrediction[] getResult() {
       return predictions;
     }
 

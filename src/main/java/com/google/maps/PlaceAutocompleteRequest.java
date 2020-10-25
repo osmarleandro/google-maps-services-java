@@ -24,6 +24,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.ComponentFilter;
+import com.google.maps.model.IAutocompletePrediction;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceAutocompleteType;
 import java.io.Serializable;
@@ -204,7 +205,7 @@ public class PlaceAutocompleteRequest
 
   public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
-    public AutocompletePrediction predictions[];
+    public IAutocompletePrediction predictions[];
     public String errorMessage;
 
     @Override
@@ -213,7 +214,7 @@ public class PlaceAutocompleteRequest
     }
 
     @Override
-    public AutocompletePrediction[] getResult() {
+    public IAutocompletePrediction[] getResult() {
       return predictions;
     }
 
