@@ -36,7 +36,7 @@ import java.util.UUID;
  */
 public class PlaceAutocompleteRequest
     extends PendingResultBase<
-        AutocompletePrediction[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> {
+        AutocompletePrediction[], PlaceAutocompleteRequest, PlaceAutocompleteRequest.Response> implements IPlaceAutocompleteRequest {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/autocomplete/json")
@@ -90,7 +90,7 @@ public class PlaceAutocompleteRequest
    * @param sessionToken Session Token is the session identifier.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest sessionToken(SessionToken sessionToken) {
+  public IPlaceAutocompleteRequest sessionToken(SessionToken sessionToken) {
     return param("sessiontoken", sessionToken);
   }
 
@@ -101,7 +101,7 @@ public class PlaceAutocompleteRequest
    * @param input The input text to autocomplete.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest input(String input) {
+  public IPlaceAutocompleteRequest input(String input) {
     return param("input", input);
   }
 
@@ -114,7 +114,7 @@ public class PlaceAutocompleteRequest
    * @param offset The character offset position of the user's cursor.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest offset(int offset) {
+  public IPlaceAutocompleteRequest offset(int offset) {
     return param("offset", String.valueOf(offset));
   }
 
@@ -126,7 +126,7 @@ public class PlaceAutocompleteRequest
    * @param origin The {@link LatLng} origin point from which to calculate distance.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest origin(LatLng origin) {
+  public IPlaceAutocompleteRequest origin(LatLng origin) {
     return param("origin", origin);
   }
 
@@ -136,7 +136,7 @@ public class PlaceAutocompleteRequest
    * @param location The {@link LatLng} location to center this autocomplete search.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest location(LatLng location) {
+  public IPlaceAutocompleteRequest location(LatLng location) {
     return param("location", location);
   }
 
@@ -147,7 +147,7 @@ public class PlaceAutocompleteRequest
    * @param radius The radius over which to bias results.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest radius(int radius) {
+  public IPlaceAutocompleteRequest radius(int radius) {
     return param("radius", String.valueOf(radius));
   }
 
@@ -158,7 +158,7 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    * @deprecated Please use {@code types} instead.
    */
-  public PlaceAutocompleteRequest type(PlaceAutocompleteType type) {
+  public IPlaceAutocompleteRequest type(PlaceAutocompleteType type) {
     return this.types(type);
   }
 
@@ -168,7 +168,7 @@ public class PlaceAutocompleteRequest
    * @param types The type to restrict results to.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest types(PlaceAutocompleteType types) {
+  public IPlaceAutocompleteRequest types(PlaceAutocompleteType types) {
     return param("types", types);
   }
 
@@ -179,7 +179,7 @@ public class PlaceAutocompleteRequest
    * @param filters The component filter to restrict results with.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest components(ComponentFilter... filters) {
+  public IPlaceAutocompleteRequest components(ComponentFilter... filters) {
     return param("components", join('|', filters));
   }
 
@@ -191,7 +191,7 @@ public class PlaceAutocompleteRequest
    * @param strictBounds Whether to strictly bound results.
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
-  public PlaceAutocompleteRequest strictBounds(boolean strictBounds) {
+  public IPlaceAutocompleteRequest strictBounds(boolean strictBounds) {
     return param("strictbounds", Boolean.toString(strictBounds));
   }
 

@@ -189,9 +189,9 @@ public class PlacesApi {
    *     character.
    * @return Returns a PlaceAutocompleteRequest that you can configure and execute.
    */
-  public static PlaceAutocompleteRequest placeAutocomplete(
+  public static IPlaceAutocompleteRequest placeAutocomplete(
       GeoApiContext context, String input, PlaceAutocompleteRequest.SessionToken sessionToken) {
-    PlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
+    IPlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
     request.input(input);
     request.sessionToken(sessionToken);
     return request;
