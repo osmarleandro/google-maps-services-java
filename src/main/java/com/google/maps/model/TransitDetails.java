@@ -61,7 +61,7 @@ public class TransitDetails implements Serializable {
   public int numStops;
 
   /** Information about the transit line used in this step. */
-  public TransitLine line;
+  public ITransitLine line;
 
   @Override
   public String toString() {
