@@ -31,7 +31,7 @@ import com.google.maps.model.RankBy;
  * Search</a> request.
  */
 public class TextSearchRequest
-    extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> {
+    extends PendingResultBase<PlacesSearchResponse, TextSearchRequest, TextSearchRequest.Response> implements ITextSearchRequest {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/textsearch/json")
@@ -47,7 +47,7 @@ public class TextSearchRequest
    * @param query The query string to search for.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest query(String query) {
+  public ITextSearchRequest query(String query) {
     return param("query", query);
   }
 
@@ -57,7 +57,7 @@ public class TextSearchRequest
    * @param location The location of the center of the search.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest location(LatLng location) {
+  public ITextSearchRequest location(LatLng location) {
     return param("location", location);
   }
 
@@ -70,7 +70,7 @@ public class TextSearchRequest
    * @param region The ccTLD two-letter code of the region.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest region(String region) {
+  public ITextSearchRequest region(String region) {
     return param("region", region);
   }
 
@@ -80,7 +80,7 @@ public class TextSearchRequest
    * @param radius The radius of the search bias.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest radius(int radius) {
+  public ITextSearchRequest radius(int radius) {
     if (radius > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
@@ -93,7 +93,7 @@ public class TextSearchRequest
    * @param priceLevel The minimum price level to restrict results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest minPrice(PriceLevel priceLevel) {
+  public ITextSearchRequest minPrice(PriceLevel priceLevel) {
     return param("minprice", priceLevel);
   }
 
@@ -103,7 +103,7 @@ public class TextSearchRequest
    * @param priceLevel The maximum price leve to restrict results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest maxPrice(PriceLevel priceLevel) {
+  public ITextSearchRequest maxPrice(PriceLevel priceLevel) {
     return param("maxprice", priceLevel);
   }
 
@@ -114,7 +114,7 @@ public class TextSearchRequest
    * @param name The name to search for.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest name(String name) {
+  public ITextSearchRequest name(String name) {
     return param("name", name);
   }
 
@@ -124,7 +124,7 @@ public class TextSearchRequest
    * @param openNow Whether to restrict this search to open places.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest openNow(boolean openNow) {
+  public ITextSearchRequest openNow(boolean openNow) {
     return param("opennow", String.valueOf(openNow));
   }
 
@@ -136,7 +136,7 @@ public class TextSearchRequest
    * @param nextPageToken A {@code pageToken} from a prior result.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest pageToken(String nextPageToken) {
+  public ITextSearchRequest pageToken(String nextPageToken) {
     return param("pagetoken", nextPageToken);
   }
 
@@ -146,7 +146,7 @@ public class TextSearchRequest
    * @param ranking The rank by method.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest rankby(RankBy ranking) {
+  public ITextSearchRequest rankby(RankBy ranking) {
     return param("rankby", ranking);
   }
 
@@ -156,7 +156,7 @@ public class TextSearchRequest
    * @param type The type of place to restrict the results with.
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
-  public TextSearchRequest type(PlaceType type) {
+  public ITextSearchRequest type(PlaceType type) {
     return param("type", type);
   }
 

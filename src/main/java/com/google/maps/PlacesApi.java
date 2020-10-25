@@ -68,8 +68,8 @@ public class PlacesApi {
    * @param query The text string on which to search, for example: "restaurant".
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(GeoApiContext context, String query) {
-    TextSearchRequest request = new TextSearchRequest(context);
+  public static ITextSearchRequest textSearchQuery(GeoApiContext context, String query) {
+    ITextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
     return request;
   }
@@ -83,9 +83,9 @@ public class PlacesApi {
    * @param location The latitude/longitude around which to retrieve place information.
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(
+  public static ITextSearchRequest textSearchQuery(
       GeoApiContext context, String query, LatLng location) {
-    TextSearchRequest request = new TextSearchRequest(context);
+    ITextSearchRequest request = new TextSearchRequest(context);
     request.query(query);
     request.location(location);
     return request;
@@ -98,8 +98,8 @@ public class PlacesApi {
    * @param type Restricts the results to places matching the specified PlaceType.
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
-  public static TextSearchRequest textSearchQuery(GeoApiContext context, PlaceType type) {
-    TextSearchRequest request = new TextSearchRequest(context);
+  public static ITextSearchRequest textSearchQuery(GeoApiContext context, PlaceType type) {
+    ITextSearchRequest request = new TextSearchRequest(context);
     request.type(type);
     return request;
   }
@@ -113,8 +113,8 @@ public class PlacesApi {
    * @param nextPageToken The nextPageToken returned as part of a PlacesSearchResponse.
    * @return Returns a TextSearchRequest that can be executed.
    */
-  public static TextSearchRequest textSearchNextPage(GeoApiContext context, String nextPageToken) {
-    TextSearchRequest request = new TextSearchRequest(context);
+  public static ITextSearchRequest textSearchNextPage(GeoApiContext context, String nextPageToken) {
+    ITextSearchRequest request = new TextSearchRequest(context);
     request.pageToken(nextPageToken);
     return request;
   }
