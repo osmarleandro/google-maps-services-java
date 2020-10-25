@@ -23,7 +23,7 @@ import java.io.Serializable;
  * <p>Be sure to check the status for each element, as a matrix response can have a mix of
  * successful and failed elements depending on the connectivity of the origin and destination.
  */
-public class DistanceMatrixElement implements Serializable {
+public class DistanceMatrixElement implements Serializable, IDistanceMatrixElement {
 
   private static final long serialVersionUID = 1L;
 

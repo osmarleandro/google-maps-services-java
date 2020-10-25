@@ -26,7 +26,7 @@ public class DistanceMatrixRow implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** The results for this row, or individual origin. */
-  public DistanceMatrixElement[] elements;
+  public IDistanceMatrixElement[] elements;
 
   @Override
   public String toString() {
