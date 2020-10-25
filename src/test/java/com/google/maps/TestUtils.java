@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class TestUtils {
+public class TestUtils implements ITestUtils {
   public static String retrieveBody(String filename) {
     InputStream input = TestUtils.class.getResourceAsStream(filename);
     try (Scanner s = new java.util.Scanner(input, StandardCharsets.UTF_8.name())) {
