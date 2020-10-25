@@ -17,7 +17,7 @@ package com.google.maps;
 
 import com.google.maps.model.Size;
 
-public class StaticMapsApi {
+public class StaticMapsApi implements IStaticMapsApi {
 
   private StaticMapsApi() {}
 
