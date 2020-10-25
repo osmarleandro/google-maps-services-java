@@ -18,7 +18,7 @@ package com.google.maps.internal;
 import java.util.Objects;
 
 /** Utility class to join strings. */
-public class StringJoin {
+public class StringJoin implements IStringJoin {
 
   /**
    * Marker Interface to enable the URL Value enums in {@link com.google.maps.DirectionsApi} to be
