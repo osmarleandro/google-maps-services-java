@@ -55,7 +55,7 @@ public class DistanceMatrixElement implements Serializable {
   public Distance distance;
 
   /** {@code fare} contains information about the fare (that is, the ticket costs) on this route. */
-  public Fare fare;
+  public IFare fare;
 
   @Override
   public String toString() {
