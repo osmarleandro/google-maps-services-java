@@ -29,7 +29,7 @@ import java.io.IOException;
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">GSON
  * Type Adapter</a> for more detail.
  */
-public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> {
+public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> implements IDayOfWeekAdapter {
 
   @Override
   public DayOfWeek read(JsonReader reader) throws IOException {
