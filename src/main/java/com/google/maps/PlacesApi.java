@@ -132,9 +132,9 @@ public class PlacesApi {
    * @param sessionToken The Session Token for this request.
    * @return Returns a PlaceDetailsRequest that you can configure and execute.
    */
-  public static PlaceDetailsRequest placeDetails(
+  public static IPlaceDetailsRequest placeDetails(
       GeoApiContext context, String placeId, PlaceAutocompleteRequest.SessionToken sessionToken) {
-    PlaceDetailsRequest request = new PlaceDetailsRequest(context);
+    IPlaceDetailsRequest request = new PlaceDetailsRequest(context);
     request.placeId(placeId);
     request.sessionToken(sessionToken);
     return request;

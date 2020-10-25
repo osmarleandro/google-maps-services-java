@@ -153,9 +153,9 @@ public class PlacesApiTest {
       PlaceDetails placeDetails =
           PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
               .fields(
-                  PlaceDetailsRequest.FieldMask.PLACE_ID,
-                  PlaceDetailsRequest.FieldMask.NAME,
-                  PlaceDetailsRequest.FieldMask.TYPES)
+                  IPlaceDetailsRequest.FieldMask.PLACE_ID,
+                  IPlaceDetailsRequest.FieldMask.NAME,
+                  IPlaceDetailsRequest.FieldMask.TYPES)
               .await();
 
       sc.assertParamValue(GOOGLE_SYDNEY, "placeid");

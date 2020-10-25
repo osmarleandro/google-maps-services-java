@@ -28,7 +28,7 @@ import com.google.maps.model.PlaceDetails;
  * Details</a> request.
  */
 public class PlaceDetailsRequest
-    extends PendingResultBase<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> {
+    extends PendingResultBase<PlaceDetails, PlaceDetailsRequest, PlaceDetailsRequest.Response> implements IPlaceDetailsRequest {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/details/json")
@@ -44,7 +44,7 @@ public class PlaceDetailsRequest
    * @param placeId The Place ID to retrieve details for.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest placeId(String placeId) {
+  public IPlaceDetailsRequest placeId(String placeId) {
     return param("placeid", placeId);
   }
 
@@ -55,7 +55,7 @@ public class PlaceDetailsRequest
    * @param sessionToken Session Token is the session identifier.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest sessionToken(PlaceAutocompleteRequest.SessionToken sessionToken) {
+  public IPlaceDetailsRequest sessionToken(PlaceAutocompleteRequest.SessionToken sessionToken) {
     return param("sessiontoken", sessionToken);
   }
 
@@ -67,7 +67,7 @@ public class PlaceDetailsRequest
    * @param region The region code.
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
-  public PlaceDetailsRequest region(String region) {
+  public IPlaceDetailsRequest region(String region) {
     return param("region", region);
   }
 
