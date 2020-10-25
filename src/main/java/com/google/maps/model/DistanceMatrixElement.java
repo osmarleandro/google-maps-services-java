@@ -52,7 +52,7 @@ public class DistanceMatrixElement implements Serializable {
   public Duration durationInTraffic;
 
   /** {@code distance} indicates the total distance covered by this leg. */
-  public Distance distance;
+  public IDistance distance;
 
   /** {@code fare} contains information about the fare (that is, the ticket costs) on this route. */
   public Fare fare;
