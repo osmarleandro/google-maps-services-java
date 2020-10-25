@@ -22,6 +22,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.FindPlaceFromText;
+import com.google.maps.model.IFindPlaceFromText;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
 
@@ -118,7 +119,7 @@ public class FindPlaceFromTextRequest
     }
 
     @Override
-    public FindPlaceFromText getResult() {
+    public IFindPlaceFromText getResult() {
       FindPlaceFromText result = new FindPlaceFromText();
       result.candidates = candidates;
       return result;
