@@ -34,7 +34,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import org.junit.Test;
 
-public class StaticMapsApiTest {
+public class StaticMapsApiTest implements IStaticMapsApiTest {
 
   private final int WIDTH = 640;
   private final int HEIGHT = 480;
