@@ -34,7 +34,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class DistanceMatrixApiTest {
+public class DistanceMatrixApiTest implements IDistanceMatrixApiTest {
 
   private final String getDistanceMatrixWithBasicStringParams;
 
