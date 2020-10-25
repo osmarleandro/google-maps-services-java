@@ -18,7 +18,7 @@ package com.google.maps.model;
 import com.google.maps.internal.StringJoin;
 import java.io.Serializable;
 
-public class Size implements StringJoin.UrlValue, Serializable {
+public class Size implements StringJoin.UrlValue, Serializable, ISize {
   private static final long serialVersionUID = 1L;
 
   /** The width of this Size. */
