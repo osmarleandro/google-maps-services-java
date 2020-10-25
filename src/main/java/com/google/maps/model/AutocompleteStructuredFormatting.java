@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /** The structured formatting info for a {@link com.google.maps.model.AutocompletePrediction}. */
-public class AutocompleteStructuredFormatting implements Serializable {
+public class AutocompleteStructuredFormatting implements Serializable, IAutocompleteStructuredFormatting {
 
   private static final long serialVersionUID = 1L;
 
