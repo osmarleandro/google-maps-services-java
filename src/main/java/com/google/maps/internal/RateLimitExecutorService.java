@@ -15,6 +15,7 @@
 
 package com.google.maps.internal;
 
+import com.google.maps.internal.ratelimiter.IRateLimiter;
 import com.google.maps.internal.ratelimiter.RateLimiter;
 import java.util.Collection;
 import java.util.List;
@@ -52,7 +53,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
           threadFactory("Rate Limited Dispatcher", true));
 
   private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
-  private final RateLimiter rateLimiter =
+  private final IRateLimiter rateLimiter =
       RateLimiter.create(DEFAULT_QUERIES_PER_SECOND, 1, TimeUnit.SECONDS);
 
   final Thread delayThread;
