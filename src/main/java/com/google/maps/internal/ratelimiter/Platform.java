@@ -38,7 +38,7 @@ import java.util.Locale;
  *
  * @author Jesse Wilson
  */
-final class Platform {
+final class Platform implements IPlatform {
   private Platform() {}
 
   /** Calls {@link System#nanoTime()}. */
