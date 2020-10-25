@@ -24,7 +24,7 @@ package com.google.maps.errors;
  * @see <a href="https://developers.google.com/maps/documentation/directions/intro#StatusCodes">
  *     Status Codes</a>
  */
-public class MaxRouteLengthExceededException extends ApiException {
+public class MaxRouteLengthExceededException extends ApiException implements IMaxRouteLengthExceededException {
 
   private static final long serialVersionUID = 5926526363472768479L;
 
