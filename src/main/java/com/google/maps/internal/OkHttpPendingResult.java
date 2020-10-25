@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.maps.GeolocationApi;
+import com.google.maps.IImageResult;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
@@ -258,7 +259,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         && contentType.startsWith("image")
         && responseClass == ImageResult.Response.class
         && response.code() == 200) {
-      ImageResult result = new ImageResult(contentType, bytes);
+      IImageResult result = new ImageResult(contentType, bytes);
       return (T) result;
     }
 
