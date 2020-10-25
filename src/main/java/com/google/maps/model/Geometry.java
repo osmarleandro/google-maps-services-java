@@ -36,7 +36,7 @@ public class Geometry implements Serializable {
   public LatLng location;
 
   /** The level of certainty of this geocoding result. */
-  public LocationType locationType;
+  public ILocationType locationType;
 
   /**
    * The recommended viewport for displaying the returned result. Generally the viewport is used to

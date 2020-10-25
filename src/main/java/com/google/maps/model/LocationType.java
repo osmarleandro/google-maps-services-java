@@ -22,7 +22,7 @@ import com.google.maps.internal.StringJoin.UrlValue;
  * href="https://developers.google.com/maps/documentation/geocoding/start#reverse">Reverse
  * Geocoding</a> for more detail.
  */
-public enum LocationType implements UrlValue {
+public enum LocationType implements UrlValue, ILocationType {
   /**
    * Restricts the results to addresses for which we have location information accurate down to
    * street address precision.
