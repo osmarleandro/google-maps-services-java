@@ -31,7 +31,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class ElevationApiTest {
+public class ElevationApiTest implements IElevationApiTest {
 
   private static final double SYDNEY_ELEVATION = 19.11174774169922;
   private static final double SYDNEY_POINT_ELEVATION = 19.10829925537109;
