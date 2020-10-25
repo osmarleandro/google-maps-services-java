@@ -18,7 +18,7 @@ package com.google.maps.model;
 import java.io.Serializable;
 
 /** The geometry of a Geocoding result. */
-public class Geometry implements Serializable {
+public class Geometry implements Serializable, IGeometry {
 
   private static final long serialVersionUID = 1L;
   /**

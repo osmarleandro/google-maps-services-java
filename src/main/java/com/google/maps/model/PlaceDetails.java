@@ -45,7 +45,7 @@ public class PlaceDetails implements Serializable {
   public String formattedPhoneNumber;
 
   /** The location of the Place. */
-  public Geometry geometry;
+  public IGeometry geometry;
 
   /**
    * The URL of a suggested icon which may be displayed to the user when indicating this result on a

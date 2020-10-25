@@ -37,7 +37,7 @@ public class PlacesSearchResult implements Serializable {
    * Geometry information about the result, generally including the location (geocode) of the place
    * and (optionally) the viewport identifying its general area of coverage.
    */
-  public Geometry geometry;
+  public IGeometry geometry;
 
   /**
    * The human-readable name for the returned result. For establishment results, this is usually the
