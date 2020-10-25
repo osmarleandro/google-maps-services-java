@@ -34,7 +34,7 @@ import com.google.maps.model.SpeedLimit;
  * <p>See also: <a href="https://developers.google.com/maps/documentation/roads">Roads API
  * documentation</a>.
  */
-public class RoadsApi {
+public class RoadsApi implements IRoadsApi {
   static final String API_BASE_URL = "https://roads.googleapis.com";
 
   static final ApiConfig SNAP_TO_ROADS_API_CONFIG =
