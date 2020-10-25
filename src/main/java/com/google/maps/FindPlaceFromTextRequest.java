@@ -27,7 +27,7 @@ import com.google.maps.model.PlacesSearchResult;
 
 public class FindPlaceFromTextRequest
     extends PendingResultBase<
-        FindPlaceFromText, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> {
+        FindPlaceFromText, FindPlaceFromTextRequest, FindPlaceFromTextRequest.Response> implements IFindPlaceFromTextRequest {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/findplacefromtext/json")
@@ -61,7 +61,7 @@ public class FindPlaceFromTextRequest
    * @param input The text input.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest input(String input) {
+  public IFindPlaceFromTextRequest input(String input) {
     return param("input", input);
   }
 
@@ -71,7 +71,7 @@ public class FindPlaceFromTextRequest
    * @param inputType The input type.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest inputType(InputType inputType) {
+  public IFindPlaceFromTextRequest inputType(InputType inputType) {
     return param("inputtype", inputType);
   }
 
@@ -81,7 +81,7 @@ public class FindPlaceFromTextRequest
    * @param fields The fields to return.
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
-  public FindPlaceFromTextRequest fields(FieldMask... fields) {
+  public IFindPlaceFromTextRequest fields(FieldMask... fields) {
     return param("fields", StringJoin.join(',', fields));
   }
 

@@ -922,13 +922,13 @@ public class PlacesApiTest {
       FindPlaceFromText response =
           PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
               .fields(
-                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
-                  FindPlaceFromTextRequest.FieldMask.PHOTOS,
-                  FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-                  FindPlaceFromTextRequest.FieldMask.NAME,
-                  FindPlaceFromTextRequest.FieldMask.RATING,
-                  FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-                  FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+                  IFindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
+                  IFindPlaceFromTextRequest.FieldMask.PHOTOS,
+                  IFindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+                  IFindPlaceFromTextRequest.FieldMask.NAME,
+                  IFindPlaceFromTextRequest.FieldMask.RATING,
+                  IFindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+                  IFindPlaceFromTextRequest.FieldMask.GEOMETRY)
               .locationBias(new LocationBiasIP())
               .await();
 
@@ -966,12 +966,12 @@ public class PlacesApiTest {
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+              IFindPlaceFromTextRequest.FieldMask.PHOTOS,
+              IFindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+              IFindPlaceFromTextRequest.FieldMask.NAME,
+              IFindPlaceFromTextRequest.FieldMask.RATING,
+              IFindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+              IFindPlaceFromTextRequest.FieldMask.GEOMETRY)
           .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
           .await();
 
@@ -991,12 +991,12 @@ public class PlacesApiTest {
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+              IFindPlaceFromTextRequest.FieldMask.PHOTOS,
+              IFindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+              IFindPlaceFromTextRequest.FieldMask.NAME,
+              IFindPlaceFromTextRequest.FieldMask.RATING,
+              IFindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+              IFindPlaceFromTextRequest.FieldMask.GEOMETRY)
           .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
           .await();
 
@@ -1016,12 +1016,12 @@ public class PlacesApiTest {
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+              IFindPlaceFromTextRequest.FieldMask.PHOTOS,
+              IFindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+              IFindPlaceFromTextRequest.FieldMask.NAME,
+              IFindPlaceFromTextRequest.FieldMask.RATING,
+              IFindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+              IFindPlaceFromTextRequest.FieldMask.GEOMETRY)
           .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
           .await();
 
