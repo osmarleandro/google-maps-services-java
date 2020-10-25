@@ -24,6 +24,7 @@ import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
+import com.google.maps.model.IWifiAccessPoint;
 import com.google.maps.model.WifiAccessPoint;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -175,7 +176,7 @@ public class GeolocationApiTest {
   @Test
   public void testAlternateWifiSetterGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      WifiAccessPoint[] wifiAccessPoints = new WifiAccessPoint[2];
+      IWifiAccessPoint[] wifiAccessPoints = new IWifiAccessPoint[2];
       wifiAccessPoints[0] =
           new WifiAccessPoint.WifiAccessPointBuilder()
               .MacAddress("94:b4:0f:ff:6b:11")

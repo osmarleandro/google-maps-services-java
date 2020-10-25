@@ -27,7 +27,7 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/geolocation/intro#wifi_access_point_object">
  * WiFi Access Point Objects</a> for more detail.
  */
-public class WifiAccessPoint implements Serializable {
+public class WifiAccessPoint implements Serializable, IWifiAccessPoint {
 
   private static final long serialVersionUID = 1L;
 
