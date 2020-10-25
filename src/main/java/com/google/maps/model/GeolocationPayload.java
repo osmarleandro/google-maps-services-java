@@ -33,7 +33,7 @@ import java.util.List;
  *
  * <p>The following fields are supported, and all fields are optional:
  */
-public class GeolocationPayload implements Serializable {
+public class GeolocationPayload implements Serializable, IGeolocationPayload {
 
   private static final long serialVersionUID = 1L;
 
