@@ -22,7 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import com.google.maps.GeolocationApi;
 import java.io.IOException;
 
-public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Response> {
+public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Response> implements IGeolocationResponseAdapter {
   /**
    * Reads in a JSON object to create a Geolocation Response. See:
    * https://developers.google.com/maps/documentation/geolocation/intro#responses
