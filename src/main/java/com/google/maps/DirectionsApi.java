@@ -18,6 +18,7 @@ package com.google.maps;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.IApiConfig;
 import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
@@ -34,7 +35,7 @@ import com.google.maps.model.GeocodedWaypoint;
  * API Developer's Guide</a> for more information.
  */
 public class DirectionsApi {
-  static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/directions/json");
+  static final IApiConfig API_CONFIG = new ApiConfig("/maps/api/directions/json");
 
   private DirectionsApi() {}
 

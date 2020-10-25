@@ -19,6 +19,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
+import com.google.maps.internal.IApiConfig;
 import com.google.maps.model.GeolocationPayload;
 import com.google.maps.model.GeolocationResult;
 import com.google.maps.model.LatLng;
@@ -35,7 +36,7 @@ import com.google.maps.model.LatLng;
 public class GeolocationApi {
   private static final String API_BASE_URL = "https://www.googleapis.com";
 
-  static final ApiConfig GEOLOCATION_API_CONFIG =
+  static final IApiConfig GEOLOCATION_API_CONFIG =
       new ApiConfig("/geolocation/v1/geolocate")
           .hostName(API_BASE_URL)
           .supportsClientId(false)
