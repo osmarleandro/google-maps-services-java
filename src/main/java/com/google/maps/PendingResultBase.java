@@ -71,7 +71,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     delegate.cancel();
   }
 
-  private PendingResult<T> makeRequest() {
+  private IPendingResult<T> makeRequest() {
     if (delegate != null) {
       throw new IllegalStateException(
           "'await', 'awaitIgnoreError' or 'setCallback' was already called.");

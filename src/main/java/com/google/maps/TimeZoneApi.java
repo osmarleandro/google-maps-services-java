@@ -42,7 +42,7 @@ public class TimeZoneApi {
    * @param location The location for which to retrieve a time zone.
    * @return Returns the time zone as a {@link PendingResult}.
    */
-  public static PendingResult<TimeZone> getTimeZone(GeoApiContext context, LatLng location) {
+  public static IPendingResult<TimeZone> getTimeZone(GeoApiContext context, LatLng location) {
     return context.get(
         API_CONFIG,
         Response.class,

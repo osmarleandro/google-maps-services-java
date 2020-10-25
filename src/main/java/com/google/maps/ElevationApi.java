@@ -45,7 +45,7 @@ public class ElevationApi {
    * @param points The points to retrieve elevations for.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPoints(
+  public static IPendingResult<ElevationResult[]> getByPoints(
       GeoApiContext context, LatLng... points) {
     return context.get(API_CONFIG, MultiResponse.class, "locations", shortestParam(points));
   }
@@ -59,7 +59,7 @@ public class ElevationApi {
    * @param path The path to sample.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPath(
+  public static IPendingResult<ElevationResult[]> getByPath(
       GeoApiContext context, int samples, LatLng... path) {
     return context.get(
         API_CONFIG,
@@ -79,7 +79,7 @@ public class ElevationApi {
    * @param encodedPolyline The path to sample as an encoded polyline.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPath(
+  public static IPendingResult<ElevationResult[]> getByPath(
       GeoApiContext context, int samples, EncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG,
@@ -106,7 +106,7 @@ public class ElevationApi {
    * @param location The location to retrieve the elevation for.
    * @return The elevation as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
+  public static IPendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
     return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
   }
 
@@ -141,7 +141,7 @@ public class ElevationApi {
    * @param encodedPolyline The encoded polyline to retrieve elevations for.
    * @return The elevations as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult[]> getByPoints(
+  public static IPendingResult<ElevationResult[]> getByPoints(
       GeoApiContext context, EncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());

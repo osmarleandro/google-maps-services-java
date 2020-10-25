@@ -23,7 +23,7 @@ import java.io.IOException;
  *
  * @param <T> the type of the result object.
  */
-public interface PendingResult<T> {
+public interface PendingResult<T> extends IPendingResult<T> {
 
   /**
    * Performs the request asynchronously, calling {@link
