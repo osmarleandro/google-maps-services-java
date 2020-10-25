@@ -18,7 +18,7 @@ package com.google.maps.model;
 import org.junit.Assert;
 
 /** Testing infrastructure for {@see LatLng}. */
-public class LatLngAssert {
+public class LatLngAssert implements ILatLngAssert {
 
   private LatLngAssert() {}
 
