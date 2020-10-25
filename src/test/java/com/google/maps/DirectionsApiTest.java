@@ -26,6 +26,7 @@ import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.GeocodedWaypointStatus;
+import com.google.maps.model.IDirectionsResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
@@ -341,7 +342,7 @@ public class DirectionsApiTest {
   public void testLanguageParameter() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      IDirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("Toledo")
               .destination("Madrid")
@@ -363,7 +364,7 @@ public class DirectionsApiTest {
   public void testTrafficModel() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      IDirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("48 Pirrama Road, Pyrmont NSW 2009")
               .destination("182 Church St, Parramatta NSW 2150")
@@ -386,7 +387,7 @@ public class DirectionsApiTest {
   public void testTransitWithoutSpecifyingTime() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      IDirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
@@ -406,7 +407,7 @@ public class DirectionsApiTest {
   public void testTransitParams() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      IDirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("Fisherman's Wharf, San Francisco")
               .destination("Union Square, San Francisco")
@@ -514,7 +515,7 @@ public class DirectionsApiTest {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
-      DirectionsResult result =
+      IDirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)
@@ -548,7 +549,7 @@ public class DirectionsApiTest {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
-      DirectionsResult result =
+      IDirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin(origin)
               .destination(destination)

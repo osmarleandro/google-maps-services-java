@@ -23,7 +23,7 @@ import java.io.Serializable;
  * <p>Please see <a href="https://developers.google.com/maps/documentation/directions/intro">
  * Directions API</a> for more detail.
  */
-public class DirectionsResult implements Serializable {
+public class DirectionsResult implements Serializable, IDirectionsResult {
 
   private static final long serialVersionUID = 1L;
 

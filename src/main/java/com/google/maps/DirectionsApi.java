@@ -22,6 +22,7 @@ import com.google.maps.internal.StringJoin.UrlValue;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.GeocodedWaypoint;
+import com.google.maps.model.IDirectionsResult;
 
 /**
  * The Google Directions API is a service that calculates directions between locations using an HTTP
@@ -75,7 +76,7 @@ public class DirectionsApi {
     }
 
     @Override
-    public DirectionsResult getResult() {
+    public IDirectionsResult getResult() {
       DirectionsResult result = new DirectionsResult();
       result.geocodedWaypoints = geocodedWaypoints;
       result.routes = routes;
