@@ -21,7 +21,7 @@ package com.google.maps.model;
  * <p>See <a href="https://developers.google.com/maps/documentation/directions/intro#VehicleType">
  * Vehicle Type</a> for more detail.
  */
-public enum VehicleType {
+public enum VehicleType implements IVehicleType {
 
   /** Rail. */
   RAIL,
