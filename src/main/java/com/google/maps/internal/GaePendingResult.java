@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  * <p>{@code T} is the type of the result of this pending result, and {@code R} is the type of the
  * request.
  */
-public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingResult<T> {
+public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingResult<T>, IGaePendingResult<T, R> {
   private final HTTPRequest request;
   private final URLFetchService client;
   private final Class<R> responseClass;
