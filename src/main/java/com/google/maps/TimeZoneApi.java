@@ -29,7 +29,7 @@ import java.util.TimeZone;
  * <p>See the <a href="https://developers.google.com/maps/documentation/timezone/">Time Zone API
  * documentation</a>.
  */
-public class TimeZoneApi {
+public class TimeZoneApi implements ITimeZoneApi {
   private static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/timezone/json").fieldNamingPolicy(FieldNamingPolicy.IDENTITY);
 
