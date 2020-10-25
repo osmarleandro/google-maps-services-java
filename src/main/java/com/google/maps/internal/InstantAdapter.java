@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.time.Instant;
 
 /** This class handles conversion from JSON to {@link Instant}. */
-public class InstantAdapter extends TypeAdapter<Instant> {
+public class InstantAdapter extends TypeAdapter<Instant> implements IInstantAdapter {
 
   /** Read a time from the Places API and convert to a {@link Instant} */
   @Override
