@@ -54,7 +54,7 @@ public class PlacesSearchResult implements Serializable {
   public String placeId;
 
   /** The scope of the placeId. */
-  @Deprecated public PlaceIdScope scope;
+  @Deprecated public IPlaceIdScope scope;
 
   /** The place's rating, from 1.0 to 5.0, based on aggregated user reviews. */
   public float rating;
