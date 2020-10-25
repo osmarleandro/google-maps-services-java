@@ -27,7 +27,7 @@ import java.util.Locale;
  * @see <a href="https://developers.google.com/maps/documentation/distance-matrix/intro">Distance
  *     Matrix API Intro</a>
  */
-public enum TravelMode implements UrlValue {
+public enum TravelMode implements UrlValue, ITravelMode {
   DRIVING,
   WALKING,
   BICYCLING,

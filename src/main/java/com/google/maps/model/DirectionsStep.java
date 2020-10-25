@@ -75,7 +75,7 @@ public class DirectionsStep implements Serializable {
    * href="https://developers.google.com/maps/documentation/directions/intro#TravelModes">Travel
    * Modes</a> for more detail.
    */
-  public TravelMode travelMode;
+  public ITravelMode travelMode;
 
   /**
    * Transit-specific information. This field is only returned when travel_mode is set to "transit".
