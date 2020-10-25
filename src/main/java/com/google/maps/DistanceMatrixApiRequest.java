@@ -30,7 +30,7 @@ import java.time.Instant;
 
 /** A request to the Distance Matrix API. */
 public class DistanceMatrixApiRequest
-    extends PendingResultBase<DistanceMatrix, DistanceMatrixApiRequest, Response> {
+    extends PendingResultBase<DistanceMatrix, DistanceMatrixApiRequest, Response> implements IDistanceMatrixApiRequest {
 
   public DistanceMatrixApiRequest(GeoApiContext context) {
     super(context, DistanceMatrixApi.API_CONFIG, Response.class);
@@ -57,7 +57,7 @@ public class DistanceMatrixApiRequest
    * @param origins Strings to geocode and use as an origin point (e.g. "New York, NY")
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest origins(String... origins) {
+  public IDistanceMatrixApiRequest origins(String... origins) {
     return param("origins", join('|', origins));
   }
 
@@ -67,7 +67,7 @@ public class DistanceMatrixApiRequest
    * @param points The origin points.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest origins(LatLng... points) {
+  public IDistanceMatrixApiRequest origins(LatLng... points) {
     return param("origins", join('|', points));
   }
 
@@ -78,7 +78,7 @@ public class DistanceMatrixApiRequest
    * @param destinations Strings to geocode and use as a destination point (e.g. "Jersey City, NJ")
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest destinations(String... destinations) {
+  public IDistanceMatrixApiRequest destinations(String... destinations) {
     return param("destinations", join('|', destinations));
   }
 
@@ -88,7 +88,7 @@ public class DistanceMatrixApiRequest
    * @param points The destination points.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest destinations(LatLng... points) {
+  public IDistanceMatrixApiRequest destinations(LatLng... points) {
     return param("destinations", join('|', points));
   }
 
@@ -101,7 +101,7 @@ public class DistanceMatrixApiRequest
    * @param mode One of the travel modes supported by the Distance Matrix API.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest mode(TravelMode mode) {
+  public IDistanceMatrixApiRequest mode(TravelMode mode) {
     if (TravelMode.DRIVING.equals(mode)
         || TravelMode.WALKING.equals(mode)
         || TravelMode.BICYCLING.equals(mode)
@@ -118,7 +118,7 @@ public class DistanceMatrixApiRequest
    * @param restriction A {@link RouteRestriction} object.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest avoid(RouteRestriction restriction) {
+  public IDistanceMatrixApiRequest avoid(RouteRestriction restriction) {
     return param("avoid", restriction);
   }
 
@@ -132,7 +132,7 @@ public class DistanceMatrixApiRequest
    *     Unit systems in the Distance Matrix API</a>
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest units(Unit unit) {
+  public IDistanceMatrixApiRequest units(Unit unit) {
     return param("units", unit);
   }
 
@@ -155,7 +155,7 @@ public class DistanceMatrixApiRequest
    * @param departureTime The time of departure.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest departureTime(Instant departureTime) {
+  public IDistanceMatrixApiRequest departureTime(Instant departureTime) {
     return param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L));
   }
 
@@ -166,7 +166,7 @@ public class DistanceMatrixApiRequest
    * @param trafficModel The traffic model to use in estimating time in traffic.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
+  public IDistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
     return param("traffic_model", trafficModel);
   }
 
@@ -177,7 +177,7 @@ public class DistanceMatrixApiRequest
    * @param arrivalTime The preferred arrival time.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
+  public IDistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
     return param("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
   }
 
@@ -188,7 +188,7 @@ public class DistanceMatrixApiRequest
    * @param transitModes The preferred transit modes.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
+  public IDistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
     return param("transit_mode", join('|', transitModes));
   }
 
@@ -199,7 +199,7 @@ public class DistanceMatrixApiRequest
    * @param pref The transit routing preference for this distance matrix.
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
-  public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
+  public IDistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
     return param("transit_routing_preference", pref);
   }
 }
