@@ -204,8 +204,8 @@ public class PlacesApi {
    * @param input input is the text string on which to search.
    * @return Returns a QueryAutocompleteRequest that you can configure and execute.
    */
-  public static QueryAutocompleteRequest queryAutocomplete(GeoApiContext context, String input) {
-    QueryAutocompleteRequest request = new QueryAutocompleteRequest(context);
+  public static IQueryAutocompleteRequest queryAutocomplete(GeoApiContext context, String input) {
+    IQueryAutocompleteRequest request = new QueryAutocompleteRequest(context);
     request.input(input);
     return request;
   }

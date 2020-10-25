@@ -29,7 +29,7 @@ import com.google.maps.model.LatLng;
  */
 public class QueryAutocompleteRequest
     extends PendingResultBase<
-        AutocompletePrediction[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> {
+        AutocompletePrediction[], QueryAutocompleteRequest, QueryAutocompleteRequest.Response> implements IQueryAutocompleteRequest {
 
   static final ApiConfig API_CONFIG =
       new ApiConfig("/maps/api/place/queryautocomplete/json")
@@ -53,7 +53,7 @@ public class QueryAutocompleteRequest
    * @param input The input text to autocomplete.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest input(String input) {
+  public IQueryAutocompleteRequest input(String input) {
     return param("input", input);
   }
 
@@ -66,7 +66,7 @@ public class QueryAutocompleteRequest
    * @param offset The character offset to search from.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest offset(int offset) {
+  public IQueryAutocompleteRequest offset(int offset) {
     return param("offset", String.valueOf(offset));
   }
 
@@ -76,7 +76,7 @@ public class QueryAutocompleteRequest
    * @param location The location point around which to search.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest location(LatLng location) {
+  public IQueryAutocompleteRequest location(LatLng location) {
     return param("location", location);
   }
 
@@ -87,7 +87,7 @@ public class QueryAutocompleteRequest
    * @param radius The radius around which to bias results.
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
-  public QueryAutocompleteRequest radius(int radius) {
+  public IQueryAutocompleteRequest radius(int radius) {
     return param("radius", String.valueOf(radius));
   }
 
