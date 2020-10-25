@@ -30,10 +30,10 @@ public class TransitDetails implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** Information about the arrival stop/station for this part of the trip. */
-  public StopDetails arrivalStop;
+  public IStopDetails arrivalStop;
 
   /** Information about the departure stop/station for this part of the trip. */
-  public StopDetails departureStop;
+  public IStopDetails departureStop;
 
   /** The arrival time for this leg of the journey. */
   public ZonedDateTime arrivalTime;
