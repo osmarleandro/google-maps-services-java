@@ -39,5 +39,5 @@ public class DirectionsResult implements Serializable {
    * href="https://developers.google.com/maps/documentation/directions/intro#Routes">Routes</a> for
    * more detail.
    */
-  public DirectionsRoute routes[];
+  public IDirectionsRoute routes[];
 }

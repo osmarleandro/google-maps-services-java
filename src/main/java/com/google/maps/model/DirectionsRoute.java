@@ -26,7 +26,7 @@ import java.util.Arrays;
  * <p>Please see <a href="https://developers.google.com/maps/documentation/directions/intro#Routes">
  * Routes</a> for more detail.
  */
-public class DirectionsRoute implements Serializable {
+public class DirectionsRoute implements Serializable, IDirectionsRoute {
 
   private static final long serialVersionUID = 1L;
   /**
