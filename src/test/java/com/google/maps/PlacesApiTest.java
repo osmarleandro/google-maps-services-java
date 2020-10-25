@@ -54,7 +54,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import org.junit.Test;
 
-public class PlacesApiTest {
+public class PlacesApiTest implements IPlacesApiTest {
 
   private static final String GOOGLE_SYDNEY = "ChIJN1t_tDeuEmsRUsoyG83frY4";
   private static final String QUAY_PLACE_ID = "ChIJ02qnq0KuEmsRHUJF4zo1x4I";
