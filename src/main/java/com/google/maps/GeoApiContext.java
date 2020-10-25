@@ -22,6 +22,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
+import com.google.maps.internal.IUrlSigner;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
@@ -65,7 +66,7 @@ public class GeoApiContext {
   private final long errorTimeout;
   private final ExceptionsAllowedToRetry exceptionsAllowedToRetry;
   private final Integer maxRetries;
-  private final UrlSigner urlSigner;
+  private final IUrlSigner urlSigner;
   private String experienceIdHeaderValue;
   private final RequestMetricsReporter requestMetricsReporter;
 
@@ -79,7 +80,7 @@ public class GeoApiContext {
       long errorTimeout,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       Integer maxRetries,
-      UrlSigner urlSigner,
+      IUrlSigner urlSigner,
       RequestMetricsReporter requestMetricsReporter,
       String... experienceIdHeaderValue) {
     this.requestHandler = requestHandler;
@@ -361,7 +362,7 @@ public class GeoApiContext {
     private long errorTimeout = DEFAULT_BACKOFF_TIMEOUT_MILLIS;
     private ExceptionsAllowedToRetry exceptionsAllowedToRetry = new ExceptionsAllowedToRetry();
     private Integer maxRetries;
-    private UrlSigner urlSigner;
+    private IUrlSigner urlSigner;
     private RequestMetricsReporter requestMetricsReporter = new NoOpRequestMetricsReporter();
     private String[] experienceIdHeaderValue;
 

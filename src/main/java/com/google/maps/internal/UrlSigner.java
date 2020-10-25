@@ -30,7 +30,7 @@ import okio.ByteString;
  * href="https://developers.google.com/maps/documentation/directions/get-api-key#client-id">Using a
  * client ID</a> for more detail on this protocol.
  */
-public class UrlSigner {
+public class UrlSigner implements IUrlSigner {
   private static final String ALGORITHM_HMAC_SHA1 = "HmacSHA1";
   private final Mac mac;
 
