@@ -59,7 +59,7 @@ import org.slf4j.LoggerFactory;
  * <p>{@code T} is the type of the result of this pending result, and {@code R} is the type of the
  * request.
  */
-public class OkHttpPendingResult<T, R extends ApiResponse<T>>
+public class OkHttpPendingResult<T, R extends IApiResponse<T>>
     implements PendingResult<T>, Callback {
   private final Request request;
   private final OkHttpClient client;

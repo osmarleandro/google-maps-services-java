@@ -17,9 +17,9 @@ package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.GeoApiContext.RequestHandler;
-import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.ExceptionsAllowedToRetry;
 import com.google.maps.internal.HttpHeaders;
+import com.google.maps.internal.IApiResponse;
 import com.google.maps.internal.OkHttpPendingResult;
 import com.google.maps.internal.RateLimitExecutorService;
 import com.google.maps.metrics.RequestMetrics;
@@ -53,7 +53,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   @Override
-  public <T, R extends ApiResponse<T>> PendingResult<T> handle(
+  public <T, R extends IApiResponse<T>> PendingResult<T> handle(
       String hostName,
       String url,
       String userAgent,
@@ -82,7 +82,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
   }
 
   @Override
-  public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
+  public <T, R extends IApiResponse<T>> PendingResult<T> handlePost(
       String hostName,
       String url,
       String payload,

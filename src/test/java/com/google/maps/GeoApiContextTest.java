@@ -28,6 +28,7 @@ import com.google.maps.errors.OverQueryLimitException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.HttpHeaders;
+import com.google.maps.internal.IApiResponse;
 import com.google.maps.model.GeocodingResult;
 import java.io.IOException;
 import java.util.Collections;
@@ -75,7 +76,7 @@ public class GeoApiContextTest {
   @Test
   public void testGetIncludesDefaultUserAgent() throws Exception {
     // Set up a mock request
-    ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
+    IApiResponse<Object> fakeResponse = mock(ApiResponse.class);
     String path = "/";
     Map<String, List<String>> params = new HashMap<>();
     params.put("key", Collections.singletonList("value"));
@@ -376,7 +377,7 @@ public class GeoApiContextTest {
   @SuppressWarnings("unchecked")
   private RecordedRequest makeMockRequest(String... experienceId) throws Exception {
     // Set up a mock request
-    ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
+    IApiResponse<Object> fakeResponse = mock(ApiResponse.class);
     String path = "/";
     Map<String, List<String>> params = new HashMap<>();
     params.put("key", Collections.singletonList("value"));
