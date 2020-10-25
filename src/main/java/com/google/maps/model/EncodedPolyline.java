@@ -25,7 +25,7 @@ import java.util.List;
  * <p>See <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">
  * Encoded Polyline Algorithm</a> for more detail on the protocol.
  */
-public class EncodedPolyline implements Serializable {
+public class EncodedPolyline implements Serializable, IEncodedPolyline {
 
   private static final long serialVersionUID = 1L;
 

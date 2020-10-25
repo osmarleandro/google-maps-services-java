@@ -22,7 +22,7 @@ import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.ElevationResult;
-import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.IEncodedPolyline;
 import com.google.maps.model.LatLng;
 
 /**
@@ -80,7 +80,7 @@ public class ElevationApi {
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPath(
-      GeoApiContext context, int samples, EncodedPolyline encodedPolyline) {
+      GeoApiContext context, int samples, IEncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG,
         MultiResponse.class,
@@ -142,7 +142,7 @@ public class ElevationApi {
    * @return The elevations as a {@link PendingResult}.
    */
   public static PendingResult<ElevationResult[]> getByPoints(
-      GeoApiContext context, EncodedPolyline encodedPolyline) {
+      GeoApiContext context, IEncodedPolyline encodedPolyline) {
     return context.get(
         API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());
   }

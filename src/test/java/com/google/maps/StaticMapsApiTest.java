@@ -25,6 +25,7 @@ import com.google.maps.StaticMapsRequest.Markers.MarkersSize;
 import com.google.maps.StaticMapsRequest.Path;
 import com.google.maps.StaticMapsRequest.StaticMapType;
 import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.IEncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
 import java.awt.image.BufferedImage;
@@ -215,7 +216,7 @@ public class StaticMapsApiTest {
       List<LatLng> points = new ArrayList<>();
       points.add(MELBOURNE);
       points.add(SYDNEY);
-      EncodedPolyline path = new EncodedPolyline(points);
+      IEncodedPolyline path = new EncodedPolyline(points);
       req.path(path);
 
       req.await();

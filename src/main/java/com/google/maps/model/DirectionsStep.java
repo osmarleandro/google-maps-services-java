@@ -68,7 +68,7 @@ public class DirectionsStep implements Serializable {
   public DirectionsStep[] steps;
 
   /** The path of this step. */
-  public EncodedPolyline polyline;
+  public IEncodedPolyline polyline;
 
   /**
    * The travel mode of this step. See <a

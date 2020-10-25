@@ -18,7 +18,7 @@ package com.google.maps;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.StringJoin;
 import com.google.maps.internal.StringJoin.UrlValue;
-import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.IEncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
 import java.util.ArrayList;
@@ -442,7 +442,7 @@ public class StaticMapsRequest
    * @param path A path to render atop the map, as an EncodedPolyline.
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
-  public StaticMapsRequest path(EncodedPolyline path) {
+  public StaticMapsRequest path(IEncodedPolyline path) {
     return paramAddToList("path", "enc:" + path.getEncodedPath());
   }
 

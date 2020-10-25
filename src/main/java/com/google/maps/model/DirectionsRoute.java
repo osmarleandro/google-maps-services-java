@@ -49,7 +49,7 @@ public class DirectionsRoute implements Serializable {
   public int[] waypointOrder;
 
   /** An approximate (smoothed) path of the resulting directions. */
-  public EncodedPolyline overviewPolyline;
+  public IEncodedPolyline overviewPolyline;
 
   /** The viewport bounding box of the overview_polyline. */
   public Bounds bounds;
