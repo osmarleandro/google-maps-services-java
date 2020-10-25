@@ -24,7 +24,7 @@ import java.util.Arrays;
  * href="https://developers.google.com/places/web-service/details#PlaceDetailsResults">Place Details
  * Results</a> for more details.
  */
-public class OpeningHours implements Serializable {
+public class OpeningHours implements Serializable, IOpeningHours {
 
   private static final long serialVersionUID = 1L;
   /**

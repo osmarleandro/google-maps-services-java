@@ -63,7 +63,7 @@ public class PlacesSearchResult implements Serializable {
   public String types[];
 
   /** Information on when the place is open. */
-  public OpeningHours openingHours;
+  public IOpeningHours openingHours;
 
   /** Photo objects associated with this place, each containing a reference to an image. */
   public Photo photos[];
