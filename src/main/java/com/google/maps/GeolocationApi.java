@@ -49,7 +49,7 @@ public class GeolocationApi {
     return new GeolocationApiRequest(context).Payload(payload).CreatePayload();
   }
 
-  public static GeolocationApiRequest newRequest(GeoApiContext context) {
+  public static IGeolocationApiRequest newRequest(GeoApiContext context) {
     return new GeolocationApiRequest(context);
   }
 

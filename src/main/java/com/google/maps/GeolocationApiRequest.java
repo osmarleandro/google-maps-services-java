@@ -24,7 +24,7 @@ import com.google.maps.model.WifiAccessPoint;
 
 /** A request for the Geolocation API. */
 public class GeolocationApiRequest
-    extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> {
+    extends PendingResultBase<GeolocationResult, GeolocationApiRequest, GeolocationApi.Response> implements IGeolocationApiRequest {
 
   private GeolocationPayload payload = null;
   private GeolocationPayloadBuilder builder = null;
@@ -44,52 +44,52 @@ public class GeolocationApiRequest
     }
   }
 
-  public GeolocationApiRequest HomeMobileCountryCode(int newHomeMobileCountryCode) {
+  public IGeolocationApiRequest HomeMobileCountryCode(int newHomeMobileCountryCode) {
     this.builder.HomeMobileCountryCode(newHomeMobileCountryCode);
     return this;
   }
 
-  public GeolocationApiRequest HomeMobileNetworkCode(int newHomeMobileNetworkCode) {
+  public IGeolocationApiRequest HomeMobileNetworkCode(int newHomeMobileNetworkCode) {
     this.builder.HomeMobileNetworkCode(newHomeMobileNetworkCode);
     return this;
   }
 
-  public GeolocationApiRequest RadioType(String newRadioType) {
+  public IGeolocationApiRequest RadioType(String newRadioType) {
     this.builder.RadioType(newRadioType);
     return this;
   }
 
-  public GeolocationApiRequest Carrier(String newCarrier) {
+  public IGeolocationApiRequest Carrier(String newCarrier) {
     this.builder.Carrier(newCarrier);
     return this;
   }
 
-  public GeolocationApiRequest ConsiderIp(boolean newConsiderIp) {
+  public IGeolocationApiRequest ConsiderIp(boolean newConsiderIp) {
     this.builder.ConsiderIp(newConsiderIp);
     return this;
   }
 
-  public GeolocationApiRequest CellTowers(CellTower[] newCellTowers) {
+  public IGeolocationApiRequest CellTowers(CellTower[] newCellTowers) {
     this.builder.CellTowers(newCellTowers);
     return this;
   }
 
-  public GeolocationApiRequest AddCellTower(CellTower newCellTower) {
+  public IGeolocationApiRequest AddCellTower(CellTower newCellTower) {
     this.builder.AddCellTower(newCellTower);
     return this;
   }
 
-  public GeolocationApiRequest WifiAccessPoints(WifiAccessPoint[] newWifiAccessPoints) {
+  public IGeolocationApiRequest WifiAccessPoints(WifiAccessPoint[] newWifiAccessPoints) {
     this.builder.WifiAccessPoints(newWifiAccessPoints);
     return this;
   }
 
-  public GeolocationApiRequest AddWifiAccessPoint(WifiAccessPoint newWifiAccessPoint) {
+  public IGeolocationApiRequest AddWifiAccessPoint(WifiAccessPoint newWifiAccessPoint) {
     this.builder.AddWifiAccessPoint(newWifiAccessPoint);
     return this;
   }
 
-  public GeolocationApiRequest Payload(GeolocationPayload payload) {
+  public IGeolocationApiRequest Payload(GeolocationPayload payload) {
     this.payload = payload;
     return this;
   }
