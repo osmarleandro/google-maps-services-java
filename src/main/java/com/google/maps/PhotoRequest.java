@@ -22,7 +22,7 @@ import com.google.maps.internal.ApiConfig;
  * Photo</a> request.
  */
 public class PhotoRequest
-    extends PendingResultBase<ImageResult, PhotoRequest, ImageResult.Response> {
+    extends PendingResultBase<ImageResult, PhotoRequest, ImageResult.Response> implements IPhotoRequest {
 
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/place/photo");
 
@@ -47,7 +47,7 @@ public class PhotoRequest
    *     are returned from either a Place Search or Place Details request.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest photoReference(String photoReference) {
+  public IPhotoRequest photoReference(String photoReference) {
     return param("photoreference", photoReference);
   }
 
@@ -58,7 +58,7 @@ public class PhotoRequest
    *     Photos service.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest maxHeight(int maxHeight) {
+  public IPhotoRequest maxHeight(int maxHeight) {
     return param("maxheight", String.valueOf(maxHeight));
   }
 
@@ -69,7 +69,7 @@ public class PhotoRequest
    *     service.
    * @return Returns the configured PhotoRequest.
    */
-  public PhotoRequest maxWidth(int maxWidth) {
+  public IPhotoRequest maxWidth(int maxWidth) {
     return param("maxwidth", String.valueOf(maxWidth));
   }
 }

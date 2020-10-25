@@ -172,8 +172,8 @@ public class PlacesApi {
    * @param photoReference The reference to the photo to retrieve.
    * @return Returns a PhotoRequest that you can execute.
    */
-  public static PhotoRequest photo(GeoApiContext context, String photoReference) {
-    PhotoRequest request = new PhotoRequest(context);
+  public static IPhotoRequest photo(GeoApiContext context, String photoReference) {
+    IPhotoRequest request = new PhotoRequest(context);
     request.photoReference(photoReference);
     return request;
   }
