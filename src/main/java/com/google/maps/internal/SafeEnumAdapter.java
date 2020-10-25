@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  *
  * @param <E> the enum type to map values to.
  */
-public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> {
+public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> implements ISafeEnumAdapter<E> {
 
   private static final Logger LOG = LoggerFactory.getLogger(SafeEnumAdapter.class.getName());
 
