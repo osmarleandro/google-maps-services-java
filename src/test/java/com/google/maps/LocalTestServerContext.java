@@ -37,7 +37,7 @@ import org.json.JSONObject;
 public class LocalTestServerContext implements AutoCloseable {
 
   private final MockWebServer server;
-  public final GeoApiContext context;
+  public final IGeoApiContext context;
   private RecordedRequest request = null;
   private List<NameValuePair> params = null;
 

@@ -51,7 +51,7 @@ import java.util.concurrent.TimeUnit;
  * <p>When you are finished with a GeoApiContext object, you must call {@link #shutdown()} on it to
  * release its resources.
  */
-public class GeoApiContext {
+public class GeoApiContext implements IGeoApiContext {
 
   private static final String VERSION = "@VERSION@"; // Populated by the build script
   private static final String USER_AGENT = "GoogleGeoApiClientJava/" + VERSION;

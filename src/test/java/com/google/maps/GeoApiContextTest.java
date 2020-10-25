@@ -305,7 +305,7 @@ public class GeoApiContextTest {
   @Test
   public void testSingleExperienceId() {
     final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
+    final IGeoApiContext context = builder.experienceId(experienceId).build();
     assertEquals(experienceId, context.getExperienceId());
   }
 
@@ -313,20 +313,20 @@ public class GeoApiContextTest {
   public void testMultipleExperienceId() {
     final String experienceId1 = "experienceId1";
     final String experienceId2 = "experienceId2";
-    final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
+    final IGeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
     assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
   }
 
   @Test
   public void testNoExperienceId() {
-    final GeoApiContext context = builder.build();
+    final IGeoApiContext context = builder.build();
     assertNull(context.getExperienceId());
   }
 
   @Test
   public void testClearingExperienceId() {
     final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
+    final IGeoApiContext context = builder.experienceId(experienceId).build();
     assertEquals(experienceId, context.getExperienceId());
 
     context.clearExperienceId();
@@ -353,7 +353,7 @@ public class GeoApiContextTest {
     final String experienceId = UUID.randomUUID().toString();
 
     // instantiate context with experience id
-    final GeoApiContext context =
+    final IGeoApiContext context =
         new GeoApiContext.Builder().apiKey("AIza-Maps-API-Key").experienceId(experienceId).build();
 
     // clear the current experience id
@@ -397,7 +397,7 @@ public class GeoApiContextTest {
 
   @Test
   public void testShutdown() throws InterruptedException {
-    GeoApiContext context = builder.build();
+    IGeoApiContext context = builder.build();
     final Thread delayThread = findLastThreadByName("RateLimitExecutorDelayThread");
     assertNotNull(
         "Delay thread should be created in constructor of RateLimitExecutorService", delayThread);
