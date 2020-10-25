@@ -40,7 +40,7 @@ public class DirectionsRoute implements Serializable {
    * present for each waypoint or destination specified. (A route with no waypoints will contain
    * exactly one leg within the legs array.)
    */
-  public DirectionsLeg[] legs;
+  public IDirectionsLeg[] legs;
 
   /**
    * Indicates the order of any waypoints in the calculated route. This waypoints may be reordered

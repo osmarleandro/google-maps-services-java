@@ -24,7 +24,7 @@ import java.time.ZonedDateTime;
  * <p>See <a href="https://developers.google.com/maps/documentation/directions/intro#Legs">the Legs
  * documentation</a> for more detail.
  */
-public class DirectionsLeg implements Serializable {
+public class DirectionsLeg implements Serializable, IDirectionsLeg {
 
   private static final long serialVersionUID = 1L;
 
