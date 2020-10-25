@@ -23,7 +23,7 @@ public class SnappedSpeedLimitResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** Speed limit results. */
-  public SpeedLimit[] speedLimits;
+  public ISpeedLimit[] speedLimits;
 
   /** Snap-to-road results. */
   public SnappedPoint[] snappedPoints;
