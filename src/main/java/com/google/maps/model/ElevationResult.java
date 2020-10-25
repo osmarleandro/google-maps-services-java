@@ -22,7 +22,7 @@ import java.io.Serializable;
  *
  * <p>Units are in meters, per https://developers.google.com/maps/documentation/elevation/start.
  */
-public class ElevationResult implements Serializable {
+public class ElevationResult implements Serializable, IElevationResult {
 
   private static final long serialVersionUID = 1L;
 

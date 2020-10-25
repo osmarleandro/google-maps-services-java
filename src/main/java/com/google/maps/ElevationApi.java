@@ -23,6 +23,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.IElevationResult;
 import com.google.maps.model.LatLng;
 
 /**
@@ -113,7 +114,7 @@ public class ElevationApi {
   private static class SingularResponse implements ApiResponse<ElevationResult> {
     public String status;
     public String errorMessage;
-    public ElevationResult[] results;
+    public IElevationResult[] results;
 
     @Override
     public boolean successful() {
@@ -121,7 +122,7 @@ public class ElevationApi {
     }
 
     @Override
-    public ElevationResult getResult() {
+    public IElevationResult getResult() {
       return results[0];
     }
 
@@ -150,7 +151,7 @@ public class ElevationApi {
   private static class MultiResponse implements ApiResponse<ElevationResult[]> {
     public String status;
     public String errorMessage;
-    public ElevationResult[] results;
+    public IElevationResult[] results;
 
     @Override
     public boolean successful() {
@@ -158,7 +159,7 @@ public class ElevationApi {
     }
 
     @Override
-    public ElevationResult[] getResult() {
+    public IElevationResult[] getResult() {
       return results;
     }
 
