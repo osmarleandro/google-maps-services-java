@@ -404,7 +404,7 @@ public abstract class RateLimiter {
 
     public static SleepingStopwatch createFromSystemTimer() {
       return new SleepingStopwatch() {
-        final Stopwatch stopwatch = Stopwatch.createStarted();
+        final IStopwatch stopwatch = Stopwatch.createStarted();
 
         @Override
         protected long readMicros() {

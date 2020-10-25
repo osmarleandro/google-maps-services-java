@@ -87,7 +87,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Kevin Bourrillion
  */
-public final class Stopwatch {
+public final class Stopwatch implements IStopwatch {
   private final Ticker ticker;
   private boolean isRunning;
   private long elapsedNanos;
@@ -96,22 +96,22 @@ public final class Stopwatch {
   /**
    * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
    */
-  public static Stopwatch createUnstarted() {
+  public static IStopwatch createUnstarted() {
     return new Stopwatch();
   }
 
   /** Creates (but does not start) a new stopwatch, using the specified time source. */
-  public static Stopwatch createUnstarted(Ticker ticker) {
+  public static IStopwatch createUnstarted(Ticker ticker) {
     return new Stopwatch(ticker);
   }
 
   /** Creates (and starts) a new stopwatch using {@link System#nanoTime} as its time source. */
-  public static Stopwatch createStarted() {
+  public static IStopwatch createStarted() {
     return new Stopwatch().start();
   }
 
   /** Creates (and starts) a new stopwatch, using the specified time source. */
-  public static Stopwatch createStarted(Ticker ticker) {
+  public static IStopwatch createStarted(Ticker ticker) {
     return new Stopwatch(ticker).start();
   }
 
@@ -137,7 +137,7 @@ public final class Stopwatch {
    * @return this {@code Stopwatch} instance
    * @throws IllegalStateException if the stopwatch is already running.
    */
-  public Stopwatch start() {
+  public IStopwatch start() {
     checkState(!isRunning, "This stopwatch is already running.");
     isRunning = true;
     startTick = ticker.read();
@@ -151,7 +151,7 @@ public final class Stopwatch {
    * @return this {@code Stopwatch} instance
    * @throws IllegalStateException if the stopwatch is already stopped.
    */
-  public Stopwatch stop() {
+  public IStopwatch stop() {
     long tick = ticker.read();
     checkState(isRunning, "This stopwatch is already stopped.");
     isRunning = false;
@@ -164,7 +164,7 @@ public final class Stopwatch {
    *
    * @return this {@code Stopwatch} instance
    */
-  public Stopwatch reset() {
+  public IStopwatch reset() {
     elapsedNanos = 0;
     isRunning = false;
     return this;
