@@ -42,7 +42,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class DirectionsApiTest {
+public class DirectionsApiTest implements IDirectionsApiTest {
 
   private final String getDirectionsResponse;
   private final String builderResponse;
