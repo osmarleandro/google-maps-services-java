@@ -38,7 +38,7 @@ public class DirectionsLeg implements Serializable {
   public Distance distance;
 
   /** The total duration of this leg. */
-  public Duration duration;
+  public IDuration duration;
 
   /**
    * The total duration of this leg, taking into account current traffic conditions. The duration in
@@ -52,7 +52,7 @@ public class DirectionsLeg implements Serializable {
    *   <li>The directions request does not include stopover waypoints.
    * </ol>
    */
-  public Duration durationInTraffic;
+  public IDuration durationInTraffic;
 
   /**
    * The estimated time of arrival for this leg. This property is only returned for transit

@@ -35,7 +35,7 @@ public class DistanceMatrixElement implements Serializable {
   public DistanceMatrixElementStatus status;
 
   /** The total duration of this leg. */
-  public Duration duration;
+  public IDuration duration;
 
   /**
    * The length of time to travel this route, based on current and historical traffic conditions.
@@ -49,7 +49,7 @@ public class DistanceMatrixElement implements Serializable {
    *   <li>The mode parameter is set to driving.
    * </ol>
    */
-  public Duration durationInTraffic;
+  public IDuration durationInTraffic;
 
   /** {@code distance} indicates the total distance covered by this leg. */
   public Distance distance;
