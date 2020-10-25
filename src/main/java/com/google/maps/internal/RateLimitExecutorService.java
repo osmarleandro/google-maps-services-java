@@ -33,7 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /** Rate Limit Policy for Google Maps Web Services APIs. */
-public class RateLimitExecutorService implements ExecutorService, Runnable {
+public class RateLimitExecutorService implements ExecutorService, Runnable, IRateLimitExecutorService {
 
   private static final Logger LOG =
       LoggerFactory.getLogger(RateLimitExecutorService.class.getName());
