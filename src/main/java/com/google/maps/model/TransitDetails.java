@@ -25,7 +25,7 @@ import java.time.ZonedDateTime;
  * TransitDetails} object you can access additional information about the transit stop, transit
  * line, and transit agency.
  */
-public class TransitDetails implements Serializable {
+public class TransitDetails implements Serializable, ITransitDetails {
 
   private static final long serialVersionUID = 1L;
 
