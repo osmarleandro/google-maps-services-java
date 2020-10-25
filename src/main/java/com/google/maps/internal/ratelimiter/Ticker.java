@@ -37,7 +37,7 @@ package com.google.maps.internal.ratelimiter;
  *
  * @author Kevin Bourrillion
  */
-public abstract class Ticker {
+public abstract class Ticker implements ITicker {
   /** Constructor for use by subclasses. */
   protected Ticker() {}
 
@@ -45,11 +45,11 @@ public abstract class Ticker {
   public abstract long read();
 
   /** A ticker that reads the current time using {@link System#nanoTime}. */
-  public static Ticker systemTicker() {
+  public static ITicker systemTicker() {
     return SYSTEM_TICKER;
   }
 
-  private static final Ticker SYSTEM_TICKER =
+  private static final ITicker SYSTEM_TICKER =
       new Ticker() {
         @Override
         public long read() {
