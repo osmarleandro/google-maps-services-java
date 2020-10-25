@@ -23,7 +23,7 @@ import com.google.maps.model.LatLng;
 import java.io.IOException;
 
 /** Handle conversion from varying types of latitude and longitude representations. */
-public class LatLngAdapter extends TypeAdapter<LatLng> {
+public class LatLngAdapter extends TypeAdapter<LatLng> implements ILatLngAdapter {
   /**
    * Reads in a JSON object and try to create a LatLng in one of the following formats.
    *

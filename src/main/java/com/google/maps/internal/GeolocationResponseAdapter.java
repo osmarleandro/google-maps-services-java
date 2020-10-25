@@ -69,7 +69,7 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
       return null;
     }
     GeolocationApi.Response response = new GeolocationApi.Response();
-    LatLngAdapter latLngAdapter = new LatLngAdapter();
+    ILatLngAdapter latLngAdapter = new LatLngAdapter();
 
     reader.beginObject(); // opening {
     while (reader.hasNext()) {
