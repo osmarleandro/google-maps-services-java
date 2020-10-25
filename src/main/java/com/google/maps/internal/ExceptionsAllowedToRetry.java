@@ -18,7 +18,7 @@ package com.google.maps.internal;
 import com.google.maps.errors.ApiException;
 import java.util.HashSet;
 
-public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiException>> {
+public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiException>> implements IExceptionsAllowedToRetry {
 
   private static final long serialVersionUID = 5283992240187266422L;
 
