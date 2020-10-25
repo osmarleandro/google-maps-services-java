@@ -21,7 +21,7 @@ import com.google.maps.internal.StringJoin;
  * Used by the Places API to restrict the autocomplete results to places matching the specified
  * type.
  */
-public enum PlaceAutocompleteType implements StringJoin.UrlValue {
+public enum PlaceAutocompleteType implements StringJoin.UrlValue, IPlaceAutocompleteType {
   GEOCODE("geocode"),
   ADDRESS("address"),
   ESTABLISHMENT("establishment"),
