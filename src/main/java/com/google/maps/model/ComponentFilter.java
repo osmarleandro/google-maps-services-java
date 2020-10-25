@@ -28,7 +28,7 @@ import com.google.maps.internal.StringJoin;
  * href="https://developers.google.com/maps/documentation/geocoding/intro#ComponentFiltering">Component
  * Filtering</a> for more detail.
  */
-public class ComponentFilter implements StringJoin.UrlValue {
+public class ComponentFilter implements StringJoin.UrlValue, IComponentFilter {
   public final String component;
   public final String value;
 
@@ -69,7 +69,7 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param locality The locality to filter on.
    * @return Returns a {@link ComponentFilter}.
    */
-  public static ComponentFilter locality(String locality) {
+  public static IComponentFilter locality(String locality) {
     return new ComponentFilter("locality", locality);
   }
 
@@ -89,7 +89,7 @@ public class ComponentFilter implements StringJoin.UrlValue {
    * @param postalCode The postal code to filter on.
    * @return Returns a {@link ComponentFilter}.
    */
-  public static ComponentFilter postalCode(String postalCode) {
+  public static IComponentFilter postalCode(String postalCode) {
     return new ComponentFilter("postal_code", postalCode);
   }
 
