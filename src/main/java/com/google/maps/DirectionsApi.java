@@ -45,7 +45,7 @@ public class DirectionsApi {
    * @param context Context that the DirectionsApiRequest will be executed against
    * @return A newly constructed DirectionsApiRequest between the given points.
    */
-  public static DirectionsApiRequest newRequest(GeoApiContext context) {
+  public static IDirectionsApiRequest newRequest(GeoApiContext context) {
     return new DirectionsApiRequest(context);
   }
 
