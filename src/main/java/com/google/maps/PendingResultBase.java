@@ -33,7 +33,7 @@ import java.util.Map;
  * class, and R is the type of the request.
  */
 abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R extends ApiResponse<T>>
-    implements PendingResult<T> {
+    implements PendingResult<T>, IPendingResultBase<T, A, R> {
 
   private final GeoApiContext context;
   private final ApiConfig config;
