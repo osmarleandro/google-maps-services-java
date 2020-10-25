@@ -33,7 +33,7 @@ import com.google.maps.model.GeocodedWaypoint;
  * <p>See <a href="https://developers.google.com/maps/documentation/directions/intro">the Directions
  * API Developer's Guide</a> for more information.
  */
-public class DirectionsApi {
+public class DirectionsApi implements IDirectionsApi {
   static final ApiConfig API_CONFIG = new ApiConfig("/maps/api/directions/json");
 
   private DirectionsApi() {}

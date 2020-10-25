@@ -89,9 +89,9 @@ public class DirectionsApiTest {
           DirectionsApi.newRequest(sc.context)
               .mode(TravelMode.BICYCLING)
               .avoid(
-                  DirectionsApi.RouteRestriction.HIGHWAYS,
-                  DirectionsApi.RouteRestriction.TOLLS,
-                  DirectionsApi.RouteRestriction.FERRIES)
+                  IDirectionsApi.RouteRestriction.HIGHWAYS,
+                  IDirectionsApi.RouteRestriction.TOLLS,
+                  IDirectionsApi.RouteRestriction.FERRIES)
               .units(Unit.METRIC)
               .region("au")
               .origin("Sydney")
@@ -103,11 +103,11 @@ public class DirectionsApiTest {
 
       sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
       sc.assertParamValue(
-          DirectionsApi.RouteRestriction.HIGHWAYS.toUrlValue()
+          IDirectionsApi.RouteRestriction.HIGHWAYS.toUrlValue()
               + "|"
-              + DirectionsApi.RouteRestriction.TOLLS.toUrlValue()
+              + IDirectionsApi.RouteRestriction.TOLLS.toUrlValue()
               + "|"
-              + DirectionsApi.RouteRestriction.FERRIES.toUrlValue(),
+              + IDirectionsApi.RouteRestriction.FERRIES.toUrlValue(),
           "avoid");
       sc.assertParamValue(Unit.METRIC.toUrlValue(), "units");
       sc.assertParamValue("au", "region");
@@ -169,7 +169,7 @@ public class DirectionsApiTest {
       DirectionsApi.newRequest(sc.context)
           .origin("Toronto")
           .destination("Montreal")
-          .avoid(DirectionsApi.RouteRestriction.HIGHWAYS)
+          .avoid(IDirectionsApi.RouteRestriction.HIGHWAYS)
           .mode(TravelMode.BICYCLING)
           .await();
 
