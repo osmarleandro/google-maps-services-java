@@ -41,7 +41,7 @@ public class GeocodedWaypoint implements Serializable {
   public String placeId;
 
   /** The address types of the geocoding result used for calculating directions. */
-  public AddressType types[];
+  public IAddressType types[];
 
   @Override
   public String toString() {
