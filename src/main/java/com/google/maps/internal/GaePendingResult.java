@@ -27,6 +27,7 @@ import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
+import com.google.maps.errors.IApiException;
 import com.google.maps.errors.UnknownErrorException;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
@@ -231,7 +232,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       // Return successful responses
       return resp.getResult();
     } else {
-      ApiException e = resp.getError();
+      IApiException e = resp.getError();
       if (shouldRetry(e)) {
         // Retry over_query_limit errors
         return request.retry();
@@ -256,7 +257,7 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
         && (maxRetries == null || retryCounter < maxRetries);
   }
 
-  private boolean shouldRetry(ApiException exception) {
+  private boolean shouldRetry(IApiException exception) {
     return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);

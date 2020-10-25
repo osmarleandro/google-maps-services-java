@@ -23,6 +23,7 @@ import com.google.maps.GeolocationApi;
 import com.google.maps.ImageResult;
 import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
+import com.google.maps.errors.IApiException;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
@@ -310,7 +311,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       // Return successful responses
       return resp.getResult();
     } else {
-      ApiException e = resp.getError();
+      IApiException e = resp.getError();
       if (shouldRetry(e)) {
         return request.retry();
       } else {
@@ -333,7 +334,7 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
         && (maxRetries == null || retryCounter < maxRetries);
   }
 
-  private boolean shouldRetry(ApiException exception) {
+  private boolean shouldRetry(IApiException exception) {
     return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);

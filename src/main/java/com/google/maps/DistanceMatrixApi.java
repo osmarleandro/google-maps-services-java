@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.maps.errors.ApiException;
+import com.google.maps.errors.IApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.DistanceMatrix;
@@ -66,7 +67,7 @@ public class DistanceMatrixApi {
     }
 
     @Override
-    public ApiException getError() {
+    public IApiException getError() {
       if (successful()) {
         return null;
       }

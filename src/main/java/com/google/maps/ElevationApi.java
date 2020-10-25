@@ -18,6 +18,7 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 
 import com.google.maps.errors.ApiException;
+import com.google.maps.errors.IApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.PolylineEncoding;
@@ -126,7 +127,7 @@ public class ElevationApi {
     }
 
     @Override
-    public ApiException getError() {
+    public IApiException getError() {
       if (successful()) {
         return null;
       }
@@ -163,7 +164,7 @@ public class ElevationApi {
     }
 
     @Override
-    public ApiException getError() {
+    public IApiException getError() {
       if (successful()) {
         return null;
       }
