@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  * request.
  */
 public class OkHttpPendingResult<T, R extends ApiResponse<T>>
-    implements PendingResult<T>, Callback {
+    implements PendingResult<T>, Callback, IOkHttpPendingResult<T, R> {
   private final Request request;
   private final OkHttpClient client;
   private final Class<R> responseClass;
