@@ -34,7 +34,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.JSONObject;
 
 /** Local test mock server for unit tests. */
-public class LocalTestServerContext implements AutoCloseable {
+public class LocalTestServerContext implements AutoCloseable, ILocalTestServerContext {
 
   private final MockWebServer server;
   public final GeoApiContext context;
