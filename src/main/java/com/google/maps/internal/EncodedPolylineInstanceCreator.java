@@ -19,7 +19,7 @@ import com.google.gson.InstanceCreator;
 import com.google.maps.model.EncodedPolyline;
 import java.lang.reflect.Type;
 
-public class EncodedPolylineInstanceCreator implements InstanceCreator<EncodedPolyline> {
+public class EncodedPolylineInstanceCreator implements InstanceCreator<EncodedPolyline>, IEncodedPolylineInstanceCreator {
   private String points;
 
   public EncodedPolylineInstanceCreator(String points) {
