@@ -25,7 +25,7 @@ import java.math.BigDecimal;
 import java.util.Currency;
 
 /** This class handles conversion from JSON to {@link com.google.maps.model.Fare}. */
-public class FareAdapter extends TypeAdapter<Fare> {
+public class FareAdapter extends TypeAdapter<Fare> implements IFareAdapter {
 
   /**
    * Read a Fare object from the Directions API and convert to a {@link com.google.maps.model.Fare}
