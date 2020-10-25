@@ -26,7 +26,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class OpenCensusTest {
+public class OpenCensusTest implements IOpenCensusTest {
 
   private MockWebServer server;
   private GeoApiContext context;
