@@ -28,7 +28,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(MediumTests.class)
-public class TimeZoneApiTest {
+public class TimeZoneApiTest implements ITimeZoneApiTest {
 
   @Test
   public void testGetTimeZone() throws Exception {
