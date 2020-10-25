@@ -22,7 +22,7 @@ package com.google.maps.model;
  *     href="https://developers.google.com/maps/documentation/distance-matrix/intro#StatusCodes">
  *     Documentation on status codes</a>
  */
-public enum DistanceMatrixElementStatus {
+public enum DistanceMatrixElementStatus implements IDistanceMatrixElementStatus {
   /** Indicates that the response contains a valid result. */
   OK,
 
