@@ -30,7 +30,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(LargeTests.class)
-public class RoadsApiIntegrationTest {
+public class RoadsApiIntegrationTest implements IRoadsApiIntegrationTest {
 
   private final String snapToRoadResponse;
   private final String speedLimitsResponse;
