@@ -16,7 +16,7 @@ import java.util.List;
 /*
  * OpenCensus metrics which are measured for every request.
  */
-public final class OpenCensusMetrics {
+public final class OpenCensusMetrics implements IOpenCensusMetrics {
   private OpenCensusMetrics() {}
 
   public static final class Tags {
