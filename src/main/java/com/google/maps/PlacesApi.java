@@ -38,8 +38,8 @@ public class PlacesApi {
    * @param location The latitude/longitude around which to retrieve place information.
    * @return Returns a NearbySearchRequest that can be configured and executed.
    */
-  public static NearbySearchRequest nearbySearchQuery(GeoApiContext context, LatLng location) {
-    NearbySearchRequest request = new NearbySearchRequest(context);
+  public static INearbySearchRequest nearbySearchQuery(GeoApiContext context, LatLng location) {
+    INearbySearchRequest request = new NearbySearchRequest(context);
     request.location(location);
     return request;
   }
@@ -53,9 +53,9 @@ public class PlacesApi {
    * @param nextPageToken The nextPageToken returned as part of a PlacesSearchResponse.
    * @return Returns a NearbySearchRequest that can be executed.
    */
-  public static NearbySearchRequest nearbySearchNextPage(
+  public static INearbySearchRequest nearbySearchNextPage(
       GeoApiContext context, String nextPageToken) {
-    NearbySearchRequest request = new NearbySearchRequest(context);
+    INearbySearchRequest request = new NearbySearchRequest(context);
     request.pageToken(nextPageToken);
     return request;
   }
