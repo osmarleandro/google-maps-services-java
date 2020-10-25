@@ -31,7 +31,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(LargeTests.class)
-public class GeolocationApiTest {
+public class GeolocationApiTest implements IGeolocationApiTest {
 
   private final String geolocationDocSample;
   private final String geolocationMinimumWifi;
