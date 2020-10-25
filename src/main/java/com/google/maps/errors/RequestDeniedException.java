@@ -16,7 +16,7 @@
 package com.google.maps.errors;
 
 /** Indicates that the API denied the request. Check the message for more detail. */
-public class RequestDeniedException extends ApiException {
+public class RequestDeniedException extends ApiException implements IRequestDeniedException {
   private static final long serialVersionUID = -1434641617962369958L;
 
   public RequestDeniedException(String errorMessage) {
