@@ -27,7 +27,7 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/geocoding/intro">Google Maps Geocoding API
  * Developer's Guide</a> for more detail.
  */
-public class AddressComponent implements Serializable {
+public class AddressComponent implements Serializable, IAddressComponent {
 
   private static final long serialVersionUID = 1L;
 

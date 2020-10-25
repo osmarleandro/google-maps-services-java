@@ -33,7 +33,7 @@ public class PlaceDetails implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** A list of separate address components that comprise the address of this place. */
-  public AddressComponent[] addressComponents;
+  public IAddressComponent[] addressComponents;
 
   /** A representation of the place's address in the adr microformat. */
   public String adrAddress;
