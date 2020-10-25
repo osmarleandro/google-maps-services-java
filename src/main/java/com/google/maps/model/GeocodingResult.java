@@ -74,7 +74,7 @@ public class GeocodingResult implements Serializable {
   public String placeId;
 
   /** The Plus Code identifier for this place. */
-  public PlusCode plusCode;
+  public IPlusCode plusCode;
 
   @Override
   public String toString() {
