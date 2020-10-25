@@ -46,7 +46,7 @@ public class GeolocationPayload implements Serializable {
       String _radioType,
       String _carrier,
       Boolean _considerIp,
-      CellTower[] _cellTowers,
+      ICellTower[] _cellTowers,
       WifiAccessPoint[] _wifiAccessPoints) {
     homeMobileCountryCode = _homeMobileCountryCode;
     homeMobileNetworkCode = _homeMobileNetworkCode;
@@ -75,7 +75,7 @@ public class GeolocationPayload implements Serializable {
    */
   public Boolean considerIp = null;
   /** An array of cell tower objects. See {@link com.google.maps.model.CellTower}. */
-  public CellTower[] cellTowers;
+  public ICellTower[] cellTowers;
   /** An array of WiFi access point objects. See {@link com.google.maps.model.WifiAccessPoint}. */
   public WifiAccessPoint[] wifiAccessPoints;
 
@@ -113,7 +113,7 @@ public class GeolocationPayload implements Serializable {
     private String _radioType = null;
     private String _carrier = null;
     private Boolean _considerIp = null;
-    private CellTower[] _cellTowers = null;
+    private ICellTower[] _cellTowers = null;
     private List<CellTower> _addedCellTowers = new ArrayList<>();
     private WifiAccessPoint[] _wifiAccessPoints = null;
     private List<WifiAccessPoint> _addedWifiAccessPoints = new ArrayList<>();
@@ -165,7 +165,7 @@ public class GeolocationPayload implements Serializable {
       return this;
     }
 
-    public GeolocationPayloadBuilder CellTowers(CellTower[] newCellTowers) {
+    public GeolocationPayloadBuilder CellTowers(ICellTower[] newCellTowers) {
       this._cellTowers = newCellTowers;
       return this;
     }

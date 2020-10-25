@@ -26,7 +26,7 @@ import java.io.Serializable;
  * href="https://developers.google.com/maps/documentation/geolocation/intro#cell_tower_object">Cell
  * Tower Object</a> for more detail.
  */
-public class CellTower implements Serializable {
+public class CellTower implements Serializable, ICellTower {
 
   private static final long serialVersionUID = 1L;
 
