@@ -27,7 +27,7 @@ public class Geometry implements Serializable {
    * Farallon islands, which are technically part of the city, but probably should not be returned
    * in the viewport.)
    */
-  public Bounds bounds;
+  public IBounds bounds;
 
   /**
    * The geocoded latitude/longitude value. For normal address lookups, this field is typically the
@@ -42,7 +42,7 @@ public class Geometry implements Serializable {
    * The recommended viewport for displaying the returned result. Generally the viewport is used to
    * frame a result when displaying it to a user.
    */
-  public Bounds viewport;
+  public IBounds viewport;
 
   @Override
   public String toString() {

@@ -52,7 +52,7 @@ public class DirectionsRoute implements Serializable {
   public EncodedPolyline overviewPolyline;
 
   /** The viewport bounding box of the overview_polyline. */
-  public Bounds bounds;
+  public IBounds bounds;
 
   /**
    * Copyrights text to be displayed for this route. You must handle and display this information
