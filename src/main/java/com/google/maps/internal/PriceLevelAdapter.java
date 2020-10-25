@@ -29,7 +29,7 @@ import java.io.IOException;
  * href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/TypeAdapter.html">GSON
  * Type Adapter</a> for more detail.
  */
-public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
+public class PriceLevelAdapter extends TypeAdapter<PriceLevel> implements IPriceLevelAdapter {
 
   @Override
   public PriceLevel read(JsonReader reader) throws IOException {
