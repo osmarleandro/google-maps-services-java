@@ -21,7 +21,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 /** A place on Earth, represented by a latitude/longitude pair. */
-public class LatLng implements UrlValue, Serializable {
+public class LatLng implements UrlValue, Serializable, ILatLng {
 
   private static final long serialVersionUID = 1L;
 

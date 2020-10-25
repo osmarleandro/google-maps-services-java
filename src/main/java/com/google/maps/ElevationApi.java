@@ -23,6 +23,7 @@ import com.google.maps.internal.ApiResponse;
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.ILatLng;
 import com.google.maps.model.LatLng;
 
 /**
@@ -106,7 +107,7 @@ public class ElevationApi {
    * @param location The location to retrieve the elevation for.
    * @return The elevation as a {@link PendingResult}.
    */
-  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
+  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, ILatLng location) {
     return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
   }
 

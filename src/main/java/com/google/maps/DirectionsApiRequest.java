@@ -19,6 +19,7 @@ import static com.google.maps.internal.StringJoin.join;
 import static java.util.Objects.requireNonNull;
 
 import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.ILatLng;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TransitMode;
@@ -108,7 +109,7 @@ public class DirectionsApiRequest
    * @param origin The starting location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest origin(LatLng origin) {
+  public DirectionsApiRequest origin(ILatLng origin) {
     return origin(origin.toString());
   }
 
@@ -118,7 +119,7 @@ public class DirectionsApiRequest
    * @param destination The ending location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
-  public DirectionsApiRequest destination(LatLng destination) {
+  public DirectionsApiRequest destination(ILatLng destination) {
     return destination(destination.toString());
   }
 

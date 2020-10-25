@@ -32,7 +32,7 @@ public class StopDetails implements Serializable {
   public String name;
 
   /** The location of the transit station/stop. */
-  public LatLng location;
+  public ILatLng location;
 
   @Override
   public String toString() {

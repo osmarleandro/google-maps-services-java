@@ -23,6 +23,7 @@ import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
+import com.google.maps.model.ILatLng;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LatLngAssert;
 import java.util.Collections;
@@ -38,7 +39,7 @@ public class ElevationApiTest {
   private static final double MELBOURNE_ELEVATION = 25.49982643127441;
   private static final double EPSILON = .00001;
   private static final LatLng SYDNEY = new LatLng(-33.867487, 151.206990);
-  private static final LatLng MELBOURNE = new LatLng(-37.814107, 144.963280);
+  private static final ILatLng MELBOURNE = new LatLng(-37.814107, 144.963280);
   private static final EncodedPolyline SYD_MELB_ROUTE =
       new EncodedPolyline(
           "rvumEis{y[`NsfA~tAbF`bEj^h{@{KlfA~eA~`AbmEghAt~D|e@jlRpO~yH_\\v}LjbBh~FdvCxu@`nCplDbcBf_B|w"
