@@ -21,20 +21,4 @@ import java.util.HashSet;
 public final class ExceptionsAllowedToRetry extends HashSet<Class<? extends ApiException>> {
 
   private static final long serialVersionUID = 5283992240187266422L;
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder().append("ExceptionsAllowedToRetry[");
-
-    Object[] array = toArray();
-    for (int i = 0; i < array.length; i++) {
-      sb.append(array[i]);
-      if (i < array.length - 1) {
-        sb.append(", ");
-      }
-    }
-
-    sb.append(']');
-    return sb.toString();
-  }
 }
