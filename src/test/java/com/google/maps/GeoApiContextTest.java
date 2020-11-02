@@ -336,13 +336,49 @@ public class GeoApiContextTest {
   @Test
   public void testExperienceIdIsInHeader() throws Exception {
     final String experienceId = "exp1";
-    final RecordedRequest request = makeMockRequest(experienceId);
+	String[] experienceId1 = { experienceId };
+	// Set up a mock request
+	ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
+	String path = "/";
+	Map<String, List<String>> params = new HashMap<>();
+	params.put("key", Collections.singletonList("value"));
+	
+	// Set up the fake web server
+	server.enqueue(new MockResponse());
+	server.start();
+	setMockBaseUrl();
+	
+	// Build & execute the request using our context
+	final GeoApiContext context = builder.experienceId(experienceId1).build();
+	context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+	
+	// Read the header
+	server.shutdown();
+    final RecordedRequest request = server.takeRequest();
     assertEquals(experienceId, request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID));
   }
 
   @Test
   public void testExperienceIdNotInHeader() throws Exception {
-    final RecordedRequest request = makeMockRequest();
+    String[] experienceId = {};
+	// Set up a mock request
+	ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
+	String path = "/";
+	Map<String, List<String>> params = new HashMap<>();
+	params.put("key", Collections.singletonList("value"));
+	
+	// Set up the fake web server
+	server.enqueue(new MockResponse());
+	server.start();
+	setMockBaseUrl();
+	
+	// Build & execute the request using our context
+	final GeoApiContext context = builder.experienceId(experienceId).build();
+	context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
+	
+	// Read the header
+	server.shutdown();
+	final RecordedRequest request = server.takeRequest();
     final String value = request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID);
     assertNull(value);
   }
@@ -371,28 +407,6 @@ public class GeoApiContextTest {
     // [END maps_experience_id]
 
     assertEquals(experienceId + "," + otherExperienceId, ids);
-  }
-
-  @SuppressWarnings("unchecked")
-  private RecordedRequest makeMockRequest(String... experienceId) throws Exception {
-    // Set up a mock request
-    ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
-    String path = "/";
-    Map<String, List<String>> params = new HashMap<>();
-    params.put("key", Collections.singletonList("value"));
-
-    // Set up the fake web server
-    server.enqueue(new MockResponse());
-    server.start();
-    setMockBaseUrl();
-
-    // Build & execute the request using our context
-    final GeoApiContext context = builder.experienceId(experienceId).build();
-    context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
-
-    // Read the header
-    server.shutdown();
-    return server.takeRequest();
   }
 
   @Test
