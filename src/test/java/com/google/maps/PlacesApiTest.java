@@ -457,13 +457,12 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.textSearchQuery(sc.context, "Google Sydney")
-          .location(location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
-          .name("name")
-          .openNow(true)
+	  .location(location)
+	  .region("AU")
+	  .radius(3000)
+	  .minPrice(PriceLevel.INEXPENSIVE)
+	  .maxPrice(PriceLevel.VERY_EXPENSIVE)
+	  .name("name").param("opennow", String.valueOf(true))
           .rankby(RankBy.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
@@ -486,12 +485,11 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
-          .name("name")
-          .openNow(true)
+	  .region("AU")
+	  .radius(3000)
+	  .minPrice(PriceLevel.INEXPENSIVE)
+	  .maxPrice(PriceLevel.VERY_EXPENSIVE)
+	  .name("name").param("opennow", String.valueOf(true))
           .rankby(RankBy.DISTANCE)
           .type(PlaceType.AIRPORT)
           .await();
