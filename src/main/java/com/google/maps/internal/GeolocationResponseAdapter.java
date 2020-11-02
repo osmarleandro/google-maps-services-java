@@ -124,10 +124,4 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
     reader.endObject();
     return response;
   }
-
-  /** Not supported. */
-  @Override
-  public void write(JsonWriter out, GeolocationApi.Response value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method.");
-  }
 }
