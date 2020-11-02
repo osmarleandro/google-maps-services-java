@@ -74,8 +74,9 @@ public class DistanceMatrixApiTest {
             "Bungle Bungles, Australia",
             "The Pinnacles, Australia"
           };
+	GeoApiContext context = sc.context;
       DistanceMatrix matrix =
-          DistanceMatrixApi.getDistanceMatrix(sc.context, origins, destinations).await();
+          DistanceMatrixApi.newRequest(context).origins(origins).destinations(destinations).await();
 
       assertNotNull(matrix.toString());
       assertNotNull(Arrays.toString(matrix.rows));
