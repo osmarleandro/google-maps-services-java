@@ -406,13 +406,13 @@ public class DirectionsApiTest {
   public void testTransitParams() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      TransitRoutingPreference pref = TransitRoutingPreference.LESS_WALKING;
+	DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin("Fisherman's Wharf, San Francisco")
-              .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
-              .transitMode(TransitMode.BUS, TransitMode.TRAM)
-              .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
+		  .origin("Fisherman's Wharf, San Francisco")
+		  .destination("Union Square, San Francisco")
+		  .mode(TravelMode.TRANSIT)
+		  .transitMode(TransitMode.BUS, TransitMode.TRAM).param("transit_routing_preference", pref)
               .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
