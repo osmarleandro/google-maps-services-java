@@ -63,14 +63,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return makeRequest().awaitIgnoreError();
   }
 
-  @Override
-  public final void cancel() {
-    if (delegate == null) {
-      return;
-    }
-    delegate.cancel();
-  }
-
   private PendingResult<T> makeRequest() {
     if (delegate != null) {
       throw new IllegalStateException(
