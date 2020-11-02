@@ -163,7 +163,11 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     if (shouldRetry(response)) {
       // Retry is a blocking method, but that's OK. If we're here, we're either in an await()
       // call, which is blocking anyway, or we're handling a callback in a separate thread.
-      return request.retry();
+      request.retryCounter++;
+	GaePendingResult.LOG.info("Retrying request. Retry #{}", request.retryCounter);
+	request.metrics.startNetwork();
+	request.call = request.client.fetchAsync(request.request);
+	return request.await();
     }
 
     byte[] bytes = response.getContent();
@@ -234,20 +238,16 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       ApiException e = resp.getError();
       if (shouldRetry(e)) {
         // Retry over_query_limit errors
-        return request.retry();
+        request.retryCounter++;
+		GaePendingResult.LOG.info("Retrying request. Retry #{}", request.retryCounter);
+		request.metrics.startNetwork();
+		request.call = request.client.fetchAsync(request.request);
+		return request.await();
       } else {
         // Throw anything else, including OQLs if we've spent too much time retrying
         throw e;
       }
     }
-  }
-
-  private T retry() throws IOException, ApiException, InterruptedException {
-    retryCounter++;
-    LOG.info("Retrying request. Retry #{}", retryCounter);
-    metrics.startNetwork();
-    this.call = client.fetchAsync(request);
-    return this.await();
   }
 
   private boolean shouldRetry(HTTPResponse response) {
