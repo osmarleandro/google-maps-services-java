@@ -174,17 +174,6 @@ public final class Stopwatch {
     return isRunning ? ticker.read() - startTick + elapsedNanos : elapsedNanos;
   }
 
-  /**
-   * Returns the current elapsed time shown on this stopwatch, expressed in the desired time unit,
-   * with any fraction rounded down.
-   *
-   * <p>Note that the overhead of measurement can be more than a microsecond, so it is generally not
-   * useful to specify {@link TimeUnit#NANOSECONDS} precision here.
-   */
-  public long elapsed(TimeUnit desiredUnit) {
-    return desiredUnit.convert(elapsedNanos(), NANOSECONDS);
-  }
-
   /** Returns a string representation of the current elapsed time. */
   @Override
   public String toString() {

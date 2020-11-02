@@ -408,7 +408,7 @@ public abstract class RateLimiter {
 
         @Override
         protected long readMicros() {
-          return stopwatch.elapsed(MICROSECONDS);
+          return MICROSECONDS.convert(stopwatch.elapsedNanos(), NANOSECONDS);
         }
 
         @Override
