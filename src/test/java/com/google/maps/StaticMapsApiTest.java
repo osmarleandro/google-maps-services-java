@@ -32,6 +32,8 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 
 public class StaticMapsApiTest {
@@ -267,7 +269,17 @@ public class StaticMapsApiTest {
       expected.add("color:blue|label:S|40.70214700,-74.01579400");
       expected.add("color:green|label:G|40.71161400,-74.01231800");
       expected.add("color:red|label:C|40.71821700,-73.99828400");
-      sc.assertParamValues(expected, "markers");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	int paramsFound = 0;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("markers")) {
+	    assertEquals(expected.get(paramsFound), pair.getValue());
+	    paramsFound++;
+	  }
+	}
+	assertEquals(paramsFound, expected.size());
     }
   }
 }
