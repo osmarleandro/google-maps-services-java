@@ -31,33 +31,6 @@ import java.io.IOException;
  */
 public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
 
-  @Override
-  public PriceLevel read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
-
-    if (reader.peek() == JsonToken.NUMBER) {
-      int priceLevel = reader.nextInt();
-
-      switch (priceLevel) {
-        case 0:
-          return PriceLevel.FREE;
-        case 1:
-          return PriceLevel.INEXPENSIVE;
-        case 2:
-          return PriceLevel.MODERATE;
-        case 3:
-          return PriceLevel.EXPENSIVE;
-        case 4:
-          return PriceLevel.VERY_EXPENSIVE;
-      }
-    }
-
-    return PriceLevel.UNKNOWN;
-  }
-
   /** This method is not implemented. */
   @Override
   public void write(JsonWriter writer, PriceLevel value) throws IOException {
