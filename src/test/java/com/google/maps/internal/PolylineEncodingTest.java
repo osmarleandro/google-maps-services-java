@@ -20,6 +20,8 @@ import static org.junit.Assert.assertEquals;
 
 import com.google.maps.SmallTests;
 import com.google.maps.model.LatLng;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -50,14 +52,72 @@ public class PolylineEncodingTest {
 
   @Test
   public void testPolylineEncodingRoundTrip() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
+    int len = SYD_MELB_ROUTE.length();
+	
+	final List<LatLng> path = new ArrayList<>(len / 2);
+	int index = 0;
+	int lat = 0;
+	int lng = 0;
+	
+	while (index < len) {
+	  int result = 1;
+	  int shift = 0;
+	  int b;
+	  do {
+	    b = SYD_MELB_ROUTE.charAt(index++) - 63 - 1;
+	    result += b << shift;
+	    shift += 5;
+	  } while (b >= 0x1f);
+	  lat += (result & 1) != 0 ? ~(result >> 1) : (result >> 1);
+	
+	  result = 1;
+	  shift = 0;
+	  do {
+	    b = SYD_MELB_ROUTE.charAt(index++) - 63 - 1;
+	    result += b << shift;
+	    shift += 5;
+	  } while (b >= 0x1f);
+	  lng += (result & 1) != 0 ? ~(result >> 1) : (result >> 1);
+	
+	  path.add(new LatLng(lat * 1e-5, lng * 1e-5));
+	}
+	List<LatLng> points = path;
     String encodedPath = PolylineEncoding.encode(points);
     assertEquals(SYD_MELB_ROUTE, encodedPath);
   }
 
   @Test
   public void testDecode() throws Exception {
-    List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
+    int len = SYD_MELB_ROUTE.length();
+	
+	final List<LatLng> path = new ArrayList<>(len / 2);
+	int index = 0;
+	int lat = 0;
+	int lng = 0;
+	
+	while (index < len) {
+	  int result = 1;
+	  int shift = 0;
+	  int b;
+	  do {
+	    b = SYD_MELB_ROUTE.charAt(index++) - 63 - 1;
+	    result += b << shift;
+	    shift += 5;
+	  } while (b >= 0x1f);
+	  lat += (result & 1) != 0 ? ~(result >> 1) : (result >> 1);
+	
+	  result = 1;
+	  shift = 0;
+	  do {
+	    b = SYD_MELB_ROUTE.charAt(index++) - 63 - 1;
+	    result += b << shift;
+	    shift += 5;
+	  } while (b >= 0x1f);
+	  lng += (result & 1) != 0 ? ~(result >> 1) : (result >> 1);
+	
+	  path.add(new LatLng(lat * 1e-5, lng * 1e-5));
+	}
+	List<LatLng> points = path;
     LatLng sydney = points.get(0);
     LatLng melbourne = points.get(points.size() - 1);
 
