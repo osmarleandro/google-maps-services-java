@@ -356,11 +356,6 @@ abstract class SmoothRateLimiter extends RateLimiter {
   }
 
   @Override
-  final long queryEarliestAvailable(long nowMicros) {
-    return nextFreeTicketMicros;
-  }
-
-  @Override
   final long reserveEarliestAvailable(int requiredPermits, long nowMicros) {
     resync(nowMicros);
     long returnValue = nextFreeTicketMicros;
