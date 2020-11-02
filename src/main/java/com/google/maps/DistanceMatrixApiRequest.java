@@ -123,20 +123,6 @@ public class DistanceMatrixApiRequest
   }
 
   /**
-   * Specifies the unit system to use when expressing distance as text. Distance Matrix results
-   * contain text within distance fields to indicate the distance of the calculated route.
-   *
-   * @param unit One of {@link Unit#METRIC} or {@link Unit#IMPERIAL}.
-   * @see <a
-   *     href="https://developers.google.com/maps/documentation/distance-matrix/intro#unit_systems">
-   *     Unit systems in the Distance Matrix API</a>
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest units(Unit unit) {
-    return param("units", unit);
-  }
-
-  /**
    * Specifies the desired time of departure.
    *
    * <p>The departure time may be specified in two cases:
