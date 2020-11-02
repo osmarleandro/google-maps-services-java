@@ -32,9 +32,4 @@ public enum RankBy implements StringJoin.UrlValue {
   public String toString() {
     return ranking;
   }
-
-  @Override
-  public String toUrlValue() {
-    return ranking;
-  }
 }
