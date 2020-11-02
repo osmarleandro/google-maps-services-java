@@ -27,11 +27,6 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
   }
 
   @Override
-  public void startNetwork() {
-    this.networkStart = milliTime();
-  }
-
-  @Override
   public void endNetwork() {
     this.networkTime += milliTime() - this.networkStart;
   }
