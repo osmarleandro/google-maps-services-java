@@ -113,12 +113,6 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
         metrics);
   }
 
-  @Override
-  public void shutdown() {
-    executorService.shutdown();
-    client.connectionPool().evictAll();
-  }
-
   /** Builder strategy for constructing an {@code OkHTTPRequestHandler}. */
   public static class Builder implements GeoApiContext.RequestHandler.Builder {
     private final OkHttpClient.Builder builder;
