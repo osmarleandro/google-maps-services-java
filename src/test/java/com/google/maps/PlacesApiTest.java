@@ -456,12 +456,12 @@ public class PlacesApiTest {
   public void testTextSearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
+	PriceLevel priceLevel = PriceLevel.VERY_EXPENSIVE;
       PlacesApi.textSearchQuery(sc.context, "Google Sydney")
-          .location(location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
+	  .location(location)
+	  .region("AU")
+	  .radius(3000)
+	  .minPrice(PriceLevel.INEXPENSIVE).param("maxprice", priceLevel)
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
@@ -485,11 +485,11 @@ public class PlacesApiTest {
   public void testTextSearchRequestWithLocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
+	PriceLevel priceLevel = PriceLevel.VERY_EXPENSIVE;
       PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
+	  .region("AU")
+	  .radius(3000)
+	  .minPrice(PriceLevel.INEXPENSIVE).param("maxprice", priceLevel)
           .name("name")
           .openNow(true)
           .rankby(RankBy.DISTANCE)
