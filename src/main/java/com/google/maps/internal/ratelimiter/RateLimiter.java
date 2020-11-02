@@ -126,13 +126,10 @@ public abstract class RateLimiter {
      * Due to the slight delay of T1, T2 would have to sleep till 2.05 seconds, and T3 would also
      * have to sleep till 3.05 seconds.
      */
-    return create(permitsPerSecond, SleepingStopwatch.createFromSystemTimer());
-  }
-
-  static RateLimiter create(double permitsPerSecond, SleepingStopwatch stopwatch) {
-    RateLimiter rateLimiter = new SmoothBursty(stopwatch, 1.0 /* maxBurstSeconds */);
-    rateLimiter.setRate(permitsPerSecond);
-    return rateLimiter;
+    SleepingStopwatch stopwatch = SleepingStopwatch.createFromSystemTimer();
+	RateLimiter rateLimiter = new SmoothBursty(stopwatch, 1.0 /* maxBurstSeconds */);
+	rateLimiter.setRate(permitsPerSecond);
+	return rateLimiter;
   }
 
   /**
