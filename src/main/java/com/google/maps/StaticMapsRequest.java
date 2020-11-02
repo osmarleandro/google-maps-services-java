@@ -314,8 +314,9 @@ public class StaticMapsRequest
       }
 
       urlParts.addAll(locations);
+	String[] parts = urlParts.toArray(new String[urlParts.size()]);
 
-      return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
+      return StringJoin.join(new String(new char[] {'|'}), parts);
     }
   }
 
@@ -419,8 +420,9 @@ public class StaticMapsRequest
       }
 
       urlParts.addAll(points);
+	String[] parts = urlParts.toArray(new String[urlParts.size()]);
 
-      return StringJoin.join('|', urlParts.toArray(new String[urlParts.size()]));
+      return StringJoin.join(new String(new char[] {'|'}), parts);
     }
   }
 

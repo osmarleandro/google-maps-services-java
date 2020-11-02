@@ -58,7 +58,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest origins(String... origins) {
-    return param("origins", join('|', origins));
+    return param("origins", join(new String(new char[] {'|'}), origins));
   }
 
   /**
@@ -79,7 +79,7 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest destinations(String... destinations) {
-    return param("destinations", join('|', destinations));
+    return param("destinations", join(new String(new char[] {'|'}), destinations));
   }
 
   /**

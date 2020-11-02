@@ -50,7 +50,8 @@ public class ComponentFilter implements StringJoin.UrlValue {
 
   @Override
   public String toUrlValue() {
-    return join(':', component, value);
+    String[] parts = { component, value };
+	return join(new String(new char[] {':'}), parts);
   }
 
   /**

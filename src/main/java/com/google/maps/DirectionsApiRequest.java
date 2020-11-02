@@ -220,7 +220,7 @@ public class DirectionsApiRequest
       for (int i = 0; i < waypoints.length; i++) {
         waypointStrs[i] = waypoints[i].toString();
       }
-      param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+      param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join(new String(new char[] {'|'}), waypointStrs));
       return this;
     }
   }

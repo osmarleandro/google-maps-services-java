@@ -31,10 +31,6 @@ public class StringJoin {
 
   private StringJoin() {}
 
-  public static String join(char delim, String... parts) {
-    return join(new String(new char[] {delim}), parts);
-  }
-
   public static String join(CharSequence delim, String... parts) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < parts.length; i++) {
@@ -68,6 +64,6 @@ public class StringJoin {
       strings[i++] = part.toUrlValue();
     }
 
-    return join(delim, strings);
+    return join(new String(new char[] {delim}), strings);
   }
 }
