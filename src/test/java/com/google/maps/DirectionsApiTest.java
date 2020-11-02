@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -406,12 +407,12 @@ public class DirectionsApiTest {
   public void testTransitParams() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      TransitMode[] transitModes = { TransitMode.BUS, TransitMode.TRAM };
+	DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin("Fisherman's Wharf, San Francisco")
-              .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
-              .transitMode(TransitMode.BUS, TransitMode.TRAM)
+		  .origin("Fisherman's Wharf, San Francisco")
+		  .destination("Union Square, San Francisco")
+		  .mode(TravelMode.TRANSIT).param("transit_mode", join('|', transitModes))
               .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
               .await();
 

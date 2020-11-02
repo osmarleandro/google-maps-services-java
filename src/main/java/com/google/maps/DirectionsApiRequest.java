@@ -311,17 +311,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * Specifies one or more preferred modes of transit. This parameter may only be specified for
-   * requests where the mode is transit.
-   *
-   * @param transitModes The preferred transit modes.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest transitMode(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
-  }
-
-  /**
    * Specifies preferences for transit requests. Using this parameter, you can bias the options
    * returned, rather than accepting the default best route chosen by the API.
    *
