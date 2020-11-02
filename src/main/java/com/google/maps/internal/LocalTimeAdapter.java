@@ -40,10 +40,4 @@ public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
 
     throw new UnsupportedOperationException("Unsupported format");
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter out, LocalTime value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
