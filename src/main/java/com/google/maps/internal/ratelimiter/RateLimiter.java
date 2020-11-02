@@ -386,11 +386,6 @@ public abstract class RateLimiter {
    */
   abstract long reserveEarliestAvailable(int permits, long nowMicros);
 
-  @Override
-  public String toString() {
-    return String.format(Locale.ROOT, "RateLimiter[stableRate=%3.1fqps]", getRate());
-  }
-
   abstract static class SleepingStopwatch {
     /** Constructor for use by subclasses. */
     protected SleepingStopwatch() {}
