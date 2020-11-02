@@ -60,9 +60,4 @@ public class TransitLine implements Serializable {
 
   /** The type of vehicle used on this transit line. */
   public Vehicle vehicle;
-
-  @Override
-  public String toString() {
-    return String.format("%s \"%s\"", shortName, name);
-  }
 }
