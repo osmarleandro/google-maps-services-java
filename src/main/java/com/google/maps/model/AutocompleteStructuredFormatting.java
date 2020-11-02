@@ -31,16 +31,4 @@ public class AutocompleteStructuredFormatting implements Serializable {
 
   /** The secondary text of a prediction, usually the location of the place. */
   public String secondaryText;
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder("(");
-    sb.append("\"").append(mainText).append("\"");
-    sb.append(" at ").append(Arrays.toString(mainTextMatchedSubstrings));
-    if (secondaryText != null) {
-      sb.append(", secondaryText=\"").append(secondaryText).append("\"");
-    }
-    sb.append(")");
-    return sb.toString();
-  }
 }
