@@ -61,10 +61,4 @@ public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> {
 
     return DayOfWeek.UNKNOWN;
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, DayOfWeek value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
