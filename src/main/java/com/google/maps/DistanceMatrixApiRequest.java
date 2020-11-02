@@ -171,17 +171,6 @@ public class DistanceMatrixApiRequest
   }
 
   /**
-   * Specifies the desired time of arrival for transit requests. You can specify either
-   * departure_time or arrival_time, but not both.
-   *
-   * @param arrivalTime The preferred arrival time.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
-    return param("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
-  }
-
-  /**
    * Specifies one or more preferred modes of transit. This parameter may only be specified for
    * requests where the mode is transit.
    *
