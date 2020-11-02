@@ -32,18 +32,15 @@ public class StringJoin {
   private StringJoin() {}
 
   public static String join(char delim, String... parts) {
-    return join(new String(new char[] {delim}), parts);
-  }
-
-  public static String join(CharSequence delim, String... parts) {
-    StringBuilder result = new StringBuilder();
-    for (int i = 0; i < parts.length; i++) {
-      if (i != 0) {
-        result.append(delim);
-      }
-      result.append(parts[i]);
-    }
-    return result.toString();
+    CharSequence delim1 = new String(new char[] {delim});
+	StringBuilder result = new StringBuilder();
+	for (int i = 0; i < parts.length; i++) {
+	  if (i != 0) {
+	    result.append(delim1);
+	  }
+	  result.append(parts[i]);
+	}
+	return result.toString();
   }
 
   public static String join(char delim, Object... parts) {

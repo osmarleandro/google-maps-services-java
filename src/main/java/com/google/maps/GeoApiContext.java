@@ -163,7 +163,14 @@ public class GeoApiContext {
       experienceIdHeaderValue = null;
       return;
     }
-    experienceIdHeaderValue = StringJoin.join(",", experienceId);
+	StringBuilder result = new StringBuilder();
+	for (int i = 0; i < experienceId.length; i++) {
+	  if (i != 0) {
+	    result.append(",");
+	  }
+	  result.append(experienceId[i]);
+	}
+    experienceIdHeaderValue = result.toString();
   }
 
   /** @return Returns the experience ID if set, otherwise, null */
