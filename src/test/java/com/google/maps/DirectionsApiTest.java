@@ -511,7 +511,14 @@ public class DirectionsApiTest {
   public void testOptimizeWaypointsBeforeWaypoints() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      List<LatLng> waypoints = getOptimizationWaypoints();
+      List<LatLng> waypoints1 = new ArrayList<>();
+			waypoints1.add(new LatLng(19.431676, -99.133999));
+			waypoints1.add(new LatLng(19.427915, -99.138939));
+			waypoints1.add(new LatLng(19.435436, -99.139145));
+			waypoints1.add(new LatLng(19.396436, -99.157176));
+			waypoints1.add(new LatLng(19.427705, -99.198858));
+			waypoints1.add(new LatLng(19.425869, -99.160716));
+	List<LatLng> waypoints = waypoints1;
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
       DirectionsResult result =
@@ -545,7 +552,14 @@ public class DirectionsApiTest {
   public void testOptimizeWaypointsAfterWaypoints() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      List<LatLng> waypoints = getOptimizationWaypoints();
+      List<LatLng> waypoints1 = new ArrayList<>();
+			waypoints1.add(new LatLng(19.431676, -99.133999));
+			waypoints1.add(new LatLng(19.427915, -99.138939));
+			waypoints1.add(new LatLng(19.435436, -99.139145));
+			waypoints1.add(new LatLng(19.396436, -99.157176));
+			waypoints1.add(new LatLng(19.427705, -99.198858));
+			waypoints1.add(new LatLng(19.425869, -99.160716));
+	List<LatLng> waypoints = waypoints1;
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
       DirectionsResult result =
@@ -572,17 +586,5 @@ public class DirectionsApiTest {
 
       assertNotNull(result.toString());
     }
-  }
-
-  /** Coordinates in Mexico City. */
-  private List<LatLng> getOptimizationWaypoints() {
-    List<LatLng> waypoints = new ArrayList<>();
-    waypoints.add(new LatLng(19.431676, -99.133999));
-    waypoints.add(new LatLng(19.427915, -99.138939));
-    waypoints.add(new LatLng(19.435436, -99.139145));
-    waypoints.add(new LatLng(19.396436, -99.157176));
-    waypoints.add(new LatLng(19.427705, -99.198858));
-    waypoints.add(new LatLng(19.425869, -99.160716));
-    return waypoints;
   }
 }
