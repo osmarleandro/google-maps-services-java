@@ -166,11 +166,6 @@ public class GeoApiContext {
     experienceIdHeaderValue = StringJoin.join(",", experienceId);
   }
 
-  /** @return Returns the experience ID if set, otherwise, null */
-  public String getExperienceId() {
-    return experienceIdHeaderValue;
-  }
-
   /**
    * Clears the experience ID if set the HTTP header field {@link
    * HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} will be omitted from subsequent calls.
