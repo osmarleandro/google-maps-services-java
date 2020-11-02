@@ -363,13 +363,13 @@ public class DirectionsApiTest {
   public void testTrafficModel() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      TrafficModel trafficModel = TrafficModel.PESSIMISTIC;
+	DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin("48 Pirrama Road, Pyrmont NSW 2009")
-              .destination("182 Church St, Parramatta NSW 2150")
-              .mode(TravelMode.DRIVING)
-              .departureTime(Instant.now().plus(Duration.ofMinutes(2)))
-              .trafficModel(TrafficModel.PESSIMISTIC)
+		  .origin("48 Pirrama Road, Pyrmont NSW 2009")
+		  .destination("182 Church St, Parramatta NSW 2150")
+		  .mode(TravelMode.DRIVING)
+		  .departureTime(Instant.now().plus(Duration.ofMinutes(2))).param("traffic_model", trafficModel)
               .await();
 
       sc.assertParamValue("48 Pirrama Road, Pyrmont NSW 2009", "origin");

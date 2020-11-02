@@ -333,17 +333,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * Specifies the traffic model to use when requesting future driving directions. Once set, you
-   * must specify a departure time.
-   *
-   * @param trafficModel The traffic model for estimating driving time.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
-  }
-
-  /**
    * Helper method for prefixing a Place ID, as specified by the API.
    *
    * @param placeId The Place ID to be prefixed.
