@@ -195,13 +195,6 @@ public class PlaceAutocompleteRequest
     return param("strictbounds", Boolean.toString(strictBounds));
   }
 
-  @Override
-  protected void validateRequest() {
-    if (!params().containsKey("input")) {
-      throw new IllegalArgumentException("Request must contain 'input'.");
-    }
-  }
-
   public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
