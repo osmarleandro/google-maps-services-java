@@ -107,12 +107,20 @@ public final class Stopwatch {
 
   /** Creates (and starts) a new stopwatch using {@link System#nanoTime} as its time source. */
   public static Stopwatch createStarted() {
-    return new Stopwatch().start();
+    Stopwatch r = new Stopwatch();
+	checkState(!r.isRunning, "This stopwatch is already running.");
+	r.isRunning = true;
+	r.startTick = r.ticker.read();
+	return r;
   }
 
   /** Creates (and starts) a new stopwatch, using the specified time source. */
   public static Stopwatch createStarted(Ticker ticker) {
-    return new Stopwatch(ticker).start();
+    Stopwatch r = new Stopwatch(ticker);
+	checkState(!r.isRunning, "This stopwatch is already running.");
+	r.isRunning = true;
+	r.startTick = r.ticker.read();
+	return r;
   }
 
   Stopwatch() {
@@ -129,19 +137,6 @@ public final class Stopwatch {
    */
   public boolean isRunning() {
     return isRunning;
-  }
-
-  /**
-   * Starts the stopwatch.
-   *
-   * @return this {@code Stopwatch} instance
-   * @throws IllegalStateException if the stopwatch is already running.
-   */
-  public Stopwatch start() {
-    checkState(!isRunning, "This stopwatch is already running.");
-    isRunning = true;
-    startTick = ticker.read();
-    return this;
   }
 
   /**
