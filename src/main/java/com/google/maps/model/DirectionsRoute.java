@@ -72,20 +72,4 @@ public class DirectionsRoute implements Serializable {
    * warnings yourself.
    */
   public String[] warnings;
-
-  @Override
-  public String toString() {
-    String str =
-        String.format(
-            "[DirectionsRoute: \"%s\", %d legs, waypointOrder=%s, bounds=%s",
-            summary, legs.length, Arrays.toString(waypointOrder), bounds);
-    if (fare != null) {
-      str = str + ", fare=" + fare;
-    }
-    if (warnings != null && warnings.length > 0) {
-      str = str + ", " + warnings.length + " warnings";
-    }
-    str = str + "]";
-    return str;
-  }
 }
