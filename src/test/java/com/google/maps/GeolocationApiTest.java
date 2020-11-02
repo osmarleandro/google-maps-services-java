@@ -89,8 +89,9 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
+	sc.takeRequest();
 
-      JSONObject body = sc.requestBody();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       assertEquals(310, body.get("homeMobileCountryCode"));
       assertEquals(260, body.get("homeMobileNetworkCode"));
@@ -120,8 +121,9 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
+	sc.takeRequest();
 
-      JSONObject body = sc.requestBody();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       JSONArray wifiAccessPoints = body.getJSONArray("wifiAccessPoints");
       assertEquals("94:b4:0f:ff:6b:11", wifiAccessPoints.getJSONObject(0).get("macAddress"));
@@ -154,8 +156,9 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
+	sc.takeRequest();
 
-      JSONObject body = sc.requestBody();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       JSONArray wifiAccessPoints = body.getJSONArray("wifiAccessPoints");
       JSONObject wifi0 = wifiAccessPoints.getJSONObject(0);
@@ -193,8 +196,9 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
+	sc.takeRequest();
 
-      JSONObject body = sc.requestBody();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       JSONArray wifiAccessPointsResponse = body.getJSONArray("wifiAccessPoints");
       JSONObject wifi0 = wifiAccessPointsResponse.getJSONObject(0);
@@ -237,8 +241,9 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
+	sc.takeRequest();
 
-      JSONObject body = sc.requestBody();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       assertEquals(310, body.get("homeMobileCountryCode"));
       assertEquals(410, body.get("homeMobileNetworkCode"));
@@ -280,8 +285,9 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
+	sc.takeRequest();
 
-      JSONObject body = sc.requestBody();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       JSONObject cellTower = body.getJSONArray("cellTowers").getJSONObject(0);
       assertEquals(39627456, cellTower.get("cellId"));
@@ -312,7 +318,8 @@ public class GeolocationApiTest {
 
       GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
       assertNotNull(result.toString());
-      JSONObject body = sc.requestBody();
+	sc.takeRequest();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       JSONObject cellTower = body.getJSONArray("cellTowers").getJSONObject(0);
       assertEquals(39627456, cellTower.get("cellId"));
@@ -349,8 +356,9 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
+	sc.takeRequest();
 
-      JSONObject body = sc.requestBody();
+      JSONObject body = new JSONObject(sc.request.getBody().readUtf8());
       assertEquals(false, body.get("considerIp"));
       assertEquals(310, body.get("homeMobileCountryCode"));
       assertEquals(260, body.get("homeMobileNetworkCode"));

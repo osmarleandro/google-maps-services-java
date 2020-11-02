@@ -86,12 +86,6 @@ public class LocalTestServerContext implements AutoCloseable {
     if (this.request == null) this.request = server.takeRequest();
   }
 
-  public JSONObject requestBody() throws InterruptedException {
-    this.takeRequest();
-
-    return new JSONObject(request.getBody().readUtf8());
-  }
-
   private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
     this.takeRequest();
     return parseQueryParamsFromRequestLine(request.getRequestLine());
