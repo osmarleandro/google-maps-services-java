@@ -85,22 +85,6 @@ public class GeocodingApiRequest
   }
 
   /**
-   * Sets the bounding box of the viewport within which to bias geocode results more prominently.
-   * This parameter will only influence, not fully restrict, results from the geocoder.
-   *
-   * <p>For more information see <a
-   * href="https://developers.google.com/maps/documentation/geocoding/intro?hl=pl#Viewports">
-   * Viewport Biasing</a>.
-   *
-   * @param southWestBound The South West bound of the bounding box.
-   * @param northEastBound The North East bound of the bounding box.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
-    return param("bounds", join('|', southWestBound, northEastBound));
-  }
-
-  /**
    * Sets the region code, specified as a ccTLD ("top-level domain") two-character value. This
    * parameter will only influence, not fully restrict, results from the geocoder.
    *

@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static com.google.maps.model.ComponentFilter.administrativeArea;
 import static com.google.maps.model.ComponentFilter.country;
 import static org.junit.Assert.assertEquals;
@@ -322,10 +323,11 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
+      LatLng southWestBound = new LatLng(34.172684, -118.604794);
+					LatLng northEastBound = new LatLng(34.236144, -118.500938);
+	GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address("Winnetka")
-              .bounds(new LatLng(34.172684, -118.604794), new LatLng(34.236144, -118.500938))
+		  .address("Winnetka").param("bounds", join('|', southWestBound, northEastBound))
               .await();
 
       assertNotNull(Arrays.toString(results));
