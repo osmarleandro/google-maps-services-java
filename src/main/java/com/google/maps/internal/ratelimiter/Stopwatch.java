@@ -138,7 +138,10 @@ public final class Stopwatch {
    * @throws IllegalStateException if the stopwatch is already running.
    */
   public Stopwatch start() {
-    checkState(!isRunning, "This stopwatch is already running.");
+    boolean expression = !isRunning;
+	if (!expression) {
+	  throw new IllegalStateException(String.valueOf("This stopwatch is already running."));
+	}
     isRunning = true;
     startTick = ticker.read();
     return this;
@@ -153,7 +156,9 @@ public final class Stopwatch {
    */
   public Stopwatch stop() {
     long tick = ticker.read();
-    checkState(isRunning, "This stopwatch is already stopped.");
+    if (!isRunning) {
+	  throw new IllegalStateException(String.valueOf("This stopwatch is already stopped."));
+	}
     isRunning = false;
     elapsedNanos += tick - startTick;
     return this;
