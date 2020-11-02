@@ -16,6 +16,9 @@
 package com.google.maps.internal;
 
 import com.google.maps.internal.ratelimiter.RateLimiter;
+
+import static com.google.maps.internal.ratelimiter.Preconditions.checkArgument;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -66,7 +69,12 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   public void setQueriesPerSecond(int maxQps) {
-    this.rateLimiter.setRate(maxQps);
+    RateLimiter r = this.rateLimiter;
+	checkArgument(
+	    maxQps > 0.0 && !Double.isNaN(maxQps), "rate must be positive");
+	synchronized (r.mutex()) {
+	  r.doSetRate(maxQps, r.stopwatch.readMicros());
+	}
   }
 
   /** Main loop. */
