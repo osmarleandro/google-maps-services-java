@@ -108,10 +108,6 @@ public final class OpenCensusMetrics {
             fields);
   }
 
-  public static void registerAllViews() {
-    registerAllViews(Stats.getViewManager());
-  }
-
   public static void registerAllViews(ViewManager viewManager) {
     View[] views_to_register =
         new View[] {

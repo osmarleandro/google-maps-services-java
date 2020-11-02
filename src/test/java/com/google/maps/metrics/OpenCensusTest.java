@@ -40,7 +40,7 @@ public class OpenCensusTest {
             .requestMetricsReporter(new OpenCensusRequestMetricsReporter())
             .baseUrlOverride("http://127.0.0.1:" + server.getPort())
             .build();
-    OpenCensusMetrics.registerAllViews();
+    OpenCensusMetrics.registerAllViews(Stats.getViewManager());
   }
 
   @After
