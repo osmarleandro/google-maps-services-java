@@ -1033,15 +1033,6 @@ public class PlacesApiTest {
   }
 
   @Test
-  public void testPlaceDetailsWithBusinessStatus() throws Exception {
-    final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
-    final LocalTestServerContext server = new LocalTestServerContext(jsonString);
-    final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
-    assertNotNull(placeDetails);
-    assertEquals("OPERATIONAL", placeDetails.businessStatus);
-  }
-
-  @Test
   public void testPlaceDetailsRequestHasFieldMask() throws Exception {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
