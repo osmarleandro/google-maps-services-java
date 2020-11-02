@@ -158,19 +158,6 @@ public class NearbySearchRequest
     return param("type", type);
   }
 
-  /**
-   * Restricts the results to places matching the specified type. Provides support for multiple
-   * types.
-   *
-   * @deprecated Multiple search types are ignored by the Places API.
-   * @param types The {@link PlaceType}s to restrict results to.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  @Deprecated
-  public NearbySearchRequest type(PlaceType... types) {
-    return param("type", join('|', types));
-  }
-
   @Override
   protected void validateRequest() {
 

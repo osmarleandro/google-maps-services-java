@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -656,8 +657,8 @@ public class PlacesApiTest {
   public void testNearbySearchRequestWithMultipleType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .type(PlaceType.AIRPORT, PlaceType.BANK)
+	PlaceType[] types = { PlaceType.AIRPORT, PlaceType.BANK };
+      PlacesApi.nearbySearchQuery(sc.context, location).param("type", join('|', types))
           .await();
 
       sc.assertParamValue(location.toUrlValue(), "location");
