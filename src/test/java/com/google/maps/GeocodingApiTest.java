@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static com.google.maps.model.ComponentFilter.administrativeArea;
 import static com.google.maps.model.ComponentFilter.country;
 import static org.junit.Assert.assertEquals;
@@ -491,10 +492,10 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
+      ComponentFilter[] filters = { ComponentFilter.country("ES") };
+	GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address("santa cruz")
-              .components(ComponentFilter.country("ES"))
+		  .address("santa cruz").param("components", join('|', filters))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -577,10 +578,10 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
+      ComponentFilter[] filters = { administrativeArea("TX"), country("US") };
+	GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address("Torun")
-              .components(administrativeArea("TX"), country("US"))
+		  .address("Torun").param("components", join('|', filters))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -664,12 +665,9 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .components(
-                  ComponentFilter.route("Annegatan"),
-                  ComponentFilter.administrativeArea("Helsinki"),
-                  ComponentFilter.country("Finland"))
+      ComponentFilter[] filters = { ComponentFilter.route("Annegatan"), ComponentFilter.administrativeArea("Helsinki"), ComponentFilter.country("Finland") };
+	GeocodingResult[] results =
+          GeocodingApi.newRequest(sc.context).param("components", join('|', filters))
               .await();
 
       assertNotNull(results);
