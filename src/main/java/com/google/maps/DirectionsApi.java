@@ -60,7 +60,7 @@ public class DirectionsApi {
    */
   public static DirectionsApiRequest getDirections(
       GeoApiContext context, String origin, String destination) {
-    return new DirectionsApiRequest(context).origin(origin).destination(destination);
+    return new DirectionsApiRequest(context).origin(origin).param("destination", destination);
   }
 
   public static class Response implements ApiResponse<DirectionsResult> {
