@@ -318,12 +318,6 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testNoExperienceId() {
-    final GeoApiContext context = builder.build();
-    assertNull(context.getExperienceId());
-  }
-
-  @Test
   public void testClearingExperienceId() {
     final String experienceId = "experienceId";
     final GeoApiContext context = builder.experienceId(experienceId).build();
