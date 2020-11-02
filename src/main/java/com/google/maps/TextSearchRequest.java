@@ -160,25 +160,6 @@ public class TextSearchRequest
     return param("type", type);
   }
 
-  @Override
-  protected void validateRequest() {
-
-    // All other parameters are ignored if pagetoken is specified.
-    if (params().containsKey("pagetoken")) {
-      return;
-    }
-
-    if (!params().containsKey("query") && !params().containsKey("type")) {
-      throw new IllegalArgumentException(
-          "Request must contain 'query' or a 'pageToken'. If a 'type' is specified 'query' becomes optional.");
-    }
-
-    if (params().containsKey("location") && !params().containsKey("radius")) {
-      throw new IllegalArgumentException(
-          "Request must contain 'radius' parameter when it contains a 'location' parameter.");
-    }
-  }
-
   public static class Response implements ApiResponse<PlacesSearchResponse> {
 
     public String status;
