@@ -40,10 +40,4 @@ public class InstantAdapter extends TypeAdapter<Instant> {
 
     throw new UnsupportedOperationException("Unsupported format");
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter out, Instant value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
