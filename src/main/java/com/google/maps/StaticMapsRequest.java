@@ -436,17 +436,6 @@ public class StaticMapsRequest
   }
 
   /**
-   * The <code>path</code> parameter defines a set of one or more locations connected by a path to
-   * overlay on the map image. This variant of the method accepts the path as an EncodedPolyline.
-   *
-   * @param path A path to render atop the map, as an EncodedPolyline.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest path(EncodedPolyline path) {
-    return paramAddToList("path", "enc:" + path.getEncodedPath());
-  }
-
-  /**
    * <code>visible</code> instructs the Google Static Maps API service to construct a map such that
    * the existing locations remain visible.
    *
