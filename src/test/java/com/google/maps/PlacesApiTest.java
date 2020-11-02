@@ -625,14 +625,13 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
-          .openNow(true)
+	  .radius(5000)
+	  .rankby(RankBy.PROMINENCE)
+	  .keyword("keyword")
+	  .language("en")
+	  .minPrice(PriceLevel.INEXPENSIVE)
+	  .maxPrice(PriceLevel.EXPENSIVE)
+	  .name("name").param("opennow", String.valueOf(true))
           .type(PlaceType.AIRPORT)
           .pageToken("next-page-token")
           .await();

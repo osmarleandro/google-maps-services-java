@@ -127,16 +127,6 @@ public class NearbySearchRequest
   }
 
   /**
-   * Restricts to only those places that are open for business at the time the query is sent.
-   *
-   * @param openNow Whether to restrict to places that are open.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest openNow(boolean openNow) {
-    return param("opennow", String.valueOf(openNow));
-  }
-
-  /**
    * Returns the next 20 results from a previously run search. Setting {@code pageToken} will
    * execute a search with the same parameters used previously — all parameters other than {@code
    * pageToken} will be ignored.
