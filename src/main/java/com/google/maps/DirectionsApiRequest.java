@@ -85,16 +85,6 @@ public class DirectionsApiRequest
   /**
    * The Place ID value from which you wish to calculate directions.
    *
-   * @param originPlaceId The starting location Place ID for the Directions request.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest originPlaceId(String originPlaceId) {
-    return param("origin", prefixPlaceId(originPlaceId));
-  }
-
-  /**
-   * The Place ID value from which you wish to calculate directions.
-   *
    * @param destinationPlaceId The ending location Place ID for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
