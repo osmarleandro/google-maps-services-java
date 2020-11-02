@@ -17,6 +17,8 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.util.ArrayList;
+
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
@@ -61,7 +63,9 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest address(String address) {
-    return param("address", address);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("address", new ArrayList<String>());
+	return paramAddToList("address", address);
   }
 
   /**
@@ -71,7 +75,9 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest place(String placeId) {
-    return param("place_id", placeId);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("place_id", new ArrayList<String>());
+	return paramAddToList("place_id", placeId);
   }
 
   /**
@@ -97,7 +103,10 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest bounds(LatLng southWestBound, LatLng northEastBound) {
-    return param("bounds", join('|', southWestBound, northEastBound));
+    String val = join('|', southWestBound, northEastBound);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("bounds", new ArrayList<String>());
+	return paramAddToList("bounds", val);
   }
 
   /**
@@ -112,7 +121,9 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest region(String region) {
-    return param("region", region);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("region", new ArrayList<String>());
+	return paramAddToList("region", region);
   }
 
   /**
@@ -127,7 +138,10 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
+    String val = join('|', filters);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("components", new ArrayList<String>());
+	return paramAddToList("components", val);
   }
 
   /**
@@ -138,7 +152,10 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest resultType(AddressType... resultTypes) {
-    return param("result_type", join('|', resultTypes));
+    String val = join('|', resultTypes);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("result_type", new ArrayList<String>());
+	return paramAddToList("result_type", val);
   }
 
   /**
@@ -149,6 +166,9 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest locationType(LocationType... locationTypes) {
-    return param("location_type", join('|', locationTypes));
+    String val = join('|', locationTypes);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("location_type", new ArrayList<String>());
+	return paramAddToList("location_type", val);
   }
 }

@@ -26,6 +26,7 @@ import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
+import java.util.ArrayList;
 
 /** Request for the Directions API. */
 public class DirectionsApiRequest
@@ -66,7 +67,9 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest origin(String origin) {
-    return param("origin", origin);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("origin", new ArrayList<String>());
+	return paramAddToList("origin", origin);
   }
 
   /**
@@ -79,7 +82,9 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest destination(String destination) {
-    return param("destination", destination);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("destination", new ArrayList<String>());
+	return paramAddToList("destination", destination);
   }
 
   /**
@@ -89,7 +94,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest originPlaceId(String originPlaceId) {
-    return param("origin", prefixPlaceId(originPlaceId));
+    String val = prefixPlaceId(originPlaceId);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("origin", new ArrayList<String>());
+	return paramAddToList("origin", val);
   }
 
   /**
@@ -99,7 +107,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest destinationPlaceId(String destinationPlaceId) {
-    return param("destination", prefixPlaceId(destinationPlaceId));
+    String val = prefixPlaceId(destinationPlaceId);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("destination", new ArrayList<String>());
+	return paramAddToList("destination", val);
   }
 
   /**
@@ -141,7 +152,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
-    return param("avoid", join('|', restrictions));
+    String val = join('|', restrictions);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("avoid", new ArrayList<String>());
+	return paramAddToList("avoid", val);
   }
 
   /**
@@ -159,7 +173,9 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest region(String region) {
-    return param("region", region);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("region", new ArrayList<String>());
+	return paramAddToList("region", region);
   }
 
   /**
@@ -169,7 +185,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest arrivalTime(Instant time) {
-    return param("arrival_time", Long.toString(time.toEpochMilli() / 1000L));
+    String val = Long.toString(time.toEpochMilli() / 1000L);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("arrival_time", new ArrayList<String>());
+	return paramAddToList("arrival_time", val);
   }
 
   /**
@@ -182,7 +201,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest departureTime(Instant time) {
-    return param("departure_time", Long.toString(time.toEpochMilli() / 1000L));
+    String val = Long.toString(time.toEpochMilli() / 1000L);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("departure_time", new ArrayList<String>());
+	return paramAddToList("departure_time", val);
   }
 
   /**
@@ -193,7 +215,9 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest departureTimeNow() {
-    return param("departure_time", "now");
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("departure_time", new ArrayList<String>());
+	return paramAddToList("departure_time", "now");
   }
 
   /**
@@ -212,7 +236,9 @@ public class DirectionsApiRequest
   public DirectionsApiRequest waypoints(Waypoint... waypoints) {
     if (waypoints == null || waypoints.length == 0) {
       this.waypoints = new Waypoint[0];
-      param("waypoints", "");
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("waypoints", new ArrayList<String>());
+      paramAddToList("waypoints", "");
       return this;
     } else {
       this.waypoints = waypoints;
@@ -220,7 +246,10 @@ public class DirectionsApiRequest
       for (int i = 0; i < waypoints.length; i++) {
         waypointStrs[i] = waypoints[i].toString();
       }
-      param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+	String val = (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("waypoints", new ArrayList<String>());
+      paramAddToList("waypoints", val);
       return this;
     }
   }
@@ -304,9 +333,13 @@ public class DirectionsApiRequest
    */
   public DirectionsApiRequest alternatives(boolean alternateRoutes) {
     if (alternateRoutes) {
-      return param("alternatives", "true");
+      // Enforce singleton parameter semantics for most API surfaces
+	params.put("alternatives", new ArrayList<String>());
+	return paramAddToList("alternatives", "true");
     } else {
-      return param("alternatives", "false");
+      // Enforce singleton parameter semantics for most API surfaces
+	params.put("alternatives", new ArrayList<String>());
+	return paramAddToList("alternatives", "false");
     }
   }
 
@@ -318,7 +351,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest transitMode(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
+    String val = join('|', transitModes);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("transit_mode", new ArrayList<String>());
+	return paramAddToList("transit_mode", val);
   }
 
   /**

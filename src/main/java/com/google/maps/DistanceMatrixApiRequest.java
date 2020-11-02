@@ -27,6 +27,7 @@ import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
+import java.util.ArrayList;
 
 /** A request to the Distance Matrix API. */
 public class DistanceMatrixApiRequest
@@ -58,7 +59,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest origins(String... origins) {
-    return param("origins", join('|', origins));
+    String val = join('|', origins);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("origins", new ArrayList<String>());
+	return paramAddToList("origins", val);
   }
 
   /**
@@ -68,7 +72,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest origins(LatLng... points) {
-    return param("origins", join('|', points));
+    String val = join('|', points);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("origins", new ArrayList<String>());
+	return paramAddToList("origins", val);
   }
 
   /**
@@ -79,7 +86,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest destinations(String... destinations) {
-    return param("destinations", join('|', destinations));
+    String val = join('|', destinations);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("destinations", new ArrayList<String>());
+	return paramAddToList("destinations", val);
   }
 
   /**
@@ -89,7 +99,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest destinations(LatLng... points) {
-    return param("destinations", join('|', points));
+    String val = join('|', points);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("destinations", new ArrayList<String>());
+	return paramAddToList("destinations", val);
   }
 
   /**
@@ -156,7 +169,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest departureTime(Instant departureTime) {
-    return param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L));
+    String val = Long.toString(departureTime.toEpochMilli() / 1000L);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("departure_time", new ArrayList<String>());
+	return paramAddToList("departure_time", val);
   }
 
   /**
@@ -178,7 +194,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest arrivalTime(Instant arrivalTime) {
-    return param("arrival_time", Long.toString(arrivalTime.toEpochMilli() / 1000L));
+    String val = Long.toString(arrivalTime.toEpochMilli() / 1000L);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("arrival_time", new ArrayList<String>());
+	return paramAddToList("arrival_time", val);
   }
 
   /**
@@ -189,7 +208,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest transitModes(TransitMode... transitModes) {
-    return param("transit_mode", join('|', transitModes));
+    String val = join('|', transitModes);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("transit_mode", new ArrayList<String>());
+	return paramAddToList("transit_mode", val);
   }
 
   /**

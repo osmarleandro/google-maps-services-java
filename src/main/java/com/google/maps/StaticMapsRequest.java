@@ -66,7 +66,9 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest center(String location) {
-    return param("center", location);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("center", new ArrayList<String>());
+	return paramAddToList("center", location);
   }
 
   /**
@@ -165,7 +167,9 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest region(String region) {
-    return param("region", region);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("region", new ArrayList<String>());
+	return paramAddToList("region", region);
   }
 
   public static class Markers implements UrlValue {
@@ -465,6 +469,8 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest visible(String visibleLocation) {
-    return param("visible", visibleLocation);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("visible", new ArrayList<String>());
+	return paramAddToList("visible", visibleLocation);
   }
 }

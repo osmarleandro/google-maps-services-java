@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -54,7 +56,9 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest input(String input) {
-    return param("input", input);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("input", new ArrayList<String>());
+	return paramAddToList("input", input);
   }
 
   /**
@@ -67,7 +71,10 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest offset(int offset) {
-    return param("offset", String.valueOf(offset));
+    String val = String.valueOf(offset);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("offset", new ArrayList<String>());
+	return paramAddToList("offset", val);
   }
 
   /**
@@ -88,7 +95,10 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest radius(int radius) {
-    return param("radius", String.valueOf(radius));
+    String val = String.valueOf(radius);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("radius", new ArrayList<String>());
+	return paramAddToList("radius", val);
   }
 
   public static class Response implements ApiResponse<AutocompletePrediction[]> {

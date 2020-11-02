@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -62,7 +64,9 @@ public class FindPlaceFromTextRequest
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
   public FindPlaceFromTextRequest input(String input) {
-    return param("input", input);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("input", new ArrayList<String>());
+	return paramAddToList("input", input);
   }
 
   /**
@@ -82,7 +86,10 @@ public class FindPlaceFromTextRequest
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
   public FindPlaceFromTextRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
+    String val = StringJoin.join(',', fields);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("fields", new ArrayList<String>());
+	return paramAddToList("fields", val);
   }
 
   /**

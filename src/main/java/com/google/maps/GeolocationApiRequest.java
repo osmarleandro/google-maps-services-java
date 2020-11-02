@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.google.maps.model.CellTower;
 import com.google.maps.model.GeolocationPayload;
@@ -103,6 +105,8 @@ public class GeolocationApiRequest
     }
     Gson gson = new Gson();
     String jsonPayload = gson.toJson(this.payload);
-    return param("_payload", jsonPayload);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("_payload", new ArrayList<String>());
+	return paramAddToList("_payload", jsonPayload);
   }
 }

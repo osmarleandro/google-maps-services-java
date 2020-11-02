@@ -17,6 +17,8 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.util.ArrayList;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -71,7 +73,10 @@ public class NearbySearchRequest
     if (distance > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
-    return param("radius", String.valueOf(distance));
+	String val = String.valueOf(distance);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("radius", new ArrayList<String>());
+	return paramAddToList("radius", val);
   }
 
   /**
@@ -93,7 +98,9 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest keyword(String keyword) {
-    return param("keyword", keyword);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("keyword", new ArrayList<String>());
+	return paramAddToList("keyword", keyword);
   }
 
   /**
@@ -123,7 +130,9 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest name(String name) {
-    return param("name", name);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("name", new ArrayList<String>());
+	return paramAddToList("name", name);
   }
 
   /**
@@ -133,7 +142,10 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest openNow(boolean openNow) {
-    return param("opennow", String.valueOf(openNow));
+    String val = String.valueOf(openNow);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("opennow", new ArrayList<String>());
+	return paramAddToList("opennow", val);
   }
 
   /**
@@ -145,7 +157,9 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest pageToken(String nextPageToken) {
-    return param("pagetoken", nextPageToken);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("pagetoken", new ArrayList<String>());
+	return paramAddToList("pagetoken", nextPageToken);
   }
 
   /**
@@ -168,7 +182,10 @@ public class NearbySearchRequest
    */
   @Deprecated
   public NearbySearchRequest type(PlaceType... types) {
-    return param("type", join('|', types));
+    String val = join('|', types);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("type", new ArrayList<String>());
+	return paramAddToList("type", val);
   }
 
   @Override

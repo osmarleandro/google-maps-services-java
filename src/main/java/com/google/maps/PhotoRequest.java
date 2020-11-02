@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.maps.internal.ApiConfig;
 
 /**
@@ -48,7 +50,9 @@ public class PhotoRequest
    * @return Returns the configured PhotoRequest.
    */
   public PhotoRequest photoReference(String photoReference) {
-    return param("photoreference", photoReference);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("photoreference", new ArrayList<String>());
+	return paramAddToList("photoreference", photoReference);
   }
 
   /**
@@ -59,7 +63,10 @@ public class PhotoRequest
    * @return Returns the configured PhotoRequest.
    */
   public PhotoRequest maxHeight(int maxHeight) {
-    return param("maxheight", String.valueOf(maxHeight));
+    String val = String.valueOf(maxHeight);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("maxheight", new ArrayList<String>());
+	return paramAddToList("maxheight", val);
   }
 
   /**
@@ -70,6 +77,9 @@ public class PhotoRequest
    * @return Returns the configured PhotoRequest.
    */
   public PhotoRequest maxWidth(int maxWidth) {
-    return param("maxwidth", String.valueOf(maxWidth));
+    String val = String.valueOf(maxWidth);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("maxwidth", new ArrayList<String>());
+	return paramAddToList("maxwidth", val);
   }
 }

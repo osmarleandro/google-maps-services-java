@@ -96,19 +96,19 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return result;
   }
 
-  protected A param(String key, String val) {
-    // Enforce singleton parameter semantics for most API surfaces
-    params.put(key, new ArrayList<String>());
-    return paramAddToList(key, val);
-  }
-
   protected A param(String key, int val) {
-    return this.param(key, Integer.toString(val));
+    String val1 = Integer.toString(val);
+	// Enforce singleton parameter semantics for most API surfaces
+	this.params.put(key, new ArrayList<String>());
+	return this.paramAddToList(key, val1);
   }
 
   protected A param(String key, UrlValue val) {
     if (val != null) {
-      return this.param(key, val.toUrlValue());
+      String val1 = val.toUrlValue();
+	// Enforce singleton parameter semantics for most API surfaces
+	this.params.put(key, new ArrayList<String>());
+	return this.paramAddToList(key, val1);
     }
     return getInstance();
   }
@@ -143,7 +143,9 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @return Returns the request for call chaining.
    */
   public final A language(String language) {
-    return param("language", language);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("language", new ArrayList<String>());
+	return paramAddToList("language", language);
   }
 
   /**
@@ -156,7 +158,9 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @return Returns the request for call chaining.
    */
   public A channel(String channel) {
-    return param("channel", channel);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("channel", new ArrayList<String>());
+	return paramAddToList("channel", channel);
   }
 
   /**
@@ -167,6 +171,8 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
    * @return Returns the request for call chaining.
    */
   public A custom(String parameter, String value) {
-    return param(parameter, value);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put(parameter, new ArrayList<String>());
+	return paramAddToList(parameter, value);
   }
 }

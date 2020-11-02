@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -45,7 +47,9 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest placeId(String placeId) {
-    return param("placeid", placeId);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("placeid", new ArrayList<String>());
+	return paramAddToList("placeid", placeId);
   }
 
   /**
@@ -68,7 +72,9 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest region(String region) {
-    return param("region", region);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("region", new ArrayList<String>());
+	return paramAddToList("region", region);
   }
 
   /**
@@ -78,7 +84,10 @@ public class PlaceDetailsRequest
    * @return Returns this {@code PlaceDetailsRequest} for call chaining.
    */
   public PlaceDetailsRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
+    String val = StringJoin.join(',', fields);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("fields", new ArrayList<String>());
+	return paramAddToList("fields", val);
   }
 
   @Override

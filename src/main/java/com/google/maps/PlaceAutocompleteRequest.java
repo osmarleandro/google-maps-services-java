@@ -27,6 +27,7 @@ import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceAutocompleteType;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -102,7 +103,9 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest input(String input) {
-    return param("input", input);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("input", new ArrayList<String>());
+	return paramAddToList("input", input);
   }
 
   /**
@@ -115,7 +118,10 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest offset(int offset) {
-    return param("offset", String.valueOf(offset));
+    String val = String.valueOf(offset);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("offset", new ArrayList<String>());
+	return paramAddToList("offset", val);
   }
 
   /**
@@ -148,7 +154,10 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest radius(int radius) {
-    return param("radius", String.valueOf(radius));
+    String val = String.valueOf(radius);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("radius", new ArrayList<String>());
+	return paramAddToList("radius", val);
   }
 
   /**
@@ -180,7 +189,10 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
+    String val = join('|', filters);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("components", new ArrayList<String>());
+	return paramAddToList("components", val);
   }
 
   /**
@@ -192,7 +204,10 @@ public class PlaceAutocompleteRequest
    * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
    */
   public PlaceAutocompleteRequest strictBounds(boolean strictBounds) {
-    return param("strictbounds", Boolean.toString(strictBounds));
+    String val = Boolean.toString(strictBounds);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("strictbounds", new ArrayList<String>());
+	return paramAddToList("strictbounds", val);
   }
 
   @Override

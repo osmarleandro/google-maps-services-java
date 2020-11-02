@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.ArrayList;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -48,7 +50,9 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest query(String query) {
-    return param("query", query);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("query", new ArrayList<String>());
+	return paramAddToList("query", query);
   }
 
   /**
@@ -71,7 +75,9 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest region(String region) {
-    return param("region", region);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("region", new ArrayList<String>());
+	return paramAddToList("region", region);
   }
 
   /**
@@ -84,7 +90,10 @@ public class TextSearchRequest
     if (radius > 50000) {
       throw new IllegalArgumentException("The maximum allowed radius is 50,000 meters.");
     }
-    return param("radius", String.valueOf(radius));
+	String val = String.valueOf(radius);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("radius", new ArrayList<String>());
+	return paramAddToList("radius", val);
   }
 
   /**
@@ -115,7 +124,9 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest name(String name) {
-    return param("name", name);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("name", new ArrayList<String>());
+	return paramAddToList("name", name);
   }
 
   /**
@@ -125,7 +136,10 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest openNow(boolean openNow) {
-    return param("opennow", String.valueOf(openNow));
+    String val = String.valueOf(openNow);
+	// Enforce singleton parameter semantics for most API surfaces
+	params.put("opennow", new ArrayList<String>());
+	return paramAddToList("opennow", val);
   }
 
   /**
@@ -137,7 +151,9 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest pageToken(String nextPageToken) {
-    return param("pagetoken", nextPageToken);
+    // Enforce singleton parameter semantics for most API surfaces
+	params.put("pagetoken", new ArrayList<String>());
+	return paramAddToList("pagetoken", nextPageToken);
   }
 
   /**
