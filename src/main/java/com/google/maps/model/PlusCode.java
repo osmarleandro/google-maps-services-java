@@ -27,15 +27,4 @@ public class PlusCode implements Serializable {
 
   /** The compound Plus Code identifier. May be null for locations in remote areas. */
   public String compoundCode;
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder("[PlusCode: ");
-    sb.append(globalCode);
-    if (compoundCode != null) {
-      sb.append(", compoundCode=").append(compoundCode);
-    }
-    sb.append("]");
-    return sb.toString();
-  }
 }
