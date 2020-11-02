@@ -73,10 +73,4 @@ public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
     return ZonedDateTime.ofInstant(
         Instant.ofEpochMilli(secondsSinceEpoch * 1000), ZoneId.of(timeZoneId));
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, ZonedDateTime value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
