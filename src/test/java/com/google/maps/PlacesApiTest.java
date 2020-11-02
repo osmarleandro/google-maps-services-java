@@ -624,9 +624,9 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
+	RankBy ranking = RankBy.PROMINENCE;
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
+	  .radius(5000).param("rankby", ranking)
           .keyword("keyword")
           .language("en")
           .minPrice(PriceLevel.INEXPENSIVE)
@@ -669,9 +669,9 @@ public class PlacesApiTest {
   public void testNearbySearchRadiusAndRankbyDistance() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
+	RankBy ranking = RankBy.DISTANCE;
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.DISTANCE)
+	  .radius(5000).param("rankby", ranking)
           .await();
     }
   }
@@ -680,7 +680,8 @@ public class PlacesApiTest {
   public void testNearbySearchRankbyDistanceWithoutKeywordNameOrType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location).rankby(RankBy.DISTANCE).await();
+	RankBy ranking = RankBy.DISTANCE;
+      PlacesApi.nearbySearchQuery(sc.context, location).param("rankby", ranking).await();
     }
   }
 
