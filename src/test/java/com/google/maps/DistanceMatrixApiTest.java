@@ -127,10 +127,9 @@ public class DistanceMatrixApiTest {
           };
 
       DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
-          .destinations(destinations)
-          .mode(TravelMode.DRIVING)
-          .language("en-AU")
+	  .origins(origins)
+	  .destinations(destinations)
+	  .mode(TravelMode.DRIVING).param("language", "en-AU")
           .avoid(RouteRestriction.TOLLS)
           .units(Unit.IMPERIAL)
           .departureTime(
@@ -160,10 +159,9 @@ public class DistanceMatrixApiTest {
       String[] origins = new String[] {"Vancouver BC", "Seattle"};
       String[] destinations = new String[] {"San Francisco", "Victoria BC"};
       DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
-          .destinations(destinations)
-          .mode(TravelMode.BICYCLING)
-          .language("fr-FR")
+	  .origins(origins)
+	  .destinations(destinations)
+	  .mode(TravelMode.BICYCLING).param("language", "fr-FR")
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");

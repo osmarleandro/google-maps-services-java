@@ -343,10 +343,9 @@ public class DirectionsApiTest {
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin("Toledo")
-              .destination("Madrid")
-              .region("es")
-              .language("es")
+		  .origin("Toledo")
+		  .destination("Madrid")
+		  .region("es").param("language", "es")
               .await();
 
       sc.assertParamValue("Toledo", "origin");

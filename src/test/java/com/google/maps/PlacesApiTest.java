@@ -379,10 +379,9 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
-          .offset(10)
-          .location(location)
-          .radius(5000)
-          .language("en")
+	  .offset(10)
+	  .location(location)
+	  .radius(5000).param("language", "en")
           .await();
 
       sc.assertParamValue(QUERY_AUTOCOMPLETE_INPUT, "input");
@@ -625,10 +624,9 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
+	  .radius(5000)
+	  .rankby(RankBy.PROMINENCE)
+	  .keyword("keyword").param("language", "en")
           .minPrice(PriceLevel.INEXPENSIVE)
           .maxPrice(PriceLevel.EXPENSIVE)
           .name("name")
@@ -763,7 +761,7 @@ public class PlacesApiTest {
   public void testPlaceDetailsInFrench() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
       PlaceDetails details =
-          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
+          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").param("language", "fr").await();
 
       sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
       sc.assertParamValue("fr", "language");
