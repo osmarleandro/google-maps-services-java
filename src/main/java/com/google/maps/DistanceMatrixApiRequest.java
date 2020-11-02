@@ -160,17 +160,6 @@ public class DistanceMatrixApiRequest
   }
 
   /**
-   * Specifies the assumptions to use when calculating time in traffic. This parameter may only be
-   * specified when the travel mode is driving and the request includes a departure_time.
-   *
-   * @param trafficModel The traffic model to use in estimating time in traffic.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
-  }
-
-  /**
    * Specifies the desired time of arrival for transit requests. You can specify either
    * departure_time or arrival_time, but not both.
    *

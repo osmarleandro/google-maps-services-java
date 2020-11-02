@@ -198,11 +198,11 @@ public class DistanceMatrixApiTest {
   public void testDurationInTrafficWithTrafficModel() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
+	TrafficModel trafficModel = TrafficModel.PESSIMISTIC;
       DistanceMatrixApi.newRequest(sc.context)
-          .origins("Fisherman's Wharf, San Francisco")
-          .destinations("San Francisco International Airport, San Francisco, CA")
-          .mode(TravelMode.DRIVING)
-          .trafficModel(TrafficModel.PESSIMISTIC)
+	  .origins("Fisherman's Wharf, San Francisco")
+	  .destinations("San Francisco International Airport, San Francisco, CA")
+	  .mode(TravelMode.DRIVING).param("traffic_model", trafficModel)
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
 
