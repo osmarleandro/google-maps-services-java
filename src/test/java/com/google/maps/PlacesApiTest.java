@@ -689,12 +689,12 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
+	PlaceAutocompleteType types = PlaceAutocompleteType.ESTABLISHMENT;
       PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
-          .offset(4)
-          .origin(location)
-          .location(location)
-          .radius(5000)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
+	  .offset(4)
+	  .origin(location)
+	  .location(location)
+	  .radius(5000).param("types", types)
           .components(ComponentFilter.country("AU"))
           .await();
 
@@ -856,10 +856,10 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiPlaceAutocompleteWithType)) {
       SessionToken session = new SessionToken();
+	PlaceAutocompleteType types = PlaceAutocompleteType.REGIONS;
       AutocompletePrediction[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "po", session)
-              .components(ComponentFilter.country("nz"))
-              .types(PlaceAutocompleteType.REGIONS)
+		  .components(ComponentFilter.country("nz")).param("types", types)
               .await();
 
       sc.assertParamValue("po", "input");
@@ -882,8 +882,8 @@ public class PlacesApiTest {
   public void testPlaceAutocompleteWithStrictBounds() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
-      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
+	PlaceAutocompleteType types = PlaceAutocompleteType.ESTABLISHMENT;
+      PlacesApi.placeAutocomplete(sc.context, "Amoeba", session).param("types", types)
           .location(new LatLng(37.76999, -122.44696))
           .radius(500)
           .strictBounds(true)
