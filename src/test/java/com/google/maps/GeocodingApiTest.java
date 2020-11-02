@@ -75,7 +75,12 @@ public class GeocodingApiTest {
   public void testSimpleGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("Sydney").await();
-      checkSydneyResult(results);
+      assertNotNull(results);
+	assertNotNull(results[0].geometry);
+	assertNotNull(results[0].geometry.location);
+	assertEquals(-33.8674869, results[0].geometry.location.lat, EPSILON);
+	assertEquals(151.2069902, results[0].geometry.location.lng, EPSILON);
+	assertEquals(LocationType.APPROXIMATE, results[0].geometry.locationType);
       assertNotNull(Arrays.toString(results));
 
       sc.assertParamValue("Sydney", "address");
@@ -87,7 +92,12 @@ public class GeocodingApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeGeocodeResponse)) {
       String placeID = "ChIJP3Sa8ziYEmsRUKgyFmh9AQM";
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
-      checkSydneyResult(results);
+      assertNotNull(results);
+	assertNotNull(results[0].geometry);
+	assertNotNull(results[0].geometry.location);
+	assertEquals(-33.8674869, results[0].geometry.location.lat, EPSILON);
+	assertEquals(151.2069902, results[0].geometry.location.lng, EPSILON);
+	assertEquals(LocationType.APPROXIMATE, results[0].geometry.locationType);
 
       sc.assertParamValue(placeID, "place_id");
     }
@@ -116,19 +126,16 @@ public class GeocodingApiTest {
 
       assertFalse(resps.isEmpty());
       assertNotNull(resps.get(0));
-      checkSydneyResult(resps.get(0));
+	GeocodingResult[] results = resps.get(0);
+      assertNotNull(results);
+	assertNotNull(results[0].geometry);
+	assertNotNull(results[0].geometry.location);
+	assertEquals(-33.8674869, results[0].geometry.location.lat, EPSILON);
+	assertEquals(151.2069902, results[0].geometry.location.lng, EPSILON);
+	assertEquals(LocationType.APPROXIMATE, results[0].geometry.locationType);
 
       sc.assertParamValue("Sydney", "address");
     }
-  }
-
-  private void checkSydneyResult(GeocodingResult[] results) {
-    assertNotNull(results);
-    assertNotNull(results[0].geometry);
-    assertNotNull(results[0].geometry.location);
-    assertEquals(-33.8674869, results[0].geometry.location.lat, EPSILON);
-    assertEquals(151.2069902, results[0].geometry.location.lng, EPSILON);
-    assertEquals(LocationType.APPROXIMATE, results[0].geometry.locationType);
   }
 
   @Test
