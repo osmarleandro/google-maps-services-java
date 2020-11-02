@@ -135,16 +135,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * Indicates that the calculated route(s) should avoid the indicated features.
-   *
-   * @param restrictions one or more of {@link DirectionsApi.RouteRestriction} objects.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest avoid(DirectionsApi.RouteRestriction... restrictions) {
-    return param("avoid", join('|', restrictions));
-  }
-
-  /**
    * Specifies the unit system to use when displaying results.
    *
    * @param units The preferred units for displaying distances.

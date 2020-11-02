@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -85,13 +86,10 @@ public class DirectionsApiTest {
   @Test
   public void testBuilder() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
-      DirectionsResult result =
+      RouteRestriction[] restrictions = { DirectionsApi.RouteRestriction.HIGHWAYS, DirectionsApi.RouteRestriction.TOLLS, DirectionsApi.RouteRestriction.FERRIES };
+	DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.BICYCLING)
-              .avoid(
-                  DirectionsApi.RouteRestriction.HIGHWAYS,
-                  DirectionsApi.RouteRestriction.TOLLS,
-                  DirectionsApi.RouteRestriction.FERRIES)
+		  .mode(TravelMode.BICYCLING).param("avoid", join('|', restrictions))
               .units(Unit.METRIC)
               .region("au")
               .origin("Sydney")
@@ -166,10 +164,10 @@ public class DirectionsApiTest {
   public void testTorontoToMontrealByBicycleAvoidingHighways() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsApi.newRequest(sc.context)
-          .origin("Toronto")
-          .destination("Montreal")
-          .avoid(DirectionsApi.RouteRestriction.HIGHWAYS)
+      RouteRestriction[] restrictions = { DirectionsApi.RouteRestriction.HIGHWAYS };
+	DirectionsApi.newRequest(sc.context)
+	  .origin("Toronto")
+	  .destination("Montreal").param("avoid", join('|', restrictions))
           .mode(TravelMode.BICYCLING)
           .await();
 
@@ -184,10 +182,10 @@ public class DirectionsApiTest {
   public void testSanFranciscoToSeattleByBicycleAvoidingIndoor() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsApi.newRequest(sc.context)
-          .origin("San Francisco")
-          .destination("Seattle")
-          .avoid(RouteRestriction.INDOOR)
+      RouteRestriction[] restrictions = { RouteRestriction.INDOOR };
+	DirectionsApi.newRequest(sc.context)
+	  .origin("San Francisco")
+	  .destination("Seattle").param("avoid", join('|', restrictions))
           .mode(TravelMode.BICYCLING)
           .await();
 
