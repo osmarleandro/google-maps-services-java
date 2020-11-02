@@ -57,10 +57,4 @@ public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
 
     return PriceLevel.UNKNOWN;
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, PriceLevel value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
