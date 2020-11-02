@@ -21,6 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
+import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
@@ -265,7 +266,7 @@ public class ElevationApiTest {
       ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
       assertEquals(100, elevation.length);
 
-      List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
+      List<LatLng> overviewPolylinePath = PolylineEncoding.decode(SYD_MELB_ROUTE.points);
       LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
       LatLng lastElevationPoint = elevation[elevation.length - 1].location;
 

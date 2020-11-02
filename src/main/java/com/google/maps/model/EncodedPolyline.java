@@ -51,10 +51,6 @@ public class EncodedPolyline implements Serializable {
     return points;
   }
 
-  public List<LatLng> decodePath() {
-    return PolylineEncoding.decode(points);
-  }
-
   // Use the encoded point representation; decoding to get an alternate representation for
   // individual points would be expensive.
   @Override

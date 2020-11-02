@@ -23,6 +23,7 @@ import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.errors.NotFoundException;
+import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.GeocodedWaypointStatus;
@@ -72,7 +73,7 @@ public class DirectionsApiTest {
       assertEquals(1, result.routes.length);
       assertNotNull(result.routes[0]);
       assertEquals("M31 and National Highway M31", result.routes[0].summary);
-      assertThat(result.routes[0].overviewPolyline.decodePath().size(), not(0));
+      assertThat(PolylineEncoding.decode(result.routes[0].overviewPolyline.points).size(), not(0));
       assertEquals(1, result.routes[0].legs.length);
       assertEquals("Melbourne VIC, Australia", result.routes[0].legs[0].endAddress);
       assertEquals("Sydney NSW, Australia", result.routes[0].legs[0].startAddress);
