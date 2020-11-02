@@ -43,16 +43,4 @@ public class AddressComponent implements Serializable {
 
   /** Indicates the type of each part of the address. Examples include street number or country. */
   public AddressComponentType[] types;
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder("[AddressComponent: ");
-    sb.append("\"").append(longName).append("\"");
-    if (shortName != null) {
-      sb.append(" (\"").append(shortName).append("\")");
-    }
-    sb.append(" (").append(join(", ", (Object[]) types)).append(")");
-    sb.append("]");
-    return sb.toString();
-  }
 }
