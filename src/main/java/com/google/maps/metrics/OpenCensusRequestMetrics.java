@@ -32,11 +32,6 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
   }
 
   @Override
-  public void endNetwork() {
-    this.networkTime += milliTime() - this.networkStart;
-  }
-
-  @Override
   public void endRequest(Exception exception, int httpStatusCode, long retryCount) {
     // multiple endRequest are ignored
     if (this.finished) {
