@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.internal.StringJoin;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -918,17 +919,11 @@ public class PlacesApiTest {
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
       String input = "Museum of Contemporary Art Australia";
+	com.google.maps.FindPlaceFromTextRequest.FieldMask[] fields = { FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS, FindPlaceFromTextRequest.FieldMask.PHOTOS, FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+			FindPlaceFromTextRequest.FieldMask.NAME, FindPlaceFromTextRequest.FieldMask.RATING, FindPlaceFromTextRequest.FieldMask.OPENING_HOURS, FindPlaceFromTextRequest.FieldMask.GEOMETRY };
 
       FindPlaceFromText response =
-          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-              .fields(
-                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
-                  FindPlaceFromTextRequest.FieldMask.PHOTOS,
-                  FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-                  FindPlaceFromTextRequest.FieldMask.NAME,
-                  FindPlaceFromTextRequest.FieldMask.RATING,
-                  FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-                  FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).param("fields", StringJoin.join(',', fields))
               .locationBias(new LocationBiasIP())
               .await();
 
@@ -963,15 +958,10 @@ public class PlacesApiTest {
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
       String input = "Museum of Contemporary Art Australia";
+	com.google.maps.FindPlaceFromTextRequest.FieldMask[] fields = { FindPlaceFromTextRequest.FieldMask.PHOTOS, FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS, FindPlaceFromTextRequest.FieldMask.NAME,
+			FindPlaceFromTextRequest.FieldMask.RATING, FindPlaceFromTextRequest.FieldMask.OPENING_HOURS, FindPlaceFromTextRequest.FieldMask.GEOMETRY };
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).param("fields", StringJoin.join(',', fields))
           .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
           .await();
 
@@ -988,15 +978,10 @@ public class PlacesApiTest {
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
       String input = "Museum of Contemporary Art Australia";
+	com.google.maps.FindPlaceFromTextRequest.FieldMask[] fields = { FindPlaceFromTextRequest.FieldMask.PHOTOS, FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS, FindPlaceFromTextRequest.FieldMask.NAME,
+			FindPlaceFromTextRequest.FieldMask.RATING, FindPlaceFromTextRequest.FieldMask.OPENING_HOURS, FindPlaceFromTextRequest.FieldMask.GEOMETRY };
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).param("fields", StringJoin.join(',', fields))
           .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
           .await();
 
@@ -1013,15 +998,10 @@ public class PlacesApiTest {
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
       String input = "Museum of Contemporary Art Australia";
+	com.google.maps.FindPlaceFromTextRequest.FieldMask[] fields = { FindPlaceFromTextRequest.FieldMask.PHOTOS, FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS, FindPlaceFromTextRequest.FieldMask.NAME,
+			FindPlaceFromTextRequest.FieldMask.RATING, FindPlaceFromTextRequest.FieldMask.OPENING_HOURS, FindPlaceFromTextRequest.FieldMask.GEOMETRY };
 
-      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-          .fields(
-              FindPlaceFromTextRequest.FieldMask.PHOTOS,
-              FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-              FindPlaceFromTextRequest.FieldMask.NAME,
-              FindPlaceFromTextRequest.FieldMask.RATING,
-              FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-              FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+      PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY).param("fields", StringJoin.join(',', fields))
           .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
           .await();
 
