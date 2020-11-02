@@ -43,19 +43,6 @@ public class GeocodingApi {
   }
 
   /**
-   * Requests the latitude and longitude of an {@code address}.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param address The address to geocode.
-   * @return Returns the request, ready to run.
-   */
-  public static GeocodingApiRequest geocode(GeoApiContext context, String address) {
-    GeocodingApiRequest request = new GeocodingApiRequest(context);
-    request.address(address);
-    return request;
-  }
-
-  /**
    * Requests the street address of a {@code location}.
    *
    * @param context The {@link GeoApiContext} to make requests through.
