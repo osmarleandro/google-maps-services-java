@@ -122,13 +122,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return getInstance();
   }
 
-  protected A paramAddToList(String key, UrlValue val) {
-    if (val != null) {
-      return this.paramAddToList(key, val.toUrlValue());
-    }
-    return getInstance();
-  }
-
   protected Map<String, List<String>> params() {
     return Collections.unmodifiableMap(params);
   }

@@ -329,7 +329,10 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest markers(Markers markers) {
-    return paramAddToList("markers", markers);
+    if (markers != null) {
+	  return this.paramAddToList("markers", markers.toUrlValue());
+	}
+	return getInstance();
   }
 
   public static class Path implements UrlValue {
@@ -432,7 +435,10 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest path(Path path) {
-    return paramAddToList("path", path);
+    if (path != null) {
+	  return this.paramAddToList("path", path.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
