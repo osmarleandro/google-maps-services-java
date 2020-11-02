@@ -71,16 +71,6 @@ public class QueryAutocompleteRequest
   }
 
   /**
-   * The point around which you wish to retrieve place information.
-   *
-   * @param location The location point around which to search.
-   * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
-   */
-  public QueryAutocompleteRequest location(LatLng location) {
-    return param("location", location);
-  }
-
-  /**
    * The distance (in meters) within which to return place results. Note that setting a radius
    * biases results to the indicated area, but may not fully restrict results to the specified area.
    *
