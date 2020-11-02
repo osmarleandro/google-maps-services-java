@@ -141,16 +141,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Specifies the order in which results are listed.
-   *
-   * @param ranking The rank by method.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest rankby(RankBy ranking) {
-    return param("rankby", ranking);
-  }
-
-  /**
    * Restricts the results to places matching the specified type.
    *
    * @param type The type of place to restrict the results with.

@@ -456,15 +456,15 @@ public class PlacesApiTest {
   public void testTextSearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
+	RankBy ranking = RankBy.DISTANCE;
       PlacesApi.textSearchQuery(sc.context, "Google Sydney")
-          .location(location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
-          .name("name")
-          .openNow(true)
-          .rankby(RankBy.DISTANCE)
+	  .location(location)
+	  .region("AU")
+	  .radius(3000)
+	  .minPrice(PriceLevel.INEXPENSIVE)
+	  .maxPrice(PriceLevel.VERY_EXPENSIVE)
+	  .name("name")
+	  .openNow(true).param("rankby", ranking)
           .type(PlaceType.AIRPORT)
           .await();
 
@@ -485,14 +485,14 @@ public class PlacesApiTest {
   public void testTextSearchRequestWithLocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
+	RankBy ranking = RankBy.DISTANCE;
       PlacesApi.textSearchQuery(sc.context, "Google Sydney", location)
-          .region("AU")
-          .radius(3000)
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.VERY_EXPENSIVE)
-          .name("name")
-          .openNow(true)
-          .rankby(RankBy.DISTANCE)
+	  .region("AU")
+	  .radius(3000)
+	  .minPrice(PriceLevel.INEXPENSIVE)
+	  .maxPrice(PriceLevel.VERY_EXPENSIVE)
+	  .name("name")
+	  .openNow(true).param("rankby", ranking)
           .type(PlaceType.AIRPORT)
           .await();
 
