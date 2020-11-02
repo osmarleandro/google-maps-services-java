@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.maps.RoadsApi.RoadsResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
@@ -61,7 +62,14 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedPoint[] points = RoadsApi.snapToRoads(sc.context, false, path).await();
+	GeoApiContext context = sc.context;
+      SnappedPoint[] points = context.get(
+	RoadsApi.SNAP_TO_ROADS_API_CONFIG,
+	RoadsResponse.class,
+	"path",
+	join('|', path),
+	"interpolate",
+	String.valueOf(false)).await();
 
       assertNotNull(Arrays.toString(points));
       sc.assertParamValue(join('|', path), "path");

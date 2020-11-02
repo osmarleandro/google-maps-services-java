@@ -70,31 +70,6 @@ public class RoadsApi {
   }
 
   /**
-   * Takes up to 100 GPS points collected along a route, and returns a similar set of data with the
-   * points snapped to the most likely roads the vehicle was traveling along. Additionally, you can
-   * request that the points be interpolated, resulting in a path that smoothly follows the geometry
-   * of the road.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param interpolate Whether to interpolate a path to include all points forming the full
-   *     road-geometry. When true, additional interpolated points will also be returned, resulting
-   *     in a path that smoothly follows the geometry of the road, even around corners and through
-   *     tunnels.
-   * @param path The path to be snapped.
-   * @return Returns the snapped points as a {@link PendingResult}.
-   */
-  public static PendingResult<SnappedPoint[]> snapToRoads(
-      GeoApiContext context, boolean interpolate, LatLng... path) {
-    return context.get(
-        SNAP_TO_ROADS_API_CONFIG,
-        RoadsResponse.class,
-        "path",
-        join('|', path),
-        "interpolate",
-        String.valueOf(interpolate));
-  }
-
-  /**
    * Returns the posted speed limit for given road segments. The provided LatLngs will first be
    * snapped to the most likely roads the vehicle was traveling along.
    *
