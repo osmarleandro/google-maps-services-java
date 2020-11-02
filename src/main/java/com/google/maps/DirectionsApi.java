@@ -39,17 +39,6 @@ public class DirectionsApi {
   private DirectionsApi() {}
 
   /**
-   * Creates a new DirectionsApiRequest using the given context, with all attributes at their
-   * default values.
-   *
-   * @param context Context that the DirectionsApiRequest will be executed against
-   * @return A newly constructed DirectionsApiRequest between the given points.
-   */
-  public static DirectionsApiRequest newRequest(GeoApiContext context) {
-    return new DirectionsApiRequest(context);
-  }
-
-  /**
    * Creates a new DirectionsApiRequest between the given origin and destination, using the defaults
    * for all other options.
    *
