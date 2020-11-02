@@ -42,11 +42,6 @@ public class Size implements StringJoin.UrlValue, Serializable {
   public Size() {}
 
   @Override
-  public String toString() {
-    return toUrlValue();
-  }
-
-  @Override
   public String toUrlValue() {
     return String.format("%dx%d", width, height);
   }
