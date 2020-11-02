@@ -34,11 +34,6 @@ public class SpeedLimit implements Serializable {
    */
   public double speedLimit;
 
-  /** @return Returns the speed limit in miles per hour (MPH). */
-  public long speedLimitMph() {
-    return Math.round(speedLimit * 0.621371);
-  }
-
   @Override
   public String toString() {
     return String.format("[%.0f km/h, placeId=%s]", speedLimit, placeId);
