@@ -33,9 +33,4 @@ public class StopDetails implements Serializable {
 
   /** The location of the transit station/stop. */
   public LatLng location;
-
-  @Override
-  public String toString() {
-    return String.format("%s (%s)", name, location);
-  }
 }
