@@ -161,19 +161,10 @@ public abstract class RateLimiter {
    */
   public static RateLimiter create(double permitsPerSecond, long warmupPeriod, TimeUnit unit) {
     checkArgument(warmupPeriod >= 0, "warmupPeriod must not be negative: %s", warmupPeriod);
-    return create(
-        permitsPerSecond, warmupPeriod, unit, 3.0, SleepingStopwatch.createFromSystemTimer());
-  }
-
-  static RateLimiter create(
-      double permitsPerSecond,
-      long warmupPeriod,
-      TimeUnit unit,
-      double coldFactor,
-      SleepingStopwatch stopwatch) {
-    RateLimiter rateLimiter = new SmoothWarmingUp(stopwatch, warmupPeriod, unit, coldFactor);
-    rateLimiter.setRate(permitsPerSecond);
-    return rateLimiter;
+	SleepingStopwatch stopwatch = SleepingStopwatch.createFromSystemTimer();
+    RateLimiter rateLimiter = new SmoothWarmingUp(stopwatch, warmupPeriod, unit, 3.0);
+	rateLimiter.setRate(permitsPerSecond);
+	return rateLimiter;
   }
 
   /**
