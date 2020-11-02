@@ -82,23 +82,19 @@ public class LocalTestServerContext implements AutoCloseable {
     return URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
   }
 
-  private void takeRequest() throws InterruptedException {
-    if (this.request == null) this.request = server.takeRequest();
-  }
-
   public JSONObject requestBody() throws InterruptedException {
-    this.takeRequest();
+    if (this.request == null) this.request = this.server.takeRequest();
 
     return new JSONObject(request.getBody().readUtf8());
   }
 
   private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
-    this.takeRequest();
+    if (this.request == null) this.request = this.server.takeRequest();
     return parseQueryParamsFromRequestLine(request.getRequestLine());
   }
 
   public String path() throws InterruptedException {
-    this.takeRequest();
+    if (this.request == null) this.request = this.server.takeRequest();
     return request.getPath().split("\\?", -1)[0];
   }
 
