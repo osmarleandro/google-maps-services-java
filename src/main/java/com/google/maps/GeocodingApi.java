@@ -55,19 +55,6 @@ public class GeocodingApi {
     return request;
   }
 
-  /**
-   * Requests the street address of a {@code location}.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param location The location to reverse geocode.
-   * @return Returns the request, ready to run.
-   */
-  public static GeocodingApiRequest reverseGeocode(GeoApiContext context, LatLng location) {
-    GeocodingApiRequest request = new GeocodingApiRequest(context);
-    request.latlng(location);
-    return request;
-  }
-
   public static class Response implements ApiResponse<GeocodingResult[]> {
     public String status;
     public String errorMessage;
