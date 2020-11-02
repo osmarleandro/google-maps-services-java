@@ -24,11 +24,6 @@ public enum Unit implements UrlValue {
   IMPERIAL;
 
   @Override
-  public String toString() {
-    return toUrlValue();
-  }
-
-  @Override
   public String toUrlValue() {
     return name().toLowerCase(Locale.ENGLISH);
   }
