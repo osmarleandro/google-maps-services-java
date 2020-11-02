@@ -68,10 +68,4 @@ public class LatLngAdapter extends TypeAdapter<LatLng> {
       return null;
     }
   }
-
-  /** Not supported. */
-  @Override
-  public void write(JsonWriter out, LatLng value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method.");
-  }
 }
