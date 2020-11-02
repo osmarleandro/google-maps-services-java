@@ -160,7 +160,11 @@ public abstract class RateLimiter {
    *     warmupPeriod} is negative
    */
   public static RateLimiter create(double permitsPerSecond, long warmupPeriod, TimeUnit unit) {
-    checkArgument(warmupPeriod >= 0, "warmupPeriod must not be negative: %s", warmupPeriod);
+    boolean expression = warmupPeriod >= 0;
+	Object[] errorMessageArgs = { warmupPeriod };
+	if (!expression) {
+	  throw new IllegalArgumentException(format("warmupPeriod must not be negative: %s", errorMessageArgs));
+	}
     return create(
         permitsPerSecond, warmupPeriod, unit, 3.0, SleepingStopwatch.createFromSystemTimer());
   }
@@ -221,8 +225,11 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero
    */
   public final void setRate(double permitsPerSecond) {
-    checkArgument(
-        permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond), "rate must be positive");
+    boolean expression = permitsPerSecond > 0.0 && !Double.isNaN(permitsPerSecond);
+	Object[] errorMessageArgs = {};
+	if (!expression) {
+	  throw new IllegalArgumentException(format("rate must be positive", errorMessageArgs));
+	}
     synchronized (mutex()) {
       doSetRate(permitsPerSecond, stopwatch.readMicros());
     }
@@ -422,7 +429,11 @@ public abstract class RateLimiter {
   }
 
   private static void checkPermits(int permits) {
-    checkArgument(permits > 0, "Requested permits (%s) must be positive", permits);
+    boolean expression = permits > 0;
+	Object[] errorMessageArgs = { permits };
+	if (!expression) {
+	  throw new IllegalArgumentException(format("Requested permits (%s) must be positive", errorMessageArgs));
+	}
   }
 
   /** Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly. */
