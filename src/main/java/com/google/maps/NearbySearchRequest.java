@@ -17,6 +17,8 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.util.Collections;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -175,23 +177,23 @@ public class NearbySearchRequest
   protected void validateRequest() {
 
     // If pagetoken is included, all other parameters are ignored.
-    if (params().containsKey("pagetoken")) {
+    if (Collections.unmodifiableMap(params).containsKey("pagetoken")) {
       return;
     }
 
     // radius must not be included if rankby=distance
-    if (params().containsKey("rankby")
-        && params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
-        && params().containsKey("radius")) {
+    if (Collections.unmodifiableMap(params).containsKey("rankby")
+        && Collections.unmodifiableMap(params).get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && Collections.unmodifiableMap(params).containsKey("radius")) {
       throw new IllegalArgumentException("Request must not contain radius with rankby=distance");
     }
 
     // If rankby=distance is specified, then one or more of keyword, name, or type is required.
-    if (params().containsKey("rankby")
-        && params().get("rankby").get(0).equals(RankBy.DISTANCE.toString())
-        && !params().containsKey("keyword")
-        && !params().containsKey("name")
-        && !params().containsKey("type")) {
+    if (Collections.unmodifiableMap(params).containsKey("rankby")
+        && Collections.unmodifiableMap(params).get("rankby").get(0).equals(RankBy.DISTANCE.toString())
+        && !Collections.unmodifiableMap(params).containsKey("keyword")
+        && !Collections.unmodifiableMap(params).containsKey("name")
+        && !Collections.unmodifiableMap(params).containsKey("type")) {
       throw new IllegalArgumentException(
           "With rankby=distance is specified, then one or more of keyword, name, or type is required");
     }

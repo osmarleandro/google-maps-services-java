@@ -17,6 +17,8 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.util.Collections;
+
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
@@ -37,18 +39,18 @@ public class GeocodingApiRequest
   @Override
   protected void validateRequest() {
     // Must not have both address and latlng.
-    if (params().containsKey("latlng")
-        && params().containsKey("address")
-        && params().containsKey("place_id")) {
+    if (Collections.unmodifiableMap(params).containsKey("latlng")
+        && Collections.unmodifiableMap(params).containsKey("address")
+        && Collections.unmodifiableMap(params).containsKey("place_id")) {
       throw new IllegalArgumentException(
           "Request must contain only one of 'address', 'latlng' or 'place_id'.");
     }
 
     // Must contain at least one of place_id, address, latlng, and components;
-    if (!params().containsKey("latlng")
-        && !params().containsKey("address")
-        && !params().containsKey("components")
-        && !params().containsKey("place_id")) {
+    if (!Collections.unmodifiableMap(params).containsKey("latlng")
+        && !Collections.unmodifiableMap(params).containsKey("address")
+        && !Collections.unmodifiableMap(params).containsKey("components")
+        && !Collections.unmodifiableMap(params).containsKey("place_id")) {
       throw new IllegalArgumentException(
           "Request must contain at least one of 'address', 'latlng', 'place_id' and 'components'.");
     }

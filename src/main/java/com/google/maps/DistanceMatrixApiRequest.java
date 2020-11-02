@@ -27,6 +27,7 @@ import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
+import java.util.Collections;
 
 /** A request to the Distance Matrix API. */
 public class DistanceMatrixApiRequest
@@ -38,13 +39,13 @@ public class DistanceMatrixApiRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("origins")) {
+    if (!Collections.unmodifiableMap(params).containsKey("origins")) {
       throw new IllegalArgumentException("Request must contain 'origins'");
     }
-    if (!params().containsKey("destinations")) {
+    if (!Collections.unmodifiableMap(params).containsKey("destinations")) {
       throw new IllegalArgumentException("Request must contain 'destinations'");
     }
-    if (params().containsKey("arrival_time") && params().containsKey("departure_time")) {
+    if (Collections.unmodifiableMap(params).containsKey("arrival_time") && Collections.unmodifiableMap(params).containsKey("departure_time")) {
       throw new IllegalArgumentException(
           "Transit request must not contain both a departureTime and an arrivalTime");
     }

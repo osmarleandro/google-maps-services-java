@@ -22,6 +22,7 @@ import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.Size;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -36,13 +37,13 @@ public class StaticMapsRequest
 
   @Override
   protected void validateRequest() {
-    if (!((params().containsKey("center") && params().containsKey("zoom"))
-        || params().containsKey("markers")
-        || params().containsKey("path"))) {
+    if (!((Collections.unmodifiableMap(params).containsKey("center") && Collections.unmodifiableMap(params).containsKey("zoom"))
+        || Collections.unmodifiableMap(params).containsKey("markers")
+        || Collections.unmodifiableMap(params).containsKey("path"))) {
       throw new IllegalArgumentException(
           "Request must contain 'center' and 'zoom' if 'markers' or 'path' aren't present.");
     }
-    if (!params().containsKey("size")) {
+    if (!Collections.unmodifiableMap(params).containsKey("size")) {
       throw new IllegalArgumentException("Request must contain 'size'.");
     }
   }

@@ -129,10 +129,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return getInstance();
   }
 
-  protected Map<String, List<String>> params() {
-    return Collections.unmodifiableMap(params);
-  }
-
   /**
    * The language in which to return results. Note that we often update supported languages so this
    * list may not be exhaustive.

@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -98,10 +100,10 @@ public class FindPlaceFromTextRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("input")) {
+    if (!Collections.unmodifiableMap(params).containsKey("input")) {
       throw new IllegalArgumentException("Request must contain 'input'.");
     }
-    if (!params().containsKey("inputtype")) {
+    if (!Collections.unmodifiableMap(params).containsKey("inputtype")) {
       throw new IllegalArgumentException("Request must contain 'inputType'.");
     }
   }

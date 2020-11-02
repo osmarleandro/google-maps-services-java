@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+
 import com.google.maps.internal.ApiConfig;
 
 /**
@@ -32,10 +34,10 @@ public class PhotoRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("photoreference")) {
+    if (!Collections.unmodifiableMap(params).containsKey("photoreference")) {
       throw new IllegalArgumentException("Request must contain 'photoReference'.");
     }
-    if (!params().containsKey("maxheight") && !params().containsKey("maxwidth")) {
+    if (!Collections.unmodifiableMap(params).containsKey("maxheight") && !Collections.unmodifiableMap(params).containsKey("maxwidth")) {
       throw new IllegalArgumentException("Request must contain 'maxHeight' or 'maxWidth'.");
     }
   }

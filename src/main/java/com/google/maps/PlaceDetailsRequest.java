@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -83,7 +85,7 @@ public class PlaceDetailsRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("placeid")) {
+    if (!Collections.unmodifiableMap(params).containsKey("placeid")) {
       throw new IllegalArgumentException("Request must contain 'placeId'.");
     }
   }

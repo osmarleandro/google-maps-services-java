@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -164,16 +166,16 @@ public class TextSearchRequest
   protected void validateRequest() {
 
     // All other parameters are ignored if pagetoken is specified.
-    if (params().containsKey("pagetoken")) {
+    if (Collections.unmodifiableMap(params).containsKey("pagetoken")) {
       return;
     }
 
-    if (!params().containsKey("query") && !params().containsKey("type")) {
+    if (!Collections.unmodifiableMap(params).containsKey("query") && !Collections.unmodifiableMap(params).containsKey("type")) {
       throw new IllegalArgumentException(
           "Request must contain 'query' or a 'pageToken'. If a 'type' is specified 'query' becomes optional.");
     }
 
-    if (params().containsKey("location") && !params().containsKey("radius")) {
+    if (Collections.unmodifiableMap(params).containsKey("location") && !Collections.unmodifiableMap(params).containsKey("radius")) {
       throw new IllegalArgumentException(
           "Request must contain 'radius' parameter when it contains a 'location' parameter.");
     }

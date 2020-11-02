@@ -27,6 +27,7 @@ import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceAutocompleteType;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.UUID;
 
 /**
@@ -197,7 +198,7 @@ public class PlaceAutocompleteRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("input")) {
+    if (!Collections.unmodifiableMap(params).containsKey("input")) {
       throw new IllegalArgumentException("Request must contain 'input'.");
     }
   }

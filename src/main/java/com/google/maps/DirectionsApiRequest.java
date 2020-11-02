@@ -26,6 +26,7 @@ import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
 import java.time.Instant;
+import java.util.Collections;
 
 /** Request for the Directions API. */
 public class DirectionsApiRequest
@@ -40,17 +41,17 @@ public class DirectionsApiRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("origin")) {
+    if (!Collections.unmodifiableMap(params).containsKey("origin")) {
       throw new IllegalArgumentException("Request must contain 'origin'");
     }
-    if (!params().containsKey("destination")) {
+    if (!Collections.unmodifiableMap(params).containsKey("destination")) {
       throw new IllegalArgumentException("Request must contain 'destination'");
     }
-    if (params().containsKey("arrival_time") && params().containsKey("departure_time")) {
+    if (Collections.unmodifiableMap(params).containsKey("arrival_time") && Collections.unmodifiableMap(params).containsKey("departure_time")) {
       throw new IllegalArgumentException(
           "Transit request must not contain both a departureTime and an arrivalTime");
     }
-    if (params().containsKey("traffic_model") && !params().containsKey("departure_time")) {
+    if (Collections.unmodifiableMap(params).containsKey("traffic_model") && !Collections.unmodifiableMap(params).containsKey("departure_time")) {
       throw new IllegalArgumentException(
           "Specifying a traffic model requires that departure time be provided.");
     }

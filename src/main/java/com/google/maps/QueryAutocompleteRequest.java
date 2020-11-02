@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import java.util.Collections;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
@@ -41,7 +43,7 @@ public class QueryAutocompleteRequest
 
   @Override
   protected void validateRequest() {
-    if (!params().containsKey("input")) {
+    if (!Collections.unmodifiableMap(params).containsKey("input")) {
       throw new IllegalArgumentException("Request must contain 'input'.");
     }
   }
