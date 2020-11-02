@@ -206,7 +206,7 @@ public class PlacesApi {
    */
   public static QueryAutocompleteRequest queryAutocomplete(GeoApiContext context, String input) {
     QueryAutocompleteRequest request = new QueryAutocompleteRequest(context);
-    request.input(input);
+    request.param("input", input);
     return request;
   }
 
