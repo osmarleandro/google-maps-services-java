@@ -342,7 +342,12 @@ abstract class SmoothRateLimiter extends RateLimiter {
 
   @Override
   final void doSetRate(double permitsPerSecond, long nowMicros) {
-    resync(nowMicros);
+    // if nextFreeTicket is in the past, resync to now
+	if (nowMicros > nextFreeTicketMicros) {
+	  double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros();
+	  storedPermits = min(maxPermits, storedPermits + newPermits);
+	  nextFreeTicketMicros = nowMicros;
+	}
     double stableIntervalMicros = SECONDS.toMicros(1L) / permitsPerSecond;
     this.stableIntervalMicros = stableIntervalMicros;
     doSetRate(permitsPerSecond, stableIntervalMicros);
@@ -362,7 +367,12 @@ abstract class SmoothRateLimiter extends RateLimiter {
 
   @Override
   final long reserveEarliestAvailable(int requiredPermits, long nowMicros) {
-    resync(nowMicros);
+    // if nextFreeTicket is in the past, resync to now
+	if (nowMicros > nextFreeTicketMicros) {
+	  double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros();
+	  storedPermits = min(maxPermits, storedPermits + newPermits);
+	  nextFreeTicketMicros = nowMicros;
+	}
     long returnValue = nextFreeTicketMicros;
     double storedPermitsToSpend = min(requiredPermits, this.storedPermits);
     double freshPermits = requiredPermits - storedPermitsToSpend;
@@ -388,14 +398,4 @@ abstract class SmoothRateLimiter extends RateLimiter {
    * Returns the number of microseconds during cool down that we have to wait to get a new permit.
    */
   abstract double coolDownIntervalMicros();
-
-  /** Updates {@code storedPermits} and {@code nextFreeTicketMicros} based on the current time. */
-  void resync(long nowMicros) {
-    // if nextFreeTicket is in the past, resync to now
-    if (nowMicros > nextFreeTicketMicros) {
-      double newPermits = (nowMicros - nextFreeTicketMicros) / coolDownIntervalMicros();
-      storedPermits = min(maxPermits, storedPermits + newPermits);
-      nextFreeTicketMicros = nowMicros;
-    }
-  }
 }
