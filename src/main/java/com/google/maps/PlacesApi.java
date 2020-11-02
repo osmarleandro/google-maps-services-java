@@ -115,7 +115,7 @@ public class PlacesApi {
    */
   public static TextSearchRequest textSearchNextPage(GeoApiContext context, String nextPageToken) {
     TextSearchRequest request = new TextSearchRequest(context);
-    request.pageToken(nextPageToken);
+    request.param("pagetoken", nextPageToken);
     return request;
   }
 
