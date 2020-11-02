@@ -40,11 +40,6 @@ public enum TravelMode implements UrlValue {
   UNKNOWN;
 
   @Override
-  public String toString() {
-    return name().toLowerCase(Locale.ENGLISH);
-  }
-
-  @Override
   public String toUrlValue() {
     if (this == UNKNOWN) {
       throw new UnsupportedOperationException("Shouldn't use TravelMode.UNKNOWN in a request.");
