@@ -66,10 +66,4 @@ public class DurationAdapter extends TypeAdapter<Duration> {
 
     return duration;
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, Duration value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
