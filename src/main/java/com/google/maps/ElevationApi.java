@@ -99,17 +99,6 @@ public class ElevationApi {
     return joined.length() < encoded.length() ? joined : encoded;
   }
 
-  /**
-   * Retrieves the elevation of a single location.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param location The location to retrieve the elevation for.
-   * @return The elevation as a {@link PendingResult}.
-   */
-  public static PendingResult<ElevationResult> getByPoint(GeoApiContext context, LatLng location) {
-    return context.get(API_CONFIG, SingularResponse.class, "locations", location.toString());
-  }
-
   private static class SingularResponse implements ApiResponse<ElevationResult> {
     public String status;
     public String errorMessage;

@@ -19,6 +19,7 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.maps.ElevationApi.SingularResponse;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
@@ -70,7 +71,9 @@ public class ElevationApiTest {
             "{\n   \"routes\" : [],\n   \"status\" : \"INVALID_REQUEST\"\n}")) {
 
       // This should throw the InvalidRequestException
-      ElevationApi.getByPoint(sc.context, new LatLng(0, 0)).await();
+      GeoApiContext context = sc.context;
+				LatLng location = new LatLng(0, 0);
+	context.get(ElevationApi.API_CONFIG, SingularResponse.class, "locations", location.toString()).await();
     }
   }
 
@@ -110,7 +113,8 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
+      GeoApiContext context = sc.context;
+	ElevationResult result = context.get(ElevationApi.API_CONFIG, SingularResponse.class, "locations", SYDNEY.toString()).await();
 
       assertNotNull(result);
       assertNotNull(result.toString());
