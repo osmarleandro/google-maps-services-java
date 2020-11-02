@@ -41,11 +41,6 @@ import java.util.Locale;
 final class Platform {
   private Platform() {}
 
-  /** Calls {@link System#nanoTime()}. */
-  static long systemNanoTime() {
-    return System.nanoTime();
-  }
-
   static String formatCompact4Digits(double value) {
     return String.format(Locale.ROOT, "%.4g", value);
   }
