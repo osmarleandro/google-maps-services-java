@@ -62,19 +62,6 @@ public class DirectionsApiRequest
    * it to a latitude/longitude coordinate to calculate directions. If you pass coordinates, ensure
    * that no space exists between the latitude and longitude values.
    *
-   * @param origin The starting location for the Directions request.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest origin(String origin) {
-    return param("origin", origin);
-  }
-
-  /**
-   * The address or textual latitude/longitude value from which you wish to calculate directions. If
-   * you pass an address as a location, the Directions service will geocode the location and convert
-   * it to a latitude/longitude coordinate to calculate directions. If you pass coordinates, ensure
-   * that no space exists between the latitude and longitude values.
-   *
    * @param destination The ending location for the Directions request.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
@@ -109,7 +96,8 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest origin(LatLng origin) {
-    return origin(origin.toString());
+    String origin1 = origin.toString();
+	return param("origin", origin1);
   }
 
   /**
