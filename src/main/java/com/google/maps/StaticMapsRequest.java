@@ -70,17 +70,6 @@ public class StaticMapsRequest
   }
 
   /**
-   * <code>zoom</code> (required if markers not present) defines the zoom level of the map, which
-   * determines the magnification level of the map.
-   *
-   * @param zoom The zoom level of the region.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest zoom(int zoom) {
-    return param("zoom", zoom);
-  }
-
-  /**
    * <code>size</code> defines the rectangular dimensions of the map image.
    *
    * @param size The Size of the static map.
