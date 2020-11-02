@@ -100,7 +100,7 @@ public class PlacesApi {
    */
   public static TextSearchRequest textSearchQuery(GeoApiContext context, PlaceType type) {
     TextSearchRequest request = new TextSearchRequest(context);
-    request.type(type);
+    request.param("type", type);
     return request;
   }
 
