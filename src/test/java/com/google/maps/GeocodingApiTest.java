@@ -667,7 +667,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .components(
-                  ComponentFilter.route("Annegatan"),
+                  new ComponentFilter("route", "Annegatan"),
                   ComponentFilter.administrativeArea("Helsinki"),
                   ComponentFilter.country("Finland"))
               .await();

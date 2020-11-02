@@ -54,16 +54,6 @@ public class ComponentFilter implements StringJoin.UrlValue {
   }
 
   /**
-   * Matches long or short name of a route.
-   *
-   * @param route The name of the route to filter on.
-   * @return Returns a {@link ComponentFilter}.
-   */
-  public static ComponentFilter route(String route) {
-    return new ComponentFilter("route", route);
-  }
-
-  /**
    * Matches against both locality and sublocality types.
    *
    * @param locality The locality to filter on.
