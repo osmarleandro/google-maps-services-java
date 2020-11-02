@@ -145,16 +145,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * Specifies the unit system to use when displaying results.
-   *
-   * @param units The preferred units for displaying distances.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest units(Unit units) {
-    return param("units", units);
-  }
-
-  /**
    * @param region The region code, specified as a ccTLD ("top-level domain") two-character value.
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
