@@ -309,8 +309,9 @@ public class GeolocationApiTest {
                       .MobileNetworkCode(260)
                       .createCellTower())
               .createGeolocationPayload();
+	GeoApiContext context = sc.context;
 
-      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+      GeolocationResult result = new GeolocationApiRequest(context).Payload(payload).CreatePayload().await();
       assertNotNull(result.toString());
       JSONObject body = sc.requestBody();
       assertEquals(false, body.get("considerIp"));
@@ -375,8 +376,9 @@ public class GeolocationApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
       GeolocationPayload payload =
           new GeolocationPayload.GeolocationPayloadBuilder().createGeolocationPayload();
+	GeoApiContext context = sc.context;
 
-      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+      GeolocationResult result = new GeolocationApiRequest(context).Payload(payload).CreatePayload().await();
       assertNotNull(result);
       assertNotNull(result.toString());
       assertNotNull(result.location);
