@@ -81,7 +81,36 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
       case "GET":
         return delegate = context.get(config, responseClass, params);
       case "POST":
-        return delegate = context.post(config, responseClass, params);
+		context.checkContext(config.supportsClientId);
+		
+		StringBuilder url = new StringBuilder(config.path);
+		if (config.supportsClientId && context.clientId != null) {
+		  url.append("?client=").append(context.clientId);
+		} else {
+		  url.append("?key=").append(context.apiKey);
+		}
+		
+		if (config.supportsClientId && context.urlSigner != null) {
+		  String signature = context.urlSigner.getSignature(url.toString());
+		  url.append("&signature=").append(signature);
+		}
+		
+		String hostName = config.hostName;
+		if (context.baseUrlOverride != null) {
+		  hostName = context.baseUrlOverride;
+		}
+        return delegate = context.requestHandler.handlePost(
+		hostName,
+		url.toString(),
+		params.get("_payload").get(0),
+		GeoApiContext.USER_AGENT,
+		context.experienceIdHeaderValue,
+		responseClass,
+		config.fieldNamingPolicy,
+		context.errorTimeout,
+		context.maxRetries,
+		context.exceptionsAllowedToRetry,
+		context.requestMetricsReporter.newRequest(config.path));
       default:
         throw new IllegalStateException(
             String.format("Unexpected request method '%s'", config.requestVerb));
