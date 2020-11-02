@@ -116,7 +116,7 @@ public final class Stopwatch {
   }
 
   Stopwatch() {
-    this.ticker = Ticker.systemTicker();
+    this.ticker = Ticker.SYSTEM_TICKER;
   }
 
   Stopwatch(Ticker ticker) {
