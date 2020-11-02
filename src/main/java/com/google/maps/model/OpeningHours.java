@@ -108,17 +108,4 @@ public class OpeningHours implements Serializable {
    * <p>Note: this field will be null if it isn't present in the response.
    */
   public Boolean permanentlyClosed;
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder("[OpeningHours:");
-    if (permanentlyClosed != null && permanentlyClosed) {
-      sb.append(" permanentlyClosed");
-    }
-    if (openNow != null && openNow) {
-      sb.append(" openNow");
-    }
-    sb.append(" ").append(Arrays.toString(periods));
-    return sb.toString();
-  }
 }
