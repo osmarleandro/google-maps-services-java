@@ -25,22 +25,6 @@ import java.time.format.DateTimeFormatter;
 
 /** This class handles conversion from JSON to {@link LocalTime}. */
 public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
-  /** Read a time from the Places API and convert to a {@link LocalTime} */
-  @Override
-  public LocalTime read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
-
-    if (reader.peek() == JsonToken.STRING) {
-      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmm");
-      return LocalTime.parse(reader.nextString(), dtf);
-    }
-
-    throw new UnsupportedOperationException("Unsupported format");
-  }
-
   /** This method is not implemented. */
   @Override
   public void write(JsonWriter out, LocalTime value) throws IOException {
