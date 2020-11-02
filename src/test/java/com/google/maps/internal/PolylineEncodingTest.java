@@ -51,7 +51,26 @@ public class PolylineEncodingTest {
   @Test
   public void testPolylineEncodingRoundTrip() throws Exception {
     List<LatLng> points = PolylineEncoding.decode(SYD_MELB_ROUTE);
-    String encodedPath = PolylineEncoding.encode(points);
+	final List<LatLng> path = points;
+	long lastLat = 0;
+	long lastLng = 0;
+	
+	final StringBuilder result = new StringBuilder();
+	
+	for (final LatLng point : path) {
+	  long lat = Math.round(point.lat * 1e5);
+	  long lng = Math.round(point.lng * 1e5);
+	
+	  long dLat = lat - lastLat;
+	  long dLng = lng - lastLng;
+	
+	  PolylineEncoding.encode(dLat, result);
+	  PolylineEncoding.encode(dLng, result);
+	
+	  lastLat = lat;
+	  lastLng = lng;
+	}
+    String encodedPath = result.toString();
     assertEquals(SYD_MELB_ROUTE, encodedPath);
   }
 

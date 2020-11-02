@@ -64,29 +64,6 @@ public class PolylineEncoding {
     return path;
   }
 
-  /** Encodes a sequence of LatLngs into an encoded path string. */
-  public static String encode(final List<LatLng> path) {
-    long lastLat = 0;
-    long lastLng = 0;
-
-    final StringBuilder result = new StringBuilder();
-
-    for (final LatLng point : path) {
-      long lat = Math.round(point.lat * 1e5);
-      long lng = Math.round(point.lng * 1e5);
-
-      long dLat = lat - lastLat;
-      long dLng = lng - lastLng;
-
-      encode(dLat, result);
-      encode(dLng, result);
-
-      lastLat = lat;
-      lastLng = lng;
-    }
-    return result.toString();
-  }
-
   private static void encode(long v, StringBuilder result) {
     v = v < 0 ? ~(v << 1) : v << 1;
     while (v >= 0x20) {
@@ -98,6 +75,25 @@ public class PolylineEncoding {
 
   /** Encodes an array of LatLngs into an encoded path string. */
   public static String encode(LatLng[] path) {
-    return encode(Arrays.asList(path));
+    final List<LatLng> path1 = Arrays.asList(path);
+	long lastLat = 0;
+	long lastLng = 0;
+	
+	final StringBuilder result = new StringBuilder();
+	
+	for (final LatLng point : path1) {
+	  long lat = Math.round(point.lat * 1e5);
+	  long lng = Math.round(point.lng * 1e5);
+	
+	  long dLat = lat - lastLat;
+	  long dLng = lng - lastLng;
+	
+	  encode(dLat, result);
+	  encode(dLng, result);
+	
+	  lastLat = lat;
+	  lastLng = lng;
+	}
+	return result.toString();
   }
 }
