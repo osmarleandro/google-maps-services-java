@@ -360,21 +360,6 @@ abstract class SmoothRateLimiter extends RateLimiter {
     return nextFreeTicketMicros;
   }
 
-  @Override
-  final long reserveEarliestAvailable(int requiredPermits, long nowMicros) {
-    resync(nowMicros);
-    long returnValue = nextFreeTicketMicros;
-    double storedPermitsToSpend = min(requiredPermits, this.storedPermits);
-    double freshPermits = requiredPermits - storedPermitsToSpend;
-    long waitMicros =
-        storedPermitsToWaitTime(this.storedPermits, storedPermitsToSpend)
-            + (long) (freshPermits * stableIntervalMicros);
-
-    this.nextFreeTicketMicros = LongMath.saturatedAdd(nextFreeTicketMicros, waitMicros);
-    this.storedPermits -= storedPermitsToSpend;
-    return returnValue;
-  }
-
   /**
    * Translates a specified portion of our currently stored permits which we want to spend/acquire,
    * into a throttling time. Conceptually, this evaluates the integral of the underlying function we
