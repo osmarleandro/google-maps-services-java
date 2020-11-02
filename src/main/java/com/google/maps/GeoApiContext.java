@@ -207,15 +207,46 @@ public class GeoApiContext {
         }
       }
     }
+	FieldNamingPolicy fieldNamingPolicy = config.fieldNamingPolicy;
+	String hostName = config.hostName;
+	String path = config.path;
+	boolean canUseClientId = config.supportsClientId;
+	String encodedPath = query.toString();
+	RequestMetrics metrics = requestMetricsReporter.newRequest(config.path);
 
-    return getWithPath(
-        clazz,
-        config.fieldNamingPolicy,
-        config.hostName,
-        config.path,
-        config.supportsClientId,
-        query.toString(),
-        requestMetricsReporter.newRequest(config.path));
+    checkContext(canUseClientId);
+	if (!encodedPath.startsWith("&")) {
+	  throw new IllegalArgumentException("encodedPath must start with &");
+	}
+	
+	StringBuilder url = new StringBuilder(path);
+	if (canUseClientId && clientId != null) {
+	  url.append("?client=").append(clientId);
+	} else {
+	  url.append("?key=").append(apiKey);
+	}
+	url.append(encodedPath);
+	
+	if (canUseClientId && urlSigner != null) {
+	  String signature = urlSigner.getSignature(url.toString());
+	  url.append("&signature=").append(signature);
+	}
+	
+	if (baseUrlOverride != null) {
+	  hostName = baseUrlOverride;
+	}
+	
+	return requestHandler.handle(
+	    hostName,
+	    url.toString(),
+	    USER_AGENT,
+	    experienceIdHeaderValue,
+	    clazz,
+	    fieldNamingPolicy,
+	    errorTimeout,
+	    maxRetries,
+	    exceptionsAllowedToRetry,
+	    metrics);
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
@@ -247,15 +278,46 @@ public class GeoApiContext {
     if (!channelSet && channel != null && !channel.isEmpty()) {
       query.append("&channel=").append(channel);
     }
+	FieldNamingPolicy fieldNamingPolicy = config.fieldNamingPolicy;
+	String hostName = config.hostName;
+	String path = config.path;
+	boolean canUseClientId = config.supportsClientId;
+	String encodedPath = query.toString();
+	RequestMetrics metrics = requestMetricsReporter.newRequest(config.path);
 
-    return getWithPath(
-        clazz,
-        config.fieldNamingPolicy,
-        config.hostName,
-        config.path,
-        config.supportsClientId,
-        query.toString(),
-        requestMetricsReporter.newRequest(config.path));
+    checkContext(canUseClientId);
+	if (!encodedPath.startsWith("&")) {
+	  throw new IllegalArgumentException("encodedPath must start with &");
+	}
+	
+	StringBuilder url = new StringBuilder(path);
+	if (canUseClientId && clientId != null) {
+	  url.append("?client=").append(clientId);
+	} else {
+	  url.append("?key=").append(apiKey);
+	}
+	url.append(encodedPath);
+	
+	if (canUseClientId && urlSigner != null) {
+	  String signature = urlSigner.getSignature(url.toString());
+	  url.append("&signature=").append(signature);
+	}
+	
+	if (baseUrlOverride != null) {
+	  hostName = baseUrlOverride;
+	}
+	
+	return requestHandler.handle(
+	    hostName,
+	    url.toString(),
+	    USER_AGENT,
+	    experienceIdHeaderValue,
+	    clazz,
+	    fieldNamingPolicy,
+	    errorTimeout,
+	    maxRetries,
+	    exceptionsAllowedToRetry,
+	    metrics);
   }
 
   <T, R extends ApiResponse<T>> PendingResult<T> post(
@@ -292,49 +354,6 @@ public class GeoApiContext {
         maxRetries,
         exceptionsAllowedToRetry,
         requestMetricsReporter.newRequest(config.path));
-  }
-
-  private <T, R extends ApiResponse<T>> PendingResult<T> getWithPath(
-      Class<R> clazz,
-      FieldNamingPolicy fieldNamingPolicy,
-      String hostName,
-      String path,
-      boolean canUseClientId,
-      String encodedPath,
-      RequestMetrics metrics) {
-    checkContext(canUseClientId);
-    if (!encodedPath.startsWith("&")) {
-      throw new IllegalArgumentException("encodedPath must start with &");
-    }
-
-    StringBuilder url = new StringBuilder(path);
-    if (canUseClientId && clientId != null) {
-      url.append("?client=").append(clientId);
-    } else {
-      url.append("?key=").append(apiKey);
-    }
-    url.append(encodedPath);
-
-    if (canUseClientId && urlSigner != null) {
-      String signature = urlSigner.getSignature(url.toString());
-      url.append("&signature=").append(signature);
-    }
-
-    if (baseUrlOverride != null) {
-      hostName = baseUrlOverride;
-    }
-
-    return requestHandler.handle(
-        hostName,
-        url.toString(),
-        USER_AGENT,
-        experienceIdHeaderValue,
-        clazz,
-        fieldNamingPolicy,
-        errorTimeout,
-        maxRetries,
-        exceptionsAllowedToRetry,
-        metrics);
   }
 
   private void checkContext(boolean canUseClientId) {
