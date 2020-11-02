@@ -139,18 +139,6 @@ public class RoadsApi {
   }
 
   /**
-   * Returns the result of snapping the provided points to roads and retrieving the speed limits.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param path The collected GPS points as a path.
-   * @return Returns the snapped points and speed limits as a {@link PendingResult}.
-   */
-  public static PendingResult<SnappedSpeedLimitResponse> snappedSpeedLimits(
-      GeoApiContext context, LatLng... path) {
-    return context.get(SPEEDS_API_CONFIG, CombinedResponse.class, "path", join('|', path));
-  }
-
-  /**
    * Takes up to 100 GPS points, and returns the closest road segment for each point. The points
    * passed do not need to be part of a continuous path.
    *
