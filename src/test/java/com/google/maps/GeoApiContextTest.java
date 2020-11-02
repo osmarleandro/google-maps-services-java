@@ -51,12 +51,6 @@ public class GeoApiContextTest {
   private MockWebServer server;
   private GeoApiContext.Builder builder;
 
-  @Before
-  public void Setup() {
-    server = new MockWebServer();
-    builder = new GeoApiContext.Builder().apiKey("AIza...").queryRateLimit(500);
-  }
-
   @After
   @SuppressWarnings("CatchAndPrintStackTrace")
   public void Teardown() {
