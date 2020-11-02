@@ -79,34 +79,6 @@ public class GeolocationPayload implements Serializable {
   /** An array of WiFi access point objects. See {@link com.google.maps.model.WifiAccessPoint}. */
   public WifiAccessPoint[] wifiAccessPoints;
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder("[GeolocationPayload");
-    List<String> elements = new ArrayList<>();
-    if (homeMobileCountryCode != null) {
-      elements.add("homeMobileCountryCode=" + homeMobileCountryCode);
-    }
-    if (homeMobileNetworkCode != null) {
-      elements.add("homeMobileNetworkCode=" + homeMobileNetworkCode);
-    }
-    if (radioType != null) {
-      elements.add("radioType=" + radioType);
-    }
-    if (carrier != null) {
-      elements.add("carrier=" + carrier);
-    }
-    elements.add("considerIp=" + considerIp);
-    if (cellTowers != null && cellTowers.length > 0) {
-      elements.add("cellTowers=" + Arrays.toString(cellTowers));
-    }
-    if (wifiAccessPoints != null && wifiAccessPoints.length > 0) {
-      elements.add("wifiAccessPoints=" + Arrays.toString(wifiAccessPoints));
-    }
-    sb.append(join(", ", elements));
-    sb.append("]");
-    return sb.toString();
-  }
-
   public static class GeolocationPayloadBuilder {
     private Integer _homeMobileCountryCode = null;
     private Integer _homeMobileNetworkCode = null;
