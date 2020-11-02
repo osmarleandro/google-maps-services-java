@@ -141,17 +141,6 @@ public class PlaceAutocompleteRequest
   }
 
   /**
-   * The distance (in meters) within which to return place results. Note that setting a radius
-   * biases results to the indicated area, but may not fully restrict results to the specified area.
-   *
-   * @param radius The radius over which to bias results.
-   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
-   */
-  public PlaceAutocompleteRequest radius(int radius) {
-    return param("radius", String.valueOf(radius));
-  }
-
-  /**
    * Restricts the results to places matching the specified type.
    *
    * @param type The type to restrict results to.

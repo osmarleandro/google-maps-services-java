@@ -690,10 +690,9 @@ public class PlacesApiTest {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
       PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
-          .offset(4)
-          .origin(location)
-          .location(location)
-          .radius(5000)
+	  .offset(4)
+	  .origin(location)
+	  .location(location).param("radius", String.valueOf(5000))
           .types(PlaceAutocompleteType.ESTABLISHMENT)
           .components(ComponentFilter.country("AU"))
           .await();
@@ -883,9 +882,8 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
       PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
-          .location(new LatLng(37.76999, -122.44696))
-          .radius(500)
+	  .types(PlaceAutocompleteType.ESTABLISHMENT)
+	  .location(new LatLng(37.76999, -122.44696)).param("radius", String.valueOf(500))
           .strictBounds(true)
           .await();
 
