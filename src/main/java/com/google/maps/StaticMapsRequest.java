@@ -55,7 +55,10 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest center(LatLng location) {
-    return param("center", location);
+    if (location != null) {
+	  return this.param("center", location.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -87,7 +90,10 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest size(Size size) {
-    return param("size", size);
+    if (size != null) {
+	  return this.param("size", size.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -131,7 +137,10 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest format(ImageFormat format) {
-    return param("format", format);
+    if (format != null) {
+	  return this.param("format", format.toUrlValue());
+	}
+	return getInstance();
   }
 
   public enum StaticMapType implements UrlValue {
@@ -153,7 +162,10 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest maptype(StaticMapType maptype) {
-    return param("maptype", maptype);
+    if (maptype != null) {
+	  return this.param("maptype", maptype.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -454,7 +466,10 @@ public class StaticMapsRequest
    * @return Returns this {@code StaticMapsRequest} for call chaining.
    */
   public StaticMapsRequest visible(LatLng visibleLocation) {
-    return param("visible", visibleLocation);
+    if (visibleLocation != null) {
+	  return this.param("visible", visibleLocation.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**

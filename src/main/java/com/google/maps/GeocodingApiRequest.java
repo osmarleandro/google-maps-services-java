@@ -81,7 +81,10 @@ public class GeocodingApiRequest
    * @return Returns this {@code GeocodingApiRequest} for call chaining.
    */
   public GeocodingApiRequest latlng(LatLng latlng) {
-    return param("latlng", latlng);
+    if (latlng != null) {
+	  return this.param("latlng", latlng.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**

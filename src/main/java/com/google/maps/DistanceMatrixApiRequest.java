@@ -106,7 +106,10 @@ public class DistanceMatrixApiRequest
         || TravelMode.WALKING.equals(mode)
         || TravelMode.BICYCLING.equals(mode)
         || TravelMode.TRANSIT.equals(mode)) {
-      return param("mode", mode);
+      if (mode != null) {
+	  return this.param("mode", mode.toUrlValue());
+	}
+	return getInstance();
     }
     throw new IllegalArgumentException(
         "Distance Matrix API travel modes must be Driving, Transit, Walking or Bicycling");
@@ -119,7 +122,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest avoid(RouteRestriction restriction) {
-    return param("avoid", restriction);
+    if (restriction != null) {
+	  return this.param("avoid", restriction.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -133,7 +139,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest units(Unit unit) {
-    return param("units", unit);
+    if (unit != null) {
+	  return this.param("units", unit.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -167,7 +176,10 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
+    if (trafficModel != null) {
+	  return this.param("traffic_model", trafficModel.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -200,6 +212,9 @@ public class DistanceMatrixApiRequest
    * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
    */
   public DistanceMatrixApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
-    return param("transit_routing_preference", pref);
+    if (pref != null) {
+	  return this.param("transit_routing_preference", pref.toUrlValue());
+	}
+	return getInstance();
   }
 }

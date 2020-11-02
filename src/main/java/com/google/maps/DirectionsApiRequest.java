@@ -131,7 +131,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest mode(TravelMode mode) {
-    return param("mode", mode);
+    if (mode != null) {
+	  return this.param("mode", mode.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -151,7 +154,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest units(Unit units) {
-    return param("units", units);
+    if (units != null) {
+	  return this.param("units", units.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -329,7 +335,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest transitRoutingPreference(TransitRoutingPreference pref) {
-    return param("transit_routing_preference", pref);
+    if (pref != null) {
+	  return this.param("transit_routing_preference", pref.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -340,7 +349,10 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
-    return param("traffic_model", trafficModel);
+    if (trafficModel != null) {
+	  return this.param("traffic_model", trafficModel.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**

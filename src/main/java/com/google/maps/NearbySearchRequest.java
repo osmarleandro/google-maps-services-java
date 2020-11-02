@@ -56,7 +56,10 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest location(LatLng location) {
-    return param("location", location);
+    if (location != null) {
+	  return this.param("location", location.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -81,7 +84,10 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest rankby(RankBy ranking) {
-    return param("rankby", ranking);
+    if (ranking != null) {
+	  return this.param("rankby", ranking.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -103,7 +109,10 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest minPrice(PriceLevel priceLevel) {
-    return param("minprice", priceLevel);
+    if (priceLevel != null) {
+	  return this.param("minprice", priceLevel.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -113,7 +122,10 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest maxPrice(PriceLevel priceLevel) {
-    return param("maxprice", priceLevel);
+    if (priceLevel != null) {
+	  return this.param("maxprice", priceLevel.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -155,7 +167,10 @@ public class NearbySearchRequest
    * @return Returns this {@code NearbyApiRequest} for call chaining.
    */
   public NearbySearchRequest type(PlaceType type) {
-    return param("type", type);
+    if (type != null) {
+	  return this.param("type", type.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**

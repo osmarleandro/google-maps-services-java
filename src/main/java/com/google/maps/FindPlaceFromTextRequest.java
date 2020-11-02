@@ -72,7 +72,10 @@ public class FindPlaceFromTextRequest
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
   public FindPlaceFromTextRequest inputType(InputType inputType) {
-    return param("inputtype", inputType);
+    if (inputType != null) {
+	  return this.param("inputtype", inputType.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -93,7 +96,10 @@ public class FindPlaceFromTextRequest
    * @return Returns {@code FindPlaceFromTextRequest} for call chaining.
    */
   public FindPlaceFromTextRequest locationBias(LocationBias locationBias) {
-    return param("locationbias", locationBias);
+    if (locationBias != null) {
+	  return this.param("locationbias", locationBias.toUrlValue());
+	}
+	return getInstance();
   }
 
   @Override

@@ -77,7 +77,10 @@ public class QueryAutocompleteRequest
    * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
    */
   public QueryAutocompleteRequest location(LatLng location) {
-    return param("location", location);
+    if (location != null) {
+	  return this.param("location", location.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**

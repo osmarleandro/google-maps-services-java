@@ -58,7 +58,10 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest location(LatLng location) {
-    return param("location", location);
+    if (location != null) {
+	  return this.param("location", location.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -94,7 +97,10 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest minPrice(PriceLevel priceLevel) {
-    return param("minprice", priceLevel);
+    if (priceLevel != null) {
+	  return this.param("minprice", priceLevel.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -104,7 +110,10 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest maxPrice(PriceLevel priceLevel) {
-    return param("maxprice", priceLevel);
+    if (priceLevel != null) {
+	  return this.param("maxprice", priceLevel.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -147,7 +156,10 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest rankby(RankBy ranking) {
-    return param("rankby", ranking);
+    if (ranking != null) {
+	  return this.param("rankby", ranking.toUrlValue());
+	}
+	return getInstance();
   }
 
   /**
@@ -157,7 +169,10 @@ public class TextSearchRequest
    * @return Returns this {@code TextSearchRequest} for call chaining.
    */
   public TextSearchRequest type(PlaceType type) {
-    return param("type", type);
+    if (type != null) {
+	  return this.param("type", type.toUrlValue());
+	}
+	return getInstance();
   }
 
   @Override
