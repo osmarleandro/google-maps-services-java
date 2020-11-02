@@ -11,9 +11,4 @@ public final class OpenCensusRequestMetricsReporter implements RequestMetricsRep
   private static final StatsRecorder statsRecorder = Stats.getStatsRecorder();
 
   public OpenCensusRequestMetricsReporter() {}
-
-  @Override
-  public RequestMetrics newRequest(String requestName) {
-    return new OpenCensusRequestMetrics(requestName, tagger, statsRecorder);
-  }
 }
