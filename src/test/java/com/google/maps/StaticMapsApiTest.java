@@ -90,7 +90,7 @@ public class StaticMapsApiTest {
       req.scale(2);
       req.format(ImageFormat.png32);
       req.maptype(StaticMapType.hybrid);
-      req.region("AU");
+      req.param("region", "AU");
       req.visible("Melbourne");
       req.await();
 
