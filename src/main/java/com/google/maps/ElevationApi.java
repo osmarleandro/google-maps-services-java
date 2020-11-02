@@ -87,7 +87,7 @@ public class ElevationApi {
         "samples",
         String.valueOf(samples),
         "path",
-        "enc:" + encodedPolyline.getEncodedPath());
+        "enc:" + encodedPolyline.points);
   }
 
   /**
@@ -144,7 +144,7 @@ public class ElevationApi {
   public static PendingResult<ElevationResult[]> getByPoints(
       GeoApiContext context, EncodedPolyline encodedPolyline) {
     return context.get(
-        API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());
+        API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.points);
   }
 
   private static class MultiResponse implements ApiResponse<ElevationResult[]> {

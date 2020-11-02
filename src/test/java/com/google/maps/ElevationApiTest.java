@@ -272,7 +272,7 @@ public class ElevationApiTest {
       LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
 
       sc.assertParamValue("100", "samples");
-      sc.assertParamValue("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");
+      sc.assertParamValue("enc:" + SYD_MELB_ROUTE.points, "path");
     }
   }
 }

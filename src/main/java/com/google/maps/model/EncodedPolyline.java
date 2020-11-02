@@ -47,10 +47,6 @@ public class EncodedPolyline implements Serializable {
     this.points = PolylineEncoding.encode(points);
   }
 
-  public String getEncodedPath() {
-    return points;
-  }
-
   public List<LatLng> decodePath() {
     return PolylineEncoding.decode(points);
   }
