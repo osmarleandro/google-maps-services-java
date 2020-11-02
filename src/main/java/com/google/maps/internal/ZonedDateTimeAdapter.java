@@ -33,47 +33,6 @@ import java.time.ZonedDateTime;
  */
 public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
 
-  /**
-   * Read a Time object from a Directions API result and convert it to a {@link ZonedDateTime}.
-   *
-   * <p>We are expecting to receive something akin to the following:
-   *
-   * <pre>
-   * {
-   *   "text" : "4:27pm",
-   *   "time_zone" : "Australia/Sydney",
-   *   "value" : 1406528829
-   * }
-   * </pre>
-   */
-  @Override
-  public ZonedDateTime read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
-
-    String timeZoneId = "";
-    long secondsSinceEpoch = 0L;
-
-    reader.beginObject();
-    while (reader.hasNext()) {
-      String name = reader.nextName();
-      if (name.equals("text")) {
-        // Ignore the human-readable rendering.
-        reader.nextString();
-      } else if (name.equals("time_zone")) {
-        timeZoneId = reader.nextString();
-      } else if (name.equals("value")) {
-        secondsSinceEpoch = reader.nextLong();
-      }
-    }
-    reader.endObject();
-
-    return ZonedDateTime.ofInstant(
-        Instant.ofEpochMilli(secondsSinceEpoch * 1000), ZoneId.of(timeZoneId));
-  }
-
   /** This method is not implemented. */
   @Override
   public void write(JsonWriter writer, ZonedDateTime value) throws IOException {
