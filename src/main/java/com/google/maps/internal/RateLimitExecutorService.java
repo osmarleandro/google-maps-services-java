@@ -141,11 +141,6 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public boolean awaitTermination(long l, TimeUnit timeUnit) throws InterruptedException {
-    return delegate.awaitTermination(l, timeUnit);
-  }
-
-  @Override
   public <T> Future<T> submit(Callable<T> tCallable) {
     return delegate.submit(tCallable);
   }
