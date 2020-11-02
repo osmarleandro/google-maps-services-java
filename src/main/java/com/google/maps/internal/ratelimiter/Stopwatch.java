@@ -120,7 +120,10 @@ public final class Stopwatch {
   }
 
   Stopwatch(Ticker ticker) {
-    this.ticker = checkNotNull(ticker, "ticker");
+    if (ticker == null) {
+	  throw new NullPointerException(String.valueOf("ticker"));
+	}
+	this.ticker = ticker;
   }
 
   /**
