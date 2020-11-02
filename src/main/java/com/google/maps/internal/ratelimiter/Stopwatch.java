@@ -110,11 +110,6 @@ public final class Stopwatch {
     return new Stopwatch().start();
   }
 
-  /** Creates (and starts) a new stopwatch, using the specified time source. */
-  public static Stopwatch createStarted(Ticker ticker) {
-    return new Stopwatch(ticker).start();
-  }
-
   Stopwatch() {
     this.ticker = Ticker.systemTicker();
   }
