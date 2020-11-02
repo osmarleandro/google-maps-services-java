@@ -17,6 +17,7 @@ package com.google.maps;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.google.maps.StaticMapsRequest.ImageFormat;
 import com.google.maps.StaticMapsRequest.Markers;
@@ -32,6 +33,8 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 
 public class StaticMapsApiTest {
@@ -55,9 +58,39 @@ public class StaticMapsApiTest {
       ByteArrayInputStream bais = new ByteArrayInputStream(req.await().imageData);
       BufferedImage img = ImageIO.read(bais);
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Google Sydney", "center");
-      sc.assertParamValue("16", "zoom");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("size")) {
+	    paramFound = true;
+	    assertEquals("640x480", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("center")) {
+	    paramFound = true;
+	    assertEquals("Google Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("zoom")) {
+	    paramFound = true;
+	    assertEquals("16", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(img);
       assertEquals(WIDTH, img.getWidth());
@@ -74,9 +107,39 @@ public class StaticMapsApiTest {
       req.zoom(16);
       req.await();
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("-33.86880000,151.20930000", "center");
-      sc.assertParamValue("16", "zoom");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("size")) {
+	    paramFound = true;
+	    assertEquals("640x480", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("center")) {
+	    paramFound = true;
+	    assertEquals("-33.86880000,151.20930000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("zoom")) {
+	    paramFound = true;
+	    assertEquals("16", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -94,14 +157,94 @@ public class StaticMapsApiTest {
       req.visible("Melbourne");
       req.await();
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Sydney", "center");
-      sc.assertParamValue("16", "zoom");
-      sc.assertParamValue("2", "scale");
-      sc.assertParamValue("png32", "format");
-      sc.assertParamValue("hybrid", "maptype");
-      sc.assertParamValue("AU", "region");
-      sc.assertParamValue("Melbourne", "visible");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("size")) {
+	    paramFound = true;
+	    assertEquals("640x480", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("center")) {
+	    paramFound = true;
+	    assertEquals("Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("zoom")) {
+	    paramFound = true;
+	    assertEquals("16", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("scale")) {
+	    paramFound = true;
+	    assertEquals("2", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("format")) {
+	    paramFound = true;
+	    assertEquals("png32", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("maptype")) {
+	    paramFound = true;
+	    assertEquals("hybrid", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("region")) {
+	    paramFound = true;
+	    assertEquals("AU", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("visible")) {
+	    paramFound = true;
+	    assertEquals("Melbourne", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -190,12 +333,28 @@ public class StaticMapsApiTest {
 
       req.await();
 
-      sc.assertParamValue(
-          "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
-          "markers");
-      sc.assertParamValue(
-          "weight:3|color:green|fillcolor:0xAACCEE|geodesic:true|Melbourne|-33.86880000,151.20930000",
-          "path");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("markers")) {
+	    paramFound = true;
+	    assertEquals("icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("path")) {
+	    paramFound = true;
+	    assertEquals("weight:3|color:green|fillcolor:0xAACCEE|geodesic:true|Melbourne|-33.86880000,151.20930000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -220,10 +379,29 @@ public class StaticMapsApiTest {
 
       req.await();
 
-      sc.assertParamValue(
-          "icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000",
-          "markers");
-      sc.assertParamValue("enc:" + MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE, "path");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("markers")) {
+	    paramFound = true;
+	    assertEquals("icon:http://not.a/real/url|anchor:bottomleft|scale:2|size:small|color:blue|label:A|Melbourne|-33.86880000,151.20930000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = "enc:" + MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE;
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("path")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -258,10 +436,50 @@ public class StaticMapsApiTest {
 
       req.await();
 
-      sc.assertParamValue("640x480", "size");
-      sc.assertParamValue("Brooklyn Bridge, New York, NY", "center");
-      sc.assertParamValue("13", "zoom");
-      sc.assertParamValue("roadmap", "maptype");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("size")) {
+	    paramFound = true;
+	    assertEquals("640x480", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("center")) {
+	    paramFound = true;
+	    assertEquals("Brooklyn Bridge, New York, NY", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("zoom")) {
+	    paramFound = true;
+	    assertEquals("13", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("maptype")) {
+	    paramFound = true;
+	    assertEquals("roadmap", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       List<String> expected = new ArrayList<>();
       expected.add("color:blue|label:S|40.70214700,-74.01579400");

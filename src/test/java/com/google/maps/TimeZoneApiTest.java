@@ -24,6 +24,8 @@ import com.google.maps.errors.ZeroResultsException;
 import com.google.maps.model.LatLng;
 import java.util.Date;
 import java.util.TimeZone;
+
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -54,8 +56,19 @@ public class TimeZoneApiTest {
       assertEquals(3600000, tz.getDSTSavings());
 
       assertTrue(tz.inDaylightTime(new Date(1388494800000L)));
+	String expected = sydney.toUrlValue();
 
-      sc.assertParamValue(sydney.toUrlValue(), "location");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -66,7 +79,17 @@ public class TimeZoneApiTest {
       TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
       assertNull(resp);
 
-      sc.assertParamValue("0.00000000,0.00000000", "location");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals("0.00000000,0.00000000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       try (LocalTestServerContext sc2 =
           new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {

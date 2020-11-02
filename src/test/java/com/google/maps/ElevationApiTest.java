@@ -18,6 +18,7 @@ package com.google.maps;
 import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
@@ -27,6 +28,8 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.LatLngAssert;
 import java.util.Collections;
 import java.util.List;
+
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -115,8 +118,19 @@ public class ElevationApiTest {
       assertNotNull(result);
       assertNotNull(result.toString());
       assertEquals(SYDNEY_POINT_ELEVATION, result.elevation, EPSILON);
+	String expected = SYDNEY.toUrlValue();
 
-      sc.assertParamValue(SYDNEY.toUrlValue(), "locations");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("locations")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -153,7 +167,17 @@ public class ElevationApiTest {
       assertEquals(SYDNEY_ELEVATION, results[0].elevation, EPSILON);
       assertEquals(MELBOURNE_ELEVATION, results[1].elevation, EPSILON);
 
-      sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "locations");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("locations")) {
+	    paramFound = true;
+	    assertEquals("enc:xvumEur{y[jyaWdnbe@", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -254,8 +278,28 @@ public class ElevationApiTest {
       assertEquals(SYDNEY_ELEVATION, results[0].elevation, EPSILON);
       assertEquals(MELBOURNE_ELEVATION, results[9].elevation, EPSILON);
 
-      sc.assertParamValue("10", "samples");
-      sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "path");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("samples")) {
+	    paramFound = true;
+	    assertEquals("10", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("path")) {
+	    paramFound = true;
+	    assertEquals("enc:xvumEur{y[jyaWdnbe@", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -271,8 +315,29 @@ public class ElevationApiTest {
 
       LatLngAssert.assertEquals(lastDirectionsPoint, lastElevationPoint, EPSILON);
 
-      sc.assertParamValue("100", "samples");
-      sc.assertParamValue("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("samples")) {
+	    paramFound = true;
+	    assertEquals("100", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = "enc:" + SYD_MELB_ROUTE.getEncodedPath();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("path")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 }

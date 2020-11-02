@@ -18,6 +18,7 @@ package com.google.maps;
 import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.model.DistanceMatrix;
@@ -30,6 +31,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -51,8 +53,28 @@ public class DistanceMatrixApiTest {
           .destinations(new LatLng(-25.344677, 131.036692), new LatLng(-13.092297, 132.394057))
           .awaitIgnoreError();
 
-      sc.assertParamValue("-31.95220000,115.85890000|-37.81360000,144.96310000", "origins");
-      sc.assertParamValue("-25.34467700,131.03669200|-13.09229700,132.39405700", "destinations");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origins")) {
+	    paramFound = true;
+	    assertEquals("-31.95220000,115.85890000|-37.81360000,144.96310000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destinations")) {
+	    paramFound = true;
+	    assertEquals("-25.34467700,131.03669200|-13.09229700,132.39405700", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -102,9 +124,31 @@ public class DistanceMatrixApiTest {
           "Purnululu National Park, Western Australia 6770, Australia",
           matrix.destinationAddresses[3]);
       assertEquals("Pinnacles Drive, Cervantes WA 6511, Australia", matrix.destinationAddresses[4]);
+	String expected = StringUtils.join(origins, "|");
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origins")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = StringUtils.join(destinations, "|");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destinations")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -136,13 +180,78 @@ public class DistanceMatrixApiTest {
           .departureTime(
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
           .await();
+	String expected = StringUtils.join(origins, "|");
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue("en-AU", "language");
-      sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue(), "avoid");
-      sc.assertParamValue(Unit.IMPERIAL.toUrlValue(), "units");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origins")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = StringUtils.join(destinations, "|");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destinations")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = TravelMode.DRIVING.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("language")) {
+	    paramFound = true;
+	    assertEquals("en-AU", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected3 = RouteRestriction.TOLLS.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("avoid")) {
+	    paramFound = true;
+	    assertEquals(expected3, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected4 = Unit.IMPERIAL.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("units")) {
+	    paramFound = true;
+	    assertEquals(expected4, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -165,11 +274,54 @@ public class DistanceMatrixApiTest {
           .mode(TravelMode.BICYCLING)
           .language("fr-FR")
           .await();
+	String expected = StringUtils.join(origins, "|");
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
-      sc.assertParamValue("fr-FR", "language");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origins")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = StringUtils.join(destinations, "|");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destinations")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = TravelMode.BICYCLING.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("language")) {
+	    paramFound = true;
+	    assertEquals("fr-FR", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -186,10 +338,43 @@ public class DistanceMatrixApiTest {
           .destinations(destinations)
           .mode(TravelMode.TRANSIT)
           .await();
+	String expected = StringUtils.join(origins, "|");
 
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origins")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = StringUtils.join(destinations, "|");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destinations")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = TravelMode.TRANSIT.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -206,10 +391,52 @@ public class DistanceMatrixApiTest {
           .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
           .await();
 
-      sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
-      sc.assertParamValue("San Francisco International Airport, San Francisco, CA", "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origins")) {
+	    paramFound = true;
+	    assertEquals("Fisherman's Wharf, San Francisco", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destinations")) {
+	    paramFound = true;
+	    assertEquals("San Francisco International Airport, San Francisco, CA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = TravelMode.DRIVING.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = TrafficModel.PESSIMISTIC.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("traffic_model")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 }

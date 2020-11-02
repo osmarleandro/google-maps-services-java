@@ -21,6 +21,7 @@ import static com.google.maps.model.ComponentFilter.country;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.google.maps.model.AddressComponentType;
@@ -32,6 +33,8 @@ import com.google.maps.model.LocationType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -78,7 +81,17 @@ public class GeocodingApiTest {
       checkSydneyResult(results);
       assertNotNull(Arrays.toString(results));
 
-      sc.assertParamValue("Sydney", "address");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals("Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -89,7 +102,17 @@ public class GeocodingApiTest {
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
       checkSydneyResult(results);
 
-      sc.assertParamValue(placeID, "place_id");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("place_id")) {
+	    paramFound = true;
+	    assertEquals(placeID, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -118,7 +141,17 @@ public class GeocodingApiTest {
       assertNotNull(resps.get(0));
       checkSydneyResult(resps.get(0));
 
-      sc.assertParamValue("Sydney", "address");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals("Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -142,8 +175,19 @@ public class GeocodingApiTest {
       assertEquals(
           "York St Near Barrack St, Sydney NSW 2017, Australia", results[1].formattedAddress);
       assertEquals("Sydney NSW 2000, Australia", results[2].formattedAddress);
+	String expected = latlng.toUrlValue();
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("latlng")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -244,7 +288,17 @@ public class GeocodingApiTest {
       assertEquals(
           "Google Bldg 41, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
           results[0].formattedAddress);
-      sc.assertParamValue(address, "address");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals(address, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -333,8 +387,28 @@ public class GeocodingApiTest {
       assertEquals("Winnetka, Los Angeles, CA, USA", results[0].formattedAddress);
       assertEquals("ChIJ0fd4S_KbwoAR2hRDrsr3HmQ", results[0].placeId);
 
-      sc.assertParamValue("Winnetka", "address");
-      sc.assertParamValue("34.17268400,-118.60479400|34.23614400,-118.50093800", "bounds");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals("Winnetka", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("bounds")) {
+	    paramFound = true;
+	    assertEquals("34.17268400,-118.60479400|34.23614400,-118.50093800", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -417,8 +491,28 @@ public class GeocodingApiTest {
       assertEquals(AddressType.LOCALITY, results[0].types[0]);
       assertEquals(AddressType.POLITICAL, results[0].types[1]);
 
-      sc.assertParamValue("Toledo", "address");
-      sc.assertParamValue("es", "region");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals("Toledo", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("region")) {
+	    paramFound = true;
+	    assertEquals("es", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -502,8 +596,28 @@ public class GeocodingApiTest {
       assertEquals("Santa Cruz de Tenerife, Spain", results[0].formattedAddress);
       assertEquals("ChIJcUElzOzMQQwRLuV30nMUEUM", results[0].placeId);
 
-      sc.assertParamValue("country:ES", "components");
-      sc.assertParamValue("santa cruz", "address");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("components")) {
+	    paramFound = true;
+	    assertEquals("country:ES", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals("santa cruz", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -589,8 +703,28 @@ public class GeocodingApiTest {
       assertEquals(true, results[0].partialMatch);
       assertEquals("ChIJSTKCCzZwQIYRPN4IGI8c6xY", results[0].placeId);
 
-      sc.assertParamValue("administrative_area:TX|country:US", "components");
-      sc.assertParamValue("Torun", "address");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("components")) {
+	    paramFound = true;
+	    assertEquals("administrative_area:TX|country:US", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals("Torun", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -677,8 +811,17 @@ public class GeocodingApiTest {
       assertEquals("Annankatu, 00101 Helsinki, Finland", results[0].formattedAddress);
       assertEquals("EiBBbm5hbmthdHUsIDAwMTAxIEhlbHNpbmtpLCBTdW9taQ", results[0].placeId);
 
-      sc.assertParamValue(
-          "route:Annegatan|administrative_area:Helsinki|country:Finland", "components");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("components")) {
+	    paramFound = true;
+	    assertEquals("route:Annegatan|administrative_area:Helsinki|country:Finland", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -700,8 +843,19 @@ public class GeocodingApiTest {
       assertEquals("277", results[0].addressComponents[0].shortName);
       assertEquals(AddressComponentType.STREET_NUMBER, results[0].addressComponents[0].types[0]);
       assertEquals(AddressType.STREET_ADDRESS, results[0].types[0]);
+	String expected = latlng.toUrlValue();
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("latlng")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -798,10 +952,43 @@ public class GeocodingApiTest {
       assertEquals("277 Bedford Ave, Brooklyn, NY 11211, USA", results[0].formattedAddress);
       assertEquals(LocationType.ROOFTOP, results[0].geometry.locationType);
       assertEquals("ChIJd8BlQ2BZwokRAFUEcm_qrcA", results[0].placeId);
+	String expected = latlng.toUrlValue();
 
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
-      sc.assertParamValue(LocationType.ROOFTOP.toUrlValue(), "location_type");
-      sc.assertParamValue(AddressType.STREET_ADDRESS.toUrlValue(), "result_type");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("latlng")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = LocationType.ROOFTOP.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location_type")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = AddressType.STREET_ADDRESS.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("result_type")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -812,7 +999,18 @@ public class GeocodingApiTest {
       LatLng location = new LatLng(46.8023388, 1.6551867);
       GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
       assertEquals("1 Rue Fernand Raynaud, 36000 Châteauroux, France", results[0].formattedAddress);
-      sc.assertParamValue(location.toUrlValue(), "latlng");
+	String expected = location.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("latlng")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -919,8 +1117,28 @@ public class GeocodingApiTest {
           "Google Bldg 41, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
           results[0].formattedAddress);
 
-      sc.assertParamValue(address, "address");
-      sc.assertParamValue("true", "new_forward_geocoder");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals(address, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("new_forward_geocoder")) {
+	    paramFound = true;
+	    assertEquals("true", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -942,8 +1160,19 @@ public class GeocodingApiTest {
       assertEquals(AddressComponentType.LOCALITY, results[3].addressComponents[0].types[0]);
       assertEquals(AddressComponentType.POLITICAL, results[3].addressComponents[0].types[1]);
       assertEquals(AddressComponentType.WARD, results[3].addressComponents[0].types[2]);
+	String expected = location.toUrlValue();
 
-      sc.assertParamValue(location.toUrlValue(), "latlng");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("latlng")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -1034,7 +1263,17 @@ public class GeocodingApiTest {
       assertEquals(AddressType.POINT_OF_INTEREST, results[0].types[3]);
       assertEquals(AddressType.STORE, results[0].types[4]);
 
-      sc.assertParamValue(address, "address");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals(address, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -1118,7 +1357,17 @@ public class GeocodingApiTest {
       assertEquals(AddressType.POINT_OF_INTEREST, results[0].types[2]);
       assertEquals(AddressType.SYNAGOGUE, results[0].types[3]);
 
-      sc.assertParamValue(address, "address");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("address")) {
+	    paramFound = true;
+	    assertEquals(address, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 }

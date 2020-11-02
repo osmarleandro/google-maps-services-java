@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
 import com.google.maps.errors.NotFoundException;
@@ -38,6 +39,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -77,8 +80,28 @@ public class DirectionsApiTest {
       assertEquals("Melbourne VIC, Australia", result.routes[0].legs[0].endAddress);
       assertEquals("Sydney NSW, Australia", result.routes[0].legs[0].startAddress);
 
-      sc.assertParamValue("Sydney, AU", "origin");
-      sc.assertParamValue("Melbourne, AU", "destination");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Sydney, AU", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Melbourne, AU", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -100,19 +123,80 @@ public class DirectionsApiTest {
 
       assertNotNull(result.routes);
       assertEquals(1, result.routes.length);
+	String expected = TravelMode.BICYCLING.toUrlValue();
 
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
-      sc.assertParamValue(
-          DirectionsApi.RouteRestriction.HIGHWAYS.toUrlValue()
-              + "|"
-              + DirectionsApi.RouteRestriction.TOLLS.toUrlValue()
-              + "|"
-              + DirectionsApi.RouteRestriction.FERRIES.toUrlValue(),
-          "avoid");
-      sc.assertParamValue(Unit.METRIC.toUrlValue(), "units");
-      sc.assertParamValue("au", "region");
-      sc.assertParamValue("Sydney", "origin");
-      sc.assertParamValue("Melbourne", "destination");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = DirectionsApi.RouteRestriction.HIGHWAYS.toUrlValue()
+	      + "|"
+	      + DirectionsApi.RouteRestriction.TOLLS.toUrlValue()
+	      + "|"
+	      + DirectionsApi.RouteRestriction.FERRIES.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("avoid")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = Unit.METRIC.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("units")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("region")) {
+	    paramFound = true;
+	    assertEquals("au", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Melbourne", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -132,10 +216,41 @@ public class DirectionsApiTest {
       DateTimeFormatter fmt = DateTimeFormatter.ofPattern("h:mm a");
       assertEquals("1:54 pm", fmt.format(result.routes[0].legs[0].arrivalTime).toLowerCase());
       assertEquals("1:21 pm", fmt.format(result.routes[0].legs[0].departureTime).toLowerCase());
+	String expected = TravelMode.TRANSIT.toUrlValue();
 
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
-      sc.assertParamValue("483 George St, Sydney NSW 2000, Australia", "origin");
-      sc.assertParamValue("182 Church St, Parramatta NSW 2150, Australia", "destination");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("483 George St, Sydney NSW 2000, Australia", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("182 Church St, Parramatta NSW 2150, Australia", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -151,8 +266,28 @@ public class DirectionsApiTest {
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context).origin("Toronto").destination("Montreal").await();
 
-      sc.assertParamValue("Toronto", "origin");
-      sc.assertParamValue("Montreal", "destination");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Toronto", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Montreal", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -173,10 +308,52 @@ public class DirectionsApiTest {
           .mode(TravelMode.BICYCLING)
           .await();
 
-      sc.assertParamValue("Toronto", "origin");
-      sc.assertParamValue("Montreal", "destination");
-      sc.assertParamValue(RouteRestriction.HIGHWAYS.toUrlValue(), "avoid");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Toronto", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Montreal", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = RouteRestriction.HIGHWAYS.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("avoid")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = TravelMode.BICYCLING.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -191,10 +368,52 @@ public class DirectionsApiTest {
           .mode(TravelMode.BICYCLING)
           .await();
 
-      sc.assertParamValue("San Francisco", "origin");
-      sc.assertParamValue("Seattle", "destination");
-      sc.assertParamValue(RouteRestriction.INDOOR.toUrlValue(), "avoid");
-      sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("San Francisco", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Seattle", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = RouteRestriction.INDOOR.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("avoid")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = TravelMode.BICYCLING.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -214,9 +433,40 @@ public class DirectionsApiTest {
           .mode(TravelMode.TRANSIT)
           .await();
 
-      sc.assertParamValue("Brooklyn", "origin");
-      sc.assertParamValue("Queens", "destination");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Brooklyn", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Queens", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = TravelMode.TRANSIT.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -236,9 +486,39 @@ public class DirectionsApiTest {
           .waypoints("Charlestown,MA", "Lexington,MA")
           .await();
 
-      sc.assertParamValue("Boston,MA", "origin");
-      sc.assertParamValue("Concord,MA", "destination");
-      sc.assertParamValue("Charlestown,MA|Lexington,MA", "waypoints");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Boston,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Concord,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("waypoints")) {
+	    paramFound = true;
+	    assertEquals("Charlestown,MA|Lexington,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -260,9 +540,39 @@ public class DirectionsApiTest {
               new DirectionsApiRequest.Waypoint("Lexington,MA", false))
           .await();
 
-      sc.assertParamValue("Boston,MA", "origin");
-      sc.assertParamValue("Concord,MA", "destination");
-      sc.assertParamValue("via:Charlestown,MA|via:Lexington,MA", "waypoints");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Boston,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Concord,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("waypoints")) {
+	    paramFound = true;
+	    assertEquals("via:Charlestown,MA|via:Lexington,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -283,9 +593,39 @@ public class DirectionsApiTest {
           .waypoints(new LatLng(42.379322, -71.063384), new LatLng(42.444303, -71.229087))
           .await();
 
-      sc.assertParamValue("Boston,MA", "origin");
-      sc.assertParamValue("Concord,MA", "destination");
-      sc.assertParamValue("42.37932200,-71.06338400|42.44430300,-71.22908700", "waypoints");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Boston,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Concord,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("waypoints")) {
+	    paramFound = true;
+	    assertEquals("42.37932200,-71.06338400|42.44430300,-71.22908700", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -308,9 +648,39 @@ public class DirectionsApiTest {
               new DirectionsApiRequest.Waypoint(new LatLng(42.444303, -71.229087), false))
           .await();
 
-      sc.assertParamValue("Boston,MA", "origin");
-      sc.assertParamValue("Concord,MA", "destination");
-      sc.assertParamValue("via:42.37932200,-71.06338400|via:42.44430300,-71.22908700", "waypoints");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Boston,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Concord,MA", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("waypoints")) {
+	    paramFound = true;
+	    assertEquals("via:42.37932200,-71.06338400|via:42.44430300,-71.22908700", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -330,9 +700,39 @@ public class DirectionsApiTest {
           .region("es")
           .await();
 
-      sc.assertParamValue("Toledo", "origin");
-      sc.assertParamValue("Madrid", "destination");
-      sc.assertParamValue("es", "region");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Toledo", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Madrid", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("region")) {
+	    paramFound = true;
+	    assertEquals("es", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -349,10 +749,50 @@ public class DirectionsApiTest {
               .language("es")
               .await();
 
-      sc.assertParamValue("Toledo", "origin");
-      sc.assertParamValue("Madrid", "destination");
-      sc.assertParamValue("es", "region");
-      sc.assertParamValue("es", "language");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Toledo", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Madrid", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("region")) {
+	    paramFound = true;
+	    assertEquals("es", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("language")) {
+	    paramFound = true;
+	    assertEquals("es", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(result.toString());
     }
@@ -372,10 +812,52 @@ public class DirectionsApiTest {
               .trafficModel(TrafficModel.PESSIMISTIC)
               .await();
 
-      sc.assertParamValue("48 Pirrama Road, Pyrmont NSW 2009", "origin");
-      sc.assertParamValue("182 Church St, Parramatta NSW 2150", "destination");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("48 Pirrama Road, Pyrmont NSW 2009", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("182 Church St, Parramatta NSW 2150", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = TravelMode.DRIVING.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = TrafficModel.PESSIMISTIC.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("traffic_model")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(result.toString());
     }
@@ -393,9 +875,40 @@ public class DirectionsApiTest {
               .mode(TravelMode.TRANSIT)
               .await();
 
-      sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
-      sc.assertParamValue("Union Square, San Francisco", "destination");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Fisherman's Wharf, San Francisco", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Union Square, San Francisco", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = TravelMode.TRANSIT.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(result.toString());
     }
@@ -415,13 +928,64 @@ public class DirectionsApiTest {
               .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
               .await();
 
-      sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
-      sc.assertParamValue("Union Square, San Francisco", "destination");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
-      sc.assertParamValue(
-          TransitMode.BUS.toUrlValue() + "|" + TransitMode.TRAM.toUrlValue(), "transit_mode");
-      sc.assertParamValue(
-          TransitRoutingPreference.LESS_WALKING.toUrlValue(), "transit_routing_preference");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("Fisherman's Wharf, San Francisco", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("Union Square, San Francisco", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = TravelMode.TRANSIT.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = TransitMode.BUS.toUrlValue() + "|" + TransitMode.TRAM.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("transit_mode")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = TransitRoutingPreference.LESS_WALKING.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("transit_routing_preference")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(result.toString());
     }
@@ -441,10 +1005,41 @@ public class DirectionsApiTest {
       assertNotNull(result.toString());
       assertNotNull(result.routes);
       assertNotNull(result.routes[0]);
+	String expected = TravelMode.WALKING.toUrlValue();
 
-      sc.assertParamValue(TravelMode.WALKING.toUrlValue(), "mode");
-      sc.assertParamValue("483 George St, Sydney NSW 2000, Australia", "origin");
-      sc.assertParamValue("182 Church St, Parramatta NSW 2150, Australia", "destination");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("mode")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals("483 George St, Sydney NSW 2000, Australia", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals("182 Church St, Parramatta NSW 2150, Australia", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(result.toString());
     }
@@ -522,19 +1117,50 @@ public class DirectionsApiTest {
               .optimizeWaypoints(true)
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .await();
+	String expected = origin.toUrlValue();
 
-      sc.assertParamValue(origin.toUrlValue(), "origin");
-      sc.assertParamValue(destination.toUrlValue(), "destination");
-      sc.assertParamValue(
-          "optimize:true|"
-              + waypoints.get(2).toUrlValue()
-              + "|"
-              + waypoints.get(3).toUrlValue()
-              + "|"
-              + waypoints.get(4).toUrlValue()
-              + "|"
-              + waypoints.get(5).toUrlValue(),
-          "waypoints");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = destination.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = "optimize:true|"
+	      + waypoints.get(2).toUrlValue()
+	      + "|"
+	      + waypoints.get(3).toUrlValue()
+	      + "|"
+	      + waypoints.get(4).toUrlValue()
+	      + "|"
+	      + waypoints.get(5).toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("waypoints")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(result.toString());
     }
@@ -556,19 +1182,50 @@ public class DirectionsApiTest {
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .optimizeWaypoints(true)
               .await();
+	String expected = origin.toUrlValue();
 
-      sc.assertParamValue(origin.toUrlValue(), "origin");
-      sc.assertParamValue(destination.toUrlValue(), "destination");
-      sc.assertParamValue(
-          "optimize:true|"
-              + waypoints.get(2).toUrlValue()
-              + "|"
-              + waypoints.get(3).toUrlValue()
-              + "|"
-              + waypoints.get(4).toUrlValue()
-              + "|"
-              + waypoints.get(5).toUrlValue(),
-          "waypoints");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = destination.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("destination")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = "optimize:true|"
+	      + waypoints.get(2).toUrlValue()
+	      + "|"
+	      + waypoints.get(3).toUrlValue()
+	      + "|"
+	      + waypoints.get(4).toUrlValue()
+	      + "|"
+	      + waypoints.get(5).toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("waypoints")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(result.toString());
     }

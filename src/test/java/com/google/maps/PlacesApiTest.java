@@ -52,6 +52,8 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+
+import org.apache.http.NameValuePair;
 import org.junit.Test;
 
 public class PlacesApiTest {
@@ -117,7 +119,17 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
-      sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("placeid")) {
+	    paramFound = true;
+	    assertEquals(GOOGLE_SYDNEY, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -158,8 +170,28 @@ public class PlacesApiTest {
                   PlaceDetailsRequest.FieldMask.TYPES)
               .await();
 
-      sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
-      sc.assertParamValue("place_id,name,types", "fields");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("placeid")) {
+	    paramFound = true;
+	    assertEquals(GOOGLE_SYDNEY, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("fields")) {
+	    paramFound = true;
+	    assertEquals("place_id,name,types", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(placeDetails);
       assertNotNull(placeDetails.toString());
@@ -385,11 +417,62 @@ public class PlacesApiTest {
           .language("en")
           .await();
 
-      sc.assertParamValue(QUERY_AUTOCOMPLETE_INPUT, "input");
-      sc.assertParamValue("10", "offset");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue("en", "language");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals(QUERY_AUTOCOMPLETE_INPUT, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("offset")) {
+	    paramFound = true;
+	    assertEquals("10", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = location.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals("5000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("language")) {
+	    paramFound = true;
+	    assertEquals("en", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -468,16 +551,122 @@ public class PlacesApiTest {
           .type(PlaceType.AIRPORT)
           .await();
 
-      sc.assertParamValue("Google Sydney", "query");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("AU", "region");
-      sc.assertParamValue(String.valueOf(3000), "radius");
-      sc.assertParamValue(String.valueOf(1), "minprice");
-      sc.assertParamValue(String.valueOf(4), "maxprice");
-      sc.assertParamValue("name", "name");
-      sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("query")) {
+	    paramFound = true;
+	    assertEquals("Google Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = location.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("region")) {
+	    paramFound = true;
+	    assertEquals("AU", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = String.valueOf(3000);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = String.valueOf(1);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("minprice")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected3 = String.valueOf(4);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("maxprice")) {
+	    paramFound = true;
+	    assertEquals(expected3, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("name")) {
+	    paramFound = true;
+	    assertEquals("name", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("opennow")) {
+	    paramFound = true;
+	    assertEquals("true", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected4 = RankBy.DISTANCE.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("rankby")) {
+	    paramFound = true;
+	    assertEquals(expected4, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected5 = PlaceType.AIRPORT.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("type")) {
+	    paramFound = true;
+	    assertEquals(expected5, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -496,16 +685,122 @@ public class PlacesApiTest {
           .type(PlaceType.AIRPORT)
           .await();
 
-      sc.assertParamValue("Google Sydney", "query");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("AU", "region");
-      sc.assertParamValue(String.valueOf(3000), "radius");
-      sc.assertParamValue(String.valueOf(1), "minprice");
-      sc.assertParamValue(String.valueOf(4), "maxprice");
-      sc.assertParamValue("name", "name");
-      sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(RankBy.DISTANCE.toString(), "rankby");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("query")) {
+	    paramFound = true;
+	    assertEquals("Google Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = location.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("region")) {
+	    paramFound = true;
+	    assertEquals("AU", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = String.valueOf(3000);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = String.valueOf(1);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("minprice")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected3 = String.valueOf(4);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("maxprice")) {
+	    paramFound = true;
+	    assertEquals(expected3, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("name")) {
+	    paramFound = true;
+	    assertEquals("name", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("opennow")) {
+	    paramFound = true;
+	    assertEquals("true", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected4 = RankBy.DISTANCE.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("rankby")) {
+	    paramFound = true;
+	    assertEquals(expected4, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected5 = PlaceType.AIRPORT.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("type")) {
+	    paramFound = true;
+	    assertEquals(expected5, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -518,10 +813,43 @@ public class PlacesApiTest {
               .location(location)
               .radius(500)
               .await();
+	String expected = location.toUrlValue();
 
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(String.valueOf(500), "radius");
-      sc.assertParamValue(PlaceType.ZOO.toString(), "type");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = String.valueOf(500);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = PlaceType.ZOO.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("type")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -614,9 +942,41 @@ public class PlacesApiTest {
           .maxHeight(height)
           .awaitIgnoreError();
 
-      sc.assertParamValue(photoReference, "photoreference");
-      sc.assertParamValue(String.valueOf(width), "maxwidth");
-      sc.assertParamValue(String.valueOf(height), "maxheight");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("photoreference")) {
+	    paramFound = true;
+	    assertEquals(photoReference, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = String.valueOf(width);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("maxwidth")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = String.valueOf(height);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("maxheight")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -636,18 +996,133 @@ public class PlacesApiTest {
           .type(PlaceType.AIRPORT)
           .pageToken("next-page-token")
           .await();
+	String expected = location.toUrlValue();
 
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(RankBy.PROMINENCE.toString(), "rankby");
-      sc.assertParamValue("keyword", "keyword");
-      sc.assertParamValue("en", "language");
-      sc.assertParamValue(PriceLevel.INEXPENSIVE.toString(), "minprice");
-      sc.assertParamValue(PriceLevel.EXPENSIVE.toString(), "maxprice");
-      sc.assertParamValue("name", "name");
-      sc.assertParamValue("true", "opennow");
-      sc.assertParamValue(PlaceType.AIRPORT.toString(), "type");
-      sc.assertParamValue("next-page-token", "pagetoken");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals("5000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = RankBy.PROMINENCE.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("rankby")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("keyword")) {
+	    paramFound = true;
+	    assertEquals("keyword", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("language")) {
+	    paramFound = true;
+	    assertEquals("en", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = PriceLevel.INEXPENSIVE.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("minprice")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected3 = PriceLevel.EXPENSIVE.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("maxprice")) {
+	    paramFound = true;
+	    assertEquals(expected3, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("name")) {
+	    paramFound = true;
+	    assertEquals("name", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("opennow")) {
+	    paramFound = true;
+	    assertEquals("true", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected4 = PlaceType.AIRPORT.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("type")) {
+	    paramFound = true;
+	    assertEquals(expected4, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("pagetoken")) {
+	    paramFound = true;
+	    assertEquals("next-page-token", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -659,9 +1134,31 @@ public class PlacesApiTest {
       PlacesApi.nearbySearchQuery(sc.context, location)
           .type(PlaceType.AIRPORT, PlaceType.BANK)
           .await();
+	String expected = location.toUrlValue();
 
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue(PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString(), "type");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("type")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -698,14 +1195,100 @@ public class PlacesApiTest {
           .components(ComponentFilter.country("AU"))
           .await();
 
-      sc.assertParamValue("Sydney Town Hall", "input");
-      sc.assertParamValue(Integer.toString(4), "offset");
-      sc.assertParamValue(location.toUrlValue(), "origin");
-      sc.assertParamValue(location.toUrlValue(), "location");
-      sc.assertParamValue("5000", "radius");
-      sc.assertParamValue(PlaceAutocompleteType.ESTABLISHMENT.toString(), "types");
-      sc.assertParamValue(ComponentFilter.country("AU").toString(), "components");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals("Sydney Town Hall", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = Integer.toString(4);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("offset")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = location.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("origin")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected2 = location.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected2, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals("5000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected3 = PlaceAutocompleteType.ESTABLISHMENT.toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("types")) {
+	    paramFound = true;
+	    assertEquals(expected3, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected4 = ComponentFilter.country("AU").toString();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("components")) {
+	    paramFound = true;
+	    assertEquals(expected4, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected5 = session.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("sessiontoken")) {
+	    paramFound = true;
+	    assertEquals(expected5, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -715,7 +1298,17 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
 
-      sc.assertParamValue("Google Sydney", "query");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("query")) {
+	    paramFound = true;
+	    assertEquals("Google Sydney", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(response.toString());
       assertEquals(1, response.results.length);
@@ -731,7 +1324,17 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
       PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
 
-      sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("placeid")) {
+	    paramFound = true;
+	    assertEquals("ChIJN1t_tDeuEmsRUsoyG83frY4", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(placeDetails.toString());
       assertEquals(10, placeDetails.photos.length);
@@ -749,7 +1352,17 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
 
-      sc.assertParamValue("Pizza in New York", "query");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("query")) {
+	    paramFound = true;
+	    assertEquals("Pizza in New York", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(response.toString());
       assertEquals(20, response.results.length);
@@ -765,8 +1378,28 @@ public class PlacesApiTest {
       PlaceDetails details =
           PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
 
-      sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
-      sc.assertParamValue("fr", "language");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("placeid")) {
+	    paramFound = true;
+	    assertEquals("ChIJ442GNENu5kcRGYUrvgqHw88", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("language")) {
+	    paramFound = true;
+	    assertEquals("fr", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(details.toString());
       assertEquals("ChIJ442GNENu5kcRGYUrvgqHw88", details.placeId);
@@ -783,9 +1416,40 @@ public class PlacesApiTest {
       PlacesSearchResponse response =
           PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
 
-      sc.assertParamValue("10000", "radius");
-      sc.assertParamValue("pub", "keyword");
-      sc.assertParamValue(SYDNEY.toUrlValue(), "location");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals("10000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("keyword")) {
+	    paramFound = true;
+	    assertEquals("pub", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = SYDNEY.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertEquals(20, response.results.length);
     }
@@ -801,9 +1465,40 @@ public class PlacesApiTest {
               .name("Sydney Town Hall")
               .await();
 
-      sc.assertParamValue("Sydney Town Hall", "name");
-      sc.assertParamValue(SYDNEY.toUrlValue(), "location");
-      sc.assertParamValue("10000", "radius");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("name")) {
+	    paramFound = true;
+	    assertEquals("Sydney Town Hall", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = SYDNEY.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals("10000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertEquals("Sydney Town Hall", response.results[0].name);
     }
@@ -815,10 +1510,42 @@ public class PlacesApiTest {
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
       PlacesSearchResponse response =
           PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+	String expected = SYDNEY.toUrlValue();
 
-      sc.assertParamValue(SYDNEY.toUrlValue(), "location");
-      sc.assertParamValue("10000", "radius");
-      sc.assertParamValue(PlaceType.BAR.toUrlValue(), "type");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals("10000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected1 = PlaceType.BAR.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("type")) {
+	    paramFound = true;
+	    assertEquals(expected1, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertEquals(20, response.results.length);
     }
@@ -843,8 +1570,29 @@ public class PlacesApiTest {
       AutocompletePrediction[] predictions =
           PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
 
-      sc.assertParamValue("Sydney Town Ha", "input");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals("Sydney Town Ha", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = session.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("sessiontoken")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertEquals(5, predictions.length);
       assertTrue(predictions[0].description.contains("Town Hall"));
@@ -862,10 +1610,51 @@ public class PlacesApiTest {
               .types(PlaceAutocompleteType.REGIONS)
               .await();
 
-      sc.assertParamValue("po", "input");
-      sc.assertParamValue("country:nz", "components");
-      sc.assertParamValue("(regions)", "types");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals("po", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("components")) {
+	    paramFound = true;
+	    assertEquals("country:nz", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("types")) {
+	    paramFound = true;
+	    assertEquals("(regions)", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = session.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("sessiontoken")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(Arrays.toString(predictions));
       assertEquals(5, predictions.length);
@@ -889,12 +1678,73 @@ public class PlacesApiTest {
           .strictBounds(true)
           .await();
 
-      sc.assertParamValue("Amoeba", "input");
-      sc.assertParamValue("establishment", "types");
-      sc.assertParamValue("37.76999000,-122.44696000", "location");
-      sc.assertParamValue("500", "radius");
-      sc.assertParamValue("true", "strictbounds");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals("Amoeba", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("types")) {
+	    paramFound = true;
+	    assertEquals("establishment", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("location")) {
+	    paramFound = true;
+	    assertEquals("37.76999000,-122.44696000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("radius")) {
+	    paramFound = true;
+	    assertEquals("500", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("strictbounds")) {
+	    paramFound = true;
+	    assertEquals("true", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+	String expected = session.toUrlValue();
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("sessiontoken")) {
+	    paramFound = true;
+	    assertEquals(expected, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -904,7 +1754,17 @@ public class PlacesApiTest {
       String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
       PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
 
-      sc.assertParamValue(query, "query");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("query")) {
+	    paramFound = true;
+	    assertEquals(query, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertEquals(
           "Kita Ward, Kyoto, Kyoto Prefecture, Japan", response.results[0].formattedAddress);
@@ -932,11 +1792,50 @@ public class PlacesApiTest {
               .locationBias(new LocationBiasIP())
               .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue(
-          "business_status,photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("ipbias", "locationbias");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals(input, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("inputtype")) {
+	    paramFound = true;
+	    assertEquals("textquery", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("fields")) {
+	    paramFound = true;
+	    assertEquals("business_status,photos,formatted_address,name,rating,opening_hours,geometry", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("locationbias")) {
+	    paramFound = true;
+	    assertEquals("ipbias", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
 
       assertNotNull(response);
       PlacesSearchResult candidate = response.candidates[0];
@@ -975,10 +1874,50 @@ public class PlacesApiTest {
           .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
           .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("point:1.00000000,2.00000000", "locationbias");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals(input, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("inputtype")) {
+	    paramFound = true;
+	    assertEquals("textquery", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("fields")) {
+	    paramFound = true;
+	    assertEquals("photos,formatted_address,name,rating,opening_hours,geometry", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("locationbias")) {
+	    paramFound = true;
+	    assertEquals("point:1.00000000,2.00000000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -1000,10 +1939,50 @@ public class PlacesApiTest {
           .locationBias(new LocationBiasCircular(new LatLng(1, 2), 3000))
           .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("circle:3000@1.00000000,2.00000000", "locationbias");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals(input, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("inputtype")) {
+	    paramFound = true;
+	    assertEquals("textquery", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("fields")) {
+	    paramFound = true;
+	    assertEquals("photos,formatted_address,name,rating,opening_hours,geometry", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("locationbias")) {
+	    paramFound = true;
+	    assertEquals("circle:3000@1.00000000,2.00000000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -1025,10 +2004,50 @@ public class PlacesApiTest {
           .locationBias(new LocationBiasRectangular(new LatLng(1, 2), new LatLng(3, 4)))
           .await();
 
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("rectangle:1.00000000,2.00000000|3.00000000,4.00000000", "locationbias");
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("input")) {
+	    paramFound = true;
+	    assertEquals(input, pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("inputtype")) {
+	    paramFound = true;
+	    assertEquals("textquery", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("fields")) {
+	    paramFound = true;
+	    assertEquals("photos,formatted_address,name,rating,opening_hours,geometry", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
+      if (sc.params == null) {
+	  sc.params = sc.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : sc.params) {
+	  if (pair.getName().equals("locationbias")) {
+	    paramFound = true;
+	    assertEquals("rectangle:1.00000000,2.00000000|3.00000000,4.00000000", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
     }
   }
 
@@ -1048,6 +2067,16 @@ public class PlacesApiTest {
 
     PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
 
-    server.assertParamValue("business_status", "fields");
+    if (server.params == null) {
+	  server.params = server.actualParams();
+	}
+	boolean paramFound = false;
+	for (NameValuePair pair : server.params) {
+	  if (pair.getName().equals("fields")) {
+	    paramFound = true;
+	    assertEquals("business_status", pair.getValue());
+	  }
+	}
+	assertTrue(paramFound);
   }
 }
