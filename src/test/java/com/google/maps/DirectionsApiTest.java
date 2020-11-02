@@ -363,12 +363,12 @@ public class DirectionsApiTest {
   public void testTrafficModel() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      Instant time = Instant.now().plus(Duration.ofMinutes(2));
+	DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin("48 Pirrama Road, Pyrmont NSW 2009")
-              .destination("182 Church St, Parramatta NSW 2150")
-              .mode(TravelMode.DRIVING)
-              .departureTime(Instant.now().plus(Duration.ofMinutes(2)))
+		  .origin("48 Pirrama Road, Pyrmont NSW 2009")
+		  .destination("182 Church St, Parramatta NSW 2150")
+		  .mode(TravelMode.DRIVING).param("departure_time", Long.toString(time.toEpochMilli() / 1000L))
               .trafficModel(TrafficModel.PESSIMISTIC)
               .await();
 
@@ -514,11 +514,11 @@ public class DirectionsApiTest {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
+	Instant time = Instant.now();
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin(origin)
-              .destination(destination)
-              .departureTime(Instant.now())
+		  .origin(origin)
+		  .destination(destination).param("departure_time", Long.toString(time.toEpochMilli() / 1000L))
               .optimizeWaypoints(true)
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .await();
@@ -548,11 +548,11 @@ public class DirectionsApiTest {
       List<LatLng> waypoints = getOptimizationWaypoints();
       LatLng origin = waypoints.get(0);
       LatLng destination = waypoints.get(1);
+	Instant time = Instant.now();
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin(origin)
-              .destination(destination)
-              .departureTime(Instant.now())
+		  .origin(origin)
+		  .destination(destination).param("departure_time", Long.toString(time.toEpochMilli() / 1000L))
               .waypoints(waypoints.subList(2, waypoints.size()).toArray(new LatLng[0]))
               .optimizeWaypoints(true)
               .await();
