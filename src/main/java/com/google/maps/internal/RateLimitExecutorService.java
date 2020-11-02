@@ -167,13 +167,6 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public <T> List<Future<T>> invokeAll(
-      Collection<? extends Callable<T>> callables, long l, TimeUnit timeUnit)
-      throws InterruptedException {
-    return delegate.invokeAll(callables, l, timeUnit);
-  }
-
-  @Override
   public <T> T invokeAny(Collection<? extends Callable<T>> callables)
       throws InterruptedException, ExecutionException {
     return delegate.invokeAny(callables);
