@@ -5,8 +5,6 @@ final class NoOpRequestMetrics implements RequestMetrics {
 
   NoOpRequestMetrics(String requestName) {}
 
-  public void startNetwork() {}
-
   public void endNetwork() {}
 
   public void endRequest(Exception exception, int httpStatusCode, long retryCount) {}
