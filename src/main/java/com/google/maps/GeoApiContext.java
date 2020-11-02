@@ -261,7 +261,16 @@ public class GeoApiContext {
   <T, R extends ApiResponse<T>> PendingResult<T> post(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
 
-    checkContext(config.supportsClientId);
+    boolean canUseClientId = config.supportsClientId;
+	if (urlSigner == null && apiKey == null) {
+	  throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
+	} else if (!canUseClientId && apiKey == null) {
+	  throw new IllegalStateException(
+	      "API does not support client ID & secret - you must provide a key");
+	}
+	if (urlSigner == null && !apiKey.startsWith("AIza")) {
+	  throw new IllegalStateException("Invalid API key.");
+	}
 
     StringBuilder url = new StringBuilder(config.path);
     if (config.supportsClientId && clientId != null) {
@@ -302,7 +311,15 @@ public class GeoApiContext {
       boolean canUseClientId,
       String encodedPath,
       RequestMetrics metrics) {
-    checkContext(canUseClientId);
+    if (urlSigner == null && apiKey == null) {
+	  throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
+	} else if (!canUseClientId && apiKey == null) {
+	  throw new IllegalStateException(
+	      "API does not support client ID & secret - you must provide a key");
+	}
+	if (urlSigner == null && !apiKey.startsWith("AIza")) {
+	  throw new IllegalStateException("Invalid API key.");
+	}
     if (!encodedPath.startsWith("&")) {
       throw new IllegalArgumentException("encodedPath must start with &");
     }
@@ -335,18 +352,6 @@ public class GeoApiContext {
         maxRetries,
         exceptionsAllowedToRetry,
         metrics);
-  }
-
-  private void checkContext(boolean canUseClientId) {
-    if (urlSigner == null && apiKey == null) {
-      throw new IllegalStateException("Must provide either API key or Maps for Work credentials.");
-    } else if (!canUseClientId && apiKey == null) {
-      throw new IllegalStateException(
-          "API does not support client ID & secret - you must provide a key");
-    }
-    if (urlSigner == null && !apiKey.startsWith("AIza")) {
-      throw new IllegalStateException("Invalid API key.");
-    }
   }
 
   /** The Builder for {@code GeoApiContext}. */
