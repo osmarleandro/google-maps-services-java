@@ -29,6 +29,6 @@ public class StaticMapsApi {
    * @return Returns a new {@code StaticMapRequest} with configured size.
    */
   public static StaticMapsRequest newRequest(GeoApiContext context, Size size) {
-    return new StaticMapsRequest(context).size(size);
+    return new StaticMapsRequest(context).param("size", size);
   }
 }
