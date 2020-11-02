@@ -71,26 +71,6 @@ public class ElevationApi {
   }
 
   /**
-   * See <a href="https://developers.google.com/maps/documentation/elevation/intro#Paths">
-   * documentation</a>.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param samples The number of samples to retrieve heights along {@code encodedPolyline}.
-   * @param encodedPolyline The path to sample as an encoded polyline.
-   * @return The elevations as a {@link PendingResult}.
-   */
-  public static PendingResult<ElevationResult[]> getByPath(
-      GeoApiContext context, int samples, EncodedPolyline encodedPolyline) {
-    return context.get(
-        API_CONFIG,
-        MultiResponse.class,
-        "samples",
-        String.valueOf(samples),
-        "path",
-        "enc:" + encodedPolyline.getEncodedPath());
-  }
-
-  /**
    * Chooses the shortest param (only a guess, since the length is different after URL encoding).
    */
   private static String shortestParam(LatLng[] points) {

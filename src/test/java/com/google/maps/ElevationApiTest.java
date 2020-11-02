@@ -19,6 +19,7 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.maps.ElevationApi.MultiResponse;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
@@ -262,7 +263,14 @@ public class ElevationApiTest {
   @Test
   public void testDirectionsAlongPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
-      ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
+      GeoApiContext context = sc.context;
+	ElevationResult[] elevation = context.get(
+	ElevationApi.API_CONFIG,
+	MultiResponse.class,
+	"samples",
+	String.valueOf(100),
+	"path",
+	"enc:" + SYD_MELB_ROUTE.getEncodedPath()).await();
       assertEquals(100, elevation.length);
 
       List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
