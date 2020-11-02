@@ -34,26 +34,6 @@ public class GeocodingApiRequest
     super(context, API_CONFIG, GeocodingApi.Response.class);
   }
 
-  @Override
-  protected void validateRequest() {
-    // Must not have both address and latlng.
-    if (params().containsKey("latlng")
-        && params().containsKey("address")
-        && params().containsKey("place_id")) {
-      throw new IllegalArgumentException(
-          "Request must contain only one of 'address', 'latlng' or 'place_id'.");
-    }
-
-    // Must contain at least one of place_id, address, latlng, and components;
-    if (!params().containsKey("latlng")
-        && !params().containsKey("address")
-        && !params().containsKey("components")
-        && !params().containsKey("place_id")) {
-      throw new IllegalArgumentException(
-          "Request must contain at least one of 'address', 'latlng', 'place_id' and 'components'.");
-    }
-  }
-
   /**
    * Creates a forward geocode for {@code address}.
    *
