@@ -232,7 +232,9 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       return resp.getResult();
     } else {
       ApiException e = resp.getError();
-      if (shouldRetry(e)) {
+      if (exceptionsAllowedToRetry.contains(e.getClass())
+	&& cumulativeSleepTime < errorTimeOut
+	&& (maxRetries == null || retryCounter < maxRetries)) {
         // Retry over_query_limit errors
         return request.retry();
       } else {
@@ -252,12 +254,6 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
 
   private boolean shouldRetry(HTTPResponse response) {
     return RETRY_ERROR_CODES.contains(response.getResponseCode())
-        && cumulativeSleepTime < errorTimeOut
-        && (maxRetries == null || retryCounter < maxRetries);
-  }
-
-  private boolean shouldRetry(ApiException exception) {
-    return exceptionsAllowedToRetry.contains(exception.getClass())
         && cumulativeSleepTime < errorTimeOut
         && (maxRetries == null || retryCounter < maxRetries);
   }
