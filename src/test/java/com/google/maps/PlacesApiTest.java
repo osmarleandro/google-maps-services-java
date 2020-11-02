@@ -624,16 +624,16 @@ public class PlacesApiTest {
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       LatLng location = new LatLng(10, 20);
+	PlaceType type = PlaceType.AIRPORT;
       PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
-          .openNow(true)
-          .type(PlaceType.AIRPORT)
+	  .radius(5000)
+	  .rankby(RankBy.PROMINENCE)
+	  .keyword("keyword")
+	  .language("en")
+	  .minPrice(PriceLevel.INEXPENSIVE)
+	  .maxPrice(PriceLevel.EXPENSIVE)
+	  .name("name")
+	  .openNow(true).param("type", type)
           .pageToken("next-page-token")
           .await();
 
@@ -813,8 +813,9 @@ public class PlacesApiTest {
   public void testNearbySearchRequestByType() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
-      PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+      PlaceType type = PlaceType.BAR;
+	PlacesSearchResponse response =
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).param("type", type).await();
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
       sc.assertParamValue("10000", "radius");
@@ -828,8 +829,9 @@ public class PlacesApiTest {
   public void testNearbySearchRequestByTypeReturnsUserRatingsTotal() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByType)) {
-      PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).type(PlaceType.BAR).await();
+      PlaceType type = PlaceType.BAR;
+	PlacesSearchResponse response =
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).param("type", type).await();
 
       assertEquals(20, response.results.length);
       assertEquals(563, response.results[0].userRatingsTotal);
