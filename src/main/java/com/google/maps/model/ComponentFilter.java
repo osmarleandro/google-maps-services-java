@@ -74,16 +74,6 @@ public class ComponentFilter implements StringJoin.UrlValue {
   }
 
   /**
-   * Matches all the administrative area levels.
-   *
-   * @param administrativeArea The administrative area to filter on.
-   * @return Returns a {@link ComponentFilter}.
-   */
-  public static ComponentFilter administrativeArea(String administrativeArea) {
-    return new ComponentFilter("administrative_area", administrativeArea);
-  }
-
-  /**
    * Matches postal code or postal code prefix.
    *
    * @param postalCode The postal code to filter on.
