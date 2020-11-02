@@ -106,29 +106,6 @@ public class GeoApiContextTest {
     assertTrue("User agent header not present", headerFound);
   }
 
-  @Test
-  public void testErrorResponseRetries() throws Exception {
-    // Set up mock responses
-    MockResponse errorResponse = createMockBadResponse();
-    MockResponse goodResponse = createMockGoodResponse();
-
-    server.enqueue(errorResponse);
-    server.enqueue(goodResponse);
-    server.start();
-
-    // Build the context under test
-    setMockBaseUrl();
-
-    // Execute
-    GeocodingResult[] result =
-        builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
-    assertEquals(1, result.length);
-    assertEquals(
-        "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA", result[0].formattedAddress);
-
-    server.shutdown();
-  }
-
   @Test(expected = IOException.class)
   public void testSettingMaxRetries() throws Exception {
     MockResponse errorResponse = createMockBadResponse();
