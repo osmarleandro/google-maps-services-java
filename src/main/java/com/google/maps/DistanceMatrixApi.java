@@ -44,13 +44,9 @@ public class DistanceMatrixApi {
 
   private DistanceMatrixApi() {}
 
-  public static DistanceMatrixApiRequest newRequest(GeoApiContext context) {
-    return new DistanceMatrixApiRequest(context);
-  }
-
   public static DistanceMatrixApiRequest getDistanceMatrix(
       GeoApiContext context, String[] origins, String[] destinations) {
-    return newRequest(context).origins(origins).destinations(destinations);
+    return new DistanceMatrixApiRequest(context).origins(origins).destinations(destinations);
   }
 
   public static class Response implements ApiResponse<DistanceMatrix> {
