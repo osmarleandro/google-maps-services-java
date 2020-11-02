@@ -71,16 +71,6 @@ public class PlaceDetailsRequest
     return param("region", region);
   }
 
-  /**
-   * Specifies the field masks of the details to be returned by PlaceDetails.
-   *
-   * @param fields The Field Masks of the fields to return.
-   * @return Returns this {@code PlaceDetailsRequest} for call chaining.
-   */
-  public PlaceDetailsRequest fields(FieldMask... fields) {
-    return param("fields", StringJoin.join(',', fields));
-  }
-
   @Override
   protected void validateRequest() {
     if (!params().containsKey("placeid")) {

@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.internal.StringJoin;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -150,12 +151,9 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsLookupGoogleSydney() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeDetailResponseBody)) {
-      PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY)
-              .fields(
-                  PlaceDetailsRequest.FieldMask.PLACE_ID,
-                  PlaceDetailsRequest.FieldMask.NAME,
-                  PlaceDetailsRequest.FieldMask.TYPES)
+      FieldMask[] fields = { PlaceDetailsRequest.FieldMask.PLACE_ID, PlaceDetailsRequest.FieldMask.NAME, PlaceDetailsRequest.FieldMask.TYPES };
+	PlaceDetails placeDetails =
+          PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).param("fields", StringJoin.join(',', fields))
               .await();
 
       sc.assertParamValue(GOOGLE_SYDNEY, "placeid");
@@ -1045,8 +1043,9 @@ public class PlacesApiTest {
   public void testPlaceDetailsRequestHasFieldMask() throws Exception {
     final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
     final LocalTestServerContext server = new LocalTestServerContext(jsonString);
+	FieldMask[] fields = { FieldMask.BUSINESS_STATUS };
 
-    PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
+    PlacesApi.placeDetails(server.context, "testPlaceId").param("fields", StringJoin.join(',', fields)).await();
 
     server.assertParamValue("business_status", "fields");
   }
