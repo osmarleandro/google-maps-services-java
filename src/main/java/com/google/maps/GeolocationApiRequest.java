@@ -69,11 +69,6 @@ public class GeolocationApiRequest
     return this;
   }
 
-  public GeolocationApiRequest CellTowers(CellTower[] newCellTowers) {
-    this.builder.CellTowers(newCellTowers);
-    return this;
-  }
-
   public GeolocationApiRequest AddCellTower(CellTower newCellTower) {
     this.builder.AddCellTower(newCellTower);
     return this;
