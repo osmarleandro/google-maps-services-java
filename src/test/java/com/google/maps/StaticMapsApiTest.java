@@ -50,7 +50,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Google Sydney");
+      req.param("center", "Google Sydney");
       req.zoom(16);
       ByteArrayInputStream bais = new ByteArrayInputStream(req.await().imageData);
       BufferedImage img = ImageIO.read(bais);
@@ -85,7 +85,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Sydney");
+      req.param("center", "Sydney");
       req.zoom(16);
       req.scale(2);
       req.format(ImageFormat.png32);
@@ -118,7 +118,7 @@ public class StaticMapsApiTest {
   public void testValidateRequest_noZoom() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Google Sydney");
+      req.param("center", "Google Sydney");
       req.await();
     }
   }
@@ -160,7 +160,7 @@ public class StaticMapsApiTest {
   public void testValidateRequest_noSize() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, null);
-      req.center("Google Sydney");
+      req.param("center", "Google Sydney");
       req.zoom(16);
       req.await();
     }
@@ -231,7 +231,7 @@ public class StaticMapsApiTest {
   public void testBrooklynBridgeNYMarkers() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Brooklyn Bridge, New York, NY");
+      req.param("center", "Brooklyn Bridge, New York, NY");
       req.zoom(13);
       req.maptype(StaticMapType.roadmap);
       {

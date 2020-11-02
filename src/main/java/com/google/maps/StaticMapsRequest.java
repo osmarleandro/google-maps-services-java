@@ -59,17 +59,6 @@ public class StaticMapsRequest
   }
 
   /**
-   * <code>center</code> (required if markers not present) defines the center of the map,
-   * equidistant from all edges of the map.
-   *
-   * @param location The location of the center of the map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest center(String location) {
-    return param("center", location);
-  }
-
-  /**
    * <code>zoom</code> (required if markers not present) defines the zoom level of the map, which
    * determines the magnification level of the map.
    *
