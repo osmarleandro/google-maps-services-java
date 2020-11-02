@@ -324,16 +324,6 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testClearingExperienceId() {
-    final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
-    assertEquals(experienceId, context.getExperienceId());
-
-    context.clearExperienceId();
-    assertNull(context.getExperienceId());
-  }
-
-  @Test
   public void testExperienceIdIsInHeader() throws Exception {
     final String experienceId = "exp1";
     final RecordedRequest request = makeMockRequest(experienceId);
