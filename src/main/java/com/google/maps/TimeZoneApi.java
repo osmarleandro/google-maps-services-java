@@ -35,25 +35,6 @@ public class TimeZoneApi {
 
   private TimeZoneApi() {}
 
-  /**
-   * Retrieves the {@link java.util.TimeZone} for the given location.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param location The location for which to retrieve a time zone.
-   * @return Returns the time zone as a {@link PendingResult}.
-   */
-  public static PendingResult<TimeZone> getTimeZone(GeoApiContext context, LatLng location) {
-    return context.get(
-        API_CONFIG,
-        Response.class,
-        "location",
-        location.toString(),
-        // Java has its own lookup for time -> DST, so we really only need to fetch the TZ id.
-        // "timestamp" is, in effect, ignored.
-        "timestamp",
-        "0");
-  }
-
   private static class Response implements ApiResponse<TimeZone> {
     public String status;
     public String errorMessage;

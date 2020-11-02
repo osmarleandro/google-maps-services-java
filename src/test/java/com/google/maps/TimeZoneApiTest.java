@@ -20,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.maps.TimeZoneApi.Response;
 import com.google.maps.errors.ZeroResultsException;
 import com.google.maps.model.LatLng;
 import java.util.Date;
@@ -43,7 +44,16 @@ public class TimeZoneApiTest {
                 + "   \"timeZoneName\" : \"Australian Eastern Standard Time\"\n"
                 + "}\n")) {
       LatLng sydney = new LatLng(-33.8688, 151.2093);
-      TimeZone tz = TimeZoneApi.getTimeZone(sc.context, sydney).await();
+	GeoApiContext context = sc.context;
+      TimeZone tz = context.get(
+	TimeZoneApi.API_CONFIG,
+	Response.class,
+	"location",
+	sydney.toString(),
+	// Java has its own lookup for time -> DST, so we really only need to fetch the TZ id.
+	// "timestamp" is, in effect, ignored.
+	"timestamp",
+	"0").await();
 
       assertNotNull(tz);
       assertEquals(TimeZone.getTimeZone("Australia/Sydney"), tz);
@@ -63,14 +73,34 @@ public class TimeZoneApiTest {
   public void testNoResult() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
-      TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
+      GeoApiContext context = sc.context;
+			LatLng location = new LatLng(0, 0);
+	TimeZone resp = context.get(
+	TimeZoneApi.API_CONFIG,
+	Response.class,
+	"location",
+	location.toString(),
+	// Java has its own lookup for time -> DST, so we really only need to fetch the TZ id.
+	// "timestamp" is, in effect, ignored.
+	"timestamp",
+	"0").awaitIgnoreError();
       assertNull(resp);
 
       sc.assertParamValue("0.00000000,0.00000000", "location");
 
       try (LocalTestServerContext sc2 =
           new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
-        TimeZoneApi.getTimeZone(sc2.context, new LatLng(0, 0)).await();
+        GeoApiContext context1 = sc2.context;
+			LatLng location1 = new LatLng(0, 0);
+		context1.get(
+		TimeZoneApi.API_CONFIG,
+		Response.class,
+		"location",
+		location1.toString(),
+		// Java has its own lookup for time -> DST, so we really only need to fetch the TZ id.
+		// "timestamp" is, in effect, ignored.
+		"timestamp",
+		"0").await();
       }
     }
   }
