@@ -40,7 +40,7 @@ public class RateLimitExecutorServiceTest {
   public void testRateLimitDoesNotExceedSuppliedQps() throws Exception {
     int qps = 10;
     RateLimitExecutorService service = new RateLimitExecutorService();
-    service.setQueriesPerSecond(qps);
+    service.rateLimiter.setRate(qps);
     final ConcurrentHashMap<Integer, Integer> executedTimestamps = new ConcurrentHashMap<>();
 
     for (int i = 0; i < 100; i++) {

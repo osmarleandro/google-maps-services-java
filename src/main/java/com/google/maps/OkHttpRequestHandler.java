@@ -154,7 +154,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
     public Builder queriesPerSecond(int maxQps) {
       dispatcher.setMaxRequests(maxQps);
       dispatcher.setMaxRequestsPerHost(maxQps);
-      rateLimitExecutorService.setQueriesPerSecond(maxQps);
+      rateLimitExecutorService.rateLimiter.setRate(maxQps);
       return this;
     }
 
