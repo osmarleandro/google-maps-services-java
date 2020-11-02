@@ -106,17 +106,4 @@ public class AutocompletePrediction implements Serializable {
       return String.format("(offset=%d, value=%s)", offset, value);
     }
   }
-
-  @Override
-  public String toString() {
-    return String.format(
-        "[AutocompletePrediction: \"%s\", placeId=%s, types=%s, terms=%s, "
-            + "matchedSubstrings=%s, structuredFormatting=%s]",
-        description,
-        placeId,
-        Arrays.toString(types),
-        Arrays.toString(terms),
-        Arrays.toString(matchedSubstrings),
-        Objects.toString(structuredFormatting));
-  }
 }
