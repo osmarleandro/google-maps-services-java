@@ -19,6 +19,7 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.maps.ElevationApi.MultiResponse;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
@@ -247,7 +248,15 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
+      GeoApiContext context = sc.context;
+					LatLng[] path = { SYDNEY, MELBOURNE };
+	ElevationResult[] results = context.get(
+	ElevationApi.API_CONFIG,
+	MultiResponse.class,
+	"samples",
+	String.valueOf(10),
+	"path",
+	ElevationApi.shortestParam(path)).await();
 
       assertNotNull(results);
       assertEquals(10, results.length);
