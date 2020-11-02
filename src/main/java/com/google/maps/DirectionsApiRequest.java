@@ -89,7 +89,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest originPlaceId(String originPlaceId) {
-    return param("origin", prefixPlaceId(originPlaceId));
+    return param("origin", "place_id:" + originPlaceId);
   }
 
   /**
@@ -99,7 +99,7 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest destinationPlaceId(String destinationPlaceId) {
-    return param("destination", prefixPlaceId(destinationPlaceId));
+    return param("destination", "place_id:" + destinationPlaceId);
   }
 
   /**
@@ -257,7 +257,8 @@ public class DirectionsApiRequest
   public DirectionsApiRequest waypointsFromPlaceIds(String... waypoints) {
     Waypoint[] objWaypoints = new Waypoint[waypoints.length];
     for (int i = 0; i < waypoints.length; i++) {
-      objWaypoints[i] = new Waypoint(prefixPlaceId(waypoints[i]));
+      String placeId = waypoints[i];
+	objWaypoints[i] = new Waypoint("place_id:" + placeId);
     }
     return waypoints(objWaypoints);
   }
@@ -341,16 +342,6 @@ public class DirectionsApiRequest
    */
   public DirectionsApiRequest trafficModel(TrafficModel trafficModel) {
     return param("traffic_model", trafficModel);
-  }
-
-  /**
-   * Helper method for prefixing a Place ID, as specified by the API.
-   *
-   * @param placeId The Place ID to be prefixed.
-   * @return Returns the Place ID prefixed with {@code place_id:}.
-   */
-  public String prefixPlaceId(String placeId) {
-    return "place_id:" + placeId;
   }
 
   public static class Waypoint {
