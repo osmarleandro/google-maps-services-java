@@ -113,16 +113,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * The destination, as a latitude/longitude location.
-   *
-   * @param destination The ending location for the Directions request.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest destination(LatLng destination) {
-    return destination(destination.toString());
-  }
-
-  /**
    * Specifies the mode of transport to use when calculating directions. The mode defaults to
    * driving if left unspecified. If you set the mode to {@code TRANSIT} you must also specify
    * either a {@code departureTime} or an {@code arrivalTime}.
