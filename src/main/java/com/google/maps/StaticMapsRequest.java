@@ -147,16 +147,6 @@ public class StaticMapsRequest
   }
 
   /**
-   * <code>maptype</code> defines the type of map to construct.
-   *
-   * @param maptype The map type of the static map.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest maptype(StaticMapType maptype) {
-    return param("maptype", maptype);
-  }
-
-  /**
    * <code>region</code> defines the appropriate borders to display, based on geo-political
    * sensitivities. Accepts a region code specified as a two-character ccTLD ('top-level domain')
    * value.

@@ -89,7 +89,8 @@ public class StaticMapsApiTest {
       req.zoom(16);
       req.scale(2);
       req.format(ImageFormat.png32);
-      req.maptype(StaticMapType.hybrid);
+	StaticMapType maptype = StaticMapType.hybrid;
+      req.param("maptype", maptype);
       req.region("AU");
       req.visible("Melbourne");
       req.await();
@@ -233,7 +234,8 @@ public class StaticMapsApiTest {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
       req.center("Brooklyn Bridge, New York, NY");
       req.zoom(13);
-      req.maptype(StaticMapType.roadmap);
+	StaticMapType maptype = StaticMapType.roadmap;
+      req.param("maptype", maptype);
       {
         Markers markers = new Markers();
         markers.color("blue");
