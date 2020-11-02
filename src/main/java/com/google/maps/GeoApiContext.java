@@ -27,6 +27,11 @@ import com.google.maps.internal.UrlSigner;
 import com.google.maps.metrics.NoOpRequestMetricsReporter;
 import com.google.maps.metrics.RequestMetrics;
 import com.google.maps.metrics.RequestMetricsReporter;
+
+import okio.ByteString;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
 import java.net.URLEncoder;
@@ -271,7 +276,9 @@ public class GeoApiContext {
     }
 
     if (config.supportsClientId && urlSigner != null) {
-      String signature = urlSigner.getSignature(url.toString());
+      String path = url.toString();
+		byte[] digest = urlSigner.getMac().doFinal(path.getBytes(UTF_8));
+	String signature = ByteString.of(digest).base64().replace('+', '-').replace('/', '_');
       url.append("&signature=").append(signature);
     }
 
@@ -316,7 +323,9 @@ public class GeoApiContext {
     url.append(encodedPath);
 
     if (canUseClientId && urlSigner != null) {
-      String signature = urlSigner.getSignature(url.toString());
+      String path1 = url.toString();
+		byte[] digest = urlSigner.getMac().doFinal(path1.getBytes(UTF_8));
+	String signature = ByteString.of(digest).base64().replace('+', '-').replace('/', '_');
       url.append("&signature=").append(signature);
     }
 
