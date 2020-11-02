@@ -125,13 +125,13 @@ public class DistanceMatrixApiTest {
             "Bungle Bungles, Australia",
             "The Pinnacles, Australia"
           };
+	RouteRestriction restriction = RouteRestriction.TOLLS;
 
       DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
-          .destinations(destinations)
-          .mode(TravelMode.DRIVING)
-          .language("en-AU")
-          .avoid(RouteRestriction.TOLLS)
+	  .origins(origins)
+	  .destinations(destinations)
+	  .mode(TravelMode.DRIVING)
+	  .language("en-AU").param("avoid", restriction)
           .units(Unit.IMPERIAL)
           .departureTime(
               Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used

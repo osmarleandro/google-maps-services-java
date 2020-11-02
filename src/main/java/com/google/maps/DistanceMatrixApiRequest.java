@@ -113,16 +113,6 @@ public class DistanceMatrixApiRequest
   }
 
   /**
-   * Introduces restrictions to the route. Only one restriction can be specified.
-   *
-   * @param restriction A {@link RouteRestriction} object.
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest avoid(RouteRestriction restriction) {
-    return param("avoid", restriction);
-  }
-
-  /**
    * Specifies the unit system to use when expressing distance as text. Distance Matrix results
    * contain text within distance fields to indicate the distance of the calculated route.
    *
