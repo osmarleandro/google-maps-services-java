@@ -67,10 +67,6 @@ public class GeoApiContextTest {
     }
   }
 
-  private void setMockBaseUrl() {
-    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
-  }
-
   @SuppressWarnings("unchecked")
   @Test
   public void testGetIncludesDefaultUserAgent() throws Exception {
@@ -83,7 +79,7 @@ public class GeoApiContextTest {
     // Set up the fake web server
     server.enqueue(new MockResponse());
     server.start();
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
 
     // Build & execute the request using our context
     builder.build().get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
@@ -117,7 +113,7 @@ public class GeoApiContextTest {
     server.start();
 
     // Build the context under test
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
 
     // Execute
     GeocodingResult[] result =
@@ -140,7 +136,7 @@ public class GeoApiContextTest {
     server.enqueue(errorResponse);
     server.enqueue(goodResponse);
     server.start();
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
 
     // This should limit the number of retries, ensuring that the success response is NOT returned.
     builder.maxRetries(2);
@@ -212,7 +208,7 @@ public class GeoApiContextTest {
     server.enqueue(goodResponse);
 
     server.start();
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
 
     // This should disable the retry, ensuring that the success response is NOT returned
     builder.disableRetries();
@@ -234,7 +230,7 @@ public class GeoApiContextTest {
     server.start();
 
     // Wire the mock web server to the context
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
     builder.retryTimeout(5, TimeUnit.SECONDS);
 
     try {
@@ -259,7 +255,7 @@ public class GeoApiContextTest {
     server.enqueue(response);
     server.start();
 
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
     builder
         .build()
         .get(new ApiConfig("/"), GeocodingApi.Response.class, "a", "1", "a", "2", "a", "3")
@@ -287,7 +283,7 @@ public class GeoApiContextTest {
     builder.maxRetries(10);
     builder.setIfExceptionIsAllowedToRetry(OverQueryLimitException.class, false);
 
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
 
     try {
       builder
@@ -384,7 +380,7 @@ public class GeoApiContextTest {
     // Set up the fake web server
     server.enqueue(new MockResponse());
     server.start();
-    setMockBaseUrl();
+    builder.baseUrlOverride("http://127.0.0.1:" + server.getPort());
 
     // Build & execute the request using our context
     final GeoApiContext context = builder.experienceId(experienceId).build();
