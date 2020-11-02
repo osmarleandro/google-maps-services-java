@@ -172,14 +172,6 @@ public class GeoApiContext {
   }
 
   /**
-   * Clears the experience ID if set the HTTP header field {@link
-   * HttpHeaders#X_GOOG_MAPS_EXPERIENCE_ID} will be omitted from subsequent calls.
-   */
-  public void clearExperienceId() {
-    experienceIdHeaderValue = null;
-  }
-
-  /**
    * Shut down this GeoApiContext instance, reclaiming resources. After shutdown() has been called,
    * no further queries may be done against this instance.
    */
