@@ -41,12 +41,4 @@ public enum PriceLevel implements StringJoin.UrlValue {
   public String toString() {
     return priceLevel;
   }
-
-  @Override
-  public String toUrlValue() {
-    if (this == UNKNOWN) {
-      throw new UnsupportedOperationException("Shouldn't use PriceLevel.UNKNOWN in a request.");
-    }
-    return priceLevel;
-  }
 }
