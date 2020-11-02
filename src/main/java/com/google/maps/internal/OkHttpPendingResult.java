@@ -109,12 +109,6 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     this.call = client.newCall(request);
   }
 
-  @Override
-  public void setCallback(Callback<T> callback) {
-    this.callback = callback;
-    call.enqueue(this);
-  }
-
   /** Preserve a request/response pair through an asynchronous callback. */
   private class QueuedResponse {
     private final OkHttpPendingResult<T, R> request;
