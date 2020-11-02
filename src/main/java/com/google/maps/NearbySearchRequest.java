@@ -137,18 +137,6 @@ public class NearbySearchRequest
   }
 
   /**
-   * Returns the next 20 results from a previously run search. Setting {@code pageToken} will
-   * execute a search with the same parameters used previously — all parameters other than {@code
-   * pageToken} will be ignored.
-   *
-   * @param nextPageToken The page token from a previous result.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest pageToken(String nextPageToken) {
-    return param("pagetoken", nextPageToken);
-  }
-
-  /**
    * Restricts the results to places matching the specified type.
    *
    * @param type The {@link PlaceType} to restrict results to.
