@@ -170,10 +170,6 @@ public final class Stopwatch {
     return this;
   }
 
-  private long elapsedNanos() {
-    return isRunning ? ticker.read() - startTick + elapsedNanos : elapsedNanos;
-  }
-
   /**
    * Returns the current elapsed time shown on this stopwatch, expressed in the desired time unit,
    * with any fraction rounded down.
@@ -182,13 +178,13 @@ public final class Stopwatch {
    * useful to specify {@link TimeUnit#NANOSECONDS} precision here.
    */
   public long elapsed(TimeUnit desiredUnit) {
-    return desiredUnit.convert(elapsedNanos(), NANOSECONDS);
+    return desiredUnit.convert(isRunning ? ticker.read() - startTick + elapsedNanos : elapsedNanos, NANOSECONDS);
   }
 
   /** Returns a string representation of the current elapsed time. */
   @Override
   public String toString() {
-    long nanos = elapsedNanos();
+    long nanos = isRunning ? ticker.read() - startTick + elapsedNanos : elapsedNanos;
 
     TimeUnit unit = chooseUnit(nanos);
     double value = (double) nanos / NANOSECONDS.convert(1, unit);
