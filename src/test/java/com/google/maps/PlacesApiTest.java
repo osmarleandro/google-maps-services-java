@@ -1040,14 +1040,4 @@ public class PlacesApiTest {
     assertNotNull(placeDetails);
     assertEquals("OPERATIONAL", placeDetails.businessStatus);
   }
-
-  @Test
-  public void testPlaceDetailsRequestHasFieldMask() throws Exception {
-    final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
-    final LocalTestServerContext server = new LocalTestServerContext(jsonString);
-
-    PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
-
-    server.assertParamValue("business_status", "fields");
-  }
 }
