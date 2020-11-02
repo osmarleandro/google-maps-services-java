@@ -129,25 +129,6 @@ public class GeoApiContextTest {
     server.shutdown();
   }
 
-  @Test(expected = IOException.class)
-  public void testSettingMaxRetries() throws Exception {
-    MockResponse errorResponse = createMockBadResponse();
-    MockResponse goodResponse = createMockGoodResponse();
-
-    // Set up the fake web server
-    server.enqueue(errorResponse);
-    server.enqueue(errorResponse);
-    server.enqueue(errorResponse);
-    server.enqueue(goodResponse);
-    server.start();
-    setMockBaseUrl();
-
-    // This should limit the number of retries, ensuring that the success response is NOT returned.
-    builder.maxRetries(2);
-
-    builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
-  }
-
   private MockResponse createMockGoodResponse() {
     MockResponse response = new MockResponse();
     response.setResponseCode(200);
