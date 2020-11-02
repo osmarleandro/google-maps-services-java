@@ -92,14 +92,4 @@ public class ComponentFilter implements StringJoin.UrlValue {
   public static ComponentFilter postalCode(String postalCode) {
     return new ComponentFilter("postal_code", postalCode);
   }
-
-  /**
-   * Matches a country name or a two letter ISO 3166-1 country code.
-   *
-   * @param country The country to filter on.
-   * @return Returns a {@link ComponentFilter}.
-   */
-  public static ComponentFilter country(String country) {
-    return new ComponentFilter("country", country);
-  }
 }

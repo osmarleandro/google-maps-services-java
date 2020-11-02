@@ -494,7 +494,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address("santa cruz")
-              .components(ComponentFilter.country("ES"))
+              .components(new ComponentFilter("country", "ES"))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -580,7 +580,7 @@ public class GeocodingApiTest {
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address("Torun")
-              .components(administrativeArea("TX"), country("US"))
+              .components(administrativeArea("TX"), new ComponentFilter("country", "US"))
               .await();
 
       assertNotNull(Arrays.toString(results));
@@ -669,7 +669,7 @@ public class GeocodingApiTest {
               .components(
                   ComponentFilter.route("Annegatan"),
                   ComponentFilter.administrativeArea("Helsinki"),
-                  ComponentFilter.country("Finland"))
+                  new ComponentFilter("country", "Finland"))
               .await();
 
       assertNotNull(results);
