@@ -139,11 +139,6 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     }
   }
 
-  @Override
-  public void cancel() {
-    call.cancel(true);
-  }
-
   @SuppressWarnings("unchecked")
   private T parseResponse(GaePendingResult<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
