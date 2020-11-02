@@ -199,7 +199,10 @@ public abstract class RateLimiter {
   }
 
   RateLimiter(SleepingStopwatch stopwatch) {
-    this.stopwatch = checkNotNull(stopwatch);
+    if (stopwatch == null) {
+	  throw new NullPointerException();
+	}
+	this.stopwatch = stopwatch;
   }
 
   /**
