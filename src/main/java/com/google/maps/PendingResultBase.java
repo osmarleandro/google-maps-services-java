@@ -90,12 +90,6 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
 
   protected abstract void validateRequest();
 
-  private A getInstance() {
-    @SuppressWarnings("unchecked")
-    A result = (A) this;
-    return result;
-  }
-
   protected A param(String key, String val) {
     // Enforce singleton parameter semantics for most API surfaces
     params.put(key, new ArrayList<String>());
@@ -110,7 +104,9 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     if (val != null) {
       return this.param(key, val.toUrlValue());
     }
-    return getInstance();
+    @SuppressWarnings("unchecked")
+	A result = (A) this;
+	return result;
   }
 
   protected A paramAddToList(String key, String val) {
@@ -119,14 +115,18 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
       params.put(key, new ArrayList<String>());
     }
     params.get(key).add(val);
-    return getInstance();
+    @SuppressWarnings("unchecked")
+	A result = (A) this;
+	return result;
   }
 
   protected A paramAddToList(String key, UrlValue val) {
     if (val != null) {
       return this.paramAddToList(key, val.toUrlValue());
     }
-    return getInstance();
+    @SuppressWarnings("unchecked")
+	A result = (A) this;
+	return result;
   }
 
   protected Map<String, List<String>> params() {
