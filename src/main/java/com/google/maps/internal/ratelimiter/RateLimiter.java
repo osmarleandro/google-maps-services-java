@@ -281,7 +281,9 @@ public abstract class RateLimiter {
   final long reserve(int permits) {
     checkPermits(permits);
     synchronized (mutex()) {
-      return reserveAndGetWaitLength(permits, stopwatch.readMicros());
+      long nowMicros = stopwatch.readMicros();
+	long momentAvailable = reserveEarliestAvailable(permits, nowMicros);
+	return max(momentAvailable - nowMicros, 0);
     }
   }
 
@@ -348,7 +350,8 @@ public abstract class RateLimiter {
       if (!canAcquire(nowMicros, timeoutMicros)) {
         return false;
       } else {
-        microsToWait = reserveAndGetWaitLength(permits, nowMicros);
+        long momentAvailable = reserveEarliestAvailable(permits, nowMicros);
+		microsToWait = max(momentAvailable - nowMicros, 0);
       }
     }
     stopwatch.sleepMicrosUninterruptibly(microsToWait);
@@ -357,16 +360,6 @@ public abstract class RateLimiter {
 
   private boolean canAcquire(long nowMicros, long timeoutMicros) {
     return queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
-  }
-
-  /**
-   * Reserves next ticket and returns the wait time that the caller must wait for.
-   *
-   * @return the required wait time, never negative
-   */
-  final long reserveAndGetWaitLength(int permits, long nowMicros) {
-    long momentAvailable = reserveEarliestAvailable(permits, nowMicros);
-    return max(momentAvailable - nowMicros, 0);
   }
 
   /**
