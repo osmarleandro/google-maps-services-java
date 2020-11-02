@@ -25,22 +25,6 @@ import java.time.Instant;
 /** This class handles conversion from JSON to {@link Instant}. */
 public class InstantAdapter extends TypeAdapter<Instant> {
 
-  /** Read a time from the Places API and convert to a {@link Instant} */
-  @Override
-  public Instant read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
-
-    if (reader.peek() == JsonToken.NUMBER) {
-      // Number is the number of seconds since Epoch.
-      return Instant.ofEpochMilli(reader.nextLong() * 1000L);
-    }
-
-    throw new UnsupportedOperationException("Unsupported format");
-  }
-
   /** This method is not implemented. */
   @Override
   public void write(JsonWriter out, Instant value) throws IOException {
