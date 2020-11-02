@@ -9,11 +9,6 @@ public enum TransitRoutingPreference implements UrlValue {
   FEWER_TRANSFERS;
 
   @Override
-  public String toString() {
-    return name().toLowerCase(Locale.ENGLISH);
-  }
-
-  @Override
   public String toUrlValue() {
     return name().toLowerCase(Locale.ENGLISH);
   }
