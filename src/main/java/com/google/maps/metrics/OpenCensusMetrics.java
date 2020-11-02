@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.maps.metrics.OpenCensusMetrics.Views;
+
 /*
  * OpenCensus metrics which are measured for every request.
  */
@@ -109,17 +111,14 @@ public final class OpenCensusMetrics {
   }
 
   public static void registerAllViews() {
-    registerAllViews(Stats.getViewManager());
-  }
-
-  public static void registerAllViews(ViewManager viewManager) {
-    View[] views_to_register =
-        new View[] {
-          Views.REQUEST_COUNT, Views.REQUEST_LATENCY, Views.NETWORK_LATENCY, Views.RETRY_COUNT
-        };
-    for (View view : views_to_register) {
-      viewManager.registerView(view);
-    }
+    ViewManager viewManager = Stats.getViewManager();
+	View[] views_to_register =
+	    new View[] {
+	      Views.REQUEST_COUNT, Views.REQUEST_LATENCY, Views.NETWORK_LATENCY, Views.RETRY_COUNT
+	    };
+	for (View view : views_to_register) {
+	  viewManager.registerView(view);
+	}
   }
 
   private static List<TagKey> tags(TagKey... items) {
