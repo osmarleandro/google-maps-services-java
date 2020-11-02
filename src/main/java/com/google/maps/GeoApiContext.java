@@ -179,14 +179,6 @@ public class GeoApiContext {
     experienceIdHeaderValue = null;
   }
 
-  /**
-   * Shut down this GeoApiContext instance, reclaiming resources. After shutdown() has been called,
-   * no further queries may be done against this instance.
-   */
-  public void shutdown() {
-    requestHandler.shutdown();
-  }
-
   <T, R extends ApiResponse<T>> PendingResult<T> get(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
     if (channel != null && !channel.isEmpty() && !params.containsKey("channel")) {
