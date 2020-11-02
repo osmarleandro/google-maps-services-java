@@ -910,8 +910,7 @@ public class GeocodingApiTest {
       String address = "1600 Amphitheatre Parkway, Mountain View, CA";
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .address(address)
-              .custom("new_forward_geocoder", "true")
+		  .address(address).param("new_forward_geocoder", "true")
               .await();
 
       assertNotNull(Arrays.toString(results));
