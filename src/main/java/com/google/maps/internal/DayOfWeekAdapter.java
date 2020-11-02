@@ -31,37 +31,6 @@ import java.io.IOException;
  */
 public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> {
 
-  @Override
-  public DayOfWeek read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
-
-    if (reader.peek() == JsonToken.NUMBER) {
-      int day = reader.nextInt();
-
-      switch (day) {
-        case 0:
-          return DayOfWeek.SUNDAY;
-        case 1:
-          return DayOfWeek.MONDAY;
-        case 2:
-          return DayOfWeek.TUESDAY;
-        case 3:
-          return DayOfWeek.WEDNESDAY;
-        case 4:
-          return DayOfWeek.THURSDAY;
-        case 5:
-          return DayOfWeek.FRIDAY;
-        case 6:
-          return DayOfWeek.SATURDAY;
-      }
-    }
-
-    return DayOfWeek.UNKNOWN;
-  }
-
   /** This method is not implemented. */
   @Override
   public void write(JsonWriter writer, DayOfWeek value) throws IOException {
