@@ -91,7 +91,7 @@ public class StaticMapsApiTest {
       req.format(ImageFormat.png32);
       req.maptype(StaticMapType.hybrid);
       req.region("AU");
-      req.visible("Melbourne");
+      req.param("visible", "Melbourne");
       req.await();
 
       sc.assertParamValue("640x480", "size");
