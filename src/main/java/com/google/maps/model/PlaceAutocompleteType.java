@@ -35,11 +35,6 @@ public enum PlaceAutocompleteType implements StringJoin.UrlValue {
   private final String placeType;
 
   @Override
-  public String toUrlValue() {
-    return placeType;
-  }
-
-  @Override
   public String toString() {
     return placeType;
   }
