@@ -19,6 +19,7 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.maps.ElevationApi.MultiResponse;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
@@ -86,8 +87,10 @@ public class ElevationApiTest {
                 + "}")) {
 
       // This should throw the RequestDeniedException
-      ElevationApi.getByPoints(
-              sc.context, new EncodedPolyline(Collections.singletonList(new LatLng(0, 0))))
+      GeoApiContext context = sc.context;
+					EncodedPolyline encodedPolyline = new EncodedPolyline(Collections.singletonList(new LatLng(0, 0)));
+	context.get(
+	ElevationApi.API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath())
           .await();
     }
   }

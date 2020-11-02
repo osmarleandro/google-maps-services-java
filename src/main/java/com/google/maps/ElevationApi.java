@@ -134,19 +134,6 @@ public class ElevationApi {
     }
   }
 
-  /**
-   * Retrieves the elevations of an encoded polyline path.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param encodedPolyline The encoded polyline to retrieve elevations for.
-   * @return The elevations as a {@link PendingResult}.
-   */
-  public static PendingResult<ElevationResult[]> getByPoints(
-      GeoApiContext context, EncodedPolyline encodedPolyline) {
-    return context.get(
-        API_CONFIG, MultiResponse.class, "locations", "enc:" + encodedPolyline.getEncodedPath());
-  }
-
   private static class MultiResponse implements ApiResponse<ElevationResult[]> {
     public String status;
     public String errorMessage;
