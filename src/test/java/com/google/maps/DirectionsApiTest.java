@@ -87,13 +87,12 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.BICYCLING)
-              .avoid(
-                  DirectionsApi.RouteRestriction.HIGHWAYS,
-                  DirectionsApi.RouteRestriction.TOLLS,
-                  DirectionsApi.RouteRestriction.FERRIES)
-              .units(Unit.METRIC)
-              .region("au")
+		  .mode(TravelMode.BICYCLING)
+		  .avoid(
+		      DirectionsApi.RouteRestriction.HIGHWAYS,
+		      DirectionsApi.RouteRestriction.TOLLS,
+		      DirectionsApi.RouteRestriction.FERRIES)
+		  .units(Unit.METRIC).param("region", "au")
               .origin("Sydney")
               .destination("Melbourne")
               .await();
@@ -325,9 +324,8 @@ public class DirectionsApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsApi.newRequest(sc.context)
-          .origin("Toledo")
-          .destination("Madrid")
-          .region("es")
+	  .origin("Toledo")
+	  .destination("Madrid").param("region", "es")
           .await();
 
       sc.assertParamValue("Toledo", "origin");
@@ -343,9 +341,8 @@ public class DirectionsApiTest {
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
       DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
-              .origin("Toledo")
-              .destination("Madrid")
-              .region("es")
+		  .origin("Toledo")
+		  .destination("Madrid").param("region", "es")
               .language("es")
               .await();
 
