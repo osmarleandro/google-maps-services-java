@@ -310,14 +310,6 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testMultipleExperienceId() {
-    final String experienceId1 = "experienceId1";
-    final String experienceId2 = "experienceId2";
-    final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
-    assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
-  }
-
-  @Test
   public void testNoExperienceId() {
     final GeoApiContext context = builder.build();
     assertNull(context.getExperienceId());
