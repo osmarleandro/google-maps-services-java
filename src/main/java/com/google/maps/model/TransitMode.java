@@ -29,11 +29,6 @@ public enum TransitMode implements UrlValue {
   RAIL;
 
   @Override
-  public String toString() {
-    return name().toLowerCase(Locale.ENGLISH);
-  }
-
-  @Override
   public String toUrlValue() {
     return name().toLowerCase(Locale.ENGLISH);
   }
