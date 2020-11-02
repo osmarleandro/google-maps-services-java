@@ -185,18 +185,6 @@ public final class Stopwatch {
     return desiredUnit.convert(elapsedNanos(), NANOSECONDS);
   }
 
-  /** Returns a string representation of the current elapsed time. */
-  @Override
-  public String toString() {
-    long nanos = elapsedNanos();
-
-    TimeUnit unit = chooseUnit(nanos);
-    double value = (double) nanos / NANOSECONDS.convert(1, unit);
-
-    // Too bad this functionality is not exposed as a regular method call
-    return Platform.formatCompact4Digits(value) + " " + abbreviate(unit);
-  }
-
   private static TimeUnit chooseUnit(long nanos) {
     if (DAYS.convert(nanos, NANOSECONDS) > 0) {
       return DAYS;
