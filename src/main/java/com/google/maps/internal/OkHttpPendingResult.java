@@ -197,11 +197,6 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   @Override
-  public void cancel() {
-    call.cancel();
-  }
-
-  @Override
   public void onFailure(Call call, IOException ioe) {
     metrics.endNetwork();
     if (callback != null) {
