@@ -64,16 +64,6 @@ public class ComponentFilter implements StringJoin.UrlValue {
   }
 
   /**
-   * Matches against both locality and sublocality types.
-   *
-   * @param locality The locality to filter on.
-   * @return Returns a {@link ComponentFilter}.
-   */
-  public static ComponentFilter locality(String locality) {
-    return new ComponentFilter("locality", locality);
-  }
-
-  /**
    * Matches all the administrative area levels.
    *
    * @param administrativeArea The administrative area to filter on.
