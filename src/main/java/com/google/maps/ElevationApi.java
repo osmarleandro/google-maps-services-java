@@ -17,6 +17,8 @@ package com.google.maps;
 
 import static com.google.maps.internal.StringJoin.join;
 
+import java.util.Arrays;
+
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -95,7 +97,7 @@ public class ElevationApi {
    */
   private static String shortestParam(LatLng[] points) {
     String joined = join('|', points);
-    String encoded = "enc:" + PolylineEncoding.encode(points);
+    String encoded = "enc:" + PolylineEncoding.encode(Arrays.asList(points));
     return joined.length() < encoded.length() ? joined : encoded;
   }
 

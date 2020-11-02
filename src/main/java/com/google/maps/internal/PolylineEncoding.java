@@ -95,9 +95,4 @@ public class PolylineEncoding {
     }
     result.append(Character.toChars((int) (v + 63)));
   }
-
-  /** Encodes an array of LatLngs into an encoded path string. */
-  public static String encode(LatLng[] path) {
-    return encode(Arrays.asList(path));
-  }
 }
