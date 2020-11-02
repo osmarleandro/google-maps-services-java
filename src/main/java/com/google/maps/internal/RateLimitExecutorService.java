@@ -151,11 +151,6 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   }
 
   @Override
-  public <T> Future<T> submit(Runnable runnable, T t) {
-    return delegate.submit(runnable, t);
-  }
-
-  @Override
   public Future<?> submit(Runnable runnable) {
     return delegate.submit(runnable);
   }
