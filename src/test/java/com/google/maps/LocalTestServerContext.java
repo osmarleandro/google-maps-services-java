@@ -92,11 +92,6 @@ public class LocalTestServerContext implements AutoCloseable {
     return new JSONObject(request.getBody().readUtf8());
   }
 
-  private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
-    this.takeRequest();
-    return parseQueryParamsFromRequestLine(request.getRequestLine());
-  }
-
   public String path() throws InterruptedException {
     this.takeRequest();
     return request.getPath().split("\\?", -1)[0];
@@ -105,7 +100,8 @@ public class LocalTestServerContext implements AutoCloseable {
   void assertParamValue(String expected, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
-      this.params = this.actualParams();
+      this.takeRequest();
+	this.params = this.parseQueryParamsFromRequestLine(this.request.getRequestLine());
     }
     boolean paramFound = false;
     for (NameValuePair pair : params) {
@@ -120,7 +116,8 @@ public class LocalTestServerContext implements AutoCloseable {
   void assertParamValues(List<String> expecteds, String paramName)
       throws URISyntaxException, InterruptedException {
     if (this.params == null) {
-      this.params = this.actualParams();
+      this.takeRequest();
+	this.params = this.parseQueryParamsFromRequestLine(this.request.getRequestLine());
     }
     int paramsFound = 0;
     for (NameValuePair pair : params) {
