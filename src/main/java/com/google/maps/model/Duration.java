@@ -30,9 +30,4 @@ public class Duration implements Serializable {
 
   /** The human-friendly duration. Use this for display purposes. */
   public String humanReadable;
-
-  @Override
-  public String toString() {
-    return humanReadable;
-  }
 }
