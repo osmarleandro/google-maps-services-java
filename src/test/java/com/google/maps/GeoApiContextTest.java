@@ -198,29 +198,6 @@ public class GeoApiContextTest {
     return response;
   }
 
-  @Test(expected = IOException.class)
-  public void testRetryCanBeDisabled() throws Exception {
-    // Set up 2 mock responses, an error that shouldn't be retried and a success
-    MockResponse errorResponse = new MockResponse();
-    errorResponse.setStatus("HTTP/1.1 500 Internal server error");
-    errorResponse.setBody("Uh-oh. Server Error.");
-    server.enqueue(errorResponse);
-
-    MockResponse goodResponse = new MockResponse();
-    goodResponse.setResponseCode(200);
-    goodResponse.setBody("{\n   \"results\" : [],\n   \"status\" : \"ZERO_RESULTS\"\n}");
-    server.enqueue(goodResponse);
-
-    server.start();
-    setMockBaseUrl();
-
-    // This should disable the retry, ensuring that the success response is NOT returned
-    builder.disableRetries();
-
-    // We should get the error response here, not the success response.
-    builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
-  }
-
   @Test
   public void testRetryEventuallyReturnsTheRightException() throws Exception {
     MockResponse errorResponse = new MockResponse();
