@@ -73,15 +73,6 @@ public class LocalTestServerContext implements AutoCloseable {
             .build();
   }
 
-  private List<NameValuePair> parseQueryParamsFromRequestLine(String requestLine)
-      throws URISyntaxException {
-    // Extract the URL part from the HTTP request line
-    String[] chunks = requestLine.split("\\s", -1);
-    String url = chunks[1];
-
-    return URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
-  }
-
   private void takeRequest() throws InterruptedException {
     if (this.request == null) this.request = server.takeRequest();
   }
@@ -94,7 +85,12 @@ public class LocalTestServerContext implements AutoCloseable {
 
   private List<NameValuePair> actualParams() throws InterruptedException, URISyntaxException {
     this.takeRequest();
-    return parseQueryParamsFromRequestLine(request.getRequestLine());
+	String requestLine = request.getRequestLine();
+    // Extract the URL part from the HTTP request line
+	String[] chunks = requestLine.split("\\s", -1);
+	String url = chunks[1];
+	
+	return URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
   }
 
   public String path() throws InterruptedException {
