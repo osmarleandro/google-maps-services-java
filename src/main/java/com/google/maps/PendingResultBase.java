@@ -99,7 +99,12 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   protected A param(String key, String val) {
     // Enforce singleton parameter semantics for most API surfaces
     params.put(key, new ArrayList<String>());
-    return paramAddToList(key, val);
+    // Multiple parameter values required to support Static Maps API paths and markers.
+	if (params.get(key) == null) {
+	  params.put(key, new ArrayList<String>());
+	}
+	params.get(key).add(val);
+	return getInstance();
   }
 
   protected A param(String key, int val) {
@@ -113,18 +118,15 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
     return getInstance();
   }
 
-  protected A paramAddToList(String key, String val) {
-    // Multiple parameter values required to support Static Maps API paths and markers.
-    if (params.get(key) == null) {
-      params.put(key, new ArrayList<String>());
-    }
-    params.get(key).add(val);
-    return getInstance();
-  }
-
   protected A paramAddToList(String key, UrlValue val) {
     if (val != null) {
-      return this.paramAddToList(key, val.toUrlValue());
+      String val1 = val.toUrlValue();
+	// Multiple parameter values required to support Static Maps API paths and markers.
+	if (this.params.get(key) == null) {
+	  this.params.put(key, new ArrayList<String>());
+	}
+	this.params.get(key).add(val1);
+	return this.getInstance();
     }
     return getInstance();
   }
