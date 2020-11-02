@@ -81,13 +81,6 @@ public class PlaceDetailsRequest
     return param("fields", StringJoin.join(',', fields));
   }
 
-  @Override
-  protected void validateRequest() {
-    if (!params().containsKey("placeid")) {
-      throw new IllegalArgumentException("Request must contain 'placeId'.");
-    }
-  }
-
   public static class Response implements ApiResponse<PlaceDetails> {
     public String status;
     public PlaceDetails result;
