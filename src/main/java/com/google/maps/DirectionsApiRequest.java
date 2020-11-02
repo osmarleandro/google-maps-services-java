@@ -123,18 +123,6 @@ public class DirectionsApiRequest
   }
 
   /**
-   * Specifies the mode of transport to use when calculating directions. The mode defaults to
-   * driving if left unspecified. If you set the mode to {@code TRANSIT} you must also specify
-   * either a {@code departureTime} or an {@code arrivalTime}.
-   *
-   * @param mode The travel mode to request directions for.
-   * @return Returns this {@code DirectionsApiRequest} for call chaining.
-   */
-  public DirectionsApiRequest mode(TravelMode mode) {
-    return param("mode", mode);
-  }
-
-  /**
    * Indicates that the calculated route(s) should avoid the indicated features.
    *
    * @param restrictions one or more of {@link DirectionsApi.RouteRestriction} objects.
