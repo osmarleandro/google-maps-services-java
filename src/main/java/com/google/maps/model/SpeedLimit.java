@@ -38,9 +38,4 @@ public class SpeedLimit implements Serializable {
   public long speedLimitMph() {
     return Math.round(speedLimit * 0.621371);
   }
-
-  @Override
-  public String toString() {
-    return String.format("[%.0f km/h, placeId=%s]", speedLimit, placeId);
-  }
 }
