@@ -150,19 +150,6 @@ public class RoadsApi {
     return context.get(SPEEDS_API_CONFIG, CombinedResponse.class, "path", join('|', path));
   }
 
-  /**
-   * Takes up to 100 GPS points, and returns the closest road segment for each point. The points
-   * passed do not need to be part of a continuous path.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param points The sequence of points to be aligned to nearest roads
-   * @return Returns the snapped points as a {@link PendingResult}.
-   */
-  public static PendingResult<SnappedPoint[]> nearestRoads(
-      GeoApiContext context, LatLng... points) {
-    return context.get(NEAREST_ROADS_API_CONFIG, RoadsResponse.class, "points", join('|', points));
-  }
-
   public static class RoadsResponse implements ApiResponse<SnappedPoint[]> {
     private SnappedPoint[] snappedPoints;
     private ApiError error;

@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.maps.RoadsApi.RoadsResponse;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
@@ -185,7 +186,8 @@ public class RoadsApiIntegrationTest {
             new LatLng(-33.867841, 151.194137),
             new LatLng(-33.868224, 151.194116)
           };
-      SnappedPoint[] points = RoadsApi.nearestRoads(sc.context, path).await();
+	GeoApiContext context = sc.context;
+      SnappedPoint[] points = context.get(RoadsApi.NEAREST_ROADS_API_CONFIG, RoadsResponse.class, "points", join('|', path)).await();
 
       assertNotNull(Arrays.toString(points));
       assertEquals("/v1/nearestRoads", sc.path());
