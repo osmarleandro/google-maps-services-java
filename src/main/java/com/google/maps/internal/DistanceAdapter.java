@@ -64,10 +64,4 @@ public class DistanceAdapter extends TypeAdapter<Distance> {
 
     return distance;
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter writer, Distance value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
