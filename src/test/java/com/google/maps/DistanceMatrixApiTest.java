@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -126,8 +127,7 @@ public class DistanceMatrixApiTest {
             "The Pinnacles, Australia"
           };
 
-      DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
+      DistanceMatrixApi.newRequest(sc.context).param("origins", join('|', origins))
           .destinations(destinations)
           .mode(TravelMode.DRIVING)
           .language("en-AU")
@@ -159,8 +159,7 @@ public class DistanceMatrixApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       String[] origins = new String[] {"Vancouver BC", "Seattle"};
       String[] destinations = new String[] {"San Francisco", "Victoria BC"};
-      DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
+      DistanceMatrixApi.newRequest(sc.context).param("origins", join('|', origins))
           .destinations(destinations)
           .mode(TravelMode.BICYCLING)
           .language("fr-FR")
@@ -181,8 +180,7 @@ public class DistanceMatrixApiTest {
           new String[] {"Fisherman's Wharf, San Francisco", "Union Square, San Francisco"};
       String[] destinations =
           new String[] {"Mikkeller Bar, San Francisco", "Moscone Center, San Francisco"};
-      DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
+      DistanceMatrixApi.newRequest(sc.context).param("origins", join('|', origins))
           .destinations(destinations)
           .mode(TravelMode.TRANSIT)
           .await();
@@ -198,8 +196,8 @@ public class DistanceMatrixApiTest {
   public void testDurationInTrafficWithTrafficModel() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
-      DistanceMatrixApi.newRequest(sc.context)
-          .origins("Fisherman's Wharf, San Francisco")
+	String[] origins = { "Fisherman's Wharf, San Francisco" };
+      DistanceMatrixApi.newRequest(sc.context).param("origins", join('|', origins))
           .destinations("San Francisco International Airport, San Francisco, CA")
           .mode(TravelMode.DRIVING)
           .trafficModel(TrafficModel.PESSIMISTIC)
