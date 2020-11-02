@@ -238,7 +238,9 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
-    if (shouldRetry(response)) {
+    if (RETRY_ERROR_CODES.contains(response.code())
+	&& cumulativeSleepTime < errorTimeOut
+	&& (maxRetries == null || retryCounter < maxRetries)) {
       // since we are retrying the request we must close the response
       response.close();
 
@@ -325,12 +327,6 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
     metrics.startNetwork();
     this.call = client.newCall(request);
     return this.await();
-  }
-
-  private boolean shouldRetry(Response response) {
-    return RETRY_ERROR_CODES.contains(response.code())
-        && cumulativeSleepTime < errorTimeOut
-        && (maxRetries == null || retryCounter < maxRetries);
   }
 
   private boolean shouldRetry(ApiException exception) {
