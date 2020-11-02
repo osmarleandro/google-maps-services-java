@@ -18,6 +18,7 @@ package com.google.maps;
 import static com.google.maps.internal.StringJoin.join;
 import static java.util.Objects.requireNonNull;
 
+import com.google.maps.DirectionsApiRequest.Waypoint;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
@@ -241,7 +242,19 @@ public class DirectionsApiRequest
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);
     }
-    return waypoints(objWaypoints);
+    if (objWaypoints == null || objWaypoints.length == 0) {
+	  this.waypoints = new Waypoint[0];
+	  param("waypoints", "");
+	  return this;
+	} else {
+	  this.waypoints = objWaypoints;
+	  String[] waypointStrs = new String[objWaypoints.length];
+	  for (int i = 0; i < objWaypoints.length; i++) {
+	    waypointStrs[i] = objWaypoints[i].toString();
+	  }
+	  param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+	  return this;
+	}
   }
 
   /**
@@ -259,7 +272,19 @@ public class DirectionsApiRequest
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(prefixPlaceId(waypoints[i]));
     }
-    return waypoints(objWaypoints);
+    if (objWaypoints == null || objWaypoints.length == 0) {
+	  this.waypoints = new Waypoint[0];
+	  param("waypoints", "");
+	  return this;
+	} else {
+	  this.waypoints = objWaypoints;
+	  String[] waypointStrs = new String[objWaypoints.length];
+	  for (int i = 0; i < objWaypoints.length; i++) {
+	    waypointStrs[i] = objWaypoints[i].toString();
+	  }
+	  param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+	  return this;
+	}
   }
 
   /**
@@ -275,7 +300,19 @@ public class DirectionsApiRequest
     for (int i = 0; i < waypoints.length; i++) {
       objWaypoints[i] = new Waypoint(waypoints[i]);
     }
-    return waypoints(objWaypoints);
+    if (objWaypoints == null || objWaypoints.length == 0) {
+	  this.waypoints = new Waypoint[0];
+	  param("waypoints", "");
+	  return this;
+	} else {
+	  this.waypoints = objWaypoints;
+	  String[] waypointStrs = new String[objWaypoints.length];
+	  for (int i = 0; i < objWaypoints.length; i++) {
+	    waypointStrs[i] = objWaypoints[i].toString();
+	  }
+	  param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+	  return this;
+	}
   }
 
   /**
@@ -288,7 +325,19 @@ public class DirectionsApiRequest
   public DirectionsApiRequest optimizeWaypoints(boolean optimize) {
     optimizeWaypoints = optimize;
     if (waypoints != null) {
-      return waypoints(waypoints);
+      if (waypoints == null || waypoints.length == 0) {
+	  this.waypoints = new Waypoint[0];
+	  param("waypoints", "");
+	  return this;
+	} else {
+	  this.waypoints = waypoints;
+	  String[] waypointStrs = new String[waypoints.length];
+	  for (int i = 0; i < waypoints.length; i++) {
+	    waypointStrs[i] = waypoints[i].toString();
+	  }
+	  param("waypoints", (optimizeWaypoints ? "optimize:true|" : "") + join('|', waypointStrs));
+	  return this;
+	}
     } else {
       return this;
     }
