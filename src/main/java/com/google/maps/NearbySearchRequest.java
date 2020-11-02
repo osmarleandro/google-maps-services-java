@@ -97,16 +97,6 @@ public class NearbySearchRequest
   }
 
   /**
-   * Restricts to places that are at least this price level.
-   *
-   * @param priceLevel The price level to set as minimum.
-   * @return Returns this {@code NearbyApiRequest} for call chaining.
-   */
-  public NearbySearchRequest minPrice(PriceLevel priceLevel) {
-    return param("minprice", priceLevel);
-  }
-
-  /**
    * Restricts to places that are at most this price level.
    *
    * @param priceLevel The price level to set as maximum.
