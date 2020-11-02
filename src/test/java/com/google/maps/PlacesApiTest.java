@@ -883,10 +883,9 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
       SessionToken session = new SessionToken();
       PlacesApi.placeAutocomplete(sc.context, "Amoeba", session)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
-          .location(new LatLng(37.76999, -122.44696))
-          .radius(500)
-          .strictBounds(true)
+	  .types(PlaceAutocompleteType.ESTABLISHMENT)
+	  .location(new LatLng(37.76999, -122.44696))
+	  .radius(500).param("strictbounds", Boolean.toString(true))
           .await();
 
       sc.assertParamValue("Amoeba", "input");
