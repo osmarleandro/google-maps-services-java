@@ -80,17 +80,6 @@ public class QueryAutocompleteRequest
     return param("location", location);
   }
 
-  /**
-   * The distance (in meters) within which to return place results. Note that setting a radius
-   * biases results to the indicated area, but may not fully restrict results to the specified area.
-   *
-   * @param radius The radius around which to bias results.
-   * @return Returns this {@code QueryAutocompleteRequest} for call chaining.
-   */
-  public QueryAutocompleteRequest radius(int radius) {
-    return param("radius", String.valueOf(radius));
-  }
-
   public static class Response implements ApiResponse<AutocompletePrediction[]> {
     public String status;
     public AutocompletePrediction predictions[];
