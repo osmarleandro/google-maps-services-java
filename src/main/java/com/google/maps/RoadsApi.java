@@ -59,18 +59,6 @@ public class RoadsApi {
 
   /**
    * Takes up to 100 GPS points collected along a route, and returns a similar set of data with the
-   * points snapped to the most likely roads the vehicle was traveling along.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param path The collected GPS points as a path.
-   * @return Returns the snapped points as a {@link PendingResult}.
-   */
-  public static PendingResult<SnappedPoint[]> snapToRoads(GeoApiContext context, LatLng... path) {
-    return context.get(SNAP_TO_ROADS_API_CONFIG, RoadsResponse.class, "path", join('|', path));
-  }
-
-  /**
-   * Takes up to 100 GPS points collected along a route, and returns a similar set of data with the
    * points snapped to the most likely roads the vehicle was traveling along. Additionally, you can
    * request that the points be interpolated, resulting in a path that smoothly follows the geometry
    * of the road.
