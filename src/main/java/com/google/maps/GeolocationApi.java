@@ -16,7 +16,18 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.maps.errors.AccessNotConfiguredException;
 import com.google.maps.errors.ApiException;
+import com.google.maps.errors.InvalidRequestException;
+import com.google.maps.errors.MaxElementsExceededException;
+import com.google.maps.errors.MaxRouteLengthExceededException;
+import com.google.maps.errors.MaxWaypointsExceededException;
+import com.google.maps.errors.NotFoundException;
+import com.google.maps.errors.OverDailyLimitException;
+import com.google.maps.errors.OverQueryLimitException;
+import com.google.maps.errors.RequestDeniedException;
+import com.google.maps.errors.UnknownErrorException;
+import com.google.maps.errors.ZeroResultsException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
 import com.google.maps.model.GeolocationPayload;
@@ -80,7 +91,63 @@ public class GeolocationApi {
       if (successful()) {
         return null;
       }
-      return ApiException.from(reason, message);
+      // Classic Geo API error formats
+	if ("OK".equals(reason)) {
+	  return null;
+	} else if ("INVALID_REQUEST".equals(reason)) {
+	  return new InvalidRequestException(message);
+	} else if ("MAX_ELEMENTS_EXCEEDED".equals(reason)) {
+	  return new MaxElementsExceededException(message);
+	} else if ("MAX_ROUTE_LENGTH_EXCEEDED".equals(reason)) {
+	  return new MaxRouteLengthExceededException(message);
+	} else if ("MAX_WAYPOINTS_EXCEEDED".equals(reason)) {
+	  return new MaxWaypointsExceededException(message);
+	} else if ("NOT_FOUND".equals(reason)) {
+	  return new NotFoundException(message);
+	} else if ("OVER_QUERY_LIMIT".equals(reason)) {
+	  if ("You have exceeded your daily request quota for this API."
+	      .equalsIgnoreCase(message)) {
+	    return new OverDailyLimitException(message);
+	  }
+	  return new OverQueryLimitException(message);
+	} else if ("REQUEST_DENIED".equals(reason)) {
+	  return new RequestDeniedException(message);
+	} else if ("UNKNOWN_ERROR".equals(reason)) {
+	  return new UnknownErrorException(message);
+	} else if ("ZERO_RESULTS".equals(reason)) {
+	  return new ZeroResultsException(message);
+	}
+	
+	// New-style Geo API error formats
+	if ("ACCESS_NOT_CONFIGURED".equals(reason)) {
+	  return new AccessNotConfiguredException(message);
+	} else if ("INVALID_ARGUMENT".equals(reason)) {
+	  return new InvalidRequestException(message);
+	} else if ("RESOURCE_EXHAUSTED".equals(reason)) {
+	  return new OverQueryLimitException(message);
+	} else if ("PERMISSION_DENIED".equals(reason)) {
+	  return new RequestDeniedException(message);
+	}
+	
+	// Geolocation Errors
+	if ("keyInvalid".equals(reason)) {
+	  return new AccessNotConfiguredException(message);
+	} else if ("dailyLimitExceeded".equals(reason)) {
+	  return new OverDailyLimitException(message);
+	} else if ("userRateLimitExceeded".equals(reason)) {
+	  return new OverQueryLimitException(message);
+	} else if ("notFound".equals(reason)) {
+	  return new NotFoundException(message);
+	} else if ("parseError".equals(reason)) {
+	  return new InvalidRequestException(message);
+	} else if ("invalid".equals(reason)) {
+	  return new InvalidRequestException(message);
+	}
+	
+	// We've hit an unknown error. This is not a state we should hit,
+	// but we don't want to crash a user's application if we introduce a new error.
+	return new UnknownErrorException(
+	    "An unexpected error occurred. Status: " + reason + ", Message: " + message);
     }
   }
 }
