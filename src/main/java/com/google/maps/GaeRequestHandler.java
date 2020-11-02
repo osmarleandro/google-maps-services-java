@@ -123,11 +123,6 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
         metrics);
   }
 
-  @Override
-  public void shutdown() {
-    // do nothing
-  }
-
   /** Builder strategy for constructing {@code GaeRequestHandler}. */
   public static class Builder implements GeoApiContext.RequestHandler.Builder {
 
