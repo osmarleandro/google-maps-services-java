@@ -77,23 +77,26 @@ public class PolylineEncoding {
 
       long dLat = lat - lastLat;
       long dLng = lng - lastLng;
+	long v = dLat;
 
-      encode(dLat, result);
-      encode(dLng, result);
+      v = v < 0 ? ~(v << 1) : v << 1;
+	while (v >= 0x20) {
+	  result.append(Character.toChars((int) ((0x20 | (v & 0x1f)) + 63)));
+	  v >>= 5;
+	}
+	result.append(Character.toChars((int) (v + 63)));
+	long v1 = dLng;
+      v1 = v1 < 0 ? ~(v1 << 1) : v1 << 1;
+	while (v1 >= 0x20) {
+	  result.append(Character.toChars((int) ((0x20 | (v1 & 0x1f)) + 63)));
+	  v1 >>= 5;
+	}
+	result.append(Character.toChars((int) (v1 + 63)));
 
       lastLat = lat;
       lastLng = lng;
     }
     return result.toString();
-  }
-
-  private static void encode(long v, StringBuilder result) {
-    v = v < 0 ? ~(v << 1) : v << 1;
-    while (v >= 0x20) {
-      result.append(Character.toChars((int) ((0x20 | (v & 0x1f)) + 63)));
-      v >>= 5;
-    }
-    result.append(Character.toChars((int) (v + 63)));
   }
 
   /** Encodes an array of LatLngs into an encoded path string. */
