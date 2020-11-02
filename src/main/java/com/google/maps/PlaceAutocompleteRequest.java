@@ -173,17 +173,6 @@ public class PlaceAutocompleteRequest
   }
 
   /**
-   * A grouping of places to which you would like to restrict your results. Currently, you can use
-   * components to filter by country.
-   *
-   * @param filters The component filter to restrict results with.
-   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
-   */
-  public PlaceAutocompleteRequest components(ComponentFilter... filters) {
-    return param("components", join('|', filters));
-  }
-
-  /**
    * StrictBounds returns only those places that are strictly within the region defined by location
    * and radius. This is a restriction, rather than a bias, meaning that results outside this region
    * will not be returned even if they match the user input.

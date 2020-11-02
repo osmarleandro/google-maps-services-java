@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -689,13 +690,13 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       SessionToken session = new SessionToken();
       LatLng location = new LatLng(10, 20);
+	ComponentFilter[] filters = { ComponentFilter.country("AU") };
       PlacesApi.placeAutocomplete(sc.context, "Sydney Town Hall", session)
-          .offset(4)
-          .origin(location)
-          .location(location)
-          .radius(5000)
-          .types(PlaceAutocompleteType.ESTABLISHMENT)
-          .components(ComponentFilter.country("AU"))
+	  .offset(4)
+	  .origin(location)
+	  .location(location)
+	  .radius(5000)
+	  .types(PlaceAutocompleteType.ESTABLISHMENT).param("components", join('|', filters))
           .await();
 
       sc.assertParamValue("Sydney Town Hall", "input");
@@ -856,9 +857,9 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiPlaceAutocompleteWithType)) {
       SessionToken session = new SessionToken();
+	ComponentFilter[] filters = { ComponentFilter.country("nz") };
       AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "po", session)
-              .components(ComponentFilter.country("nz"))
+          PlacesApi.placeAutocomplete(sc.context, "po", session).param("components", join('|', filters))
               .types(PlaceAutocompleteType.REGIONS)
               .await();
 
