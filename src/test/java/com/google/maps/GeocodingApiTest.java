@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static com.google.maps.model.ComponentFilter.administrativeArea;
 import static com.google.maps.model.ComponentFilter.country;
 import static org.junit.Assert.assertEquals;
@@ -786,11 +787,11 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       LatLng latlng = new LatLng(40.714224, -73.961452);
+	AddressType[] resultTypes = { AddressType.STREET_ADDRESS };
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
-              .latlng(latlng)
-              .locationType(LocationType.ROOFTOP)
-              .resultType(AddressType.STREET_ADDRESS)
+		  .latlng(latlng)
+		  .locationType(LocationType.ROOFTOP).param("result_type", join('|', resultTypes))
               .await();
 
       assertNotNull(results);

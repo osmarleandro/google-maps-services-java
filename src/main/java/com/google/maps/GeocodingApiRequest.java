@@ -131,17 +131,6 @@ public class GeocodingApiRequest
   }
 
   /**
-   * Sets the result type. Specifying a type will restrict the results to this type. If multiple
-   * types are specified, the API will return all addresses that match any of the types.
-   *
-   * @param resultTypes The result types to restrict to.
-   * @return Returns this {@code GeocodingApiRequest} for call chaining.
-   */
-  public GeocodingApiRequest resultType(AddressType... resultTypes) {
-    return param("result_type", join('|', resultTypes));
-  }
-
-  /**
    * Sets the location type. Specifying a type will restrict the results to this type. If multiple
    * types are specified, the API will return all addresses that match any of the types.
    *
