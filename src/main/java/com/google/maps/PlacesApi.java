@@ -45,22 +45,6 @@ public class PlacesApi {
   }
 
   /**
-   * Retrieves the next page of Nearby Search results. The nextPageToken, returned in a
-   * PlacesSearchResponse when there are more pages of results, encodes all of the original Nearby
-   * Search Request parameters, which are thus not required on this call.
-   *
-   * @param context The context on which to make Geo API requests.
-   * @param nextPageToken The nextPageToken returned as part of a PlacesSearchResponse.
-   * @return Returns a NearbySearchRequest that can be executed.
-   */
-  public static NearbySearchRequest nearbySearchNextPage(
-      GeoApiContext context, String nextPageToken) {
-    NearbySearchRequest request = new NearbySearchRequest(context);
-    request.pageToken(nextPageToken);
-    return request;
-  }
-
-  /**
    * Performs a search for Places using a text query; for example, "pizza in New York" or "shoe
    * stores near Ottawa".
    *
