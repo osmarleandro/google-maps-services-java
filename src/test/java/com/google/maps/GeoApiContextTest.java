@@ -109,7 +109,10 @@ public class GeoApiContextTest {
   @Test
   public void testErrorResponseRetries() throws Exception {
     // Set up mock responses
-    MockResponse errorResponse = createMockBadResponse();
+    MockResponse response = new MockResponse();
+	response.setStatus("HTTP/1.1 500 Internal server error");
+	response.setBody("Uh-oh. Server Error.");
+	MockResponse errorResponse = response;
     MockResponse goodResponse = createMockGoodResponse();
 
     server.enqueue(errorResponse);
@@ -131,7 +134,10 @@ public class GeoApiContextTest {
 
   @Test(expected = IOException.class)
   public void testSettingMaxRetries() throws Exception {
-    MockResponse errorResponse = createMockBadResponse();
+    MockResponse response = new MockResponse();
+	response.setStatus("HTTP/1.1 500 Internal server error");
+	response.setBody("Uh-oh. Server Error.");
+	MockResponse errorResponse = response;
     MockResponse goodResponse = createMockGoodResponse();
 
     // Set up the fake web server
@@ -186,14 +192,6 @@ public class GeoApiContextTest {
             + "   ],\n"
             + "   \"status\" : \"OK\"\n"
             + "}");
-
-    return response;
-  }
-
-  private MockResponse createMockBadResponse() {
-    MockResponse response = new MockResponse();
-    response.setStatus("HTTP/1.1 500 Internal server error");
-    response.setBody("Uh-oh. Server Error.");
 
     return response;
   }
