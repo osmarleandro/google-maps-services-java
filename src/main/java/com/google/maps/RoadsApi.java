@@ -95,24 +95,6 @@ public class RoadsApi {
   }
 
   /**
-   * Returns the posted speed limit for given road segments. The provided LatLngs will first be
-   * snapped to the most likely roads the vehicle was traveling along.
-   *
-   * <p>Note: The accuracy of speed limit data returned by the Google Maps Roads API cannot be
-   * guaranteed. Speed limit data provided is not real-time, and may be estimated, inaccurate,
-   * incomplete, and/or outdated. Inaccuracies in our data may be reported through <a
-   * href="https://www.localguidesconnect.com/t5/News-Updates/Exclusive-Edit-a-road-segment-in-Google-Maps/ba-p/149865">
-   * Google Maps Feedback</a>.
-   *
-   * @param context The {@link GeoApiContext} to make requests through.
-   * @param path The collected GPS points as a path.
-   * @return Returns the speed limits as a {@link PendingResult}.
-   */
-  public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, LatLng... path) {
-    return context.get(SPEEDS_API_CONFIG, SpeedsResponse.class, "path", join('|', path));
-  }
-
-  /**
    * Returns the posted speed limit for given road segments.
    *
    * <p>Note: The accuracy of speed limit data returned by the Google Maps Roads API cannot be
