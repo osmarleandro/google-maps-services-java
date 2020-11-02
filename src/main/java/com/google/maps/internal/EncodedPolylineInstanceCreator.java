@@ -25,9 +25,4 @@ public class EncodedPolylineInstanceCreator implements InstanceCreator<EncodedPo
   public EncodedPolylineInstanceCreator(String points) {
     this.points = points;
   }
-
-  @Override
-  public EncodedPolyline createInstance(Type type) {
-    return new EncodedPolyline(points);
-  }
 }
