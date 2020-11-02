@@ -39,16 +39,6 @@ public class PlaceDetailsRequest
   }
 
   /**
-   * Specifies the Place ID to get Place Details for. Required.
-   *
-   * @param placeId The Place ID to retrieve details for.
-   * @return Returns this {@code PlaceDetailsRequest} for call chaining.
-   */
-  public PlaceDetailsRequest placeId(String placeId) {
-    return param("placeid", placeId);
-  }
-
-  /**
    * Sets the SessionToken for this request. Use this for Place Details requests that are called
    * following an autocomplete request in the same user session. Optional.
    *
