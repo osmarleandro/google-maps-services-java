@@ -38,6 +38,7 @@ import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -194,7 +195,7 @@ public final class Stopwatch {
     double value = (double) nanos / NANOSECONDS.convert(1, unit);
 
     // Too bad this functionality is not exposed as a regular method call
-    return Platform.formatCompact4Digits(value) + " " + abbreviate(unit);
+    return String.format(Locale.ROOT, "%.4g", value) + " " + abbreviate(unit);
   }
 
   private static TimeUnit chooseUnit(long nanos) {
