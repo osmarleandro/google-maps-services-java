@@ -42,16 +42,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Specifies the text string on which to search, for example: {@code "restaurant"}.
-   *
-   * @param query The query string to search for.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest query(String query) {
-    return param("query", query);
-  }
-
-  /**
    * Specifies the latitude/longitude around which to retrieve place information.
    *
    * @param location The location of the center of the search.
