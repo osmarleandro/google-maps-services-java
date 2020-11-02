@@ -49,10 +49,6 @@ public class GeolocationApi {
     return new GeolocationApiRequest(context).Payload(payload).CreatePayload();
   }
 
-  public static GeolocationApiRequest newRequest(GeoApiContext context) {
-    return new GeolocationApiRequest(context);
-  }
-
   public static class Response implements ApiResponse<GeolocationResult> {
     public int code = 200;
     public String message = "OK";
