@@ -41,17 +41,6 @@ public class PhotoRequest
   }
 
   /**
-   * Sets the photoReference for this request.
-   *
-   * @param photoReference A string identifier that uniquely identifies a photo. Photo references
-   *     are returned from either a Place Search or Place Details request.
-   * @return Returns the configured PhotoRequest.
-   */
-  public PhotoRequest photoReference(String photoReference) {
-    return param("photoreference", photoReference);
-  }
-
-  /**
    * Sets the maxHeight for this request.
    *
    * @param maxHeight The maximum desired height, in pixels, of the image returned by the Place
