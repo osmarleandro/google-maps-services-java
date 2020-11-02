@@ -60,10 +60,4 @@ public class FareAdapter extends TypeAdapter<Fare> {
 
     return fare;
   }
-
-  /** This method is not implemented. */
-  @Override
-  public void write(JsonWriter out, Fare value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
 }
