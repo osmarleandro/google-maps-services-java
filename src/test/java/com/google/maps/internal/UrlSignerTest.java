@@ -47,12 +47,6 @@ public class UrlSignerTest {
           .replace('/', '_');
 
   @Test
-  public void testUrlSigner() throws Exception {
-    UrlSigner urlSigner = new UrlSigner(SIGNING_KEY);
-    assertEquals(SIGNATURE, urlSigner.getSignature(MESSAGE));
-  }
-
-  @Test
   public void testMustSupportParallelSignatures() throws Exception {
     int attempts = 100;
     ExecutorService executor = Executors.newFixedThreadPool(attempts);
