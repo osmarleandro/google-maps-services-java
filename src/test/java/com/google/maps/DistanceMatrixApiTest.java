@@ -125,16 +125,15 @@ public class DistanceMatrixApiTest {
             "Bungle Bungles, Australia",
             "The Pinnacles, Australia"
           };
+	Instant departureTime = Instant.now().plus(Duration.ofMinutes(2));
 
       DistanceMatrixApi.newRequest(sc.context)
-          .origins(origins)
-          .destinations(destinations)
-          .mode(TravelMode.DRIVING)
-          .language("en-AU")
-          .avoid(RouteRestriction.TOLLS)
-          .units(Unit.IMPERIAL)
-          .departureTime(
-              Instant.now().plus(Duration.ofMinutes(2))) // this is ignored when an API key is used
+	  .origins(origins)
+	  .destinations(destinations)
+	  .mode(TravelMode.DRIVING)
+	  .language("en-AU")
+	  .avoid(RouteRestriction.TOLLS)
+	  .units(Unit.IMPERIAL).param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L)) // this is ignored when an API key is used
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
@@ -198,12 +197,12 @@ public class DistanceMatrixApiTest {
   public void testDurationInTrafficWithTrafficModel() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
       final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
+	Instant departureTime = Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS);
       DistanceMatrixApi.newRequest(sc.context)
-          .origins("Fisherman's Wharf, San Francisco")
-          .destinations("San Francisco International Airport, San Francisco, CA")
-          .mode(TravelMode.DRIVING)
-          .trafficModel(TrafficModel.PESSIMISTIC)
-          .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
+	  .origins("Fisherman's Wharf, San Francisco")
+	  .destinations("San Francisco International Airport, San Francisco, CA")
+	  .mode(TravelMode.DRIVING)
+	  .trafficModel(TrafficModel.PESSIMISTIC).param("departure_time", Long.toString(departureTime.toEpochMilli() / 1000L))
           .await();
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
