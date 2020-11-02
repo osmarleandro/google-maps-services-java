@@ -52,16 +52,6 @@ public class TextSearchRequest
   }
 
   /**
-   * Specifies the latitude/longitude around which to retrieve place information.
-   *
-   * @param location The location of the center of the search.
-   * @return Returns this {@code TextSearchRequest} for call chaining.
-   */
-  public TextSearchRequest location(LatLng location) {
-    return param("location", location);
-  }
-
-  /**
    * Region used to influence search results. This parameter will only influence, not fully
    * restrict, search results. If more relevant results exist outside of the specified region, they
    * may be included. When this parameter is used, the country name is omitted from the resulting
