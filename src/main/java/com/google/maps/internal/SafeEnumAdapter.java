@@ -47,11 +47,6 @@ public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> {
   }
 
   @Override
-  public void write(JsonWriter out, E value) throws IOException {
-    throw new UnsupportedOperationException("Unimplemented method");
-  }
-
-  @Override
   public E read(JsonReader reader) throws IOException {
     if (reader.peek() == JsonToken.NULL) {
       reader.nextNull();
