@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -46,7 +47,16 @@ public class GeolocationApi {
 
   public static PendingResult<GeolocationResult> geolocate(
       GeoApiContext context, GeolocationPayload payload) {
-    return new GeolocationApiRequest(context).Payload(payload).CreatePayload();
+    GeolocationApiRequest r = new GeolocationApiRequest(context).Payload(payload);
+	if (r.payload == null) {
+	  // if the payload has not been set, create it
+	  r.payload = r.builder.createGeolocationPayload();
+	} else {
+	  // use the payload that has been explicitly set by the Payload method above
+	}
+	Gson gson = new Gson();
+	String jsonPayload = gson.toJson(r.payload);
+	return r.param("_payload", jsonPayload);
   }
 
   public static GeolocationApiRequest newRequest(GeoApiContext context) {
