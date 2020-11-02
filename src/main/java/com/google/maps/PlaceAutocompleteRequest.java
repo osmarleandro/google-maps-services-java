@@ -131,16 +131,6 @@ public class PlaceAutocompleteRequest
   }
 
   /**
-   * The point around which you wish to retrieve place information.
-   *
-   * @param location The {@link LatLng} location to center this autocomplete search.
-   * @return Returns this {@code PlaceAutocompleteRequest} for call chaining.
-   */
-  public PlaceAutocompleteRequest location(LatLng location) {
-    return param("location", location);
-  }
-
-  /**
    * The distance (in meters) within which to return place results. Note that setting a radius
    * biases results to the indicated area, but may not fully restrict results to the specified area.
    *
