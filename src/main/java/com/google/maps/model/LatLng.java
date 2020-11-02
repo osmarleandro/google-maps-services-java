@@ -63,9 +63,4 @@ public class LatLng implements UrlValue, Serializable {
     LatLng latLng = (LatLng) o;
     return Double.compare(latLng.lat, lat) == 0 && Double.compare(latLng.lng, lng) == 0;
   }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(lat, lng);
-  }
 }
