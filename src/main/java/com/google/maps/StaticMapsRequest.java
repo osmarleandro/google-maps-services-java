@@ -319,19 +319,6 @@ public class StaticMapsRequest
     }
   }
 
-  /**
-   * <code>markers</code> parameter defines a set of one or more markers (map pins) at a set of
-   * locations. Each marker defined within a single markers declaration must exhibit the same visual
-   * style; if you wish to display markers with different styles, you will need to supply multiple
-   * markers parameters with separate style information.
-   *
-   * @param markers A group of markers with the same style.
-   * @return Returns this {@code StaticMapsRequest} for call chaining.
-   */
-  public StaticMapsRequest markers(Markers markers) {
-    return paramAddToList("markers", markers);
-  }
-
   public static class Path implements UrlValue {
 
     private int weight;
