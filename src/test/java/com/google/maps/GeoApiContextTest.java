@@ -248,30 +248,6 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testQueryParamsHaveOrderPreserved() throws Exception {
-    // This test is important for APIs (such as the speed limits API) where multiple parameters
-    // must be provided with the same name with order preserved.
-
-    MockResponse response = new MockResponse();
-    response.setResponseCode(200);
-    response.setBody("{}");
-
-    server.enqueue(response);
-    server.start();
-
-    setMockBaseUrl();
-    builder
-        .build()
-        .get(new ApiConfig("/"), GeocodingApi.Response.class, "a", "1", "a", "2", "a", "3")
-        .awaitIgnoreError();
-
-    server.shutdown();
-    RecordedRequest request = server.takeRequest();
-    String path = request.getPath();
-    assertTrue(path.contains("a=1&a=2&a=3"));
-  }
-
-  @Test
   public void testToggleIfExceptionIsAllowedToRetry() throws Exception {
     // Enqueue some error responses, although only the first should be used because the response's
     // exception is not allowed to be retried.
