@@ -16,6 +16,7 @@
 package com.google.maps;
 
 import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.internal.StringJoin.join;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -46,8 +47,8 @@ public class DistanceMatrixApiTest {
   @Test
   public void testLatLngOriginDestinations() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      DistanceMatrixApi.newRequest(sc.context)
-          .origins(new LatLng(-31.9522, 115.8589), new LatLng(-37.8136, 144.9631))
+      LatLng[] points = { new LatLng(-31.9522, 115.8589), new LatLng(-37.8136, 144.9631) };
+	DistanceMatrixApi.newRequest(sc.context).param("origins", join('|', points))
           .destinations(new LatLng(-25.344677, 131.036692), new LatLng(-13.092297, 132.394057))
           .awaitIgnoreError();
 
