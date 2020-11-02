@@ -33,9 +33,4 @@ public class Distance implements Serializable {
    * units can be overridden with a request parameter.
    */
   public String humanReadable;
-
-  @Override
-  public String toString() {
-    return humanReadable;
-  }
 }
