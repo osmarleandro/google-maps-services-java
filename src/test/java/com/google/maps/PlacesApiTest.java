@@ -609,8 +609,7 @@ public class PlacesApiTest {
       final int width = 200;
       final int height = 100;
 
-      PlacesApi.photo(sc.context, photoReference)
-          .maxWidth(width)
+      PlacesApi.photo(sc.context, photoReference).param("maxwidth", String.valueOf(width))
           .maxHeight(height)
           .awaitIgnoreError();
 
