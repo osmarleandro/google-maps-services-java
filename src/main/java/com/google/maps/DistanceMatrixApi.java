@@ -15,6 +15,8 @@
 
 package com.google.maps;
 
+import static com.google.maps.internal.StringJoin.join;
+
 import com.google.maps.errors.ApiException;
 import com.google.maps.internal.ApiConfig;
 import com.google.maps.internal.ApiResponse;
@@ -50,7 +52,7 @@ public class DistanceMatrixApi {
 
   public static DistanceMatrixApiRequest getDistanceMatrix(
       GeoApiContext context, String[] origins, String[] destinations) {
-    return newRequest(context).origins(origins).destinations(destinations);
+    return newRequest(context).origins(origins).param("destinations", join('|', destinations));
   }
 
   public static class Response implements ApiResponse<DistanceMatrix> {

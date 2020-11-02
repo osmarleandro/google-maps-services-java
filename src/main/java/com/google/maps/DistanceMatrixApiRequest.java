@@ -72,17 +72,6 @@ public class DistanceMatrixApiRequest
   }
 
   /**
-   * One or more addresses to which to calculate distance and time. The service will geocode the
-   * strings and convert them to latitude/longitude coordinates to calculate directions.
-   *
-   * @param destinations Strings to geocode and use as a destination point (e.g. "Jersey City, NJ")
-   * @return Returns this {@code DistanceMatrixApiRequest} for call chaining.
-   */
-  public DistanceMatrixApiRequest destinations(String... destinations) {
-    return param("destinations", join('|', destinations));
-  }
-
-  /**
    * One or more latitude/longitude values to which to calculate distance and time.
    *
    * @param points The destination points.
