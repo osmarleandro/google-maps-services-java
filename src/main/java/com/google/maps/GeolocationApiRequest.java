@@ -34,16 +34,6 @@ public class GeolocationApiRequest
     builder = new GeolocationPayload.GeolocationPayloadBuilder();
   }
 
-  @Override
-  protected void validateRequest() {
-    if (this.payload.considerIp != null
-        && !this.payload.considerIp
-        && this.payload.wifiAccessPoints != null
-        && this.payload.wifiAccessPoints.length < 2) {
-      throw new IllegalArgumentException("Request must contain two or more 'Wifi Access Points'");
-    }
-  }
-
   public GeolocationApiRequest HomeMobileCountryCode(int newHomeMobileCountryCode) {
     this.builder.HomeMobileCountryCode(newHomeMobileCountryCode);
     return this;
