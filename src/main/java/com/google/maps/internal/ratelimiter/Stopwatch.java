@@ -93,13 +93,6 @@ public final class Stopwatch {
   private long elapsedNanos;
   private long startTick;
 
-  /**
-   * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
-   */
-  public static Stopwatch createUnstarted() {
-    return new Stopwatch();
-  }
-
   /** Creates (but does not start) a new stopwatch, using the specified time source. */
   public static Stopwatch createUnstarted(Ticker ticker) {
     return new Stopwatch(ticker);
