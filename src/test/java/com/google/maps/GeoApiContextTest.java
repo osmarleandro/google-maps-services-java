@@ -341,13 +341,6 @@ public class GeoApiContextTest {
   }
 
   @Test
-  public void testExperienceIdNotInHeader() throws Exception {
-    final RecordedRequest request = makeMockRequest();
-    final String value = request.getHeader(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID);
-    assertNull(value);
-  }
-
-  @Test
   public void testExperienceIdSample() {
     // [START maps_experience_id]
     final String experienceId = UUID.randomUUID().toString();
