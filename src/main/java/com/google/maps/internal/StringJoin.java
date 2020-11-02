@@ -46,10 +46,6 @@ public class StringJoin {
     return result.toString();
   }
 
-  public static String join(char delim, Object... parts) {
-    return join(new String(new char[] {delim}), parts);
-  }
-
   public static String join(CharSequence delim, Object... parts) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < parts.length; i++) {
