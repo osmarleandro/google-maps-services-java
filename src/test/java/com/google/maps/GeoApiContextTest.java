@@ -397,7 +397,13 @@ public class GeoApiContextTest {
 
   @Test
   public void testShutdown() throws InterruptedException {
-    GeoApiContext context = builder.build();
+    final Thread delayThread = extracted();
+    delayThread.join(10);
+    assertFalse(delayThread.isAlive());
+  }
+
+private Thread extracted() throws InterruptedException {
+	GeoApiContext context = builder.build();
     final Thread delayThread = findLastThreadByName("RateLimitExecutorDelayThread");
     assertNotNull(
         "Delay thread should be created in constructor of RateLimitExecutorService", delayThread);
@@ -407,7 +413,6 @@ public class GeoApiContextTest {
     // this is needed to make sure that delay thread has reached queue.take()
     delayThread.join(10);
     context.shutdown();
-    delayThread.join(10);
-    assertFalse(delayThread.isAlive());
-  }
+	return delayThread;
+}
 }
