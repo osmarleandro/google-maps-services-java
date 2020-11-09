@@ -123,13 +123,17 @@ public class GeocodingApiTest {
   }
 
   private void checkSydneyResult(GeocodingResult[] results) {
-    assertNotNull(results);
-    assertNotNull(results[0].geometry);
+    extracted(results);
     assertNotNull(results[0].geometry.location);
     assertEquals(-33.8674869, results[0].geometry.location.lat, EPSILON);
     assertEquals(151.2069902, results[0].geometry.location.lng, EPSILON);
     assertEquals(LocationType.APPROXIMATE, results[0].geometry.locationType);
   }
+
+private void extracted(GeocodingResult[] results) {
+	assertNotNull(results);
+    assertNotNull(results[0].geometry);
+}
 
   @Test
   public void testReverseGeocode() throws Exception {
