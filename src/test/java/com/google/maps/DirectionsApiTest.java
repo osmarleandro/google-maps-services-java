@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,8 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -120,14 +123,7 @@ public class DirectionsApiTest {
   public void testResponseTimesArePopulatedCorrectly() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(responseTimesArePopulatedCorrectly)) {
-      DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.TRANSIT)
-              .origin("483 George St, Sydney NSW 2000, Australia")
-              .destination("182 Church St, Parramatta NSW 2150, Australia")
-              .await();
-
-      assertEquals(1, result.routes.length);
+      DirectionsResult result = extracted(sc);
       assertEquals(1, result.routes[0].legs.length);
       DateTimeFormatter fmt = DateTimeFormatter.ofPattern("h:mm a");
       assertEquals("1:54 pm", fmt.format(result.routes[0].legs[0].arrivalTime).toLowerCase());
@@ -138,6 +134,18 @@ public class DirectionsApiTest {
       sc.assertParamValue("182 Church St, Parramatta NSW 2150, Australia", "destination");
     }
   }
+
+private DirectionsResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	DirectionsResult result =
+          DirectionsApi.newRequest(sc.context)
+              .mode(TravelMode.TRANSIT)
+              .origin("483 George St, Sydney NSW 2000, Australia")
+              .destination("182 Church St, Parramatta NSW 2150, Australia")
+              .await();
+
+      assertEquals(1, result.routes.length);
+	return result;
+}
 
   /**
    * A simple query from Toronto to Montreal.
