@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -577,13 +580,7 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .address("Torun")
-              .components(administrativeArea("TX"), country("US"))
-              .await();
-
-      assertNotNull(Arrays.toString(results));
+      GeocodingResult[] results = extracted(sc);
 
       assertEquals("Texas, USA", results[0].formattedAddress);
       assertEquals(true, results[0].partialMatch);
@@ -593,6 +590,17 @@ public class GeocodingApiTest {
       sc.assertParamValue("Torun", "address");
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results =
+          GeocodingApi.newRequest(sc.context)
+              .address("Torun")
+              .components(administrativeArea("TX"), country("US"))
+              .await();
+
+      assertNotNull(Arrays.toString(results));
+	return results;
+}
 
   /**
    * Making a request using just components filter: <a
