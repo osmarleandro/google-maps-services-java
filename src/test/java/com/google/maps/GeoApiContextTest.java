@@ -108,11 +108,7 @@ public class GeoApiContextTest {
 
   @Test
   public void testErrorResponseRetries() throws Exception {
-    // Set up mock responses
-    MockResponse errorResponse = createMockBadResponse();
-    MockResponse goodResponse = createMockGoodResponse();
-
-    server.enqueue(errorResponse);
+    MockResponse goodResponse = extracted();
     server.enqueue(goodResponse);
     server.start();
 
@@ -128,6 +124,15 @@ public class GeoApiContextTest {
 
     server.shutdown();
   }
+
+private MockResponse extracted() {
+	// Set up mock responses
+    MockResponse errorResponse = createMockBadResponse();
+    MockResponse goodResponse = createMockGoodResponse();
+
+    server.enqueue(errorResponse);
+	return goodResponse;
+}
 
   @Test(expected = IOException.class)
   public void testSettingMaxRetries() throws Exception {
