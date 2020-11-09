@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,9 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -363,7 +367,18 @@ public class DirectionsApiTest {
   public void testTrafficModel() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
+      DirectionsResult result = extracted(sc);
+      sc.assertParamValue("182 Church St, Parramatta NSW 2150", "destination");
+      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
+      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
+
+      assertNotNull(result.toString());
+    }
+  }
+
+private DirectionsResult extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	DirectionsResult result =
           DirectionsApi.newRequest(sc.context)
               .origin("48 Pirrama Road, Pyrmont NSW 2009")
               .destination("182 Church St, Parramatta NSW 2150")
@@ -373,13 +388,8 @@ public class DirectionsApiTest {
               .await();
 
       sc.assertParamValue("48 Pirrama Road, Pyrmont NSW 2009", "origin");
-      sc.assertParamValue("182 Church St, Parramatta NSW 2150", "destination");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
-
-      assertNotNull(result.toString());
-    }
-  }
+	return result;
+}
 
   /** Test transit without arrival or departure times specified. */
   @Test
