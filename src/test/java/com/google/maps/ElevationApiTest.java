@@ -19,12 +19,15 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LatLngAssert;
+
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
@@ -110,15 +113,20 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
-
-      assertNotNull(result);
+      ElevationResult result = extracted(sc);
       assertNotNull(result.toString());
       assertEquals(SYDNEY_POINT_ELEVATION, result.elevation, EPSILON);
 
       sc.assertParamValue(SYDNEY.toUrlValue(), "locations");
     }
   }
+
+private ElevationResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	ElevationResult result = ElevationApi.getByPoint(sc.context, SYDNEY).await();
+
+      assertNotNull(result);
+	return result;
+}
 
   @Test
   public void testGetPoints() throws Exception {
