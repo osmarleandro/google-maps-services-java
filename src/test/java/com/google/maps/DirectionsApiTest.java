@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,8 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -431,14 +434,7 @@ public class DirectionsApiTest {
   public void testTravelModeWalking() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.WALKING)
-              .origin("483 George St, Sydney NSW 2000, Australia")
-              .destination("182 Church St, Parramatta NSW 2150, Australia")
-              .await();
-
-      assertNotNull(result.toString());
+      DirectionsResult result = extracted(sc);
       assertNotNull(result.routes);
       assertNotNull(result.routes[0]);
 
@@ -449,6 +445,18 @@ public class DirectionsApiTest {
       assertNotNull(result.toString());
     }
   }
+
+private DirectionsResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	DirectionsResult result =
+          DirectionsApi.newRequest(sc.context)
+              .mode(TravelMode.WALKING)
+              .origin("483 George St, Sydney NSW 2000, Australia")
+              .destination("182 Church St, Parramatta NSW 2150, Australia")
+              .await();
+
+      assertNotNull(result.toString());
+	return result;
+}
 
   @Test(expected = NotFoundException.class)
   public void testNotFound() throws Exception {
