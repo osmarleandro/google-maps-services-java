@@ -49,8 +49,7 @@ public class StaticMapsApiTest {
   public void testGetSydneyStaticMap() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Google Sydney");
+      StaticMapsRequest req = extracted(sc);
       req.zoom(16);
       ByteArrayInputStream bais = new ByteArrayInputStream(req.await().imageData);
       BufferedImage img = ImageIO.read(bais);
@@ -64,6 +63,12 @@ public class StaticMapsApiTest {
       assertEquals(HEIGHT, img.getHeight());
     }
   }
+
+private StaticMapsRequest extracted(LocalTestServerContext sc) {
+	StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
+      req.center("Google Sydney");
+	return req;
+}
 
   @Test
   public void testGetSydneyLatLngStaticMap() throws Exception {
@@ -117,8 +122,7 @@ public class StaticMapsApiTest {
   @Test(expected = IllegalArgumentException.class)
   public void testValidateRequest_noZoom() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Google Sydney");
+      StaticMapsRequest req = extracted(sc);
       req.await();
     }
   }
