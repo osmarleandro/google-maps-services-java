@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -962,7 +965,17 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
-      String input = "Museum of Contemporary Art Australia";
+      String input = extracted(sc);
+
+      sc.assertParamValue(input, "input");
+      sc.assertParamValue("textquery", "inputtype");
+      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
+      sc.assertParamValue("point:1.00000000,2.00000000", "locationbias");
+    }
+  }
+
+private String extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	String input = "Museum of Contemporary Art Australia";
 
       PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
           .fields(
@@ -974,13 +987,8 @@ public class PlacesApiTest {
               FindPlaceFromTextRequest.FieldMask.GEOMETRY)
           .locationBias(new LocationBiasPoint(new LatLng(1, 2)))
           .await();
-
-      sc.assertParamValue(input, "input");
-      sc.assertParamValue("textquery", "inputtype");
-      sc.assertParamValue("photos,formatted_address,name,rating,opening_hours,geometry", "fields");
-      sc.assertParamValue("point:1.00000000,2.00000000", "locationbias");
-    }
-  }
+	return input;
+}
 
   @Test
   public void testFindPlaceFromTextCircular() throws Exception {
