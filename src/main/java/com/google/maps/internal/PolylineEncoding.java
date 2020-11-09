@@ -34,7 +34,11 @@ public class PolylineEncoding {
     int len = encodedPath.length();
 
     final List<LatLng> path = new ArrayList<>(len / 2);
-    int index = 0;
+    return extracted(encodedPath, len, path);
+  }
+
+private static List<LatLng> extracted(final String encodedPath, int len, final List<LatLng> path) {
+	int index = 0;
     int lat = 0;
     int lng = 0;
 
@@ -62,7 +66,7 @@ public class PolylineEncoding {
     }
 
     return path;
-  }
+}
 
   /** Encodes a sequence of LatLngs into an encoded path string. */
   public static String encode(final List<LatLng> path) {
