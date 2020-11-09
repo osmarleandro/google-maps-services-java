@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -729,9 +733,7 @@ public class PlacesApiTest {
   @Test
   public void testPhoto() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPhoto)) {
-      PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
-
-      sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
+      PlaceDetails placeDetails = extracted(sc);
 
       assertNotNull(placeDetails.toString());
       assertEquals(10, placeDetails.photos.length);
@@ -742,6 +744,14 @@ public class PlacesApiTest {
       assertEquals(2048, placeDetails.photos[0].width);
     }
   }
+
+private PlaceDetails extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	PlaceDetails placeDetails = PlacesApi.placeDetails(sc.context, GOOGLE_SYDNEY).await();
+
+      sc.assertParamValue("ChIJN1t_tDeuEmsRUsoyG83frY4", "placeid");
+	return placeDetails;
+}
 
   @Test
   public void testPizzaInNewYorkPagination() throws Exception {
