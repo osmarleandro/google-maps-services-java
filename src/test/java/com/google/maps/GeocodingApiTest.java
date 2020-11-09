@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -785,7 +788,16 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      LatLng latlng = new LatLng(40.714224, -73.961452);
+      LatLng latlng = extracted(sc);
+
+      sc.assertParamValue(latlng.toUrlValue(), "latlng");
+      sc.assertParamValue(LocationType.ROOFTOP.toUrlValue(), "location_type");
+      sc.assertParamValue(AddressType.STREET_ADDRESS.toUrlValue(), "result_type");
+    }
+  }
+
+private LatLng extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	LatLng latlng = new LatLng(40.714224, -73.961452);
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .latlng(latlng)
@@ -798,12 +810,8 @@ public class GeocodingApiTest {
       assertEquals("277 Bedford Ave, Brooklyn, NY 11211, USA", results[0].formattedAddress);
       assertEquals(LocationType.ROOFTOP, results[0].geometry.locationType);
       assertEquals("ChIJd8BlQ2BZwokRAFUEcm_qrcA", results[0].placeId);
-
-      sc.assertParamValue(latlng.toUrlValue(), "latlng");
-      sc.assertParamValue(LocationType.ROOFTOP.toUrlValue(), "location_type");
-      sc.assertParamValue(AddressType.STREET_ADDRESS.toUrlValue(), "result_type");
-    }
-  }
+	return latlng;
+}
 
   /** Testing UTF8 result parsing. */
   @Test
