@@ -94,7 +94,13 @@ public class RateLimitExecutorServiceTest {
 
   @Test
   public void testDelayThreadIsStoppedAfterShutdownIsCalled() throws InterruptedException {
-    RateLimitExecutorService service = new RateLimitExecutorService();
+    final Thread delayThread = extracted();
+    delayThread.join(10);
+    assertFalse(delayThread.isAlive());
+  }
+
+private Thread extracted() throws InterruptedException {
+	RateLimitExecutorService service = new RateLimitExecutorService();
     final Thread delayThread = service.delayThread;
     assertNotNull(
         "Delay thread should be created in constructor of RateLimitExecutorService", delayThread);
@@ -104,7 +110,6 @@ public class RateLimitExecutorServiceTest {
     // this is needed to make sure that delay thread has reached queue.take()
     delayThread.join(10);
     service.shutdown();
-    delayThread.join(10);
-    assertFalse(delayThread.isAlive());
-  }
+	return delayThread;
+}
 }
