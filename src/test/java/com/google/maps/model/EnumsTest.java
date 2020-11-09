@@ -202,7 +202,29 @@ public class EnumsTest {
 
   @Test
   public void testCanonicalLiteralsForAddressComponentType() {
-    Map<AddressComponentType, String> addressComponentTypeToLiteralMap =
+    Map<AddressComponentType, String> addressComponentTypeToLiteralMap = extracted();
+
+    for (Map.Entry<AddressComponentType, String> AddressComponentTypeLiteralPair :
+        addressComponentTypeToLiteralMap.entrySet()) {
+      assertEquals(
+          AddressComponentTypeLiteralPair.getValue(),
+          AddressComponentTypeLiteralPair.getKey().toCanonicalLiteral());
+    }
+    List<AddressComponentType> enumsMinusUnknown =
+        new ArrayList<>(Arrays.asList(AddressComponentType.values()));
+    enumsMinusUnknown.remove(AddressComponentType.UNKNOWN);
+    List<AddressComponentType> onlyInTest =
+        setdiff(addressComponentTypeToLiteralMap.keySet(), enumsMinusUnknown);
+    List<AddressComponentType> onlyInEnum =
+        setdiff(enumsMinusUnknown, addressComponentTypeToLiteralMap.keySet());
+    assertEquals(
+        "Unexpected enum elements: Only in test: " + onlyInTest + ". Only in enum: " + onlyInEnum,
+        addressComponentTypeToLiteralMap.size() + 1, // 1 for unknown
+        AddressComponentType.values().length);
+  }
+
+private Map<AddressComponentType, String> extracted() {
+	Map<AddressComponentType, String> addressComponentTypeToLiteralMap =
         new HashMap<AddressComponentType, String>();
     // Short alias just to avoid line wrapping in the below code
     Map<AddressComponentType, String> m = addressComponentTypeToLiteralMap;
@@ -285,25 +307,8 @@ public class EnumsTest {
     m.put(AddressComponentType.TOURIST_ATTRACTION, "tourist_attraction");
     m.put(AddressComponentType.PLUS_CODE, "plus_code");
     m.put(AddressComponentType.DRUGSTORE, "drugstore");
-
-    for (Map.Entry<AddressComponentType, String> AddressComponentTypeLiteralPair :
-        addressComponentTypeToLiteralMap.entrySet()) {
-      assertEquals(
-          AddressComponentTypeLiteralPair.getValue(),
-          AddressComponentTypeLiteralPair.getKey().toCanonicalLiteral());
-    }
-    List<AddressComponentType> enumsMinusUnknown =
-        new ArrayList<>(Arrays.asList(AddressComponentType.values()));
-    enumsMinusUnknown.remove(AddressComponentType.UNKNOWN);
-    List<AddressComponentType> onlyInTest =
-        setdiff(addressComponentTypeToLiteralMap.keySet(), enumsMinusUnknown);
-    List<AddressComponentType> onlyInEnum =
-        setdiff(enumsMinusUnknown, addressComponentTypeToLiteralMap.keySet());
-    assertEquals(
-        "Unexpected enum elements: Only in test: " + onlyInTest + ". Only in enum: " + onlyInEnum,
-        addressComponentTypeToLiteralMap.size() + 1, // 1 for unknown
-        AddressComponentType.values().length);
-  }
+	return addressComponentTypeToLiteralMap;
+}
 
   private static <T extends UrlValue> void assertCannotGetUrlValue(T unknown) {
     assertNotNull(unknown);
