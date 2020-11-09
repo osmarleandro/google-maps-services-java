@@ -20,12 +20,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
@@ -66,7 +69,16 @@ public class DistanceMatrixApiTest {
             "Adelaide, Australia", "Brisbane, Australia", "Darwin, Australia",
             "Hobart, Australia", "Canberra, Australia"
           };
-      String[] destinations =
+      String[] destinations = extracted(sc, origins);
+
+      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
+      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
+    }
+  }
+
+private String[] extracted(LocalTestServerContext sc, String[] origins)
+		throws ApiException, InterruptedException, IOException {
+	String[] destinations =
           new String[] {
             "Uluru, Australia",
             "Kakadu, Australia",
@@ -102,11 +114,8 @@ public class DistanceMatrixApiTest {
           "Purnululu National Park, Western Australia 6770, Australia",
           matrix.destinationAddresses[3]);
       assertEquals("Pinnacles Drive, Cervantes WA 6511, Australia", matrix.destinationAddresses[4]);
-
-      sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-    }
-  }
+	return destinations;
+}
 
   @Test
   public void testNewRequestWithAllPossibleParams() throws Exception {
