@@ -60,9 +60,13 @@ public class LatLng implements UrlValue, Serializable {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    LatLng latLng = (LatLng) o;
-    return Double.compare(latLng.lat, lat) == 0 && Double.compare(latLng.lng, lng) == 0;
+    return extracted(o);
   }
+
+private boolean extracted(Object o) {
+	LatLng latLng = (LatLng) o;
+    return Double.compare(latLng.lat, lat) == 0 && Double.compare(latLng.lng, lng) == 0;
+}
 
   @Override
   public int hashCode() {
