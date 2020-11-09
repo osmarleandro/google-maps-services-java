@@ -63,8 +63,7 @@ public class TimeZoneApiTest {
   public void testNoResult() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("\n{\n   \"status\" : \"ZERO_RESULTS\"\n}\n")) {
-      TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
-      assertNull(resp);
+      extracted(sc);
 
       sc.assertParamValue("0.00000000,0.00000000", "location");
 
@@ -74,4 +73,9 @@ public class TimeZoneApiTest {
       }
     }
   }
+
+private void extracted(LocalTestServerContext sc) {
+	TimeZone resp = TimeZoneApi.getTimeZone(sc.context, new LatLng(0, 0)).awaitIgnoreError();
+      assertNull(resp);
+}
 }
