@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,8 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -488,14 +491,7 @@ public class DirectionsApiTest {
                 + "   \"routes\": [{}],\n"
                 + "   \"status\": \"OK\"\n"
                 + "}")) {
-      DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .origin("48 Pirrama Rd, Pyrmont NSW")
-              .destination("Airport Dr, Sydney NSW")
-              .mode(TravelMode.DRIVING)
-              .await();
-
-      assertNotNull(result.toString());
+      DirectionsResult result = extracted(sc);
       assertNotNull(result.geocodedWaypoints);
       assertEquals(2, result.geocodedWaypoints.length);
       assertEquals(GeocodedWaypointStatus.OK, result.geocodedWaypoints[0].geocoderStatus);
@@ -505,6 +501,18 @@ public class DirectionsApiTest {
       assertNotNull(result.toString());
     }
   }
+
+private DirectionsResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	DirectionsResult result =
+          DirectionsApi.newRequest(sc.context)
+              .origin("48 Pirrama Rd, Pyrmont NSW")
+              .destination("Airport Dr, Sydney NSW")
+              .mode(TravelMode.DRIVING)
+              .await();
+
+      assertNotNull(result.toString());
+	return result;
+}
 
   /** Tests that calling {@code optimizeWaypoints(true)} works in either order. */
   @Test
