@@ -53,10 +53,8 @@ public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> {
 
   @Override
   public E read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
     String value = reader.nextString();
     try {
       return Enum.valueOf(clazz, value.toUpperCase(Locale.ENGLISH));
@@ -65,4 +63,11 @@ public class SafeEnumAdapter<E extends Enum<E>> extends TypeAdapter<E> {
       return unknownValue;
     }
   }
+
+private E extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 }
