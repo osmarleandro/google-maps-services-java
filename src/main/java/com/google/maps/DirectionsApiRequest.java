@@ -210,11 +210,9 @@ public class DirectionsApiRequest
    * @return Returns this {@code DirectionsApiRequest} for call chaining.
    */
   public DirectionsApiRequest waypoints(Waypoint... waypoints) {
-    if (waypoints == null || waypoints.length == 0) {
-      this.waypoints = new Waypoint[0];
-      param("waypoints", "");
-      return this;
-    } else {
+    if (waypoints == null || waypoints.length == 0)
+		return extracted();
+	else {
       this.waypoints = waypoints;
       String[] waypointStrs = new String[waypoints.length];
       for (int i = 0; i < waypoints.length; i++) {
@@ -224,6 +222,14 @@ public class DirectionsApiRequest
       return this;
     }
   }
+
+private DirectionsApiRequest extracted() {
+	{
+      this.waypoints = new Waypoint[0];
+      param("waypoints", "");
+      return this;
+    }
+}
 
   /**
    * Specifies the list of waypoints as String addresses. If any of the Strings are Place IDs, you
