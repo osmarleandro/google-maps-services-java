@@ -65,8 +65,7 @@ public class TransitDetails implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[");
-    sb.append(departureStop).append(" at ").append(departureTime);
+    StringBuilder sb = extracted();
     sb.append(" -> ");
     sb.append(arrivalStop).append(" at ").append(arrivalTime);
     if (headsign != null) {
@@ -80,4 +79,10 @@ public class TransitDetails implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[");
+    sb.append(departureStop).append(" at ").append(departureTime);
+	return sb;
+}
 }
