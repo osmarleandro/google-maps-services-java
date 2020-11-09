@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,8 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -85,20 +88,7 @@ public class DirectionsApiTest {
   @Test
   public void testBuilder() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(builderResponse)) {
-      DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .mode(TravelMode.BICYCLING)
-              .avoid(
-                  DirectionsApi.RouteRestriction.HIGHWAYS,
-                  DirectionsApi.RouteRestriction.TOLLS,
-                  DirectionsApi.RouteRestriction.FERRIES)
-              .units(Unit.METRIC)
-              .region("au")
-              .origin("Sydney")
-              .destination("Melbourne")
-              .await();
-
-      assertNotNull(result.routes);
+      DirectionsResult result = extracted(sc);
       assertEquals(1, result.routes.length);
 
       sc.assertParamValue(TravelMode.BICYCLING.toUrlValue(), "mode");
@@ -115,6 +105,24 @@ public class DirectionsApiTest {
       sc.assertParamValue("Melbourne", "destination");
     }
   }
+
+private DirectionsResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	DirectionsResult result =
+          DirectionsApi.newRequest(sc.context)
+              .mode(TravelMode.BICYCLING)
+              .avoid(
+                  DirectionsApi.RouteRestriction.HIGHWAYS,
+                  DirectionsApi.RouteRestriction.TOLLS,
+                  DirectionsApi.RouteRestriction.FERRIES)
+              .units(Unit.METRIC)
+              .region("au")
+              .origin("Sydney")
+              .destination("Melbourne")
+              .await();
+
+      assertNotNull(result.routes);
+	return result;
+}
 
   @Test
   public void testResponseTimesArePopulatedCorrectly() throws Exception {
