@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,9 +63,7 @@ public class GeocodingApiTest {
   @Test
   public void testGeocodeLibraryType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geocodeLibraryType)) {
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("80 FR").await();
-
-      assertEquals(1, results.length);
+      GeocodingResult[] results = extracted(sc);
       assertEquals(3, results[0].types.length);
       assertEquals(AddressType.ESTABLISHMENT, results[0].types[0]);
       assertEquals(AddressType.LIBRARY, results[0].types[1]);
@@ -70,6 +71,13 @@ public class GeocodingApiTest {
       assertNotNull(Arrays.toString(results));
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address("80 FR").await();
+
+      assertEquals(1, results.length);
+	return results;
+}
 
   @Test
   public void testSimpleGeocode() throws Exception {
