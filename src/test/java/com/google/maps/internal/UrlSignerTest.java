@@ -60,7 +60,17 @@ public class UrlSignerTest {
     final UrlSigner urlSigner = new UrlSigner(SIGNING_KEY);
     final List<Boolean> fails = Collections.synchronizedList(new ArrayList<Boolean>());
 
-    for (int i = 0; i < attempts; i++) {
+    for (int i = 0; i < attempts; i++)
+		extracted(executor, urlSigner, fails);
+
+    executor.shutdown();
+    executor.awaitTermination(20, TimeUnit.SECONDS);
+
+    assertTrue(fails.isEmpty());
+  }
+
+private void extracted(ExecutorService executor, final UrlSigner urlSigner, final List<Boolean> fails) {
+	{
       executor.execute(
           new Runnable() {
             @Override
@@ -75,12 +85,7 @@ public class UrlSignerTest {
             }
           });
     }
-
-    executor.shutdown();
-    executor.awaitTermination(20, TimeUnit.SECONDS);
-
-    assertTrue(fails.isEmpty());
-  }
+}
 
   // Helper code from http://stackoverflow.com/questions/140131/
   private static byte[] hexStringToByteArray(String s) {
