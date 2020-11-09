@@ -69,8 +69,7 @@ public class PlacesApi {
    * @return Returns a TextSearchRequest that can be configured and executed.
    */
   public static TextSearchRequest textSearchQuery(GeoApiContext context, String query) {
-    TextSearchRequest request = new TextSearchRequest(context);
-    request.query(query);
+    TextSearchRequest request = extracted(context, query);
     return request;
   }
 
@@ -85,11 +84,16 @@ public class PlacesApi {
    */
   public static TextSearchRequest textSearchQuery(
       GeoApiContext context, String query, LatLng location) {
-    TextSearchRequest request = new TextSearchRequest(context);
-    request.query(query);
+    TextSearchRequest request = extracted(context, query);
     request.location(location);
     return request;
   }
+
+private static TextSearchRequest extracted(GeoApiContext context, String query) {
+	TextSearchRequest request = new TextSearchRequest(context);
+    request.query(query);
+	return request;
+}
 
   /**
    * Performs a search for Places using a PlaceType parameter.
