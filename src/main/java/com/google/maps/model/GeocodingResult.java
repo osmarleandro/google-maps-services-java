@@ -78,11 +78,7 @@ public class GeocodingResult implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[GeocodingResult");
-    if (partialMatch) {
-      sb.append(" PARTIAL MATCH");
-    }
-    sb.append(" placeId=").append(placeId);
+    StringBuilder sb = extracted();
     sb.append(" ").append(geometry);
     sb.append(", formattedAddress=").append(formattedAddress);
     sb.append(", types=").append(Arrays.toString(types));
@@ -93,4 +89,13 @@ public class GeocodingResult implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[GeocodingResult");
+    if (partialMatch) {
+      sb.append(" PARTIAL MATCH");
+    }
+    sb.append(" placeId=").append(placeId);
+	return sb;
+}
 }
