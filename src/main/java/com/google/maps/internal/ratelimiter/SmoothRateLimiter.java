@@ -342,11 +342,16 @@ abstract class SmoothRateLimiter extends RateLimiter {
 
   @Override
   final void doSetRate(double permitsPerSecond, long nowMicros) {
-    resync(nowMicros);
-    double stableIntervalMicros = SECONDS.toMicros(1L) / permitsPerSecond;
+    double stableIntervalMicros = extracted(permitsPerSecond, nowMicros);
     this.stableIntervalMicros = stableIntervalMicros;
     doSetRate(permitsPerSecond, stableIntervalMicros);
   }
+
+private double extracted(double permitsPerSecond, long nowMicros) {
+	resync(nowMicros);
+    double stableIntervalMicros = SECONDS.toMicros(1L) / permitsPerSecond;
+	return stableIntervalMicros;
+}
 
   abstract void doSetRate(double permitsPerSecond, double stableIntervalMicros);
 
