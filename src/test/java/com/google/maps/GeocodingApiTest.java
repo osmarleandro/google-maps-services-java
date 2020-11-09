@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -664,15 +667,7 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .components(
-                  ComponentFilter.route("Annegatan"),
-                  ComponentFilter.administrativeArea("Helsinki"),
-                  ComponentFilter.country("Finland"))
-              .await();
-
-      assertNotNull(results);
+      GeocodingResult[] results = extracted(sc);
       assertNotNull(Arrays.toString(results));
       assertEquals("Annankatu, 00101 Helsinki, Finland", results[0].formattedAddress);
       assertEquals("EiBBbm5hbmthdHUsIDAwMTAxIEhlbHNpbmtpLCBTdW9taQ", results[0].placeId);
@@ -681,6 +676,19 @@ public class GeocodingApiTest {
           "route:Annegatan|administrative_area:Helsinki|country:Finland", "components");
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results =
+          GeocodingApi.newRequest(sc.context)
+              .components(
+                  ComponentFilter.route("Annegatan"),
+                  ComponentFilter.administrativeArea("Helsinki"),
+                  ComponentFilter.country("Finland"))
+              .await();
+
+      assertNotNull(results);
+	return results;
+}
 
   /**
    * Simple reverse geocoding. <a
