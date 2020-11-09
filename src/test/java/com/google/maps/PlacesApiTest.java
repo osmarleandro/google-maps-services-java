@@ -869,14 +869,19 @@ public class PlacesApiTest {
 
       assertNotNull(Arrays.toString(predictions));
       assertEquals(5, predictions.length);
-      for (AutocompletePrediction prediction : predictions) {
+      for (AutocompletePrediction prediction : predictions)
+		extracted(prediction);
+    }
+  }
+
+private void extracted(AutocompletePrediction prediction) {
+	{
         for (int j = 0; j < prediction.types.length; j++) {
           assertFalse(prediction.types[j].equals("route"));
           assertFalse(prediction.types[j].equals("zoo"));
         }
       }
-    }
-  }
+}
 
   @Test
   public void testPlaceAutocompleteWithStrictBounds() throws Exception {
