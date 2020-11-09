@@ -130,13 +130,19 @@ public class RoadsApi {
   public static PendingResult<SpeedLimit[]> speedLimits(GeoApiContext context, String... placeIds) {
     String[] placeParams = new String[2 * placeIds.length];
     int i = 0;
-    for (String placeId : placeIds) {
-      placeParams[i++] = "placeId";
-      placeParams[i++] = placeId;
-    }
+    for (String placeId : placeIds)
+		i = extracted(placeParams, i, placeId);
 
     return context.get(SPEEDS_API_CONFIG, SpeedsResponse.class, placeParams);
   }
+
+private static int extracted(String[] placeParams, int i, String placeId) {
+	{
+      placeParams[i++] = "placeId";
+      placeParams[i++] = placeId;
+    }
+	return i;
+}
 
   /**
    * Returns the result of snapping the provided points to roads and retrieving the speed limits.
