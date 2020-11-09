@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -901,16 +905,22 @@ public class PlacesApiTest {
   @Test
   public void testKitaWard() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiKitaWard)) {
-      String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
-      PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
-
-      sc.assertParamValue(query, "query");
+      PlacesSearchResponse response = extracted(sc);
 
       assertEquals(
           "Kita Ward, Kyoto, Kyoto Prefecture, Japan", response.results[0].formattedAddress);
       assertTrue(Arrays.asList(response.results[0].types).contains("ward"));
     }
   }
+
+private PlacesSearchResponse extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	String query = "Kita Ward, Kyoto, Kyoto Prefecture, Japan";
+      PlacesSearchResponse response = PlacesApi.textSearchQuery(sc.context, query).await();
+
+      sc.assertParamValue(query, "query");
+	return response;
+}
 
   @Test
   public void testFindPlaceFromText() throws Exception {
