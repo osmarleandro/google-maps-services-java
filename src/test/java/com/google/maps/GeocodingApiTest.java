@@ -96,7 +96,20 @@ public class GeocodingApiTest {
   @Test
   public void testAsync() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleGeocodeResponse)) {
-      final List<GeocodingResult[]> resps = new ArrayList<>();
+      final List<GeocodingResult[]> resps = extracted(sc);
+
+      Thread.sleep(2500);
+
+      assertFalse(resps.isEmpty());
+      assertNotNull(resps.get(0));
+      checkSydneyResult(resps.get(0));
+
+      sc.assertParamValue("Sydney", "address");
+    }
+  }
+
+private List<GeocodingResult[]> extracted(LocalTestServerContext sc) {
+	final List<GeocodingResult[]> resps = new ArrayList<>();
 
       PendingResult.Callback<GeocodingResult[]> callback =
           new PendingResult.Callback<GeocodingResult[]>() {
@@ -111,16 +124,8 @@ public class GeocodingApiTest {
             }
           };
       GeocodingApi.newRequest(sc.context).address("Sydney").setCallback(callback);
-
-      Thread.sleep(2500);
-
-      assertFalse(resps.isEmpty());
-      assertNotNull(resps.get(0));
-      checkSydneyResult(resps.get(0));
-
-      sc.assertParamValue("Sydney", "address");
-    }
-  }
+	return resps;
+}
 
   private void checkSydneyResult(GeocodingResult[] results) {
     assertNotNull(results);
