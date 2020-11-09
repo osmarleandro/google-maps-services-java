@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,12 +89,17 @@ public class GeocodingApiTest {
   public void testPlaceGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placeGeocodeResponse)) {
       String placeID = "ChIJP3Sa8ziYEmsRUKgyFmh9AQM";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
-      checkSydneyResult(results);
+      extracted(sc, placeID);
 
       sc.assertParamValue(placeID, "place_id");
     }
   }
+
+private void extracted(LocalTestServerContext sc, String placeID)
+		throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results = GeocodingApi.newRequest(sc.context).place(placeID).await();
+      checkSydneyResult(results);
+}
 
   @Test
   public void testAsync() throws Exception {
