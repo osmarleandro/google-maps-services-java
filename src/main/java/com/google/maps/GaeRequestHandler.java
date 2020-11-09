@@ -99,7 +99,15 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       RequestMetrics metrics) {
     FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
     HTTPRequest req = null;
-    try {
+    return extracted(hostName, url, payload, experienceIdHeaderValue, clazz, fieldNamingPolicy, errorTimeout,
+			maxRetries, exceptionsAllowedToRetry, metrics, fetchOptions, req);
+  }
+
+private <R extends ApiResponse<T>> PendingResult<T> extracted(String hostName, String url, String payload,
+		String experienceIdHeaderValue, Class<R> clazz, FieldNamingPolicy fieldNamingPolicy, long errorTimeout,
+		Integer maxRetries, ExceptionsAllowedToRetry exceptionsAllowedToRetry, RequestMetrics metrics,
+		FetchOptions fetchOptions, HTTPRequest req) {
+	try {
       req = new HTTPRequest(new URL(hostName + url), HTTPMethod.POST, fetchOptions);
       req.setHeader(new HTTPHeader("Content-Type", "application/json; charset=utf-8"));
       if (experienceIdHeaderValue != null) {
@@ -121,7 +129,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
         maxRetries,
         exceptionsAllowedToRetry,
         metrics);
-  }
+}
 
   @Override
   public void shutdown() {
