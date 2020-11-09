@@ -60,8 +60,7 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       RequestMetrics metrics) {
-    FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
-    HTTPRequest req;
+    FetchOptions fetchOptions = extracted();
     try {
       req = new HTTPRequest(new URL(hostName + url), HTTPMethod.POST, fetchOptions);
       if (experienceIdHeaderValue != null) {
@@ -83,6 +82,12 @@ public class GaeRequestHandler implements GeoApiContext.RequestHandler {
         exceptionsAllowedToRetry,
         metrics);
   }
+
+private FetchOptions extracted() {
+	FetchOptions fetchOptions = FetchOptions.Builder.withDeadline(10);
+    HTTPRequest req;
+	return fetchOptions;
+}
 
   @Override
   public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
