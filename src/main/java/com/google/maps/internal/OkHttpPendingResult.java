@@ -320,12 +320,16 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   }
 
   private T retry() throws ApiException, InterruptedException, IOException {
-    retryCounter++;
-    LOG.info("Retrying request. Retry #" + retryCounter);
+    extracted();
     metrics.startNetwork();
     this.call = client.newCall(request);
     return this.await();
   }
+
+private void extracted() {
+	retryCounter++;
+    LOG.info("Retrying request. Retry #" + retryCounter);
+}
 
   private boolean shouldRetry(Response response) {
     return RETRY_ERROR_CODES.contains(response.code())
