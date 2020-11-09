@@ -21,10 +21,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
 import com.google.maps.model.SpeedLimit;
+
+import java.io.IOException;
 import java.util.Arrays;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -130,13 +133,7 @@ public class RoadsApiIntegrationTest {
   @Test
   public void testSpeedLimitsWithPlaceIds() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(speedLimitsWithPlaceIdsResponse)) {
-      String[] placeIds =
-          new String[] {
-            "ChIJrfDjZYoE9YgRLpb3bOhcPno",
-            "ChIJyU-E2mEE9YgRftyNXxcfQYw",
-            "ChIJc0BrC2EE9YgR71DvaFzNgrA"
-          };
-      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await();
+      SpeedLimit[] speeds = extracted(sc);
 
       assertNotNull(Arrays.toString(speeds));
       assertEquals("/v1/speedLimits", sc.path());
@@ -148,6 +145,17 @@ public class RoadsApiIntegrationTest {
       }
     }
   }
+
+private SpeedLimit[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	String[] placeIds =
+          new String[] {
+            "ChIJrfDjZYoE9YgRLpb3bOhcPno",
+            "ChIJyU-E2mEE9YgRftyNXxcfQYw",
+            "ChIJc0BrC2EE9YgR71DvaFzNgrA"
+          };
+      SpeedLimit[] speeds = RoadsApi.speedLimits(sc.context, placeIds).await();
+	return speeds;
+}
 
   @Test
   public void testSnappedSpeedLimitRequest() throws Exception {
