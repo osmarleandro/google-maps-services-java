@@ -71,8 +71,7 @@ public class OpenCensusTest {
   }
 
   private Map.Entry<List<TagValue>, AggregationData> getMetric(String name) {
-    sleep(10);
-    ViewData viewData = Stats.getViewManager().getView(View.Name.create(name));
+    ViewData viewData = extracted(name);
     Map<List<TagValue>, AggregationData> values = viewData.getAggregationMap();
     assertEquals(1, values.size());
     for (Map.Entry<List<TagValue>, AggregationData> entry : values.entrySet()) {
@@ -80,6 +79,12 @@ public class OpenCensusTest {
     }
     return null;
   }
+
+private ViewData extracted(String name) {
+	sleep(10);
+    ViewData viewData = Stats.getViewManager().getView(View.Name.create(name));
+	return viewData;
+}
 
   @Test
   public void testSuccess() throws Exception {
