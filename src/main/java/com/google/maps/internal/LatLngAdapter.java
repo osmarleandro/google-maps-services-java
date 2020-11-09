@@ -39,10 +39,8 @@ public class LatLngAdapter extends TypeAdapter<LatLng> {
    */
   @Override
   public LatLng read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     double lat = 0;
     double lng = 0;
@@ -68,6 +66,13 @@ public class LatLngAdapter extends TypeAdapter<LatLng> {
       return null;
     }
   }
+
+private LatLng extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** Not supported. */
   @Override
