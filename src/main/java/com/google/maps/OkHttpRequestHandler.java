@@ -65,10 +65,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       RequestMetrics metrics) {
     Request.Builder builder = new Request.Builder().get().header("User-Agent", userAgent);
-    if (experienceIdHeaderValue != null) {
-      builder = builder.header(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue);
-    }
-    Request req = builder.url(hostName + url).build();
+    Request req = extracted(hostName, url, experienceIdHeaderValue, builder);
 
     return new OkHttpPendingResult<>(
         req,
@@ -80,6 +77,14 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
         exceptionsAllowedToRetry,
         metrics);
   }
+
+private Request extracted(String hostName, String url, String experienceIdHeaderValue, Request.Builder builder) {
+	if (experienceIdHeaderValue != null) {
+      builder = builder.header(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue);
+    }
+    Request req = builder.url(hostName + url).build();
+	return req;
+}
 
   @Override
   public <T, R extends ApiResponse<T>> PendingResult<T> handlePost(
