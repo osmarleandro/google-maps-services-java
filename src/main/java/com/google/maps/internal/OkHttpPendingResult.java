@@ -226,14 +226,20 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   private T parseResponse(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
     try {
-      T result = parseResponseInternal(request, response);
-      metrics.endRequest(null, response.code(), retryCounter);
+      T result = extracted(request, response);
       return result;
     } catch (Exception e) {
       metrics.endRequest(e, response.code(), retryCounter);
       throw e;
     }
   }
+
+private T extracted(OkHttpPendingResult<T, R> request, Response response)
+		throws ApiException, InterruptedException, IOException {
+	T result = parseResponseInternal(request, response);
+      metrics.endRequest(null, response.code(), retryCounter);
+	return result;
+}
 
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
