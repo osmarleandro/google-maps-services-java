@@ -87,8 +87,7 @@ public class DirectionsStep implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[DirectionsStep: ");
-    sb.append("\"").append(htmlInstructions).append("\"");
+    StringBuilder sb = extracted();
     sb.append(String.format(" (%s -> %s", startLocation, endLocation)).append(")");
     sb.append(" ").append(travelMode);
     sb.append(", duration=").append(duration);
@@ -102,4 +101,10 @@ public class DirectionsStep implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[DirectionsStep: ");
+    sb.append("\"").append(htmlInstructions).append("\"");
+	return sb;
+}
 }
