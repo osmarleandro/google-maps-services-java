@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -839,17 +843,23 @@ public class PlacesApiTest {
   @Test
   public void testPlaceAutocomplete() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPlaceAutocomplete)) {
-      SessionToken session = new SessionToken();
-      AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
-
-      sc.assertParamValue("Sydney Town Ha", "input");
-      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+      AutocompletePrediction[] predictions = extracted(sc);
 
       assertEquals(5, predictions.length);
       assertTrue(predictions[0].description.contains("Town Hall"));
     }
   }
+
+private AutocompletePrediction[] extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	SessionToken session = new SessionToken();
+      AutocompletePrediction[] predictions =
+          PlacesApi.placeAutocomplete(sc.context, "Sydney Town Ha", session).await();
+
+      sc.assertParamValue("Sydney Town Ha", "input");
+      sc.assertParamValue(session.toUrlValue(), "sessiontoken");
+	return predictions;
+}
 
   @Test
   public void testPlaceAutocompleteWithType() throws Exception {
