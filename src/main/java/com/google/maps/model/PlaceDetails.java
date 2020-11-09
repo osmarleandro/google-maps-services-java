@@ -261,10 +261,8 @@ public class PlaceDetails implements Serializable {
     if (icon != null) {
       sb.append(", icon");
     }
-    if (openingHours != null) {
-      sb.append(", openingHours");
-      sb.append(", utcOffset=").append(utcOffset);
-    }
+    if (openingHours != null)
+		extracted(sb);
     if (priceLevel != null) {
       sb.append(", priceLevel=").append(priceLevel);
     }
@@ -290,4 +288,11 @@ public class PlaceDetails implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private void extracted(StringBuilder sb) {
+	{
+      sb.append(", openingHours");
+      sb.append(", utcOffset=").append(utcOffset);
+    }
+}
 }
