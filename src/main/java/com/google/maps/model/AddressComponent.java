@@ -46,8 +46,7 @@ public class AddressComponent implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[AddressComponent: ");
-    sb.append("\"").append(longName).append("\"");
+    StringBuilder sb = extracted();
     if (shortName != null) {
       sb.append(" (\"").append(shortName).append("\")");
     }
@@ -55,4 +54,10 @@ public class AddressComponent implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[AddressComponent: ");
+    sb.append("\"").append(longName).append("\"");
+	return sb;
+}
 }
