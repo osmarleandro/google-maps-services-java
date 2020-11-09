@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -125,9 +128,7 @@ public class PlacesApiTest {
   public void testAutocompletePredictionStructuredFormatting() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(autocompletePredictionStructuredFormatting)) {
-      SessionToken session = new SessionToken();
-      final AutocompletePrediction[] predictions =
-          PlacesApi.placeAutocomplete(sc.context, "1", session).await();
+      final AutocompletePrediction[] predictions = extracted(sc);
 
       assertNotNull(predictions);
       assertNotNull(Arrays.toString(predictions));
@@ -146,6 +147,14 @@ public class PlacesApiTest {
       assertEquals(0, matchedSubstring.offset);
     }
   }
+
+private AutocompletePrediction[] extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException {
+	SessionToken session = new SessionToken();
+      final AutocompletePrediction[] predictions =
+          PlacesApi.placeAutocomplete(sc.context, "1", session).await();
+	return predictions;
+}
 
   @Test
   public void testPlaceDetailsLookupGoogleSydney() throws Exception {
