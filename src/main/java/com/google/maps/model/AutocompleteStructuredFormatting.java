@@ -34,8 +34,7 @@ public class AutocompleteStructuredFormatting implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("(");
-    sb.append("\"").append(mainText).append("\"");
+    StringBuilder sb = extracted();
     sb.append(" at ").append(Arrays.toString(mainTextMatchedSubstrings));
     if (secondaryText != null) {
       sb.append(", secondaryText=\"").append(secondaryText).append("\"");
@@ -43,4 +42,10 @@ public class AutocompleteStructuredFormatting implements Serializable {
     sb.append(")");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("(");
+    sb.append("\"").append(mainText).append("\"");
+	return sb;
+}
 }
