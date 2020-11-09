@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -333,13 +336,18 @@ public class PlacesApiTest {
   public void testPlaceDetailsLookupPermanentlyClosedPlace() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placeDetailResponseBodyForPermanentlyClosedPlace)) {
-      PlaceDetails placeDetails =
-          PlacesApi.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
-      assertNotNull(placeDetails);
+      PlaceDetails placeDetails = extracted(sc);
       assertNotNull(placeDetails.toString());
       assertTrue(placeDetails.permanentlyClosed);
     }
   }
+
+private PlaceDetails extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	PlaceDetails placeDetails =
+          PlacesApi.placeDetails(sc.context, PERMANENTLY_CLOSED_PLACE_ID).await();
+      assertNotNull(placeDetails);
+	return placeDetails;
+}
 
   @Test
   public void testPlaceDetailsLookupReturnsUserRatingsTotal() throws Exception {
