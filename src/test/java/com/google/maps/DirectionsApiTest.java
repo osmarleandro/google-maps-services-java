@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,9 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -406,16 +410,7 @@ public class DirectionsApiTest {
   public void testTransitParams() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsResult result =
-          DirectionsApi.newRequest(sc.context)
-              .origin("Fisherman's Wharf, San Francisco")
-              .destination("Union Square, San Francisco")
-              .mode(TravelMode.TRANSIT)
-              .transitMode(TransitMode.BUS, TransitMode.TRAM)
-              .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
-              .await();
-
-      sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
+      DirectionsResult result = extracted(sc);
       sc.assertParamValue("Union Square, San Francisco", "destination");
       sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
       sc.assertParamValue(
@@ -426,6 +421,21 @@ public class DirectionsApiTest {
       assertNotNull(result.toString());
     }
   }
+
+private DirectionsResult extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	DirectionsResult result =
+          DirectionsApi.newRequest(sc.context)
+              .origin("Fisherman's Wharf, San Francisco")
+              .destination("Union Square, San Francisco")
+              .mode(TravelMode.TRANSIT)
+              .transitMode(TransitMode.BUS, TransitMode.TRAM)
+              .transitRoutingPreference(TransitRoutingPreference.LESS_WALKING)
+              .await();
+
+      sc.assertParamValue("Fisherman's Wharf, San Francisco", "origin");
+	return result;
+}
 
   @Test
   public void testTravelModeWalking() throws Exception {
