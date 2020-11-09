@@ -135,7 +135,14 @@ public final class Preconditions {
     builder.append(template, templateStart, template.length());
 
     // if we run out of placeholders, append the extra args in square braces
-    if (i < args.length) {
+    if (i < args.length)
+		extracted(builder, i, args);
+
+    return builder.toString();
+  }
+
+private static void extracted(StringBuilder builder, int i, Object... args) {
+	{
       builder.append(" [");
       builder.append(args[i++]);
       while (i < args.length) {
@@ -144,7 +151,5 @@ public final class Preconditions {
       }
       builder.append(']');
     }
-
-    return builder.toString();
-  }
+}
 }
