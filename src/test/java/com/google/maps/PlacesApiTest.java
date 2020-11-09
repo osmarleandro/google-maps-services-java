@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -795,19 +799,25 @@ public class PlacesApiTest {
   public void testNearbySearchRequestByName() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByName)) {
-      PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
-              .radius(10000)
-              .name("Sydney Town Hall")
-              .await();
-
-      sc.assertParamValue("Sydney Town Hall", "name");
+      PlacesSearchResponse response = extracted(sc);
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
       sc.assertParamValue("10000", "radius");
 
       assertEquals("Sydney Town Hall", response.results[0].name);
     }
   }
+
+private PlacesSearchResponse extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	PlacesSearchResponse response =
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY)
+              .radius(10000)
+              .name("Sydney Town Hall")
+              .await();
+
+      sc.assertParamValue("Sydney Town Hall", "name");
+	return response;
+}
 
   @Test
   public void testNearbySearchRequestByType() throws Exception {
