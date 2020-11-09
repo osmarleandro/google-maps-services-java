@@ -33,10 +33,8 @@ public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> {
 
   @Override
   public DayOfWeek read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     if (reader.peek() == JsonToken.NUMBER) {
       int day = reader.nextInt();
@@ -61,6 +59,13 @@ public class DayOfWeekAdapter extends TypeAdapter<DayOfWeek> {
 
     return DayOfWeek.UNKNOWN;
   }
+
+private DayOfWeek extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** This method is not implemented. */
   @Override
