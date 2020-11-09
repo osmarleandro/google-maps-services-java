@@ -19,6 +19,9 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
@@ -210,7 +213,35 @@ public class GeolocationApiTest {
   @Test
   public void testMaximumWifiGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMaximumWifi)) {
-      GeolocationResult result =
+      GeolocationResult result = extracted(sc);
+
+      JSONObject body = sc.requestBody();
+      assertEquals(false, body.get("considerIp"));
+      assertEquals(310, body.get("homeMobileCountryCode"));
+      assertEquals(410, body.get("homeMobileNetworkCode"));
+      assertEquals("gsm", body.get("radioType"));
+      assertEquals("Vodafone", body.get("carrier"));
+      JSONArray wifiAccessPointsResponse = body.getJSONArray("wifiAccessPoints");
+      JSONObject wifi0 = wifiAccessPointsResponse.getJSONObject(0);
+      assertEquals("94:b4:0f:ff:88:31", wifi0.get("macAddress"));
+      assertEquals(-61, wifi0.get("signalStrength"));
+      assertEquals(49, wifi0.get("signalToNoiseRatio"));
+      assertEquals(40, wifi0.get("channel"));
+      assertEquals(0, wifi0.get("age"));
+      JSONObject wifi1 = wifiAccessPointsResponse.getJSONObject(1);
+      assertEquals("94:b4:0f:ff:88:30", wifi1.get("macAddress"));
+      assertEquals(-64, wifi1.get("signalStrength"));
+      assertEquals(46, wifi1.get("signalToNoiseRatio"));
+      assertEquals(40, wifi1.get("channel"));
+      assertEquals(0, wifi1.get("age"));
+      assertEquals("accuracy", 25.0, result.accuracy, 0.00001);
+      assertEquals("lat", 37.3990122, result.location.lat, 0.00001);
+      assertEquals("lng", -122.0583656, result.location.lng, 0.00001);
+    }
+  }
+
+private GeolocationResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
@@ -237,31 +268,8 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
-
-      JSONObject body = sc.requestBody();
-      assertEquals(false, body.get("considerIp"));
-      assertEquals(310, body.get("homeMobileCountryCode"));
-      assertEquals(410, body.get("homeMobileNetworkCode"));
-      assertEquals("gsm", body.get("radioType"));
-      assertEquals("Vodafone", body.get("carrier"));
-      JSONArray wifiAccessPointsResponse = body.getJSONArray("wifiAccessPoints");
-      JSONObject wifi0 = wifiAccessPointsResponse.getJSONObject(0);
-      assertEquals("94:b4:0f:ff:88:31", wifi0.get("macAddress"));
-      assertEquals(-61, wifi0.get("signalStrength"));
-      assertEquals(49, wifi0.get("signalToNoiseRatio"));
-      assertEquals(40, wifi0.get("channel"));
-      assertEquals(0, wifi0.get("age"));
-      JSONObject wifi1 = wifiAccessPointsResponse.getJSONObject(1);
-      assertEquals("94:b4:0f:ff:88:30", wifi1.get("macAddress"));
-      assertEquals(-64, wifi1.get("signalStrength"));
-      assertEquals(46, wifi1.get("signalToNoiseRatio"));
-      assertEquals(40, wifi1.get("channel"));
-      assertEquals(0, wifi1.get("age"));
-      assertEquals("accuracy", 25.0, result.accuracy, 0.00001);
-      assertEquals("lat", 37.3990122, result.location.lat, 0.00001);
-      assertEquals("lng", -122.0583656, result.location.lng, 0.00001);
-    }
-  }
+	return result;
+}
 
   @Test
   public void testMinimumCellTowerGeolocation() throws Exception {
