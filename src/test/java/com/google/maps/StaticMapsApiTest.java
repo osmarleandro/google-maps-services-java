@@ -126,16 +126,7 @@ public class StaticMapsApiTest {
   @Test
   public void testValidateRequest_noCenterAndNoZoomWithMarkers() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-
-      Markers markers = new Markers();
-      markers.size(MarkersSize.small);
-      markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
-      markers.color("blue");
-      markers.label("A");
-      markers.addLocation("Melbourne");
-      markers.addLocation(SYDNEY);
-      req.markers(markers);
+      StaticMapsRequest req = extracted(sc);
       req.await();
     }
   }
@@ -169,15 +160,7 @@ public class StaticMapsApiTest {
   @Test
   public void testMarkerAndPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      Markers markers = new Markers();
-      markers.size(MarkersSize.small);
-      markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
-      markers.color("blue");
-      markers.label("A");
-      markers.addLocation("Melbourne");
-      markers.addLocation(SYDNEY);
-      req.markers(markers);
+      StaticMapsRequest req = extracted(sc);
 
       Path path = new Path();
       path.color("green");
@@ -202,15 +185,7 @@ public class StaticMapsApiTest {
   @Test
   public void testMarkerAndPathAsEncodedPolyline() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      Markers markers = new Markers();
-      markers.size(MarkersSize.small);
-      markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
-      markers.color("blue");
-      markers.label("A");
-      markers.addLocation("Melbourne");
-      markers.addLocation(SYDNEY);
-      req.markers(markers);
+      StaticMapsRequest req = extracted(sc);
 
       List<LatLng> points = new ArrayList<>();
       points.add(MELBOURNE);
@@ -226,6 +201,19 @@ public class StaticMapsApiTest {
       sc.assertParamValue("enc:" + MELBOURNE_TO_SYDNEY_ENCODED_POLYLINE, "path");
     }
   }
+
+private StaticMapsRequest extracted(LocalTestServerContext sc) {
+	StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
+      Markers markers = new Markers();
+      markers.size(MarkersSize.small);
+      markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
+      markers.color("blue");
+      markers.label("A");
+      markers.addLocation("Melbourne");
+      markers.addLocation(SYDNEY);
+      req.markers(markers);
+	return req;
+}
 
   @Test
   public void testBrooklynBridgeNYMarkers() throws Exception {
