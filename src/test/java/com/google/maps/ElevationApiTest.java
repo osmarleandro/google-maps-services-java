@@ -19,12 +19,15 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LatLngAssert;
+
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
@@ -262,8 +265,7 @@ public class ElevationApiTest {
   @Test
   public void testDirectionsAlongPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(directionsAlongPath)) {
-      ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
-      assertEquals(100, elevation.length);
+      ElevationResult[] elevation = extracted(sc);
 
       List<LatLng> overviewPolylinePath = SYD_MELB_ROUTE.decodePath();
       LatLng lastDirectionsPoint = overviewPolylinePath.get(overviewPolylinePath.size() - 1);
@@ -275,4 +277,10 @@ public class ElevationApiTest {
       sc.assertParamValue("enc:" + SYD_MELB_ROUTE.getEncodedPath(), "path");
     }
   }
+
+private ElevationResult[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	ElevationResult[] elevation = ElevationApi.getByPath(sc.context, 100, SYD_MELB_ROUTE).await();
+      assertEquals(100, elevation.length);
+	return elevation;
+}
 }
