@@ -69,7 +69,11 @@ public class PolylineEncoding {
     long lastLat = 0;
     long lastLng = 0;
 
-    final StringBuilder result = new StringBuilder();
+    return extracted(path, lastLat, lastLng);
+  }
+
+private static String extracted(final List<LatLng> path, long lastLat, long lastLng) {
+	final StringBuilder result = new StringBuilder();
 
     for (final LatLng point : path) {
       long lat = Math.round(point.lat * 1e5);
@@ -85,7 +89,7 @@ public class PolylineEncoding {
       lastLng = lng;
     }
     return result.toString();
-  }
+}
 
   private static void encode(long v, StringBuilder result) {
     v = v < 0 ? ~(v << 1) : v << 1;
