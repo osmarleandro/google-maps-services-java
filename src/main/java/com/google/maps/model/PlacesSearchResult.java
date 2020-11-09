@@ -82,8 +82,7 @@ public class PlacesSearchResult implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[PlacesSearchResult: ");
-    sb.append("\"").append(name).append("\"");
+    StringBuilder sb = extracted();
     sb.append(", \"").append(formattedAddress).append("\"");
     sb.append(", geometry=").append(geometry);
     sb.append(", placeId=").append(placeId);
@@ -115,4 +114,10 @@ public class PlacesSearchResult implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[PlacesSearchResult: ");
+    sb.append("\"").append(name).append("\"");
+	return sb;
+}
 }
