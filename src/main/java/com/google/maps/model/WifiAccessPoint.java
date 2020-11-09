@@ -63,7 +63,12 @@ public class WifiAccessPoint implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("[WifiAccessPoint:");
-    if (macAddress != null) {
+    extracted(sb);
+    return sb.toString();
+  }
+
+private void extracted(StringBuilder sb) {
+	if (macAddress != null) {
       sb.append(" macAddress=").append(macAddress);
     }
     if (signalStrength != null) {
@@ -79,8 +84,7 @@ public class WifiAccessPoint implements Serializable {
       sb.append(" signalToNoiseRatio=").append(signalToNoiseRatio);
     }
     sb.append("]");
-    return sb.toString();
-  }
+}
 
   public static class WifiAccessPointBuilder {
     private String _macAddress = null;
