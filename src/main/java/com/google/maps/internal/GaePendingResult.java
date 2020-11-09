@@ -148,14 +148,20 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
   private T parseResponse(GaePendingResult<T, R> request, HTTPResponse response)
       throws IOException, ApiException, InterruptedException {
     try {
-      T result = parseResponseInternal(request, response);
-      metrics.endRequest(null, response.getResponseCode(), retryCounter);
+      T result = extracted(request, response);
       return result;
     } catch (Exception e) {
       metrics.endRequest(e, response.getResponseCode(), retryCounter);
       throw e;
     }
   }
+
+private T extracted(GaePendingResult<T, R> request, HTTPResponse response)
+		throws IOException, ApiException, InterruptedException {
+	T result = parseResponseInternal(request, response);
+      metrics.endRequest(null, response.getResponseCode(), retryCounter);
+	return result;
+}
 
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(GaePendingResult<T, R> request, HTTPResponse response)
