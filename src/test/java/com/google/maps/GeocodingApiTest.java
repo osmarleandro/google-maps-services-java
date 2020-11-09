@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -907,7 +910,15 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      String address = "1600 Amphitheatre Parkway, Mountain View, CA";
+      String address = extracted(sc);
+
+      sc.assertParamValue(address, "address");
+      sc.assertParamValue("true", "new_forward_geocoder");
+    }
+  }
+
+private String extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	String address = "1600 Amphitheatre Parkway, Mountain View, CA";
       GeocodingResult[] results =
           GeocodingApi.newRequest(sc.context)
               .address(address)
@@ -918,11 +929,8 @@ public class GeocodingApiTest {
       assertEquals(
           "Google Bldg 41, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
           results[0].formattedAddress);
-
-      sc.assertParamValue(address, "address");
-      sc.assertParamValue("true", "new_forward_geocoder");
-    }
-  }
+	return address;
+}
 
   /** Testing Kita Ward reverse geocode. */
   @Test
