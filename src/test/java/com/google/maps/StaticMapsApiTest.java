@@ -69,8 +69,7 @@ public class StaticMapsApiTest {
   public void testGetSydneyLatLngStaticMap() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center(SYDNEY);
+      StaticMapsRequest req = extracted(sc);
       req.zoom(16);
       req.await();
 
@@ -79,6 +78,12 @@ public class StaticMapsApiTest {
       sc.assertParamValue("16", "zoom");
     }
   }
+
+private StaticMapsRequest extracted(LocalTestServerContext sc) {
+	StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
+      req.center(SYDNEY);
+	return req;
+}
 
   @Test
   public void testRequest() throws Exception {
