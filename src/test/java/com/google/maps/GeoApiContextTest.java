@@ -149,8 +149,7 @@ public class GeoApiContextTest {
   }
 
   private MockResponse createMockGoodResponse() {
-    MockResponse response = new MockResponse();
-    response.setResponseCode(200);
+    MockResponse response = extracted();
     response.setBody(
         "{\n"
             + "   \"results\" : [\n"
@@ -189,6 +188,12 @@ public class GeoApiContextTest {
 
     return response;
   }
+
+private MockResponse extracted() {
+	MockResponse response = new MockResponse();
+    response.setResponseCode(200);
+	return response;
+}
 
   private MockResponse createMockBadResponse() {
     MockResponse response = new MockResponse();
@@ -252,8 +257,7 @@ public class GeoApiContextTest {
     // This test is important for APIs (such as the speed limits API) where multiple parameters
     // must be provided with the same name with order preserved.
 
-    MockResponse response = new MockResponse();
-    response.setResponseCode(200);
+    MockResponse response = extracted();
     response.setBody("{}");
 
     server.enqueue(response);
