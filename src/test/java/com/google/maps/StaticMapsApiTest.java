@@ -84,8 +84,7 @@ public class StaticMapsApiTest {
   public void testRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
 
-      StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      req.center("Sydney");
+      StaticMapsRequest req = extracted(sc);
       req.zoom(16);
       req.scale(2);
       req.format(ImageFormat.png32);
@@ -104,6 +103,12 @@ public class StaticMapsApiTest {
       sc.assertParamValue("Melbourne", "visible");
     }
   }
+
+private StaticMapsRequest extracted(LocalTestServerContext sc) {
+	StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
+      req.center("Sydney");
+	return req;
+}
 
   @Test(expected = IllegalArgumentException.class)
   public void testValidateRequest_noCenter() throws Exception {
