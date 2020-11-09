@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -762,10 +766,7 @@ public class PlacesApiTest {
   @Test
   public void testPlaceDetailsInFrench() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiDetailsInFrench)) {
-      PlaceDetails details =
-          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
-
-      sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
+      PlaceDetails details = extracted(sc);
       sc.assertParamValue("fr", "language");
 
       assertNotNull(details.toString());
@@ -775,6 +776,15 @@ public class PlacesApiTest {
       assertEquals("Sacré-Cœur", details.name);
     }
   }
+
+private PlaceDetails extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	PlaceDetails details =
+          PlacesApi.placeDetails(sc.context, "ChIJ442GNENu5kcRGYUrvgqHw88").language("fr").await();
+
+      sc.assertParamValue("ChIJ442GNENu5kcRGYUrvgqHw88", "placeid");
+	return details;
+}
 
   @Test
   public void testNearbySearchRequestByKeyword() throws Exception {
