@@ -95,14 +95,19 @@ public class GeolocationApiRequest
   }
 
   public GeolocationApiRequest CreatePayload() {
-    if (this.payload == null) {
+    Gson gson = extracted();
+    String jsonPayload = gson.toJson(this.payload);
+    return param("_payload", jsonPayload);
+  }
+
+private Gson extracted() {
+	if (this.payload == null) {
       // if the payload has not been set, create it
       this.payload = this.builder.createGeolocationPayload();
     } else {
       // use the payload that has been explicitly set by the Payload method above
     }
     Gson gson = new Gson();
-    String jsonPayload = gson.toJson(this.payload);
-    return param("_payload", jsonPayload);
-  }
+	return gson;
+}
 }
