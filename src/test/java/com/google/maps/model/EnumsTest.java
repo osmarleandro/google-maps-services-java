@@ -34,12 +34,16 @@ import org.junit.experimental.categories.Category;
 public class EnumsTest {
   @Test
   public void testUnknown() throws Exception {
-    assertNotNull(AddressComponentType.UNKNOWN); // Does not implement UrlValue.
-
-    assertCannotGetUrlValue(AddressType.UNKNOWN);
+    extracted();
     assertCannotGetUrlValue(LocationType.UNKNOWN);
     assertCannotGetUrlValue(TravelMode.UNKNOWN);
   }
+
+private void extracted() {
+	assertNotNull(AddressComponentType.UNKNOWN); // Does not implement UrlValue.
+
+    assertCannotGetUrlValue(AddressType.UNKNOWN);
+}
 
   @Test
   public void testCanonicalLiteralsForAddressType() {
