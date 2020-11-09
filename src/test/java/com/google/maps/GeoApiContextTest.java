@@ -191,8 +191,7 @@ public class GeoApiContextTest {
   }
 
   private MockResponse createMockBadResponse() {
-    MockResponse response = new MockResponse();
-    response.setStatus("HTTP/1.1 500 Internal server error");
+    MockResponse response = extracted();
     response.setBody("Uh-oh. Server Error.");
 
     return response;
@@ -200,9 +199,7 @@ public class GeoApiContextTest {
 
   @Test(expected = IOException.class)
   public void testRetryCanBeDisabled() throws Exception {
-    // Set up 2 mock responses, an error that shouldn't be retried and a success
-    MockResponse errorResponse = new MockResponse();
-    errorResponse.setStatus("HTTP/1.1 500 Internal server error");
+    MockResponse errorResponse = extracted();
     errorResponse.setBody("Uh-oh. Server Error.");
     server.enqueue(errorResponse);
 
@@ -223,8 +220,7 @@ public class GeoApiContextTest {
 
   @Test
   public void testRetryEventuallyReturnsTheRightException() throws Exception {
-    MockResponse errorResponse = new MockResponse();
-    errorResponse.setStatus("HTTP/1.1 500 Internal server error");
+    MockResponse errorResponse = extracted();
     errorResponse.setBody("Uh-oh. Server Error.");
 
     // Enqueue some error responses.
@@ -246,6 +242,12 @@ public class GeoApiContextTest {
     }
     fail("Internal server error was expected but not observed.");
   }
+
+private MockResponse extracted() {
+	MockResponse errorResponse = new MockResponse();
+    errorResponse.setStatus("HTTP/1.1 500 Internal server error");
+	return errorResponse;
+}
 
   @Test
   public void testQueryParamsHaveOrderPreserved() throws Exception {
