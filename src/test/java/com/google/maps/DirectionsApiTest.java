@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,8 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -57,10 +60,7 @@ public class DirectionsApiTest {
   @Test
   public void testGetDirections() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(getDirectionsResponse)) {
-      DirectionsResult result =
-          DirectionsApi.getDirections(sc.context, "Sydney, AU", "Melbourne, AU").await();
-
-      assertNotNull(result);
+      DirectionsResult result = extracted(sc);
       assertNotNull(result.toString(), "result.toString() succeeded");
       assertNotNull(result.geocodedWaypoints);
       assertNotNull(Arrays.toString(result.geocodedWaypoints));
@@ -81,6 +81,14 @@ public class DirectionsApiTest {
       sc.assertParamValue("Melbourne, AU", "destination");
     }
   }
+
+private DirectionsResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	DirectionsResult result =
+          DirectionsApi.getDirections(sc.context, "Sydney, AU", "Melbourne, AU").await();
+
+      assertNotNull(result);
+	return result;
+}
 
   @Test
   public void testBuilder() throws Exception {
