@@ -20,12 +20,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
@@ -111,7 +115,18 @@ public class DistanceMatrixApiTest {
   @Test
   public void testNewRequestWithAllPossibleParams() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      String[] origins =
+      String[] destinations = extracted(sc);
+      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
+      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
+      sc.assertParamValue("en-AU", "language");
+      sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue(), "avoid");
+      sc.assertParamValue(Unit.IMPERIAL.toUrlValue(), "units");
+    }
+  }
+
+private String[] extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	String[] origins =
           new String[] {
             "Perth, Australia", "Sydney, Australia", "Melbourne, Australia",
             "Adelaide, Australia", "Brisbane, Australia", "Darwin, Australia",
@@ -138,13 +153,8 @@ public class DistanceMatrixApiTest {
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.DRIVING.toUrlValue(), "mode");
-      sc.assertParamValue("en-AU", "language");
-      sc.assertParamValue(RouteRestriction.TOLLS.toUrlValue(), "avoid");
-      sc.assertParamValue(Unit.IMPERIAL.toUrlValue(), "units");
-    }
-  }
+	return destinations;
+}
 
   /**
    * Test the language parameter.
