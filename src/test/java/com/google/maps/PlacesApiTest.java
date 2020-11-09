@@ -48,6 +48,7 @@ import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -606,7 +607,14 @@ public class PlacesApiTest {
   public void testPhotoRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("")) {
       final String photoReference = "Photo Reference";
-      final int width = 200;
+      final int height = extracted(sc, photoReference);
+      sc.assertParamValue(String.valueOf(height), "maxheight");
+    }
+  }
+
+private int extracted(LocalTestServerContext sc, final String photoReference)
+		throws URISyntaxException, InterruptedException {
+	final int width = 200;
       final int height = 100;
 
       PlacesApi.photo(sc.context, photoReference)
@@ -616,9 +624,8 @@ public class PlacesApiTest {
 
       sc.assertParamValue(photoReference, "photoreference");
       sc.assertParamValue(String.valueOf(width), "maxwidth");
-      sc.assertParamValue(String.valueOf(height), "maxheight");
-    }
-  }
+	return height;
+}
 
   @Test
   public void testNearbySearchRequest() throws Exception {
