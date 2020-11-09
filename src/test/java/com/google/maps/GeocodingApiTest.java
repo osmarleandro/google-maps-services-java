@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -322,13 +325,7 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context)
-              .address("Winnetka")
-              .bounds(new LatLng(34.172684, -118.604794), new LatLng(34.236144, -118.500938))
-              .await();
-
-      assertNotNull(Arrays.toString(results));
+      GeocodingResult[] results = extracted(sc);
 
       assertEquals("Winnetka, Los Angeles, CA, USA", results[0].formattedAddress);
       assertEquals("ChIJ0fd4S_KbwoAR2hRDrsr3HmQ", results[0].placeId);
@@ -337,6 +334,17 @@ public class GeocodingApiTest {
       sc.assertParamValue("34.17268400,-118.60479400|34.23614400,-118.50093800", "bounds");
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results =
+          GeocodingApi.newRequest(sc.context)
+              .address("Winnetka")
+              .bounds(new LatLng(34.172684, -118.604794), new LatLng(34.236144, -118.500938))
+              .await();
+
+      assertNotNull(Arrays.toString(results));
+	return results;
+}
 
   /**
    * Geocode with region biasing: <a
