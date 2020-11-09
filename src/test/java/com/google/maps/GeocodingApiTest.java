@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -237,9 +240,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       String address = "1600 Amphitheatre Parkway, Mountain View, CA";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address(address).await();
-
-      assertNotNull(results);
+      GeocodingResult[] results = extracted(sc, address);
       assertNotNull(Arrays.toString(results));
       assertEquals(
           "Google Bldg 41, 1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
@@ -1024,9 +1025,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       String address = "Noah's Marketplace, 21800 W Eleven Mile Rd";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address(address).await();
-
-      assertNotNull(results);
+      GeocodingResult[] results = extracted(sc, address);
       assertNotNull(Arrays.toString(results));
       assertEquals(AddressType.ESTABLISHMENT, results[0].types[0]);
       assertEquals(AddressType.FOOD, results[0].types[1]);
@@ -1037,6 +1036,14 @@ public class GeocodingApiTest {
       sc.assertParamValue(address, "address");
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc, String address)
+		throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address(address).await();
+
+      assertNotNull(results);
+	return results;
+}
 
   /** Testing supported Address Types for Geocoding - Synagogue. */
   @Test
@@ -1109,9 +1116,7 @@ public class GeocodingApiTest {
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
       String address = "Ahavas Olam, 15620 W. Ten Mile Road";
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).address(address).await();
-
-      assertNotNull(results);
+      GeocodingResult[] results = extracted(sc, address);
       assertNotNull(Arrays.toString(results));
       assertEquals(AddressType.ESTABLISHMENT, results[0].types[0]);
       assertEquals(AddressType.PLACE_OF_WORSHIP, results[0].types[1]);
