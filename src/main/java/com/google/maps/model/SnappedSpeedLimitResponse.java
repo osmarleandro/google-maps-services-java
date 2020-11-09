@@ -31,13 +31,17 @@ public class SnappedSpeedLimitResponse implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("[SnappedSpeedLimitResponse:");
-    if (speedLimits != null && speedLimits.length > 0) {
+    extracted(sb);
+    return sb.toString();
+  }
+
+private void extracted(StringBuilder sb) {
+	if (speedLimits != null && speedLimits.length > 0) {
       sb.append(" ").append(speedLimits.length).append(" speedLimits");
     }
     if (snappedPoints != null && snappedPoints.length > 0) {
       sb.append(" ").append(snappedPoints.length).append(" speedLimits");
     }
     sb.append("]");
-    return sb.toString();
-  }
+}
 }
