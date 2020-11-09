@@ -138,11 +138,15 @@ public final class Stopwatch {
    * @throws IllegalStateException if the stopwatch is already running.
    */
   public Stopwatch start() {
-    checkState(!isRunning, "This stopwatch is already running.");
-    isRunning = true;
+    extracted();
     startTick = ticker.read();
     return this;
   }
+
+private void extracted() {
+	checkState(!isRunning, "This stopwatch is already running.");
+    isRunning = true;
+}
 
   /**
    * Stops the stopwatch. Future reads will return the fixed duration that had elapsed up to this
