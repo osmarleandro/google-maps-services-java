@@ -20,12 +20,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
@@ -177,7 +181,15 @@ public class DistanceMatrixApiTest {
   @Test
   public void testTransitWithoutSpecifyingTime() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      String[] origins =
+      String[] destinations = extracted(sc);
+      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
+      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+    }
+  }
+
+private String[] extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	String[] origins =
           new String[] {"Fisherman's Wharf, San Francisco", "Union Square, San Francisco"};
       String[] destinations =
           new String[] {"Mikkeller Bar, San Francisco", "Moscone Center, San Francisco"};
@@ -188,10 +200,8 @@ public class DistanceMatrixApiTest {
           .await();
 
       sc.assertParamValue(StringUtils.join(origins, "|"), "origins");
-      sc.assertParamValue(StringUtils.join(destinations, "|"), "destinations");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
-    }
-  }
+	return destinations;
+}
 
   /** Test duration in traffic with traffic model set. */
   @Test
