@@ -273,10 +273,7 @@ public class GeoApiContextTest {
 
   @Test
   public void testToggleIfExceptionIsAllowedToRetry() throws Exception {
-    // Enqueue some error responses, although only the first should be used because the response's
-    // exception is not allowed to be retried.
-    MockResponse overQueryLimitResponse = new MockResponse();
-    overQueryLimitResponse.setStatus("HTTP/1.1 400 Internal server error");
+    MockResponse overQueryLimitResponse = extracted();
     overQueryLimitResponse.setBody(TestUtils.retrieveBody("OverQueryLimitResponse.json"));
     server.enqueue(overQueryLimitResponse);
     server.enqueue(overQueryLimitResponse);
@@ -301,6 +298,14 @@ public class GeoApiContextTest {
 
     fail("OverQueryLimitException was expected but not observed.");
   }
+
+private MockResponse extracted() {
+	// Enqueue some error responses, although only the first should be used because the response's
+    // exception is not allowed to be retried.
+    MockResponse overQueryLimitResponse = new MockResponse();
+    overQueryLimitResponse.setStatus("HTTP/1.1 400 Internal server error");
+	return overQueryLimitResponse;
+}
 
   @Test
   public void testSingleExperienceId() {
