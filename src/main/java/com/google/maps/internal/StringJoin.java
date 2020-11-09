@@ -64,10 +64,14 @@ public class StringJoin {
   public static String join(char delim, UrlValue... parts) {
     String[] strings = new String[parts.length];
     int i = 0;
-    for (UrlValue part : parts) {
+    return extracted(delim, strings, i, parts);
+  }
+
+private static String extracted(char delim, String[] strings, int i, UrlValue... parts) {
+	for (UrlValue part : parts) {
       strings[i++] = part.toUrlValue();
     }
 
     return join(delim, strings);
-  }
+}
 }
