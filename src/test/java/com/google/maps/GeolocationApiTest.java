@@ -175,11 +175,7 @@ public class GeolocationApiTest {
   @Test
   public void testAlternateWifiSetterGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      WifiAccessPoint[] wifiAccessPoints = new WifiAccessPoint[2];
-      wifiAccessPoints[0] =
-          new WifiAccessPoint.WifiAccessPointBuilder()
-              .MacAddress("94:b4:0f:ff:6b:11")
-              .createWifiAccessPoint();
+      WifiAccessPoint[] wifiAccessPoints = extracted();
       wifiAccessPoints[1] =
           new WifiAccessPoint.WifiAccessPointBuilder()
               .MacAddress("94:b4:0f:ff:6b:10")
@@ -206,6 +202,15 @@ public class GeolocationApiTest {
       assertEquals("lng", -122.0585196, result.location.lng, 0.001);
     }
   }
+
+private WifiAccessPoint[] extracted() {
+	WifiAccessPoint[] wifiAccessPoints = new WifiAccessPoint[2];
+      wifiAccessPoints[0] =
+          new WifiAccessPoint.WifiAccessPointBuilder()
+              .MacAddress("94:b4:0f:ff:6b:11")
+              .createWifiAccessPoint();
+	return wifiAccessPoints;
+}
 
   @Test
   public void testMaximumWifiGeolocation() throws Exception {
