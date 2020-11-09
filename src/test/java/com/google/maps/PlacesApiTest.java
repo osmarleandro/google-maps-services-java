@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -655,15 +658,20 @@ public class PlacesApiTest {
   @SuppressWarnings("deprecation") // Testing a deprecated method
   public void testNearbySearchRequestWithMultipleType() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .type(PlaceType.AIRPORT, PlaceType.BANK)
-          .await();
+      LatLng location = extracted(sc);
 
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue(PlaceType.AIRPORT.toString() + "|" + PlaceType.BANK.toString(), "type");
     }
   }
+
+private LatLng extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	LatLng location = new LatLng(10, 20);
+      PlacesApi.nearbySearchQuery(sc.context, location)
+          .type(PlaceType.AIRPORT, PlaceType.BANK)
+          .await();
+	return location;
+}
 
   @Test(expected = IllegalArgumentException.class)
   public void testNearbySearchRadiusAndRankbyDistance() throws Exception {
