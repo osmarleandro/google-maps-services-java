@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,9 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -230,17 +234,22 @@ public class DirectionsApiTest {
   public void testBostonToConcordViaCharlestownAndLexington() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsApi.newRequest(sc.context)
+      extracted(sc);
+      sc.assertParamValue("Concord,MA", "destination");
+      sc.assertParamValue("Charlestown,MA|Lexington,MA", "waypoints");
+    }
+  }
+
+private void extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	DirectionsApi.newRequest(sc.context)
           .origin("Boston,MA")
           .destination("Concord,MA")
           .waypoints("Charlestown,MA", "Lexington,MA")
           .await();
 
       sc.assertParamValue("Boston,MA", "origin");
-      sc.assertParamValue("Concord,MA", "destination");
-      sc.assertParamValue("Charlestown,MA|Lexington,MA", "waypoints");
-    }
-  }
+}
 
   /**
    * Boston to Concord, via Charlestown and Lexington, using non-stopover waypoints.
