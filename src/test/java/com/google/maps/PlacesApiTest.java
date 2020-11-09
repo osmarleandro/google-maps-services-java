@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -917,22 +921,7 @@ public class PlacesApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(findPlaceFromTextMuseumOfContemporaryArt)) {
 
-      String input = "Museum of Contemporary Art Australia";
-
-      FindPlaceFromText response =
-          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
-              .fields(
-                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
-                  FindPlaceFromTextRequest.FieldMask.PHOTOS,
-                  FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
-                  FindPlaceFromTextRequest.FieldMask.NAME,
-                  FindPlaceFromTextRequest.FieldMask.RATING,
-                  FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
-                  FindPlaceFromTextRequest.FieldMask.GEOMETRY)
-              .locationBias(new LocationBiasIP())
-              .await();
-
-      sc.assertParamValue(input, "input");
+      FindPlaceFromText response = extracted(sc);
       sc.assertParamValue("textquery", "inputtype");
       sc.assertParamValue(
           "business_status,photos,formatted_address,name,rating,opening_hours,geometry", "fields");
@@ -956,6 +945,27 @@ public class PlacesApiTest {
       assertEquals(4.4, candidate.rating, 0.01);
     }
   }
+
+private FindPlaceFromText extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	String input = "Museum of Contemporary Art Australia";
+
+      FindPlaceFromText response =
+          PlacesApi.findPlaceFromText(sc.context, input, InputType.TEXT_QUERY)
+              .fields(
+                  FindPlaceFromTextRequest.FieldMask.BUSINESS_STATUS,
+                  FindPlaceFromTextRequest.FieldMask.PHOTOS,
+                  FindPlaceFromTextRequest.FieldMask.FORMATTED_ADDRESS,
+                  FindPlaceFromTextRequest.FieldMask.NAME,
+                  FindPlaceFromTextRequest.FieldMask.RATING,
+                  FindPlaceFromTextRequest.FieldMask.OPENING_HOURS,
+                  FindPlaceFromTextRequest.FieldMask.GEOMETRY)
+              .locationBias(new LocationBiasIP())
+              .await();
+
+      sc.assertParamValue(input, "input");
+	return response;
+}
 
   @Test
   public void testFindPlaceFromTextPoint() throws Exception {
