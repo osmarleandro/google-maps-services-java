@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -135,9 +138,7 @@ public class GeocodingApiTest {
   public void testReverseGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(reverseGeocodeResponse)) {
       LatLng latlng = new LatLng(-33.8674869, 151.2069902);
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
-
-      assertEquals(10, results.length);
+      GeocodingResult[] results = extracted(sc, latlng);
       assertEquals("343 George St, Sydney NSW 2000, Australia", results[0].formattedAddress);
       assertEquals(
           "York St Near Barrack St, Sydney NSW 2017, Australia", results[1].formattedAddress);
@@ -146,6 +147,14 @@ public class GeocodingApiTest {
       sc.assertParamValue(latlng.toUrlValue(), "latlng");
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc, LatLng latlng)
+		throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
+
+      assertEquals(10, results.length);
+	return results;
+}
 
   /**
    * Simple geocode sample: <a
