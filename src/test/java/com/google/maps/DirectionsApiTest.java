@@ -576,8 +576,7 @@ public class DirectionsApiTest {
 
   /** Coordinates in Mexico City. */
   private List<LatLng> getOptimizationWaypoints() {
-    List<LatLng> waypoints = new ArrayList<>();
-    waypoints.add(new LatLng(19.431676, -99.133999));
+    List<LatLng> waypoints = extracted();
     waypoints.add(new LatLng(19.427915, -99.138939));
     waypoints.add(new LatLng(19.435436, -99.139145));
     waypoints.add(new LatLng(19.396436, -99.157176));
@@ -585,4 +584,10 @@ public class DirectionsApiTest {
     waypoints.add(new LatLng(19.425869, -99.160716));
     return waypoints;
   }
+
+private List<LatLng> extracted() {
+	List<LatLng> waypoints = new ArrayList<>();
+    waypoints.add(new LatLng(19.431676, -99.133999));
+	return waypoints;
+}
 }
