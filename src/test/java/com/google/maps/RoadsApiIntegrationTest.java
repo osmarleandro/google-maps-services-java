@@ -93,12 +93,17 @@ public class RoadsApiIntegrationTest {
       sc.assertParamValue(join('|', path), "path");
       assertEquals(7, speeds.length);
 
-      for (SpeedLimit speed : speeds) {
+      for (SpeedLimit speed : speeds)
+		extracted(speed);
+    }
+  }
+
+private void extracted(SpeedLimit speed) {
+	{
         assertNotNull(speed.placeId);
         assertEquals(40.0, speed.speedLimit, 0.001);
       }
-    }
-  }
+}
 
   @Test
   public void testSpeedLimitsWithUsaLatLngs() throws Exception {
