@@ -89,10 +89,15 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
     return new ThreadFactory() {
       @Override
       public Thread newThread(Runnable runnable) {
-        Thread result = new Thread(runnable, name);
-        result.setDaemon(daemon);
+        Thread result = extracted(name, daemon, runnable);
         return result;
       }
+
+	private Thread extracted(final String name, final boolean daemon, Runnable runnable) {
+		Thread result = new Thread(runnable, name);
+        result.setDaemon(daemon);
+		return result;
+	}
     };
   }
 
