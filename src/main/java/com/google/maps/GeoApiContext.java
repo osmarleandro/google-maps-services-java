@@ -195,7 +195,21 @@ public class GeoApiContext {
 
     StringBuilder query = new StringBuilder();
 
-    for (Map.Entry<String, List<String>> param : params.entrySet()) {
+    for (Map.Entry<String, List<String>> param : params.entrySet())
+		extracted(query, param);
+
+    return getWithPath(
+        clazz,
+        config.fieldNamingPolicy,
+        config.hostName,
+        config.path,
+        config.supportsClientId,
+        query.toString(),
+        requestMetricsReporter.newRequest(config.path));
+  }
+
+private void extracted(StringBuilder query, Map.Entry<String, List<String>> param) {
+	{
       List<String> values = param.getValue();
       for (String value : values) {
         query.append('&').append(param.getKey()).append("=");
@@ -207,16 +221,7 @@ public class GeoApiContext {
         }
       }
     }
-
-    return getWithPath(
-        clazz,
-        config.fieldNamingPolicy,
-        config.hostName,
-        config.path,
-        config.supportsClientId,
-        query.toString(),
-        requestMetricsReporter.newRequest(config.path));
-  }
+}
 
   <T, R extends ApiResponse<T>> PendingResult<T> get(
       ApiConfig config, Class<? extends R> clazz, String... params) {
