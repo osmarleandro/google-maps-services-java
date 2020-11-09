@@ -19,6 +19,9 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
@@ -298,19 +301,7 @@ public class GeolocationApiTest {
   public void testAlternatePayloadBuilderGeolocation() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(geolocationAlternatePayloadBuilder)) {
-      GeolocationPayload payload =
-          new GeolocationPayload.GeolocationPayloadBuilder()
-              .ConsiderIp(false)
-              .AddCellTower(
-                  new CellTower.CellTowerBuilder()
-                      .CellId(39627456)
-                      .LocationAreaCode(40495)
-                      .MobileCountryCode(310)
-                      .MobileNetworkCode(260)
-                      .createCellTower())
-              .createGeolocationPayload();
-
-      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+      GeolocationResult result = extracted(sc);
       assertNotNull(result.toString());
       JSONObject body = sc.requestBody();
       assertEquals(false, body.get("considerIp"));
@@ -324,6 +315,23 @@ public class GeolocationApiTest {
       assertEquals("lng", -122.07266190000001, result.location.lng, 0.00001);
     }
   }
+
+private GeolocationResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeolocationPayload payload =
+          new GeolocationPayload.GeolocationPayloadBuilder()
+              .ConsiderIp(false)
+              .AddCellTower(
+                  new CellTower.CellTowerBuilder()
+                      .CellId(39627456)
+                      .LocationAreaCode(40495)
+                      .MobileCountryCode(310)
+                      .MobileNetworkCode(260)
+                      .createCellTower())
+              .createGeolocationPayload();
+
+      GeolocationResult result = GeolocationApi.geolocate(sc.context, payload).await();
+	return result;
+}
 
   @Test
   public void testMaximumCellTowerGeolocation() throws Exception {
