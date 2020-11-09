@@ -41,10 +41,15 @@ public class Photo implements Serializable {
   @Override
   public String toString() {
     String str = String.format("[Photo %s (%d x %d)", photoReference, width, height);
-    if (htmlAttributions != null && htmlAttributions.length > 0) {
+    str = extracted(str);
+    return str;
+  }
+
+private String extracted(String str) {
+	if (htmlAttributions != null && htmlAttributions.length > 0) {
       str = str + " " + htmlAttributions.length + " attributions";
     }
     str = str + "]";
-    return str;
-  }
+	return str;
+}
 }
