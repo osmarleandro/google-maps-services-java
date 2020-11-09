@@ -45,8 +45,7 @@ public class PlacesSearchResponse implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[PlacesSearchResponse: ");
-    sb.append(results.length).append(" results");
+    StringBuilder sb = extracted();
     if (nextPageToken != null) {
       sb.append(", nextPageToken=").append(nextPageToken);
     }
@@ -56,4 +55,10 @@ public class PlacesSearchResponse implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[PlacesSearchResponse: ");
+    sb.append(results.length).append(" results");
+	return sb;
+}
 }
