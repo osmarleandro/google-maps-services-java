@@ -149,8 +149,7 @@ public class GeoApiContextTest {
   }
 
   private MockResponse createMockGoodResponse() {
-    MockResponse response = new MockResponse();
-    response.setResponseCode(200);
+    MockResponse response = extracted();
     response.setBody(
         "{\n"
             + "   \"results\" : [\n"
@@ -249,11 +248,7 @@ public class GeoApiContextTest {
 
   @Test
   public void testQueryParamsHaveOrderPreserved() throws Exception {
-    // This test is important for APIs (such as the speed limits API) where multiple parameters
-    // must be provided with the same name with order preserved.
-
-    MockResponse response = new MockResponse();
-    response.setResponseCode(200);
+    MockResponse response = extracted();
     response.setBody("{}");
 
     server.enqueue(response);
@@ -270,6 +265,15 @@ public class GeoApiContextTest {
     String path = request.getPath();
     assertTrue(path.contains("a=1&a=2&a=3"));
   }
+
+private MockResponse extracted() {
+	// This test is important for APIs (such as the speed limits API) where multiple parameters
+    // must be provided with the same name with order preserved.
+
+    MockResponse response = new MockResponse();
+    response.setResponseCode(200);
+	return response;
+}
 
   @Test
   public void testToggleIfExceptionIsAllowedToRetry() throws Exception {
