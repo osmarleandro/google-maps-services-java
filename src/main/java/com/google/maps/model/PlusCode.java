@@ -30,12 +30,17 @@ public class PlusCode implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[PlusCode: ");
-    sb.append(globalCode);
+    StringBuilder sb = extracted();
     if (compoundCode != null) {
       sb.append(", compoundCode=").append(compoundCode);
     }
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[PlusCode: ");
+    sb.append(globalCode);
+	return sb;
+}
 }
