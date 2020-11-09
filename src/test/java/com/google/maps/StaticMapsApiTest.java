@@ -144,8 +144,7 @@ public class StaticMapsApiTest {
   public void testValidateRequest_noCenterAndNoZoomWithPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      Path path = new Path();
-      path.color("green");
+      Path path = extracted();
       path.fillcolor("0xAACCEE");
       path.weight(3);
       path.geodesic(true);
@@ -155,6 +154,12 @@ public class StaticMapsApiTest {
       req.await();
     }
   }
+
+private Path extracted() {
+	Path path = new Path();
+      path.color("green");
+	return path;
+}
 
   @Test(expected = IllegalArgumentException.class)
   public void testValidateRequest_noSize() throws Exception {
