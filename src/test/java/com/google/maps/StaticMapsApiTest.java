@@ -128,8 +128,7 @@ public class StaticMapsApiTest {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
 
-      Markers markers = new Markers();
-      markers.size(MarkersSize.small);
+      Markers markers = extracted();
       markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
       markers.color("blue");
       markers.label("A");
@@ -139,6 +138,12 @@ public class StaticMapsApiTest {
       req.await();
     }
   }
+
+private Markers extracted() {
+	Markers markers = new Markers();
+      markers.size(MarkersSize.small);
+	return markers;
+}
 
   @Test
   public void testValidateRequest_noCenterAndNoZoomWithPath() throws Exception {
@@ -170,8 +175,7 @@ public class StaticMapsApiTest {
   public void testMarkerAndPath() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      Markers markers = new Markers();
-      markers.size(MarkersSize.small);
+      Markers markers = extracted();
       markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
       markers.color("blue");
       markers.label("A");
@@ -203,8 +207,7 @@ public class StaticMapsApiTest {
   public void testMarkerAndPathAsEncodedPolyline() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(IMAGE)) {
       StaticMapsRequest req = StaticMapsApi.newRequest(sc.context, new Size(WIDTH, HEIGHT));
-      Markers markers = new Markers();
-      markers.size(MarkersSize.small);
+      Markers markers = extracted();
       markers.customIcon("http://not.a/real/url", CustomIconAnchor.bottomleft, 2);
       markers.color("blue");
       markers.label("A");
