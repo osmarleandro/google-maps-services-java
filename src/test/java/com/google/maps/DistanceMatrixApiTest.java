@@ -20,12 +20,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixElementStatus;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
@@ -197,14 +200,7 @@ public class DistanceMatrixApiTest {
   @Test
   public void testDurationInTrafficWithTrafficModel() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
-      DistanceMatrixApi.newRequest(sc.context)
-          .origins("Fisherman's Wharf, San Francisco")
-          .destinations("San Francisco International Airport, San Francisco, CA")
-          .mode(TravelMode.DRIVING)
-          .trafficModel(TrafficModel.PESSIMISTIC)
-          .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
-          .await();
+      extracted(sc);
 
       sc.assertParamValue("Fisherman's Wharf, San Francisco", "origins");
       sc.assertParamValue("San Francisco International Airport, San Francisco, CA", "destinations");
@@ -212,4 +208,15 @@ public class DistanceMatrixApiTest {
       sc.assertParamValue(TrafficModel.PESSIMISTIC.toUrlValue(), "traffic_model");
     }
   }
+
+private void extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	final long ONE_HOUR_MILLIS = 60 * 60 * 1000;
+      DistanceMatrixApi.newRequest(sc.context)
+          .origins("Fisherman's Wharf, San Francisco")
+          .destinations("San Francisco International Airport, San Francisco, CA")
+          .mode(TravelMode.DRIVING)
+          .trafficModel(TrafficModel.PESSIMISTIC)
+          .departureTime(Instant.ofEpochMilli(System.currentTimeMillis() + ONE_HOUR_MILLIS))
+          .await();
+}
 }
