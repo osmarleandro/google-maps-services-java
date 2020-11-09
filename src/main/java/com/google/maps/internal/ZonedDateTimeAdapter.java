@@ -48,10 +48,8 @@ public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
    */
   @Override
   public ZonedDateTime read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     String timeZoneId = "";
     long secondsSinceEpoch = 0L;
@@ -73,6 +71,13 @@ public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
     return ZonedDateTime.ofInstant(
         Instant.ofEpochMilli(secondsSinceEpoch * 1000), ZoneId.of(timeZoneId));
   }
+
+private ZonedDateTime extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** This method is not implemented. */
   @Override
