@@ -64,10 +64,8 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
   @Override
   public GeolocationApi.Response read(JsonReader reader) throws IOException {
 
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
     GeolocationApi.Response response = new GeolocationApi.Response();
     LatLngAdapter latLngAdapter = new LatLngAdapter();
 
@@ -124,6 +122,13 @@ public class GeolocationResponseAdapter extends TypeAdapter<GeolocationApi.Respo
     reader.endObject();
     return response;
   }
+
+private GeolocationApi.Response extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** Not supported. */
   @Override
