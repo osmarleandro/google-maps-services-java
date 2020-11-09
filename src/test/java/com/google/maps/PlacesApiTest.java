@@ -47,6 +47,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -1034,8 +1036,7 @@ public class PlacesApiTest {
 
   @Test
   public void testPlaceDetailsWithBusinessStatus() throws Exception {
-    final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
-    final LocalTestServerContext server = new LocalTestServerContext(jsonString);
+    final LocalTestServerContext server = extracted();
     final PlaceDetails placeDetails = PlacesApi.placeDetails(server.context, "testPlaceId").await();
     assertNotNull(placeDetails);
     assertEquals("OPERATIONAL", placeDetails.businessStatus);
@@ -1043,11 +1044,16 @@ public class PlacesApiTest {
 
   @Test
   public void testPlaceDetailsRequestHasFieldMask() throws Exception {
-    final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
-    final LocalTestServerContext server = new LocalTestServerContext(jsonString);
+    final LocalTestServerContext server = extracted();
 
     PlacesApi.placeDetails(server.context, "testPlaceId").fields(FieldMask.BUSINESS_STATUS).await();
 
     server.assertParamValue("business_status", "fields");
   }
+
+private LocalTestServerContext extracted() throws IOException {
+	final String jsonString = retrieveBody("PlaceDetailsResponseWithBusinessStatus.json");
+    final LocalTestServerContext server = new LocalTestServerContext(jsonString);
+	return server;
+}
 }
