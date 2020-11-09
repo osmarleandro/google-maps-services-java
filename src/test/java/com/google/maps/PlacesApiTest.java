@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -377,13 +380,7 @@ public class PlacesApiTest {
   @Test
   public void testQueryAutocompleteRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
-      PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
-          .offset(10)
-          .location(location)
-          .radius(5000)
-          .language("en")
-          .await();
+      LatLng location = extracted(sc);
 
       sc.assertParamValue(QUERY_AUTOCOMPLETE_INPUT, "input");
       sc.assertParamValue("10", "offset");
@@ -392,6 +389,17 @@ public class PlacesApiTest {
       sc.assertParamValue("en", "language");
     }
   }
+
+private LatLng extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	LatLng location = new LatLng(10, 20);
+      PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT)
+          .offset(10)
+          .location(location)
+          .radius(5000)
+          .language("en")
+          .await();
+	return location;
+}
 
   @Test
   public void testQueryAutocompletePizzaNearPar() throws Exception {
