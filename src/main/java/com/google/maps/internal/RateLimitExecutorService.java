@@ -74,8 +74,7 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
   public void run() {
     try {
       while (!delegate.isShutdown()) {
-        this.rateLimiter.acquire();
-        Runnable r = queue.take();
+        Runnable r = extracted();
         if (!delegate.isShutdown()) {
           delegate.execute(r);
         }
@@ -84,6 +83,12 @@ public class RateLimitExecutorService implements ExecutorService, Runnable {
       LOG.info("Interrupted", ie);
     }
   }
+
+private Runnable extracted() throws InterruptedException {
+	this.rateLimiter.acquire();
+	Runnable r = queue.take();
+	return r;
+}
 
   private static ThreadFactory threadFactory(final String name, final boolean daemon) {
     return new ThreadFactory() {
