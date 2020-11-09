@@ -433,9 +433,7 @@ public abstract class RateLimiter {
       long end = System.nanoTime() + remainingNanos;
       while (true) {
         try {
-          // TimeUnit.sleep() treats negative timeouts just like zero.
-          NANOSECONDS.sleep(remainingNanos);
-          return;
+          extracted(remainingNanos);
         } catch (InterruptedException e) {
           interrupted = true;
           remainingNanos = end - System.nanoTime();
@@ -447,4 +445,9 @@ public abstract class RateLimiter {
       }
     }
   }
+
+private static void extracted(long remainingNanos) throws InterruptedException {
+	// TimeUnit.sleep() treats negative timeouts just like zero.
+	  NANOSECONDS.sleep(remainingNanos);
+}
 }
