@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -780,16 +784,22 @@ public class PlacesApiTest {
   public void testNearbySearchRequestByKeyword() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(placesApiNearbySearchRequestByKeyword)) {
-      PlacesSearchResponse response =
-          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
-
-      sc.assertParamValue("10000", "radius");
+      PlacesSearchResponse response = extracted(sc);
       sc.assertParamValue("pub", "keyword");
       sc.assertParamValue(SYDNEY.toUrlValue(), "location");
 
       assertEquals(20, response.results.length);
     }
   }
+
+private PlacesSearchResponse extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	PlacesSearchResponse response =
+          PlacesApi.nearbySearchQuery(sc.context, SYDNEY).radius(10000).keyword("pub").await();
+
+      sc.assertParamValue("10000", "radius");
+	return response;
+}
 
   @Test
   public void testNearbySearchRequestByName() throws Exception {
