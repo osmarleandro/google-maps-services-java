@@ -54,14 +54,19 @@ public class OpenCensusTest {
   }
 
   private MockResponse mockResponse(int code, String status, int delayMs) {
-    MockResponse response = new MockResponse();
-    response.setResponseCode(code);
+    MockResponse response = extracted(code);
     if (status != null) {
       response.setBody("{\"results\" : [{}], \"status\" : \"" + status + "\" }");
     }
     response.setBodyDelay(delayMs, TimeUnit.MILLISECONDS);
     return response;
   }
+
+private MockResponse extracted(int code) {
+	MockResponse response = new MockResponse();
+    response.setResponseCode(code);
+	return response;
+}
 
   private void sleep(int milliseconds) {
     try {
