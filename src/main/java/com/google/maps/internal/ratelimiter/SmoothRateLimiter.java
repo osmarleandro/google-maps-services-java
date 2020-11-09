@@ -362,8 +362,7 @@ abstract class SmoothRateLimiter extends RateLimiter {
 
   @Override
   final long reserveEarliestAvailable(int requiredPermits, long nowMicros) {
-    resync(nowMicros);
-    long returnValue = nextFreeTicketMicros;
+    long returnValue = extracted(nowMicros);
     double storedPermitsToSpend = min(requiredPermits, this.storedPermits);
     double freshPermits = requiredPermits - storedPermitsToSpend;
     long waitMicros =
@@ -374,6 +373,12 @@ abstract class SmoothRateLimiter extends RateLimiter {
     this.storedPermits -= storedPermitsToSpend;
     return returnValue;
   }
+
+private long extracted(long nowMicros) {
+	resync(nowMicros);
+    long returnValue = nextFreeTicketMicros;
+	return returnValue;
+}
 
   /**
    * Translates a specified portion of our currently stored permits which we want to spend/acquire,
