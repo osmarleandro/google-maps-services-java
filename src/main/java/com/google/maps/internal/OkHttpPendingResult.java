@@ -137,26 +137,8 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   @Override
   public T await() throws ApiException, IOException, InterruptedException {
     // Handle sleeping for retried requests
-    if (retryCounter > 0) {
-      // 0.5 * (1.5 ^ i) represents an increased sleep time of 1.5x per iteration,
-      // starting at 0.5s when i = 0. The retryCounter will be 1 for the 1st retry,
-      // so subtract 1 here.
-      double delaySecs = 0.5 * Math.pow(1.5, retryCounter - 1);
-
-      // Generate a jitter value between -delaySecs / 2 and +delaySecs / 2
-      long delayMillis = (long) (delaySecs * (Math.random() + 0.5) * 1000);
-
-      LOG.debug(
-          String.format(
-              "Sleeping between errors for %dms (retry #%d, already slept %dms)",
-              delayMillis, retryCounter, cumulativeSleepTime));
-      cumulativeSleepTime += delayMillis;
-      try {
-        Thread.sleep(delayMillis);
-      } catch (InterruptedException e) {
-        // No big deal if we don't sleep as long as intended.
-      }
-    }
+    if (retryCounter > 0)
+		extracted();
 
     final BlockingQueue<QueuedResponse> waiter = new ArrayBlockingQueue<>(1);
     final OkHttpPendingResult<T, R> parent = this;
@@ -186,6 +168,29 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       throw r.e;
     }
   }
+
+private void extracted() {
+	{
+      // 0.5 * (1.5 ^ i) represents an increased sleep time of 1.5x per iteration,
+      // starting at 0.5s when i = 0. The retryCounter will be 1 for the 1st retry,
+      // so subtract 1 here.
+      double delaySecs = 0.5 * Math.pow(1.5, retryCounter - 1);
+
+      // Generate a jitter value between -delaySecs / 2 and +delaySecs / 2
+      long delayMillis = (long) (delaySecs * (Math.random() + 0.5) * 1000);
+
+      LOG.debug(
+          String.format(
+              "Sleeping between errors for %dms (retry #%d, already slept %dms)",
+              delayMillis, retryCounter, cumulativeSleepTime));
+      cumulativeSleepTime += delayMillis;
+      try {
+        Thread.sleep(delayMillis);
+      } catch (InterruptedException e) {
+        // No big deal if we don't sleep as long as intended.
+      }
+    }
+}
 
   @Override
   public T awaitIgnoreError() {
