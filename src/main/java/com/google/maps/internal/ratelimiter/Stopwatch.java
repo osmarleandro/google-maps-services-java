@@ -204,7 +204,11 @@ public final class Stopwatch {
     if (HOURS.convert(nanos, NANOSECONDS) > 0) {
       return HOURS;
     }
-    if (MINUTES.convert(nanos, NANOSECONDS) > 0) {
+    return extracted(nanos);
+  }
+
+private static TimeUnit extracted(long nanos) {
+	if (MINUTES.convert(nanos, NANOSECONDS) > 0) {
       return MINUTES;
     }
     if (SECONDS.convert(nanos, NANOSECONDS) > 0) {
@@ -217,7 +221,7 @@ public final class Stopwatch {
       return MICROSECONDS;
     }
     return NANOSECONDS;
-  }
+}
 
   private static String abbreviate(TimeUnit unit) {
     switch (unit) {
