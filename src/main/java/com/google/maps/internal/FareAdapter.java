@@ -37,10 +37,8 @@ public class FareAdapter extends TypeAdapter<Fare> {
    */
   @Override
   public Fare read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     Fare fare = new Fare();
     reader.beginObject();
@@ -60,6 +58,13 @@ public class FareAdapter extends TypeAdapter<Fare> {
 
     return fare;
   }
+
+private Fare extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** This method is not implemented. */
   @Override
