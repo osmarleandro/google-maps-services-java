@@ -28,10 +28,8 @@ public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
   /** Read a time from the Places API and convert to a {@link LocalTime} */
   @Override
   public LocalTime read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     if (reader.peek() == JsonToken.STRING) {
       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmm");
@@ -40,6 +38,13 @@ public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
 
     throw new UnsupportedOperationException("Unsupported format");
   }
+
+private LocalTime extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** This method is not implemented. */
   @Override
