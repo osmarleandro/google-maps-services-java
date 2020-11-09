@@ -89,12 +89,18 @@ public class PolylineEncoding {
 
   private static void encode(long v, StringBuilder result) {
     v = v < 0 ? ~(v << 1) : v << 1;
-    while (v >= 0x20) {
+    while (v >= 0x20)
+		v = extracted(v, result);
+    result.append(Character.toChars((int) (v + 63)));
+  }
+
+private static long extracted(long v, StringBuilder result) {
+	{
       result.append(Character.toChars((int) ((0x20 | (v & 0x1f)) + 63)));
       v >>= 5;
     }
-    result.append(Character.toChars((int) (v + 63)));
-  }
+	return v;
+}
 
   /** Encodes an array of LatLngs into an encoded path string. */
   public static String encode(LatLng[] path) {
