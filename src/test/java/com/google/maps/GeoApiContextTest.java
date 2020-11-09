@@ -304,9 +304,7 @@ public class GeoApiContextTest {
 
   @Test
   public void testSingleExperienceId() {
-    final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
-    assertEquals(experienceId, context.getExperienceId());
+    final GeoApiContext context = extracted();
   }
 
   @Test
@@ -325,13 +323,18 @@ public class GeoApiContextTest {
 
   @Test
   public void testClearingExperienceId() {
-    final String experienceId = "experienceId";
-    final GeoApiContext context = builder.experienceId(experienceId).build();
-    assertEquals(experienceId, context.getExperienceId());
+    final GeoApiContext context = extracted();
 
     context.clearExperienceId();
     assertNull(context.getExperienceId());
   }
+
+private GeoApiContext extracted() {
+	final String experienceId = "experienceId";
+    final GeoApiContext context = builder.experienceId(experienceId).build();
+    assertEquals(experienceId, context.getExperienceId());
+	return context;
+}
 
   @Test
   public void testExperienceIdIsInHeader() throws Exception {
