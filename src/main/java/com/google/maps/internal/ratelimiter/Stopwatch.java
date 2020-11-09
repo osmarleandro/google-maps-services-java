@@ -152,12 +152,17 @@ public final class Stopwatch {
    * @throws IllegalStateException if the stopwatch is already stopped.
    */
   public Stopwatch stop() {
-    long tick = ticker.read();
-    checkState(isRunning, "This stopwatch is already stopped.");
+    long tick = extracted();
     isRunning = false;
     elapsedNanos += tick - startTick;
     return this;
   }
+
+private long extracted() {
+	long tick = ticker.read();
+    checkState(isRunning, "This stopwatch is already stopped.");
+	return tick;
+}
 
   /**
    * Sets the elapsed time for this stopwatch to zero, and places it in a stopped state.
