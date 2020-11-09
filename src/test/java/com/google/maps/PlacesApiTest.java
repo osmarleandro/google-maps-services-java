@@ -230,42 +230,7 @@ public class PlacesApiTest {
       assertNotNull(placeDetails.openingHours.periods);
       assertEquals(placeDetails.openingHours.periods.length, 5);
 
-      {
-        Period monday = placeDetails.openingHours.periods[0];
-        Period tuesday = placeDetails.openingHours.periods[1];
-        Period wednesday = placeDetails.openingHours.periods[2];
-        Period thursday = placeDetails.openingHours.periods[3];
-        Period friday = placeDetails.openingHours.periods[4];
-
-        assertEquals(DayOfWeek.MONDAY, monday.open.day);
-        LocalTime opening = LocalTime.of(8, 30);
-        LocalTime closing5pm = LocalTime.of(17, 0);
-        LocalTime closing530pm = LocalTime.of(17, 30);
-
-        assertEquals(opening, monday.open.time);
-        assertEquals(DayOfWeek.MONDAY, monday.close.day);
-        assertEquals(closing530pm, monday.close.time);
-
-        assertEquals(DayOfWeek.TUESDAY, tuesday.open.day);
-        assertEquals(opening, tuesday.open.time);
-        assertEquals(DayOfWeek.TUESDAY, tuesday.close.day);
-        assertEquals(closing530pm, tuesday.close.time);
-
-        assertEquals(DayOfWeek.WEDNESDAY, wednesday.open.day);
-        assertEquals(opening, wednesday.open.time);
-        assertEquals(DayOfWeek.WEDNESDAY, wednesday.close.day);
-        assertEquals(closing530pm, wednesday.close.time);
-
-        assertEquals(DayOfWeek.THURSDAY, thursday.open.day);
-        assertEquals(opening, thursday.open.time);
-        assertEquals(DayOfWeek.THURSDAY, thursday.close.day);
-        assertEquals(closing530pm, thursday.close.time);
-
-        assertEquals(DayOfWeek.FRIDAY, friday.open.day);
-        assertEquals(opening, friday.open.time);
-        assertEquals(DayOfWeek.FRIDAY, friday.close.day);
-        assertEquals(closing5pm, friday.close.time);
-      }
+      extracted(placeDetails);
 
       assertNotNull(placeDetails.openingHours.weekdayText);
       assertEquals(placeDetails.openingHours.weekdayText[0], "Monday: 8:30 am – 5:30 pm");
@@ -328,6 +293,45 @@ public class PlacesApiTest {
       assertFalse(placeDetails.permanentlyClosed);
     }
   }
+
+private void extracted(PlaceDetails placeDetails) {
+	{
+        Period monday = placeDetails.openingHours.periods[0];
+        Period tuesday = placeDetails.openingHours.periods[1];
+        Period wednesday = placeDetails.openingHours.periods[2];
+        Period thursday = placeDetails.openingHours.periods[3];
+        Period friday = placeDetails.openingHours.periods[4];
+
+        assertEquals(DayOfWeek.MONDAY, monday.open.day);
+        LocalTime opening = LocalTime.of(8, 30);
+        LocalTime closing5pm = LocalTime.of(17, 0);
+        LocalTime closing530pm = LocalTime.of(17, 30);
+
+        assertEquals(opening, monday.open.time);
+        assertEquals(DayOfWeek.MONDAY, monday.close.day);
+        assertEquals(closing530pm, monday.close.time);
+
+        assertEquals(DayOfWeek.TUESDAY, tuesday.open.day);
+        assertEquals(opening, tuesday.open.time);
+        assertEquals(DayOfWeek.TUESDAY, tuesday.close.day);
+        assertEquals(closing530pm, tuesday.close.time);
+
+        assertEquals(DayOfWeek.WEDNESDAY, wednesday.open.day);
+        assertEquals(opening, wednesday.open.time);
+        assertEquals(DayOfWeek.WEDNESDAY, wednesday.close.day);
+        assertEquals(closing530pm, wednesday.close.time);
+
+        assertEquals(DayOfWeek.THURSDAY, thursday.open.day);
+        assertEquals(opening, thursday.open.time);
+        assertEquals(DayOfWeek.THURSDAY, thursday.close.day);
+        assertEquals(closing530pm, thursday.close.time);
+
+        assertEquals(DayOfWeek.FRIDAY, friday.open.day);
+        assertEquals(opening, friday.open.time);
+        assertEquals(DayOfWeek.FRIDAY, friday.close.day);
+        assertEquals(closing5pm, friday.close.time);
+      }
+}
 
   @Test
   public void testPlaceDetailsLookupPermanentlyClosedPlace() throws Exception {
