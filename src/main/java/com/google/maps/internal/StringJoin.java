@@ -37,14 +37,19 @@ public class StringJoin {
 
   public static String join(CharSequence delim, String... parts) {
     StringBuilder result = new StringBuilder();
-    for (int i = 0; i < parts.length; i++) {
+    for (int i = 0; i < parts.length; i++)
+		extracted(delim, result, i, parts);
+    return result.toString();
+  }
+
+private static void extracted(CharSequence delim, StringBuilder result, int i, String... parts) {
+	{
       if (i != 0) {
         result.append(delim);
       }
       result.append(parts[i]);
     }
-    return result.toString();
-  }
+}
 
   public static String join(char delim, Object... parts) {
     return join(new String(new char[] {delim}), parts);
