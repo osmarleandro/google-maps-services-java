@@ -33,10 +33,8 @@ public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
 
   @Override
   public PriceLevel read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     if (reader.peek() == JsonToken.NUMBER) {
       int priceLevel = reader.nextInt();
@@ -57,6 +55,13 @@ public class PriceLevelAdapter extends TypeAdapter<PriceLevel> {
 
     return PriceLevel.UNKNOWN;
   }
+
+private PriceLevel extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** This method is not implemented. */
   @Override
