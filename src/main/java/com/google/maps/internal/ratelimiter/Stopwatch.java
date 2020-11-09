@@ -191,11 +191,15 @@ public final class Stopwatch {
     long nanos = elapsedNanos();
 
     TimeUnit unit = chooseUnit(nanos);
-    double value = (double) nanos / NANOSECONDS.convert(1, unit);
+    return extracted(nanos, unit);
+  }
+
+private String extracted(long nanos, TimeUnit unit) {
+	double value = (double) nanos / NANOSECONDS.convert(1, unit);
 
     // Too bad this functionality is not exposed as a regular method call
     return Platform.formatCompact4Digits(value) + " " + abbreviate(unit);
-  }
+}
 
   private static TimeUnit chooseUnit(long nanos) {
     if (DAYS.convert(nanos, NANOSECONDS) > 0) {
