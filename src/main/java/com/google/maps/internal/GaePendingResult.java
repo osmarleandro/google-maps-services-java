@@ -179,10 +179,8 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
     if (contentType != null
         && contentType.startsWith("image")
         && responseClass == ImageResult.Response.class
-        && response.getResponseCode() == 200) {
-      ImageResult result = new ImageResult(contentType, bytes);
-      return (T) result;
-    }
+        && response.getResponseCode() == 200)
+		return extracted(bytes, contentType);
 
     Gson gson =
         new GsonBuilder()
@@ -241,6 +239,13 @@ public class GaePendingResult<T, R extends ApiResponse<T>> implements PendingRes
       }
     }
   }
+
+private T extracted(byte[] bytes, String contentType) {
+	{
+     ImageResult result = new ImageResult(contentType, bytes);
+     return (T) result;
+   }
+}
 
   private T retry() throws IOException, ApiException, InterruptedException {
     retryCounter++;
