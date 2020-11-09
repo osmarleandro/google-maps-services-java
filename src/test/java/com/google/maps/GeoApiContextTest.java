@@ -313,9 +313,13 @@ public class GeoApiContextTest {
   public void testMultipleExperienceId() {
     final String experienceId1 = "experienceId1";
     final String experienceId2 = "experienceId2";
-    final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
-    assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
+    extracted(experienceId1, experienceId2);
   }
+
+private void extracted(final String experienceId1, final String experienceId2) {
+	final GeoApiContext context = builder.experienceId(experienceId1, experienceId2).build();
+    assertEquals(experienceId1 + "," + experienceId2, context.getExperienceId());
+}
 
   @Test
   public void testNoExperienceId() {
