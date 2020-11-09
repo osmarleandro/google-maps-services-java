@@ -234,13 +234,7 @@ public class StaticMapsApiTest {
       req.center("Brooklyn Bridge, New York, NY");
       req.zoom(13);
       req.maptype(StaticMapType.roadmap);
-      {
-        Markers markers = new Markers();
-        markers.color("blue");
-        markers.label("S");
-        markers.addLocation(new LatLng(40.702147, -74.015794));
-        req.markers(markers);
-      }
+      extracted(req);
       {
         Markers markers = new Markers();
         markers.color("green");
@@ -270,4 +264,14 @@ public class StaticMapsApiTest {
       sc.assertParamValues(expected, "markers");
     }
   }
+
+private void extracted(StaticMapsRequest req) {
+	{
+        Markers markers = new Markers();
+        markers.color("blue");
+        markers.label("S");
+        markers.addLocation(new LatLng(40.702147, -74.015794));
+        req.markers(markers);
+      }
+}
 }
