@@ -43,21 +43,8 @@ public class RateLimitExecutorServiceTest {
     service.setQueriesPerSecond(qps);
     final ConcurrentHashMap<Integer, Integer> executedTimestamps = new ConcurrentHashMap<>();
 
-    for (int i = 0; i < 100; i++) {
-      Runnable emptyTask =
-          new Runnable() {
-            @Override
-            public void run() {
-              int nearestSecond = (int) (new Date().getTime() / 1000);
-              if (executedTimestamps.containsKey(nearestSecond)) {
-                executedTimestamps.put(nearestSecond, executedTimestamps.get(nearestSecond) + 1);
-              } else {
-                executedTimestamps.put(nearestSecond, 1);
-              }
-            }
-          };
-      service.execute(emptyTask);
-    }
+    for (int i = 0; i < 100; i++)
+		extracted(service, executedTimestamps);
 
     // Sleep until finished, or 20s expires (to prevent waiting forever)
     long sleepTime = 0;
@@ -83,6 +70,24 @@ public class RateLimitExecutorServiceTest {
 
     service.shutdown();
   }
+
+private void extracted(RateLimitExecutorService service, final ConcurrentHashMap<Integer, Integer> executedTimestamps) {
+	{
+      Runnable emptyTask =
+          new Runnable() {
+            @Override
+            public void run() {
+              int nearestSecond = (int) (new Date().getTime() / 1000);
+              if (executedTimestamps.containsKey(nearestSecond)) {
+                executedTimestamps.put(nearestSecond, executedTimestamps.get(nearestSecond) + 1);
+              } else {
+                executedTimestamps.put(nearestSecond, 1);
+              }
+            }
+          };
+      service.execute(emptyTask);
+    }
+}
 
   private static int countTotalRequests(AbstractMap<?, Integer> hashMap) {
     int counter = 0;
