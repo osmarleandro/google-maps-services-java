@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -407,10 +410,7 @@ public class GeocodingApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      GeocodingResult[] results =
-          GeocodingApi.newRequest(sc.context).address("Toledo").region("es").await();
-
-      assertNotNull(Arrays.toString(results));
+      GeocodingResult[] results = extracted(sc);
 
       assertNotNull(results);
       assertEquals("Toledo, Spain", results[0].formattedAddress);
@@ -421,6 +421,14 @@ public class GeocodingApiTest {
       sc.assertParamValue("es", "region");
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results =
+          GeocodingApi.newRequest(sc.context).address("Toledo").region("es").await();
+
+      assertNotNull(Arrays.toString(results));
+	return results;
+}
 
   /**
    * Geocode with component filtering: <a
