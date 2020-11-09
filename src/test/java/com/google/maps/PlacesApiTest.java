@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -536,9 +539,7 @@ public class PlacesApiTest {
   @Test
   public void testTextSearchResponse() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(textSearchResponseBody)) {
-      PlacesSearchResponse results = PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
-
-      assertNotNull(results);
+      PlacesSearchResponse results = extracted(sc);
       assertNotNull(results.results);
       assertEquals(1, results.results.length);
       assertNotNull(results.toString());
@@ -584,6 +585,14 @@ public class PlacesApiTest {
       assertEquals("establishment", result.types[0]);
     }
   }
+
+private PlacesSearchResponse extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException {
+	PlacesSearchResponse results = PlacesApi.textSearchQuery(sc.context, "Google Sydney").await();
+
+      assertNotNull(results);
+	return results;
+}
 
   @Test
   public void testTextSearchNYC() throws Exception {
