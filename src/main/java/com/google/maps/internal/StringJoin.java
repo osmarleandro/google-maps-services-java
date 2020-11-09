@@ -52,14 +52,19 @@ public class StringJoin {
 
   public static String join(CharSequence delim, Object... parts) {
     StringBuilder result = new StringBuilder();
-    for (int i = 0; i < parts.length; i++) {
+    for (int i = 0; i < parts.length; i++)
+		extracted(delim, result, i, parts);
+    return result.toString();
+  }
+
+private static void extracted(CharSequence delim, StringBuilder result, int i, Object... parts) {
+	{
       if (i != 0) {
         result.append(delim);
       }
       result.append(Objects.toString(parts[i]));
     }
-    return result.toString();
-  }
+}
 
   public static String join(char delim, UrlValue... parts) {
     String[] strings = new String[parts.length];
