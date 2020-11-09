@@ -19,6 +19,9 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
@@ -54,7 +57,22 @@ public class GeolocationApiTest {
   @Test
   public void testDocSampleGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationDocSample)) {
-      GeolocationResult result =
+      GeolocationResult result = extracted(sc);
+
+      JSONObject body = sc.requestBody();
+      assertEquals(false, body.get("considerIp"));
+      assertEquals(310, body.get("homeMobileCountryCode"));
+      assertEquals(260, body.get("homeMobileNetworkCode"));
+      assertEquals("gsm", body.get("radioType"));
+      assertEquals("T-Mobile", body.get("carrier"));
+      assertEquals("accuracy", 1145.0, result.accuracy, 0.00001);
+      assertEquals("lat", 37.4248297, result.location.lat, 0.00001);
+      assertEquals("lng", -122.07346549999998, result.location.lng, 0.00001);
+    }
+  }
+
+private GeolocationResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .HomeMobileCountryCode(310)
@@ -89,18 +107,8 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
-
-      JSONObject body = sc.requestBody();
-      assertEquals(false, body.get("considerIp"));
-      assertEquals(310, body.get("homeMobileCountryCode"));
-      assertEquals(260, body.get("homeMobileNetworkCode"));
-      assertEquals("gsm", body.get("radioType"));
-      assertEquals("T-Mobile", body.get("carrier"));
-      assertEquals("accuracy", 1145.0, result.accuracy, 0.00001);
-      assertEquals("lat", 37.4248297, result.location.lat, 0.00001);
-      assertEquals("lng", -122.07346549999998, result.location.lng, 0.00001);
-    }
-  }
+	return result;
+}
 
   @Test
   public void testMinimumWifiGeolocation() throws Exception {
