@@ -39,8 +39,7 @@ public class TransitAgency implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[TransitAgency: ");
-    sb.append(name);
+    StringBuilder sb = extracted();
     if (url != null) {
       sb.append(", url=").append(url);
     }
@@ -50,4 +49,10 @@ public class TransitAgency implements Serializable {
     sb.append("]");
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[TransitAgency: ");
+    sb.append(name);
+	return sb;
+}
 }
