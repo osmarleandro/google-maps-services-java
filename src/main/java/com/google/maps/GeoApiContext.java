@@ -227,20 +227,8 @@ public class GeoApiContext {
     StringBuilder query = new StringBuilder();
 
     boolean channelSet = false;
-    for (int i = 0; i < params.length; i += 2) {
-      if (params[i].equals("channel")) {
-        channelSet = true;
-      }
-      query.append('&').append(params[i]).append('=');
-
-      // URL-encode the parameter.
-      try {
-        query.append(URLEncoder.encode(params[i + 1], "UTF-8"));
-      } catch (UnsupportedEncodingException e) {
-        // This should never happen. UTF-8 support is required for every Java implementation.
-        throw new IllegalStateException(e);
-      }
-    }
+    for (int i = 0; i < params.length; i += 2)
+		channelSet = extracted(query, channelSet, i, params);
 
     // Channel can be supplied per-request or per-context. We prioritize it from the request,
     // so if it's not provided there, provide it here
@@ -257,6 +245,24 @@ public class GeoApiContext {
         query.toString(),
         requestMetricsReporter.newRequest(config.path));
   }
+
+private boolean extracted(StringBuilder query, boolean channelSet, int i, String... params) {
+	{
+      if (params[i].equals("channel")) {
+        channelSet = true;
+      }
+      query.append('&').append(params[i]).append('=');
+
+      // URL-encode the parameter.
+      try {
+        query.append(URLEncoder.encode(params[i + 1], "UTF-8"));
+      } catch (UnsupportedEncodingException e) {
+        // This should never happen. UTF-8 support is required for every Java implementation.
+        throw new IllegalStateException(e);
+      }
+    }
+	return channelSet;
+}
 
   <T, R extends ApiResponse<T>> PendingResult<T> post(
       ApiConfig config, Class<? extends R> clazz, Map<String, List<String>> params) {
