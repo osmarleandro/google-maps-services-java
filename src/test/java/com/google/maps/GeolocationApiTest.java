@@ -19,6 +19,9 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
@@ -135,7 +138,27 @@ public class GeolocationApiTest {
   @Test
   public void testBasicGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      GeolocationResult result =
+      GeolocationResult result = extracted(sc);
+
+      JSONObject body = sc.requestBody();
+      assertEquals(false, body.get("considerIp"));
+      JSONArray wifiAccessPoints = body.getJSONArray("wifiAccessPoints");
+      JSONObject wifi0 = wifiAccessPoints.getJSONObject(0);
+      JSONObject wifi1 = wifiAccessPoints.getJSONObject(1);
+      assertEquals("92:68:c3:f8:76:47", wifi0.get("macAddress"));
+      assertEquals(-42, wifi0.get("signalStrength"));
+      assertEquals(68, wifi0.get("signalToNoiseRatio"));
+      assertEquals("94:b4:0f:ff:6b:11", wifi1.get("macAddress"));
+      assertEquals(-55, wifi1.get("signalStrength"));
+      assertEquals(55, wifi1.get("signalToNoiseRatio"));
+      assertEquals("accuracy", 150.0, result.accuracy, 0.00001);
+      assertEquals("lat", 37.3989885, result.location.lat, 0.00001);
+      assertEquals("lng", -122.0585196, result.location.lng, 0.00001);
+    }
+  }
+
+private GeolocationResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeolocationResult result =
           GeolocationApi.newRequest(sc.context)
               .ConsiderIp(false)
               .AddWifiAccessPoint(
@@ -154,23 +177,8 @@ public class GeolocationApiTest {
               .await();
 
       assertNotNull(result.toString());
-
-      JSONObject body = sc.requestBody();
-      assertEquals(false, body.get("considerIp"));
-      JSONArray wifiAccessPoints = body.getJSONArray("wifiAccessPoints");
-      JSONObject wifi0 = wifiAccessPoints.getJSONObject(0);
-      JSONObject wifi1 = wifiAccessPoints.getJSONObject(1);
-      assertEquals("92:68:c3:f8:76:47", wifi0.get("macAddress"));
-      assertEquals(-42, wifi0.get("signalStrength"));
-      assertEquals(68, wifi0.get("signalToNoiseRatio"));
-      assertEquals("94:b4:0f:ff:6b:11", wifi1.get("macAddress"));
-      assertEquals(-55, wifi1.get("signalStrength"));
-      assertEquals(55, wifi1.get("signalToNoiseRatio"));
-      assertEquals("accuracy", 150.0, result.accuracy, 0.00001);
-      assertEquals("lat", 37.3989885, result.location.lat, 0.00001);
-      assertEquals("lng", -122.0585196, result.location.lng, 0.00001);
-    }
-  }
+	return result;
+}
 
   @Test
   public void testAlternateWifiSetterGeolocation() throws Exception {
