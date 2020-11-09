@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -623,19 +626,7 @@ public class PlacesApiTest {
   @Test
   public void testNearbySearchRequest() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext("{\"status\" : \"OK\"}")) {
-      LatLng location = new LatLng(10, 20);
-      PlacesApi.nearbySearchQuery(sc.context, location)
-          .radius(5000)
-          .rankby(RankBy.PROMINENCE)
-          .keyword("keyword")
-          .language("en")
-          .minPrice(PriceLevel.INEXPENSIVE)
-          .maxPrice(PriceLevel.EXPENSIVE)
-          .name("name")
-          .openNow(true)
-          .type(PlaceType.AIRPORT)
-          .pageToken("next-page-token")
-          .await();
+      LatLng location = extracted(sc);
 
       sc.assertParamValue(location.toUrlValue(), "location");
       sc.assertParamValue("5000", "radius");
@@ -650,6 +641,23 @@ public class PlacesApiTest {
       sc.assertParamValue("next-page-token", "pagetoken");
     }
   }
+
+private LatLng extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	LatLng location = new LatLng(10, 20);
+      PlacesApi.nearbySearchQuery(sc.context, location)
+          .radius(5000)
+          .rankby(RankBy.PROMINENCE)
+          .keyword("keyword")
+          .language("en")
+          .minPrice(PriceLevel.INEXPENSIVE)
+          .maxPrice(PriceLevel.EXPENSIVE)
+          .name("name")
+          .openNow(true)
+          .type(PlaceType.AIRPORT)
+          .pageToken("next-page-token")
+          .await();
+	return location;
+}
 
   @Test
   @SuppressWarnings("deprecation") // Testing a deprecated method
