@@ -23,12 +23,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LocationType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -691,9 +694,7 @@ public class GeocodingApiTest {
   public void testSimpleReverseGeocode() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(simpleReverseGeocodeResponse)) {
       LatLng latlng = new LatLng(40.714224, -73.961452);
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(latlng).await();
-
-      assertNotNull(results);
+      GeocodingResult[] results = extracted(sc, latlng);
       assertNotNull(Arrays.toString(results));
       assertEquals("277 Bedford Ave, Brooklyn, NY 11211, USA", results[0].formattedAddress);
       assertEquals("277", results[0].addressComponents[0].longName);
@@ -930,9 +931,7 @@ public class GeocodingApiTest {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(reverseGeocodeWithKitaWardResponse)) {
       LatLng location = new LatLng(35.03937, 135.729243);
-      GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
-
-      assertNotNull(results);
+      GeocodingResult[] results = extracted(sc, location);
       assertNotNull(Arrays.toString(results));
       assertEquals(
           "Japan, 〒603-8361 Kyōto-fu, Kyōto-shi, Kita-ku, Kinkakujichō, １ 北山鹿苑寺金閣寺",
@@ -946,6 +945,14 @@ public class GeocodingApiTest {
       sc.assertParamValue(location.toUrlValue(), "latlng");
     }
   }
+
+private GeocodingResult[] extracted(LocalTestServerContext sc, LatLng location)
+		throws ApiException, InterruptedException, IOException {
+	GeocodingResult[] results = GeocodingApi.newRequest(sc.context).latlng(location).await();
+
+      assertNotNull(results);
+	return results;
+}
 
   /** Testing supported Address Types for Geocoding. */
   @Test
