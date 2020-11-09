@@ -45,8 +45,7 @@ public class GeocodedWaypoint implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[GeocodedWaypoint");
-    sb.append(" ").append(geocoderStatus);
+    StringBuilder sb = extracted();
     if (partialMatch) {
       sb.append(" ").append("PARTIAL MATCH");
     }
@@ -54,4 +53,10 @@ public class GeocodedWaypoint implements Serializable {
     sb.append(", types=").append(Arrays.toString(types));
     return sb.toString();
   }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[GeocodedWaypoint");
+    sb.append(" ").append(geocoderStatus);
+	return sb;
+}
 }
