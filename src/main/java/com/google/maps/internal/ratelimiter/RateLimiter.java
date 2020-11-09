@@ -340,8 +340,7 @@ public abstract class RateLimiter {
    * @throws IllegalArgumentException if the requested number of permits is negative or zero
    */
   public boolean tryAcquire(int permits, long timeout, TimeUnit unit) {
-    long timeoutMicros = max(unit.toMicros(timeout), 0);
-    checkPermits(permits);
+    long timeoutMicros = extracted(permits, timeout, unit);
     long microsToWait;
     synchronized (mutex()) {
       long nowMicros = stopwatch.readMicros();
@@ -354,6 +353,12 @@ public abstract class RateLimiter {
     stopwatch.sleepMicrosUninterruptibly(microsToWait);
     return true;
   }
+
+private long extracted(int permits, long timeout, TimeUnit unit) {
+	long timeoutMicros = max(unit.toMicros(timeout), 0);
+    checkPermits(permits);
+	return timeoutMicros;
+}
 
   private boolean canAcquire(long nowMicros, long timeoutMicros) {
     return queryEarliestAvailable(nowMicros) - timeoutMicros <= nowMicros;
