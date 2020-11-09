@@ -42,8 +42,7 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
     if (this.finished) {
       return;
     }
-    this.finished = true;
-    long requestTime = milliTime() - this.requestStart;
+    long requestTime = extracted();
 
     TagContext tagContext =
         tagger
@@ -60,6 +59,12 @@ final class OpenCensusRequestMetrics implements RequestMetrics {
         .put(OpenCensusMetrics.Measures.RETRY_COUNT, retryCount)
         .record(tagContext);
   }
+
+private long extracted() {
+	this.finished = true;
+    long requestTime = milliTime() - this.requestStart;
+	return requestTime;
+}
 
   private String exceptionName(Exception exception) {
     if (exception == null) {
