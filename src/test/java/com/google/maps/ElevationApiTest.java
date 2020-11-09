@@ -19,12 +19,15 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.RequestDeniedException;
 import com.google.maps.model.ElevationResult;
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.LatLngAssert;
+
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
@@ -247,9 +250,7 @@ public class ElevationApiTest {
                 + "   ],\n"
                 + "   \"status\" : \"OK\"\n"
                 + "}\n")) {
-      ElevationResult[] results = ElevationApi.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
-
-      assertNotNull(results);
+      ElevationResult[] results = extracted(sc);
       assertEquals(10, results.length);
       assertEquals(SYDNEY_ELEVATION, results[0].elevation, EPSILON);
       assertEquals(MELBOURNE_ELEVATION, results[9].elevation, EPSILON);
@@ -258,6 +259,13 @@ public class ElevationApiTest {
       sc.assertParamValue("enc:xvumEur{y[jyaWdnbe@", "path");
     }
   }
+
+private ElevationResult[] extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	ElevationResult[] results = ElevationApi.getByPath(sc.context, 10, SYDNEY, MELBOURNE).await();
+
+      assertNotNull(results);
+	return results;
+}
 
   @Test
   public void testDirectionsAlongPath() throws Exception {
