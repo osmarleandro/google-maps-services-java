@@ -94,8 +94,7 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
       Integer maxRetries,
       ExceptionsAllowedToRetry exceptionsAllowedToRetry,
       RequestMetrics metrics) {
-    RequestBody body = RequestBody.create(JSON, payload);
-    Request.Builder builder = new Request.Builder().post(body).header("User-Agent", userAgent);
+    Request.Builder builder = extracted(payload, userAgent);
 
     if (experienceIdHeaderValue != null) {
       builder = builder.header(HttpHeaders.X_GOOG_MAPS_EXPERIENCE_ID, experienceIdHeaderValue);
@@ -112,6 +111,12 @@ public class OkHttpRequestHandler implements GeoApiContext.RequestHandler {
         exceptionsAllowedToRetry,
         metrics);
   }
+
+private Request.Builder extracted(String payload, String userAgent) {
+	RequestBody body = RequestBody.create(JSON, payload);
+    Request.Builder builder = new Request.Builder().post(body).header("User-Agent", userAgent);
+	return builder;
+}
 
   @Override
   public void shutdown() {
