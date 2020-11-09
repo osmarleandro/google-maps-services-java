@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,7 +48,10 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -746,10 +750,7 @@ public class PlacesApiTest {
   @Test
   public void testPizzaInNewYorkPagination() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(placesApiPizzaInNewYork)) {
-      PlacesSearchResponse response =
-          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
-
-      sc.assertParamValue("Pizza in New York", "query");
+      PlacesSearchResponse response = extracted(sc);
 
       assertNotNull(response.toString());
       assertEquals(20, response.results.length);
@@ -758,6 +759,15 @@ public class PlacesApiTest {
           response.nextPageToken);
     }
   }
+
+private PlacesSearchResponse extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	PlacesSearchResponse response =
+          PlacesApi.textSearchQuery(sc.context, "Pizza in New York").await();
+
+      sc.assertParamValue("Pizza in New York", "query");
+	return response;
+}
 
   @Test
   public void testPlaceDetailsInFrench() throws Exception {
