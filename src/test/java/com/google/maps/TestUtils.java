@@ -39,12 +39,18 @@ public class TestUtils {
     Thread[] threads = new Thread[1000];
     currentThreadGroup.enumerate(threads);
     Thread delayThread = null;
-    for (Thread thread : threads) {
+    for (Thread thread : threads)
+		delayThread = extracted(name, delayThread, thread);
+    return delayThread;
+  }
+
+private static Thread extracted(String name, Thread delayThread, Thread thread) {
+	{
       if (thread == null) break;
       if (thread.getName().equals(name)) {
         delayThread = thread;
       }
     }
-    return delayThread;
-  }
+	return delayThread;
+}
 }
