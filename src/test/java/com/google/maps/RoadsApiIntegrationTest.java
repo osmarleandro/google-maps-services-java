@@ -21,10 +21,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 import com.google.maps.model.SnappedSpeedLimitResponse;
 import com.google.maps.model.SpeedLimit;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -51,7 +55,18 @@ public class RoadsApiIntegrationTest {
   @Test
   public void testSnapToRoad() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(snapToRoadResponse)) {
-      LatLng[] path =
+      SnappedPoint[] points = extracted(sc);
+      sc.assertParamValue("false", "interpolate");
+      assertEquals(7, points.length);
+      assertEquals(-33.86523340256843, points[0].location.lat, 0.0001);
+      assertEquals(151.19288612197704, points[0].location.lng, 0.0001);
+      assertEquals("ChIJjXkMCDauEmsRp5xab4Ske6k", points[0].placeId);
+    }
+  }
+
+private SnappedPoint[] extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	LatLng[] path =
           new LatLng[] {
             new LatLng(-33.865382, 151.192861),
             new LatLng(-33.865837, 151.193376),
@@ -65,13 +80,8 @@ public class RoadsApiIntegrationTest {
 
       assertNotNull(Arrays.toString(points));
       sc.assertParamValue(join('|', path), "path");
-      sc.assertParamValue("false", "interpolate");
-      assertEquals(7, points.length);
-      assertEquals(-33.86523340256843, points[0].location.lat, 0.0001);
-      assertEquals(151.19288612197704, points[0].location.lng, 0.0001);
-      assertEquals("ChIJjXkMCDauEmsRp5xab4Ske6k", points[0].placeId);
-    }
-  }
+	return points;
+}
 
   @Test
   public void testSpeedLimitsWithLatLngs() throws Exception {
