@@ -48,13 +48,9 @@ public class ApiException extends Exception {
       return new MaxWaypointsExceededException(errorMessage);
     } else if ("NOT_FOUND".equals(status)) {
       return new NotFoundException(errorMessage);
-    } else if ("OVER_QUERY_LIMIT".equals(status)) {
-      if ("You have exceeded your daily request quota for this API."
-          .equalsIgnoreCase(errorMessage)) {
-        return new OverDailyLimitException(errorMessage);
-      }
-      return new OverQueryLimitException(errorMessage);
-    } else if ("REQUEST_DENIED".equals(status)) {
+    } else if ("OVER_QUERY_LIMIT".equals(status))
+		return extracted(errorMessage);
+	else if ("REQUEST_DENIED".equals(status)) {
       return new RequestDeniedException(errorMessage);
     } else if ("UNKNOWN_ERROR".equals(status)) {
       return new UnknownErrorException(errorMessage);
@@ -93,4 +89,14 @@ public class ApiException extends Exception {
     return new UnknownErrorException(
         "An unexpected error occurred. Status: " + status + ", Message: " + errorMessage);
   }
+
+private static ApiException extracted(String errorMessage) {
+	{
+      if ("You have exceeded your daily request quota for this API."
+          .equalsIgnoreCase(errorMessage)) {
+        return new OverDailyLimitException(errorMessage);
+      }
+      return new OverQueryLimitException(errorMessage);
+    }
+}
 }
