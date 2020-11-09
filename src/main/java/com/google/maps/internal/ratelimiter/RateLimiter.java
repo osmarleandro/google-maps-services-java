@@ -187,7 +187,14 @@ public abstract class RateLimiter {
 
   private Object mutex() {
     Object mutex = mutexDoNotUseDirectly;
-    if (mutex == null) {
+    if (mutex == null)
+		mutex = extracted();
+    return mutex;
+  }
+
+private Object extracted() {
+	Object mutex;
+	{
       synchronized (this) {
         mutex = mutexDoNotUseDirectly;
         if (mutex == null) {
@@ -195,8 +202,8 @@ public abstract class RateLimiter {
         }
       }
     }
-    return mutex;
-  }
+	return mutex;
+}
 
   RateLimiter(SleepingStopwatch stopwatch) {
     this.stopwatch = checkNotNull(stopwatch);
