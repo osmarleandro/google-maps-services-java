@@ -23,8 +23,7 @@ public class TestUtils {
   public static String retrieveBody(String filename) {
     InputStream input = TestUtils.class.getResourceAsStream(filename);
     try (Scanner s = new java.util.Scanner(input, StandardCharsets.UTF_8.name())) {
-      s.useDelimiter("\\A");
-      String body = s.next();
+      String body = extracted(s);
 
       if (body == null || body.length() == 0) {
         throw new IllegalArgumentException(
@@ -33,6 +32,12 @@ public class TestUtils {
       return body;
     }
   }
+
+private static String extracted(Scanner s) {
+	s.useDelimiter("\\A");
+      String body = s.next();
+	return body;
+}
 
   public static Thread findLastThreadByName(String name) {
     ThreadGroup currentThreadGroup = Thread.currentThread().getThreadGroup();
