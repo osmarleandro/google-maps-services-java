@@ -191,11 +191,16 @@ public class PlacesApi {
    */
   public static PlaceAutocompleteRequest placeAutocomplete(
       GeoApiContext context, String input, PlaceAutocompleteRequest.SessionToken sessionToken) {
-    PlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
-    request.input(input);
+    PlaceAutocompleteRequest request = extracted(context, input);
     request.sessionToken(sessionToken);
     return request;
   }
+
+private static PlaceAutocompleteRequest extracted(GeoApiContext context, String input) {
+	PlaceAutocompleteRequest request = new PlaceAutocompleteRequest(context);
+    request.input(input);
+	return request;
+}
 
   /**
    * Allows you to add on-the-fly geographic query predictions to your application.
