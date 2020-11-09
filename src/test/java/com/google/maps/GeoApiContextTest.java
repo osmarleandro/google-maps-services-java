@@ -93,7 +93,14 @@ public class GeoApiContextTest {
     RecordedRequest request = server.takeRequest();
     Headers headers = request.getHeaders();
     boolean headerFound = false;
-    for (String headerName : headers.names()) {
+    for (String headerName : headers.names())
+		headerFound = extracted(headers, headerFound, headerName);
+
+    assertTrue("User agent header not present", headerFound);
+  }
+
+private boolean extracted(Headers headers, boolean headerFound, String headerName) {
+	{
       if (headerName.equals("User-Agent")) {
         headerFound = true;
         String headerValue = headers.get(headerName);
@@ -102,9 +109,8 @@ public class GeoApiContextTest {
             headerValue.matches("GoogleGeoApiClientJava/[^\\s]+"));
       }
     }
-
-    assertTrue("User agent header not present", headerFound);
-  }
+	return headerFound;
+}
 
   @Test
   public void testErrorResponseRetries() throws Exception {
