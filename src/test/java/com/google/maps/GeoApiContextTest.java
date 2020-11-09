@@ -375,7 +375,15 @@ public class GeoApiContextTest {
 
   @SuppressWarnings("unchecked")
   private RecordedRequest makeMockRequest(String... experienceId) throws Exception {
-    // Set up a mock request
+    extracted(experienceId);
+
+    // Read the header
+    server.shutdown();
+    return server.takeRequest();
+  }
+
+private void extracted(String... experienceId) throws IOException {
+	// Set up a mock request
     ApiResponse<Object> fakeResponse = mock(ApiResponse.class);
     String path = "/";
     Map<String, List<String>> params = new HashMap<>();
@@ -389,11 +397,7 @@ public class GeoApiContextTest {
     // Build & execute the request using our context
     final GeoApiContext context = builder.experienceId(experienceId).build();
     context.get(new ApiConfig(path), fakeResponse.getClass(), params).awaitIgnoreError();
-
-    // Read the header
-    server.shutdown();
-    return server.takeRequest();
-  }
+}
 
   @Test
   public void testShutdown() throws InterruptedException {
