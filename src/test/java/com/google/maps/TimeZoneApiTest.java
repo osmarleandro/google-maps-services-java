@@ -20,8 +20,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.ZeroResultsException;
 import com.google.maps.model.LatLng;
+
+import java.io.IOException;
 import java.util.Date;
 import java.util.TimeZone;
 import org.junit.Test;
@@ -43,9 +46,7 @@ public class TimeZoneApiTest {
                 + "   \"timeZoneName\" : \"Australian Eastern Standard Time\"\n"
                 + "}\n")) {
       LatLng sydney = new LatLng(-33.8688, 151.2093);
-      TimeZone tz = TimeZoneApi.getTimeZone(sc.context, sydney).await();
-
-      assertNotNull(tz);
+      TimeZone tz = extracted(sc, sydney);
       assertEquals(TimeZone.getTimeZone("Australia/Sydney"), tz);
 
       // GMT+10
@@ -58,6 +59,14 @@ public class TimeZoneApiTest {
       sc.assertParamValue(sydney.toUrlValue(), "location");
     }
   }
+
+private TimeZone extracted(LocalTestServerContext sc, LatLng sydney)
+		throws ApiException, InterruptedException, IOException {
+	TimeZone tz = TimeZoneApi.getTimeZone(sc.context, sydney).await();
+
+      assertNotNull(tz);
+	return tz;
+}
 
   @Test(expected = ZeroResultsException.class)
   public void testNoResult() throws Exception {
