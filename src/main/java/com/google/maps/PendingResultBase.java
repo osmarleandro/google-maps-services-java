@@ -72,11 +72,7 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
   }
 
   private PendingResult<T> makeRequest() {
-    if (delegate != null) {
-      throw new IllegalStateException(
-          "'await', 'awaitIgnoreError' or 'setCallback' was already called.");
-    }
-    validateRequest();
+    extracted();
     switch (config.requestVerb) {
       case "GET":
         return delegate = context.get(config, responseClass, params);
@@ -87,6 +83,14 @@ abstract class PendingResultBase<T, A extends PendingResultBase<T, A, R>, R exte
             String.format("Unexpected request method '%s'", config.requestVerb));
     }
   }
+
+private void extracted() {
+	if (delegate != null) {
+      throw new IllegalStateException(
+          "'await', 'awaitIgnoreError' or 'setCallback' was already called.");
+    }
+    validateRequest();
+}
 
   protected abstract void validateRequest();
 
