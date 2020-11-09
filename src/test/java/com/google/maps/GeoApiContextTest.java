@@ -131,13 +131,7 @@ public class GeoApiContextTest {
 
   @Test(expected = IOException.class)
   public void testSettingMaxRetries() throws Exception {
-    MockResponse errorResponse = createMockBadResponse();
-    MockResponse goodResponse = createMockGoodResponse();
-
-    // Set up the fake web server
-    server.enqueue(errorResponse);
-    server.enqueue(errorResponse);
-    server.enqueue(errorResponse);
+    MockResponse goodResponse = extracted();
     server.enqueue(goodResponse);
     server.start();
     setMockBaseUrl();
@@ -147,6 +141,17 @@ public class GeoApiContextTest {
 
     builder.build().get(new ApiConfig("/"), GeocodingApi.Response.class, "k", "v").await();
   }
+
+private MockResponse extracted() {
+	MockResponse errorResponse = createMockBadResponse();
+    MockResponse goodResponse = createMockGoodResponse();
+
+    // Set up the fake web server
+    server.enqueue(errorResponse);
+    server.enqueue(errorResponse);
+    server.enqueue(errorResponse);
+	return goodResponse;
+}
 
   private MockResponse createMockGoodResponse() {
     MockResponse response = new MockResponse();
