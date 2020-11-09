@@ -123,14 +123,20 @@ public class LocalTestServerContext implements AutoCloseable {
       this.params = this.actualParams();
     }
     int paramsFound = 0;
-    for (NameValuePair pair : params) {
+    for (NameValuePair pair : params)
+		paramsFound = extracted(expecteds, paramName, paramsFound, pair);
+    assertEquals(paramsFound, expecteds.size());
+  }
+
+private int extracted(List<String> expecteds, String paramName, int paramsFound, NameValuePair pair) {
+	{
       if (pair.getName().equals(paramName)) {
         assertEquals(expecteds.get(paramsFound), pair.getValue());
         paramsFound++;
       }
     }
-    assertEquals(paramsFound, expecteds.size());
-  }
+	return paramsFound;
+}
 
   @Override
   public void close() {
