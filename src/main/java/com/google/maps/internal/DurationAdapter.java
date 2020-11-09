@@ -46,10 +46,8 @@ public class DurationAdapter extends TypeAdapter<Duration> {
    */
   @Override
   public Duration read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     Duration duration = new Duration();
 
@@ -66,6 +64,13 @@ public class DurationAdapter extends TypeAdapter<Duration> {
 
     return duration;
   }
+
+private Duration extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** This method is not implemented. */
   @Override
