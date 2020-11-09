@@ -81,7 +81,13 @@ public class GeolocationPayload implements Serializable {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("[GeolocationPayload");
+    StringBuilder sb = extracted();
+    sb.append("]");
+    return sb.toString();
+  }
+
+private StringBuilder extracted() {
+	StringBuilder sb = new StringBuilder("[GeolocationPayload");
     List<String> elements = new ArrayList<>();
     if (homeMobileCountryCode != null) {
       elements.add("homeMobileCountryCode=" + homeMobileCountryCode);
@@ -103,9 +109,8 @@ public class GeolocationPayload implements Serializable {
       elements.add("wifiAccessPoints=" + Arrays.toString(wifiAccessPoints));
     }
     sb.append(join(", ", elements));
-    sb.append("]");
-    return sb.toString();
-  }
+	return sb;
+}
 
   public static class GeolocationPayloadBuilder {
     private Integer _homeMobileCountryCode = null;
