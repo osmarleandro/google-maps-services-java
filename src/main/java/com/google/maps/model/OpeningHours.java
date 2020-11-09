@@ -112,13 +112,17 @@ public class OpeningHours implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("[OpeningHours:");
-    if (permanentlyClosed != null && permanentlyClosed) {
+    extracted(sb);
+    return sb.toString();
+  }
+
+private void extracted(StringBuilder sb) {
+	if (permanentlyClosed != null && permanentlyClosed) {
       sb.append(" permanentlyClosed");
     }
     if (openNow != null && openNow) {
       sb.append(" openNow");
     }
     sb.append(" ").append(Arrays.toString(periods));
-    return sb.toString();
-  }
+}
 }
