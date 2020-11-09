@@ -19,6 +19,9 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
@@ -386,13 +389,18 @@ public class GeolocationApiTest {
   @Test
   public void testNoPayloadGeolocation1() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationBasic)) {
-      GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
-
-      assertNotNull(result);
+      GeolocationResult result = extracted(sc);
       assertNotNull(result.toString());
       assertNotNull(result.location);
     }
   }
+
+private GeolocationResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeolocationResult result = GeolocationApi.newRequest(sc.context).CreatePayload().await();
+
+      assertNotNull(result);
+	return result;
+}
 
   @Test(expected = NotFoundException.class)
   public void testNotFoundGeolocation() throws Exception {
