@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import com.google.maps.DirectionsApi.RouteRestriction;
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
@@ -32,6 +33,9 @@ import com.google.maps.model.TransitMode;
 import com.google.maps.model.TransitRoutingPreference;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -208,17 +212,22 @@ public class DirectionsApiTest {
   public void testBrooklynToQueensByTransit() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext("{\"routes\": [{}],\"status\": \"OK\"}")) {
-      DirectionsApi.newRequest(sc.context)
+      extracted(sc);
+      sc.assertParamValue("Queens", "destination");
+      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
+    }
+  }
+
+private void extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException, URISyntaxException {
+	DirectionsApi.newRequest(sc.context)
           .origin("Brooklyn")
           .destination("Queens")
           .mode(TravelMode.TRANSIT)
           .await();
 
       sc.assertParamValue("Brooklyn", "origin");
-      sc.assertParamValue("Queens", "destination");
-      sc.assertParamValue(TravelMode.TRANSIT.toUrlValue(), "mode");
-    }
-  }
+}
 
   /**
    * Boston to Concord, via Charlestown and Lexington.
