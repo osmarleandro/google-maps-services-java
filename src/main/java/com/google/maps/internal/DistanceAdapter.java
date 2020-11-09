@@ -44,10 +44,8 @@ public class DistanceAdapter extends TypeAdapter<Distance> {
    */
   @Override
   public Distance read(JsonReader reader) throws IOException {
-    if (reader.peek() == JsonToken.NULL) {
-      reader.nextNull();
-      return null;
-    }
+    if (reader.peek() == JsonToken.NULL)
+		return extracted(reader);
 
     Distance distance = new Distance();
 
@@ -64,6 +62,13 @@ public class DistanceAdapter extends TypeAdapter<Distance> {
 
     return distance;
   }
+
+private Distance extracted(JsonReader reader) throws IOException {
+	{
+      reader.nextNull();
+      return null;
+    }
+}
 
   /** This method is not implemented. */
   @Override
