@@ -352,12 +352,7 @@ public class GeoApiContextTest {
     // [START maps_experience_id]
     final String experienceId = UUID.randomUUID().toString();
 
-    // instantiate context with experience id
-    final GeoApiContext context =
-        new GeoApiContext.Builder().apiKey("AIza-Maps-API-Key").experienceId(experienceId).build();
-
-    // clear the current experience id
-    context.clearExperienceId();
+    final GeoApiContext context = extracted(experienceId);
 
     // set a new experience id
     final String otherExperienceId = UUID.randomUUID().toString();
@@ -372,6 +367,16 @@ public class GeoApiContextTest {
 
     assertEquals(experienceId + "," + otherExperienceId, ids);
   }
+
+private GeoApiContext extracted(final String experienceId) {
+	// instantiate context with experience id
+    final GeoApiContext context =
+        new GeoApiContext.Builder().apiKey("AIza-Maps-API-Key").experienceId(experienceId).build();
+
+    // clear the current experience id
+    context.clearExperienceId();
+	return context;
+}
 
   @SuppressWarnings("unchecked")
   private RecordedRequest makeMockRequest(String... experienceId) throws Exception {
