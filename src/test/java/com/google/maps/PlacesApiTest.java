@@ -28,6 +28,7 @@ import com.google.maps.FindPlaceFromTextRequest.LocationBiasPoint;
 import com.google.maps.FindPlaceFromTextRequest.LocationBiasRectangular;
 import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlaceDetailsRequest.FieldMask;
+import com.google.maps.errors.ApiException;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.AddressType;
 import com.google.maps.model.AutocompletePrediction;
@@ -47,6 +48,8 @@ import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.PriceLevel;
 import com.google.maps.model.RankBy;
+
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -396,10 +399,7 @@ public class PlacesApiTest {
   @Test
   public void testQueryAutocompletePizzaNearPar() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(queryAutocompleteResponseBody)) {
-      AutocompletePrediction[] predictions =
-          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
-
-      assertNotNull(predictions);
+      AutocompletePrediction[] predictions = extracted(sc);
       assertEquals(predictions.length, 5);
       assertNotNull(Arrays.toString(predictions));
 
@@ -424,10 +424,7 @@ public class PlacesApiTest {
   public void testQueryAutocompleteWithPlaceId() throws Exception {
     try (LocalTestServerContext sc =
         new LocalTestServerContext(queryAutocompleteWithPlaceIdResponseBody)) {
-      AutocompletePrediction[] predictions =
-          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
-
-      assertNotNull(predictions);
+      AutocompletePrediction[] predictions = extracted(sc);
       assertEquals(predictions.length, 1);
       assertNotNull(Arrays.toString(predictions));
 
@@ -451,6 +448,15 @@ public class PlacesApiTest {
       assertEquals("ChIJv0wpwp6tEmsR0Glcf5tugrk", prediction.placeId);
     }
   }
+
+private AutocompletePrediction[] extracted(LocalTestServerContext sc)
+		throws ApiException, InterruptedException, IOException {
+	AutocompletePrediction[] predictions =
+          PlacesApi.queryAutocomplete(sc.context, QUERY_AUTOCOMPLETE_INPUT).await();
+
+      assertNotNull(predictions);
+	return predictions;
+}
 
   @Test
   public void testTextSearchRequest() throws Exception {
