@@ -19,6 +19,9 @@ import static com.google.maps.TestUtils.retrieveBody;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
+import com.google.maps.errors.ApiException;
 import com.google.maps.errors.InvalidRequestException;
 import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.CellTower;
@@ -266,20 +269,7 @@ public class GeolocationApiTest {
   @Test
   public void testMinimumCellTowerGeolocation() throws Exception {
     try (LocalTestServerContext sc = new LocalTestServerContext(geolocationMinimumCellTower)) {
-      GeolocationResult result =
-          GeolocationApi.newRequest(sc.context)
-              .ConsiderIp(false)
-              .AddCellTower(
-                  new CellTower.CellTowerBuilder()
-                      .CellId(39627456)
-                      .LocationAreaCode(40495)
-                      .MobileCountryCode(310)
-                      .MobileNetworkCode(260)
-                      .createCellTower())
-              .CreatePayload()
-              .await();
-
-      assertNotNull(result.toString());
+      GeolocationResult result = extracted(sc);
 
       JSONObject body = sc.requestBody();
       assertEquals(false, body.get("considerIp"));
@@ -293,6 +283,24 @@ public class GeolocationApiTest {
       assertEquals("lng", -122.07266190000001, result.location.lng, 0.00001);
     }
   }
+
+private GeolocationResult extracted(LocalTestServerContext sc) throws ApiException, InterruptedException, IOException {
+	GeolocationResult result =
+          GeolocationApi.newRequest(sc.context)
+              .ConsiderIp(false)
+              .AddCellTower(
+                  new CellTower.CellTowerBuilder()
+                      .CellId(39627456)
+                      .LocationAreaCode(40495)
+                      .MobileCountryCode(310)
+                      .MobileNetworkCode(260)
+                      .createCellTower())
+              .CreatePayload()
+              .await();
+
+      assertNotNull(result.toString());
+	return result;
+}
 
   @Test
   public void testAlternatePayloadBuilderGeolocation() throws Exception {
