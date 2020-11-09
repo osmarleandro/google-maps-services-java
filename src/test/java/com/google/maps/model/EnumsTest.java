@@ -43,7 +43,25 @@ public class EnumsTest {
 
   @Test
   public void testCanonicalLiteralsForAddressType() {
-    Map<AddressType, String> addressTypeToLiteralMap = new HashMap<AddressType, String>();
+    Map<AddressType, String> addressTypeToLiteralMap = extracted();
+
+    for (Map.Entry<AddressType, String> addressTypeLiteralPair :
+        addressTypeToLiteralMap.entrySet()) {
+      assertEquals(
+          addressTypeLiteralPair.getValue(), addressTypeLiteralPair.getKey().toCanonicalLiteral());
+    }
+    List<AddressType> enumsMinusUnknown = new ArrayList<>(Arrays.asList(AddressType.values()));
+    enumsMinusUnknown.remove(AddressType.UNKNOWN);
+    List<AddressType> onlyInTest = setdiff(addressTypeToLiteralMap.keySet(), enumsMinusUnknown);
+    List<AddressType> onlyInEnum = setdiff(enumsMinusUnknown, addressTypeToLiteralMap.keySet());
+    assertEquals(
+        "Unexpected enum elements: Only in test: " + onlyInTest + ". Only in enum: " + onlyInEnum,
+        addressTypeToLiteralMap.size() + 1, // 1 for unknown
+        AddressType.values().length);
+  }
+
+private Map<AddressType, String> extracted() {
+	Map<AddressType, String> addressTypeToLiteralMap = new HashMap<AddressType, String>();
     // Short alias just to avoid line wrapping in the below code
     Map<AddressType, String> m = addressTypeToLiteralMap;
     m.put(AddressType.STREET_ADDRESS, "street_address");
@@ -184,21 +202,8 @@ public class EnumsTest {
     m.put(AddressType.ARCHIPELAGO, "archipelago");
     m.put(AddressType.TOURIST_ATTRACTION, "tourist_attraction");
     m.put(AddressType.TOWN_SQUARE, "town_square");
-
-    for (Map.Entry<AddressType, String> addressTypeLiteralPair :
-        addressTypeToLiteralMap.entrySet()) {
-      assertEquals(
-          addressTypeLiteralPair.getValue(), addressTypeLiteralPair.getKey().toCanonicalLiteral());
-    }
-    List<AddressType> enumsMinusUnknown = new ArrayList<>(Arrays.asList(AddressType.values()));
-    enumsMinusUnknown.remove(AddressType.UNKNOWN);
-    List<AddressType> onlyInTest = setdiff(addressTypeToLiteralMap.keySet(), enumsMinusUnknown);
-    List<AddressType> onlyInEnum = setdiff(enumsMinusUnknown, addressTypeToLiteralMap.keySet());
-    assertEquals(
-        "Unexpected enum elements: Only in test: " + onlyInTest + ". Only in enum: " + onlyInEnum,
-        addressTypeToLiteralMap.size() + 1, // 1 for unknown
-        AddressType.values().length);
-  }
+	return addressTypeToLiteralMap;
+}
 
   @Test
   public void testCanonicalLiteralsForAddressComponentType() {
