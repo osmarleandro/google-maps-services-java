@@ -238,14 +238,8 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
   @SuppressWarnings("unchecked")
   private T parseResponseInternal(OkHttpPendingResult<T, R> request, Response response)
       throws ApiException, InterruptedException, IOException {
-    if (shouldRetry(response)) {
-      // since we are retrying the request we must close the response
-      response.close();
-
-      // Retry is a blocking method, but that's OK. If we're here, we're either in an await()
-      // call, which is blocking anyway, or we're handling a callback in a separate thread.
-      return request.retry();
-    }
+    if (shouldRetry(response))
+		return extracted(request, response);
 
     byte[] bytes;
     try (ResponseBody body = response.body()) {
@@ -318,6 +312,18 @@ public class OkHttpPendingResult<T, R extends ApiResponse<T>>
       }
     }
   }
+
+private T extracted(OkHttpPendingResult<T, R> request, Response response)
+		throws ApiException, InterruptedException, IOException {
+	{
+      // since we are retrying the request we must close the response
+      response.close();
+
+      // Retry is a blocking method, but that's OK. If we're here, we're either in an await()
+      // call, which is blocking anyway, or we're handling a callback in a separate thread.
+      return request.retry();
+    }
+}
 
   private T retry() throws ApiException, InterruptedException, IOException {
     retryCounter++;
